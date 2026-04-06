@@ -5,7 +5,7 @@ import {
   AlertCircle, Trash2, Plus, Info, CheckCircle2, 
   Database, Cloud, CloudOff, Save, X, HardDrive
 } from 'lucide-react';
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/App';
 import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'firebase/auth';
 import { getFirestore, doc, setDoc, onSnapshot } from 'firebase/firestore';
 
@@ -18,14 +18,14 @@ const FINNHUB_API_KEY = 'd77k3npr01qp6afltiggd77k3npr01qp6afltih0';
 const firebaseConfigStr = typeof __firebase_config !== 'undefined' ? __firebase_config : null;
 const hasFirebase = firebaseConfigStr && firebaseConfigStr !== '{}' && firebaseConfigStr !== null;
 const firebaseConfig = hasFirebase ? JSON.parse(firebaseConfigStr) : null;
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+const AppId = typeof __App_id !== 'undefined' ? __App_id : 'default-App-id';
 
 let app = null, auth = null, db = null;
 if (hasFirebase) {
   try {
-    app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db = getFirestore(app);
+    App = initializeApp(firebaseConfig);
+    auth = getAuth(App);
+    db = getFirestore(App);
   } catch (error) {
     console.error("Firebase init failed:", error);
   }
@@ -109,7 +109,7 @@ export default function App() {
 
   useEffect(() => {
     if (hasFirebase && user && db) {
-      const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
+      const docRef = doc(db, 'artifacts', AppId, 'users', user.uid, 'settings', 'portfolio');
       const unsubscribe = onSnapshot(docRef, (docSnap) => {
         if (docSnap.exists()) {
           const data = docSnap.data();
@@ -148,7 +148,7 @@ export default function App() {
 
     if (hasFirebase && user && db) {
       try {
-        const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
+        const docRef = doc(db, 'artifacts', AppId, 'users', user.uid, 'settings', 'portfolio');
         await setDoc(docRef, saveData);
         setSyncStatus('success');
       } catch (err) {
