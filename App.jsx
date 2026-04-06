@@ -3,7 +3,7 @@ import {
   LineChart, Wallet, TrendingUp, PiggyBank, RefreshCw, 
   Calculator, Calendar, ArrowUpRight, DollarSign, 
   AlertCircle, Trash2, Plus, Info, CheckCircle2, 
-  Database, Cloud, CloudOff, Save, X
+  Database, Cloud, CloudOff, Save, X, HardDrive
 } from 'lucide-react';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'firebase/auth';
@@ -14,14 +14,24 @@ const POLYGON_API_KEY = 'h3faYrol9E4DEgv99Fj532HblSIA3fAb';
 const EODHD_API_KEY = '69cec4d00ed1f6.56559517';
 const FINNHUB_API_KEY = 'd77k3npr01qp6afltiggd77k3npr01qp6afltih0';
 
-// --- Firebase Configuration ---
-const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+// --- System Variables Setup (Smart Fallback) ---
+const firebaseConfigStr = typeof __firebase_config !== 'undefined' ? __firebase_config : null;
+const hasFirebase = firebaseConfigStr && firebaseConfigStr !== '{}' && firebaseConfigStr !== null;
+const firebaseConfig = hasFirebase ? JSON.parse(firebaseConfigStr) : null;
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
-// --- Verified Market Data (Priority: Growth 10Y from User Database) ---
+let app = null, auth = null, db = null;
+if (hasFirebase) {
+  try {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+  } catch (error) {
+    console.error("Firebase init failed:", error);
+  }
+}
+
+// --- Verified Market Data ---
 const FALLBACK_MAP = { 
   'QQQI': { y: 14.2, g: 8.0, n: 'NEOS Nasdaq 100 High Income ETF' }, 
   'SPYI': { y: 11.8, g: 7.0, n: 'NEOS S&P 500 High Income ETF' },   
@@ -42,14 +52,14 @@ const FALLBACK_MAP = {
 };
 
 const INITIAL_PORTFOLIO = [
-  { symbol: 'QQQI', allocation: 45 },
+  { symbol: 'SCHD', allocation: 45 },
   { symbol: 'SPYI', allocation: 30 },
   { symbol: 'DIVO', allocation: 25 }
 ];
 
 export default function App() {
   const [user, setUser] = useState(null);
-  const [syncStatus, setSyncStatus] = useState('idle'); // idle, syncing, success, error
+  const [syncStatus, setSyncStatus] = useState('idle');
   const [portfolio, setPortfolio] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
@@ -57,57 +67,65 @@ export default function App() {
   const [newAllocation, setNewAllocation] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
 
-  // Calculator Inputs
-  const [initialInvestment, setInitialInvestment] = useState(50000);
-  const [monthlyContribution, setMonthlyContribution] = useState(3500);
-  const [contributionStepUp, setContributionStepUp] = useState(5);
-  const [investmentYears, setInvestmentYears] = useState(30);
+  const [initialInvestment, setInitialInvestment] = useState(10000);
+  const [monthlyContribution, setMonthlyContribution] = useState(1500);
+  const [contributionStepUp, setContributionStepUp] = useState(10);
+  const [investmentYears, setInvestmentYears] = useState(15);
 
-  // --- Authentication Flow ---
+  // --- Auth & Data Loading ---
   useEffect(() => {
-    const initAuth = async () => {
-      try {
-        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-          await signInWithCustomToken(auth, __initial_auth_token);
-        } else {
-          await signInAnonymously(auth);
-        }
-      } catch (err) {
-        console.error("Auth error:", err);
-      }
-    };
-    initAuth();
-    const unsubscribeAuth = onAuthStateChanged(auth, setUser);
-    return () => unsubscribeAuth();
-  }, []);
-
-  // --- Cloud Data Sync Flow ---
-  useEffect(() => {
-    if (!user) return;
-
-    const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
-    const unsubscribeDoc = onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setInitialInvestment(data.initialInvestment || 50000);
-        setMonthlyContribution(data.monthlyContribution || 3500);
-        setContributionStepUp(data.contributionStepUp || 5);
-        setInvestmentYears(data.investmentYears || 30);
-        
-        if (portfolio.length === 0) {
-          fetchAllLiveData(data.portfolio && data.portfolio.length > 0 ? data.portfolio : INITIAL_PORTFOLIO);
-        }
-      } else {
-        if (portfolio.length === 0) {
+    if (hasFirebase && auth) {
+      const initAuth = async () => {
+        try {
+          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+            await signInWithCustomToken(auth, __initial_auth_token);
+          } else {
+            await signInAnonymously(auth);
+          }
+        } catch (err) {}
+      };
+      initAuth();
+      const unsubscribe = onAuthStateChanged(auth, setUser);
+      return () => unsubscribe();
+    } else {
+      // Local Fallback (For external deployments like Vercel)
+      const localData = localStorage.getItem('etf_portfolio_data');
+      if (localData) {
+        try {
+          const parsed = JSON.parse(localData);
+          setInitialInvestment(parsed.initialInvestment || 10000);
+          setMonthlyContribution(parsed.monthlyContribution || 1500);
+          setContributionStepUp(parsed.contributionStepUp || 10);
+          setInvestmentYears(parsed.investmentYears || 15);
+          fetchAllLiveData(parsed.portfolio || INITIAL_PORTFOLIO);
+        } catch (e) {
           fetchAllLiveData(INITIAL_PORTFOLIO);
         }
+      } else {
+        fetchAllLiveData(INITIAL_PORTFOLIO);
       }
-    }, (err) => {
-      console.error("Firestore error:", err);
-      setSyncStatus('error');
-    });
+    }
+  }, []);
 
-    return () => unsubscribeDoc();
+  useEffect(() => {
+    if (hasFirebase && user && db) {
+      const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
+      const unsubscribe = onSnapshot(docRef, (docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setInitialInvestment(data.initialInvestment || 10000);
+          setMonthlyContribution(data.monthlyContribution || 1500);
+          setContributionStepUp(data.contributionStepUp || 10);
+          setInvestmentYears(data.investmentYears || 15);
+          if (portfolio.length === 0) fetchAllLiveData(data.portfolio && data.portfolio.length > 0 ? data.portfolio : INITIAL_PORTFOLIO);
+        } else {
+          if (portfolio.length === 0) fetchAllLiveData(INITIAL_PORTFOLIO);
+        }
+      }, (err) => {
+        setSyncStatus('error');
+      });
+      return () => unsubscribe();
+    }
   }, [user]);
 
   const fetchAllLiveData = async (baseList) => {
@@ -120,25 +138,29 @@ export default function App() {
     setIsLoading(false);
   };
 
-  const saveToCloud = async (currentPortfolio, settings) => {
-    if (!user) return;
+  const saveToCloudOrLocal = async (currentPortfolio, settings) => {
     setSyncStatus('syncing');
-    try {
-      const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
-      await setDoc(docRef, {
-        portfolio: currentPortfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation })),
-        ...settings,
-        lastSaved: new Date().toISOString()
-      });
-      setSyncStatus('success');
-      setTimeout(() => setSyncStatus('idle'), 2000);
-    } catch (err) {
-      console.error("Save error:", err);
-      setSyncStatus('error');
+    const saveData = {
+      portfolio: currentPortfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation })),
+      ...settings,
+      lastSaved: new Date().toISOString()
+    };
+
+    if (hasFirebase && user && db) {
+      try {
+        const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
+        await setDoc(docRef, saveData);
+        setSyncStatus('success');
+      } catch (err) {
+        setSyncStatus('error');
+      }
+    } else {
+      localStorage.setItem('etf_portfolio_data', JSON.stringify(saveData));
+      setSyncStatus('success_local');
     }
+    setTimeout(() => setSyncStatus('idle'), 2000);
   };
 
-  // --- Multi-API Synergy Data Fetching ---
   const fetchWithRetry = async (url, retries = 2) => {
     try {
       const response = await fetch(url);
@@ -155,18 +177,14 @@ export default function App() {
     let price = 0, divYield = 0, growthRate = 0, dataSource = 'Live API';
 
     try {
-      // 1. Finnhub (Core Price & Metrics)
       try {
         const quote = await fetchWithRetry(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${FINNHUB_API_KEY}`);
         const financials = await fetchWithRetry(`https://finnhub.io/api/v1/stock/metric?symbol=${sym}&metric=all&token=${FINNHUB_API_KEY}`);
         price = quote.c || 0;
         divYield = financials.metric?.dividendYieldTTM || financials.metric?.dividendYieldIndicatedAnnual || 0;
-        // Priority: 10Y Growth -> 5Y Growth
-        growthRate = financials.metric?.['epsGrowth10Y'] || financials.metric?.['revenueGrowth10Y'] || 
-                     financials.metric?.['epsGrowth5Y'] || financials.metric?.['revenueGrowth5Y'] || 0;
+        growthRate = financials.metric?.['epsGrowth10Y'] || financials.metric?.['revenueGrowth10Y'] || financials.metric?.['epsGrowth5Y'] || 0;
       } catch (e) {}
 
-      // 2. EODHD (Backup for Yield & Price)
       if (price === 0 || divYield === 0) {
         try {
           const eodRT = await fetchWithRetry(`https://eodhd.com/api/real-time/${sym}.US?api_token=${EODHD_API_KEY}&fmt=json`);
@@ -178,7 +196,6 @@ export default function App() {
         } catch (e) {}
       }
 
-      // 3. Polygon (Last Resort for Price)
       if (price === 0) {
         try {
           const poly = await fetchWithRetry(`https://api.polygon.io/v2/aggs/ticker/${sym}/prev?adjusted=true&apiKey=${POLYGON_API_KEY}`);
@@ -186,7 +203,6 @@ export default function App() {
         } catch (e) {}
       }
 
-      // 4. Fallback to Verified Data
       if (divYield === 0 || growthRate === 0) {
         if (FALLBACK_MAP[sym]) {
           divYield = divYield || FALLBACK_MAP[sym].y;
@@ -201,7 +217,6 @@ export default function App() {
     } catch (err) { return null; }
   };
 
-  // --- UI Handlers ---
   const handleAddStock = async () => {
     if (!newSymbol.trim()) return;
     const sym = newSymbol.toUpperCase().trim();
@@ -211,7 +226,7 @@ export default function App() {
     if (data) {
       const next = [...portfolio, { symbol: sym, allocation: Number(newAllocation) || 10, data }];
       setPortfolio(next);
-      saveToCloud(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears });
+      saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears });
       setNewSymbol(''); setNewAllocation('');
     } else { setErrorMsg("ไม่พบข้อมูลหุ้นที่ระบุ"); }
     setIsAdding(false);
@@ -220,16 +235,15 @@ export default function App() {
   const handleRemoveStock = (sym) => {
     const next = portfolio.filter(p => p.symbol !== sym);
     setPortfolio(next);
-    saveToCloud(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears });
+    saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears });
   };
 
   const handleUpdateSetting = (setter, key, val) => {
     setter(val);
     const nextSettings = { initialInvestment, monthlyContribution, contributionStepUp, investmentYears, [key]: val };
-    saveToCloud(portfolio, nextSettings);
+    saveToCloudOrLocal(portfolio, nextSettings);
   };
 
-  // --- Global Portfolio Metrics ---
   const metrics = useMemo(() => {
     const totalAlloc = portfolio.reduce((sum, p) => sum + p.allocation, 0) || 1;
     let weightedYield = 0, weightedGrowth = 0;
@@ -261,7 +275,7 @@ export default function App() {
   const formatCurrency = (v) => new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(v);
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8 text-slate-800 font-sans selection:bg-blue-100">
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-800 font-sans selection:bg-blue-100">
       <div className="max-w-6xl mx-auto space-y-6">
         
         {/* Header */}
@@ -274,16 +288,20 @@ export default function App() {
               <h1 className="text-2xl font-bold tracking-tight text-slate-900 uppercase">พอร์ตหุ้น ETF อเมริกา</h1>
               <div className="flex items-center gap-3 mt-1">
                 <p className="text-slate-500 text-sm flex items-center gap-2 font-medium">
-                  <Database size={14} className="text-blue-600" /> Multi-API Synergy (10Y Growth)
+                  <Database size={14} className="text-blue-600" /> Multi-API Synergy (10Y)
                 </p>
                 <div className="h-4 w-px bg-slate-200"></div>
                 <div className="flex items-center gap-1.5 text-xs font-semibold">
                   {syncStatus === 'syncing' ? (
                     <span className="text-blue-500 flex items-center gap-1 animate-pulse"><RefreshCw size={12} className="animate-spin" /> กำลังบันทึก...</span>
                   ) : syncStatus === 'success' ? (
-                    <span className="text-green-600 flex items-center gap-1"><Save size={12} /> บันทึกแล้ว</span>
+                    <span className="text-green-600 flex items-center gap-1"><Cloud size={12} /> บันทึกบน Cloud แล้ว</span>
+                  ) : syncStatus === 'success_local' ? (
+                    <span className="text-emerald-600 flex items-center gap-1"><HardDrive size={12} /> บันทึกในเครื่องแล้ว</span>
+                  ) : hasFirebase ? (
+                    <span className="text-slate-400 flex items-center gap-1"><Cloud size={12} /> Cloud Sync Active</span>
                   ) : (
-                    <span className="text-slate-400 flex items-center gap-1"><Cloud size={12} /> ระบบ Cloud Sync เปิดใช้งาน</span>
+                    <span className="text-slate-400 flex items-center gap-1"><HardDrive size={12} /> Local Auto-Save</span>
                   )}
                 </div>
               </div>
@@ -291,14 +309,13 @@ export default function App() {
           </div>
           <div className="mt-4 md:mt-0 flex flex-col items-end gap-1">
              <div className="bg-white text-blue-900 px-5 py-2 rounded-full text-xs font-bold border border-blue-900 flex items-center gap-2 shadow-sm">
-               <CheckCircle2 size={14} /> ออนไลน์ & ซิงค์ข้อมูลข้ามเครื่อง
+               <CheckCircle2 size={14} /> ระบบบันทึกอัตโนมัติ
              </div>
-             {user && <span className="text-[9px] text-slate-300 font-mono tracking-tighter">UID: {user.uid}</span>}
+             {hasFirebase && user && <span className="text-[9px] text-slate-300 font-mono tracking-tighter">UID: {user.uid}</span>}
           </div>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Column 1: Management */}
           <div className="lg:col-span-5 space-y-6">
             <section className="bg-white p-6 rounded-[32px] shadow-sm border border-blue-900">
               <div className="flex justify-between items-center mb-5">
@@ -334,16 +351,11 @@ export default function App() {
                       <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-100">
                         <div>
                           <label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase tracking-tighter">สัดส่วน (%)</label>
-                          <input 
-                            type="number" 
-                            value={stock.allocation}
-                            onChange={(e) => {
-                              const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p);
-                              setPortfolio(next);
-                              saveToCloud(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears });
-                            }}
-                            className="w-full bg-white rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold focus:border-blue-900 outline-none"
-                          />
+                          <input type="number" value={stock.allocation} onChange={(e) => {
+                            const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p);
+                            setPortfolio(next);
+                            saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears });
+                          }} className="w-full bg-white rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold focus:border-blue-900 outline-none" />
                         </div>
                         <div className="text-center border-x border-slate-50 px-1">
                           <label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase tracking-tighter">ปันผล (Yield)</label>
@@ -359,33 +371,15 @@ export default function App() {
                 )}
               </div>
 
-              {/* Add New Stock Box */}
               <div className="mt-4 p-4 bg-white rounded-2xl border border-blue-900/30 shadow-sm">
-                <label className="text-xs font-bold text-blue-900 mb-3 block italic tracking-wide">
-                  + เพิ่มหุ้นใหม่เข้าพอร์ต
-                </label>
+                <label className="text-xs font-bold text-blue-900 mb-3 block italic tracking-wide">+ เพิ่มหุ้นใหม่เข้าพอร์ต</label>
                 <div className="flex flex-row items-center gap-2">
-                  <input 
-                    placeholder="หุ้น"
-                    value={newSymbol}
-                    onChange={(e) => setNewSymbol(e.target.value.toUpperCase())}
-                    className="w-[75px] bg-white border border-blue-900 rounded-xl px-3 py-2 text-sm font-bold outline-none focus:ring-1 focus:ring-blue-900 uppercase"
-                  />
+                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-[75px] bg-white border border-blue-900 rounded-xl px-3 py-2 text-sm font-bold outline-none focus:ring-1 focus:ring-blue-900 uppercase" />
                   <div className="relative flex-1">
-                    <input 
-                      type="number" 
-                      placeholder="ระบุสัดส่วน (%)" 
-                      value={newAllocation} 
-                      onChange={(e) => setNewAllocation(e.target.value)} 
-                      className="w-full bg-white border border-blue-900 rounded-xl pl-3 pr-8 py-2 text-sm font-bold outline-none" 
-                    />
+                    <input type="number" placeholder="ระบุสัดส่วน (%)" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="w-full bg-white border border-blue-900 rounded-xl pl-3 pr-8 py-2 text-sm font-bold outline-none" />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">%</span>
                   </div>
-                  <button 
-                    onClick={handleAddStock} 
-                    disabled={isAdding || !newSymbol.trim()} 
-                    className="bg-blue-900 text-white px-5 py-2 rounded-xl hover:bg-blue-800 disabled:opacity-50 transition-all font-bold min-w-[70px] shadow-sm"
-                  >
+                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="bg-blue-900 text-white px-5 py-2 rounded-xl hover:bg-blue-800 disabled:opacity-50 transition-all font-bold min-w-[70px] shadow-sm">
                     {isAdding ? <RefreshCw size={18} className="animate-spin" /> : "เพิ่ม"}
                   </button>
                 </div>
@@ -393,35 +387,19 @@ export default function App() {
               </div>
             </section>
 
-            {/* Investment Settings */}
             <section className="bg-white p-6 rounded-[32px] shadow-sm border border-blue-900 space-y-4">
-              <h2 className="font-bold text-lg flex items-center gap-2 text-slate-900 uppercase">
-                <Calculator size={20} className="text-blue-900" /> ตั้งค่าการลงทุน
-              </h2>
+              <h2 className="font-bold text-lg flex items-center gap-2 text-slate-900 uppercase"><Calculator size={20} className="text-blue-900" /> ตั้งค่าการลงทุน</h2>
               <div className="space-y-4">
-                <div className="space-y-1">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">เงินลงทุนเริ่มต้น (บาท)</label>
-                  <input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">ลงทุนเพิ่มรายเดือน (บาท)</label>
-                  <input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" />
-                </div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" /></div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">เพิ่มปีละ (%)</label>
-                    <input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">ระยะเวลา (ปี)</label>
-                    <input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" />
-                  </div>
+                  <div className="space-y-1"><label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">เพิ่มปีละ (%)</label><input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" /></div>
+                  <div className="space-y-1"><label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">ระยะเวลา (ปี)</label><input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:border-blue-900 transition-all text-slate-900" /></div>
                 </div>
               </div>
             </section>
           </div>
 
-          {/* Column 2: Projections */}
           <div className="lg:col-span-7 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-white border-[4px] border-green-800 p-8 rounded-[40px] shadow-sm relative overflow-hidden">
@@ -432,59 +410,34 @@ export default function App() {
               <div className="bg-white p-8 rounded-[40px] border border-blue-900 shadow-sm flex flex-col justify-center">
                 <h3 className="text-slate-500 text-sm font-bold mb-1 uppercase tracking-tight">หากไม่ทบต้น</h3>
                 <div className="text-3xl md:text-4xl font-black text-slate-800 tabular-nums mb-3 tracking-tight">{formatCurrency(projections.finalNoDrip)}</div>
-                <div className="text-xs text-red-600 font-bold flex items-center gap-1 uppercase tracking-wider">
-                  <ArrowUpRight size={14} className="rotate-90" /> ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}
-                </div>
+                <div className="text-xs text-red-600 font-bold flex items-center gap-1 uppercase tracking-wider"><ArrowUpRight size={14} className="rotate-90" /> ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}</div>
               </div>
             </div>
 
-            {/* Comparison Visualizer */}
             <div className="bg-white p-8 rounded-[32px] border border-blue-900 shadow-sm">
               <div className="flex justify-between items-end mb-8">
-                <div>
-                  <h2 className="font-black text-2xl mb-1 text-slate-900 uppercase">เปรียบเทียบการเติบโต</h2>
-                  <p className="text-slate-500 text-sm font-medium italic tracking-wide">สรุปภาพรวมผลตอบแทนพอร์ตในระยะ {investmentYears} ปี</p>
-                </div>
+                <div><h2 className="font-black text-2xl mb-1 text-slate-900 uppercase">เปรียบเทียบการเติบโต</h2><p className="text-slate-500 text-sm font-medium italic tracking-wide">สรุปภาพรวมผลตอบแทนพอร์ตในระยะ {investmentYears} ปี</p></div>
                 <div className="flex flex-col items-end gap-3 text-right">
-                  <div>
-                    <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest leading-none">Yield เฉลี่ยพอร์ต</div>
-                    <div className="text-xl font-black text-green-700 leading-none mt-1">{metrics.yield.toFixed(2)}% / ปี</div>
-                  </div>
-                  <div className="border-t border-slate-100 pt-2">
-                    <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest leading-none">Growth เฉลี่ยพอร์ต</div>
-                    <div className="text-xl font-black text-blue-600 leading-none mt-1">+{metrics.growth.toFixed(2)}% / ปี</div>
-                  </div>
+                  <div><div className="text-[10px] text-slate-400 uppercase font-black tracking-widest leading-none">Yield เฉลี่ยพอร์ต</div><div className="text-xl font-black text-green-700 leading-none mt-1">{metrics.yield.toFixed(2)}% / ปี</div></div>
+                  <div className="border-t border-slate-100 pt-2"><div className="text-[10px] text-slate-400 uppercase font-black tracking-widest leading-none">Growth เฉลี่ยพอร์ต</div><div className="text-xl font-black text-blue-600 leading-none mt-1">+{metrics.growth.toFixed(2)}% / ปี</div></div>
                 </div>
               </div>
               <div className="space-y-12 mt-4">
-                {/* DRIP Bar */}
                 <div className="relative">
-                  <div className="flex justify-between items-center text-base mb-3 font-black uppercase tracking-tight text-green-800">
-                    <span>Compound Strategy</span>
-                    <span className="text-xl">{formatCurrency(projections.finalDrip)}</span>
-                  </div>
+                  <div className="flex justify-between items-center text-base mb-3 font-black uppercase tracking-tight text-green-800"><span>Compound Strategy</span><span className="text-xl">{formatCurrency(projections.finalDrip)}</span></div>
                   <div className="w-full bg-slate-50 h-14 rounded-2xl p-1.5 border border-slate-200 shadow-inner overflow-hidden">
-                    <div className="bg-green-700 h-full rounded-xl transition-all duration-1000 flex items-center px-6" style={{ width: '100%' }}>
-                      <span className="text-base text-white font-black whitespace-nowrap">ยอดทบต้น: {formatCurrency(projections.finalDrip)}</span>
-                    </div>
+                    <div className="bg-green-700 h-full rounded-xl transition-all duration-1000 flex items-center px-6" style={{ width: '100%' }}><span className="text-base text-white font-black whitespace-nowrap">ยอดทบต้น: {formatCurrency(projections.finalDrip)}</span></div>
                   </div>
                 </div>
-                {/* No DRIP Bar */}
                 <div className="relative">
-                  <div className="flex justify-between items-center text-base mb-3 font-black uppercase tracking-tight text-slate-500">
-                    <span>Cash-Out Strategy</span>
-                    <span className="text-xl">{formatCurrency(projections.finalNoDrip)}</span>
-                  </div>
+                  <div className="flex justify-between items-center text-base mb-3 font-black uppercase tracking-tight text-slate-500"><span>Cash-Out Strategy</span><span className="text-xl">{formatCurrency(projections.finalNoDrip)}</span></div>
                   <div className="w-full bg-slate-50 h-14 rounded-2xl p-1.5 border border-slate-200 shadow-inner overflow-hidden">
-                    <div className="bg-slate-300 h-full rounded-xl transition-all duration-1000 flex items-center px-6" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>
-                      <span className="text-base text-slate-800 font-black whitespace-nowrap">ยอดไม่ทบต้น: {formatCurrency(projections.finalNoDrip)}</span>
-                    </div>
+                    <div className="bg-slate-300 h-full rounded-xl transition-all duration-1000 flex items-center px-6" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}><span className="text-base text-slate-800 font-black whitespace-nowrap">ยอดไม่ทบต้น: {formatCurrency(projections.finalNoDrip)}</span></div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Growth Table */}
             <div className="bg-white rounded-[32px] border border-blue-900 overflow-hidden shadow-sm">
               <div className="px-8 py-6 border-b border-blue-900/10 bg-slate-50/30 font-black text-lg text-slate-900 uppercase">ตารางสรุปรายปี</div>
               <div className="overflow-x-auto text-sm">
