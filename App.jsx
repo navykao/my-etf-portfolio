@@ -5,7 +5,7 @@ import {
   AlertCircle, Trash2, Plus, Info, CheckCircle2, 
   Database, Cloud, CloudOff, Save, X, HardDrive
 } from 'lucide-react';
-import { initializeApp } from 'firebase/App';
+import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'firebase/auth';
 import { getFirestore, doc, setDoc, onSnapshot } from 'firebase/firestore';
 
@@ -14,18 +14,27 @@ const POLYGON_API_KEY = 'h3faYrol9E4DEgv99Fj532HblSIA3fAb';
 const EODHD_API_KEY = '69cec4d00ed1f6.56559517';
 const FINNHUB_API_KEY = 'd77k3npr01qp6afltiggd77k3npr01qp6afltih0';
 
-// --- System Variables Setup (Smart Fallback) ---
-const firebaseConfigStr = typeof __firebase_config !== 'undefined' ? __firebase_config : null;
+// --- System Variables Setup (Safe for Vercel) ---
+let firebaseConfigStr = null;
+try {
+  if (typeof __firebase_config !== 'undefined') {
+    firebaseConfigStr = __firebase_config;
+  }
+} catch (e) {
+  // Ignore error if running on Vercel
+}
+
 const hasFirebase = firebaseConfigStr && firebaseConfigStr !== '{}' && firebaseConfigStr !== null;
 const firebaseConfig = hasFirebase ? JSON.parse(firebaseConfigStr) : null;
-const AppId = typeof __App_id !== 'undefined' ? __App_id : 'default-App-id';
+let appId = 'default-app-id';
+try { if (typeof __app_id !== 'undefined') appId = __app_id; } catch(e) {}
 
 let app = null, auth = null, db = null;
 if (hasFirebase) {
   try {
-    App = initializeApp(firebaseConfig);
-    auth = getAuth(App);
-    db = getFirestore(App);
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
   } catch (error) {
     console.error("Firebase init failed:", error);
   }
@@ -43,18 +52,12 @@ const FALLBACK_MAP = {
   'VTI':  { y: 1.11, g: 13.9,  n: 'Vanguard Total Stock Market ETF' }, 
   'QQQ':  { y: 0.6,  g: 17.5,  n: 'Invesco QQQ Trust' },            
   'JEPI': { y: 7.5,  g: 5.0,  n: 'JPMorgan Equity Premium Income ETF' }, 
-  'JEPQ': { y: 9.2,  g: 9.0,  n: 'JPMorgan Nasdaq Equity Premium Income ETF' }, 
-  'AOA':  { y: 2.09, g: 9.85, n: 'iShares Core Aggressive Allocation ETF' }, 
-  'AOR':  { y: 2.46, g: 7.91, n: 'iShares Core Balanced Allocation ETF' },   
-  'AOM':  { y: 2.89, g: 5.92, n: 'iShares Core Moderate Allocation ETF' },   
-  'XLV':  { y: 1.55, g: 9.53, n: 'Health Care Select Sector SPDR Fund' },    
-  'XLE':  { y: 3.5,  g: 8.5,  n: 'Energy Select Sector SPDR Fund' }
+  'JEPQ': { y: 9.2,  g: 9.0,  n: 'JPMorgan Nasdaq Equity Premium Income ETF' }
 };
 
+// --- ค่าเริ่มต้นใหม่ตามที่กำหนด ---
 const INITIAL_PORTFOLIO = [
-  { symbol: 'SCHD', allocation: 45 },
-  { symbol: 'SPYI', allocation: 30 },
-  { symbol: 'DIVO', allocation: 25 }
+  { symbol: 'VOO', allocation: 100 }
 ];
 
 export default function App() {
@@ -67,6 +70,7 @@ export default function App() {
   const [newAllocation, setNewAllocation] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
 
+  // ตั้งค่าตัวเลขเริ่มต้นใหม่
   const [initialInvestment, setInitialInvestment] = useState(10000);
   const [monthlyContribution, setMonthlyContribution] = useState(1500);
   const [contributionStepUp, setContributionStepUp] = useState(10);
@@ -88,16 +92,16 @@ export default function App() {
       const unsubscribe = onAuthStateChanged(auth, setUser);
       return () => unsubscribe();
     } else {
-      // Local Fallback (For external deployments like Vercel)
+      // Local Fallback 
       const localData = localStorage.getItem('etf_portfolio_data');
       if (localData) {
         try {
           const parsed = JSON.parse(localData);
-          setInitialInvestment(parsed.initialInvestment || 10000);
-          setMonthlyContribution(parsed.monthlyContribution || 1500);
-          setContributionStepUp(parsed.contributionStepUp || 10);
-          setInvestmentYears(parsed.investmentYears || 15);
-          fetchAllLiveData(parsed.portfolio || INITIAL_PORTFOLIO);
+          setInitialInvestment(parsed.initialInvestment ?? 10000);
+          setMonthlyContribution(parsed.monthlyContribution ?? 1500);
+          setContributionStepUp(parsed.contributionStepUp ?? 10);
+          setInvestmentYears(parsed.investmentYears ?? 15);
+          fetchAllLiveData(parsed.portfolio && parsed.portfolio.length > 0 ? parsed.portfolio : INITIAL_PORTFOLIO);
         } catch (e) {
           fetchAllLiveData(INITIAL_PORTFOLIO);
         }
@@ -109,14 +113,14 @@ export default function App() {
 
   useEffect(() => {
     if (hasFirebase && user && db) {
-      const docRef = doc(db, 'artifacts', AppId, 'users', user.uid, 'settings', 'portfolio');
+      const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
       const unsubscribe = onSnapshot(docRef, (docSnap) => {
         if (docSnap.exists()) {
           const data = docSnap.data();
-          setInitialInvestment(data.initialInvestment || 10000);
-          setMonthlyContribution(data.monthlyContribution || 1500);
-          setContributionStepUp(data.contributionStepUp || 10);
-          setInvestmentYears(data.investmentYears || 15);
+          setInitialInvestment(data.initialInvestment ?? 10000);
+          setMonthlyContribution(data.monthlyContribution ?? 1500);
+          setContributionStepUp(data.contributionStepUp ?? 10);
+          setInvestmentYears(data.investmentYears ?? 15);
           if (portfolio.length === 0) fetchAllLiveData(data.portfolio && data.portfolio.length > 0 ? data.portfolio : INITIAL_PORTFOLIO);
         } else {
           if (portfolio.length === 0) fetchAllLiveData(INITIAL_PORTFOLIO);
@@ -130,12 +134,17 @@ export default function App() {
 
   const fetchAllLiveData = async (baseList) => {
     setIsLoading(true);
-    const updated = await Promise.all(baseList.map(async (item) => ({
-      ...item,
-      data: await getFullStockData(item.symbol)
-    })));
-    setPortfolio(updated.filter(i => i.data !== null));
-    setIsLoading(false);
+    try {
+      const updated = await Promise.all(baseList.map(async (item) => ({
+        ...item,
+        data: await getFullStockData(item.symbol)
+      })));
+      setPortfolio(updated.filter(i => i.data !== null));
+    } catch(err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const saveToCloudOrLocal = async (currentPortfolio, settings) => {
@@ -148,7 +157,7 @@ export default function App() {
 
     if (hasFirebase && user && db) {
       try {
-        const docRef = doc(db, 'artifacts', AppId, 'users', user.uid, 'settings', 'portfolio');
+        const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio');
         await setDoc(docRef, saveData);
         setSyncStatus('success');
       } catch (err) {
@@ -209,7 +218,7 @@ export default function App() {
           growthRate = growthRate || FALLBACK_MAP[sym].g;
           dataSource = 'Market Avg (Verified)';
         } else if (divYield === 0) {
-          divYield = 2.0; growthRate = 7.0; dataSource = 'Estimated Avg';
+          divYield = 1.5; growthRate = 10.0; dataSource = 'Estimated Avg';
         }
       }
 
@@ -259,6 +268,7 @@ export default function App() {
     let drip = initialInvestment, noDrip = initialInvestment, cash = 0, invested = initialInvestment, monthly = monthlyContribution;
     const history = [];
     const mY = (metrics.yield / 100) / 12, mG = (metrics.growth / 100) / 12;
+    
     for (let y = 1; y <= investmentYears; y++) {
       for (let m = 1; m <= 12; m++) {
         drip = (drip * (1 + mG)) + (drip * mY) + monthly;
@@ -272,7 +282,10 @@ export default function App() {
     return { history, finalDrip: drip, finalNoDrip: noDrip + cash, invested };
   }, [metrics, initialInvestment, monthlyContribution, contributionStepUp, investmentYears]);
 
-  const formatCurrency = (v) => new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(v);
+  const formatCurrency = (v) => {
+    if (isNaN(v) || v === null) return '฿0';
+    return new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(v);
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-800 font-sans selection:bg-blue-100">
