@@ -41,31 +41,36 @@ if (hasFirebase) {
 }
 
 // --- GitHub CSV Database URL ---
-const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/etf-database.csv';
+const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/combined-database.csv';
 
 // --- Fallback Map (จะถูก populate จาก CSV) ---
 let FALLBACK_MAP = {};
 
-// --- Function: Parse CSV to Object ---
+// --- Function: Parse CSV to Object (รองรับทั้ง ETF และ Stock) ---
 const parseCSVtoFallbackMap = (csvText) => {
   const lines = csvText.trim().split('\n');
-  const headers = lines[0].split(',');
   const map = {};
   
+  // New format: Symbol,Name,Type,Market Cap/Assets,Div Growth 5Y,Div Growth 10Y,Return 3Y,Return 5Y,CAGR 5Y,CAGR 10Y
   for (let i = 1; i < lines.length; i++) {
-    const values = lines[i].split(',');
-    const symbol = values[0];
-    const fundName = values[1];
-    // CAGR 10Y อยู่ที่ column index 9
-    const cagr10Y = parseFloat(values[9]?.replace('%', '')) || 0;
-    // Div Growth 5Y อยู่ที่ column index 4 (ใช้เป็น yield estimate)
-    const divGrowth5Y = parseFloat(values[4]?.replace('%', '')) || 0;
+    // Handle CSV with quoted fields (e.g., company names with commas)
+    const values = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+    const cleanValues = values.map(v => v.replace(/^"|"$/g, '').trim());
     
-    map[symbol] = {
-      y: divGrowth5Y,  // Dividend Growth 5Y as yield proxy
-      g: cagr10Y,      // CAGR 10Y as growth rate
-      n: fundName
-    };
+    const symbol = cleanValues[0];
+    const name = cleanValues[1];
+    const type = cleanValues[2]; // 'ETF' or 'Stock'
+    const divGrowth5Y = parseFloat(cleanValues[4]?.replace('%', '')) || 0;
+    const cagr10Y = parseFloat(cleanValues[9]?.replace('%', '')) || 0;
+    
+    if (symbol) {
+      map[symbol] = {
+        y: divGrowth5Y,  // Dividend Growth 5Y
+        g: cagr10Y,      // CAGR 10Y as growth rate
+        n: name,
+        t: type          // Type: ETF or Stock
+      };
+    }
   }
   return map;
 };
@@ -79,7 +84,7 @@ const loadCSVDatabase = async () => {
   
   if (cached && cacheTime && (Date.now() - parseInt(cacheTime)) < ONE_HOUR) {
     FALLBACK_MAP = JSON.parse(cached);
-    console.log('📊 Loaded ETF data from cache:', Object.keys(FALLBACK_MAP).length, 'symbols');
+    console.log('📊 Loaded data from cache:', Object.keys(FALLBACK_MAP).length, 'symbols (ETF + Stocks)');
     return;
   }
   
@@ -92,15 +97,20 @@ const loadCSVDatabase = async () => {
     // Save to cache
     localStorage.setItem('etf_csv_cache', JSON.stringify(FALLBACK_MAP));
     localStorage.setItem('etf_csv_cache_time', Date.now().toString());
-    console.log('📊 Loaded ETF data from GitHub:', Object.keys(FALLBACK_MAP).length, 'symbols');
+    
+    const etfCount = Object.values(FALLBACK_MAP).filter(v => v.t === 'ETF').length;
+    const stockCount = Object.values(FALLBACK_MAP).filter(v => v.t === 'Stock').length;
+    console.log(`📊 Loaded from GitHub: ${etfCount} ETFs + ${stockCount} Stocks = ${Object.keys(FALLBACK_MAP).length} total`);
   } catch (err) {
     console.error('Failed to load CSV from GitHub:', err);
     // Fallback to hardcoded minimal data if GitHub fails
     FALLBACK_MAP = {
-      'VOO': { y: 5.76, g: 14.36, n: 'Vanguard S&P 500 ETF' },
-      'SPY': { y: 5.82, g: 14.29, n: 'State Street SPDR S&P 500 ETF' },
-      'QQQ': { y: 9.72, g: 19.24, n: 'Invesco QQQ Trust' },
-      'SCHD': { y: 8.68, g: 12.38, n: 'Schwab US Dividend Equity ETF' }
+      'VOO': { y: 5.76, g: 14.36, n: 'Vanguard S&P 500 ETF', t: 'ETF' },
+      'SPY': { y: 5.82, g: 14.29, n: 'State Street SPDR S&P 500 ETF', t: 'ETF' },
+      'QQQ': { y: 9.72, g: 19.24, n: 'Invesco QQQ Trust', t: 'ETF' },
+      'SCHD': { y: 8.68, g: 12.38, n: 'Schwab US Dividend Equity ETF', t: 'ETF' },
+      'NVDA': { y: 20.11, g: 70.12, n: 'NVIDIA Corporation', t: 'Stock' },
+      'AAPL': { y: 5.0, g: 25.0, n: 'Apple Inc.', t: 'Stock' }
     };
   }
 };
