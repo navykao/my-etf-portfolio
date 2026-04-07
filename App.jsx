@@ -40,19 +40,69 @@ if (hasFirebase) {
   }
 }
 
-// --- Verified Market Data ---
-const FALLBACK_MAP = { 
-  'QQQI': { y: 14.2, g: 8.0, n: 'NEOS Nasdaq 100 High Income ETF' }, 
-  'SPYI': { y: 11.8, g: 7.0, n: 'NEOS S&P 500 High Income ETF' },   
-  'DIVO': { y: 4.7,  g: 6.5, n: 'Amplify CWP Strategic Focus Ultra Dividend ETF' }, 
-  'SCHD': { y: 3.4,  g: 9.5, n: 'Schwab US Dividend Equity ETF' }, 
-  'VOO':  { y: 1.12, g: 14.34, n: 'Vanguard S&P 500 ETF' },          
-  'SPY':  { y: 1.06, g: 14.26, n: 'SPDR S&P 500 ETF Trust' },       
-  'IVV':  { y: 1.17, g: 14.33, n: 'iShares Core S&P 500 ETF' },      
-  'VTI':  { y: 1.11, g: 13.9,  n: 'Vanguard Total Stock Market ETF' }, 
-  'QQQ':  { y: 0.6,  g: 17.5,  n: 'Invesco QQQ Trust' },            
-  'JEPI': { y: 7.5,  g: 5.0,  n: 'JPMorgan Equity Premium Income ETF' }, 
-  'JEPQ': { y: 9.2,  g: 9.0,  n: 'JPMorgan Nasdaq Equity Premium Income ETF' }
+// --- GitHub CSV Database URL ---
+const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/screener-etf-2026-04-07.csv';
+
+// --- Fallback Map (จะถูก populate จาก CSV) ---
+let FALLBACK_MAP = {};
+
+// --- Function: Parse CSV to Object ---
+const parseCSVtoFallbackMap = (csvText) => {
+  const lines = csvText.trim().split('\n');
+  const headers = lines[0].split(',');
+  const map = {};
+  
+  for (let i = 1; i < lines.length; i++) {
+    const values = lines[i].split(',');
+    const symbol = values[0];
+    const fundName = values[1];
+    // CAGR 10Y อยู่ที่ column index 9
+    const cagr10Y = parseFloat(values[9]?.replace('%', '')) || 0;
+    // Div Growth 5Y อยู่ที่ column index 4 (ใช้เป็น yield estimate)
+    const divGrowth5Y = parseFloat(values[4]?.replace('%', '')) || 0;
+    
+    map[symbol] = {
+      y: divGrowth5Y,  // Dividend Growth 5Y as yield proxy
+      g: cagr10Y,      // CAGR 10Y as growth rate
+      n: fundName
+    };
+  }
+  return map;
+};
+
+// --- Function: Load CSV from GitHub ---
+const loadCSVDatabase = async () => {
+  // Check cache first (valid for 1 hour)
+  const cached = localStorage.getItem('etf_csv_cache');
+  const cacheTime = localStorage.getItem('etf_csv_cache_time');
+  const ONE_HOUR = 60 * 60 * 1000;
+  
+  if (cached && cacheTime && (Date.now() - parseInt(cacheTime)) < ONE_HOUR) {
+    FALLBACK_MAP = JSON.parse(cached);
+    console.log('📊 Loaded ETF data from cache:', Object.keys(FALLBACK_MAP).length, 'symbols');
+    return;
+  }
+  
+  try {
+    const response = await fetch(GITHUB_CSV_URL);
+    if (!response.ok) throw new Error('Failed to fetch CSV');
+    const csvText = await response.text();
+    FALLBACK_MAP = parseCSVtoFallbackMap(csvText);
+    
+    // Save to cache
+    localStorage.setItem('etf_csv_cache', JSON.stringify(FALLBACK_MAP));
+    localStorage.setItem('etf_csv_cache_time', Date.now().toString());
+    console.log('📊 Loaded ETF data from GitHub:', Object.keys(FALLBACK_MAP).length, 'symbols');
+  } catch (err) {
+    console.error('Failed to load CSV from GitHub:', err);
+    // Fallback to hardcoded minimal data if GitHub fails
+    FALLBACK_MAP = {
+      'VOO': { y: 5.76, g: 14.36, n: 'Vanguard S&P 500 ETF' },
+      'SPY': { y: 5.82, g: 14.29, n: 'State Street SPDR S&P 500 ETF' },
+      'QQQ': { y: 9.72, g: 19.24, n: 'Invesco QQQ Trust' },
+      'SCHD': { y: 8.68, g: 12.38, n: 'Schwab US Dividend Equity ETF' }
+    };
+  }
 };
 
 // --- ค่าเริ่มต้นใหม่ตามคำสั่งผู้ใช้งาน ---
@@ -78,37 +128,44 @@ export default function App() {
 
   // --- Auth & Data Loading ---
   useEffect(() => {
-    if (hasFirebase && auth) {
-      const initAuth = async () => {
-        try {
-          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-            await signInWithCustomToken(auth, __initial_auth_token);
-          } else {
-            await signInAnonymously(auth);
+    const initializeApp = async () => {
+      // โหลด CSV Database ก่อน
+      await loadCSVDatabase();
+      
+      if (hasFirebase && auth) {
+        const initAuth = async () => {
+          try {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+              await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+              await signInAnonymously(auth);
+            }
+          } catch (err) {}
+        };
+        initAuth();
+        const unsubscribe = onAuthStateChanged(auth, setUser);
+        return () => unsubscribe();
+      } else {
+        // Local Fallback (ทำงานบน Vercel ได้ 100% ไม่มีหน้าจอขาว)
+        const localData = localStorage.getItem('etf_portfolio_data');
+        if (localData) {
+          try {
+            const parsed = JSON.parse(localData);
+            setInitialInvestment(parsed.initialInvestment ?? 10000);
+            setMonthlyContribution(parsed.monthlyContribution ?? 1500);
+            setContributionStepUp(parsed.contributionStepUp ?? 10);
+            setInvestmentYears(parsed.investmentYears ?? 15);
+            fetchAllLiveData(parsed.portfolio && parsed.portfolio.length > 0 ? parsed.portfolio : INITIAL_PORTFOLIO);
+          } catch (e) {
+            fetchAllLiveData(INITIAL_PORTFOLIO);
           }
-        } catch (err) {}
-      };
-      initAuth();
-      const unsubscribe = onAuthStateChanged(auth, setUser);
-      return () => unsubscribe();
-    } else {
-      // Local Fallback (ทำงานบน Vercel ได้ 100% ไม่มีหน้าจอขาว)
-      const localData = localStorage.getItem('etf_portfolio_data');
-      if (localData) {
-        try {
-          const parsed = JSON.parse(localData);
-          setInitialInvestment(parsed.initialInvestment ?? 10000);
-          setMonthlyContribution(parsed.monthlyContribution ?? 1500);
-          setContributionStepUp(parsed.contributionStepUp ?? 10);
-          setInvestmentYears(parsed.investmentYears ?? 15);
-          fetchAllLiveData(parsed.portfolio && parsed.portfolio.length > 0 ? parsed.portfolio : INITIAL_PORTFOLIO);
-        } catch (e) {
+        } else {
           fetchAllLiveData(INITIAL_PORTFOLIO);
         }
-      } else {
-        fetchAllLiveData(INITIAL_PORTFOLIO);
       }
-    }
+    };
+    
+    initializeApp();
   }, []);
 
   useEffect(() => {
