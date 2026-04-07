@@ -41,7 +41,7 @@ if (hasFirebase) {
 }
 
 // --- GitHub CSV Database URL ---
-const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/screener-etf-2026-04-07.csv';
+const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/etf-database.csv';
 
 // --- Fallback Map (จะถูก populate จาก CSV) ---
 let FALLBACK_MAP = {};
