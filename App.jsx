@@ -27,7 +27,7 @@ const DEFAULT_CACHE_CONFIG = {
   GITHUB_CACHE_KEY: 'etf_github_cache_v2',
   GITHUB_CACHE_HOURS: 6, // cache GitHub JSON นาน 6 ชม. (เพราะอัพเดทวันละครั้ง)
   API_CALL_LOG_KEY: 'etf_api_calls_v4',
-  DAILY_API_LIMIT: 20,
+  DAILY_API_LIMIT: 30,
   SETTINGS_KEY: 'etf_cache_settings',
   STATS_KEY: 'etf_cache_stats_v2',
 };
@@ -272,7 +272,7 @@ if (hasFirebase) {
   try { app = initializeApp(firebaseConfig); auth = getAuth(app); db = getFirestore(app); } catch (error) {}
 }
 
-const INITIAL_PORTFOLIO = [{ symbol: 'VOO', allocation: 100 }];
+const INITIAL_PORTFOLIO = [{ symbol: 'VOO', allocation: 50 }];
 
 // Settings Panel Component
 function SettingsPanel({ isOpen, onClose, onSave, currentSettings }) {
@@ -586,6 +586,7 @@ export default function App() {
     
     for (let y = 1; y <= investmentYears; y++) {
       let yearlyDividend = 0;
+      const monthlyThisYear = monthly;
       for (let m = 1; m <= 12; m++) { 
         const monthDiv = drip * mY;
         yearlyDividend += monthDiv;
@@ -605,6 +606,7 @@ export default function App() {
           totalNoDrip: noDrip + cash, 
           totalInvested: Math.round(totalInvested),
           yearlyDividend: Math.round(yearlyDividend),
+          monthlyContrib: Math.round(monthlyThisYear),
           isMilestone: justHitMillion && !shouldShow
         });
       }
@@ -634,7 +636,7 @@ export default function App() {
             <div>
               <h1 className="text-lg font-bold text-stone-800 tracking-tight">พอร์ตหุ้น ETF อเมริกา</h1>
               <div className="flex items-center gap-3 mt-0.5 flex-wrap">
-                <p className="text-stone-400 text-xs flex items-center gap-1.5"><Database size={12} className="text-teal-500" /> 3-Tier Cache</p>
+                <p className="text-stone-600 text-xs flex items-center gap-1.5"><Database size={12} className="text-teal-500" /> 3-Tier Cache</p>
                 {syncStatus === 'syncing' && <span className="text-teal-500 text-xs flex items-center gap-1 animate-pulse"><RefreshCw size={11} className="animate-spin" /> กำลังบันทึก...</span>}
                 {syncStatus === 'success' && <span className="text-emerald-500 text-xs flex items-center gap-1"><Cloud size={11} /> Cloud Sync</span>}
                 {syncStatus === 'success_local' && <span className="text-emerald-500 text-xs flex items-center gap-1"><HardDrive size={11} /> Local Saved</span>}
@@ -660,7 +662,7 @@ export default function App() {
                 <div className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${metrics.totalAlloc === 100 ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{metrics.totalAlloc}%</div>
               </div>
               <div className="space-y-3 mb-4">
-                {isLoading && portfolio.length === 0 ? <div className="py-10 text-center animate-pulse text-stone-300 text-sm">กำลังดึงข้อมูล...</div> : portfolio.map(stock => (
+                {isLoading && portfolio.length === 0 ? <div className="py-10 text-center animate-pulse text-stone-500 text-sm">กำลังดึงข้อมูล...</div> : portfolio.map(stock => (
                   <div key={stock.symbol} className="p-4 rounded-xl border border-stone-100 hover:border-teal-200 hover:shadow-sm transition-all bg-white">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
@@ -670,19 +672,19 @@ export default function App() {
                         </div>
                         <div className="flex items-center gap-1.5 mt-1">
                           {getSourceIcon(stock.data?.source)}
-                          <span className={`text-[10px] ${stock.data?.source === 'local' ? 'text-teal-500' : stock.data?.source === 'github' ? 'text-cyan-500' : stock.data?.source === 'api' ? 'text-emerald-500' : 'text-stone-400'}`}>{stock.data?.sourceLabel || 'Unknown'}</span>
+                          <span className={`text-[10px] ${stock.data?.source === 'local' ? 'text-teal-500' : stock.data?.source === 'github' ? 'text-cyan-500' : stock.data?.source === 'api' ? 'text-emerald-500' : 'text-stone-600'}`}>{stock.data?.sourceLabel || 'Unknown'}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-0.5">
-                        <button onClick={() => handleForceRefreshSingle(stock.symbol)} disabled={refreshingSymbol === stock.symbol || !CacheManager.canMakeApiCall()} className="text-stone-300 hover:text-teal-500 p-1.5 rounded-lg disabled:opacity-40 transition-colors" title="รีเฟรช"><RefreshCw size={14} className={refreshingSymbol === stock.symbol ? 'animate-spin text-teal-500' : ''} /></button>
+                        <button onClick={() => handleForceRefreshSingle(stock.symbol)} disabled={refreshingSymbol === stock.symbol || !CacheManager.canMakeApiCall()} className="text-stone-500 hover:text-teal-500 p-1.5 rounded-lg disabled:opacity-40 transition-colors" title="รีเฟรช"><RefreshCw size={14} className={refreshingSymbol === stock.symbol ? 'animate-spin text-teal-500' : ''} /></button>
                         <button onClick={() => handleRemoveStock(stock.symbol)} className="text-stone-200 hover:text-red-400 p-1.5 rounded-lg transition-colors"><Trash2 size={14} /></button>
                       </div>
                     </div>
                     <div className="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-stone-50">
-                      <div><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-stone-50 rounded-lg border border-stone-100 px-2 py-1 text-xs font-semibold outline-none focus:border-teal-300 focus:bg-white transition-all" /></div>
-                      <div className="text-center"><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">Yield</label><div className={`text-xs font-semibold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-stone-300'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-center"><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">Growth</label><div className={`text-xs font-semibold ${(stock.data?.growthRate || 0) > 0 ? 'text-cyan-600' : 'text-stone-300'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-right"><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-violet-500' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-400' : 'text-stone-300'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-stone-50 rounded-lg border border-stone-100 px-2 py-1 text-xs font-semibold outline-none focus:border-teal-300 focus:bg-white transition-all" /></div>
+                      <div className="text-center"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Yield</label><div className={`text-xs font-semibold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-stone-500'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-center"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Growth</label><div className={`text-xs font-semibold ${(stock.data?.growthRate || 0) > 0 ? 'text-cyan-600' : 'text-stone-500'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-right"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-violet-500' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-400' : 'text-stone-500'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
                     </div>
                   </div>
                 ))}
@@ -701,11 +703,11 @@ export default function App() {
             <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60 space-y-3">
               <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700"><Calculator size={16} className="text-teal-500" /> ตั้งค่าการลงทุน</h2>
               <div className="space-y-3">
-                <div><label className="text-[11px] font-medium text-stone-400">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
-                <div><label className="text-[11px] font-medium text-stone-400">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
+                <div><label className="text-[11px] font-medium text-stone-600">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
+                <div><label className="text-[11px] font-medium text-stone-600">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
                 <div className="grid grid-cols-2 gap-3">
-                  <div><label className="text-[11px] font-medium text-stone-400">เพิ่มปีละ (%)</label><input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
-                  <div><label className="text-[11px] font-medium text-stone-400">ระยะเวลา (ปี)</label><input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
+                  <div><label className="text-[11px] font-medium text-stone-600">เพิ่มปีละ (%)</label><input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
+                  <div><label className="text-[11px] font-medium text-stone-600">ระยะเวลา (ปี)</label><input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
                 </div>
               </div>
             </section>
@@ -714,15 +716,15 @@ export default function App() {
           <div className="lg:col-span-7 space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-white p-5 rounded-2xl border-2 border-teal-200 shadow-sm">
-                <h3 className="text-stone-400 text-xs font-medium mb-1">มูลค่าพอร์ตทบต้น (DRIP)</h3>
+                <h3 className="text-stone-600 text-xs font-medium mb-1">มูลค่าพอร์ตทบต้น (DRIP)</h3>
                 <div className="text-2xl font-bold mb-2 text-teal-700 tracking-tight">{formatCurrency(projections.finalDrip)}</div>
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="bg-teal-50 text-teal-600 px-2.5 py-0.5 rounded-full text-[10px] font-medium">ทบต้น ✨</span>
-                  <span className="text-[10px] text-stone-400">ลงทุนจริง {formatCurrency(projections.totalInvested)}</span>
+                  <span className="text-[10px] text-stone-600">ลงทุนจริง {formatCurrency(projections.totalInvested)}</span>
                 </div>
               </div>
               <div className="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col justify-center">
-                <h3 className="text-stone-400 text-xs font-medium mb-1">หากไม่ทบต้น</h3>
+                <h3 className="text-stone-600 text-xs font-medium mb-1">หากไม่ทบต้น</h3>
                 <div className="text-2xl font-bold text-stone-600 mb-2 tracking-tight">{formatCurrency(projections.finalNoDrip)}</div>
                 <div className="text-xs text-rose-500 font-medium flex items-center gap-1"><ArrowUpRight size={12} className="rotate-90" /> ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}</div>
               </div>
@@ -730,43 +732,43 @@ export default function App() {
 
             <div className="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm">
               <div className="flex justify-between items-end mb-5">
-                <div><h2 className="font-bold text-sm mb-0.5 text-stone-700 tracking-tight">เปรียบเทียบการเติบโต</h2><p className="text-stone-400 text-xs">ผลตอบแทน {investmentYears} ปี</p></div>
+                <div><h2 className="font-bold text-sm mb-0.5 text-stone-700 tracking-tight">เปรียบเทียบการเติบโต</h2><p className="text-stone-600 text-xs">ผลตอบแทน {investmentYears} ปี</p></div>
                 <div className="text-right space-y-0.5">
-                  <div><span className="text-[10px] text-stone-400 font-medium">Yield </span><span className="text-xs font-bold text-emerald-600">{metrics.yield.toFixed(2)}%</span></div>
-                  <div><span className="text-[10px] text-stone-400 font-medium">Growth </span><span className="text-xs font-bold text-cyan-600">+{metrics.growth.toFixed(2)}%</span></div>
+                  <div><span className="text-[10px] text-stone-600 font-medium">Yield </span><span className="text-xs font-bold text-emerald-600">{metrics.yield.toFixed(2)}%</span></div>
+                  <div><span className="text-[10px] text-stone-600 font-medium">Growth </span><span className="text-xs font-bold text-cyan-600">+{metrics.growth.toFixed(2)}%</span></div>
                 </div>
               </div>
               <div className="space-y-4">
-                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-teal-600">Compound (ทบต้น)</span><span className="text-stone-700">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-teal-500 h-full rounded-lg flex items-center px-3 text-white font-medium text-[10px]" style={{ width: '100%' }}>DRIP</div></div></div>
-                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-stone-400">Cash-Out (ไม่ทบต้น)</span><span className="text-stone-500">{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-stone-300 h-full rounded-lg flex items-center px-3 text-stone-600 font-medium text-[10px]" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>No DRIP</div></div></div>
+                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-indigo-600">Compound (ทบต้น)</span><span className="text-stone-700">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-indigo-500 h-full rounded-lg flex items-center px-3 text-white font-medium text-[10px]" style={{ width: '100%' }}>DRIP</div></div></div>
+                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-indigo-400">Cash-Out (ไม่ทบต้น)</span><span className="text-stone-600">{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-indigo-200 h-full rounded-lg flex items-center px-3 text-indigo-700 font-medium text-[10px]" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>No DRIP</div></div></div>
               </div>
             </div>
 
             <div className="bg-white rounded-2xl border border-stone-200/60 overflow-hidden shadow-sm">
-              <div className="px-5 py-3.5 bg-stone-50/50 font-semibold text-xs text-stone-600 border-b border-stone-100">ตารางสรุปรายปี</div>
+              <div className="px-5 py-3.5 bg-stone-50/50 font-semibold text-xs text-stone-700 border-b border-stone-100">ตารางสรุปรายปี</div>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
-                  <thead className="bg-stone-50/50 text-[10px] text-stone-400 font-medium">
+                  <thead className="bg-stone-50/50 text-[10px] font-medium">
                     <tr>
-                      <th className="px-4 py-2.5 text-left">ปีที่</th>
-                      <th className="px-4 py-2.5 text-right text-orange-500">เงินต้นสะสม</th>
-                      <th className="px-4 py-2.5 text-right text-teal-600">ทบต้น</th>
-                      <th className="px-4 py-2.5 text-right text-stone-400">ไม่ทบต้น</th>
-                      <th className="px-4 py-2.5 text-right text-violet-500">ปันผล/ปี</th>
-                      <th className="px-4 py-2.5 text-right text-emerald-500">ส่วนต่าง</th>
+                      <th className="px-3 py-2.5 text-left text-stone-600">ปีที่</th>
+                      <th className="px-3 py-2.5 text-right text-sky-600">ลงทุน/เดือน</th>
+                      <th className="px-3 py-2.5 text-right text-indigo-500">เงินต้นสะสม</th>
+                      <th className="px-3 py-2.5 text-right text-teal-600">ทบต้น</th>
+                      <th className="px-3 py-2.5 text-right text-stone-600">ไม่ทบต้น</th>
+                      <th className="px-3 py-2.5 text-right text-violet-500">ปันผล/ปี</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-stone-50">{projections.history.map((row) => (
-                    <tr key={row.year} className={`transition-colors ${row.isMilestone ? 'bg-amber-50/50' : 'hover:bg-stone-50/50'}`}>
-                      <td className="px-4 py-3 font-semibold text-stone-400">
+                    <tr key={row.year} className={`transition-colors ${row.isMilestone ? 'bg-amber-50/60' : 'hover:bg-stone-50/50'}`}>
+                      <td className="px-3 py-3 font-semibold text-stone-700">
                         {row.year}
-                        {row.isMilestone && <span className="ml-1.5 text-[9px] bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded font-medium">1M</span>}
+                        {row.isMilestone && <span className="ml-1.5 text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-medium">1M</span>}
                       </td>
-                      <td className="px-4 py-3 text-right text-orange-500 font-medium">{formatCurrency(row.totalInvested)}</td>
-                      <td className="px-4 py-3 text-right font-semibold text-teal-700">{formatCurrency(row.drip)}</td>
-                      <td className="px-4 py-3 text-right text-stone-400">{formatCurrency(row.totalNoDrip)}</td>
-                      <td className="px-4 py-3 text-right text-violet-500 font-medium">{formatCurrency(row.yearlyDividend)}</td>
-                      <td className="px-4 py-3 text-right text-emerald-500 font-medium">+{formatCurrency(row.drip - row.totalNoDrip)}</td>
+                      <td className="px-3 py-3 text-right text-sky-600 font-medium">{formatCurrency(row.monthlyContrib)}</td>
+                      <td className="px-3 py-3 text-right text-indigo-500 font-medium">{formatCurrency(row.totalInvested)}</td>
+                      <td className="px-3 py-3 text-right font-semibold text-teal-700">{formatCurrency(row.drip)}</td>
+                      <td className="px-3 py-3 text-right text-stone-600">{formatCurrency(row.totalNoDrip)}</td>
+                      <td className="px-3 py-3 text-right text-violet-500 font-medium">{formatCurrency(row.yearlyDividend)}</td>
                     </tr>
                   ))}</tbody>
                 </table>
