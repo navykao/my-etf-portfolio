@@ -19,15 +19,17 @@ const FINNHUB_API_KEY = 'd77k3npr01qp6afltiggd77k3npr01qp6afltih0';
 // Cache Configuration
 // ==========================================
 const DEFAULT_CACHE_CONFIG = {
-  LOCAL_CACHE_KEY: 'etf_local_cache_v3',
+  LOCAL_CACHE_KEY: 'etf_local_cache_v4',
   LOCAL_CACHE_DAYS: 7,
+  // ⬇️ เปลี่ยนจาก CSV เป็น JSON database (อัพเดทอัตโนมัติโดย GitHub Actions ทุกวัน)
+  GITHUB_JSON_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/data/etf-database.json',
   GITHUB_CSV_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/combined-database.csv',
-  GITHUB_CACHE_KEY: 'etf_github_cache',
-  GITHUB_CACHE_HOURS: 1,
-  API_CALL_LOG_KEY: 'etf_api_calls_v3',
+  GITHUB_CACHE_KEY: 'etf_github_cache_v2',
+  GITHUB_CACHE_HOURS: 6, // cache GitHub JSON นาน 6 ชม. (เพราะอัพเดทวันละครั้ง)
+  API_CALL_LOG_KEY: 'etf_api_calls_v4',
   DAILY_API_LIMIT: 20,
   SETTINGS_KEY: 'etf_cache_settings',
-  STATS_KEY: 'etf_cache_stats',
+  STATS_KEY: 'etf_cache_stats_v2',
 };
 
 // ==========================================
@@ -124,7 +126,8 @@ const CacheManager = {
   githubData: null,
   githubLastFetch: null,
 
-  loadGitHubCSV: async (forceRefresh = false) => {
+  // ⬇️ เปลี่ยนชื่อเป็น loadGitHubData — โหลด JSON database (หลัก) หรือ CSV (สำรอง)
+  loadGitHubData: async (forceRefresh = false) => {
     const cached = localStorage.getItem(CacheManager.config.GITHUB_CACHE_KEY);
     const cacheTime = localStorage.getItem(CacheManager.config.GITHUB_CACHE_KEY + '_time');
     const hoursSinceLast = cacheTime ? (Date.now() - parseInt(cacheTime)) / (1000 * 60 * 60) : 999;
@@ -135,6 +138,26 @@ const CacheManager = {
       return CacheManager.githubData;
     }
     
+    // --- Strategy 1: โหลด JSON database (มี Yield + Growth ครบ) ---
+    try {
+      const response = await fetch(CacheManager.config.GITHUB_JSON_URL + '?t=' + Date.now());
+      if (response.ok) {
+        const jsonData = await response.json();
+        if (jsonData?.data && Object.keys(jsonData.data).length > 0) {
+          const data = jsonData.data;
+          localStorage.setItem(CacheManager.config.GITHUB_CACHE_KEY, JSON.stringify(data));
+          localStorage.setItem(CacheManager.config.GITHUB_CACHE_KEY + '_time', Date.now().toString());
+          CacheManager.githubData = data;
+          CacheManager.githubLastFetch = jsonData._meta?.lastUpdated ? new Date(jsonData._meta.lastUpdated) : new Date();
+          console.log(`✅ Loaded GitHub JSON: ${Object.keys(data).length} ETFs (updated: ${jsonData._meta?.lastUpdated})`);
+          return data;
+        }
+      }
+    } catch (error) {
+      console.log('⚠️ GitHub JSON failed, falling back to CSV...', error.message);
+    }
+    
+    // --- Strategy 2: Fallback to CSV (สำรอง) ---
     try {
       const response = await fetch(CacheManager.config.GITHUB_CSV_URL + '?t=' + Date.now());
       if (!response.ok) throw new Error('Failed');
@@ -180,12 +203,15 @@ const CacheManager = {
     const formattedDate = fetchDate.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
     
     return { 
-      price: 0, 
-      divYield: stock.divGrowth5Y, 
-      growthRate: stock.cagr10Y, 
-      name: stock.name,
+      price: stock.price || 0, 
+      divYield: stock.divYield || 0,
+      growthRate: stock.growthRate || 0,
+      divGrowth5Y: stock.divGrowth5Y || 0,
+      name: stock.name || symbol,
+      expenseRatio: stock.expenseRatio || 0,
       source: 'github',
-      sourceLabel: `📊 GitHub CSV (${formattedDate})`
+      sourceLabel: `📊 GitHub DB (${formattedDate})`,
+      updatedAt: stock.updatedAt || fetchDate.toISOString(),
     };
   },
 
@@ -365,7 +391,7 @@ export default function App() {
 
   useEffect(() => {
     const init = async () => {
-      await CacheManager.loadGitHubCSV();
+      await CacheManager.loadGitHubData();
       setCacheStats(CacheManager.getCacheStats());
       if (hasFirebase && auth) {
         try { if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) await signInWithCustomToken(auth, __initial_auth_token); else await signInAnonymously(auth); } catch (err) {}
@@ -413,20 +439,89 @@ export default function App() {
   };
 
   const fetchFromAPI = async (symbol) => {
-    let price = 0, divYield = 0, growthRate = 0;
+    let price = 0;
+    const sym = symbol.toUpperCase();
+
+    // --- ดึงราคา real-time จาก Finnhub (เรียกจาก browser ได้ ไม่ถูก CORS) ---
     try {
-      const [quoteRes, metricsRes] = await Promise.all([fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`), fetch(`https://finnhub.io/api/v1/stock/metric?symbol=${symbol}&metric=all&token=${FINNHUB_API_KEY}`)]);
-      const quote = await quoteRes.json(); const metrics = await metricsRes.json();
-      price = quote.c || 0; divYield = metrics.metric?.dividendYieldTTM || 0; growthRate = metrics.metric?.epsGrowth5Y || 0;
-    } catch (e) {}
-    if (price === 0) { try { const eodRes = await fetch(`https://eodhd.com/api/real-time/${symbol}.US?api_token=${EODHD_API_KEY}&fmt=json`); const eodData = await eodRes.json(); price = eodData.close || 0; } catch (e) {} }
-    const now = new Date(); const formattedDate = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-    return price > 0 ? { price, divYield, growthRate, source: 'api', sourceLabel: `🌐 Live API (${formattedDate})` } : null;
+      const quoteRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${FINNHUB_API_KEY}`);
+      const quote = await quoteRes.json();
+      price = quote.c || 0;
+    } catch (e) { console.log('Finnhub failed:', e.message); }
+
+    // --- Fallback: EODHD ---
+    if (price === 0) {
+      try {
+        const eodRes = await fetch(`https://eodhd.com/api/real-time/${sym}.US?api_token=${EODHD_API_KEY}&fmt=json`);
+        const eodData = await eodRes.json();
+        price = eodData.close || 0;
+      } catch (e) {}
+    }
+
+    if (price === 0) return null;
+
+    // --- Yield/Growth: ใช้จาก GitHub JSON database (อัพเดทอัตโนมัติทุกวันโดย GitHub Actions) ---
+    let divYield = 0, growthRate = 0;
+    const githubStock = CacheManager.githubData?.[sym];
+    if (githubStock) {
+      divYield = githubStock.divYield || 0;
+      growthRate = githubStock.growthRate || 0;
+    }
+
+    // --- Fallback สำหรับ ETF ยอดนิยม (ถ้า GitHub JSON ยังไม่มีข้อมูล) ---
+    const ETF_FALLBACK = {
+      'VOO': { divYield: 1.25, growthRate: 10.5 }, 'SPY': { divYield: 1.20, growthRate: 10.5 },
+      'SCHD': { divYield: 3.50, growthRate: 8.2 }, 'VTI': { divYield: 1.30, growthRate: 10.0 },
+      'QQQ': { divYield: 0.55, growthRate: 15.8 }, 'VYM': { divYield: 2.80, growthRate: 6.5 },
+      'JEPI': { divYield: 7.20, growthRate: 3.0 }, 'JEPQ': { divYield: 9.50, growthRate: 5.0 },
+      'VIG': { divYield: 1.75, growthRate: 9.0 }, 'DGRO': { divYield: 2.30, growthRate: 8.5 },
+      'VGT': { divYield: 0.60, growthRate: 17.0 }, 'BND': { divYield: 3.50, growthRate: 0.5 },
+    };
+    if (divYield === 0 && ETF_FALLBACK[sym]) divYield = ETF_FALLBACK[sym].divYield;
+    if (growthRate === 0 && ETF_FALLBACK[sym]) growthRate = ETF_FALLBACK[sym].growthRate;
+
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+    
+    const stockData = { price, divYield, growthRate, source: 'api', sourceLabel: `🌐 Live API (${formattedDate})` };
+    
+    // --- Save ลง Firebase ด้วย ---
+    if (hasFirebase && user && db) {
+      try {
+        await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'stockData', sym), {
+          price, divYield, growthRate, updatedAt: now.toISOString(), source: 'api'
+        }, { merge: true });
+      } catch (e) {}
+    }
+    
+    return stockData;
   };
 
   const fetchAllData = async (baseList) => {
     setIsLoading(true);
-    const updated = await Promise.all(baseList.map(async (item) => { const result = await getStockData(item.symbol); return { ...item, data: result.data }; }));
+    const updated = await Promise.all(baseList.map(async (item) => {
+      // ถ้ามี cachedData จาก Firebase/localStorage ที่ยังใหม่ (< 24 ชม.) ใช้เลย ไม่ต้องเรียก API
+      if (item.cachedData && item.cachedData.price > 0) {
+        const savedAge = item.cachedData.savedAt ? (Date.now() - new Date(item.cachedData.savedAt).getTime()) / (1000 * 60 * 60) : 999;
+        if (savedAge < 24) {
+          const cachedDate = new Date(item.cachedData.savedAt);
+          const formattedDate = cachedDate.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+          CacheManager.recordHit();
+          return { 
+            ...item, 
+            data: { 
+              price: item.cachedData.price, 
+              divYield: item.cachedData.divYield, 
+              growthRate: item.cachedData.growthRate, 
+              source: 'local', 
+              sourceLabel: `💾 DB Cache (${formattedDate})` 
+            } 
+          };
+        }
+      }
+      const result = await getStockData(item.symbol);
+      return { ...item, data: result.data };
+    }));
     setPortfolio(updated.filter(i => i.data !== null));
     setCacheStats(CacheManager.getCacheStats());
     setIsLoading(false);
@@ -434,7 +529,21 @@ export default function App() {
 
   const saveToCloudOrLocal = async (currentPortfolio, settings) => {
     setSyncStatus('syncing');
-    const saveData = { portfolio: currentPortfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation })), ...settings, lastSaved: new Date().toISOString() };
+    const saveData = { 
+      portfolio: currentPortfolio.map(p => ({ 
+        symbol: p.symbol, 
+        allocation: p.allocation,
+        // Save stock data ลง DB ด้วยเพื่อลดการเรียก API
+        cachedData: p.data ? {
+          price: p.data.price || 0,
+          divYield: p.data.divYield || 0,
+          growthRate: p.data.growthRate || 0,
+          savedAt: new Date().toISOString()
+        } : null
+      })), 
+      ...settings, 
+      lastSaved: new Date().toISOString() 
+    };
     if (hasFirebase && user && db) { try { await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio'), saveData); setSyncStatus('success'); } catch (err) { setSyncStatus('error'); } } 
     else { localStorage.setItem('etf_portfolio_data', JSON.stringify(saveData)); setSyncStatus('success_local'); }
     setTimeout(() => setSyncStatus('idle'), 2000);
@@ -473,7 +582,7 @@ export default function App() {
     setCacheStats(CacheManager.getCacheStats()); setRefreshingSymbol(null);
   };
 
-  const handleRefreshGitHub = async () => { setIsLoading(true); await CacheManager.loadGitHubCSV(true); await fetchAllData(portfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation }))); setCacheStats(CacheManager.getCacheStats()); setIsLoading(false); };
+  const handleRefreshGitHub = async () => { setIsLoading(true); await CacheManager.loadGitHubData(true); await fetchAllData(portfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation }))); setCacheStats(CacheManager.getCacheStats()); setIsLoading(false); };
   const handleClearAll = () => { if (confirm('ล้าง Cache ทั้งหมด?')) { CacheManager.clearAll(); setCacheStats(CacheManager.getCacheStats()); fetchAllData(portfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation }))); } };
   const handleClearLocal = () => { CacheManager.clearLocalCache(); setCacheStats(CacheManager.getCacheStats()); };
   const handleSaveSettings = (settings) => { CacheManager.saveSettings(settings); setCacheStats(CacheManager.getCacheStats()); };
@@ -562,8 +671,8 @@ export default function App() {
                     </div>
                     <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-100">
                       <div><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-white rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold outline-none focus:border-blue-500" /></div>
-                      <div className="text-center"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Yield</label><div className="text-xs font-bold text-green-700">{stock.data?.divYield?.toFixed(2)}%</div></div>
-                      <div className="text-right"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Growth</label><div className="text-xs font-bold text-blue-600">+{stock.data?.growthRate?.toFixed(2)}%</div></div>
+                      <div className="text-center"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Yield</label><div className={`text-xs font-bold ${(stock.data?.divYield || 0) > 0 ? 'text-green-700' : 'text-slate-400'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-right"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Growth</label><div className={`text-xs font-bold ${(stock.data?.growthRate || 0) > 0 ? 'text-blue-600' : 'text-slate-400'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
                     </div>
                   </div>
                 ))}
