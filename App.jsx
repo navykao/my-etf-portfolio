@@ -460,12 +460,13 @@ export default function App() {
 
     if (price === 0) return null;
 
-    // --- Yield/Growth: ใช้จาก GitHub JSON database (อัพเดทอัตโนมัติทุกวันโดย GitHub Actions) ---
-    let divYield = 0, growthRate = 0;
+    // --- Yield/Growth/DivGrowth: ใช้จาก GitHub JSON database (อัพเดทอัตโนมัติทุกวันโดย GitHub Actions) ---
+    let divYield = 0, growthRate = 0, divGrowth5Y = 0;
     const githubStock = CacheManager.githubData?.[sym];
     if (githubStock) {
       divYield = githubStock.divYield || 0;
       growthRate = githubStock.growthRate || 0;
+      divGrowth5Y = githubStock.divGrowth5Y || 0;
     }
 
     // --- Fallback สำหรับ ETF ยอดนิยม (ถ้า GitHub JSON ยังไม่มีข้อมูล) ---
@@ -483,7 +484,7 @@ export default function App() {
     const now = new Date();
     const formattedDate = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
     
-    const stockData = { price, divYield, growthRate, source: 'api', sourceLabel: `🌐 Live API (${formattedDate})` };
+    const stockData = { price, divYield, growthRate, divGrowth5Y, source: 'api', sourceLabel: `🌐 Live API (${formattedDate})` };
     
     // --- Save ลง Firebase ด้วย ---
     if (hasFirebase && user && db) {
