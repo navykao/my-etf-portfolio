@@ -2,14 +2,13 @@ name: Update ETF Database
 
 on:
   schedule:
-    # ทุกวันจันทร์ 08:00 UTC (15:00 เวลาไทย)
     - cron: '0 8 * * 1'
-  workflow_dispatch: # รันด้วยตัวเองได้
+  workflow_dispatch:
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
-     permissions:
+    permissions:
       contents: write
     steps:
       - name: Checkout repo
