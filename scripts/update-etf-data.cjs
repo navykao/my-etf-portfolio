@@ -1,313 +1,257 @@
 /**
  * update-etf-data.cjs
+ * ====================================
+ * GitHub Actions script — รันทุกวันอัตโนมัติ
+ * ดึงข้อมูล ETF จาก Yahoo Finance แล้ว save ลง data/etf-database.json
  * 
- * โครงสร้างไฟล์:
- * ├── data/
- * │   ├── etf-database.json        ← ETF ทั้งหมด (VOO, SPY, ฯลฯ)
- * │   ├── stocks-database.json     ← หุ้นรายตัว (AAPL, MSFT, ฯลฯ)
- * │   └── stockanalysis-export.csv ← วาง CSV ที่ download จาก StockAnalysis
- * └── scripts/
- *     └── update-etf-data.cjs      ← ไฟล์นี้
+ * ข้อมูลที่ดึง:
+ * - price (ราคาล่าสุด)
+ * - dividendYield (Dividend Yield %)
+ * - trailingAnnualDividendRate (เงินปันผลต่อหุ้น)
+ * - growthRate (CAGR 5 ปี คำนวณจาก historical price)
+ * - name (ชื่อกองทุน)
+ * - expenseRatio (ค่าธรรมเนียม)
+ * - totalAssets (ขนาดกองทุน)
  * 
- * วิธีใช้:
- *   node scripts/update-etf-data.cjs              → อัปเดตทุกอย่าง
- *   node scripts/update-etf-data.cjs --csv        → import จาก CSV เท่านั้น (ไม่ใช้ API)
- *   node scripts/update-etf-data.cjs --force      → บังคับดึง API ใหม่ทั้งหมด
+ * ฟรี 100% — ไม่ต้องใช้ API key
  */
 
 const fs = require('fs');
 const path = require('path');
 
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
-const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
-const EODHD_API_KEY   = process.env.EODHD_API_KEY;
-
-const CACHE_TTL_HOURS = 23;   // ดึง API ใหม่ถ้าข้อมูลเกิน 23 ชั่วโมง
-const API_DELAY_MS    = 1200; // หน่วงเวลาระหว่าง API call (ms)
-
-// ─── PATH ─────────────────────────────────────────────────────────────────────
-const DATA_DIR          = path.join(__dirname, '..', 'data');
-const ETF_DB_PATH       = path.join(DATA_DIR, 'etf-database.json');
-const STOCKS_DB_PATH    = path.join(DATA_DIR, 'stocks-database.json');
-const SA_CSV_PATH       = path.join(DATA_DIR, 'stockanalysis-export.csv');
-
-// ─── SYMBOLS ที่ต้องการดึง API (เฉพาะตัวสำคัญ) ───────────────────────────────
-// ETF หลักที่ต้องการราคา real-time
+// ==========================================
+// รายชื่อ ETF ที่ต้องการติดตาม
+// เพิ่ม/ลบได้ตามต้องการ
+// ==========================================
 const ETF_SYMBOLS = [
-  'VOO','SPY','QQQ','VTI','SCHD','VYM','JEPI','JEPQ',
-  'VIG','DGRO','HDV','DVY','NOBL','SDY','VTV','MGK',
-  'IVV','ITOT','VUG','VTV','BND','VXUS','VEA','VWO'
+  // S&P 500
+  'VOO', 'SPY', 'IVV', 'SPLG',
+  // Total Market
+  'VTI', 'SCHB',
+  // Dividend
+  'SCHD', 'VYM', 'VIG', 'DGRO', 'HDV', 'DVY',
+  // Growth
+  'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG',
+  // Income / Covered Call
+  'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD',
+  // International
+  'VT', 'VXUS', 'VEA', 'VWO',
+  // Bond
+  'BND', 'BNDX', 'TLT', 'SHY', 'AGG',
+  // Sector
+  'XLK', 'XLV', 'XLF', 'XLE', 'XLRE',
+  // REIT
+  'VNQ', 'SCHH',
+  // Small Cap
+  'VB', 'SCHA', 'IJR',
+  // Mid Cap
+  'VO', 'SCHM',
+  // Other popular
+  'ARKK', 'COWZ', 'AVUV', 'SCHX',
 ];
 
-// หุ้นรายตัวที่ต้องการดึง API
-const STOCK_SYMBOLS = [
-  'AAPL','MSFT','GOOGL','AMZN','NVDA','META','TSLA',
-  'JPM','JNJ','PG','KO','PEP','MCD','WMT','HD',
-  'V','MA','UNH','DIS','NFLX','AMD','INTC','CRM'
-];
+// ==========================================
+// Yahoo Finance Data Fetcher
+// ==========================================
 
-// ─── HELPERS ──────────────────────────────────────────────────────────────────
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-
-function ensureDataDir() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-
-function loadDB(filePath) {
-  if (fs.existsSync(filePath)) {
-    try { return JSON.parse(fs.readFileSync(filePath, 'utf8')); } 
-    catch { return {}; }
-  }
-  return {};
-}
-
-function saveDB(filePath, data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-}
-
-function isCacheStale(updatedAt) {
-  if (!updatedAt) return true;
-  const diffHours = (Date.now() - new Date(updatedAt).getTime()) / 3600000;
-  return diffHours >= CACHE_TTL_HOURS;
-}
-
-// ─── CSV PARSER ───────────────────────────────────────────────────────────────
 /**
- * รองรับ CSV จาก StockAnalysis ที่มี header:
- * Symbol,Fund Name,Assets,Stock Price,% Change,Change 1W,Change 1M,...
+ * ดึงข้อมูลพื้นฐาน (price, yield, name) จาก Yahoo Finance quoteSummary
  */
-function importFromCSV(csvPath) {
-  if (!fs.existsSync(csvPath)) {
-    console.log(`⚠️  ไม่พบไฟล์ CSV: ${csvPath}`);
-    console.log(`   → Download จาก stockanalysis.com แล้ววางไว้ที่ data/stockanalysis-export.csv`);
-    return {};
-  }
-
-  const content = fs.readFileSync(csvPath, 'utf8');
-  const lines = content.trim().replace(/\r/g, '').split('\n');
-  const headers = parseCSVLine(lines[0]);
-
-  // Map header → field name
-  const fieldMap = {
-    'Symbol': 'symbol',
-    'Fund Name': 'name',
-    'Name': 'name',
-    'Assets': 'assets',
-    'Stock Price': 'price',
-    'Price': 'price',
-    '% Change': 'changePercent',
-    'Change %': 'changePercent',
-    'Change 1W': 'change1W',
-    'Change 1M': 'change1M',
-    'Change 6M': 'change6M',
-    'Change YTD': 'changeYTD',
-    'Change 1Y': 'change1Y',
-    'Change 3Y': 'change3Y',
-    'Change 5Y': 'change5Y',
-    'Change 10Y': 'change10Y',
-    'Dividend Yield': 'divYield',
-    'Expense Ratio': 'expenseRatio',
-    'P/E Ratio': 'peRatio',
-    'Market Cap': 'marketCap',
-  };
-
-  const db = {};
-  let imported = 0;
-
-  for (let i = 1; i < lines.length; i++) {
-    const values = parseCSVLine(lines[i]);
-    if (!values || values.length < 2) continue;
-
-    const row = {};
-    headers.forEach((h, idx) => {
-      const field = fieldMap[h] || h.toLowerCase().replace(/[^a-z0-9]/g, '_');
-      let val = (values[idx] || '').trim();
-      
-      // ลบ % และ parse เป็นตัวเลข
-      if (val.endsWith('%')) val = val.slice(0, -1);
-      row[field] = isNaN(val) || val === '' ? val : parseFloat(val);
-    });
-
-    if (!row.symbol) continue;
-
-    const sym = row.symbol.toString().toUpperCase();
-    db[sym] = {
-      ...row,
-      source: 'csv',
-      updatedAt: new Date().toISOString(),
-    };
-    imported++;
-  }
-
-  console.log(`✅ Import จาก CSV สำเร็จ: ${imported} รายการ`);
-  return db;
-}
-
-function parseCSVLine(line) {
-  const result = [];
-  let cur = '', inQuote = false;
-  for (const ch of line) {
-    if (ch === '"') { inQuote = !inQuote; }
-    else if (ch === ',' && !inQuote) { result.push(cur.trim()); cur = ''; }
-    else { cur += ch; }
-  }
-  result.push(cur.trim());
-  return result;
-}
-
-// ─── API FETCHERS ─────────────────────────────────────────────────────────────
-async function fetchFromFinnhub(symbol) {
-  try {
-    const [quoteRes, metricsRes] = await Promise.all([
-      fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`),
-      fetch(`https://finnhub.io/api/v1/stock/metric?symbol=${symbol}&metric=all&token=${FINNHUB_API_KEY}`)
-    ]);
-    const quote = await quoteRes.json();
-    const metrics = await metricsRes.json();
-
-    if (quote.c > 0) {
-      return {
-        price: quote.c,
-        priceOpen: quote.o,
-        priceHigh: quote.h,
-        priceLow: quote.l,
-        prevClose: quote.pc,
-        changePercent: quote.c && quote.pc ? ((quote.c - quote.pc) / quote.pc * 100) : 0,
-        divYield: metrics.metric?.dividendYieldTTM || 0,
-        growthRate: metrics.metric?.epsGrowth5Y || 0,
-        peRatio: metrics.metric?.peBasicExclExtraTTM || 0,
-        marketCap: metrics.metric?.marketCapitalization || 0,
-        source: 'finnhub',
-        updatedAt: new Date().toISOString(),
-      };
-    }
-  } catch (e) {
-    console.log(`   ⚠️  Finnhub error: ${e.message}`);
-  }
-  return null;
-}
-
-async function fetchFromEODHD(symbol) {
-  try {
-    const res = await fetch(`https://eodhd.com/api/real-time/${symbol}.US?api_token=${EODHD_API_KEY}&fmt=json`);
-    const data = await res.json();
-    if (data.close > 0) {
-      return {
-        price: data.close,
-        priceOpen: data.open || 0,
-        priceHigh: data.high || 0,
-        priceLow: data.low || 0,
-        prevClose: data.previousClose || 0,
-        changePercent: data.change_p || 0,
-        volume: data.volume || 0,
-        source: 'eodhd',
-        updatedAt: new Date().toISOString(),
-      };
-    }
-  } catch (e) {
-    console.log(`   ⚠️  EODHD error: ${e.message}`);
-  }
-  return null;
-}
-
-// ─── UPDATE SYMBOLS WITH API ──────────────────────────────────────────────────
-async function updateSymbolsWithAPI(symbols, existingDB, forceUpdate, label) {
-  console.log(`\n📊 อัปเดต ${label} จาก API...`);
-  let updated = 0, skipped = 0;
-
-  for (const symbol of symbols) {
-    const cached = existingDB[symbol];
-
-    if (!forceUpdate && cached?.updatedAt && !isCacheStale(cached.updatedAt)) {
-      console.log(`   ⏩ ${symbol}: ใช้ cache ($${cached.price?.toFixed(2)})`);
-      skipped++;
-      continue;
-    }
-
-    console.log(`   🔄 ${symbol}: กำลังดึงข้อมูล...`);
-    let data = await fetchFromFinnhub(symbol);
-    if (!data) {
-      console.log(`   ↳ Fallback → EODHD`);
-      data = await fetchFromEODHD(symbol);
-    }
-
-    if (data) {
-      existingDB[symbol] = { ...(existingDB[symbol] || {}), symbol, ...data };
-      console.log(`   ✅ ${symbol}: $${data.price?.toFixed(2)}`);
-      updated++;
-    } else {
-      console.log(`   ❌ ${symbol}: ดึงข้อมูลไม่ได้`);
-    }
-    await sleep(API_DELAY_MS);
-  }
-
-  return { updated, skipped, db: existingDB };
-}
-
-// ─── MAIN ─────────────────────────────────────────────────────────────────────
-async function main() {
-  const args = process.argv.slice(2);
-  const csvOnly = args.includes('--csv');
-  const forceUpdate = args.includes('--force');
-
-  console.log('╔════════════════════════════════════════╗');
-  console.log('║     📊 Portfolio Database Updater      ║');
-  console.log('╚════════════════════════════════════════╝\n');
-
-  ensureDataDir();
-
-  // โหลด database ที่มีอยู่
-  let etfDB = loadDB(ETF_DB_PATH);
-  let stocksDB = loadDB(STOCKS_DB_PATH);
-
-  // ── STEP 1: Import CSV ──────────────────────────────────────────────────────
-  console.log('📥 Step 1: Import CSV จาก StockAnalysis...');
-  const csvData = importFromCSV(SA_CSV_PATH);
+async function fetchQuoteSummary(symbol) {
+  const url = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${symbol}?modules=price,summaryDetail,defaultKeyStatistics,fundProfile`;
   
-  // แยก ETF และ Stock (ถ้ามี name มี "ETF" ถือว่าเป็น ETF)
-  Object.entries(csvData).forEach(([sym, data]) => {
-    if (data.name && (data.name.includes('ETF') || data.assets)) {
-      etfDB[sym] = { ...etfDB[sym], ...data };
-    } else {
-      stocksDB[sym] = { ...stocksDB[sym], ...data };
+  try {
+    const response = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+    });
+    
+    if (!response.ok) {
+      console.log(`  ⚠️ quoteSummary failed for ${symbol}: ${response.status}`);
+      return null;
     }
-  });
-
-  if (csvOnly) {
-    saveDB(ETF_DB_PATH, etfDB);
-    saveDB(STOCKS_DB_PATH, stocksDB);
-    console.log(`\n✅ CSV Import เสร็จสิ้น (--csv mode)`);
-    console.log(`   ETF: ${Object.keys(etfDB).length} รายการ`);
-    console.log(`   Stocks: ${Object.keys(stocksDB).length} รายการ`);
-    return;
+    
+    const json = await response.json();
+    const result = json?.quoteSummary?.result?.[0];
+    if (!result) return null;
+    
+    const price = result.price;
+    const summary = result.summaryDetail;
+    const keyStats = result.defaultKeyStatistics;
+    const fundProfile = result.fundProfile;
+    
+    return {
+      name: price?.shortName || price?.longName || symbol,
+      price: price?.regularMarketPrice?.raw || 0,
+      currency: price?.currency || 'USD',
+      dividendYield: (summary?.dividendYield?.raw || 0) * 100, // แปลงเป็น %
+      trailingAnnualDividendRate: summary?.trailingAnnualDividendRate?.raw || 0,
+      expenseRatio: (keyStats?.annualReportExpenseRatio?.raw || fundProfile?.feesExpensesInvestment?.annualReportExpenseRatio?.raw || 0) * 100,
+      totalAssets: keyStats?.totalAssets?.raw || 0,
+      fiftyTwoWeekHigh: summary?.fiftyTwoWeekHigh?.raw || 0,
+      fiftyTwoWeekLow: summary?.fiftyTwoWeekLow?.raw || 0,
+      beta: keyStats?.beta3Year?.raw || 0,
+    };
+  } catch (error) {
+    console.log(`  ❌ Error fetching quoteSummary for ${symbol}: ${error.message}`);
+    return null;
   }
+}
 
-  // ── STEP 2: อัปเดต ETF ด้วย API ─────────────────────────────────────────────
-  const etfResult = await updateSymbolsWithAPI(ETF_SYMBOLS, etfDB, forceUpdate, 'ETF');
-  etfDB = etfResult.db;
+/**
+ * ดึง historical price 5 ปี แล้วคำนวณ CAGR (Compound Annual Growth Rate)
+ */
+async function fetchGrowthRate(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1mo&range=5y`;
+  
+  try {
+    const response = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+    });
+    
+    if (!response.ok) return 0;
+    
+    const json = await response.json();
+    const closes = json?.chart?.result?.[0]?.indicators?.quote?.[0]?.close?.filter(Boolean);
+    
+    if (!closes || closes.length < 12) return 0;
+    
+    const startPrice = closes[0];
+    const endPrice = closes[closes.length - 1];
+    const years = closes.length / 12;
+    
+    // CAGR formula: (endPrice / startPrice)^(1/years) - 1
+    const cagr = (Math.pow(endPrice / startPrice, 1 / years) - 1) * 100;
+    
+    return Math.round(cagr * 100) / 100; // ปัดทศนิยม 2 ตำแหน่ง
+  } catch (error) {
+    console.log(`  ❌ Error fetching growth for ${symbol}: ${error.message}`);
+    return 0;
+  }
+}
 
-  // ── STEP 3: อัปเดต Stocks ด้วย API ──────────────────────────────────────────
-  const stockResult = await updateSymbolsWithAPI(STOCK_SYMBOLS, stocksDB, forceUpdate, 'Stocks');
-  stocksDB = stockResult.db;
+/**
+ * ดึง Dividend Growth Rate (การเติบโตของเงินปันผล 5 ปี)
+ */
+async function fetchDividendGrowth(symbol) {
+  // ดึงข้อมูลเงินปันผลย้อนหลัง 5 ปี
+  const fiveYearsAgo = Math.floor(Date.now() / 1000) - (5 * 365 * 24 * 60 * 60);
+  const now = Math.floor(Date.now() / 1000);
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=3mo&range=5y&events=div`;
+  
+  try {
+    const response = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+    });
+    
+    if (!response.ok) return 0;
+    
+    const json = await response.json();
+    const dividends = json?.chart?.result?.[0]?.events?.dividends;
+    
+    if (!dividends) return 0;
+    
+    // แปลง dividends object เป็น array sorted by date
+    const divArray = Object.values(dividends)
+      .sort((a, b) => a.date - b.date)
+      .map(d => ({ date: new Date(d.date * 1000), amount: d.amount }));
+    
+    if (divArray.length < 8) return 0; // ต้องมีข้อมูลอย่างน้อย 2 ปี (4 ไตรมาส x 2)
+    
+    // คำนวณเงินปันผลรายปีของปีแรกและปีล่าสุด
+    const firstYearDivs = divArray.slice(0, 4).reduce((sum, d) => sum + d.amount, 0);
+    const lastYearDivs = divArray.slice(-4).reduce((sum, d) => sum + d.amount, 0);
+    
+    if (firstYearDivs <= 0) return 0;
+    
+    const years = divArray.length / 4; // ประมาณจำนวนปี
+    const divGrowth = (Math.pow(lastYearDivs / firstYearDivs, 1 / years) - 1) * 100;
+    
+    return Math.round(divGrowth * 100) / 100;
+  } catch (error) {
+    return 0;
+  }
+}
 
-  // ── STEP 4: บันทึก ──────────────────────────────────────────────────────────
-  console.log('\n💾 Step 4: บันทึกลง database...');
-  saveDB(ETF_DB_PATH, etfDB);
-  saveDB(STOCKS_DB_PATH, stocksDB);
-
-  // ── Summary ─────────────────────────────────────────────────────────────────
-  console.log('\n╔════════════════════════════════════════╗');
-  console.log('║               📊 สรุปผล                ║');
-  console.log('╠════════════════════════════════════════╣');
-  console.log(`║  ETF ใน database:    ${String(Object.keys(etfDB).length).padStart(3)} รายการ       ║`);
-  console.log(`║  Stocks ใน database: ${String(Object.keys(stocksDB).length).padStart(3)} รายการ       ║`);
-  console.log('╠════════════════════════════════════════╣');
-  console.log(`║  API อัปเดต: ETF ${etfResult.updated} + Stock ${stockResult.updated}      ║`);
-  console.log(`║  ใช้ Cache:  ETF ${etfResult.skipped} + Stock ${stockResult.skipped}      ║`);
-  console.log('╚════════════════════════════════════════╝');
-  console.log(`\n📁 ไฟล์ที่บันทึก:`);
-  console.log(`   ${ETF_DB_PATH}`);
-  console.log(`   ${STOCKS_DB_PATH}`);
+// ==========================================
+// Main Execution
+// ==========================================
+async function main() {
+  console.log('🚀 Starting ETF data update...');
+  console.log(`📊 Fetching data for ${ETF_SYMBOLS.length} ETFs`);
+  console.log(`📅 ${new Date().toISOString()}\n`);
+  
+  const database = {};
+  let successCount = 0;
+  let failCount = 0;
+  
+  for (const symbol of ETF_SYMBOLS) {
+    console.log(`📥 Fetching ${symbol}...`);
+    
+    // ดึงข้อมูลพร้อมกัน 3 อย่าง
+    const [summary, growthRate, divGrowth] = await Promise.all([
+      fetchQuoteSummary(symbol),
+      fetchGrowthRate(symbol),
+      fetchDividendGrowth(symbol),
+    ]);
+    
+    if (summary && summary.price > 0) {
+      database[symbol] = {
+        symbol,
+        name: summary.name,
+        price: summary.price,
+        currency: summary.currency,
+        divYield: Math.round(summary.dividendYield * 100) / 100,
+        trailingDividendRate: summary.trailingAnnualDividendRate,
+        growthRate: growthRate,
+        divGrowth5Y: divGrowth,
+        expenseRatio: Math.round(summary.expenseRatio * 1000) / 1000,
+        totalAssets: summary.totalAssets,
+        fiftyTwoWeekHigh: summary.fiftyTwoWeekHigh,
+        fiftyTwoWeekLow: summary.fiftyTwoWeekLow,
+        beta: summary.beta,
+        updatedAt: new Date().toISOString(),
+      };
+      
+      console.log(`  ✅ ${symbol}: $${summary.price} | Yield: ${database[symbol].divYield}% | Growth: ${growthRate}% | DivGrowth: ${divGrowth}%`);
+      successCount++;
+    } else {
+      console.log(`  ❌ ${symbol}: Failed to fetch data`);
+      failCount++;
+    }
+    
+    // Rate limit — รอ 500ms ระหว่างแต่ละ ETF เพื่อไม่ถูก block
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+  
+  // ==========================================
+  // Save to JSON file
+  // ==========================================
+  const outputPath = path.join(__dirname, '..', 'data', 'etf-database.json');
+  
+  const output = {
+    _meta: {
+      lastUpdated: new Date().toISOString(),
+      totalSymbols: Object.keys(database).length,
+      source: 'Yahoo Finance (via GitHub Actions)',
+      version: '2.0',
+    },
+    data: database,
+  };
+  
+  // สร้างโฟลเดอร์ data/ ถ้ายังไม่มี
+  const dataDir = path.dirname(outputPath);
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+  
+  fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf8');
+  
+  console.log(`\n${'='.repeat(50)}`);
+  console.log(`✅ Success: ${successCount} ETFs`);
+  console.log(`❌ Failed: ${failCount} ETFs`);
+  console.log(`💾 Saved to: ${outputPath}`);
+  console.log(`📦 File size: ${(fs.statSync(outputPath).size / 1024).toFixed(1)} KB`);
+  console.log(`${'='.repeat(50)}`);
 }
 
 main().catch(console.error);
