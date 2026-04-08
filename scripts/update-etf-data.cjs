@@ -22,7 +22,7 @@ const ETF_SYMBOLS = [
   // Dividend
   'SCHD', 'VYM', 'VIG', 'DGRO', 'HDV', 'DVY',
   // Growth
-  'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG',
+  'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG','VOOG',
   // Income / Covered Call
   'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD',
   // International
