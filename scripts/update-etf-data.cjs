@@ -24,7 +24,7 @@ const ETF_SYMBOLS = [
   // Growth
   'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG','VOOG',
   // Income / Covered Call
-  'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD',
+  'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD','QQQI', 'SPYI',
   // International
   'VT', 'VXUS', 'VEA', 'VWO',
   // Bond
