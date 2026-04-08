@@ -1,0 +1,36 @@
+name: Update ETF Database
+
+on:
+  schedule:
+    # ทุกวันจันทร์ 08:00 UTC (15:00 เวลาไทย)
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # รันด้วยตัวเองได้
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install node-fetch
+
+      - name: Run update script
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+        run: node scripts/update-etf-data.js
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --staged --quiet || git commit -m "📊 Auto-update ETF data $(date +'%Y-%m-%d')"
+          git push
