@@ -39,6 +39,8 @@ const ETF_SYMBOLS = [
   'VO', 'SCHM',
   // Other popular
   'ARKK', 'COWZ', 'AVUV', 'SCHX',
+  // stock
+  'V', 'MSFT', 'KO', 'GOOG', 'JPM','AVGO',
 ];
 
 // ==========================================
