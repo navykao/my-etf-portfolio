@@ -193,6 +193,43 @@ async function fetchGrowth(symbol) {
 }
 
 // ==========================================
+// Fetch Dividend Growth 5Y (อัตราเติบโตปันผล 5 ปี)
+// ==========================================
+async function fetchDivGrowth(symbol) {
+  try {
+    let url = `https://query2.finance.yahoo.com/v8/finance/chart/${symbol}?interval=3mo&range=5y&events=div`;
+    if (yahooCrumb) url += `&crumb=${encodeURIComponent(yahooCrumb)}`;
+    
+    const res = await fetch(url, {
+      headers: { 'Cookie': yahooCookie, 'User-Agent': 'Mozilla/5.0' }
+    });
+    if (!res.ok) return 0;
+    
+    const json = await res.json();
+    const dividends = json?.chart?.result?.[0]?.events?.dividends;
+    if (!dividends) return 0;
+    
+    // เรียงตามวันที่
+    const divArray = Object.values(dividends)
+      .sort((a, b) => a.date - b.date)
+      .map(d => ({ date: new Date(d.date * 1000), amount: d.amount }));
+    
+    if (divArray.length < 8) return 0; // ต้องมีอย่างน้อย 2 ปี
+    
+    // คำนวณปันผลรวมปีแรก vs ปีล่าสุด
+    const firstYearDivs = divArray.slice(0, 4).reduce((sum, d) => sum + d.amount, 0);
+    const lastYearDivs = divArray.slice(-4).reduce((sum, d) => sum + d.amount, 0);
+    
+    if (firstYearDivs <= 0) return 0;
+    
+    // CAGR ของปันผล
+    const years = Math.max(1, (divArray.length / 4) - 1);
+    const divCagr = (Math.pow(lastYearDivs / firstYearDivs, 1 / years) - 1) * 100;
+    return Math.round(divCagr * 100) / 100;
+  } catch { return 0; }
+}
+
+// ==========================================
 // Main
 // ==========================================
 async function main() {
@@ -218,8 +255,12 @@ async function main() {
     const fb = FALLBACK_DATA[sym];
     
     let growthRate = 0;
+    let divGrowth5Y = 0;
     if (hasSession && q) {
-      growthRate = await fetchGrowth(sym);
+      [growthRate, divGrowth5Y] = await Promise.all([
+        fetchGrowth(sym),
+        fetchDivGrowth(sym),
+      ]);
       await new Promise(r => setTimeout(r, 200));
     }
     
@@ -230,6 +271,7 @@ async function main() {
         price: q.price,
         divYield: q.divYield > 0 ? q.divYield : (fb?.divYield || 0),
         growthRate: growthRate || (fb?.growthRate || 0),
+        divGrowth5Y: divGrowth5Y || 0,
         trailingDividendRate: q.trailingDividendRate,
         totalAssets: q.totalAssets,
         fiftyTwoWeekHigh: q.fiftyTwoWeekHigh,
@@ -237,7 +279,7 @@ async function main() {
         updatedAt: new Date().toISOString(),
         source: q.divYield > 0 ? 'yahoo' : 'yahoo+fallback',
       };
-      console.log(`  ✅ ${sym}: $${q.price} | Yield: ${database[sym].divYield}% | Growth: ${database[sym].growthRate}%`);
+      console.log(`  ✅ ${sym}: $${q.price} | Yield: ${database[sym].divYield}% | Growth: ${database[sym].growthRate}% | DivGrowth: ${divGrowth5Y}%`);
       yahooCount++;
     } else if (fb) {
       database[sym] = {
