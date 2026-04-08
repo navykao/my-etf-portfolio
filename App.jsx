@@ -27,7 +27,7 @@ const DEFAULT_CACHE_CONFIG = {
   GITHUB_CACHE_KEY: 'etf_github_cache_v2',
   GITHUB_CACHE_HOURS: 6, // cache GitHub JSON นาน 6 ชม. (เพราะอัพเดทวันละครั้ง)
   API_CALL_LOG_KEY: 'etf_api_calls_v4',
-  DAILY_API_LIMIT: 20,
+  DAILY_API_LIMIT: 30,
   SETTINGS_KEY: 'etf_cache_settings',
   STATS_KEY: 'etf_cache_stats_v2',
 };
