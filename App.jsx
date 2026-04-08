@@ -669,10 +669,11 @@ export default function App() {
                         <button onClick={() => handleRemoveStock(stock.symbol)} className="text-slate-200 hover:text-red-600 p-1.5 rounded-lg"><Trash2 size={18} /></button>
                       </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-100">
+                    <div className="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-slate-100">
                       <div><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-white rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold outline-none focus:border-blue-500" /></div>
                       <div className="text-center"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Yield</label><div className={`text-xs font-bold ${(stock.data?.divYield || 0) > 0 ? 'text-green-700' : 'text-slate-400'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-right"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Growth</label><div className={`text-xs font-bold ${(stock.data?.growthRate || 0) > 0 ? 'text-blue-600' : 'text-slate-400'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-center"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Growth</label><div className={`text-xs font-bold ${(stock.data?.growthRate || 0) > 0 ? 'text-blue-600' : 'text-slate-400'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-right"><label className="text-[9px] text-slate-500 block mb-0.5 font-bold uppercase">Div Growth</label><div className={`text-xs font-bold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-purple-600' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-500' : 'text-slate-400'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
                     </div>
                   </div>
                 ))}
