@@ -421,17 +421,16 @@ export default function App() {
   const getStockData = async (symbol, forceApi = false) => {
     const sym = symbol.toUpperCase().trim();
     if (!forceApi) {
-      const localData = CacheManager.getStockFromLocal(sym);
-      if (localData) { CacheManager.recordHit(); setCacheStats(CacheManager.getCacheStats()); return { data: localData, source: 'local' }; }
+      // ดึงจาก GitHub JSON เป็นหลักเลย (ฟรี ไม่เสีย API + ข้อมูลใหม่ตลอด)
       const githubData = CacheManager.getStockFromGitHub(sym);
-      if (githubData) { CacheManager.recordHit(); CacheManager.saveStockToLocal(sym, githubData, 'github'); setCacheStats(CacheManager.getCacheStats()); return { data: githubData, source: 'github' }; }
+      if (githubData) { CacheManager.recordHit(); setCacheStats(CacheManager.getCacheStats()); return { data: githubData, source: 'github' }; }
       CacheManager.recordMiss();
     }
     if (forceApi || CacheManager.canMakeApiCall()) {
       try {
         CacheManager.logApiCall();
         const data = await fetchFromAPI(sym);
-        if (data) { CacheManager.saveStockToLocal(sym, data, 'api'); setCacheStats(CacheManager.getCacheStats()); return { data, source: 'api' }; }
+        if (data) { setCacheStats(CacheManager.getCacheStats()); return { data, source: 'api' }; }
       } catch (error) {}
     }
     setCacheStats(CacheManager.getCacheStats());
@@ -500,27 +499,8 @@ export default function App() {
 
   const fetchAllData = async (baseList) => {
     setIsLoading(true);
+    // ดึงจาก GitHub JSON ตรงเลยทุกครั้ง — ไม่ใช้ cachedData
     const updated = await Promise.all(baseList.map(async (item) => {
-      // ถ้ามี cachedData จาก Firebase/localStorage ที่ยังใหม่ (< 24 ชม.) ใช้เลย ไม่ต้องเรียก API
-      if (item.cachedData && item.cachedData.price > 0) {
-        const savedAge = item.cachedData.savedAt ? (Date.now() - new Date(item.cachedData.savedAt).getTime()) / (1000 * 60 * 60) : 999;
-        if (savedAge < 24) {
-          const cachedDate = new Date(item.cachedData.savedAt);
-          const formattedDate = cachedDate.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-          CacheManager.recordHit();
-          return { 
-            ...item, 
-            data: { 
-              price: item.cachedData.price, 
-              divYield: item.cachedData.divYield, 
-              growthRate: item.cachedData.growthRate, 
-              divGrowth5Y: item.cachedData.divGrowth5Y || 0,
-              source: 'local', 
-              sourceLabel: `💾 DB Cache (${formattedDate})` 
-            } 
-          };
-        }
-      }
       const result = await getStockData(item.symbol);
       return { ...item, data: result.data };
     }));
@@ -681,12 +661,12 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <div className="p-4 bg-white border border-gray-100 rounded-xl">
+              <div className="p-4 bg-gray-50 rounded-xl">
                 <label className="text-xs font-medium text-gray-500 mb-3 block">+ เพิ่มหุ้นใหม่</label>
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-full sm:w-[90px] bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-violet-300 focus:bg-white transition-all" />
-                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="w-full sm:flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-violet-300 focus:bg-white transition-all" />
-                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="w-full sm:w-auto bg-violet-500 text-white px-6 py-2 rounded-lg hover:bg-violet-600 disabled:opacity-40 font-medium text-sm transition-colors whitespace-nowrap flex items-center justify-center gap-2">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
+                <div className="flex items-center gap-2">
+                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-[72px] bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-violet-300 transition-all" />
+                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="flex-1 bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-violet-300 transition-all" />
+                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600 disabled:opacity-40 font-medium text-sm transition-colors">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
                 </div>
                 {errorMsg && <p className="text-[10px] text-red-500 font-medium mt-2">{errorMsg}</p>}
               </div>
