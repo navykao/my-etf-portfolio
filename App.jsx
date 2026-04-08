@@ -27,7 +27,7 @@ const DEFAULT_CACHE_CONFIG = {
   GITHUB_CACHE_KEY: 'etf_github_cache_v2',
   GITHUB_CACHE_HOURS: 6, // cache GitHub JSON นาน 6 ชม. (เพราะอัพเดทวันละครั้ง)
   API_CALL_LOG_KEY: 'etf_api_calls_v4',
-  DAILY_API_LIMIT: 30,
+  DAILY_API_LIMIT: 20,
   SETTINGS_KEY: 'etf_cache_settings',
   STATS_KEY: 'etf_cache_stats_v2',
 };
@@ -580,13 +580,39 @@ export default function App() {
 
   const projections = useMemo(() => {
     let drip = initialInvestment, noDrip = initialInvestment, cash = 0, monthly = monthlyContribution;
+    let totalInvested = initialInvestment;
     const history = []; const mY = (metrics.yield / 100) / 12, mG = (metrics.growth / 100) / 12;
+    let milestoneHit = false;
+    
     for (let y = 1; y <= investmentYears; y++) {
-      for (let m = 1; m <= 12; m++) { drip = (drip * (1 + mG)) + (drip * mY) + monthly; cash += (noDrip * mY); noDrip = (noDrip * (1 + mG)) + monthly; }
-      if (y % 5 === 0 || y === 1 || y === investmentYears) history.push({ year: y, drip, totalNoDrip: noDrip + cash });
+      let yearlyDividend = 0;
+      for (let m = 1; m <= 12; m++) { 
+        const monthDiv = drip * mY;
+        yearlyDividend += monthDiv;
+        drip = (drip * (1 + mG)) + monthDiv + monthly; 
+        cash += (noDrip * mY); 
+        noDrip = (noDrip * (1 + mG)) + monthly; 
+        totalInvested += monthly;
+      }
+      
+      const shouldShow = y % 5 === 0 || y === 1 || y === investmentYears;
+      const justHitMillion = !milestoneHit && drip >= 1000000;
+      
+      if (shouldShow || justHitMillion) {
+        history.push({ 
+          year: y, 
+          drip, 
+          totalNoDrip: noDrip + cash, 
+          totalInvested: Math.round(totalInvested),
+          yearlyDividend: Math.round(yearlyDividend),
+          isMilestone: justHitMillion && !shouldShow
+        });
+      }
+      
+      if (justHitMillion) milestoneHit = true;
       monthly *= (1 + (contributionStepUp / 100));
     }
-    return { history, finalDrip: drip, finalNoDrip: noDrip + cash };
+    return { history, finalDrip: drip, finalNoDrip: noDrip + cash, totalInvested: Math.round(totalInvested) };
   }, [metrics, initialInvestment, monthlyContribution, contributionStepUp, investmentYears]);
 
   const formatCurrency = (v) => isNaN(v) || v === null ? '฿0' : new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(v);
@@ -600,24 +626,24 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-6 lg:p-8 text-gray-800">
+    <div className="min-h-screen bg-stone-50 p-4 md:p-6 lg:p-8 text-stone-700">
       <div className="max-w-6xl mx-auto space-y-5">
-        <header className="bg-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center border border-gray-100">
+        <header className="bg-white p-5 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center border border-stone-200/60">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-md shadow-violet-200"><TrendingUp size={24} /></div>
+            <div className="w-11 h-11 bg-teal-600 rounded-xl flex items-center justify-center text-white"><TrendingUp size={22} /></div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900 tracking-tight">พอร์ตหุ้น ETF อเมริกา</h1>
+              <h1 className="text-lg font-bold text-stone-800 tracking-tight">พอร์ตหุ้น ETF อเมริกา</h1>
               <div className="flex items-center gap-3 mt-0.5 flex-wrap">
-                <p className="text-gray-400 text-xs flex items-center gap-1.5"><Database size={12} className="text-violet-400" /> 3-Tier Cache</p>
-                {syncStatus === 'syncing' && <span className="text-violet-500 text-xs flex items-center gap-1 animate-pulse"><RefreshCw size={11} className="animate-spin" /> กำลังบันทึก...</span>}
+                <p className="text-stone-400 text-xs flex items-center gap-1.5"><Database size={12} className="text-teal-500" /> 3-Tier Cache</p>
+                {syncStatus === 'syncing' && <span className="text-teal-500 text-xs flex items-center gap-1 animate-pulse"><RefreshCw size={11} className="animate-spin" /> กำลังบันทึก...</span>}
                 {syncStatus === 'success' && <span className="text-emerald-500 text-xs flex items-center gap-1"><Cloud size={11} /> Cloud Sync</span>}
                 {syncStatus === 'success_local' && <span className="text-emerald-500 text-xs flex items-center gap-1"><HardDrive size={11} /> Local Saved</span>}
               </div>
             </div>
           </div>
           <div className="mt-3 md:mt-0 flex items-center gap-2">
-            <button onClick={handleForceRefreshAll} disabled={!CacheManager.canMakeApiCall() || isLoading} className="px-3.5 py-2 rounded-lg text-xs font-medium border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:border-gray-300 disabled:opacity-40 flex items-center gap-1.5 transition-all"><Zap size={13} /> Update All</button>
-            <button onClick={() => setShowCachePanel(!showCachePanel)} className={`px-3.5 py-2 rounded-lg text-xs font-medium border flex items-center gap-1.5 transition-all ${cacheStats.apiRemaining > 10 ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' : cacheStats.apiRemaining > 5 ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100'}`}>
+            <button onClick={handleForceRefreshAll} disabled={!CacheManager.canMakeApiCall() || isLoading} className="px-3.5 py-2 rounded-lg text-xs font-medium border border-stone-200 bg-white text-stone-500 hover:bg-stone-50 hover:border-stone-300 disabled:opacity-40 flex items-center gap-1.5 transition-all"><Zap size={13} /> Update All</button>
+            <button onClick={() => setShowCachePanel(!showCachePanel)} className={`px-3.5 py-2 rounded-lg text-xs font-medium border flex items-center gap-1.5 transition-all ${cacheStats.apiRemaining > 10 ? 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100' : cacheStats.apiRemaining > 5 ? 'bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100' : 'bg-red-50 text-red-600 border-red-200 hover:bg-red-100'}`}>
               <Shield size={13} /> API: {cacheStats.apiRemaining}/{CacheManager.config.DAILY_API_LIMIT} <Activity size={11} className={cacheStats.apiRemaining > 10 ? 'text-emerald-500' : cacheStats.apiRemaining > 5 ? 'text-amber-500' : 'text-red-500'} />
             </button>
           </div>
@@ -628,58 +654,58 @@ export default function App() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
           <div className="lg:col-span-5 space-y-5">
-            <section className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+            <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="font-semibold text-sm flex items-center gap-2 text-gray-800"><Wallet size={16} className="text-violet-500" /> หุ้นในพอร์ต</h2>
+                <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700"><Wallet size={16} className="text-teal-500" /> หุ้นในพอร์ต</h2>
                 <div className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${metrics.totalAlloc === 100 ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{metrics.totalAlloc}%</div>
               </div>
               <div className="space-y-3 mb-4">
-                {isLoading && portfolio.length === 0 ? <div className="py-10 text-center animate-pulse text-gray-300 text-sm">กำลังดึงข้อมูล...</div> : portfolio.map(stock => (
-                  <div key={stock.symbol} className="p-4 rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-sm transition-all bg-white">
+                {isLoading && portfolio.length === 0 ? <div className="py-10 text-center animate-pulse text-stone-300 text-sm">กำลังดึงข้อมูล...</div> : portfolio.map(stock => (
+                  <div key={stock.symbol} className="p-4 rounded-xl border border-stone-100 hover:border-teal-200 hover:shadow-sm transition-all bg-white">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-bold text-gray-900 text-base tracking-tight">{stock.symbol}</span>
-                          {stock.data?.price > 0 && <span className="text-[10px] bg-gray-50 px-2 py-0.5 rounded-md text-gray-500 font-medium">${stock.data.price.toFixed(2)}</span>}
+                          <span className="font-bold text-stone-800 text-sm tracking-tight">{stock.symbol}</span>
+                          {stock.data?.price > 0 && <span className="text-[10px] bg-stone-50 px-2 py-0.5 rounded-md text-stone-500 font-medium">${stock.data.price.toFixed(2)}</span>}
                         </div>
                         <div className="flex items-center gap-1.5 mt-1">
                           {getSourceIcon(stock.data?.source)}
-                          <span className={`text-[10px] font-normal ${stock.data?.source === 'local' ? 'text-violet-500' : stock.data?.source === 'github' ? 'text-cyan-500' : stock.data?.source === 'api' ? 'text-emerald-500' : 'text-gray-400'}`}>{stock.data?.sourceLabel || 'Unknown'}</span>
+                          <span className={`text-[10px] ${stock.data?.source === 'local' ? 'text-teal-500' : stock.data?.source === 'github' ? 'text-cyan-500' : stock.data?.source === 'api' ? 'text-emerald-500' : 'text-stone-400'}`}>{stock.data?.sourceLabel || 'Unknown'}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-0.5">
-                        <button onClick={() => handleForceRefreshSingle(stock.symbol)} disabled={refreshingSymbol === stock.symbol || !CacheManager.canMakeApiCall()} className="text-gray-300 hover:text-violet-500 p-1.5 rounded-lg disabled:opacity-40 transition-colors" title="รีเฟรช"><RefreshCw size={14} className={refreshingSymbol === stock.symbol ? 'animate-spin text-violet-500' : ''} /></button>
-                        <button onClick={() => handleRemoveStock(stock.symbol)} className="text-gray-200 hover:text-red-400 p-1.5 rounded-lg transition-colors"><Trash2 size={14} /></button>
+                        <button onClick={() => handleForceRefreshSingle(stock.symbol)} disabled={refreshingSymbol === stock.symbol || !CacheManager.canMakeApiCall()} className="text-stone-300 hover:text-teal-500 p-1.5 rounded-lg disabled:opacity-40 transition-colors" title="รีเฟรช"><RefreshCw size={14} className={refreshingSymbol === stock.symbol ? 'animate-spin text-teal-500' : ''} /></button>
+                        <button onClick={() => handleRemoveStock(stock.symbol)} className="text-stone-200 hover:text-red-400 p-1.5 rounded-lg transition-colors"><Trash2 size={14} /></button>
                       </div>
                     </div>
-                    <div className="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-gray-50">
-                      <div><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-gray-50 rounded-lg border border-gray-100 px-2 py-1 text-xs font-semibold outline-none focus:border-violet-300 focus:bg-white transition-all" /></div>
-                      <div className="text-center"><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">Yield</label><div className={`text-xs font-semibold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-gray-300'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-center"><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">Growth</label><div className={`text-xs font-semibold ${(stock.data?.growthRate || 0) > 0 ? 'text-cyan-600' : 'text-gray-300'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-right"><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-violet-600' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-400' : 'text-gray-300'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
+                    <div className="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-stone-50">
+                      <div><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-stone-50 rounded-lg border border-stone-100 px-2 py-1 text-xs font-semibold outline-none focus:border-teal-300 focus:bg-white transition-all" /></div>
+                      <div className="text-center"><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">Yield</label><div className={`text-xs font-semibold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-stone-300'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-center"><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">Growth</label><div className={`text-xs font-semibold ${(stock.data?.growthRate || 0) > 0 ? 'text-cyan-600' : 'text-stone-300'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-right"><label className="text-[9px] text-stone-400 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-violet-500' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-400' : 'text-stone-300'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="p-4 bg-gray-50 rounded-xl">
-                <label className="text-xs font-medium text-gray-500 mb-3 block">+ เพิ่มหุ้นใหม่</label>
+              <div className="p-4 bg-stone-50 rounded-xl">
+                <label className="text-xs font-medium text-stone-500 mb-3 block">+ เพิ่มหุ้นใหม่</label>
                 <div className="flex items-center gap-2">
-                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-[72px] bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-violet-300 transition-all" />
-                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="flex-1 bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-violet-300 transition-all" />
-                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600 disabled:opacity-40 font-medium text-sm transition-colors">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
+                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-[72px] bg-white border border-stone-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-teal-300 transition-all" />
+                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="flex-1 bg-white border border-stone-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-teal-300 transition-all" />
+                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 disabled:opacity-40 font-medium text-sm transition-colors">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
                 </div>
                 {errorMsg && <p className="text-[10px] text-red-500 font-medium mt-2">{errorMsg}</p>}
               </div>
             </section>
 
-            <section className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-              <h2 className="font-semibold text-sm flex items-center gap-2 text-gray-800"><Calculator size={16} className="text-violet-500" /> ตั้งค่าการลงทุน</h2>
+            <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60 space-y-3">
+              <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700"><Calculator size={16} className="text-teal-500" /> ตั้งค่าการลงทุน</h2>
               <div className="space-y-3">
-                <div><label className="text-[11px] font-medium text-gray-400">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
-                <div><label className="text-[11px] font-medium text-gray-400">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
+                <div><label className="text-[11px] font-medium text-stone-400">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
+                <div><label className="text-[11px] font-medium text-stone-400">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
                 <div className="grid grid-cols-2 gap-3">
-                  <div><label className="text-[11px] font-medium text-gray-400">เพิ่มปีละ (%)</label><input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
-                  <div><label className="text-[11px] font-medium text-gray-400">ระยะเวลา (ปี)</label><input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
+                  <div><label className="text-[11px] font-medium text-stone-400">เพิ่มปีละ (%)</label><input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
+                  <div><label className="text-[11px] font-medium text-stone-400">ระยะเวลา (ปี)</label><input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
                 </div>
               </div>
             </section>
@@ -687,38 +713,62 @@ export default function App() {
 
           <div className="lg:col-span-7 space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-violet-500 to-indigo-600 p-6 rounded-2xl shadow-md shadow-violet-200 text-white">
-                <h3 className="text-violet-200 text-xs font-medium mb-1">มูลค่าพอร์ตทบต้น (DRIP)</h3>
-                <div className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">{formatCurrency(projections.finalDrip)}</div>
-                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-medium">พลังของดอกเบี้ยทบต้น ✨</span>
-              </div>
-              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
-                <h3 className="text-gray-400 text-xs font-medium mb-1">หากไม่ทบต้น</h3>
-                <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-tight">{formatCurrency(projections.finalNoDrip)}</div>
-                <div className="text-xs text-rose-500 font-medium flex items-center gap-1"><ArrowUpRight size={13} className="rotate-90" /> ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}</div>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-              <div className="flex justify-between items-end mb-6">
-                <div><h2 className="font-bold text-lg mb-0.5 text-gray-900 tracking-tight">เปรียบเทียบการเติบโต</h2><p className="text-gray-400 text-xs">ผลตอบแทน {investmentYears} ปี</p></div>
-                <div className="text-right space-y-1">
-                  <div><span className="text-[10px] text-gray-400 font-medium">Yield </span><span className="text-sm font-bold text-emerald-600">{metrics.yield.toFixed(2)}%</span></div>
-                  <div><span className="text-[10px] text-gray-400 font-medium">Growth </span><span className="text-sm font-bold text-cyan-600">+{metrics.growth.toFixed(2)}%</span></div>
+              <div className="bg-white p-5 rounded-2xl border-2 border-teal-200 shadow-sm">
+                <h3 className="text-stone-400 text-xs font-medium mb-1">มูลค่าพอร์ตทบต้น (DRIP)</h3>
+                <div className="text-2xl font-bold mb-2 text-teal-700 tracking-tight">{formatCurrency(projections.finalDrip)}</div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="bg-teal-50 text-teal-600 px-2.5 py-0.5 rounded-full text-[10px] font-medium">ทบต้น ✨</span>
+                  <span className="text-[10px] text-stone-400">ลงทุนจริง {formatCurrency(projections.totalInvested)}</span>
                 </div>
               </div>
-              <div className="space-y-5">
-                <div><div className="flex justify-between text-sm mb-2 font-semibold"><span className="text-violet-600">Compound (ทบต้น)</span><span className="text-gray-800">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-gray-100 h-9 rounded-lg overflow-hidden"><div className="bg-gradient-to-r from-violet-500 to-indigo-500 h-full rounded-lg flex items-center px-3 text-white font-medium text-xs" style={{ width: '100%' }}>DRIP</div></div></div>
-                <div><div className="flex justify-between text-sm mb-2 font-semibold"><span className="text-gray-400">Cash-Out (ไม่ทบต้น)</span><span className="text-gray-500">{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-gray-100 h-9 rounded-lg overflow-hidden"><div className="bg-gray-300 h-full rounded-lg flex items-center px-3 text-gray-600 font-medium text-xs" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>No DRIP</div></div></div>
+              <div className="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col justify-center">
+                <h3 className="text-stone-400 text-xs font-medium mb-1">หากไม่ทบต้น</h3>
+                <div className="text-2xl font-bold text-stone-600 mb-2 tracking-tight">{formatCurrency(projections.finalNoDrip)}</div>
+                <div className="text-xs text-rose-500 font-medium flex items-center gap-1"><ArrowUpRight size={12} className="rotate-90" /> ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}</div>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-              <div className="px-6 py-4 bg-gray-50/50 font-semibold text-sm text-gray-700 border-b border-gray-100">ตารางสรุปรายปี</div>
+            <div className="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm">
+              <div className="flex justify-between items-end mb-5">
+                <div><h2 className="font-bold text-sm mb-0.5 text-stone-700 tracking-tight">เปรียบเทียบการเติบโต</h2><p className="text-stone-400 text-xs">ผลตอบแทน {investmentYears} ปี</p></div>
+                <div className="text-right space-y-0.5">
+                  <div><span className="text-[10px] text-stone-400 font-medium">Yield </span><span className="text-xs font-bold text-emerald-600">{metrics.yield.toFixed(2)}%</span></div>
+                  <div><span className="text-[10px] text-stone-400 font-medium">Growth </span><span className="text-xs font-bold text-cyan-600">+{metrics.growth.toFixed(2)}%</span></div>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-teal-600">Compound (ทบต้น)</span><span className="text-stone-700">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-teal-500 h-full rounded-lg flex items-center px-3 text-white font-medium text-[10px]" style={{ width: '100%' }}>DRIP</div></div></div>
+                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-stone-400">Cash-Out (ไม่ทบต้น)</span><span className="text-stone-500">{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-stone-300 h-full rounded-lg flex items-center px-3 text-stone-600 font-medium text-[10px]" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>No DRIP</div></div></div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-stone-200/60 overflow-hidden shadow-sm">
+              <div className="px-5 py-3.5 bg-stone-50/50 font-semibold text-xs text-stone-600 border-b border-stone-100">ตารางสรุปรายปี</div>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50/50 text-[11px] text-gray-400 font-medium"><tr><th className="px-6 py-3 text-left">ปีที่</th><th className="px-6 py-3 text-left text-violet-500">ทบต้น</th><th className="px-6 py-3 text-left text-gray-400">ไม่ทบต้น</th><th className="px-6 py-3 text-right text-emerald-500">ส่วนต่าง</th></tr></thead>
-                  <tbody className="divide-y divide-gray-50">{projections.history.map((row) => (<tr key={row.year} className="hover:bg-gray-50/50 transition-colors"><td className="px-6 py-3.5 font-semibold text-gray-300">{row.year}</td><td className="px-6 py-3.5 font-semibold text-gray-800">{formatCurrency(row.drip)}</td><td className="px-6 py-3.5 text-gray-400">{formatCurrency(row.totalNoDrip)}</td><td className="px-6 py-3.5 text-emerald-500 font-medium text-right">+{formatCurrency(row.drip - row.totalNoDrip)}</td></tr>))}</tbody>
+                <table className="w-full text-xs">
+                  <thead className="bg-stone-50/50 text-[10px] text-stone-400 font-medium">
+                    <tr>
+                      <th className="px-4 py-2.5 text-left">ปีที่</th>
+                      <th className="px-4 py-2.5 text-right text-orange-500">เงินต้นสะสม</th>
+                      <th className="px-4 py-2.5 text-right text-teal-600">ทบต้น</th>
+                      <th className="px-4 py-2.5 text-right text-stone-400">ไม่ทบต้น</th>
+                      <th className="px-4 py-2.5 text-right text-violet-500">ปันผล/ปี</th>
+                      <th className="px-4 py-2.5 text-right text-emerald-500">ส่วนต่าง</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-stone-50">{projections.history.map((row) => (
+                    <tr key={row.year} className={`transition-colors ${row.isMilestone ? 'bg-amber-50/50' : 'hover:bg-stone-50/50'}`}>
+                      <td className="px-4 py-3 font-semibold text-stone-400">
+                        {row.year}
+                        {row.isMilestone && <span className="ml-1.5 text-[9px] bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded font-medium">1M</span>}
+                      </td>
+                      <td className="px-4 py-3 text-right text-orange-500 font-medium">{formatCurrency(row.totalInvested)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-teal-700">{formatCurrency(row.drip)}</td>
+                      <td className="px-4 py-3 text-right text-stone-400">{formatCurrency(row.totalNoDrip)}</td>
+                      <td className="px-4 py-3 text-right text-violet-500 font-medium">{formatCurrency(row.yearlyDividend)}</td>
+                      <td className="px-4 py-3 text-right text-emerald-500 font-medium">+{formatCurrency(row.drip - row.totalNoDrip)}</td>
+                    </tr>
+                  ))}</tbody>
                 </table>
               </div>
             </div>
