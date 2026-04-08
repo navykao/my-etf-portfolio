@@ -281,27 +281,27 @@ function SettingsPanel({ isOpen, onClose, onSave, currentSettings }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl">
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl border border-gray-100">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="font-bold text-lg flex items-center gap-2"><Settings size={20} className="text-teal-600" /> ตั้งค่า Cache</h3>
-          <button onClick={onClose} className="text-stone-400 hover:text-stone-600"><X size={24} /></button>
+          <h3 className="font-semibold text-base flex items-center gap-2 text-gray-800"><Settings size={18} className="text-violet-500" /> ตั้งค่า Cache</h3>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors"><X size={22} /></button>
         </div>
         <div className="space-y-5">
           <div>
-            <label className="text-sm font-bold text-stone-600 block mb-2">อายุ Local Cache (วัน)</label>
-            <input type="number" min="1" max="30" value={cacheDays} onChange={(e) => setCacheDays(Number(e.target.value))} className="w-full border-2 border-stone-200 rounded-xl px-4 py-3 font-bold text-lg focus:border-emerald-400 outline-none" />
-            <p className="text-xs text-stone-400 mt-1">ข้อมูลจะถูกเก็บในเครื่องกี่วัน</p>
+            <label className="text-sm font-medium text-gray-600 block mb-2">อายุ Local Cache (วัน)</label>
+            <input type="number" min="1" max="30" value={cacheDays} onChange={(e) => setCacheDays(Number(e.target.value))} className="w-full border border-gray-200 rounded-xl px-4 py-3 font-semibold text-base focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none transition-all" />
+            <p className="text-xs text-gray-400 mt-1.5">ข้อมูลจะถูกเก็บในเครื่องกี่วัน</p>
           </div>
           <div>
-            <label className="text-sm font-bold text-stone-600 block mb-2">รีเฟรช GitHub CSV ทุก (ชั่วโมง)</label>
-            <input type="number" min="0.5" max="24" step="0.5" value={githubCacheHours} onChange={(e) => setGithubCacheHours(Number(e.target.value))} className="w-full border-2 border-stone-200 rounded-xl px-4 py-3 font-bold text-lg focus:border-emerald-400 outline-none" />
-            <p className="text-xs text-stone-400 mt-1">ดึง CSV จาก GitHub ใหม่ทุกกี่ชั่วโมง</p>
+            <label className="text-sm font-medium text-gray-600 block mb-2">รีเฟรช GitHub ทุก (ชั่วโมง)</label>
+            <input type="number" min="0.5" max="24" step="0.5" value={githubCacheHours} onChange={(e) => setGithubCacheHours(Number(e.target.value))} className="w-full border border-gray-200 rounded-xl px-4 py-3 font-semibold text-base focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none transition-all" />
+            <p className="text-xs text-gray-400 mt-1.5">ดึงข้อมูลจาก GitHub ใหม่ทุกกี่ชั่วโมง</p>
           </div>
         </div>
         <div className="flex gap-3 mt-6">
-          <button onClick={onClose} className="flex-1 border-2 border-stone-200 text-stone-600 py-3 rounded-xl font-bold hover:bg-stone-50">ยกเลิก</button>
-          <button onClick={() => { onSave({ cacheDays, githubCacheHours }); onClose(); }} className="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700">บันทึก</button>
+          <button onClick={onClose} className="flex-1 border border-gray-200 text-gray-500 py-2.5 rounded-xl font-medium hover:bg-gray-50 transition-colors">ยกเลิก</button>
+          <button onClick={() => { onSave({ cacheDays, githubCacheHours }); onClose(); }} className="flex-1 bg-violet-500 text-white py-2.5 rounded-xl font-medium hover:bg-violet-600 transition-colors">บันทึก</button>
         </div>
       </div>
     </div>
@@ -313,58 +313,58 @@ function CacheStatsPanel({ stats, onRefreshGitHub, onClearAll, onClearLocal, onC
   const hitRate = stats.hits + stats.misses > 0 ? ((stats.hits / (stats.hits + stats.misses)) * 100).toFixed(1) : 0;
 
   return (
-    <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl text-white shadow-lg">
+    <div className="bg-gray-900 p-6 rounded-2xl text-white shadow-lg border border-gray-800">
       <div className="flex justify-between items-start mb-5">
         <div>
-          <h3 className="font-bold text-lg flex items-center gap-2"><Server size={20} className="text-blue-400" /> ระบบ Cache 3 ชั้น</h3>
-          <p className="text-stone-400 text-sm mt-1">ประหยัด API quota ได้ 99%!</p>
+          <h3 className="font-semibold text-base flex items-center gap-2"><Server size={18} className="text-violet-400" /> ระบบ Cache 3 ชั้น</h3>
+          <p className="text-gray-500 text-xs mt-1">ประหยัด API quota ได้ 99%</p>
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={onOpenSettings} className="text-stone-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10"><Settings size={18} /></button>
-          <button onClick={onClose} className="text-stone-400 hover:text-white"><X size={20} /></button>
+          <button onClick={onOpenSettings} className="text-gray-500 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors"><Settings size={16} /></button>
+          <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors"><X size={18} /></button>
         </div>
       </div>
       
       <div className="grid grid-cols-3 gap-3 mb-4">
-        <div className="bg-teal-500/20 rounded-xl p-3 text-center border border-teal-500/30">
-          <Smartphone size={18} className="mx-auto text-teal-400 mb-1" />
-          <div className="text-xl font-extrabold text-teal-400">{stats.localCount}</div>
-          <div className="text-[10px] text-teal-300 font-medium">Local Cache</div>
-          <div className="text-[9px] text-stone-400 mt-0.5">{CacheManager.config.LOCAL_CACHE_DAYS} วัน</div>
+        <div className="bg-violet-500/10 rounded-xl p-3 text-center border border-violet-500/20">
+          <Smartphone size={16} className="mx-auto text-violet-400 mb-1" />
+          <div className="text-lg font-bold text-violet-400">{stats.localCount}</div>
+          <div className="text-[10px] text-violet-300/80">Local Cache</div>
+          <div className="text-[9px] text-gray-500 mt-0.5">{CacheManager.config.LOCAL_CACHE_DAYS} วัน</div>
         </div>
-        <div className="bg-blue-500/20 rounded-xl p-3 text-center border border-blue-500/30">
-          <Github size={18} className="mx-auto text-blue-400 mb-1" />
-          <div className="text-xl font-extrabold text-blue-400">{stats.githubCount}</div>
-          <div className="text-[10px] text-blue-300 font-medium">GitHub CSV</div>
-          <div className="text-[9px] text-stone-400 mt-0.5">ฟรีไม่จำกัด</div>
+        <div className="bg-cyan-500/10 rounded-xl p-3 text-center border border-cyan-500/20">
+          <Github size={16} className="mx-auto text-cyan-400 mb-1" />
+          <div className="text-lg font-bold text-cyan-400">{stats.githubCount}</div>
+          <div className="text-[10px] text-cyan-300/80">GitHub DB</div>
+          <div className="text-[9px] text-gray-500 mt-0.5">ฟรีไม่จำกัด</div>
         </div>
-        <div className={`rounded-xl p-3 text-center border ${stats.apiRemaining > 5 ? 'bg-green-500/20 border-green-500/30' : stats.apiRemaining > 0 ? 'bg-amber-500/20 border-amber-500/30' : 'bg-red-500/20 border-red-500/30'}`}>
-          <Zap size={18} className={`mx-auto mb-1 ${stats.apiRemaining > 5 ? 'text-green-400' : stats.apiRemaining > 0 ? 'text-amber-400' : 'text-red-400'}`} />
-          <div className={`text-xl font-extrabold ${stats.apiRemaining > 5 ? 'text-green-400' : stats.apiRemaining > 0 ? 'text-amber-400' : 'text-red-400'}`}>{stats.apiRemaining}</div>
-          <div className={`text-[10px] font-medium ${stats.apiRemaining > 5 ? 'text-green-300' : stats.apiRemaining > 0 ? 'text-amber-300' : 'text-red-300'}`}>API เหลือ</div>
-          <div className="text-[9px] text-stone-400 mt-0.5">รีเซ็ตพรุ่งนี้</div>
+        <div className={`rounded-xl p-3 text-center border ${stats.apiRemaining > 5 ? 'bg-emerald-500/10 border-emerald-500/20' : stats.apiRemaining > 0 ? 'bg-amber-500/10 border-amber-500/20' : 'bg-red-500/10 border-red-500/20'}`}>
+          <Zap size={16} className={`mx-auto mb-1 ${stats.apiRemaining > 5 ? 'text-emerald-400' : stats.apiRemaining > 0 ? 'text-amber-400' : 'text-red-400'}`} />
+          <div className={`text-lg font-bold ${stats.apiRemaining > 5 ? 'text-emerald-400' : stats.apiRemaining > 0 ? 'text-amber-400' : 'text-red-400'}`}>{stats.apiRemaining}</div>
+          <div className={`text-[10px] ${stats.apiRemaining > 5 ? 'text-emerald-300/80' : stats.apiRemaining > 0 ? 'text-amber-300/80' : 'text-red-300/80'}`}>API เหลือ</div>
+          <div className="text-[9px] text-gray-500 mt-0.5">รีเซ็ตพรุ่งนี้</div>
         </div>
       </div>
 
-      <div className="bg-white/5 rounded-xl p-4 mb-4 border border-white/10">
+      <div className="bg-white/5 rounded-xl p-4 mb-4 border border-white/5">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-bold text-stone-300 flex items-center gap-2"><BarChart3 size={16} className="text-purple-400" /> สถิติ Cache วันนี้</span>
-          <span className="text-xs text-stone-400">Hit Rate: {hitRate}%</span>
+          <span className="text-xs font-medium text-gray-400 flex items-center gap-2"><BarChart3 size={14} className="text-violet-400" /> สถิติ Cache วันนี้</span>
+          <span className="text-[11px] text-gray-500">Hit Rate: {hitRate}%</span>
         </div>
         <div className="grid grid-cols-3 gap-3 text-center">
-          <div><div className="text-lg font-extrabold text-green-400">{stats.hits}</div><div className="text-[10px] text-stone-400">Cache Hits</div></div>
-          <div><div className="text-lg font-extrabold text-amber-400">{stats.misses}</div><div className="text-[10px] text-stone-400">Cache Misses</div></div>
-          <div><div className="text-lg font-extrabold text-blue-400">{stats.apiCalls}</div><div className="text-[10px] text-stone-400">API Calls</div></div>
+          <div><div className="text-base font-bold text-emerald-400">{stats.hits}</div><div className="text-[10px] text-gray-500">Cache Hits</div></div>
+          <div><div className="text-base font-bold text-amber-400">{stats.misses}</div><div className="text-[10px] text-gray-500">Cache Misses</div></div>
+          <div><div className="text-base font-bold text-cyan-400">{stats.apiCalls}</div><div className="text-[10px] text-gray-500">API Calls</div></div>
         </div>
-        <div className="mt-3 h-2 bg-slate-700 rounded-full overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-green-500 to-green-400 transition-all duration-500" style={{ width: `${hitRate}%` }} />
+        <div className="mt-3 h-1.5 bg-gray-800 rounded-full overflow-hidden">
+          <div className="h-full bg-gradient-to-r from-violet-500 to-cyan-400 transition-all duration-500 rounded-full" style={{ width: `${hitRate}%` }} />
         </div>
       </div>
       
       <div className="grid grid-cols-2 gap-2">
-        <button onClick={onRefreshGitHub} className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2"><Github size={14} /> รีเฟรช GitHub</button>
-        <button onClick={onClearLocal} className="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2"><Package size={14} /> ล้าง Local</button>
-        <button onClick={onClearAll} className="col-span-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2"><Trash2 size={14} /> ล้าง Cache ทั้งหมด</button>
+        <button onClick={onRefreshGitHub} className="bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 px-3 py-2.5 rounded-xl font-medium text-xs flex items-center justify-center gap-2 transition-colors"><Github size={14} /> รีเฟรช GitHub</button>
+        <button onClick={onClearLocal} className="bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 px-3 py-2.5 rounded-xl font-medium text-xs flex items-center justify-center gap-2 transition-colors"><Package size={14} /> ล้าง Local</button>
+        <button onClick={onClearAll} className="col-span-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 px-3 py-2.5 rounded-xl font-medium text-xs flex items-center justify-center gap-2 transition-colors"><Trash2 size={14} /> ล้าง Cache ทั้งหมด</button>
       </div>
     </div>
   );
@@ -612,33 +612,33 @@ export default function App() {
   const formatCurrency = (v) => isNaN(v) || v === null ? '฿0' : new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(v);
   const getSourceIcon = (source) => {
     switch(source) {
-      case 'local': return <Package size={12} className="text-teal-500" />;
-      case 'github': return <Github size={12} className="text-blue-500" />;
-      case 'api': return <Radio size={12} className="text-green-500" />;
-      default: return <AlertCircle size={12} className="text-stone-400" />;
+      case 'local': return <Package size={11} className="text-violet-400" />;
+      case 'github': return <Github size={11} className="text-cyan-400" />;
+      case 'api': return <Radio size={11} className="text-emerald-400" />;
+      default: return <AlertCircle size={11} className="text-gray-300" />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 p-4 md:p-8 text-stone-800 font-sans">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <header className="bg-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center border border-emerald-200">
-          <div className="flex items-center gap-5">
-            <div className="w-16 h-16 bg-emerald-700 rounded-2xl flex items-center justify-center text-white shadow-md"><TrendingUp size={32} /></div>
+    <div className="min-h-screen bg-gray-50 p-4 md:p-6 lg:p-8 text-gray-800">
+      <div className="max-w-6xl mx-auto space-y-5">
+        <header className="bg-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center border border-gray-100">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-md shadow-violet-200"><TrendingUp size={24} /></div>
             <div>
-              <h1 className="text-2xl font-bold text-stone-900 uppercase">พอร์ตหุ้น ETF อเมริกา</h1>
-              <div className="flex items-center gap-3 mt-1 flex-wrap">
-                <p className="text-stone-500 text-sm flex items-center gap-2"><Database size={14} className="text-teal-600" /> 3-Tier Cache System</p>
-                {syncStatus === 'syncing' && <span className="text-blue-500 text-xs flex items-center gap-1 animate-pulse"><RefreshCw size={12} className="animate-spin" /> กำลังบันทึก...</span>}
-                {syncStatus === 'success' && <span className="text-emerald-500 text-xs flex items-center gap-1"><Cloud size={12} /> Cloud Sync</span>}
-                {syncStatus === 'success_local' && <span className="text-emerald-600 text-xs flex items-center gap-1"><HardDrive size={12} /> Local Saved</span>}
+              <h1 className="text-xl font-bold text-gray-900 tracking-tight">พอร์ตหุ้น ETF อเมริกา</h1>
+              <div className="flex items-center gap-3 mt-0.5 flex-wrap">
+                <p className="text-gray-400 text-xs flex items-center gap-1.5"><Database size={12} className="text-violet-400" /> 3-Tier Cache</p>
+                {syncStatus === 'syncing' && <span className="text-violet-500 text-xs flex items-center gap-1 animate-pulse"><RefreshCw size={11} className="animate-spin" /> กำลังบันทึก...</span>}
+                {syncStatus === 'success' && <span className="text-emerald-500 text-xs flex items-center gap-1"><Cloud size={11} /> Cloud Sync</span>}
+                {syncStatus === 'success_local' && <span className="text-emerald-500 text-xs flex items-center gap-1"><HardDrive size={11} /> Local Saved</span>}
               </div>
             </div>
           </div>
-          <div className="mt-4 md:mt-0 flex items-center gap-3">
-            <button onClick={handleForceRefreshAll} disabled={!CacheManager.canMakeApiCall() || isLoading} className="px-4 py-2 rounded-full text-xs font-bold border bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50 disabled:opacity-50 flex items-center gap-2"><Zap size={14} /> Force Update All</button>
-            <button onClick={() => setShowCachePanel(!showCachePanel)} className={`px-4 py-2.5 rounded-full text-xs font-bold border flex items-center gap-2 shadow-sm ${cacheStats.apiRemaining > 10 ? 'bg-green-50 text-emerald-600 border-emerald-200 hover:bg-emerald-50' : cacheStats.apiRemaining > 5 ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100'}`}>
-              <Shield size={14} /><span>API: {cacheStats.apiRemaining}/{CacheManager.config.DAILY_API_LIMIT}</span><Activity size={12} className={cacheStats.apiRemaining > 10 ? 'text-green-500' : cacheStats.apiRemaining > 5 ? 'text-amber-500' : 'text-red-500'} />
+          <div className="mt-3 md:mt-0 flex items-center gap-2">
+            <button onClick={handleForceRefreshAll} disabled={!CacheManager.canMakeApiCall() || isLoading} className="px-3.5 py-2 rounded-lg text-xs font-medium border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:border-gray-300 disabled:opacity-40 flex items-center gap-1.5 transition-all"><Zap size={13} /> Update All</button>
+            <button onClick={() => setShowCachePanel(!showCachePanel)} className={`px-3.5 py-2 rounded-lg text-xs font-medium border flex items-center gap-1.5 transition-all ${cacheStats.apiRemaining > 10 ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' : cacheStats.apiRemaining > 5 ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100'}`}>
+              <Shield size={13} /> API: {cacheStats.apiRemaining}/{CacheManager.config.DAILY_API_LIMIT} <Activity size={11} className={cacheStats.apiRemaining > 10 ? 'text-emerald-500' : cacheStats.apiRemaining > 5 ? 'text-amber-500' : 'text-red-500'} />
             </button>
           </div>
         </header>
@@ -646,96 +646,99 @@ export default function App() {
         {showCachePanel && <CacheStatsPanel stats={cacheStats} onRefreshGitHub={handleRefreshGitHub} onClearAll={handleClearAll} onClearLocal={handleClearLocal} onClose={() => setShowCachePanel(false)} onOpenSettings={() => setShowSettings(true)} />}
         <SettingsPanel isOpen={showSettings} onClose={() => setShowSettings(false)} onSave={handleSaveSettings} currentSettings={{ cacheDays: CacheManager.config.LOCAL_CACHE_DAYS, githubCacheHours: CacheManager.config.GITHUB_CACHE_HOURS }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-5 space-y-6">
-            <section className="bg-white p-6 rounded-2xl shadow-sm border border-emerald-200">
-              <div className="flex justify-between items-center mb-5">
-                <h2 className="font-bold text-lg flex items-center gap-2 text-stone-900"><Wallet size={20} className="text-emerald-800" /> หุ้นในพอร์ต</h2>
-                <div className={`text-[10px] font-bold px-2 py-1 rounded-md border ${metrics.totalAlloc === 100 ? 'border-emerald-500 text-emerald-600' : 'border-amber-500 text-amber-600'}`}>{metrics.totalAlloc}%</div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <div className="lg:col-span-5 space-y-5">
+            <section className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="font-semibold text-sm flex items-center gap-2 text-gray-800"><Wallet size={16} className="text-violet-500" /> หุ้นในพอร์ต</h2>
+                <div className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${metrics.totalAlloc === 100 ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{metrics.totalAlloc}%</div>
               </div>
-              <div className="space-y-3 mb-5">
-                {isLoading && portfolio.length === 0 ? <div className="py-10 text-center animate-pulse text-stone-400 text-sm">กำลังดึงข้อมูล...</div> : portfolio.map(stock => (
-                  <div key={stock.symbol} className="bg-white p-4 rounded-2xl border border-emerald-200/20 hover:border-emerald-200 shadow-sm transition-all">
+              <div className="space-y-3 mb-4">
+                {isLoading && portfolio.length === 0 ? <div className="py-10 text-center animate-pulse text-gray-300 text-sm">กำลังดึงข้อมูล...</div> : portfolio.map(stock => (
+                  <div key={stock.symbol} className="p-4 rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-sm transition-all bg-white">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-extrabold text-emerald-800 text-lg">{stock.symbol}</span>
-                          {stock.data?.price > 0 && <span className="text-[10px] bg-white px-2 py-0.5 rounded-full border border-emerald-200 text-stone-600 font-bold">${stock.data.price.toFixed(2)}</span>}
+                          <span className="font-bold text-gray-900 text-base tracking-tight">{stock.symbol}</span>
+                          {stock.data?.price > 0 && <span className="text-[10px] bg-gray-50 px-2 py-0.5 rounded-md text-gray-500 font-medium">${stock.data.price.toFixed(2)}</span>}
                         </div>
-                        <div className="flex items-center gap-1.5 mt-1.5">
+                        <div className="flex items-center gap-1.5 mt-1">
                           {getSourceIcon(stock.data?.source)}
-                          <span className={`text-[10px] font-medium ${stock.data?.source === 'local' ? 'text-teal-600' : stock.data?.source === 'github' ? 'text-teal-600' : stock.data?.source === 'api' ? 'text-emerald-500' : 'text-stone-400'}`}>{stock.data?.sourceLabel || 'Unknown source'}</span>
+                          <span className={`text-[10px] font-normal ${stock.data?.source === 'local' ? 'text-violet-500' : stock.data?.source === 'github' ? 'text-cyan-500' : stock.data?.source === 'api' ? 'text-emerald-500' : 'text-gray-400'}`}>{stock.data?.sourceLabel || 'Unknown'}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <button onClick={() => handleForceRefreshSingle(stock.symbol)} disabled={refreshingSymbol === stock.symbol || !CacheManager.canMakeApiCall()} className="text-stone-300 hover:text-teal-600 p-1.5 rounded-lg disabled:opacity-50" title="🔄 รีเฟรชหุ้นนี้"><RefreshCw size={16} className={refreshingSymbol === stock.symbol ? 'animate-spin text-blue-500' : ''} /></button>
-                        <button onClick={() => handleRemoveStock(stock.symbol)} className="text-stone-200 hover:text-red-600 p-1.5 rounded-lg"><Trash2 size={18} /></button>
+                      <div className="flex items-center gap-0.5">
+                        <button onClick={() => handleForceRefreshSingle(stock.symbol)} disabled={refreshingSymbol === stock.symbol || !CacheManager.canMakeApiCall()} className="text-gray-300 hover:text-violet-500 p-1.5 rounded-lg disabled:opacity-40 transition-colors" title="รีเฟรช"><RefreshCw size={14} className={refreshingSymbol === stock.symbol ? 'animate-spin text-violet-500' : ''} /></button>
+                        <button onClick={() => handleRemoveStock(stock.symbol)} className="text-gray-200 hover:text-red-400 p-1.5 rounded-lg transition-colors"><Trash2 size={14} /></button>
                       </div>
                     </div>
-                    <div className="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-stone-100">
-                      <div><label className="text-[9px] text-stone-500 block mb-0.5 font-bold uppercase">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-white rounded-lg border border-stone-200 px-2 py-1 text-xs font-bold outline-none focus:border-emerald-400" /></div>
-                      <div className="text-center"><label className="text-[9px] text-stone-500 block mb-0.5 font-bold uppercase">Yield</label><div className={`text-xs font-bold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-stone-400'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-center"><label className="text-[9px] text-stone-500 block mb-0.5 font-bold uppercase">Growth</label><div className={`text-xs font-bold ${(stock.data?.growthRate || 0) > 0 ? 'text-teal-600' : 'text-stone-400'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-right"><label className="text-[9px] text-stone-500 block mb-0.5 font-bold uppercase">Div Growth</label><div className={`text-xs font-bold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-purple-600' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-500' : 'text-stone-400'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
+                    <div className="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-gray-50">
+                      <div><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-gray-50 rounded-lg border border-gray-100 px-2 py-1 text-xs font-semibold outline-none focus:border-violet-300 focus:bg-white transition-all" /></div>
+                      <div className="text-center"><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">Yield</label><div className={`text-xs font-semibold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-gray-300'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-center"><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">Growth</label><div className={`text-xs font-semibold ${(stock.data?.growthRate || 0) > 0 ? 'text-cyan-600' : 'text-gray-300'}`}>{(stock.data?.growthRate || 0) > 0 ? `+${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-right"><label className="text-[9px] text-gray-400 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-violet-600' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-400' : 'text-gray-300'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 p-4 bg-white rounded-2xl border border-emerald-200/30">
-                <label className="text-xs font-bold text-emerald-800 mb-3 block">+ เพิ่มหุ้นใหม่</label>
+              <div className="p-4 bg-gray-50 rounded-xl">
+                <label className="text-xs font-medium text-gray-500 mb-3 block">+ เพิ่มหุ้นใหม่</label>
                 <div className="flex items-center gap-2">
-                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-[75px] bg-white border border-emerald-200 rounded-xl px-3 py-2 text-sm font-bold outline-none uppercase" />
-                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="flex-1 bg-white border border-emerald-200 rounded-xl px-3 py-2 text-sm font-bold outline-none" />
-                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="bg-emerald-700 text-white px-5 py-2 rounded-xl hover:bg-emerald-600 disabled:opacity-50 font-bold">{isAdding ? <RefreshCw size={18} className="animate-spin" /> : "เพิ่ม"}</button>
+                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-[72px] bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-violet-300 transition-all" />
+                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="flex-1 bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-violet-300 transition-all" />
+                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600 disabled:opacity-40 font-medium text-sm transition-colors">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
                 </div>
-                {errorMsg && <p className="text-[10px] text-red-600 font-bold mt-2">{errorMsg}</p>}
+                {errorMsg && <p className="text-[10px] text-red-500 font-medium mt-2">{errorMsg}</p>}
               </div>
             </section>
 
-            <section className="bg-white p-6 rounded-2xl shadow-sm border border-emerald-200 space-y-4">
-              <h2 className="font-bold text-lg flex items-center gap-2 text-stone-900 uppercase"><Calculator size={20} className="text-emerald-800" /> ตั้งค่าการลงทุน</h2>
-              <div className="space-y-4">
-                <div><label className="text-[11px] font-bold text-stone-500 uppercase">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-3 font-extrabold text-lg outline-none focus:border-emerald-200 mt-1" /></div>
-                <div><label className="text-[11px] font-bold text-stone-500 uppercase">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-3 font-extrabold text-lg outline-none focus:border-emerald-200 mt-1" /></div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div><label className="text-[11px] font-bold text-stone-500 uppercase">เพิ่มปีละ (%)</label><input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-3 font-extrabold text-lg outline-none focus:border-emerald-200 mt-1" /></div>
-                  <div><label className="text-[11px] font-bold text-stone-500 uppercase">ระยะเวลา (ปี)</label><input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-3 font-extrabold text-lg outline-none focus:border-emerald-200 mt-1" /></div>
+            <section className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+              <h2 className="font-semibold text-sm flex items-center gap-2 text-gray-800"><Calculator size={16} className="text-violet-500" /> ตั้งค่าการลงทุน</h2>
+              <div className="space-y-3">
+                <div><label className="text-[11px] font-medium text-gray-400">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
+                <div><label className="text-[11px] font-medium text-gray-400">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="text-[11px] font-medium text-gray-400">เพิ่มปีละ (%)</label><input type="number" value={contributionStepUp} onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
+                  <div><label className="text-[11px] font-medium text-gray-400">ระยะเวลา (ปี)</label><input type="number" value={investmentYears} onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 font-bold text-base outline-none focus:border-violet-300 focus:bg-white mt-1 transition-all" /></div>
                 </div>
               </div>
             </section>
           </div>
 
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-white border-[4px] border-emerald-500 p-8 rounded-3xl shadow-sm">
-                <h3 className="text-stone-500 text-sm font-bold mb-1 uppercase">มูลค่าพอร์ตทบต้น (DRIP)</h3>
-                <div className="text-3xl md:text-4xl font-extrabold mb-4 text-emerald-900">{formatCurrency(projections.finalDrip)}</div>
-                <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-bold border border-emerald-200">พลังของดอกเบี้ยทบต้น ✨</span>
+              <div className="bg-gradient-to-br from-violet-500 to-indigo-600 p-6 rounded-2xl shadow-md shadow-violet-200 text-white">
+                <h3 className="text-violet-200 text-xs font-medium mb-1">มูลค่าพอร์ตทบต้น (DRIP)</h3>
+                <div className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">{formatCurrency(projections.finalDrip)}</div>
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-medium">พลังของดอกเบี้ยทบต้น ✨</span>
               </div>
-              <div className="bg-white p-8 rounded-3xl border border-emerald-200 shadow-sm flex flex-col justify-center">
-                <h3 className="text-stone-500 text-sm font-bold mb-1 uppercase">หากไม่ทบต้น</h3>
-                <div className="text-3xl md:text-4xl font-extrabold text-stone-800 mb-3">{formatCurrency(projections.finalNoDrip)}</div>
-                <div className="text-xs text-red-600 font-bold flex items-center gap-1 uppercase"><ArrowUpRight size={14} className="rotate-90" /> ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}</div>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl border border-emerald-200 shadow-sm">
-              <div className="flex justify-between items-end mb-8">
-                <div><h2 className="font-extrabold text-2xl mb-1 text-stone-900 uppercase">เปรียบเทียบการเติบโต</h2><p className="text-stone-500 text-sm">ผลตอบแทน {investmentYears} ปี</p></div>
-                <div className="text-right"><div className="text-[10px] text-stone-400 uppercase font-extrabold">Yield</div><div className="text-xl font-extrabold text-emerald-600">{metrics.yield.toFixed(2)}%</div><div className="text-[10px] text-stone-400 uppercase font-extrabold mt-2">Growth</div><div className="text-xl font-extrabold text-teal-600">+{metrics.growth.toFixed(2)}%</div></div>
-              </div>
-              <div className="space-y-8">
-                <div><div className="flex justify-between text-base mb-2 font-extrabold uppercase text-emerald-700"><span>Compound</span><span>{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-stone-50 h-12 rounded-xl p-1 border"><div className="bg-emerald-600 h-full rounded-lg flex items-center px-4 text-white font-bold text-sm" style={{ width: '100%' }}>ทบต้น</div></div></div>
-                <div><div className="flex justify-between text-base mb-2 font-extrabold uppercase text-stone-500"><span>Cash-Out</span><span>{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-stone-50 h-12 rounded-xl p-1 border"><div className="bg-stone-300 h-full rounded-lg flex items-center px-4 text-stone-700 font-bold text-sm" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>ไม่ทบต้น</div></div></div>
+              <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
+                <h3 className="text-gray-400 text-xs font-medium mb-1">หากไม่ทบต้น</h3>
+                <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-tight">{formatCurrency(projections.finalNoDrip)}</div>
+                <div className="text-xs text-rose-500 font-medium flex items-center gap-1"><ArrowUpRight size={13} className="rotate-90" /> ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}</div>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-sm">
-              <div className="px-8 py-5 bg-stone-50 font-extrabold text-stone-900 uppercase border-b">ตารางสรุปรายปี</div>
+            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+              <div className="flex justify-between items-end mb-6">
+                <div><h2 className="font-bold text-lg mb-0.5 text-gray-900 tracking-tight">เปรียบเทียบการเติบโต</h2><p className="text-gray-400 text-xs">ผลตอบแทน {investmentYears} ปี</p></div>
+                <div className="text-right space-y-1">
+                  <div><span className="text-[10px] text-gray-400 font-medium">Yield </span><span className="text-sm font-bold text-emerald-600">{metrics.yield.toFixed(2)}%</span></div>
+                  <div><span className="text-[10px] text-gray-400 font-medium">Growth </span><span className="text-sm font-bold text-cyan-600">+{metrics.growth.toFixed(2)}%</span></div>
+                </div>
+              </div>
+              <div className="space-y-5">
+                <div><div className="flex justify-between text-sm mb-2 font-semibold"><span className="text-violet-600">Compound (ทบต้น)</span><span className="text-gray-800">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-gray-100 h-9 rounded-lg overflow-hidden"><div className="bg-gradient-to-r from-violet-500 to-indigo-500 h-full rounded-lg flex items-center px-3 text-white font-medium text-xs" style={{ width: '100%' }}>DRIP</div></div></div>
+                <div><div className="flex justify-between text-sm mb-2 font-semibold"><span className="text-gray-400">Cash-Out (ไม่ทบต้น)</span><span className="text-gray-500">{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-gray-100 h-9 rounded-lg overflow-hidden"><div className="bg-gray-300 h-full rounded-lg flex items-center px-3 text-gray-600 font-medium text-xs" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>No DRIP</div></div></div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+              <div className="px-6 py-4 bg-gray-50/50 font-semibold text-sm text-gray-700 border-b border-gray-100">ตารางสรุปรายปี</div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-stone-50 text-[11px] text-stone-600 font-extrabold uppercase"><tr><th className="px-8 py-3 text-left">ปีที่</th><th className="px-8 py-3 text-left text-emerald-700">ทบต้น</th><th className="px-8 py-3 text-left text-stone-500">ไม่ทบต้น</th><th className="px-8 py-3 text-right text-emerald-600">ส่วนต่าง</th></tr></thead>
-                  <tbody className="divide-y divide-stone-100">{projections.history.map((row) => (<tr key={row.year} className="hover:bg-stone-50"><td className="px-8 py-4 font-extrabold text-stone-400">{row.year}</td><td className="px-8 py-4 font-extrabold text-emerald-900">{formatCurrency(row.drip)}</td><td className="px-8 py-4 text-stone-500">{formatCurrency(row.totalNoDrip)}</td><td className="px-8 py-4 text-emerald-500 font-bold text-right">+{formatCurrency(row.drip - row.totalNoDrip)}</td></tr>))}</tbody>
+                  <thead className="bg-gray-50/50 text-[11px] text-gray-400 font-medium"><tr><th className="px-6 py-3 text-left">ปีที่</th><th className="px-6 py-3 text-left text-violet-500">ทบต้น</th><th className="px-6 py-3 text-left text-gray-400">ไม่ทบต้น</th><th className="px-6 py-3 text-right text-emerald-500">ส่วนต่าง</th></tr></thead>
+                  <tbody className="divide-y divide-gray-50">{projections.history.map((row) => (<tr key={row.year} className="hover:bg-gray-50/50 transition-colors"><td className="px-6 py-3.5 font-semibold text-gray-300">{row.year}</td><td className="px-6 py-3.5 font-semibold text-gray-800">{formatCurrency(row.drip)}</td><td className="px-6 py-3.5 text-gray-400">{formatCurrency(row.totalNoDrip)}</td><td className="px-6 py-3.5 text-emerald-500 font-medium text-right">+{formatCurrency(row.drip - row.totalNoDrip)}</td></tr>))}</tbody>
                 </table>
               </div>
             </div>
