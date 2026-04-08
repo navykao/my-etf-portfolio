@@ -739,7 +739,7 @@ export default function App() {
                 </div>
               </div>
               <div className="space-y-4">
-                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-indigo-600">Compound (ทบต้น)</span><span className="text-stone-700">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-blue-50 border-2 border-blue-600 h-full rounded-lg flex items-center px-3 text-white font-medium text-[10px]" style={{ width: '100%' }}>DRIP</div></div></div>
+                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-indigo-600">Compound (ทบต้น)</span><span className="text-stone-700">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-blue-50 border-2 border-blue-600 h-full rounded-lg flex items-center px-3 text-blue font-medium text-[10px]" style={{ width: '100%' }}>DRIP</div></div></div>
                 <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-indigo-400">Cash-Out (ไม่ทบต้น)</span><span className="text-stone-600">{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-indigo-200 h-full rounded-lg flex items-center px-3 text-indigo-700 font-medium text-[10px]" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>No DRIP</div></div></div>
               </div>
             </div>
