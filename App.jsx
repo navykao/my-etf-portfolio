@@ -514,6 +514,7 @@ export default function App() {
               price: item.cachedData.price, 
               divYield: item.cachedData.divYield, 
               growthRate: item.cachedData.growthRate, 
+              divGrowth5Y: item.cachedData.divGrowth5Y || 0,
               source: 'local', 
               sourceLabel: `💾 DB Cache (${formattedDate})` 
             } 
@@ -539,6 +540,7 @@ export default function App() {
           price: p.data.price || 0,
           divYield: p.data.divYield || 0,
           growthRate: p.data.growthRate || 0,
+          divGrowth5Y: p.data.divGrowth5Y || 0,
           savedAt: new Date().toISOString()
         } : null
       })), 
