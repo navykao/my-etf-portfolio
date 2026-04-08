@@ -25,7 +25,7 @@ jobs:
         env:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
-        run: node scripts/update-etf-data.js
+        run: node scripts/update-etf-data.cjs
 
       - name: Commit and push
         run: |
