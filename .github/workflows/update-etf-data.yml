@@ -1,37 +1,63 @@
-name: Update ETF Database
+name: 🔄 Auto Update Portfolio Data
 
 on:
+  # รันอัตโนมัติทุกวัน จันทร์-ศุกร์ เวลา 08:00 น. (เวลาไทย = 01:00 UTC)
   schedule:
-    - cron: '0 8 * * 1'
+    - cron: '0 1 * * 1-5'
+
+  # รันได้เองด้วยมือ (กด Run workflow ใน GitHub Actions)
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Update mode'
+        required: true
+        default: 'normal'
+        type: choice
+        options:
+          - normal       # ใช้ cache, ดึง API เฉพาะที่เก่า
+          - force        # บังคับดึง API ใหม่ทั้งหมด
+          - csv-only     # import CSV เท่านั้น ไม่ใช้ API
 
 jobs:
-  update-data:
+  update:
     runs-on: ubuntu-latest
+    
     permissions:
-      contents: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      contents: write   # อนุญาตให้ push ขึ้น repo ได้
 
-      - name: Setup Node.js
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install node-fetch
-
-      - name: Run update script
+      - name: 🔄 Run update (normal mode)
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.mode == 'normal' }}
         env:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
-        run: node scripts/update-etf-data.cjs
+        run: node scripts/update-data.cjs
 
-      - name: Commit and push
+      - name: 🔄 Run update (force mode)
+        if: ${{ github.event.inputs.mode == 'force' }}
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+        run: node scripts/update-data.cjs --force
+
+      - name: 📥 Run update (csv-only mode)
+        if: ${{ github.event.inputs.mode == 'csv-only' }}
+        run: node scripts/update-data.cjs --csv
+
+      - name: 📤 Commit และ Push ข้อมูลใหม่
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add etf-database.csv
-          git diff --staged --quiet || git commit -m "📊 Auto-update ETF data $(date +'%Y-%m-%d')"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "🤖 Auto-update: $(date '+%Y-%m-%d %H:%M') (UTC)"
           git push
