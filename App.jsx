@@ -681,12 +681,12 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <div className="p-4 bg-gray-50 rounded-xl">
+              <div className="p-4 bg-white border border-gray-100 rounded-xl">
                 <label className="text-xs font-medium text-gray-500 mb-3 block">+ เพิ่มหุ้นใหม่</label>
-                <div className="flex items-center gap-2">
-                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-[72px] bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-violet-300 transition-all" />
-                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="flex-1 bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-violet-300 transition-all" />
-                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600 disabled:opacity-40 font-medium text-sm transition-colors">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="w-full sm:w-[90px] bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-violet-300 focus:bg-white transition-all" />
+                  <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="w-full sm:flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-violet-300 focus:bg-white transition-all" />
+                  <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="w-full sm:w-auto bg-violet-500 text-white px-6 py-2 rounded-lg hover:bg-violet-600 disabled:opacity-40 font-medium text-sm transition-colors whitespace-nowrap flex items-center justify-center gap-2">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
                 </div>
                 {errorMsg && <p className="text-[10px] text-red-500 font-medium mt-2">{errorMsg}</p>}
               </div>
