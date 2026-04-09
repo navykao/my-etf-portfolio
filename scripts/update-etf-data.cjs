@@ -49,7 +49,7 @@ const ETF_SYMBOLS = [
    'JNJ', 'ASML', 'COST', 'CVX', 'ABBV','BAC','PG',
   'CSCO', 'MS', 'UNH', 'MCD', 'PEP','VZ','NEE',
   'DE', 'PFE', 'LMT', 'LOW', 'QCOM','MO','PG',
-  'JNJ', 'ASML',  
+  'JNJ', 'ASML','GOOG', 'GOOGL',    
 ];
 
 // ==========================================
