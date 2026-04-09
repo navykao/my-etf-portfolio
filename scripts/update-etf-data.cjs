@@ -22,7 +22,7 @@ const ETF_SYMBOLS = [
   // Dividend
   'SCHD', 'VYM', 'VIG', 'DGRO', 'HDV', 'DVY',
   // Growth
-  'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG','VOOG',
+  'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG','VOOG','VONG',
   // Income / Covered Call
   'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD','QQQI', 'SPYI',
   // International
@@ -36,11 +36,20 @@ const ETF_SYMBOLS = [
   // Small Cap
   'VB', 'SCHA', 'IJR',
   // Mid Cap
-  'VO', 'SCHM',
+  'VO', 'SCHM','GLD', 'SGOV',
+  'VCIT', 'IVW', 'VEU', 'VWO',
+  'DIA', 'SPYG', 'SMH', 'VGIT',
+  'GLDM', 'DGRW', 'O', 'VGIT',
+  
   // Other popular
   'ARKK', 'COWZ', 'AVUV', 'SCHX',
   // stock
-  'V', 'MSFT', 'KO', 'GOOG', 'JPM','AVGO','MO',
+  'V', 'MSFT', 'KO', 'GOOG', 'JPM','AVGO','MA',
+   'NVDA', 'AAPL', 'TSM', 'META', 'WMT','LLY','XOM',
+   'JNJ', 'ASML', 'COST', 'CVX', 'ABBV','BAC','PG',
+  'CSCO', 'MS', 'UNH', 'MCD', 'PEP','VZ','NEE',
+  'DE', 'PFE', 'LMT', 'LOW', 'QCOM','MO','PG',
+  'JNJ', 'ASML',  
 ];
 
 // ==========================================
