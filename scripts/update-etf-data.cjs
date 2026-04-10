@@ -25,7 +25,7 @@ const path = require('path');
 // ==========================================
 const ETF_SYMBOLS = [
   // S&P 500
-  'VOO', 'SPY', 'IVV', 'SPLG',
+  'VOO', 'SPY', 'IVV', 'SPLG','SPYM',
   // Total Market
   'VTI', 'SCHB',
   // Dividend
