@@ -420,62 +420,110 @@ export default function App() {
     }
   }, [user, db]);
 
-  const getStockData = async (symbol, forceRefresh = false) => {
-    const sym = symbol.toUpperCase();
-    
-    if (!forceRefresh) {
-      CacheManager.recordHit();
-      const localStock = CacheManager.getStockFromLocal(sym);
-      if (localStock) return { source: 'local', data: localStock };
-      
-      const githubStock = CacheManager.getStockFromGitHub(sym);
-      if (githubStock) return { source: 'github', data: githubStock };
-    }
+  // ==========================================
+// ✅ Fixed: getStockData Function
+// ==========================================
+// แทนที่บรรทัด 423-478 ใน App.jsx
+// ==========================================
 
-    if (!CacheManager.canMakeApiCall()) {
-      const githubStock = CacheManager.getStockFromGitHub(sym);
-      if (githubStock) return { source: 'github-fallback', data: githubStock };
-      return { source: 'none', data: null };
-    }
-
-    CacheManager.recordMiss();
-    CacheManager.logApiCall();
-
-    let divYield = 0, growthRate = 0, divGrowth5Y = 0;
-
-    const githubStock = CacheManager.getStockFromGitHub(sym);
-    if (githubStock) {
-      divYield = githubStock.divYield || 0;
-      growthRate = githubStock.growthRate || 0;
-      divGrowth5Y = githubStock.divGrowth5Y || 0;
-    }
-
-    const ETF_FALLBACK = {
-      'VOO': { divYield: 1.25, growthRate: 10.5 }, 'SPY': { divYield: 1.20, growthRate: 10.5 },
-      'SCHD': { divYield: 3.50, growthRate: 8.2 }, 'VTI': { divYield: 1.30, growthRate: 10.0 },
-      'QQQ': { divYield: 0.55, growthRate: 15.8 }, 'VYM': { divYield: 2.80, growthRate: 6.5 },
-      'JEPI': { divYield: 7.20, growthRate: 3.0 }, 'JEPQ': { divYield: 9.50, growthRate: 5.0 },
-      'VIG': { divYield: 1.75, growthRate: 9.0 }, 'DGRO': { divYield: 2.30, growthRate: 8.5 },
-      'VGT': { divYield: 0.60, growthRate: 17.0 }, 'BND': { divYield: 3.50, growthRate: 0.5 },
+const getStockData = async (symbol, forceRefresh = false) => {
+  const sym = symbol.toUpperCase();
+  
+  // ==========================================
+  // ✅ GITHUB FIRST - โหลดจาก GitHub ก่อนเสมอ
+  // ==========================================
+  const githubStock = CacheManager.getStockFromGitHub(sym);
+  
+  if (githubStock) {
+    return { 
+      source: 'github', 
+      data: {
+        price: githubStock.price || 0,
+        divYield: githubStock.divYield || 0,
+        growthRate: githubStock.growthRate || 0,
+        divGrowth5Y: githubStock.divGrowth5Y || 0,
+        trailingDividendRate: githubStock.trailingDividendRate || 0,
+        totalAssets: githubStock.totalAssets || 0,
+        fiftyTwoWeekHigh: githubStock.fiftyTwoWeekHigh || 0,
+        fiftyTwoWeekLow: githubStock.fiftyTwoWeekLow || 0,
+        source: 'github',
+        sourceLabel: '☁️ GitHub Database',
+        updatedAt: githubStock.updatedAt || new Date().toISOString(),
+      }
     };
-    if (divYield === 0 && ETF_FALLBACK[sym]) divYield = ETF_FALLBACK[sym].divYield;
-    if (growthRate === 0 && ETF_FALLBACK[sym]) growthRate = ETF_FALLBACK[sym].growthRate;
+  }
 
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-    const price = 0;
-    const stockData = { price, divYield, growthRate, divGrowth5Y, source: 'api', sourceLabel: `🌐 Live API (${formattedDate})` };
+  // ==========================================
+  // FALLBACK - ถ้า GitHub ไม่มีข้อมูล
+  // ==========================================
+  
+  if (!forceRefresh) {
+    CacheManager.recordHit();
+    const localStock = CacheManager.getStockFromLocal(sym);
+    if (localStock) return { source: 'local', data: localStock };
+  }
 
-    try {
-      CacheManager.saveStockToLocal(sym, {
-        ...stockData,
-        price, divYield, growthRate, updatedAt: now.toISOString(), source: 'api'
-      });
-      return { source: 'api', data: stockData };
-    } catch (error) {
-      return { source: 'error', data: stockData };
-    }
+  if (!CacheManager.canMakeApiCall()) {
+    return { source: 'none', data: null };
+  }
+
+  CacheManager.recordMiss();
+  CacheManager.logApiCall();
+
+  // ==========================================
+  // API CALL - Last resort
+  // ==========================================
+  
+  let divYield = 0, growthRate = 0, divGrowth5Y = 0;
+
+  const ETF_FALLBACK = {
+    'VOO': { divYield: 1.25, growthRate: 10.5 },
+    'SPY': { divYield: 1.20, growthRate: 10.5 },
+    'SCHD': { divYield: 3.50, growthRate: 8.2 },
+    'VTI': { divYield: 1.30, growthRate: 10.0 },
+    'QQQ': { divYield: 0.55, growthRate: 15.8 },
+    'JEPI': { divYield: 7.20, growthRate: 3.0 },
+    'JEPQ': { divYield: 9.50, growthRate: 5.0 },
+    'VIG': { divYield: 1.75, growthRate: 9.0 },
+    'DGRO': { divYield: 2.30, growthRate: 8.5 },
+    'VGT': { divYield: 0.60, growthRate: 17.0 },
+    'BND': { divYield: 3.50, growthRate: 0.5 },
   };
+  
+  if (divYield === 0 && ETF_FALLBACK[sym]) divYield = ETF_FALLBACK[sym].divYield;
+  if (growthRate === 0 && ETF_FALLBACK[sym]) growthRate = ETF_FALLBACK[sym].growthRate;
+
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('th-TH', { 
+    day: 'numeric', 
+    month: 'short', 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  });
+  
+  const stockData = { 
+    price: 0, 
+    divYield, 
+    growthRate, 
+    divGrowth5Y, 
+    source: 'api', 
+    sourceLabel: `🌐 Live API (${formattedDate})` 
+  };
+
+  try {
+    CacheManager.saveStockToLocal(sym, {
+      ...stockData,
+      price: 0,
+      divYield,
+      growthRate,
+      updatedAt: now.toISOString(),
+      source: 'api'
+    });
+    return { source: 'api', data: stockData };
+  } catch (error) {
+    return { source: 'error', data: stockData };
+  }
+};
 
   const fetchAllData = async (baseList) => {
     setIsLoading(true);
