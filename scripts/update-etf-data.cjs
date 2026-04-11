@@ -228,10 +228,10 @@ async function fetchChartData(symbol, currentPrice) {
           const currentYear = new Date().getFullYear();
           const years = Object.keys(yearlyData).map(Number).sort((a, b) => a - b);
           
-          const validYears = years.filter(year => {
-            if (year === currentYear) return yearlyData[year].count >= 1;
-            return yearlyData[year].count >= 3;
-          });
+         const validYears = years.filter(year => {
+  if (year === currentYear) return false;  
+  return yearlyData[year].count >= 4;      
+});
           
           if (validYears.length >= 3) {
             const yearlyAverages = {};
