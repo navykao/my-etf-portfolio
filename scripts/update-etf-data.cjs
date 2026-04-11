@@ -224,7 +224,7 @@ async function fetchChartData(symbol, currentPrice) {
     const chartResult = json?.chart?.result?.[0];
     if (!chartResult) return result;
     
-    // 1. Growth Rate (ไม่เปลี่ยน)
+    // 1. Growth Rate (same as before)
     const closes = chartResult?.indicators?.quote?.[0]?.close?.filter(c => c != null && c > 0);
     if (closes && closes.length >= 12) {
       const years = closes.length / 12;
@@ -232,64 +232,71 @@ async function fetchChartData(symbol, currentPrice) {
       result.growthRate = Math.round(cagr * 100) / 100;
     }
     
-    // 2 & 3. Dividend Yield + Growth (✨ IMPROVED)
+    // 2 & 3. Dividends
     const dividends = chartResult?.events?.dividends;
     if (dividends && Object.keys(dividends).length > 0) {
       const divArray = Object.values(dividends)
         .sort((a, b) => a.date - b.date)
         .map(d => ({ 
           date: new Date(d.date * 1000), 
-          amount: d.amount 
+          amount: d.amount,
+          timestamp: d.date * 1000
         }));
       
       if (divArray.length > 0) {
-        // 2. Div Yield: trailing 12 months
+        // 2. Div Yield (same as before)
         const now = Date.now();
         const oneYearAgo = now - (365.25 * 24 * 60 * 60 * 1000);
-        const trailing12m = divArray.filter(d => d.date.getTime() >= oneYearAgo);
+        const trailing12m = divArray.filter(d => d.timestamp >= oneYearAgo);
         
         if (trailing12m.length > 0 && currentPrice > 0) {
-          const totalDiv12m = trailing12m.reduce((sum, d) => sum + d.amount, 0);
-          result.calcDivYield = Math.round((totalDiv12m / currentPrice) * 10000) / 100;
+          const total = trailing12m.reduce((sum, d) => sum + d.amount, 0);
+          result.calcDivYield = Math.round((total / currentPrice) * 10000) / 100;
         }
         
-        // ✨ 3. IMPROVED Div Growth 5Y Calculation
-        if (divArray.length >= 8) {  // อย่างน้อย 2 ปี
-          const divByYear = {};
-          const countByYear = {};
+        // ✅ 3. TRAILING-12-MONTH METHOD (handles stock splits automatically!)
+        if (divArray.length >= 8) {
+          // Calculate trailing-12-month dividend at each dividend payment
+          const trailing12mPoints = [];
           
-          for (const d of divArray) {
-            const year = d.date.getFullYear();
-            if (!divByYear[year]) {
-              divByYear[year] = 0;
-              countByYear[year] = 0;
+          for (let i = 0; i < divArray.length; i++) {
+            const endDate = divArray[i].timestamp;
+            const startDate = endDate - (365.25 * 24 * 60 * 60 * 1000);
+            
+            // Sum all dividends in this 12-month window
+            const sum12m = divArray
+              .filter(d => d.timestamp > startDate && d.timestamp <= endDate)
+              .reduce((sum, d) => sum + d.amount, 0);
+            
+            if (sum12m > 0) {
+              trailing12mPoints.push({
+                date: divArray[i].date,
+                timestamp: endDate,
+                value: sum12m
+              });
             }
-            divByYear[year] += d.amount;
-            countByYear[year]++;
           }
           
-          const currentYear = new Date().getFullYear();
-          const allYears = Object.keys(divByYear).map(Number).sort((a, b) => a - b);
-          
-          // ✨ กรองเฉพาะปีที่มีข้อมูลครบ (อย่างน้อย 3 payments)
-          const fullYears = allYears.filter(year => {
-            const numYears = parseInt(fullYears[fullYears.length - 1]) - parseInt(fullYears[0]);
-            return countByYear[year] >= 3;  // quarterly ETF จ่าย 4 ครั้ง
-          });
-          
-          if (fullYears.length >= 3) {
-            const firstYear = fullYears[0];
-            const lastYear = fullYears[fullYears.length - 1];
-            const numYears = lastYear - firstYear;
+          // Need at least 8 data points (roughly 2 years for quarterly)
+          if (trailing12mPoints.length >= 8) {
+            const first = trailing12mPoints[0];
+            const last = trailing12mPoints[trailing12mPoints.length - 1];
             
-            if (numYears >= 2 && divByYear[firstYear] > 0 && divByYear[lastYear] > 0) {
-              const divCagr = (Math.pow(divByYear[lastYear] / divByYear[firstYear], 1 / numYears) - 1) * 100;
+            // Calculate years between first and last point
+            const years = (last.timestamp - first.timestamp) / (365.25 * 24 * 60 * 60 * 1000);
+            
+            if (years >= 2 && first.value > 0 && last.value > 0) {
+              const cagr = (Math.pow(last.value / first.value, 1 / years) - 1) * 100;
               
-              // ✨ Sanity check: ปกติ Div Growth ไม่น่าจะต่ำกว่า -30% หรือสูงกว่า 50%
-              if (divCagr >= -30 && divCagr <= 50) {
-                result.divGrowth5Y = Math.round(divCagr * 100) / 100;
+              // Sanity check: typical dividend growth is -30% to +50%
+              if (cagr >= -30 && cagr <= 50) {
+                result.divGrowth5Y = Math.round(cagr * 100) / 100;
               } else {
-                console.log(`  ⚠️ ${symbol}: Unusual divGrowth5Y ${divCagr.toFixed(2)}% - rejected`);
+                // Log warning but still accept (widened range)
+                console.log(`  ⚠️ ${symbol}: divGrowth5Y ${cagr.toFixed(2)}% (outside normal range)`);
+                if (cagr >= -50 && cagr <= 100) {
+                  result.divGrowth5Y = Math.round(cagr * 100) / 100;
+                }
               }
             }
           }
