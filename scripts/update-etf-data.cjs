@@ -273,7 +273,7 @@ async function fetchChartData(symbol, currentPrice) {
           
           // ✨ กรองเฉพาะปีที่มีข้อมูลครบ (อย่างน้อย 3 payments)
           const fullYears = allYears.filter(year => {
-            if (year === currentYear) return countByYear[year] >= 1;
+            const numYears = parseInt(fullYears[fullYears.length - 1]) - parseInt(fullYears[0]);
             return countByYear[year] >= 3;  // quarterly ETF จ่าย 4 ครั้ง
           });
           
