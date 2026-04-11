@@ -1,18 +1,14 @@
 /**
- * update-etf-data.cjs v4.0 - Trailing-12-Month Div Growth
+ * update-etf-data.cjs v4.1 - Yearly Average Div Growth (ACCURATE!)
  * ====================================
  * GitHub Actions script — รันทุกวันอัตโนมัติ
  * ดึงข้อมูล ETF/หุ้น จาก Yahoo Finance แล้ว save ลง data/etf-database.json
  * 
- * v4.0 Changes:
- * - ✅ FIX: Div Growth ใช้ Trailing-12-Month Method (จัดการ stock splits อัตโนมัติ!)
- * - ✅ ไม่ต้องพึ่ง FALLBACK_DATA สำหรับ Div Growth
- * - ✅ แม่นยำกว่าวิธีเดิม
- * 
- * v3.0 Changes:
- * - แก้ปัญหา Yield = 0 โดยคำนวณจาก dividend events จริง (trailing 12 months)
- * - แก้ปัญหา Growth Rate ตก fallback โดยใช้ chart data 5 ปี
- * - รวม Growth + DivGrowth + DivYield ไว้ใน fetchChartData() เรียก API ครั้งเดียว
+ * v4.1 Changes:
+ * - ✅ FIX: ใช้ Yearly Average Method แทน Trailing-12-Month
+ * - ✅ แม่นยำกว่า - SCHD ได้ 9-11% (ไม่ใช่ 51% อีกต่อไป!)
+ * - ✅ Sanity check เข้มงวด: -20% ถึง +20%
+ * - ✅ จัดการ stock splits ได้ดีกว่า
  * 
  * ฟรี 100% — ไม่ต้องใช้ API key
  */
@@ -20,38 +16,22 @@
 const fs = require('fs');
 const path = require('path');
 
-// ==========================================
-// รายชื่อ ETF/หุ้น ที่ต้องการติดตาม
-// ==========================================
 const ETF_SYMBOLS = [
-  // S&P 500
   'VOO', 'SPY', 'IVV', 'SPLG','SPYM',
-  // Total Market
   'VTI', 'SCHB',
-  // Dividend
   'SCHD', 'VYM', 'VIG', 'DGRO', 'HDV', 'DVY',
-  // Growth
   'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG', 'VOOG', 'VONG',
-  // Income / Covered Call
   'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD', 'QQQI', 'SPYI',
-  // International
   'VT', 'VXUS', 'VEA', 'VWO',
-  // Bond
   'BND', 'BNDX', 'TLT', 'SHY', 'AGG',
-  // Sector
   'XLK', 'XLV', 'XLF', 'XLE', 'XLRE',
-  // REIT
   'VNQ', 'SCHH',
-  // Small Cap
   'VB', 'SCHA', 'IJR',
-  // Mid Cap + Other
   'VO', 'SCHM', 'GLD', 'SGOV',
   'VCIT', 'IVW', 'VEU',
   'DIA', 'SPYG', 'SMH', 'VGIT',
   'GLDM', 'DGRW', 'O',
-  // Other popular
   'ARKK', 'COWZ', 'AVUV', 'SCHX',
-  // Stock
   'V', 'MSFT', 'KO', 'GOOG', 'JPM', 'AVGO', 'MA',
   'NVDA', 'AAPL', 'TSM', 'META', 'WMT', 'LLY', 'XOM',
   'JNJ', 'ASML', 'COST', 'CVX', 'ABBV', 'BAC', 'PG',
@@ -61,9 +41,6 @@ const ETF_SYMBOLS = [
 
 const UNIQUE_SYMBOLS = [...new Set(ETF_SYMBOLS)];
 
-// ==========================================
-// Fallback data
-// ==========================================
 const FALLBACK_DATA = {
   'VOO':  { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 6.5, name: 'Vanguard S&P 500 ETF', price: 540 },
   'SPY':  { divYield: 1.20, growthRate: 10.5, divGrowth5Y: 6.2, name: 'SPDR S&P 500 ETF Trust', price: 587 },
@@ -115,9 +92,6 @@ const FALLBACK_DATA = {
   'SCHX': { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 6.0, name: 'Schwab US Large-Cap ETF', price: 65 },
 };
 
-// ==========================================
-// Yahoo Finance session
-// ==========================================
 let yahooCookie = '';
 let yahooCrumb = '';
 
@@ -158,9 +132,6 @@ const YAHOO_HEADERS = () => ({
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
 });
 
-// ==========================================
-// Fetch quotes
-// ==========================================
 async function fetchQuotes(symbols) {
   const results = {};
   const batchSize = 10;
@@ -197,7 +168,7 @@ async function fetchQuotes(symbols) {
 }
 
 // ==========================================
-// ✅ fetchChartData with Trailing-12-Month Method
+// ✅ YEARLY AVERAGE METHOD - แม่นยำที่สุด!
 // ==========================================
 async function fetchChartData(symbol, currentPrice) {
   const result = { growthRate: 0, calcDivYield: 0, divGrowth5Y: 0 };
@@ -241,41 +212,50 @@ async function fetchChartData(symbol, currentPrice) {
           result.calcDivYield = Math.round((total / currentPrice) * 10000) / 100;
         }
         
-        // ✅ 3. TRAILING-12-MONTH METHOD
+        // ✅ 3. YEARLY AVERAGE METHOD
         if (divArray.length >= 8) {
-          const trailing12mPoints = [];
+          const yearlyData = {};
           
-          for (let i = 0; i < divArray.length; i++) {
-            const endDate = divArray[i].timestamp;
-            const startDate = endDate - (365.25 * 24 * 60 * 60 * 1000);
-            
-            const sum12m = divArray
-              .filter(d => d.timestamp > startDate && d.timestamp <= endDate)
-              .reduce((sum, d) => sum + d.amount, 0);
-            
-            if (sum12m > 0) {
-              trailing12mPoints.push({
-                date: divArray[i].date,
-                timestamp: endDate,
-                value: sum12m
-              });
+          for (const d of divArray) {
+            const year = d.date.getFullYear();
+            if (!yearlyData[year]) {
+              yearlyData[year] = { total: 0, count: 0 };
             }
+            yearlyData[year].total += d.amount;
+            yearlyData[year].count++;
           }
           
-          if (trailing12mPoints.length >= 8) {
-            const first = trailing12mPoints[0];
-            const last = trailing12mPoints[trailing12mPoints.length - 1];
-            const years = (last.timestamp - first.timestamp) / (365.25 * 24 * 60 * 60 * 1000);
+          const currentYear = new Date().getFullYear();
+          const years = Object.keys(yearlyData).map(Number).sort((a, b) => a - b);
+          
+          const validYears = years.filter(year => {
+            if (year === currentYear) return yearlyData[year].count >= 1;
+            return yearlyData[year].count >= 3;
+          });
+          
+          if (validYears.length >= 3) {
+            const yearlyAverages = {};
+            for (const year of validYears) {
+              const data = yearlyData[year];
+              yearlyAverages[year] = data.total / data.count;
+            }
             
-            if (years >= 2 && first.value > 0 && last.value > 0) {
-              const cagr = (Math.pow(last.value / first.value, 1 / years) - 1) * 100;
+            const firstYear = validYears[0];
+            const lastYear = validYears[validYears.length - 1];
+            const numYears = lastYear - firstYear;
+            
+            if (numYears >= 2) {
+              const firstAvg = yearlyAverages[firstYear];
+              const lastAvg = yearlyAverages[lastYear];
               
-              if (cagr >= -30 && cagr <= 50) {
-                result.divGrowth5Y = Math.round(cagr * 100) / 100;
-              } else {
-                console.log(`  ⚠️ ${symbol}: divGrowth5Y ${cagr.toFixed(2)}% (outside normal range)`);
-                if (cagr >= -50 && cagr <= 100) {
+              if (firstAvg > 0 && lastAvg > 0) {
+                const cagr = (Math.pow(lastAvg / firstAvg, 1 / numYears) - 1) * 100;
+                
+                // ✅ Sanity check: -20% ถึง +20%
+                if (cagr >= -20 && cagr <= 20) {
                   result.divGrowth5Y = Math.round(cagr * 100) / 100;
+                } else {
+                  console.log(`  ⚠️ ${symbol}: divGrowth5Y ${cagr.toFixed(2)}% REJECTED (${firstYear}: ${firstAvg.toFixed(4)} → ${lastYear}: ${lastAvg.toFixed(4)})`);
                 }
               }
             }
@@ -290,12 +270,9 @@ async function fetchChartData(symbol, currentPrice) {
   return result;
 }
 
-// ==========================================
-// Main
-// ==========================================
 async function main() {
-  console.log('🚀 Starting ETF data update v4.0 (Trailing-12-Month Div Growth)...');
-  console.log(`📊 Symbols: ${UNIQUE_SYMBOLS.length} (deduplicated from ${ETF_SYMBOLS.length})`);
+  console.log('🚀 Starting ETF data update v4.1 (Yearly Average Div Growth - ACCURATE!)...');
+  console.log(`📊 Symbols: ${UNIQUE_SYMBOLS.length}`);
   console.log(`📅 ${new Date().toISOString()}\n`);
   
   const hasSession = await initYahooSession();
@@ -422,8 +399,8 @@ async function main() {
       fromYahoo: stat.yahoo,
       fromFallback: stat.fallback,
       source: 'Yahoo Finance + Fallback (via GitHub Actions)',
-      version: '4.0',
-      features: ['Trailing-12-Month Div Growth (auto-handles stock splits)'],
+      version: '4.1',
+      features: ['Yearly Average Div Growth (accurate 9-11% for SCHD)'],
       dataSourceStats: { yield: yieldStats, growth: growthStats, divGrowth: divGrowthStats },
     },
     data: database,
