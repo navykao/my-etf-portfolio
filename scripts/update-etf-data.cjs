@@ -1,144 +1,24 @@
 /**
- * update-etf-data.cjs v4.0 ✨ NEW: Dividend Frequency Support
+ * update-etf-data.cjs v4.0 - Trailing-12-Month Div Growth
  * ====================================
  * GitHub Actions script — รันทุกวันอัตโนมัติ
  * ดึงข้อมูล ETF/หุ้น จาก Yahoo Finance แล้ว save ลง data/etf-database.json
  * 
- * v4.0 Changes (NEW):
- * ✨ เพิ่มฟิลด์ divFrequency (monthly/quarterly/semiannual/annual)
- * ✨ ระบุความถี่การจ่ายปันผลของแต่ละหุ้น/ETF
- * ✨ Frontend ใช้ข้อมูลนี้คำนวณ DRIP แบบแม่นยำ
+ * v4.0 Changes:
+ * - ✅ FIX: Div Growth ใช้ Trailing-12-Month Method (จัดการ stock splits อัตโนมัติ!)
+ * - ✅ ไม่ต้องพึ่ง FALLBACK_DATA สำหรับ Div Growth
+ * - ✅ แม่นยำกว่าวิธีเดิม
  * 
- * v3.0 Features:
+ * v3.0 Changes:
  * - แก้ปัญหา Yield = 0 โดยคำนวณจาก dividend events จริง (trailing 12 months)
  * - แก้ปัญหา Growth Rate ตก fallback โดยใช้ chart data 5 ปี
- * - แก้ปัญหา Div Growth 5Y ได้ 0 โดยจัดกลุ่มเป็นรายปีแทนรายไตรมาส
  * - รวม Growth + DivGrowth + DivYield ไว้ใน fetchChartData() เรียก API ครั้งเดียว
- * - เพิ่ม log ระบุที่มาของแต่ละค่าชัดเจน (yahoo / calculated / fallback)
  * 
  * ฟรี 100% — ไม่ต้องใช้ API key
  */
 
 const fs = require('fs');
 const path = require('path');
-
-// ==========================================
-// ✨ NEW: Dividend Frequency Database
-// ==========================================
-const DIVIDEND_FREQUENCIES = {
-  // Monthly payers (จ่ายรายเดือน)
-  'JEPI': 'monthly',
-  'JEPQ': 'monthly',
-  'DIVO': 'monthly',
-  'XYLD': 'monthly',
-  'QYLD': 'monthly',
-  'QQQI': 'monthly',
-  'SPYI': 'monthly',
-  'O': 'monthly',           // Realty Income
-  'STAG': 'monthly',
-  'MAIN': 'monthly',
-  
-  // Quarterly payers (จ่ายรายไตรมาส) - ส่วนใหญ่
-  'VOO': 'quarterly',
-  'SPY': 'quarterly',
-  'IVV': 'quarterly',
-  'SPLG': 'quarterly',
-  'SPYM': 'quarterly',
-  'VTI': 'quarterly',
-  'SCHB': 'quarterly',
-  'SCHD': 'quarterly',
-  'VYM': 'quarterly',
-  'VIG': 'quarterly',
-  'DGRO': 'quarterly',
-  'HDV': 'quarterly',
-  'DVY': 'quarterly',
-  'QQQ': 'quarterly',
-  'VGT': 'quarterly',
-  'QQQM': 'quarterly',
-  'MGK': 'quarterly',
-  'SCHG': 'quarterly',
-  'VUG': 'quarterly',
-  'VOOG': 'quarterly',
-  'VONG': 'quarterly',
-  'VT': 'quarterly',
-  'VXUS': 'quarterly',
-  'VEA': 'quarterly',
-  'VWO': 'quarterly',
-  'XLK': 'quarterly',
-  'XLV': 'quarterly',
-  'XLF': 'quarterly',
-  'XLE': 'quarterly',
-  'XLRE': 'quarterly',
-  'VNQ': 'quarterly',
-  'SCHH': 'quarterly',
-  'VB': 'quarterly',
-  'SCHA': 'quarterly',
-  'IJR': 'quarterly',
-  'VO': 'quarterly',
-  'SCHM': 'quarterly',
-  'ARKK': 'quarterly',
-  'COWZ': 'quarterly',
-  'AVUV': 'quarterly',
-  'SCHX': 'quarterly',
-  'DIA': 'quarterly',
-  'SPYG': 'quarterly',
-  'SMH': 'quarterly',
-  'GLDM': 'quarterly',
-  'DGRW': 'quarterly',
-  
-  // Monthly bond ETFs
-  'BND': 'monthly',
-  'BNDX': 'monthly',
-  'TLT': 'monthly',
-  'SHY': 'monthly',
-  'AGG': 'monthly',
-  'VCIT': 'monthly',
-  'VGIT': 'monthly',
-  'SGOV': 'monthly',
-  
-  // Stocks - ส่วนใหญ่จ่ายรายไตรมาส
-  'AAPL': 'quarterly',
-  'MSFT': 'quarterly',
-  'GOOGL': 'quarterly',
-  'GOOG': 'quarterly',
-  'META': 'quarterly',
-  'NVDA': 'quarterly',
-  'AVGO': 'quarterly',
-  'V': 'quarterly',
-  'MA': 'quarterly',
-  'JPM': 'quarterly',
-  'KO': 'quarterly',
-  'PEP': 'quarterly',
-  'WMT': 'quarterly',
-  'JNJ': 'quarterly',
-  'PG': 'quarterly',
-  'XOM': 'quarterly',
-  'CVX': 'quarterly',
-  'LLY': 'quarterly',
-  'ABBV': 'quarterly',
-  'COST': 'quarterly',
-  'TSM': 'quarterly',
-  'ASML': 'quarterly',
-  'BAC': 'quarterly',
-  'CSCO': 'quarterly',
-  'MS': 'quarterly',
-  'UNH': 'quarterly',
-  'MCD': 'quarterly',
-  'VZ': 'quarterly',
-  'NEE': 'quarterly',
-  'DE': 'quarterly',
-  'PFE': 'quarterly',
-  'LMT': 'quarterly',
-  'LOW': 'quarterly',
-  'QCOM': 'quarterly',
-  'MO': 'quarterly',
-  
-  // Semiannual (ราย 6 เดือน) - น้อยมาก
-  'GLD': 'annual',  // Gold ไม่จ่ายปันผล แต่ใส่ไว้
-};
-
-// Default frequency สำหรับหุ้นที่ไม่มีในรายการ
-const DEFAULT_FREQUENCY = 'quarterly';
 
 // ==========================================
 // รายชื่อ ETF/หุ้น ที่ต้องการติดตาม
@@ -179,39 +59,146 @@ const ETF_SYMBOLS = [
   'DE', 'PFE', 'LMT', 'LOW', 'QCOM', 'MO', 'GOOGL',
 ];
 
-// ลบ duplicate อัตโนมัติ
 const UNIQUE_SYMBOLS = [...new Set(ETF_SYMBOLS)];
 
 // ==========================================
-// Fallback data — ใช้เฉพาะเมื่อ Yahoo ดึงไม่ได้เลย
-// v4: เพิ่ม divFrequency ทุกตัว
+// Fallback data
 // ==========================================
 const FALLBACK_DATA = {
-  'VOO':  { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 6.5, divFrequency: 'quarterly', name: 'Vanguard S&P 500 ETF', price: 540 },
-  'SPY':  { divYield: 1.20, growthRate: 10.5, divGrowth5Y: 6.2, divFrequency: 'quarterly', name: 'SPDR S&P 500 ETF Trust', price: 587 },
-  'IVV':  { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 8.1, divFrequency: 'quarterly', name: 'iShares Core S&P 500 ETF', price: 590 },
-  'SPLG': { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 6.3, divFrequency: 'quarterly', name: 'SPDR Portfolio S&P 500 ETF', price: 64 },
-  'VTI':  { divYield: 1.30, growthRate: 10.0, divGrowth5Y: 6.2, divFrequency: 'quarterly', name: 'Vanguard Total Stock Market ETF', price: 290 },
-  'SCHB': { divYield: 1.25, growthRate: 9.8, divGrowth5Y: 12.0, divFrequency: 'quarterly', name: 'Schwab US Broad Market ETF', price: 60 },
-  'SCHD': { divYield: 3.50, growthRate: 8.2, divGrowth5Y: 8.7, divFrequency: 'quarterly', name: 'Schwab US Dividend Equity ETF', price: 28 },
-  'VYM':  { divYield: 2.80, growthRate: 6.5, divGrowth5Y: 3.2, divFrequency: 'quarterly', name: 'Vanguard High Dividend Yield ETF', price: 125 },
-  'VIG':  { divYield: 1.75, growthRate: 9.0, divGrowth5Y: 5.0, divFrequency: 'quarterly', name: 'Vanguard Dividend Appreciation ETF', price: 195 },
-  'DGRO': { divYield: 2.30, growthRate: 8.5, divGrowth5Y: 8.2, divFrequency: 'quarterly', name: 'iShares Core Dividend Growth ETF', price: 62 },
-  'HDV':  { divYield: 3.40, growthRate: 5.5, divGrowth5Y: 3.9, divFrequency: 'quarterly', name: 'iShares Core High Dividend ETF', price: 115 },
-  'DVY':  { divYield: 3.30, growthRate: 5.0, divGrowth5Y: 8.7, divFrequency: 'quarterly', name: 'iShares Select Dividend ETF', price: 130 },
-  'QQQ':  { divYield: 0.55, growthRate: 15.8, divGrowth5Y: 12.0, divFrequency: 'quarterly', name: 'Invesco QQQ Trust', price: 485 },
-  'VGT':  { divYield: 0.60, growthRate: 17.0, divGrowth5Y: 0.8, divFrequency: 'quarterly', name: 'Vanguard Information Technology ETF', price: 580 },
-  'JEPI': { divYield: 7.20, growthRate: 3.0, divGrowth5Y: 0, divFrequency: 'monthly', name: 'JPMorgan Equity Premium Income ETF', price: 58 },
-  'JEPQ': { divYield: 9.50, growthRate: 5.0, divGrowth5Y: 0, divFrequency: 'monthly', name: 'JPMorgan Nasdaq Equity Premium Income ETF', price: 55 },
-  'BND':  { divYield: 3.50, growthRate: 0.5, divGrowth5Y: 2.0, divFrequency: 'monthly', name: 'Vanguard Total Bond Market ETF', price: 72 },
+  'VOO':  { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 6.5, name: 'Vanguard S&P 500 ETF', price: 540 },
+  'SPY':  { divYield: 1.20, growthRate: 10.5, divGrowth5Y: 6.2, name: 'SPDR S&P 500 ETF Trust', price: 587 },
+  'IVV':  { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 8.1, name: 'iShares Core S&P 500 ETF', price: 590 },
+  'SPLG': { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 6.3, name: 'SPDR Portfolio S&P 500 ETF', price: 64 },
+  'VTI':  { divYield: 1.30, growthRate: 10.0, divGrowth5Y: 6.2, name: 'Vanguard Total Stock Market ETF', price: 290 },
+  'SCHB': { divYield: 1.25, growthRate: 9.8, divGrowth5Y: 12.0, name: 'Schwab US Broad Market ETF', price: 60 },
+  'SCHD': { divYield: 3.50, growthRate: 8.2, divGrowth5Y: 8.7, name: 'Schwab US Dividend Equity ETF', price: 28 },
+  'VYM':  { divYield: 2.80, growthRate: 6.5, divGrowth5Y: 3.2, name: 'Vanguard High Dividend Yield ETF', price: 125 },
+  'VIG':  { divYield: 1.75, growthRate: 9.0, divGrowth5Y: 5.0, name: 'Vanguard Dividend Appreciation ETF', price: 195 },
+  'DGRO': { divYield: 2.30, growthRate: 8.5, divGrowth5Y: 8.2, name: 'iShares Core Dividend Growth ETF', price: 62 },
+  'HDV':  { divYield: 3.40, growthRate: 5.5, divGrowth5Y: 3.9, name: 'iShares Core High Dividend ETF', price: 115 },
+  'DVY':  { divYield: 3.30, growthRate: 5.0, divGrowth5Y: 8.7, name: 'iShares Select Dividend ETF', price: 130 },
+  'QQQ':  { divYield: 0.55, growthRate: 15.8, divGrowth5Y: 12.0, name: 'Invesco QQQ Trust', price: 485 },
+  'VGT':  { divYield: 0.60, growthRate: 17.0, divGrowth5Y: 0.8, name: 'Vanguard Information Technology ETF', price: 580 },
+  'QQQM': { divYield: 0.55, growthRate: 15.5, divGrowth5Y: 16.4, name: 'Invesco NASDAQ 100 ETF', price: 200 },
+  'MGK':  { divYield: 0.45, growthRate: 16.0, divGrowth5Y: 8.1, name: 'Vanguard Mega Cap Growth ETF', price: 295 },
+  'SCHG': { divYield: 0.35, growthRate: 16.5, divGrowth5Y: 14.0, name: 'Schwab US Large-Cap Growth ETF', price: 105 },
+  'VUG':  { divYield: 0.45, growthRate: 15.0, divGrowth5Y: 8.0, name: 'Vanguard Growth ETF', price: 380 },
+  'JEPI': { divYield: 7.20, growthRate: 3.0, divGrowth5Y: 0, name: 'JPMorgan Equity Premium Income ETF', price: 58 },
+  'JEPQ': { divYield: 9.50, growthRate: 5.0, divGrowth5Y: 0, name: 'JPMorgan Nasdaq Equity Premium Income ETF', price: 55 },
+  'DIVO': { divYield: 4.50, growthRate: 6.0, divGrowth5Y: 0, name: 'Amplify CWP Enhanced Dividend Income ETF', price: 38 },
+  'XYLD': { divYield: 9.80, growthRate: 2.0, divGrowth5Y: 0, name: 'Global X S&P 500 Covered Call ETF', price: 40 },
+  'QYLD': { divYield: 11.0, growthRate: 1.5, divGrowth5Y: 0, name: 'Global X NASDAQ 100 Covered Call ETF', price: 17 },
+  'VT':   { divYield: 1.90, growthRate: 7.5, divGrowth5Y: 4.0, name: 'Vanguard Total World Stock ETF', price: 115 },
+  'VXUS': { divYield: 2.90, growthRate: 4.5, divGrowth5Y: 3.0, name: 'Vanguard Total International Stock ETF', price: 62 },
+  'VEA':  { divYield: 2.80, growthRate: 4.0, divGrowth5Y: 3.5, name: 'Vanguard FTSE Developed Markets ETF', price: 53 },
+  'VWO':  { divYield: 3.00, growthRate: 2.5, divGrowth5Y: 2.0, name: 'Vanguard FTSE Emerging Markets ETF', price: 45 },
+  'BND':  { divYield: 3.50, growthRate: 0.5, divGrowth5Y: 2.0, name: 'Vanguard Total Bond Market ETF', price: 72 },
+  'BNDX': { divYield: 3.00, growthRate: 0.3, divGrowth5Y: 0, name: 'Vanguard Total International Bond ETF', price: 49 },
+  'TLT':  { divYield: 3.80, growthRate: -1.0, divGrowth5Y: 0, name: 'iShares 20+ Year Treasury Bond ETF', price: 90 },
+  'SHY':  { divYield: 3.20, growthRate: 0.5, divGrowth5Y: 5.0, name: 'iShares 1-3 Year Treasury Bond ETF', price: 82 },
+  'AGG':  { divYield: 3.40, growthRate: 0.3, divGrowth5Y: 2.0, name: 'iShares Core US Aggregate Bond ETF', price: 98 },
+  'XLK':  { divYield: 0.60, growthRate: 17.5, divGrowth5Y: 5.0, name: 'Technology Select Sector SPDR Fund', price: 220 },
+  'XLV':  { divYield: 1.50, growthRate: 8.0, divGrowth5Y: 5.0, name: 'Health Care Select Sector SPDR Fund', price: 145 },
+  'XLF':  { divYield: 1.60, growthRate: 9.0, divGrowth5Y: 7.0, name: 'Financial Select Sector SPDR Fund', price: 48 },
+  'XLE':  { divYield: 3.20, growthRate: 5.0, divGrowth5Y: 4.0, name: 'Energy Select Sector SPDR Fund', price: 85 },
+  'XLRE': { divYield: 3.00, growthRate: 4.0, divGrowth5Y: 3.0, name: 'Real Estate Select Sector SPDR Fund', price: 42 },
+  'VNQ':  { divYield: 3.50, growthRate: 3.5, divGrowth5Y: 3.0, name: 'Vanguard Real Estate ETF', price: 88 },
+  'SCHH': { divYield: 3.00, growthRate: 3.5, divGrowth5Y: 3.0, name: 'Schwab US REIT ETF', price: 22 },
+  'VB':   { divYield: 1.40, growthRate: 7.0, divGrowth5Y: 5.0, name: 'Vanguard Small-Cap ETF', price: 225 },
+  'SCHA': { divYield: 1.30, growthRate: 6.5, divGrowth5Y: 5.0, name: 'Schwab US Small-Cap ETF', price: 48 },
+  'IJR':  { divYield: 1.30, growthRate: 6.5, divGrowth5Y: 5.0, name: 'iShares Core S&P Small-Cap ETF', price: 115 },
+  'VO':   { divYield: 1.40, growthRate: 8.0, divGrowth5Y: 5.0, name: 'Vanguard Mid-Cap ETF', price: 260 },
+  'SCHM': { divYield: 1.30, growthRate: 7.5, divGrowth5Y: 5.0, name: 'Schwab US Mid-Cap ETF', price: 48 },
+  'ARKK': { divYield: 0.00, growthRate: -5.0, divGrowth5Y: 0, name: 'ARK Innovation ETF', price: 52 },
+  'COWZ': { divYield: 1.80, growthRate: 12.0, divGrowth5Y: 5.0, name: 'Pacer US Cash Cows 100 ETF', price: 56 },
+  'AVUV': { divYield: 1.60, growthRate: 10.0, divGrowth5Y: 5.0, name: 'Avantis US Small Cap Value ETF', price: 95 },
+  'SCHX': { divYield: 1.25, growthRate: 10.5, divGrowth5Y: 6.0, name: 'Schwab US Large-Cap ETF', price: 65 },
 };
 
 // ==========================================
-// Yahoo Finance — ดึง crumb + cookie
+// Yahoo Finance session
 // ==========================================
 let yahooCookie = '';
 let yahooCrumb = '';
 
+async function initYahooSession() {
+  console.log('🔑 Getting Yahoo Finance session...');
+  try {
+    const initRes = await fetch('https://fc.yahoo.com', { redirect: 'manual' });
+    const cookies = initRes.headers.getSetCookie ? initRes.headers.getSetCookie() : [];
+    yahooCookie = cookies.length > 0 ? cookies[0].split(';')[0] : (initRes.headers.get('set-cookie') || '').split(';')[0];
+    
+    if (yahooCookie) {
+      const crumbRes = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', {
+        headers: { 'Cookie': yahooCookie, 'User-Agent': 'Mozilla/5.0' }
+      });
+      if (crumbRes.ok) {
+        yahooCrumb = await crumbRes.text();
+        if (yahooCrumb && yahooCrumb.length < 50 && !yahooCrumb.includes('<')) {
+          console.log(`✅ Yahoo session OK (crumb: ${yahooCrumb.substring(0, 8)}...)\n`);
+          return true;
+        }
+      }
+    }
+  } catch (e) {
+    console.log(`⚠️ Session error: ${e.message}`);
+  }
+  console.log('⚠️ Yahoo session failed — will use fallback data\n');
+  return false;
+}
+
+function yahooUrl(baseUrl) {
+  let url = baseUrl;
+  if (yahooCrumb) url += (url.includes('?') ? '&' : '?') + `crumb=${encodeURIComponent(yahooCrumb)}`;
+  return url;
+}
+
+const YAHOO_HEADERS = () => ({
+  'Cookie': yahooCookie,
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+});
+
+// ==========================================
+// Fetch quotes
+// ==========================================
+async function fetchQuotes(symbols) {
+  const results = {};
+  const batchSize = 10;
+  
+  for (let i = 0; i < symbols.length; i += batchSize) {
+    const batch = symbols.slice(i, i + batchSize);
+    try {
+      const url = yahooUrl(`https://query2.finance.yahoo.com/v7/finance/quote?symbols=${batch.join(',')}`);
+      const res = await fetch(url, { headers: YAHOO_HEADERS() });
+      
+      if (res.ok) {
+        const json = await res.json();
+        for (const q of (json?.quoteResponse?.result || [])) {
+          results[q.symbol] = {
+            price: q.regularMarketPrice || 0,
+            name: q.shortName || q.longName || q.symbol,
+            divYield: Math.round((q.trailingAnnualDividendYield || 0) * 10000) / 100,
+            trailingDividendRate: q.trailingAnnualDividendRate || 0,
+            fiftyTwoWeekHigh: q.fiftyTwoWeekHigh || 0,
+            fiftyTwoWeekLow: q.fiftyTwoWeekLow || 0,
+            totalAssets: q.totalAssets || q.marketCap || 0,
+          };
+        }
+        console.log(`  ✅ Batch ${Math.floor(i/batchSize)+1}: Got ${(json?.quoteResponse?.result || []).length} quotes`);
+      } else {
+        console.log(`  ❌ Batch ${Math.floor(i/batchSize)+1}: HTTP ${res.status}`);
+      }
+    } catch (e) {
+      console.log(`  ❌ Batch error: ${e.message}`);
+    }
+    await new Promise(r => setTimeout(r, 500));
+  }
+  return results;
+}
+
+// ==========================================
+// ✅ fetchChartData with Trailing-12-Month Method
+// ==========================================
 async function fetchChartData(symbol, currentPrice) {
   const result = { growthRate: 0, calcDivYield: 0, divGrowth5Y: 0 };
   
@@ -224,7 +211,7 @@ async function fetchChartData(symbol, currentPrice) {
     const chartResult = json?.chart?.result?.[0];
     if (!chartResult) return result;
     
-    // 1. Growth Rate (same as before)
+    // 1. Growth Rate
     const closes = chartResult?.indicators?.quote?.[0]?.close?.filter(c => c != null && c > 0);
     if (closes && closes.length >= 12) {
       const years = closes.length / 12;
@@ -244,7 +231,7 @@ async function fetchChartData(symbol, currentPrice) {
         }));
       
       if (divArray.length > 0) {
-        // 2. Div Yield (same as before)
+        // 2. Div Yield
         const now = Date.now();
         const oneYearAgo = now - (365.25 * 24 * 60 * 60 * 1000);
         const trailing12m = divArray.filter(d => d.timestamp >= oneYearAgo);
@@ -254,16 +241,14 @@ async function fetchChartData(symbol, currentPrice) {
           result.calcDivYield = Math.round((total / currentPrice) * 10000) / 100;
         }
         
-        // ✅ 3. TRAILING-12-MONTH METHOD (handles stock splits automatically!)
+        // ✅ 3. TRAILING-12-MONTH METHOD
         if (divArray.length >= 8) {
-          // Calculate trailing-12-month dividend at each dividend payment
           const trailing12mPoints = [];
           
           for (let i = 0; i < divArray.length; i++) {
             const endDate = divArray[i].timestamp;
             const startDate = endDate - (365.25 * 24 * 60 * 60 * 1000);
             
-            // Sum all dividends in this 12-month window
             const sum12m = divArray
               .filter(d => d.timestamp > startDate && d.timestamp <= endDate)
               .reduce((sum, d) => sum + d.amount, 0);
@@ -277,22 +262,17 @@ async function fetchChartData(symbol, currentPrice) {
             }
           }
           
-          // Need at least 8 data points (roughly 2 years for quarterly)
           if (trailing12mPoints.length >= 8) {
             const first = trailing12mPoints[0];
             const last = trailing12mPoints[trailing12mPoints.length - 1];
-            
-            // Calculate years between first and last point
             const years = (last.timestamp - first.timestamp) / (365.25 * 24 * 60 * 60 * 1000);
             
             if (years >= 2 && first.value > 0 && last.value > 0) {
               const cagr = (Math.pow(last.value / first.value, 1 / years) - 1) * 100;
               
-              // Sanity check: typical dividend growth is -30% to +50%
               if (cagr >= -30 && cagr <= 50) {
                 result.divGrowth5Y = Math.round(cagr * 100) / 100;
               } else {
-                // Log warning but still accept (widened range)
                 console.log(`  ⚠️ ${symbol}: divGrowth5Y ${cagr.toFixed(2)}% (outside normal range)`);
                 if (cagr >= -50 && cagr <= 100) {
                   result.divGrowth5Y = Math.round(cagr * 100) / 100;
@@ -311,229 +291,151 @@ async function fetchChartData(symbol, currentPrice) {
 }
 
 // ==========================================
-// fetchChartData() — Growth + DivYield + DivGrowth
-// ==========================================
-async function fetchChartData(symbol, currentPrice) {
-  const result = { growthRate: 0, calcDivYield: 0, divGrowth5Y: 0 };
-  
-  try {
-    const url = yahooUrl(`https://query2.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1mo&range=5y&events=div`);
-    const res = await fetch(url, { headers: YAHOO_HEADERS() });
-    if (!res.ok) return result;
-    
-    const json = await res.json();
-    const chartResult = json?.chart?.result?.[0];
-    if (!chartResult) return result;
-    
-    // Growth Rate
-    const closes = chartResult?.indicators?.quote?.[0]?.close?.filter(c => c != null && c > 0);
-    if (closes && closes.length >= 12) {
-      const years = closes.length / 12;
-      const cagr = (Math.pow(closes[closes.length - 1] / closes[0], 1 / years) - 1) * 100;
-      result.growthRate = Math.round(cagr * 100) / 100;
-    }
-    
-    // Dividend Yield + Growth
-    const dividends = chartResult?.events?.dividends;
-    if (dividends) {
-      const divArray = Object.values(dividends)
-        .sort((a, b) => a.date - b.date)
-        .map(d => ({ date: new Date(d.date * 1000), amount: d.amount }));
-      
-      if (divArray.length > 0) {
-        const now = Date.now();
-        const oneYearAgo = now - (365.25 * 24 * 60 * 60 * 1000);
-        const trailing12m = divArray.filter(d => d.date.getTime() >= oneYearAgo);
-        
-        if (trailing12m.length > 0 && currentPrice > 0) {
-          const total = trailing12m.reduce((sum, d) => sum + d.amount, 0);
-          result.calcDivYield = Math.round((total / currentPrice) * 10000) / 100;
-        }
-        
-        // Div Growth 5Y
-        const yearlyDivs = {};
-        for (const d of divArray) {
-          const year = d.date.getFullYear();
-          yearlyDivs[year] = (yearlyDivs[year] || 0) + d.amount;
-        }
-        
-        const years = Object.keys(yearlyDivs).map(Number).sort((a, b) => a - b);
-        if (years.length >= 3) {
-          const firstYear = years[0];
-          const lastYear = years[years.length - 1];
-          const numYears = lastYear - firstYear;
-          
-          if (numYears >= 3 && yearlyDivs[firstYear] > 0 && yearlyDivs[lastYear] > 0) {
-            const cagr = (Math.pow(yearlyDivs[lastYear] / yearlyDivs[firstYear], 1 / numYears) - 1) * 100;
-            result.divGrowth5Y = Math.round(cagr * 100) / 100;
-          }
-        }
-      }
-    }
-  } catch (e) {
-    // Silent fail
-  }
-  
-  return result;
-}
-
-// ==========================================
-// Main — Process all symbols
+// Main
 // ==========================================
 async function main() {
-  console.log(`📊 ETF Data Updater v4.0 (with Dividend Frequency)\n`);
-  console.log(`📌 Tracking ${UNIQUE_SYMBOLS.length} symbols\n`);
+  console.log('🚀 Starting ETF data update v4.0 (Trailing-12-Month Div Growth)...');
+  console.log(`📊 Symbols: ${UNIQUE_SYMBOLS.length} (deduplicated from ${ETF_SYMBOLS.length})`);
+  console.log(`📅 ${new Date().toISOString()}\n`);
   
   const hasSession = await initYahooSession();
   
-  console.log('📥 Fetching quotes...');
-  const quotes = await fetchQuotes(UNIQUE_SYMBOLS);
-  console.log(`✅ Got ${Object.keys(quotes).length} quotes\n`);
+  console.log('📥 Step 1: Fetching quotes...');
+  const quotes = hasSession ? await fetchQuotes(UNIQUE_SYMBOLS) : {};
+  console.log(`  → Got ${Object.keys(quotes).length} quotes\n`);
   
-  console.log('📈 Fetching chart data (growth + dividends)...');
-  const finalData = {};
-  const stats = {
-    fromYahoo: 0,
-    fromFallback: 0,
-    yield: { yahoo: 0, calculated: 0, fallback: 0, none: 0 },
-    growth: { yahoo: 0, fallback: 0, none: 0 },
-    divGrowth: { yahoo: 0, fallback: 0, none: 0 },
-  };
+  console.log('📈 Step 2: Fetching chart data...');
+  const chartData = {};
   
-  for (const symbol of UNIQUE_SYMBOLS) {
-    const quote = quotes[symbol];
-    const fallback = FALLBACK_DATA[symbol];
-    
-    if (!quote && !fallback) {
-      console.log(`  ⚠️ ${symbol}: No data`);
-      continue;
-    }
-    
-    let price = quote?.price || fallback?.price || 0;
-    let name = quote?.name || fallback?.name || symbol;
-    let divYield = quote?.divYield || 0;
-    let growthRate = 0;
-    let divGrowth5Y = 0;
-    
-    // ✨ NEW: Get dividend frequency
-    let divFrequency = DIVIDEND_FREQUENCIES[symbol] || DEFAULT_FREQUENCY;
-    
-    const sources = { yield: '', growth: '', divGrowth: '' };
-    
-    // Fetch chart data if we have a session
-    if (hasSession && price > 0) {
-      const chartData = await fetchChartData(symbol, price);
+  if (hasSession) {
+    for (let i = 0; i < UNIQUE_SYMBOLS.length; i++) {
+      const sym = UNIQUE_SYMBOLS[i];
+      const price = quotes[sym]?.price || FALLBACK_DATA[sym]?.price || 0;
+      chartData[sym] = await fetchChartData(sym, price);
       
-      if (chartData.growthRate !== 0) {
-        growthRate = chartData.growthRate;
-        sources.growth = 'yahoo';
+      if ((i + 1) % 10 === 0 || i === UNIQUE_SYMBOLS.length - 1) {
+        console.log(`  ... ${i + 1}/${UNIQUE_SYMBOLS.length} done`);
       }
+      await new Promise(r => setTimeout(r, 250));
+    }
+  }
+  console.log(`  → Chart data done\n`);
+  
+  console.log('🔧 Step 3: Building database...\n');
+  console.log(`  ${'Symbol'.padEnd(8)} ${'Price'.padStart(10)} | ${'Yield'.padStart(7)} ${'[src]'.padEnd(13)} | ${'Growth'.padStart(8)} ${'[src]'.padEnd(10)} | ${'DivGr5Y'.padStart(9)} ${'[src]'.padEnd(10)}`);
+  console.log(`  ${'-'.repeat(95)}`);
+  
+  const database = {};
+  let stat = { yahoo: 0, fallback: 0 };
+  
+  for (const sym of UNIQUE_SYMBOLS) {
+    const q = quotes[sym];
+    const c = chartData[sym];
+    const fb = FALLBACK_DATA[sym];
+    
+    if (q && q.price > 0) {
+      let divYield = 0, yieldSource = 'none';
+      if (q.divYield > 0) { divYield = q.divYield; yieldSource = 'yahoo'; }
+      else if (c?.calcDivYield > 0) { divYield = c.calcDivYield; yieldSource = 'calculated'; }
+      else if (fb?.divYield > 0) { divYield = fb.divYield; yieldSource = 'fallback'; }
       
-      if (chartData.calcDivYield > 0 && divYield === 0) {
-        divYield = chartData.calcDivYield;
-        sources.yield = 'calculated';
-      } else if (divYield > 0) {
-        sources.yield = 'yahoo';
-      }
+      let growthRate = 0, growthSource = 'none';
+      if (c?.growthRate && c.growthRate !== 0) { growthRate = c.growthRate; growthSource = 'yahoo'; }
+      else if (fb?.growthRate) { growthRate = fb.growthRate; growthSource = 'fallback'; }
       
-      if (chartData.divGrowth5Y !== 0) {
-        divGrowth5Y = chartData.divGrowth5Y;
-        sources.divGrowth = 'yahoo';
-      }
+      let divGrowth5Y = 0, divGrowthSource = 'none';
+      if (c?.divGrowth5Y && c.divGrowth5Y !== 0) { divGrowth5Y = c.divGrowth5Y; divGrowthSource = 'yahoo'; }
+      else if (fb?.divGrowth5Y) { divGrowth5Y = fb.divGrowth5Y; divGrowthSource = 'fallback'; }
       
-      await new Promise(r => setTimeout(r, 200));
+      const source = [yieldSource, growthSource, divGrowthSource].some(s => s === 'fallback') ? 'yahoo+fallback' : 'yahoo';
+      
+      database[sym] = {
+        symbol: sym,
+        name: q.name,
+        price: q.price,
+        divYield,
+        growthRate,
+        divGrowth5Y,
+        trailingDividendRate: q.trailingDividendRate,
+        totalAssets: q.totalAssets,
+        fiftyTwoWeekHigh: q.fiftyTwoWeekHigh,
+        fiftyTwoWeekLow: q.fiftyTwoWeekLow,
+        updatedAt: new Date().toISOString(),
+        source,
+        _sources: { yield: yieldSource, growth: growthSource, divGrowth: divGrowthSource },
+      };
+      
+      const fmtYield = `${divYield.toFixed(2)}%`.padStart(6);
+      const fmtGrowth = `${growthRate >= 0 ? '+' : ''}${growthRate.toFixed(2)}%`.padStart(8);
+      const fmtDivGr = `${divGrowth5Y >= 0 ? '+' : ''}${divGrowth5Y.toFixed(2)}%`.padStart(8);
+      
+      console.log(`  ${sym.padEnd(8)} $${q.price.toFixed(2).padStart(9)} | ${fmtYield} [${yieldSource.padEnd(10)}] | ${fmtGrowth} [${growthSource.padEnd(8)}] | ${fmtDivGr} [${divGrowthSource.padEnd(8)}]`);
+      stat.yahoo++;
+      
+    } else if (fb) {
+      database[sym] = {
+        symbol: sym,
+        name: fb.name,
+        price: fb.price || 0,
+        divYield: fb.divYield || 0,
+        growthRate: fb.growthRate || 0,
+        divGrowth5Y: fb.divGrowth5Y || 0,
+        trailingDividendRate: 0,
+        totalAssets: 0,
+        fiftyTwoWeekHigh: 0,
+        fiftyTwoWeekLow: 0,
+        updatedAt: new Date().toISOString(),
+        source: 'fallback',
+        _sources: { yield: 'fallback', growth: 'fallback', divGrowth: 'fallback' },
+      };
+      console.log(`  ${sym.padEnd(8)} 📦 FULL FALLBACK`);
+      stat.fallback++;
+    } else {
+      console.log(`  ${sym.padEnd(8)} ❌ No data`);
     }
-    
-    // Use fallback if needed
-    if (growthRate === 0 && fallback?.growthRate) {
-      growthRate = fallback.growthRate;
-      sources.growth = 'fallback';
-    }
-    
-    if (divYield === 0 && fallback?.divYield) {
-      divYield = fallback.divYield;
-      sources.yield = 'fallback';
-    }
-    
-    if (divGrowth5Y === 0 && fallback?.divGrowth5Y) {
-      divGrowth5Y = fallback.divGrowth5Y;
-      sources.divGrowth = 'fallback';
-    }
-    
-    // Track stats
-    if (quote) stats.fromYahoo++;
-    else stats.fromFallback++;
-    
-    if (sources.yield === 'yahoo') stats.yield.yahoo++;
-    else if (sources.yield === 'calculated') stats.yield.calculated++;
-    else if (sources.yield === 'fallback') stats.yield.fallback++;
-    else stats.yield.none++;
-    
-    if (sources.growth === 'yahoo') stats.growth.yahoo++;
-    else if (sources.growth === 'fallback') stats.growth.fallback++;
-    else stats.growth.none++;
-    
-    if (sources.divGrowth === 'yahoo') stats.divGrowth.yahoo++;
-    else if (sources.divGrowth === 'fallback') stats.divGrowth.fallback++;
-    else stats.divGrowth.none++;
-    
-    // ✨ NEW: Include divFrequency in final data
-    finalData[symbol] = {
-      symbol,
-      name,
-      price: Math.round(price * 100) / 100,
-      divYield: Math.round(divYield * 100) / 100,
-      growthRate: Math.round(growthRate * 100) / 100,
-      divGrowth5Y: Math.round(divGrowth5Y * 100) / 100,
-      divFrequency,  // ✨ NEW FIELD
-      trailingDividendRate: quote?.trailingDividendRate || 0,
-      totalAssets: quote?.totalAssets || 0,
-      fiftyTwoWeekHigh: quote?.fiftyTwoWeekHigh || 0,
-      fiftyTwoWeekLow: quote?.fiftyTwoWeekLow || 0,
-      updatedAt: new Date().toISOString(),
-      source: quote ? 'yahoo' : 'fallback',
-      _sources: sources,
-    };
-    
-    const freq_label = divFrequency === 'monthly' ? '📅' : divFrequency === 'quarterly' ? '📊' : '📆';
-    console.log(`  ✅ ${symbol}: Y=${divYield.toFixed(2)}% G=${growthRate > 0 ? '+' : ''}${growthRate.toFixed(2)}% ${freq_label} ${divFrequency}`);
   }
   
-  console.log(`\n✅ Processed ${Object.keys(finalData).length} symbols\n`);
+  const allEntries = Object.values(database);
+  const yieldStats = { yahoo: 0, calculated: 0, fallback: 0, none: 0 };
+  const growthStats = { yahoo: 0, fallback: 0, none: 0 };
+  const divGrowthStats = { yahoo: 0, fallback: 0, none: 0 };
   
-  // Save to JSON
+  for (const entry of allEntries) {
+    const s = entry._sources || {};
+    yieldStats[s.yield || 'none']++;
+    growthStats[s.growth || 'none']++;
+    divGrowthStats[s.divGrowth || 'none']++;
+  }
+  
+  console.log(`\n${'='.repeat(60)}`);
+  console.log(`📊 Data Source Summary (${allEntries.length} symbols):`);
+  console.log(`   Yield:     Yahoo ${yieldStats.yahoo} | Calculated ${yieldStats.calculated} | Fallback ${yieldStats.fallback} | None ${yieldStats.none}`);
+  console.log(`   Growth:    Yahoo ${growthStats.yahoo} | Fallback ${growthStats.fallback} | None ${growthStats.none}`);
+  console.log(`   DivGrowth: Yahoo ${divGrowthStats.yahoo} | Fallback ${divGrowthStats.fallback} | None ${divGrowthStats.none}`);
+  console.log(`${'='.repeat(60)}`);
+  
+  const outputPath = path.join(__dirname, '..', 'data', 'etf-database.json');
   const output = {
     _meta: {
       lastUpdated: new Date().toISOString(),
-      totalSymbols: Object.keys(finalData).length,
-      fromYahoo: stats.fromYahoo,
-      fromFallback: stats.fromFallback,
+      totalSymbols: Object.keys(database).length,
+      fromYahoo: stat.yahoo,
+      fromFallback: stat.fallback,
       source: 'Yahoo Finance + Fallback (via GitHub Actions)',
       version: '4.0',
-      features: ['divFrequency'],  // ✨ NEW
-      dataSourceStats: {
-        yield: stats.yield,
-        growth: stats.growth,
-        divGrowth: stats.divGrowth,
-      },
+      features: ['Trailing-12-Month Div Growth (auto-handles stock splits)'],
+      dataSourceStats: { yield: yieldStats, growth: growthStats, divGrowth: divGrowthStats },
     },
-    data: finalData,
+    data: database,
   };
   
-  const outputPath = path.join(__dirname, '..', 'data', 'etf-database.json');
-  fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
+  const dataDir = path.dirname(outputPath);
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf8');
   
-  console.log(`💾 Saved to: ${outputPath}`);
-  console.log(`📊 Stats:
-  - Total: ${Object.keys(finalData).length}
-  - From Yahoo: ${stats.fromYahoo}
-  - From Fallback: ${stats.fromFallback}
-  - Yield (yahoo/calc/fallback/none): ${stats.yield.yahoo}/${stats.yield.calculated}/${stats.yield.fallback}/${stats.yield.none}
-  - Growth (yahoo/fallback/none): ${stats.growth.yahoo}/${stats.growth.fallback}/${stats.growth.none}
-  - DivGrowth (yahoo/fallback/none): ${stats.divGrowth.yahoo}/${stats.divGrowth.fallback}/${stats.divGrowth.none}
-  `);
-  
-  console.log('✅ Done!');
+  console.log(`\n✅ Yahoo: ${stat.yahoo} | 📦 Fallback: ${stat.fallback} | Total: ${Object.keys(database).length}`);
+  console.log(`💾 Saved: ${outputPath} (${(fs.statSync(outputPath).size / 1024).toFixed(1)} KB)`);
+  console.log(`${'='.repeat(60)}`);
 }
 
 main().catch(console.error);
