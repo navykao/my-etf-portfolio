@@ -212,79 +212,95 @@ const FALLBACK_DATA = {
 let yahooCookie = '';
 let yahooCrumb = '';
 
-async function initYahooSession() {
-  console.log('🔑 Getting Yahoo Finance session...');
+async function fetchChartData(symbol, currentPrice) {
+  const result = { growthRate: 0, calcDivYield: 0, divGrowth5Y: 0 };
+  
   try {
-    const initRes = await fetch('https://fc.yahoo.com', { redirect: 'manual' });
-    const cookies = initRes.headers.getSetCookie ? initRes.headers.getSetCookie() : [];
-    yahooCookie = cookies.length > 0 ? cookies[0].split(';')[0] : (initRes.headers.get('set-cookie') || '').split(';')[0];
+    const url = yahooUrl(`https://query2.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1mo&range=5y&events=div`);
+    const res = await fetch(url, { headers: YAHOO_HEADERS() });
+    if (!res.ok) return result;
     
-    if (yahooCookie) {
-      const crumbRes = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', {
-        headers: { 'Cookie': yahooCookie, 'User-Agent': 'Mozilla/5.0' }
-      });
-      if (crumbRes.ok) {
-        yahooCrumb = await crumbRes.text();
-        if (yahooCrumb && yahooCrumb.length < 50 && !yahooCrumb.includes('<')) {
-          console.log(`✅ Yahoo session OK (crumb: ${yahooCrumb.substring(0, 8)}...)\n`);
-          return true;
+    const json = await res.json();
+    const chartResult = json?.chart?.result?.[0];
+    if (!chartResult) return result;
+    
+    // 1. Growth Rate (ไม่เปลี่ยน)
+    const closes = chartResult?.indicators?.quote?.[0]?.close?.filter(c => c != null && c > 0);
+    if (closes && closes.length >= 12) {
+      const years = closes.length / 12;
+      const cagr = (Math.pow(closes[closes.length - 1] / closes[0], 1 / years) - 1) * 100;
+      result.growthRate = Math.round(cagr * 100) / 100;
+    }
+    
+    // 2 & 3. Dividend Yield + Growth (✨ IMPROVED)
+    const dividends = chartResult?.events?.dividends;
+    if (dividends && Object.keys(dividends).length > 0) {
+      const divArray = Object.values(dividends)
+        .sort((a, b) => a.date - b.date)
+        .map(d => ({ 
+          date: new Date(d.date * 1000), 
+          amount: d.amount 
+        }));
+      
+      if (divArray.length > 0) {
+        // 2. Div Yield: trailing 12 months
+        const now = Date.now();
+        const oneYearAgo = now - (365.25 * 24 * 60 * 60 * 1000);
+        const trailing12m = divArray.filter(d => d.date.getTime() >= oneYearAgo);
+        
+        if (trailing12m.length > 0 && currentPrice > 0) {
+          const totalDiv12m = trailing12m.reduce((sum, d) => sum + d.amount, 0);
+          result.calcDivYield = Math.round((totalDiv12m / currentPrice) * 10000) / 100;
+        }
+        
+        // ✨ 3. IMPROVED Div Growth 5Y Calculation
+        if (divArray.length >= 8) {  // อย่างน้อย 2 ปี
+          const divByYear = {};
+          const countByYear = {};
+          
+          for (const d of divArray) {
+            const year = d.date.getFullYear();
+            if (!divByYear[year]) {
+              divByYear[year] = 0;
+              countByYear[year] = 0;
+            }
+            divByYear[year] += d.amount;
+            countByYear[year]++;
+          }
+          
+          const currentYear = new Date().getFullYear();
+          const allYears = Object.keys(divByYear).map(Number).sort((a, b) => a - b);
+          
+          // ✨ กรองเฉพาะปีที่มีข้อมูลครบ (อย่างน้อย 3 payments)
+          const fullYears = allYears.filter(year => {
+            if (year === currentYear) return countByYear[year] >= 1;
+            return countByYear[year] >= 3;  // quarterly ETF จ่าย 4 ครั้ง
+          });
+          
+          if (fullYears.length >= 3) {
+            const firstYear = fullYears[0];
+            const lastYear = fullYears[fullYears.length - 1];
+            const numYears = lastYear - firstYear;
+            
+            if (numYears >= 2 && divByYear[firstYear] > 0 && divByYear[lastYear] > 0) {
+              const divCagr = (Math.pow(divByYear[lastYear] / divByYear[firstYear], 1 / numYears) - 1) * 100;
+              
+              // ✨ Sanity check: ปกติ Div Growth ไม่น่าจะต่ำกว่า -30% หรือสูงกว่า 50%
+              if (divCagr >= -30 && divCagr <= 50) {
+                result.divGrowth5Y = Math.round(divCagr * 100) / 100;
+              } else {
+                console.log(`  ⚠️ ${symbol}: Unusual divGrowth5Y ${divCagr.toFixed(2)}% - rejected`);
+              }
+            }
+          }
         }
       }
     }
   } catch (e) {
-    console.log(`⚠️ Session error: ${e.message}`);
+    // Silent fail
   }
-  console.log('⚠️ Yahoo session failed — will use fallback data\n');
-  return false;
-}
-
-function yahooUrl(baseUrl) {
-  let url = baseUrl;
-  if (yahooCrumb) url += (url.includes('?') ? '&' : '?') + `crumb=${encodeURIComponent(yahooCrumb)}`;
-  return url;
-}
-
-const YAHOO_HEADERS = () => ({
-  'Cookie': yahooCookie,
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-});
-
-// ==========================================
-// Fetch quotes (batch)
-// ==========================================
-async function fetchQuotes(symbols) {
-  const results = {};
-  const batchSize = 10;
   
-  for (let i = 0; i < symbols.length; i += batchSize) {
-    const batch = symbols.slice(i, i + batchSize);
-    try {
-      const url = yahooUrl(`https://query2.finance.yahoo.com/v7/finance/quote?symbols=${batch.join(',')}`);
-      const res = await fetch(url, { headers: YAHOO_HEADERS() });
-      
-      if (res.ok) {
-        const json = await res.json();
-        for (const q of (json?.quoteResponse?.result || [])) {
-          results[q.symbol] = {
-            price: q.regularMarketPrice || 0,
-            name: q.shortName || q.longName || q.symbol,
-            divYield: Math.round((q.trailingAnnualDividendYield || 0) * 10000) / 100,
-            trailingDividendRate: q.trailingAnnualDividendRate || 0,
-            fiftyTwoWeekHigh: q.fiftyTwoWeekHigh || 0,
-            fiftyTwoWeekLow: q.fiftyTwoWeekLow || 0,
-            totalAssets: q.totalAssets || q.marketCap || 0,
-          };
-        }
-        console.log(`  ✅ Batch ${Math.floor(i/batchSize)+1}: Got ${(json?.quoteResponse?.result || []).length} quotes`);
-      } else {
-        console.log(`  ❌ Batch ${Math.floor(i/batchSize)+1}: HTTP ${res.status}`);
-      }
-    } catch (e) {
-      console.log(`  ❌ Batch error: ${e.message}`);
-    }
-    await new Promise(r => setTimeout(r, 500));
-  }
-  return results;
+  return result;
 }
 
 // ==========================================
