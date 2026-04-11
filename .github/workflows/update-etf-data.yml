@@ -2,13 +2,10 @@ name: Update ETF Data
 
 on:
   schedule:
-    # รันทุกวัน เวลา 00:00 UTC = 07:00 น. เวลาไทย
+    # รันทุกวันเวลา 00:00 UTC (07:00 เวลาไทย)
     - cron: '0 0 * * *'
   
-  # รันทุกวันจันทร์-ศุกร์ ตลาดปิด 21:00 UTC = 04:00 น. ไทย (หลังตลาดปิด)
-  # - cron: '0 21 * * 1-5'
-  
-  # สามารถกดรันมือได้จาก GitHub Actions tab
+  # อนุญาตให้รันด้วยมือผ่าน GitHub UI
   workflow_dispatch:
 
 jobs:
@@ -16,30 +13,38 @@ jobs:
     runs-on: ubuntu-latest
     
     permissions:
-      contents: write
+      contents: write  # ให้สิทธิ์เขียนไฟล์
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18'
       
-      - name: Run ETF data update script
+      - name: 📊 Run update script
         run: node scripts/update-etf-data.cjs
       
-      - name: Check if data changed
-        id: check_changes
-        run: |
-          git diff --quiet data/etf-database.json || echo "changed=true" >> $GITHUB_OUTPUT
-      
-      - name: Commit and push updated data
-        if: steps.check_changes.outputs.changed == 'true'
+      - name: 💾 Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/etf-database.json
-          git commit -m "📊 Auto-update ETF data $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push
+          
+          # Commit เฉพาะเมื่อมีการเปลี่ยนแปลง
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update ETF data $(date +'%Y-%m-%d %H:%M:%S')"
+            git push
+          fi
+      
+      - name: ✅ Success notification
+        if: success()
+        run: echo "✅ ETF data updated successfully!"
+      
+      - name: ❌ Failure notification
+        if: failure()
+        run: echo "❌ ETF data update failed!"
