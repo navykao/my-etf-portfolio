@@ -1,3 +1,27 @@
+/**
+ * =====================================================
+ * App.jsx v5.0 — Firebase Cloud Sync + DivGrowth Fix
+ * =====================================================
+ * 
+ * ✅ v5.0 อัพเดต (Apr 12, 2026):
+ *   1. [FIX] แก้บั๊ก loadGitHubData: JSON มี { _meta, data } ต้องดึง .data
+ *   2. [FIX] แก้บั๊ก divGrowth5Y: แยก null (ไม่มีข้อมูล) vs 0 (ค่าจริง)
+ *   3. [FIX] แก้บั๊ก getStockFromGitHub: เพิ่ม fields ที่ขาด
+ *   4. [NEW] Firebase Firestore: เก็บ portfolio บน Cloud (ฟรี Spark Plan)
+ *   5. [NEW] ไม่ต้องพึ่ง __firebase_config — hardcode config ตรง
+ *   6. [FIX] saveToCloudOrLocal: รักษา null ของ divGrowth5Y
+ *   7. [FIX] UI แสดง Div Growth: แยก null vs 0 ถูกต้อง
+ * 
+ * วิธีติดตั้ง Firebase:
+ *   1. ไป https://console.firebase.google.com
+ *   2. สร้าง project ใหม่ → เปิด Firestore + Auth (Anonymous)
+ *   3. คัดลอก config มาใส่ FIREBASE_CONFIG ด้านล่าง
+ *   4. ตั้ง Firestore Rules ตามที่ให้ไว้ใน SETUP-GUIDE.md
+ * 
+ * เวอร์ชันก่อนหน้า: v4.2 (ไม่มี Firebase, divGrowth ไม่ขึ้น)
+ * =====================================================
+ */
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { 
   LineChart, Wallet, TrendingUp, PiggyBank, RefreshCw, 
@@ -8,16 +32,32 @@ import {
   Settings, BarChart3, Activity, Package, Radio
 } from 'lucide-react';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'firebase/auth';
-import { getFirestore, doc, setDoc, onSnapshot } from 'firebase/firestore';
+import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
 
-// --- API KEYS ---
-const EODHD_API_KEY = '69cec4d00ed1f6.56559517';
-const FINNHUB_API_KEY = 'd77k3npr01qp6afltiggd77k3npr01qp6afltih0';
+// =====================================================
+// 🔥 FIREBASE CONFIG — ใส่ config ของคุณตรงนี้
+// =====================================================
+// วิธีได้มา:
+// 1. ไป https://console.firebase.google.com
+// 2. สร้าง project → Project Settings → General → Your apps → Web app
+// 3. คัดลอก firebaseConfig object มาใส่ตรงนี้
+// =====================================================
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDzl3so9I793U1GGs6aQUs3d0GK-4uyy8k",
+  authDomain: "my-etf-portfolio.firebaseapp.com",
+  projectId: "my-etf-portfolio",
+  storageBucket: "my-etf-portfolio.firebasestorage.app",
+  messagingSenderId: "999667791801",
+  appId: "1:999667791801:web:6e413d5e34f37982002868"
+};
 
-// ==========================================
-// ✨ NEW: Dividend Frequency Configuration
-// ==========================================
+// ตรวจสอบว่า Firebase config ถูกใส่หรือยัง
+const hasFirebaseConfig = FIREBASE_CONFIG.apiKey !== "" && FIREBASE_CONFIG.projectId !== "";
+
+// =====================================================
+// ✨ Dividend Frequency Configuration
+// =====================================================
 const DIVIDEND_FREQUENCIES = {
   monthly: { label: 'รายเดือน', months: 1, periodsPerYear: 12 },
   quarterly: { label: 'รายไตรมาส', months: 3, periodsPerYear: 4 },
@@ -25,25 +65,24 @@ const DIVIDEND_FREQUENCIES = {
   annual: { label: 'รายปี', months: 12, periodsPerYear: 1 },
 };
 
-// ==========================================
+// =====================================================
 // Cache Configuration
-// ==========================================
+// =====================================================
 const DEFAULT_CACHE_CONFIG = {
-  LOCAL_CACHE_KEY: 'etf_local_cache_v4',
+  LOCAL_CACHE_KEY: 'etf_local_cache_v5',
   LOCAL_CACHE_DAYS: 7,
   GITHUB_JSON_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/data/etf-database.json',
-  GITHUB_CSV_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/combined-database.csv',
-  GITHUB_CACHE_KEY: 'etf_github_cache_v2',
+  GITHUB_CACHE_KEY: 'etf_github_cache_v3',
   GITHUB_CACHE_HOURS: 6,
-  API_CALL_LOG_KEY: 'etf_api_calls_v4',
+  API_CALL_LOG_KEY: 'etf_api_calls_v5',
   DAILY_API_LIMIT: 30,
-  SETTINGS_KEY: 'etf_cache_settings',
-  STATS_KEY: 'etf_cache_stats_v2',
+  SETTINGS_KEY: 'etf_cache_settings_v5',
+  STATS_KEY: 'etf_cache_stats_v3',
 };
 
-// ==========================================
+// =====================================================
 // Cache Manager with Hit/Miss Stats
-// ==========================================
+// =====================================================
 const CacheManager = {
   config: { ...DEFAULT_CACHE_CONFIG },
   stats: { hits: 0, misses: 0, apiCalls: 0 },
@@ -54,7 +93,7 @@ const CacheManager = {
       if (saved) {
         const parsed = JSON.parse(saved);
         CacheManager.config.LOCAL_CACHE_DAYS = parsed.cacheDays || 7;
-        CacheManager.config.GITHUB_CACHE_HOURS = parsed.githubCacheHours || 1;
+        CacheManager.config.GITHUB_CACHE_HOURS = parsed.githubCacheHours || 6;
       }
     } catch { }
   },
@@ -100,6 +139,9 @@ const CacheManager = {
     localStorage.setItem(CacheManager.config.LOCAL_CACHE_KEY, JSON.stringify(data));
   },
 
+  // =====================================================
+  // [FIX v5.0] getStockFromLocal: รักษา null ของ divGrowth5Y
+  // =====================================================
   getStockFromLocal: (symbol) => {
     const cache = CacheManager.getLocalCache();
     const stock = cache[symbol.toUpperCase()];
@@ -117,7 +159,7 @@ const CacheManager = {
       price: stock.price || 0, 
       divYield: stock.divYield || 0,
       growthRate: stock.growthRate || 0,
-      divGrowth5Y: stock.divGrowth5Y || 0,
+      divGrowth5Y: stock.divGrowth5Y != null ? stock.divGrowth5Y : null, // [FIX] รักษา null
       name: stock.name || symbol,
       expenseRatio: stock.expenseRatio || 0,
       source: 'local',
@@ -139,6 +181,10 @@ const CacheManager = {
   githubData: null,
   githubLastFetch: null,
 
+  // =====================================================
+  // [FIX v5.0] loadGitHubData: ดึง json.data แทน json ทั้งก้อน
+  // เพราะ JSON มีโครงสร้าง { _meta: {...}, data: { VOO: {...}, ... } }
+  // =====================================================
   loadGitHubData: async (forceRefresh = false) => {
     const cacheKey = CacheManager.config.GITHUB_CACHE_KEY;
     const cacheTimeKey = cacheKey + '_time';
@@ -161,14 +207,18 @@ const CacheManager = {
       }
 
       const response = await fetch(CacheManager.config.GITHUB_JSON_URL);
-      const data = await response.json();
+      const json = await response.json();
       
-      CacheManager.githubData = data;
+      // ✅ [FIX v5.0] JSON มีโครงสร้าง { _meta: {...}, data: {...} }
+      // ต้องใช้ json.data เท่านั้น ไม่ใช่ json ทั้งก้อน
+      CacheManager.githubData = json.data || json;
       CacheManager.githubLastFetch = new Date();
-      localStorage.setItem(cacheKey, JSON.stringify(data));
+      
+      // บันทึกเฉพาะ .data ลง localStorage (ไม่รวม _meta)
+      localStorage.setItem(cacheKey, JSON.stringify(CacheManager.githubData));
       localStorage.setItem(cacheTimeKey, Date.now().toString());
       
-      return data;
+      return CacheManager.githubData;
     } catch (error) {
       console.error('Failed to load GitHub data:', error);
       if (CacheManager.githubData) return CacheManager.githubData;
@@ -176,6 +226,9 @@ const CacheManager = {
     }
   },
 
+  // =====================================================
+  // [FIX v5.0] getStockFromGitHub: รักษา null + เพิ่ม fields ที่ขาด
+  // =====================================================
   getStockFromGitHub: (symbol) => {
     if (!CacheManager.githubData) return null;
     const stock = CacheManager.githubData[symbol.toUpperCase()];
@@ -188,9 +241,13 @@ const CacheManager = {
       price: stock.price || 0, 
       divYield: stock.divYield || 0,
       growthRate: stock.growthRate || 0,
-      divGrowth5Y: stock.divGrowth5Y || 0,
+      divGrowth5Y: stock.divGrowth5Y != null ? stock.divGrowth5Y : null, // [FIX] รักษา null
       name: stock.name || symbol,
       expenseRatio: stock.expenseRatio || 0,
+      trailingDividendRate: stock.trailingDividendRate || 0, // [FIX] เพิ่ม field ที่ขาด
+      totalAssets: stock.totalAssets || 0,                   // [FIX] เพิ่ม field ที่ขาด
+      fiftyTwoWeekHigh: stock.fiftyTwoWeekHigh || 0,         // [FIX] เพิ่ม field ที่ขาด
+      fiftyTwoWeekLow: stock.fiftyTwoWeekLow || 0,           // [FIX] เพิ่ม field ที่ขาด
       source: 'github',
       sourceLabel: `📊 GitHub DB (${formattedDate})`,
       updatedAt: stock.updatedAt || fetchDate.toISOString(),
@@ -241,22 +298,29 @@ const CacheManager = {
 CacheManager.loadSettings();
 CacheManager.loadStats();
 
-// --- Firebase Setup ---
-let firebaseConfigStr = null;
-try { if (typeof __firebase_config !== 'undefined') firebaseConfigStr = __firebase_config; } catch (e) {}
-const hasFirebase = firebaseConfigStr && firebaseConfigStr !== '{}' && firebaseConfigStr !== null;
-const firebaseConfig = hasFirebase ? JSON.parse(firebaseConfigStr) : null;
-let appId = 'default-app-id';
-try { if (typeof __app_id !== 'undefined') appId = __app_id; } catch(e) {}
+// =====================================================
+// 🔥 [NEW v5.0] Firebase Setup — Hardcode Config
+// ไม่ต้องพึ่ง __firebase_config จากภายนอกอีกต่อไป
+// =====================================================
+let firebaseApp = null, firebaseAuth = null, firestoreDb = null;
+const FIRESTORE_COLLECTION = 'etf-portfolios'; // collection หลักบน Firestore
 
-let app = null, auth = null, db = null;
-if (hasFirebase) {
-  try { app = initializeApp(firebaseConfig); auth = getAuth(app); db = getFirestore(app); } catch (error) {}
+if (hasFirebaseConfig) {
+  try {
+    firebaseApp = initializeApp(FIREBASE_CONFIG);
+    firebaseAuth = getAuth(firebaseApp);
+    firestoreDb = getFirestore(firebaseApp);
+    console.log('🔥 Firebase initialized (v5.0)');
+  } catch (error) {
+    console.error('❌ Firebase init error:', error);
+  }
 }
 
 const INITIAL_PORTFOLIO = [{ symbol: 'VOO', allocation: 50, divFrequency: 'quarterly' }];
 
+// =====================================================
 // Settings Panel Component
+// =====================================================
 function SettingsPanel({ isOpen, onClose, onSave, currentSettings }) {
   const [cacheDays, setCacheDays] = useState(currentSettings.cacheDays);
   const [githubCacheHours, setGithubCacheHours] = useState(currentSettings.githubCacheHours);
@@ -290,8 +354,10 @@ function SettingsPanel({ isOpen, onClose, onSave, currentSettings }) {
   );
 }
 
+// =====================================================
 // Cache Stats Panel Component
-function CacheStatsPanel({ stats, onRefreshGitHub, onClearAll, onClearLocal, onClose, onOpenSettings }) {
+// =====================================================
+function CacheStatsPanel({ stats, onRefreshGitHub, onClearAll, onClearLocal, onClose, onOpenSettings, isFirebaseConnected }) {
   const hitRate = stats.hits + stats.misses > 0 ? ((stats.hits / (stats.hits + stats.misses)) * 100).toFixed(1) : 0;
 
   return (
@@ -299,7 +365,11 @@ function CacheStatsPanel({ stats, onRefreshGitHub, onClearAll, onClearLocal, onC
       <div className="flex justify-between items-start mb-5">
         <div>
           <h3 className="font-semibold text-base flex items-center gap-2"><Server size={18} className="text-violet-400" /> ระบบ Cache 3 ชั้น</h3>
-          <p className="text-gray-500 text-xs mt-1">ประหยัด API quota ได้ 99%</p>
+          <p className="text-gray-500 text-xs mt-1">
+            {isFirebaseConnected 
+              ? '🔥 Firebase Cloud Sync เปิดอยู่' 
+              : '⚠️ Firebase ยังไม่ได้ตั้งค่า — เก็บแค่ในเครื่อง'}
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={onOpenSettings} className="text-gray-500 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors"><Settings size={16} /></button>
@@ -352,7 +422,9 @@ function CacheStatsPanel({ stats, onRefreshGitHub, onClearAll, onClearLocal, onC
   );
 }
 
+// =====================================================
 // Main App
+// =====================================================
 export default function App() {
   const [user, setUser] = useState(null);
   const [syncStatus, setSyncStatus] = useState('idle');
@@ -361,9 +433,9 @@ export default function App() {
   const [isAdding, setIsAdding] = useState(false);
   const [newSymbol, setNewSymbol] = useState('');
   const [newAllocation, setNewAllocation] = useState('');
-  const [newDivFrequency, setNewDivFrequency] = useState('quarterly'); // ✨ NEW
+  const [newDivFrequency, setNewDivFrequency] = useState('quarterly');
   const [errorMsg, setErrorMsg] = useState(null);
-  const [cacheStats, setCacheStats] = useState({ localCount: 0, githubCount: 0, apiCallsToday: 0, apiRemaining: 20, hits: 0, misses: 0, apiCalls: 0 });
+  const [cacheStats, setCacheStats] = useState({ localCount: 0, githubCount: 0, apiCallsToday: 0, apiRemaining: 30, hits: 0, misses: 0, apiCalls: 0 });
   const [showCachePanel, setShowCachePanel] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [refreshingSymbol, setRefreshingSymbol] = useState(null);
@@ -372,158 +444,162 @@ export default function App() {
   const [contributionStepUp, setContributionStepUp] = useState(10);
   const [investmentYears, setInvestmentYears] = useState(15);
 
-  useEffect(() => {
-    const init = async () => {
-      await CacheManager.loadGitHubData();
-      setCacheStats(CacheManager.getCacheStats());
-      if (hasFirebase && auth) {
-        try { if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) await signInWithCustomToken(auth, __initial_auth_token); else await signInAnonymously(auth); } catch (err) {}
-        onAuthStateChanged(auth, setUser);
-      } else {
-        const localData = localStorage.getItem('etf_portfolio_data');
-        if (localData) {
-          try {
-            const parsed = JSON.parse(localData);
-            setPortfolio(parsed.portfolio || []);
-            setInitialInvestment(parsed.initialInvestment || 10000);
-            setMonthlyContribution(parsed.monthlyContribution || 1000);
-            setContributionStepUp(parsed.contributionStepUp || 10);
-            setInvestmentYears(parsed.investmentYears || 15);
-            await fetchAllData(parsed.portfolio || []);
-          } catch {}
-        } else {
-          await fetchAllData(INITIAL_PORTFOLIO);
-        }
-        setIsLoading(false);
-      }
-    };
-    init();
-  }, []);
+  // =====================================================
+  // 🔥 [NEW v5.0] Firestore document path สำหรับ user
+  // =====================================================
+  const getFirestoreDocRef = (uid) => {
+    return doc(firestoreDb, FIRESTORE_COLLECTION, uid);
+  };
 
-  useEffect(() => {
-    if (hasFirebase && user && db) {
-      const unsub = onSnapshot(doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio'), (snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.data();
-          setPortfolio(data.portfolio || []);
-          setInitialInvestment(data.initialInvestment || 10000);
-          setMonthlyContribution(data.monthlyContribution || 1000);
-          setContributionStepUp(data.contributionStepUp || 10);
-          setInvestmentYears(data.investmentYears || 15);
-          fetchAllData(data.portfolio || []);
-        } else {
-          fetchAllData(INITIAL_PORTFOLIO);
-        }
-        setIsLoading(false);
-      }, (error) => { fetchAllData(INITIAL_PORTFOLIO); setIsLoading(false); });
-      return () => unsub();
+  // =====================================================
+  // 🔥 [NEW v5.0] บันทึกข้อมูลลง Firestore
+  // =====================================================
+  const saveToCloud = async (currentPortfolio, settings) => {
+    if (!firestoreDb || !user) return false;
+    
+    try {
+      setSyncStatus('syncing');
+      const saveData = {
+        portfolio: currentPortfolio.map(p => ({
+          symbol: p.symbol,
+          allocation: p.allocation,
+          divFrequency: p.divFrequency || 'quarterly',
+        })),
+        initialInvestment: settings.initialInvestment || initialInvestment,
+        monthlyContribution: settings.monthlyContribution || monthlyContribution,
+        contributionStepUp: settings.contributionStepUp || contributionStepUp,
+        investmentYears: settings.investmentYears || investmentYears,
+        lastSaved: new Date().toISOString(),
+        version: '5.0',
+      };
+      
+      await setDoc(getFirestoreDocRef(user.uid), saveData);
+      setSyncStatus('success');
+      setTimeout(() => setSyncStatus('idle'), 2000);
+      return true;
+    } catch (err) {
+      console.error('❌ Firestore save error:', err);
+      setSyncStatus('error');
+      setTimeout(() => setSyncStatus('idle'), 3000);
+      return false;
     }
-  }, [user, db]);
+  };
 
-  // ==========================================
-// ✅ Fixed: getStockData Function
-// ==========================================
-// แทนที่บรรทัด 423-478 ใน App.jsx
-// ==========================================
+  // =====================================================
+  // 💾 บันทึกข้อมูล — Cloud first, Local fallback
+  // =====================================================
+  const saveToCloudOrLocal = async (currentPortfolio, settings) => {
+    // พยายามบันทึกลง Cloud ก่อน
+    if (hasFirebaseConfig && firestoreDb && user) {
+      await saveToCloud(currentPortfolio, settings);
+    } else {
+      // Fallback: บันทึกลง localStorage
+      setSyncStatus('syncing');
+      const saveData = {
+        portfolio: currentPortfolio.map(p => ({
+          symbol: p.symbol,
+          allocation: p.allocation,
+          divFrequency: p.divFrequency || 'quarterly',
+        })),
+        ...settings,
+        lastSaved: new Date().toISOString(),
+      };
+      localStorage.setItem('etf_portfolio_data_v5', JSON.stringify(saveData));
+      setSyncStatus('success_local');
+      setTimeout(() => setSyncStatus('idle'), 2000);
+    }
+  };
 
-const getStockData = async (symbol, forceRefresh = false) => {
-  const sym = symbol.toUpperCase();
-  
-  // ==========================================
-  // ✅ GITHUB FIRST - โหลดจาก GitHub ก่อนเสมอ
-  // ==========================================
-  const githubStock = CacheManager.getStockFromGitHub(sym);
-  
-  if (githubStock) {
-    return { 
-      source: 'github', 
-      data: {
-        price: githubStock.price || 0,
-        divYield: githubStock.divYield || 0,
-        growthRate: githubStock.growthRate || 0,
-        divGrowth5Y: githubStock.divGrowth5Y || 0,
-        trailingDividendRate: githubStock.trailingDividendRate || 0,
-        totalAssets: githubStock.totalAssets || 0,
-        fiftyTwoWeekHigh: githubStock.fiftyTwoWeekHigh || 0,
-        fiftyTwoWeekLow: githubStock.fiftyTwoWeekLow || 0,
-        source: 'github',
-        sourceLabel: '☁️ GitHub Database',
-        updatedAt: githubStock.updatedAt || new Date().toISOString(),
-      }
+  // =====================================================
+  // [FIX v5.0] getStockData: รักษา divGrowth5Y อย่างถูกต้อง
+  // =====================================================
+  const getStockData = async (symbol, forceRefresh = false) => {
+    const sym = symbol.toUpperCase();
+    
+    // ✅ GITHUB FIRST — โหลดจาก GitHub ก่อนเสมอ
+    const githubStock = CacheManager.getStockFromGitHub(sym);
+    
+    if (githubStock) {
+      return { 
+        source: 'github', 
+        data: {
+          price: githubStock.price || 0,
+          divYield: githubStock.divYield || 0,
+          growthRate: githubStock.growthRate || 0,
+          divGrowth5Y: githubStock.divGrowth5Y, // [FIX] ส่งต่อค่าตรงๆ (null = ไม่มีข้อมูล)
+          trailingDividendRate: githubStock.trailingDividendRate || 0,
+          totalAssets: githubStock.totalAssets || 0,
+          fiftyTwoWeekHigh: githubStock.fiftyTwoWeekHigh || 0,
+          fiftyTwoWeekLow: githubStock.fiftyTwoWeekLow || 0,
+          name: githubStock.name || sym,
+          source: 'github',
+          sourceLabel: githubStock.sourceLabel || '📊 GitHub Database',
+          updatedAt: githubStock.updatedAt || new Date().toISOString(),
+        }
+      };
+    }
+
+    // FALLBACK — ถ้า GitHub ไม่มีข้อมูลหุ้นนี้
+    if (!forceRefresh) {
+      CacheManager.recordHit();
+      const localStock = CacheManager.getStockFromLocal(sym);
+      if (localStock) return { source: 'local', data: localStock };
+    }
+
+    if (!CacheManager.canMakeApiCall()) {
+      return { source: 'none', data: null };
+    }
+
+    CacheManager.recordMiss();
+    CacheManager.logApiCall();
+
+    // API CALL — Last resort
+    let divYield = 0, growthRate = 0;
+
+    const ETF_FALLBACK = {
+      'VOO': { divYield: 1.25, growthRate: 10.5 },
+      'SPY': { divYield: 1.20, growthRate: 10.5 },
+      'SCHD': { divYield: 3.50, growthRate: 8.2 },
+      'VTI': { divYield: 1.30, growthRate: 10.0 },
+      'QQQ': { divYield: 0.55, growthRate: 15.8 },
+      'JEPI': { divYield: 7.20, growthRate: 3.0 },
+      'JEPQ': { divYield: 9.50, growthRate: 5.0 },
+      'VIG': { divYield: 1.75, growthRate: 9.0 },
+      'DGRO': { divYield: 2.30, growthRate: 8.5 },
+      'VGT': { divYield: 0.60, growthRate: 17.0 },
+      'BND': { divYield: 3.50, growthRate: 0.5 },
     };
-  }
+    
+    if (ETF_FALLBACK[sym]) {
+      divYield = ETF_FALLBACK[sym].divYield;
+      growthRate = ETF_FALLBACK[sym].growthRate;
+    }
 
-  // ==========================================
-  // FALLBACK - ถ้า GitHub ไม่มีข้อมูล
-  // ==========================================
-  
-  if (!forceRefresh) {
-    CacheManager.recordHit();
-    const localStock = CacheManager.getStockFromLocal(sym);
-    if (localStock) return { source: 'local', data: localStock };
-  }
-
-  if (!CacheManager.canMakeApiCall()) {
-    return { source: 'none', data: null };
-  }
-
-  CacheManager.recordMiss();
-  CacheManager.logApiCall();
-
-  // ==========================================
-  // API CALL - Last resort
-  // ==========================================
-  
-  let divYield = 0, growthRate = 0, divGrowth5Y = 0;
-
-  const ETF_FALLBACK = {
-    'VOO': { divYield: 1.25, growthRate: 10.5 },
-    'SPY': { divYield: 1.20, growthRate: 10.5 },
-    'SCHD': { divYield: 3.50, growthRate: 8.2 },
-    'VTI': { divYield: 1.30, growthRate: 10.0 },
-    'QQQ': { divYield: 0.55, growthRate: 15.8 },
-    'JEPI': { divYield: 7.20, growthRate: 3.0 },
-    'JEPQ': { divYield: 9.50, growthRate: 5.0 },
-    'VIG': { divYield: 1.75, growthRate: 9.0 },
-    'DGRO': { divYield: 2.30, growthRate: 8.5 },
-    'VGT': { divYield: 0.60, growthRate: 17.0 },
-    'BND': { divYield: 3.50, growthRate: 0.5 },
-  };
-  
-  if (divYield === 0 && ETF_FALLBACK[sym]) divYield = ETF_FALLBACK[sym].divYield;
-  if (growthRate === 0 && ETF_FALLBACK[sym]) growthRate = ETF_FALLBACK[sym].growthRate;
-
-  const now = new Date();
-  const formattedDate = now.toLocaleDateString('th-TH', { 
-    day: 'numeric', 
-    month: 'short', 
-    hour: '2-digit', 
-    minute: '2-digit' 
-  });
-  
-  const stockData = { 
-    price: 0, 
-    divYield, 
-    growthRate, 
-    divGrowth5Y, 
-    source: 'api', 
-    sourceLabel: `🌐 Live API (${formattedDate})` 
-  };
-
-  try {
-    CacheManager.saveStockToLocal(sym, {
-      ...stockData,
-      price: 0,
-      divYield,
-      growthRate,
-      updatedAt: now.toISOString(),
-      source: 'api'
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('th-TH', { 
+      day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' 
     });
-    return { source: 'api', data: stockData };
-  } catch (error) {
-    return { source: 'error', data: stockData };
-  }
-};
+    
+    const stockData = { 
+      price: 0, 
+      divYield, 
+      growthRate, 
+      divGrowth5Y: null, // [FIX] ไม่มีข้อมูลจริงๆ ให้เป็น null
+      name: sym,
+      source: 'api', 
+      sourceLabel: `🌐 Fallback (${formattedDate})` 
+    };
+
+    try {
+      CacheManager.saveStockToLocal(sym, {
+        ...stockData,
+        updatedAt: now.toISOString(),
+      });
+      return { source: 'api', data: stockData };
+    } catch (error) {
+      return { source: 'error', data: stockData };
+    }
+  };
 
   const fetchAllData = async (baseList) => {
     setIsLoading(true);
@@ -536,29 +612,104 @@ const getStockData = async (symbol, forceRefresh = false) => {
     setIsLoading(false);
   };
 
-  const saveToCloudOrLocal = async (currentPortfolio, settings) => {
-    setSyncStatus('syncing');
-    const saveData = { 
-      portfolio: currentPortfolio.map(p => ({ 
-        symbol: p.symbol, 
-        allocation: p.allocation,
-        divFrequency: p.divFrequency || 'quarterly', // ✨ NEW
-        cachedData: p.data ? {
-          price: p.data.price || 0,
-          divYield: p.data.divYield || 0,
-          growthRate: p.data.growthRate || 0,
-          divGrowth5Y: p.data.divGrowth5Y || 0,
-          savedAt: new Date().toISOString()
-        } : null
-      })), 
-      ...settings, 
-      lastSaved: new Date().toISOString() 
-    };
-    if (hasFirebase && user && db) { try { await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'portfolio'), saveData); setSyncStatus('success'); } catch (err) { setSyncStatus('error'); } } 
-    else { localStorage.setItem('etf_portfolio_data', JSON.stringify(saveData)); setSyncStatus('success_local'); }
-    setTimeout(() => setSyncStatus('idle'), 2000);
-  };
+  // =====================================================
+  // 🔥 [NEW v5.0] Initialize: Firebase Auth + Firestore Listener
+  // =====================================================
+  useEffect(() => {
+    const init = async () => {
+      // โหลดข้อมูลหุ้นจาก GitHub ก่อน
+      await CacheManager.loadGitHubData();
+      setCacheStats(CacheManager.getCacheStats());
 
+      if (hasFirebaseConfig && firebaseAuth) {
+        // 🔥 Firebase Mode: Anonymous login → listen Firestore
+        try {
+          await signInAnonymously(firebaseAuth);
+          console.log('🔥 Firebase: Anonymous sign-in successful');
+        } catch (err) {
+          console.error('❌ Firebase auth error:', err);
+          // Fallback to local
+          await loadFromLocal();
+        }
+
+        onAuthStateChanged(firebaseAuth, (firebaseUser) => {
+          setUser(firebaseUser);
+          if (!firebaseUser) {
+            loadFromLocal();
+          }
+        });
+      } else {
+        // ⚠️ No Firebase — ใช้ localStorage
+        console.log('⚠️ Firebase not configured — using localStorage');
+        await loadFromLocal();
+      }
+    };
+
+    const loadFromLocal = async () => {
+      const localData = localStorage.getItem('etf_portfolio_data_v5') 
+                     || localStorage.getItem('etf_portfolio_data'); // backward compat
+      if (localData) {
+        try {
+          const parsed = JSON.parse(localData);
+          const portfolioList = parsed.portfolio || [];
+          setInitialInvestment(parsed.initialInvestment || 10000);
+          setMonthlyContribution(parsed.monthlyContribution || 1000);
+          setContributionStepUp(parsed.contributionStepUp || 10);
+          setInvestmentYears(parsed.investmentYears || 15);
+          await fetchAllData(portfolioList);
+        } catch { await fetchAllData(INITIAL_PORTFOLIO); }
+      } else {
+        await fetchAllData(INITIAL_PORTFOLIO);
+      }
+      setIsLoading(false);
+    };
+
+    init();
+  }, []);
+
+  // =====================================================
+  // 🔥 [NEW v5.0] Firestore Realtime Listener
+  // เมื่อ user login แล้ว → subscribe ข้อมูลจาก Firestore
+  // เปิดจากเครื่องไหนก็เห็นข้อมูลเดิม + sync realtime
+  // =====================================================
+  useEffect(() => {
+    if (!hasFirebaseConfig || !firestoreDb || !user) return;
+
+    const docRef = getFirestoreDocRef(user.uid);
+    
+    const unsub = onSnapshot(docRef, async (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        const portfolioList = data.portfolio || [];
+        setInitialInvestment(data.initialInvestment || 10000);
+        setMonthlyContribution(data.monthlyContribution || 1000);
+        setContributionStepUp(data.contributionStepUp || 10);
+        setInvestmentYears(data.investmentYears || 15);
+        await fetchAllData(portfolioList);
+      } else {
+        // ผู้ใช้ใหม่ → สร้าง default portfolio
+        await fetchAllData(INITIAL_PORTFOLIO);
+        // บันทึก default ลง Firestore
+        await saveToCloud(INITIAL_PORTFOLIO.map(p => ({ ...p, data: null })), {
+          initialInvestment: 10000,
+          monthlyContribution: 1000,
+          contributionStepUp: 10,
+          investmentYears: 15,
+        });
+      }
+      setIsLoading(false);
+    }, (error) => {
+      console.error('❌ Firestore listener error:', error);
+      fetchAllData(INITIAL_PORTFOLIO);
+      setIsLoading(false);
+    });
+
+    return () => unsub();
+  }, [user]);
+
+  // =====================================================
+  // Event Handlers
+  // =====================================================
   const handleAddStock = async () => {
     if (!newSymbol.trim()) return;
     const sym = newSymbol.toUpperCase().trim();
@@ -569,20 +720,24 @@ const getStockData = async (symbol, forceRefresh = false) => {
       const next = [...portfolio, { 
         symbol: sym, 
         allocation: Number(newAllocation) || 10, 
-        divFrequency: newDivFrequency, // ✨ NEW
+        divFrequency: newDivFrequency,
         data: result.data 
       }]; 
       setPortfolio(next); 
       saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); 
       setNewSymbol(''); 
       setNewAllocation(''); 
-      setNewDivFrequency('quarterly'); // ✨ NEW
+      setNewDivFrequency('quarterly');
     } 
     else setErrorMsg("ไม่พบข้อมูลหุ้นนี้");
     setIsAdding(false);
   };
 
-  const handleRemoveStock = (sym) => { const next = portfolio.filter(p => p.symbol !== sym); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); };
+  const handleRemoveStock = (sym) => { 
+    const next = portfolio.filter(p => p.symbol !== sym); 
+    setPortfolio(next); 
+    saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); 
+  };
 
   const handleForceRefreshAll = async () => {
     if (!CacheManager.canMakeApiCall()) { alert(`⚠️ API quota หมดแล้ววันนี้`); return; }
@@ -604,19 +759,39 @@ const getStockData = async (symbol, forceRefresh = false) => {
     setCacheStats(CacheManager.getCacheStats()); setRefreshingSymbol(null);
   };
 
-  const handleRefreshGitHub = async () => { setIsLoading(true); await CacheManager.loadGitHubData(true); await fetchAllData(portfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation, divFrequency: p.divFrequency }))); setCacheStats(CacheManager.getCacheStats()); setIsLoading(false); };
-  const handleClearAll = () => { if (confirm('ล้าง Cache ทั้งหมด?')) { CacheManager.clearAll(); setCacheStats(CacheManager.getCacheStats()); fetchAllData(portfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation, divFrequency: p.divFrequency }))); } };
+  const handleRefreshGitHub = async () => { 
+    setIsLoading(true); 
+    await CacheManager.loadGitHubData(true); 
+    await fetchAllData(portfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation, divFrequency: p.divFrequency }))); 
+    setCacheStats(CacheManager.getCacheStats()); 
+    setIsLoading(false); 
+  };
+
+  const handleClearAll = () => { 
+    if (confirm('ล้าง Cache ทั้งหมด?')) { 
+      CacheManager.clearAll(); 
+      setCacheStats(CacheManager.getCacheStats()); 
+      fetchAllData(portfolio.map(p => ({ symbol: p.symbol, allocation: p.allocation, divFrequency: p.divFrequency }))); 
+    } 
+  };
+
   const handleClearLocal = () => { CacheManager.clearLocalCache(); setCacheStats(CacheManager.getCacheStats()); };
   const handleSaveSettings = (settings) => { CacheManager.saveSettings(settings); setCacheStats(CacheManager.getCacheStats()); };
-  const handleUpdateSetting = (setter, key, val) => { setter(val); saveToCloudOrLocal(portfolio, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears, [key]: val }); };
   
-  // ✨ NEW: Update dividend frequency
+  const handleUpdateSetting = (setter, key, val) => { 
+    setter(val); 
+    saveToCloudOrLocal(portfolio, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears, [key]: val }); 
+  };
+  
   const handleUpdateDivFrequency = (symbol, newFreq) => {
     const next = portfolio.map(p => p.symbol === symbol ? { ...p, divFrequency: newFreq } : p);
     setPortfolio(next);
     saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears });
   };
 
+  // =====================================================
+  // Computed Values
+  // =====================================================
   const metrics = useMemo(() => {
     const totalAlloc = portfolio.reduce((sum, p) => sum + p.allocation, 0) || 1;
     let weightedYield = 0, weightedGrowth = 0;
@@ -624,9 +799,9 @@ const getStockData = async (symbol, forceRefresh = false) => {
     return { yield: weightedYield, growth: weightedGrowth, totalAlloc };
   }, [portfolio]);
 
-  // ==========================================
-  // ✨ NEW: Accurate Compounding Calculation
-  // ==========================================
+  // =====================================================
+  // ✨ Accurate Compounding Calculation (DRIP)
+  // =====================================================
   const projections = useMemo(() => {
     let drip = initialInvestment;
     let noDrip = initialInvestment;
@@ -634,10 +809,9 @@ const getStockData = async (symbol, forceRefresh = false) => {
     let monthly = monthlyContribution;
     let totalInvested = initialInvestment;
     const history = [];
-    const mG = (metrics.growth / 100) / 12; // Monthly growth rate
+    const mG = (metrics.growth / 100) / 12;
     let milestoneHit = false;
     
-    // Track dividends for each stock based on their frequency
     const stockDividends = portfolio.map(stock => {
       const weight = stock.allocation / (metrics.totalAlloc || 1);
       const stockYield = (stock.data?.divYield || 0) / 100;
@@ -649,7 +823,6 @@ const getStockData = async (symbol, forceRefresh = false) => {
         annualYield: stockYield,
         frequency: frequency.periodsPerYear,
         monthsPerPeriod: frequency.months,
-        nextPaymentMonth: frequency.months, // First payment after N months
       };
     });
     
@@ -658,29 +831,24 @@ const getStockData = async (symbol, forceRefresh = false) => {
       const monthlyThisYear = monthly;
       
       for (let m = 1; m <= 12; m++) {
-        // Apply monthly growth to both DRIP and No-DRIP portfolios
         drip = drip * (1 + mG) + monthly;
         noDrip = noDrip * (1 + mG) + monthly;
         totalInvested += monthly;
         
-        // Check which stocks pay dividends this month
         let monthDividendDrip = 0;
         let monthDividendNoDrip = 0;
         
         stockDividends.forEach(stock => {
           if (m % stock.monthsPerPeriod === 0) {
-            // This stock pays dividend this month
             const periodDividend = (drip * stock.weight * stock.annualYield) / stock.frequency;
             const periodDividendNoDrip = (noDrip * stock.weight * stock.annualYield) / stock.frequency;
-            
             monthDividendDrip += periodDividend;
             monthDividendNoDrip += periodDividendNoDrip;
           }
         });
         
-        // Add dividends
-        drip += monthDividendDrip; // DRIP: reinvest immediately
-        cash += monthDividendNoDrip; // No DRIP: collect as cash
+        drip += monthDividendDrip;
+        cash += monthDividendNoDrip;
         yearlyDividend += monthDividendDrip;
       }
       
@@ -689,9 +857,7 @@ const getStockData = async (symbol, forceRefresh = false) => {
       
       if (shouldShow || justHitMillion) {
         history.push({ 
-          year: y, 
-          drip, 
-          totalNoDrip: noDrip + cash, 
+          year: y, drip, totalNoDrip: noDrip + cash, 
           totalInvested: Math.round(totalInvested),
           yearlyDividend: Math.round(yearlyDividend),
           monthlyContrib: Math.round(monthlyThisYear),
@@ -707,6 +873,7 @@ const getStockData = async (symbol, forceRefresh = false) => {
   }, [portfolio, metrics, initialInvestment, monthlyContribution, contributionStepUp, investmentYears]);
 
   const formatCurrency = (v) => isNaN(v) || v === null ? '฿0' : new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(v);
+  
   const getSourceIcon = (source) => {
     switch(source) {
       case 'local': return <Package size={11} className="text-violet-400" />;
@@ -716,6 +883,11 @@ const getStockData = async (symbol, forceRefresh = false) => {
     }
   };
 
+  const isFirebaseConnected = hasFirebaseConfig && !!user;
+
+  // =====================================================
+  // RENDER
+  // =====================================================
   return (
     <div className="min-h-screen bg-stone-50 p-4 md:p-6 lg:p-8 text-stone-700">
       <div className="max-w-6xl mx-auto space-y-5">
@@ -725,14 +897,24 @@ const getStockData = async (symbol, forceRefresh = false) => {
             <div>
               <h1 className="text-lg font-bold text-stone-800 tracking-tight">พอร์ตหุ้น ETF อเมริกา</h1>
               <div className="flex items-center gap-3 mt-0.5 flex-wrap">
-                <p className="text-stone-600 text-xs flex items-center gap-1.5"><Database size={12} className="text-teal-500" /> 3-Tier Cache + Accurate DRIP</p>
+                <p className="text-stone-600 text-xs flex items-center gap-1.5">
+                  <Database size={12} className="text-teal-500" /> v5.0 Cloud Sync + DRIP
+                </p>
+                {/* 🔥 [NEW v5.0] แสดงสถานะ sync */}
                 {syncStatus === 'syncing' && <span className="text-teal-500 text-xs flex items-center gap-1 animate-pulse"><RefreshCw size={11} className="animate-spin" /> กำลังบันทึก...</span>}
-                {syncStatus === 'success' && <span className="text-emerald-500 text-xs flex items-center gap-1"><Cloud size={11} /> Cloud Sync</span>}
-                {syncStatus === 'success_local' && <span className="text-emerald-500 text-xs flex items-center gap-1"><HardDrive size={11} /> Local Saved</span>}
+                {syncStatus === 'success' && <span className="text-emerald-500 text-xs flex items-center gap-1"><Cloud size={11} /> 🔥 Cloud Synced</span>}
+                {syncStatus === 'success_local' && <span className="text-amber-500 text-xs flex items-center gap-1"><HardDrive size={11} /> Local Saved</span>}
+                {syncStatus === 'error' && <span className="text-red-500 text-xs flex items-center gap-1"><CloudOff size={11} /> Sync Error</span>}
               </div>
             </div>
           </div>
           <div className="mt-3 md:mt-0 flex items-center gap-2">
+            {/* 🔥 [NEW v5.0] แสดงสถานะ Firebase */}
+            {isFirebaseConnected && (
+              <span className="px-2.5 py-1.5 rounded-lg text-[10px] font-medium bg-orange-50 text-orange-600 border border-orange-200">
+                🔥 Firebase
+              </span>
+            )}
             <button onClick={handleForceRefreshAll} disabled={!CacheManager.canMakeApiCall() || isLoading} className="px-3.5 py-2 rounded-lg text-xs font-medium border border-stone-200 bg-white text-stone-500 hover:bg-stone-50 hover:border-stone-300 disabled:opacity-40 flex items-center gap-1.5 transition-all"><Zap size={13} /> Update All</button>
             <button onClick={() => setShowCachePanel(!showCachePanel)} className={`px-3.5 py-2 rounded-lg text-xs font-medium border flex items-center gap-1.5 transition-all ${cacheStats.apiRemaining > 10 ? 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100' : cacheStats.apiRemaining > 5 ? 'bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100' : 'bg-red-50 text-red-600 border-red-200 hover:bg-red-100'}`}>
               <Shield size={13} /> API: {cacheStats.apiRemaining}/{CacheManager.config.DAILY_API_LIMIT} <Activity size={11} className={cacheStats.apiRemaining > 10 ? 'text-emerald-500' : cacheStats.apiRemaining > 5 ? 'text-amber-500' : 'text-red-500'} />
@@ -740,7 +922,7 @@ const getStockData = async (symbol, forceRefresh = false) => {
           </div>
         </header>
 
-        {showCachePanel && <CacheStatsPanel stats={cacheStats} onRefreshGitHub={handleRefreshGitHub} onClearAll={handleClearAll} onClearLocal={handleClearLocal} onClose={() => setShowCachePanel(false)} onOpenSettings={() => setShowSettings(true)} />}
+        {showCachePanel && <CacheStatsPanel stats={cacheStats} onRefreshGitHub={handleRefreshGitHub} onClearAll={handleClearAll} onClearLocal={handleClearLocal} onClose={() => setShowCachePanel(false)} onOpenSettings={() => setShowSettings(true)} isFirebaseConnected={isFirebaseConnected} />}
         <SettingsPanel isOpen={showSettings} onClose={() => setShowSettings(false)} onSave={handleSaveSettings} currentSettings={{ cacheDays: CacheManager.config.LOCAL_CACHE_DAYS, githubCacheHours: CacheManager.config.GITHUB_CACHE_HOURS }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
@@ -767,8 +949,8 @@ const getStockData = async (symbol, forceRefresh = false) => {
                       <div><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-stone-50 rounded-lg border border-stone-100 px-2 py-1 text-xs font-semibold outline-none focus:border-teal-300 focus:bg-white transition-all" /></div>
                       <div className="text-center"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Yield</label><div className={`text-xs font-semibold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-stone-500'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
                       <div className="text-center"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Growth</label><div className={`text-xs font-semibold ${(stock.data?.growthRate || 0) > 0 ? 'text-cyan-600' : (stock.data?.growthRate || 0) < 0 ? 'text-red-400' : 'text-stone-500'}`}>{(stock.data?.growthRate || 0) !== 0 ? `${stock.data.growthRate > 0 ? '+' : ''}${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="text-right"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${(stock.data?.divGrowth5Y || 0) > 0 ? 'text-violet-500' : (stock.data?.divGrowth5Y || 0) < 0 ? 'text-red-400' : 'text-stone-500'}`}>{(stock.data?.divGrowth5Y || 0) !== 0 ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
-                      {/* ✨ NEW: Dividend Frequency Dropdown */}
+                      {/* [FIX v5.0] Div Growth: แยก null (N/A) vs 0 (0.00%) */}
+                      <div className="text-right"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${stock.data?.divGrowth5Y != null ? (stock.data.divGrowth5Y > 0 ? 'text-violet-500' : stock.data.divGrowth5Y < 0 ? 'text-red-400' : 'text-stone-500') : 'text-stone-500'}`}>{stock.data?.divGrowth5Y != null ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
                       <div className="col-span-5 mt-1">
                         <label className="text-[9px] text-stone-600 block mb-0.5 font-medium">ความถี่ปันผล</label>
                         <select 
@@ -785,33 +967,26 @@ const getStockData = async (symbol, forceRefresh = false) => {
                   </div>
                 ))}
               </div>
-              <div className="p-4 bg-stone-50 rounded-xl mt-4">
-                <label className="text-xs font-medium text-stone-500 mb-3 block">+ เพิ่มหุ้นใหม่</label>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <input placeholder="หุ้น" value={newSymbol} onChange={(e) => setNewSymbol(e.target.value.toUpperCase())} className="min-w-0 flex-1 bg-white border border-stone-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none uppercase focus:border-teal-300 transition-all" />
-                    <input type="number" placeholder="%" value={newAllocation} onChange={(e) => setNewAllocation(e.target.value)} className="min-w-0 w-20 bg-white border border-stone-200 rounded-lg px-3 py-2 text-sm font-semibold outline-none focus:border-teal-300 transition-all" />
-                  </div>
-                  {/* ✨ NEW: Dividend Frequency for new stock */}
-                  <div className="flex items-center gap-2">
-                    <select 
-                      value={newDivFrequency} 
-                      onChange={(e) => setNewDivFrequency(e.target.value)}
-                      className="flex-1 bg-white border border-stone-200 rounded-lg px-3 py-2 text-sm font-medium outline-none focus:border-teal-300 transition-all"
-                    >
-                      {Object.entries(DIVIDEND_FREQUENCIES).map(([key, freq]) => (
-                        <option key={key} value={key}>{freq.label}</option>
-                      ))}
-                    </select>
-                    <button onClick={handleAddStock} disabled={isAdding || !newSymbol.trim()} className="shrink-0 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 disabled:opacity-40 font-medium text-sm transition-colors">{isAdding ? <RefreshCw size={16} className="animate-spin" /> : "เพิ่ม"}</button>
-                  </div>
+              <div className="mt-4 p-3 bg-teal-50/50 rounded-xl border border-teal-100">
+                <div className="flex items-center gap-2 mb-2"><Plus size={14} className="text-teal-600" /><span className="text-xs font-medium text-teal-700">เพิ่มหุ้นใหม่</span></div>
+                <div className="flex gap-2">
+                  <input type="text" placeholder="หุ้น" value={newSymbol} onChange={e => setNewSymbol(e.target.value)} className="flex-1 border border-teal-200 rounded-lg px-3 py-2 text-xs bg-white font-medium outline-none focus:border-teal-400 transition-all" />
+                  <input type="text" placeholder="%" value={newAllocation} onChange={e => setNewAllocation(e.target.value)} className="w-16 border border-teal-200 rounded-lg px-3 py-2 text-xs bg-white font-medium text-center outline-none focus:border-teal-400 transition-all" />
+                  <select value={newDivFrequency} onChange={e => setNewDivFrequency(e.target.value)} className="border border-teal-200 rounded-lg px-2 py-2 text-xs bg-white outline-none focus:border-teal-400 transition-all">
+                    {Object.entries(DIVIDEND_FREQUENCIES).map(([key, freq]) => (
+                      <option key={key} value={key}>{freq.label}</option>
+                    ))}
+                  </select>
+                  <button onClick={handleAddStock} disabled={isAdding} className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg text-xs font-semibold disabled:opacity-50 transition-all">
+                    {isAdding ? '...' : 'เพิ่ม'}
+                  </button>
                 </div>
-                {errorMsg && <p className="text-[10px] text-red-500 font-medium mt-2">{errorMsg}</p>}
+                {errorMsg && <p className="text-red-500 text-xs mt-2 flex items-center gap-1"><AlertCircle size={12} /> {errorMsg}</p>}
               </div>
             </section>
 
-            <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60 space-y-3">
-              <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700"><Calculator size={16} className="text-teal-500" /> ตั้งค่าการลงทุน</h2>
+            <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
+              <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700 mb-3"><Calculator size={16} className="text-teal-500" /> ตั้งค่าการลงทุน</h2>
               <div className="space-y-3">
                 <div><label className="text-[11px] font-medium text-stone-600">เงินลงทุนเริ่มต้น (บาท)</label><input type="number" value={initialInvestment} onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
                 <div><label className="text-[11px] font-medium text-stone-600">ลงทุนเพิ่มรายเดือน (บาท)</label><input type="number" value={monthlyContribution} onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value))} className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" /></div>
