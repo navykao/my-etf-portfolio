@@ -42,7 +42,7 @@ const SYMBOLS = [
   // Bond
   'BND', 'BNDX', 'TLT', 'SHY', 'AGG',
   // Sector
-  'XLK', 'XLV', 'XLF', 'XLE', 'XLRE',
+  'XLK', 'XLV', 'XLF', 'XLE', 'XLRE', 'SPMO',
   // REIT
   'VNQ', 'SCHH',
   // Small Cap
