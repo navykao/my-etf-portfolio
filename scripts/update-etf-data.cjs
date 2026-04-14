@@ -103,6 +103,7 @@ const DIV_GROWTH_5Y = {
   'SCHX': 4.49,
   'SHY': 42.73,
   'SMH': 7.03,
+  'SMPO': 12.03,
   'SPY': 5.82,
   'SPYG': 3.49,
   'TLT': 12.30,
