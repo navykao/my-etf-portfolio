@@ -1058,7 +1058,7 @@
   "SPMO": {
     "divGrowth3Y": -4.07,
     "divGrowth5Y": 12.03,
-    "divGrowth10Y": null,
+    "divGrowth10Y": 0,
     "source": "stockanalysis-etf"
   },
   "DFAT": {
