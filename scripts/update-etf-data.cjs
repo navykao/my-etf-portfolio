@@ -74,106 +74,21 @@ const UNIQUE_SYMBOLS = [...new Set(SYMBOLS)];
 // 2. Stock: ไป https://stockanalysis.com/stocks/screener/ → Export CSV
 // 3. คัดลอก Div. Growth 5Y มาใส่ตรงนี้
 // =====================================================
+// ==========================================
+// 📋 AUTOMATIC DIVIDEND GROWTH DATA (v5.1)
+// ==========================================
+// 1. อ่านไฟล์ที่คุณโหลดมาเผื่อไว้ (ต้องมีไฟล์ stockanalysis-divgrowth.json ในโฟลเดอร์เดียวกัน)
+const divGrowthRaw = fs.readFileSync(path.join(__dirname, 'stockanalysis-divgrowth.json'));
+const divGrowthData = JSON.parse(divGrowthRaw);
 
-const DIV_GROWTH_5Y = {
-  // ==================== ETF ====================
-  'AGG': 10.69,
-  'AVUV': 13.11,
-  'BND': 7.48,
-  'BNDX': 27.31,
-  'COWZ': 13.20,    // [NEW v5.0] จาก CSV stockanalysis.com
-  'DGRO': 7.09,
-  'DGRW': 3.97,     // [NEW v5.0] จาก CSV stockanalysis.com
-  'DIA': 4.75,
-  'DIVO': 11.60,
-  'DVY': 8.20,      // [FIX v5.0] เดิมไม่มี → จาก CSV stockanalysis.com
-  'HDV': 2.29,      // [FIX v5.0] เดิมไม่มี → จาก CSV stockanalysis.com
-  'IJR': 9.03,
-  'IVV': 7.22,
-  'IVW': -0.22,
-  'MGK': 2.22,
-  'QQQ': 9.72,
-  'QYLD': -4.79,
-  'SCHA': 8.16,     // [FIX v5.0] เดิม 8.57 → แก้ตาม stockanalysis.com
-  'SCHB': 4.45,
-  'SCHD': 8.68,
-  'SCHG': 9.57,
-  'SCHH': 5.54,     // [FIX v5.0] เดิม 1.64 → แก้ตาม stockanalysis.com
-  'SCHM': 11.14,    // [FIX v5.0] เดิม 8.41 → แก้ตาม stockanalysis.com
-  'SCHX': 4.49,
-  'SHY': 42.73,
-  'SMH': 7.03,
-  'SPMO': 12.03,
-  'SPY': 5.82,
-  'SPYG': 3.49,
-  'TLT': 12.30,
-  'VB': 8.57,
-  'VCIT': 9.23,
-  'VEA': 12.00,
-  'VEU': 12.60,
-  'VGIT': 9.99,
-  'VGT': 2.54,
-  'VIG': 8.14,
-  'VNQ': 1.64,
-  'VO': 8.41,
-  'VONG': 4.13,
-  'VOO': 5.76,
-  'VOOG': 2.77,     // [FIX v5.0] เดิม 3.49 → แก้ตาม stockanalysis.com
-  'VT': 9.91,
-  'VTI': 5.92,
-  'VUG': 3.59,
-  'VWO': 9.19,
-  'VXUS': 11.35,
-  'VYM': 3.15,
-  'XLE': 7.43,
-  'XLF': 6.07,
-  'XLK': 6.84,
-  'XLRE': 0.99,
-  'XLV': 8.01,
+const DIV_GROWTH_5Y = {};
+const DIV_GROWTH_10Y = {};
 
-  // ==================== STOCKS ====================
-  // ข้อมูลจาก stockanalysis.com/stocks/screener/ (Apr 12, 2026)
-  'AAPL': 4.49,
-  'ABBV': 6.33,     // [FIX v5.0] เดิม 7.80 → แก้ตาม stockanalysis.com
-  'ASML': 18.74,    // [FIX v5.0] เดิม 21.00 → แก้ตาม stockanalysis.com
-  'AVGO': 12.60,    // [FIX v5.0] เดิม 12.90 → แก้ตาม stockanalysis.com
-  'BAC': 8.85,      // [FIX v5.0] เดิม 11.50 → แก้ตาม stockanalysis.com
-  'COST': -16.60,   // [FIX v5.0] ⚠️ ค่าลบ! เดิม 12.70 → แก้ตาม stockanalysis.com
-  'CSCO': 2.62,     // [FIX v5.0] เดิม 2.80 → แก้ตาม stockanalysis.com
-  'CVX': 5.81,      // [FIX v5.0] เดิม 6.30 → แก้ตาม stockanalysis.com
-  'DE': 15.30,      // [FIX v5.0] เดิม 14.50 → แก้ตาม stockanalysis.com
-  'JNJ': 4.92,      // [FIX v5.0] เดิม 5.50 → แก้ตาม stockanalysis.com
-  'JPM': 10.38,     // [FIX v5.0] เดิม 9.30 → แก้ตาม stockanalysis.com
-  'KO': 4.54,       // [FIX v5.0] เดิม 3.80 → แก้ตาม stockanalysis.com
-  'LLY': 14.40,     // [FIX v5.0] เดิม 15.30 → แก้ตาม stockanalysis.com
-  'LMT': 5.77,      // [FIX v5.0] เดิม 7.20 → แก้ตาม stockanalysis.com
-  'LOW': 15.35,     // [FIX v5.0] เดิม 17.50 → แก้ตาม stockanalysis.com
-  'MA': 14.18,      // [FIX v5.0] เดิม 15.40 → แก้ตาม stockanalysis.com
-  'MCD': 7.23,      // [FIX v5.0] เดิม 8.10 → แก้ตาม stockanalysis.com
-  'MO': 4.19,
-  'MS': 22.90,      // [FIX v5.0] เดิม 20.00 → แก้ตาม stockanalysis.com
-  'MSFT': 10.20,
-  'NEE': 9.58,      // [FIX v5.0] เดิม 10.00 → แก้ตาม stockanalysis.com
-  'NVDA': 20.11,    // [FIX v5.0] เดิม 10.70 → แก้ตาม stockanalysis.com
-  'O': 2.87,        // [FIX v5.0] เดิม 3.20 → แก้ตาม stockanalysis.com
-  'PEP': 6.55,      // [FIX v5.0] เดิม 7.00 → แก้ตาม stockanalysis.com
-  'PFE': 2.24,      // [FIX v5.0] เดิม 2.60 → แก้ตาม stockanalysis.com
-  'PG': 5.45,       // [FIX v5.0] เดิม 5.70 → แก้ตาม stockanalysis.com
-  'QCOM': 6.24,     // [FIX v5.0] เดิม 4.70 → แก้ตาม stockanalysis.com
-  'TSM': 13.84,     // [FIX v5.0] เดิม 18.50 → แก้ตาม stockanalysis.com
-  'UNH': 12.07,     // [FIX v5.0] เดิม 14.20 → แก้ตาม stockanalysis.com
-  'V': 14.87,       // [FIX v5.0] เดิม 17.00 → แก้ตาม stockanalysis.com
-  'VZ': 2.06,
-  'WMT': 5.93,      // [FIX v5.0] เดิม 8.70 → แก้ตาม stockanalysis.com
-  'XOM': 3.03,
-
-  // ==================== ไม่มีข้อมูล Div Growth 5Y ====================
-  // หุ้น/ETF เหล่านี้ไม่มีข้อมูล Div Growth 5Y ใน stockanalysis.com
-  // เพราะจ่ายปันผลไม่ถึง 5 ปี หรือไม่จ่ายปันผล
-  // ARKK, GLD, GLDM, GOOG, GOOGL, JEPI, JEPQ, META,
-  // QQQI, QQQM, SGOV, SPLG, SPYI, SPYM, XYLD
-};
-
+// 2. ลูปดึงค่า 5Y และ 10Y จากไฟล์ JSON มาใช้โดยตรง
+for (const symbol in divGrowthData) {
+  DIV_GROWTH_5Y[symbol] = divGrowthData[symbol].divGrowth5Y;
+  DIV_GROWTH_10Y[symbol] = divGrowthData[symbol].divGrowth10Y;
+}
 // ==========================================
 // 🔐 Yahoo Finance Session
 // ==========================================
@@ -396,6 +311,7 @@ async function main() {
       divYield,
       growthRate,
       divGrowth5Y,
+      divGrowth10Y,
       trailingDividendRate: q.trailingDividendRate,
       totalAssets: q.totalAssets,
       fiftyTwoWeekHigh: q.fiftyTwoWeekHigh,
@@ -414,7 +330,8 @@ async function main() {
     const fmtPrice = `$${q.price.toFixed(2)}`.padStart(10);
     const fmtYield = divYield > 0 ? `${divYield.toFixed(2)}%`.padStart(6) : '-'.padStart(6);
     const fmtGrowth = growthRate !== 0 ? `${growthRate >= 0 ? '+' : ''}${growthRate.toFixed(2)}%`.padStart(8) : '-'.padStart(8);
-    const fmtDivGr = divGrowth5Y !== null ? `${divGrowth5Y >= 0 ? '+' : ''}${divGrowth5Y.toFixed(2)}%`.padStart(8) : '-'.padStart(8);
+    const fmtDivGr = (database[symbol].divGrowth5Y?.toFixed(2) || '---') + '%' + 
+                     ' / ' + (database[symbol].divGrowth10Y?.toFixed(2) || '---') + '%';
     const source = divGrowth5Y !== null ? 'Yahoo+SA' : 'Yahoo';
     
     console.log(`  ${sym.padEnd(8)} ${fmtPrice} | ${fmtYield} | ${fmtGrowth} | ${fmtDivGr} | ${source.padEnd(12)}`);
