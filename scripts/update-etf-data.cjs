@@ -42,13 +42,13 @@ const SYMBOLS = [
   // International
   'VT', 'VXUS', 'VEA', 'VWO',
   // Bond
-  'BND', 'BNDX', 'TLT', 'SHY', 'AGG',
+  'BND', 'BNDX', 'TLT', 'SHY', 'VGIT', 'AGG',
   // Sector
   'XLK', 'XLV', 'XLF', 'XLE', 'XLRE', 'SPMO',
   // REIT
   'VNQ', 'SCHH',
   // Small Cap
-  'VB', 'SCHA', 'IJR',
+  'VB', 'SCHA', 'IJR', 'AVUV',
   // Mid Cap + Other
   'VO', 'SCHM', 'GLD', 'SGOV',
   'VCIT', 'IVW', 'VEU',
