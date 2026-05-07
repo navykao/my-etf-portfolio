@@ -1,11 +1,13 @@
 /**
  * =====================================================
- * update-etf-data.cjs v5.0 PRODUCTION
+ * update-etf-data.cjs v5.1 PRODUCTION
  * =====================================================
  * GitHub Actions script — รันทุกวันอัตโนมัติ
  * 
- * ✅ v5.0 อัพเดต (Apr 12, 2026):
- *   1. [UPDATE] Div Growth 5Y: ข้อมูลจาก stockanalysis.com (ถูกต้อง 100%)
+ * ✅ v5.1 อัพเดต (May 7, 2026):
+ *   1. [FIX] แก้บั๊ก divGrowth10Y ไม่ถูกเขียนลง database (ตัวแปรไม่ได้ประกาศ)
+ *   2. [FIX] แก้บั๊ก database[symbol] → database[sym] ใน console.log
+ *   3. [UPDATE] Div Growth 5Y + 10Y: ข้อมูลจาก stockanalysis.com (ถูกต้อง 100%)
  *   2. [NEW] เพิ่มหุ้นรายตัว 33 ตัว (AAPL, MSFT, NVDA, AVGO ฯลฯ)
  *   3. [NEW] เพิ่ม ETF ที่ขาด (COWZ, DGRW, DVY, HDV ฯลฯ)
  *   4. [FIX] ค่า COST=-16.60% (ถูกต้องตาม stockanalysis.com)
@@ -235,6 +237,7 @@ async function main() {
   console.log(`📅 ${new Date().toISOString()}`);
   console.log(`📊 Symbols: ${UNIQUE_SYMBOLS.length}`);
   console.log(`📍 Div Growth 5Y: stockanalysis.com (${Object.keys(DIV_GROWTH_5Y).length} symbols)`);
+  console.log(`📍 Div Growth 10Y: stockanalysis.com (${Object.keys(DIV_GROWTH_10Y).length} symbols)`);
   console.log(`📍 Other Data: Yahoo Finance API (realtime)`);
   console.log('='.repeat(70));
   console.log('');
@@ -275,7 +278,7 @@ async function main() {
   
   // Step 4: Build database
   console.log('🔧 Building database...\n');
-  console.log(`  ${'Symbol'.padEnd(8)} ${'Price'.padStart(10)} | ${'Yield'.padStart(7)} | ${'Growth'.padStart(8)} | ${'DivGr5Y'.padStart(9)} | ${'Source'.padEnd(12)}`);
+  console.log(`  ${'Symbol'.padEnd(8)} ${'Price'.padStart(10)} | ${'Yield'.padStart(7)} | ${'Growth'.padStart(8)} | ${'DivGr 5Y/10Y'.padStart(18)} | ${'Source'.padEnd(12)}`);
   console.log(`  ${'-'.repeat(85)}`);
   
   const database = {};
@@ -301,8 +304,9 @@ async function main() {
     // Growth Rate
     const growthRate = c.growthRate || 0;
     
-    // Div Growth 5Y (from Stock Analysis)
+    // Div Growth 5Y & 10Y (from Stock Analysis)
     const divGrowth5Y = DIV_GROWTH_5Y[sym] !== undefined ? DIV_GROWTH_5Y[sym] : null;
+    const divGrowth10Y = DIV_GROWTH_10Y[sym] !== undefined ? DIV_GROWTH_10Y[sym] : null;
     
     database[sym] = {
       symbol: sym,
@@ -330,8 +334,8 @@ async function main() {
     const fmtPrice = `$${q.price.toFixed(2)}`.padStart(10);
     const fmtYield = divYield > 0 ? `${divYield.toFixed(2)}%`.padStart(6) : '-'.padStart(6);
     const fmtGrowth = growthRate !== 0 ? `${growthRate >= 0 ? '+' : ''}${growthRate.toFixed(2)}%`.padStart(8) : '-'.padStart(8);
-    const fmtDivGr = (database[symbol].divGrowth5Y?.toFixed(2) || '---') + '%' + 
-                     ' / ' + (database[symbol].divGrowth10Y?.toFixed(2) || '---') + '%';
+    const fmtDivGr = (divGrowth5Y != null ? divGrowth5Y.toFixed(2) : '---') + '%' + 
+                     ' / ' + (divGrowth10Y != null ? divGrowth10Y.toFixed(2) : '---') + '%';
     const source = divGrowth5Y !== null ? 'Yahoo+SA' : 'Yahoo';
     
     console.log(`  ${sym.padEnd(8)} ${fmtPrice} | ${fmtYield} | ${fmtGrowth} | ${fmtDivGr} | ${source.padEnd(12)}`);
@@ -355,7 +359,7 @@ async function main() {
       totalSymbols: Object.keys(database).length,
       version: '5.0',
       dataSource: {
-        divGrowth5Y: 'stockanalysis.com (manual CSV export)',
+        divGrowth: 'stockanalysis.com (5Y + 10Y from JSON)',
         other: 'Yahoo Finance API (realtime)',
       },
       stats,
