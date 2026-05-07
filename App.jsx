@@ -994,9 +994,16 @@ export default function App() {
             </section>
 
             {/* [v5.1] Pie Chart สัดส่วนพอร์ต */}
-            {portfolio.length > 0 && (
+            {portfolio.length > 0 && (() => {
+              const totalAlloc = portfolio.reduce((sum, p) => sum + p.allocation, 0);
+              return (
               <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
-                <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700 mb-3"><PiggyBank size={16} className="text-teal-500" /> สัดส่วนพอร์ต</h2>
+                <div className="flex justify-between items-center mb-3">
+                  <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700"><PiggyBank size={16} className="text-teal-500" /> สัดส่วนพอร์ต</h2>
+                  <div className={`text-xs font-bold px-2.5 py-1 rounded-lg ${totalAlloc === 100 ? 'bg-emerald-50 text-emerald-600' : totalAlloc > 100 ? 'bg-red-50 text-red-500' : 'bg-amber-50 text-amber-600'}`}>
+                    รวม {totalAlloc}% {totalAlloc === 100 ? '✓' : totalAlloc > 100 ? `(เกิน ${totalAlloc - 100}%)` : `(ขาด ${100 - totalAlloc}%)`}
+                  </div>
+                </div>
                 <div className="flex items-center justify-center">
                   <ResponsiveContainer width="100%" height={220}>
                     <PieChart>
@@ -1038,7 +1045,8 @@ export default function App() {
                   })}
                 </div>
               </section>
-            )}
+              );
+            })()}
 
             <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
               <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700 mb-3"><Calculator size={16} className="text-teal-500" /> ตั้งค่าการลงทุน</h2>
