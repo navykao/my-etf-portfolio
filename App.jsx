@@ -160,6 +160,7 @@ const CacheManager = {
       divYield: stock.divYield || 0,
       growthRate: stock.growthRate || 0,
       divGrowth5Y: stock.divGrowth5Y != null ? stock.divGrowth5Y : null, // [FIX] รักษา null
+      divGrowth10Y: stock.divGrowth10Y != null ? stock.divGrowth10Y : null, // [FIX] รักษา null
       name: stock.name || symbol,
       expenseRatio: stock.expenseRatio || 0,
       source: 'local',
@@ -242,6 +243,7 @@ const CacheManager = {
       divYield: stock.divYield || 0,
       growthRate: stock.growthRate || 0,
       divGrowth5Y: stock.divGrowth5Y != null ? stock.divGrowth5Y : null, // [FIX] รักษา null
+      divGrowth10Y: stock.divGrowth10Y != null ? stock.divGrowth10Y : null, // [FIX] รักษา null
       name: stock.name || symbol,
       expenseRatio: stock.expenseRatio || 0,
       trailingDividendRate: stock.trailingDividendRate || 0, // [FIX] เพิ่ม field ที่ขาด
@@ -527,6 +529,7 @@ export default function App() {
           divYield: githubStock.divYield || 0,
           growthRate: githubStock.growthRate || 0,
           divGrowth5Y: githubStock.divGrowth5Y, // [FIX] ส่งต่อค่าตรงๆ (null = ไม่มีข้อมูล)
+          divGrowth10Y: githubStock.divGrowth10Y, // [FIX] ส่งต่อค่าตรงๆ (null = ไม่มีข้อมูล)
           trailingDividendRate: githubStock.trailingDividendRate || 0,
           totalAssets: githubStock.totalAssets || 0,
           fiftyTwoWeekHigh: githubStock.fiftyTwoWeekHigh || 0,
