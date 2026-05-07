@@ -79,8 +79,8 @@ const UNIQUE_SYMBOLS = [...new Set(SYMBOLS)];
 // ==========================================
 // 📋 AUTOMATIC DIVIDEND GROWTH DATA (v5.1)
 // ==========================================
-// 1. อ่านไฟล์ที่คุณโหลดมาเผื่อไว้ (ต้องมีไฟล์ stockanalysis-divgrowth.json ในโฟลเดอร์เดียวกัน)
-const divGrowthRaw = fs.readFileSync(path.join(__dirname, 'stockanalysis-divgrowth.json'));
+// 1. อ่านไฟล์ที่คุณโหลดมาเผื่อไว้ (ต้องมีไฟล์ stockanalysis-divgrowth.json )
+const divGrowthRaw = fs.readFileSync(path.join(__dirname, '..', 'data', 'stockanalysis-divgrowth.json'));
 const divGrowthData = JSON.parse(divGrowthRaw);
 
 const DIV_GROWTH_5Y = {};
