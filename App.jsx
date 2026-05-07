@@ -1,7 +1,10 @@
 /**
  * =====================================================
- * App.jsx v5.0 — Firebase Cloud Sync + DivGrowth Fix
+ * App.jsx v5.1 — Firebase Cloud Sync + DivGrowth Fix + 10Y
  * =====================================================
+ * 
+ * ✅ v5.1 อัพเดต (May 7, 2026):
+ *   1. [NEW] เพิ่มแสดง Div Growth 10Y ข้างๆ 5Y บน UI (grid 6 คอลัมน์)
  * 
  * ✅ v5.0 อัพเดต (Apr 12, 2026):
  *   1. [FIX] แก้บั๊ก loadGitHubData: JSON มี { _meta, data } ต้องดึง .data
@@ -34,6 +37,7 @@ import {
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
 // =====================================================
 // 🔥 FIREBASE CONFIG — ใส่ config ของคุณตรงนี้
@@ -948,13 +952,14 @@ export default function App() {
                         <button onClick={() => handleRemoveStock(stock.symbol)} className="text-stone-200 hover:text-red-400 p-1.5 rounded-lg transition-colors"><Trash2 size={14} /></button>
                       </div>
                     </div>
-                    <div className="grid grid-cols-5 gap-2 mt-3 pt-3 border-t border-stone-50">
+                    <div className="grid grid-cols-6 gap-2 mt-3 pt-3 border-t border-stone-50">
                       <div><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">สัดส่วน</label><input type="number" value={stock.allocation} onChange={(e) => { const next = portfolio.map(p => p.symbol === stock.symbol ? {...p, allocation: Number(e.target.value)} : p); setPortfolio(next); saveToCloudOrLocal(next, { initialInvestment, monthlyContribution, contributionStepUp, investmentYears }); }} className="w-full bg-stone-50 rounded-lg border border-stone-100 px-2 py-1 text-xs font-semibold outline-none focus:border-teal-300 focus:bg-white transition-all" /></div>
                       <div className="text-center"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Yield</label><div className={`text-xs font-semibold ${(stock.data?.divYield || 0) > 0 ? 'text-emerald-600' : 'text-stone-500'}`}>{(stock.data?.divYield || 0) > 0 ? `${stock.data.divYield.toFixed(2)}%` : 'N/A'}</div></div>
                       <div className="text-center"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Growth</label><div className={`text-xs font-semibold ${(stock.data?.growthRate || 0) > 0 ? 'text-cyan-600' : (stock.data?.growthRate || 0) < 0 ? 'text-red-400' : 'text-stone-500'}`}>{(stock.data?.growthRate || 0) !== 0 ? `${stock.data.growthRate > 0 ? '+' : ''}${stock.data.growthRate.toFixed(2)}%` : 'N/A'}</div></div>
-                      {/* [FIX v5.0] Div Growth: แยก null (N/A) vs 0 (0.00%) */}
-                      <div className="text-right"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${stock.data?.divGrowth5Y != null ? (stock.data.divGrowth5Y > 0 ? 'text-violet-500' : stock.data.divGrowth5Y < 0 ? 'text-red-400' : 'text-stone-500') : 'text-stone-500'}`}>{stock.data?.divGrowth5Y != null ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
-                      <div className="col-span-5 mt-1">
+                      {/* [v5.1] Div Growth 5Y + 10Y แสดงคู่กัน */}
+                      <div className="text-center"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Div Growth</label><div className={`text-xs font-semibold ${stock.data?.divGrowth5Y != null ? (stock.data.divGrowth5Y > 0 ? 'text-violet-500' : stock.data.divGrowth5Y < 0 ? 'text-red-400' : 'text-stone-500') : 'text-stone-500'}`}>{stock.data?.divGrowth5Y != null ? `${stock.data.divGrowth5Y > 0 ? '+' : ''}${stock.data.divGrowth5Y.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="text-right"><label className="text-[9px] text-stone-600 block mb-0.5 font-medium">Div Gr.10Y</label><div className={`text-xs font-semibold ${stock.data?.divGrowth10Y != null ? (stock.data.divGrowth10Y > 0 ? 'text-fuchsia-500' : stock.data.divGrowth10Y < 0 ? 'text-red-400' : 'text-stone-500') : 'text-stone-500'}`}>{stock.data?.divGrowth10Y != null ? `${stock.data.divGrowth10Y > 0 ? '+' : ''}${stock.data.divGrowth10Y.toFixed(2)}%` : 'N/A'}</div></div>
+                      <div className="col-span-6 mt-1">
                         <label className="text-[9px] text-stone-600 block mb-0.5 font-medium">ความถี่ปันผล</label>
                         <select 
                           value={stock.divFrequency || 'quarterly'} 
@@ -988,6 +993,53 @@ export default function App() {
               </div>
             </section>
 
+            {/* [v5.1] Pie Chart สัดส่วนพอร์ต */}
+            {portfolio.length > 0 && (
+              <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
+                <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700 mb-3"><PiggyBank size={16} className="text-teal-500" /> สัดส่วนพอร์ต</h2>
+                <div className="flex items-center justify-center">
+                  <ResponsiveContainer width="100%" height={220}>
+                    <PieChart>
+                      <Pie
+                        data={portfolio.map((s, i) => ({ name: s.symbol, value: s.allocation, fill: ['#0d9488','#6366f1','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4','#84cc16','#f97316','#64748b'][i % 10] }))}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={50}
+                        outerRadius={85}
+                        paddingAngle={2}
+                        dataKey="value"
+                        stroke="none"
+                      >
+                        {portfolio.map((s, i) => (
+                          <Cell key={s.symbol} fill={['#0d9488','#6366f1','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4','#84cc16','#f97316','#64748b'][i % 10]} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value, name) => {
+                          const total = portfolio.reduce((sum, p) => sum + p.allocation, 0) || 1;
+                          return [`${value} (${((value / total) * 100).toFixed(1)}%)`, name];
+                        }}
+                        contentStyle={{ borderRadius: '12px', border: '1px solid #e7e5e4', fontSize: '12px', padding: '8px 12px' }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="flex flex-wrap justify-center gap-x-4 gap-y-1.5 mt-2">
+                  {portfolio.map((s, i) => {
+                    const total = portfolio.reduce((sum, p) => sum + p.allocation, 0) || 1;
+                    const pct = ((s.allocation / total) * 100).toFixed(1);
+                    return (
+                      <div key={s.symbol} className="flex items-center gap-1.5 text-[11px]">
+                        <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: ['#0d9488','#6366f1','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4','#84cc16','#f97316','#64748b'][i % 10] }} />
+                        <span className="font-semibold text-stone-700">{s.symbol}</span>
+                        <span className="text-stone-500">{pct}%</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
             <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
               <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700 mb-3"><Calculator size={16} className="text-teal-500" /> ตั้งค่าการลงทุน</h2>
               <div className="space-y-3">
@@ -1019,16 +1071,47 @@ export default function App() {
             </div>
 
             <div className="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm">
-              <div className="flex justify-between items-end mb-5">
+              <div className="flex justify-between items-end mb-4">
                 <div><h2 className="font-bold text-sm mb-0.5 text-stone-700 tracking-tight">เปรียบเทียบการเติบโต</h2><p className="text-stone-600 text-xs">ผลตอบแทน {investmentYears} ปี (คำนวณแบบแม่นยำ)</p></div>
                 <div className="text-right space-y-0.5">
                   <div><span className="text-[10px] text-stone-600 font-medium">Yield </span><span className="text-xs font-bold text-emerald-600">{metrics.yield.toFixed(2)}%</span></div>
                   <div><span className="text-[10px] text-stone-600 font-medium">Growth </span><span className="text-xs font-bold text-cyan-600">+{metrics.growth.toFixed(2)}%</span></div>
                 </div>
               </div>
-              <div className="space-y-4">
-                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-indigo-600">Compound (ทบต้นตามความถี่จริง)</span><span className="text-stone-700">{formatCurrency(projections.finalDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-blue-50 border-2 border-blue-600 h-full rounded-lg flex items-center px-3 text-blue font-medium text-[10px]" style={{ width: '100%' }}>Accurate DRIP ✨</div></div></div>
-                <div><div className="flex justify-between text-xs mb-1.5 font-semibold"><span className="text-indigo-400">Cash-Out (ไม่ทบต้น)</span><span className="text-stone-600">{formatCurrency(projections.finalNoDrip)}</span></div><div className="w-full bg-stone-100 h-7 rounded-lg overflow-hidden"><div className="bg-indigo-200 h-full rounded-lg flex items-center px-3 text-indigo-700 font-medium text-[10px]" style={{ width: `${Math.max(25, (projections.finalNoDrip / projections.finalDrip) * 100)}%` }}>No DRIP</div></div></div>
+              <ResponsiveContainer width="100%" height={280}>
+                <AreaChart data={projections.history.map(r => ({ year: `ปี ${r.year}`, 'ทบต้น (DRIP)': Math.round(r.drip), 'ไม่ทบต้น': Math.round(r.totalNoDrip), 'เงินต้นสะสม': Math.round(r.totalInvested) }))} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
+                  <defs>
+                    <linearGradient id="gradDrip" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#0d9488" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#0d9488" stopOpacity={0.02}/>
+                    </linearGradient>
+                    <linearGradient id="gradNoDrip" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#6366f1" stopOpacity={0.2}/>
+                      <stop offset="95%" stopColor="#6366f1" stopOpacity={0.02}/>
+                    </linearGradient>
+                    <linearGradient id="gradInvested" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.15}/>
+                      <stop offset="95%" stopColor="#94a3b8" stopOpacity={0.02}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f0ee" />
+                  <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#78716c' }} tickLine={false} axisLine={false} />
+                  <YAxis tick={{ fontSize: 10, fill: '#78716c' }} tickLine={false} axisLine={false} tickFormatter={(v) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v} />
+                  <Tooltip 
+                    formatter={(value) => new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(value)}
+                    contentStyle={{ borderRadius: '12px', border: '1px solid #e7e5e4', fontSize: '11px', padding: '8px 12px' }}
+                    labelStyle={{ fontWeight: 600, marginBottom: '4px' }}
+                  />
+                  <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
+                  <Area type="monotone" dataKey="ทบต้น (DRIP)" stroke="#0d9488" strokeWidth={2.5} fill="url(#gradDrip)" />
+                  <Area type="monotone" dataKey="ไม่ทบต้น" stroke="#6366f1" strokeWidth={1.5} fill="url(#gradNoDrip)" strokeDasharray="5 3" />
+                  <Area type="monotone" dataKey="เงินต้นสะสม" stroke="#94a3b8" strokeWidth={1} fill="url(#gradInvested)" strokeDasharray="3 3" />
+                </AreaChart>
+              </ResponsiveContainer>
+              <div className="flex justify-center gap-6 mt-3 text-[11px]">
+                <div className="flex items-center gap-2"><div className="w-8 h-0.5 bg-teal-600 rounded" /><span className="text-stone-600">DRIP: <span className="font-bold text-teal-700">{formatCurrency(projections.finalDrip)}</span></span></div>
+                <div className="flex items-center gap-2"><div className="w-8 h-0.5 bg-indigo-500 rounded" style={{ backgroundImage: 'repeating-linear-gradient(90deg, #6366f1 0, #6366f1 5px, transparent 5px, transparent 8px)' }} /><span className="text-stone-600">No DRIP: <span className="font-bold text-stone-700">{formatCurrency(projections.finalNoDrip)}</span></span></div>
+                <div className="text-rose-500 font-semibold">ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}</div>
               </div>
             </div>
 
