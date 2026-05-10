@@ -1,6 +1,6 @@
 /**
  * =====================================================
- * update-historical-prices.cjs v1.0
+ * update-historical-prices.cjs v1.1 (Fixed)
  * =====================================================
  * ดึงราคาหุ้นย้อนหลัง 30 วันจาก Yahoo Finance
  * รันทุกวันอัตโนมัติพร้อมกับ update-etf-data.cjs
@@ -16,32 +16,36 @@ const path = require('path');
 // 📋 SYMBOLS TO FETCH
 // ==========================================
 // อ่านจาก etf-database.json ที่มีอยู่
-// ลองหาใน 3 ตำแหน่ง: 1) data/ 2) root 3) ../data/
-let databasePath;
-const possiblePaths = [
-  path.join(__dirname, '..', 'data', 'etf-database.json'),  // จาก scripts/ ไปหา ../data/
-  path.join(__dirname, 'data', 'etf-database.json'),         // จาก root/ หา data/
-  path.join(__dirname, '..', 'etf-database.json'),           // root level
-  path.join(__dirname, 'etf-database.json'),                 // same folder
-];
 
-let SYMBOLS = [];
-let dbFound = false;
+// ⭐ FIX: ระบุ path แน่นอน
+const databasePath = path.join(__dirname, '..', 'data', 'etf-database.json');
 
-for (const tryPath of possiblePaths) {
-  if (fs.existsSync(tryPath)) {
-    databasePath = tryPath;
-    const db = JSON.parse(fs.readFileSync(databasePath, 'utf8'));
-    SYMBOLS = Object.keys(db.data || {});
-    console.log(`📊 Found ${SYMBOLS.length} symbols from: ${tryPath}`);
-    dbFound = true;
-    break;
-  }
+console.log(`🔍 Looking for database at: ${databasePath}`);
+console.log(`📁 File exists: ${fs.existsSync(databasePath)}`);
+
+if (!fs.existsSync(databasePath)) {
+  console.error('❌ etf-database.json not found!');
+  console.error(`   Expected path: ${databasePath}`);
+  console.error(`   Current dir: ${__dirname}`);
+  process.exit(1);
 }
 
-if (!dbFound) {
-  console.error('❌ etf-database.json not found in any of these locations:');
-  possiblePaths.forEach(p => console.error(`   - ${p}`));
+const dbContent = fs.readFileSync(databasePath, 'utf8');
+const db = JSON.parse(dbContent);
+
+// ⭐ FIX: Debug output
+console.log(`📊 Database structure:`, Object.keys(db));
+console.log(`📊 Has _meta: ${!!db._meta}`);
+console.log(`📊 Has data: ${!!db.data}`);
+
+const SYMBOLS = Object.keys(db.data || db);
+
+console.log(`✅ Found ${SYMBOLS.length} symbols from etf-database.json`);
+console.log(`📋 First 5 symbols: ${SYMBOLS.slice(0, 5).join(', ')}`);
+console.log('');
+
+if (SYMBOLS.length === 0) {
+  console.error('❌ No symbols found!');
   process.exit(1);
 }
 
@@ -160,7 +164,7 @@ async function fetchHistoricalPrices(symbol, days = 30) {
 // ==========================================
 async function main() {
   console.log('='.repeat(70));
-  console.log('📈 Historical Prices Update v1.0');
+  console.log('📈 Historical Prices Update v1.1');
   console.log('='.repeat(70));
   console.log(`📅 ${new Date().toISOString()}`);
   console.log(`📊 Symbols: ${SYMBOLS.length}`);
@@ -209,18 +213,11 @@ async function main() {
   console.log('📊 Summary:');
   console.log(`   Success: ${successCount}`);
   console.log(`   Failed: ${failCount}`);
+  console.log(`   Total: ${SYMBOLS.length}`);
   console.log('='.repeat(70));
   
   // Step 3: Save to file
-  // ลองบันทึกใน ../data/ ก่อน (จาก scripts/) ถ้าไม่ได้ก็ data/ (จาก root)
-  let outputPath = path.join(__dirname, '..', 'data', 'stock-prices-30d.json');
-  const dataDir = path.dirname(outputPath);
-  
-  if (!fs.existsSync(dataDir)) {
-    console.log(`📁 Creating directory: ${dataDir}`);
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  
+  const outputPath = path.join(__dirname, '..', 'data', 'stock-prices-30d.json');
   const output = {
     _meta: {
       lastUpdate: new Date().toISOString(),
@@ -230,6 +227,11 @@ async function main() {
     },
     data: historicalData
   };
+  
+  const dataDir = path.dirname(outputPath);
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
   
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf8');
   
