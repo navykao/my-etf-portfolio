@@ -1,0 +1,51 @@
+name: Update All Data (ETF + Historical Prices)
+
+on:
+  # รันอัตโนมัติทุกวันเวลา 02:00 UTC (หลัง market ปิด USA)
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # หรือรันด้วยตัวเองได้ทันทีผ่านปุ่ม "Run workflow"
+  workflow_dispatch:
+
+jobs:
+  update-all-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: 📊 Step 1/2 - Update ETF Database
+        run: |
+          echo "🚀 Starting ETF database update..."
+          node scripts/update-etf-data.cjs
+          echo "✅ ETF database updated successfully!"
+      
+      - name: 📈 Step 2/2 - Update Historical Prices
+        run: |
+          echo "🚀 Starting historical prices update..."
+          node scripts/update-historical-prices.cjs
+          echo "✅ Historical prices updated successfully!"
+      
+      - name: 💾 Commit and push all changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add data/etf-database.json data/stock-prices-30d.json
+          
+          # เช็คว่ามีการเปลี่ยนแปลงหรือไม่
+          if git diff --staged --quiet; then
+            echo "ℹ️ No changes to commit"
+          else
+            git commit -m "🤖 Auto-update: ETF database + Historical prices ($(date '+%Y-%m-%d'))"
+            git push
+            echo "✅ Changes committed and pushed!"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
