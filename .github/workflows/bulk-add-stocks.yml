@@ -1,0 +1,44 @@
+name: Bulk Add Stocks
+
+on:
+  # รันด้วยตัวเอง (Manual trigger)
+  workflow_dispatch:
+    inputs:
+      symbols_file:
+        description: 'Symbols file name (e.g., sp500-top100.txt)'
+        required: true
+        default: 'sp500-top100.txt'
+
+jobs:
+  add-stocks:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: 📊 Run bulk add script
+        run: |
+          echo "🚀 Adding stocks from ${{ github.event.inputs.symbols_file }}..."
+          node scripts/add-bulk-stocks.cjs ${{ github.event.inputs.symbols_file }}
+      
+      - name: 💾 Commit and push changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add data/etf-database.json
+          
+          if git diff --staged --quiet; then
+            echo "ℹ️ No changes to commit"
+          else
+            git commit -m "🤖 Bulk add: Added stocks from ${{ github.event.inputs.symbols_file }}"
+            git push
+            echo "✅ Changes committed and pushed!"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
