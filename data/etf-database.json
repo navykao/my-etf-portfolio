@@ -1,18 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-10T16:45:06.481Z",
-    "totalSymbols": 101,
-    "version": "5.0",
-    "dataSource": {
-      "divGrowth": "stockanalysis.com (5Y + 10Y from JSON)",
-      "other": "Yahoo Finance API (realtime)"
-    },
-    "stats": {
-      "withDivGrowth": 86,
-      "noDivGrowth": 15,
-      "withYield": 98,
-      "withGrowth": 101
-    }
+    "lastUpdate": "2026-05-10T17:35:12.197Z",
+    "totalSymbols": 168,
+    "dataSource": "Yahoo Finance API",
+    "bulkAddedAt": "2026-05-10T17:35:12.197Z"
   },
   "data": {
     "VOO": {
@@ -1529,6 +1520,542 @@
       "fiftyTwoWeekLow": 156.16,
       "updatedAt": "2026-05-10T16:45:06.481Z",
       "source": "yahoo-only"
+    },
+    "TSLA": {
+      "name": "Tesla, Inc.",
+      "price": 428.3500061035156,
+      "divYield": 0,
+      "growthRate": 43.62,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "ADBE": {
+      "name": "Adobe Inc.",
+      "price": 253.0399932861328,
+      "divYield": 0,
+      "growthRate": -33.98,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "CRM": {
+      "name": "Salesforce, Inc.",
+      "price": 181.82000732421875,
+      "divYield": 0,
+      "growthRate": -33.98,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "ORCL": {
+      "name": "Oracle Corporation",
+      "price": 195.9499969482422,
+      "divYield": 0,
+      "growthRate": 30.34,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "ACN": {
+      "name": "Accenture plc",
+      "price": 180.4199981689453,
+      "divYield": 0,
+      "growthRate": -41.4,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "AMD": {
+      "name": "Advanced Micro Devices, Inc.",
+      "price": 455.19000244140625,
+      "divYield": 0,
+      "growthRate": 342.62,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "INTC": {
+      "name": "Intel Corporation",
+      "price": 124.91999816894531,
+      "divYield": 0,
+      "growthRate": 483.19,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "IBM": {
+      "name": "International Business Machines Corporation",
+      "price": 229.75999450683594,
+      "divYield": 0,
+      "growthRate": -7.8,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "INTU": {
+      "name": "Intuit Inc.",
+      "price": 396.30999755859375,
+      "divYield": 0,
+      "growthRate": -39.39,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "TXN": {
+      "name": "Texas Instruments Incorporated",
+      "price": 287.79998779296875,
+      "divYield": 0,
+      "growthRate": 67.06,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "NOW": {
+      "name": "ServiceNow, Inc.",
+      "price": 91.18000030517578,
+      "divYield": 0,
+      "growthRate": -53.48,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "AMAT": {
+      "name": "Applied Materials, Inc.",
+      "price": 435.44000244140625,
+      "divYield": 0,
+      "growthRate": 179.83,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "ADI": {
+      "name": "Analog Devices, Inc.",
+      "price": 416.5199890136719,
+      "divYield": 0,
+      "growthRate": 100.72,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "MU": {
+      "name": "Micron Technology, Inc.",
+      "price": 746.8099975585938,
+      "divYield": 0,
+      "growthRate": 769.8,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "LRCX": {
+      "name": "Lam Research Corporation",
+      "price": 294.04998779296875,
+      "divYield": 0,
+      "growthRate": 290.19,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "KLAC": {
+      "name": "KLA Corporation",
+      "price": 1869.18994140625,
+      "divYield": 0,
+      "growthRate": 166.57,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "SNPS": {
+      "name": "Synopsys, Inc.",
+      "price": 516.47998046875,
+      "divYield": 0,
+      "growthRate": 6.95,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "CDNS": {
+      "name": "Cadence Design Systems, Inc.",
+      "price": 362.70001220703125,
+      "divYield": 0,
+      "growthRate": 18.61,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "MCHP": {
+      "name": "Microchip Technology Incorporated",
+      "price": 99.08999633789062,
+      "divYield": 0,
+      "growthRate": 79.09,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "FTNT": {
+      "name": "Fortinet, Inc.",
+      "price": 114.06999969482422,
+      "divYield": 0,
+      "growthRate": 17.09,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "PANW": {
+      "name": "Palo Alto Networks, Inc.",
+      "price": 207.8800048828125,
+      "divYield": 0,
+      "growthRate": 11.21,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "WFC": {
+      "name": "Wells Fargo & Company",
+      "price": 75.63999938964844,
+      "divYield": 0,
+      "growthRate": 4.4,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "GS": {
+      "name": "The Goldman Sachs Group, Inc.",
+      "price": 936.47998046875,
+      "divYield": 0,
+      "growthRate": 65.13,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "SPGI": {
+      "name": "S&P Global Inc.",
+      "price": 420.1199951171875,
+      "divYield": 0,
+      "growthRate": -17.26,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "BLK": {
+      "name": "BlackRock, Inc.",
+      "price": 1084.8299560546875,
+      "divYield": 0,
+      "growthRate": 17.48,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "C": {
+      "name": "Citigroup Inc.",
+      "price": 125.55000305175781,
+      "divYield": 0,
+      "growthRate": 75.72,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "AXP": {
+      "name": "American Express Company",
+      "price": 316.0299987792969,
+      "divYield": 0,
+      "growthRate": 11.08,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "USB": {
+      "name": "U.S. Bancorp",
+      "price": 55.529998779296875,
+      "divYield": 0,
+      "growthRate": 32.15,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "PNC": {
+      "name": "The PNC Financial Services Group, Inc.",
+      "price": 216.85000610351562,
+      "divYield": 0,
+      "growthRate": 30.29,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "TFC": {
+      "name": "Truist Financial Corporation",
+      "price": 49.11000061035156,
+      "divYield": 0,
+      "growthRate": 25.89,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "MRK": {
+      "name": "Merck & Co., Inc.",
+      "price": 111.37999725341797,
+      "divYield": 0,
+      "growthRate": 46.61,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "TMO": {
+      "name": "Thermo Fisher Scientific Inc.",
+      "price": 465,
+      "divYield": 0,
+      "growthRate": 15.35,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "ABT": {
+      "name": "Abbott Laboratories",
+      "price": 84.31999969482422,
+      "divYield": 0,
+      "growthRate": -36.72,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "DHR": {
+      "name": "Danaher Corporation",
+      "price": 171.16000366210938,
+      "divYield": 0,
+      "growthRate": -9.79,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "BMY": {
+      "name": "Bristol-Myers Squibb Company",
+      "price": 56.15999984741211,
+      "divYield": 0,
+      "growthRate": 20.9,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "AMGN": {
+      "name": "Amgen Inc.",
+      "price": 331.70001220703125,
+      "divYield": 0,
+      "growthRate": 24.76,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "CVS": {
+      "name": "CVS Health Corporation",
+      "price": 90.55000305175781,
+      "divYield": 0,
+      "growthRate": 35.21,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "MDT": {
+      "name": "Medtronic plc",
+      "price": 76.1500015258789,
+      "divYield": 0,
+      "growthRate": -8.78,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "GILD": {
+      "name": "Gilead Sciences, Inc.",
+      "price": 131.3300018310547,
+      "divYield": 0,
+      "growthRate": 35.52,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "CI": {
+      "name": "The Cigna Group",
+      "price": 288.05999755859375,
+      "divYield": 0,
+      "growthRate": -13.61,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "AMZN": {
+      "name": "Amazon.com, Inc.",
+      "price": 272.67999267578125,
+      "divYield": 0,
+      "growthRate": 41.24,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "HD": {
+      "name": "The Home Depot, Inc.",
+      "price": 317.45001220703125,
+      "divYield": 0,
+      "growthRate": -12.48,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "NKE": {
+      "name": "NIKE, Inc.",
+      "price": 44.13999938964844,
+      "divYield": 0,
+      "growthRate": -24.29,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "SBUX": {
+      "name": "Starbucks Corporation",
+      "price": 104.93000030517578,
+      "divYield": 0,
+      "growthRate": 30.67,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "TGT": {
+      "name": "Target Corporation",
+      "price": 125.25,
+      "divYield": 0,
+      "growthRate": 29.93,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "BKNG": {
+      "name": "Booking Holdings Inc.",
+      "price": 165.92999267578125,
+      "divYield": 0,
+      "growthRate": -18.22,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "CMG": {
+      "name": "Chipotle Mexican Grill, Inc.",
+      "price": 32.4900016784668,
+      "divYield": 0,
+      "growthRate": -34.65,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "MAR": {
+      "name": "Marriott International, Inc.",
+      "price": 353.17999267578125,
+      "divYield": 0,
+      "growthRate": 36.91,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "DIS": {
+      "name": "The Walt Disney Company",
+      "price": 108.0199966430664,
+      "divYield": 0,
+      "growthRate": 1.96,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "NFLX": {
+      "name": "Netflix, Inc.",
+      "price": 87.48999786376953,
+      "divYield": 0,
+      "growthRate": -23.27,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "CMCSA": {
+      "name": "Comcast Corporation",
+      "price": 25.399999618530273,
+      "divYield": 0,
+      "growthRate": -20.87,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "T": {
+      "name": "AT&T Inc.",
+      "price": 25.15999984741211,
+      "divYield": 0,
+      "growthRate": -9.63,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "TMUS": {
+      "name": "T-Mobile US, Inc.",
+      "price": 193.6300048828125,
+      "divYield": 0,
+      "growthRate": -20.58,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "PM": {
+      "name": "Philip Morris International Inc.",
+      "price": 170.99000549316406,
+      "divYield": 0,
+      "growthRate": 0.76,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "MDLZ": {
+      "name": "Mondelez International, Inc.",
+      "price": 61.54999923706055,
+      "divYield": 0,
+      "growthRate": -7.26,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "UPS": {
+      "name": "United Parcel Service, Inc.",
+      "price": 100.77999877929688,
+      "divYield": 0,
+      "growthRate": 5.1,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "HON": {
+      "name": "Honeywell International Inc.",
+      "price": 213.1199951171875,
+      "divYield": 0,
+      "growthRate": 6.14,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "UNP": {
+      "name": "Union Pacific Corporation",
+      "price": 264.6499938964844,
+      "divYield": 0,
+      "growthRate": 22.34,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "RTX": {
+      "name": "RTX Corporation",
+      "price": 176.08999633789062,
+      "divYield": 0,
+      "growthRate": 36.85,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "BA": {
+      "name": "The Boeing Company",
+      "price": 237.36000061035156,
+      "divYield": 0,
+      "growthRate": 21.82,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "CAT": {
+      "name": "Caterpillar Inc.",
+      "price": 897.4500122070312,
+      "divYield": 0,
+      "growthRate": 175.61,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "COP": {
+      "name": "ConocoPhillips",
+      "price": 113.87000274658203,
+      "divYield": 0,
+      "growthRate": 28.54,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "SLB": {
+      "name": "SLB N.V.",
+      "price": 53.27000045776367,
+      "divYield": 0,
+      "growthRate": 54.18,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "EOG": {
+      "name": "EOG Resources, Inc.",
+      "price": 130.02999877929688,
+      "divYield": 0,
+      "growthRate": 17.02,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "AMT": {
+      "name": "American Tower Corporation",
+      "price": 176.52999877929688,
+      "divYield": 0,
+      "growthRate": -19.75,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "PLD": {
+      "name": "Prologis, Inc.",
+      "price": 144.08999633789062,
+      "divYield": 0,
+      "growthRate": 34.78,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
+    },
+    "EQIX": {
+      "name": "Equinix, Inc.",
+      "price": 1072.0799560546875,
+      "divYield": 0,
+      "growthRate": 24.03,
+      "divGrowth5Y": null,
+      "divGrowth10Y": null
     }
   }
 }
