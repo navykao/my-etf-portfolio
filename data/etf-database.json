@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-10T03:30:03.331Z",
+    "lastUpdated": "2026-05-10T16:04:16.867Z",
     "totalSymbols": 101,
     "version": "5.0",
     "dataSource": {
@@ -27,7 +27,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 678.53,
       "fiftyTwoWeekLow": 529.11,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "SPY": {
@@ -42,7 +42,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 738.08,
       "fiftyTwoWeekLow": 575.6,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "IVV": {
@@ -57,7 +57,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 741.5,
       "fiftyTwoWeekLow": 578.31,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "SPLG": {
@@ -72,7 +72,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 81.135,
       "fiftyTwoWeekLow": 56.6699,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo-only"
     },
     "SPYM": {
@@ -87,7 +87,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 86.87,
       "fiftyTwoWeekLow": 67.7,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo-only"
     },
     "VTI": {
@@ -102,7 +102,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 363.13,
       "fiftyTwoWeekLow": 283,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "SCHB": {
@@ -117,7 +117,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 28.44,
       "fiftyTwoWeekLow": 22.16,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "SCHD": {
@@ -132,7 +132,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 32.13,
       "fiftyTwoWeekLow": 25.69,
-      "updatedAt": "2026-05-10T03:30:03.328Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "VYM": {
@@ -147,7 +147,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 157.48,
       "fiftyTwoWeekLow": 126,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "VIG": {
@@ -162,7 +162,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 230.53,
       "fiftyTwoWeekLow": 193.01,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "DGRO": {
@@ -177,7 +177,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 74.28,
       "fiftyTwoWeekLow": 60.73,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "HDV": {
@@ -192,7 +192,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 28.178,
       "fiftyTwoWeekLow": 22.654,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "DVY": {
@@ -207,7 +207,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 160.38,
       "fiftyTwoWeekLow": 128.96,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.863Z",
       "source": "yahoo+stockanalysis"
     },
     "QQQ": {
@@ -222,7 +222,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 711.23,
       "fiftyTwoWeekLow": 501.48,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VGT": {
@@ -237,7 +237,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 112.48,
       "fiftyTwoWeekLow": 73.75,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "QQQM": {
@@ -252,7 +252,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 292.82,
       "fiftyTwoWeekLow": 206.47,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "MGK": {
@@ -267,7 +267,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 88.19,
       "fiftyTwoWeekLow": 66.482,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SCHG": {
@@ -282,7 +282,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 34.16,
       "fiftyTwoWeekLow": 26.66,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VUG": {
@@ -297,7 +297,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 86.9,
       "fiftyTwoWeekLow": 66.37,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VOOG": {
@@ -312,7 +312,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 81.64,
       "fiftyTwoWeekLow": 59.79,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VONG": {
@@ -327,7 +327,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 127.42,
       "fiftyTwoWeekLow": 99.17,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "JEPI": {
@@ -342,7 +342,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 59.9,
       "fiftyTwoWeekLow": 55.15,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "JEPQ": {
@@ -357,7 +357,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 60.14,
       "fiftyTwoWeekLow": 51.71,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "DIVO": {
@@ -372,7 +372,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 47.3,
       "fiftyTwoWeekLow": 40.58,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "XYLD": {
@@ -387,7 +387,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 41.1,
       "fiftyTwoWeekLow": 37.57,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "QYLD": {
@@ -402,7 +402,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 18.13,
       "fiftyTwoWeekLow": 16.02,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "QQQI": {
@@ -417,7 +417,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 56.5,
       "fiftyTwoWeekLow": 47.87,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "SPYI": {
@@ -432,7 +432,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 53.42,
       "fiftyTwoWeekLow": 47.77,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "VT": {
@@ -447,7 +447,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 155.31,
       "fiftyTwoWeekLow": 120.64,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VXUS": {
@@ -462,7 +462,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 85.78,
       "fiftyTwoWeekLow": 65.24,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VEA": {
@@ -477,7 +477,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 71.12,
       "fiftyTwoWeekLow": 53.52,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VWO": {
@@ -492,7 +492,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 61.03,
       "fiftyTwoWeekLow": 46.73,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "BND": {
@@ -507,7 +507,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 75.23,
       "fiftyTwoWeekLow": 71.76,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "BNDX": {
@@ -522,7 +522,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 49.93,
       "fiftyTwoWeekLow": 47.6,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "TLT": {
@@ -537,7 +537,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 92.19,
       "fiftyTwoWeekLow": 83.3,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SHY": {
@@ -552,7 +552,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 83.2,
       "fiftyTwoWeekLow": 82.1,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VGIT": {
@@ -567,7 +567,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 60.76,
       "fiftyTwoWeekLow": 58.6,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "AGG": {
@@ -582,7 +582,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 101.46,
       "fiftyTwoWeekLow": 96.66,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "XLK": {
@@ -597,7 +597,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 175.6,
       "fiftyTwoWeekLow": 112.27,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "XLV": {
@@ -612,7 +612,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 160.59,
       "fiftyTwoWeekLow": 127.35,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "XLF": {
@@ -627,7 +627,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 56.52,
       "fiftyTwoWeekLow": 47.67,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "XLE": {
@@ -642,7 +642,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 63.46,
       "fiftyTwoWeekLow": 40.36,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "XLRE": {
@@ -657,7 +657,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 44.91,
       "fiftyTwoWeekLow": 39.725,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SPMO": {
@@ -672,7 +672,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 143.835,
       "fiftyTwoWeekLow": 100.73,
-      "updatedAt": "2026-05-10T03:30:03.329Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VNQ": {
@@ -687,7 +687,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 97.37,
       "fiftyTwoWeekLow": 86.36,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SCHH": {
@@ -702,7 +702,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 23.69,
       "fiftyTwoWeekLow": 20.56,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VB": {
@@ -717,7 +717,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 291.99,
       "fiftyTwoWeekLow": 221.85,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SCHA": {
@@ -732,7 +732,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 33.64,
       "fiftyTwoWeekLow": 23.55,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "IJR": {
@@ -747,7 +747,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 139.49,
       "fiftyTwoWeekLow": 102.57,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "AVUV": {
@@ -762,7 +762,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 121.115,
       "fiftyTwoWeekLow": 85.79,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VO": {
@@ -777,7 +777,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 78.39,
       "fiftyTwoWeekLow": 66.0675,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SCHM": {
@@ -792,7 +792,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 35.04,
       "fiftyTwoWeekLow": 26.45,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "GLD": {
@@ -807,7 +807,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 509.7,
       "fiftyTwoWeekLow": 291.78,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "SGOV": {
@@ -822,7 +822,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 100.74,
       "fiftyTwoWeekLow": 100.27,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "VCIT": {
@@ -837,7 +837,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 84.84,
       "fiftyTwoWeekLow": 80.42,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "IVW": {
@@ -852,7 +852,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 135.85,
       "fiftyTwoWeekLow": 99.45,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "VEU": {
@@ -867,7 +867,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 83.8,
       "fiftyTwoWeekLow": 63.62,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "DIA": {
@@ -882,7 +882,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 505.3,
       "fiftyTwoWeekLow": 413.83,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SPYG": {
@@ -897,7 +897,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 117.61,
       "fiftyTwoWeekLow": 86.11,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SMH": {
@@ -912,7 +912,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 566.79,
       "fiftyTwoWeekLow": 234.05,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "GLDM": {
@@ -927,7 +927,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 109.74,
       "fiftyTwoWeekLow": 62.7,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "DGRW": {
@@ -942,22 +942,22 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 95.4,
       "fiftyTwoWeekLow": 79.19,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "O": {
       "symbol": "O",
       "name": "Realty Income Corporation",
       "price": 61.92,
-      "divYield": 3.92,
+      "divYield": 5.23,
       "growthRate": -0.85,
       "divGrowth5Y": 2.87,
       "divGrowth10Y": 3.43,
-      "trailingDividendRate": 2.423,
+      "trailingDividendRate": 3.233,
       "totalAssets": 57739935744,
       "fiftyTwoWeekHigh": 67.94,
       "fiftyTwoWeekLow": 54.38,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "ARKK": {
@@ -972,7 +972,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 92.65,
       "fiftyTwoWeekLow": 53.29,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "COWZ": {
@@ -987,7 +987,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 64.975,
       "fiftyTwoWeekLow": 52.82,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "SCHX": {
@@ -1002,7 +1002,7 @@
       "totalAssets": 0,
       "fiftyTwoWeekHigh": 29.02,
       "fiftyTwoWeekLow": 21.81,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "V": {
@@ -1017,7 +1017,7 @@
       "totalAssets": 606256889856,
       "fiftyTwoWeekHigh": 375.51,
       "fiftyTwoWeekLow": 293.89,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "MSFT": {
@@ -1032,7 +1032,7 @@
       "totalAssets": 3083691884544,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 356.28,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "KO": {
@@ -1047,7 +1047,7 @@
       "totalAssets": 337400659968,
       "fiftyTwoWeekHigh": 82,
       "fiftyTwoWeekLow": 65.35,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "GOOG": {
@@ -1062,7 +1062,7 @@
       "totalAssets": 4810436771840,
       "fiftyTwoWeekHigh": 398.37,
       "fiftyTwoWeekLow": 157.58,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo-only"
     },
     "JPM": {
@@ -1077,7 +1077,7 @@
       "totalAssets": 809480355840,
       "fiftyTwoWeekHigh": 337.25,
       "fiftyTwoWeekLow": 256,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "AVGO": {
@@ -1092,7 +1092,7 @@
       "totalAssets": 2035907428352,
       "fiftyTwoWeekHigh": 437.68,
       "fiftyTwoWeekLow": 215.88,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "MA": {
@@ -1107,7 +1107,7 @@
       "totalAssets": 437798141952,
       "fiftyTwoWeekHigh": 601.77,
       "fiftyTwoWeekLow": 480.5,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.864Z",
       "source": "yahoo+stockanalysis"
     },
     "NVDA": {
@@ -1122,7 +1122,7 @@
       "totalAssets": 5230436024320,
       "fiftyTwoWeekHigh": 217.8,
       "fiftyTwoWeekLow": 120.28,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "AAPL": {
@@ -1137,7 +1137,7 @@
       "totalAssets": 4308095467520,
       "fiftyTwoWeekHigh": 294.76,
       "fiftyTwoWeekLow": 193.46,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "TSM": {
@@ -1152,7 +1152,7 @@
       "totalAssets": 2135137189888,
       "fiftyTwoWeekHigh": 420,
       "fiftyTwoWeekLow": 184.61,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "META": {
@@ -1167,7 +1167,7 @@
       "totalAssets": 1547498946560,
       "fiftyTwoWeekHigh": 796.25,
       "fiftyTwoWeekLow": 520.26,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo-only"
     },
     "WMT": {
@@ -1182,7 +1182,7 @@
       "totalAssets": 1039656222720,
       "fiftyTwoWeekHigh": 134.69,
       "fiftyTwoWeekLow": 91.89,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "LLY": {
@@ -1197,7 +1197,7 @@
       "totalAssets": 845772095488,
       "fiftyTwoWeekHigh": 1133.95,
       "fiftyTwoWeekLow": 623.78,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "XOM": {
@@ -1212,7 +1212,7 @@
       "totalAssets": 599235035136,
       "fiftyTwoWeekHigh": 176.41,
       "fiftyTwoWeekLow": 101.19,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "JNJ": {
@@ -1227,7 +1227,7 @@
       "totalAssets": 532765245440,
       "fiftyTwoWeekHigh": 251.71,
       "fiftyTwoWeekLow": 146.12,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "ASML": {
@@ -1242,7 +1242,7 @@
       "totalAssets": 613592662016,
       "fiftyTwoWeekHigh": 1595.31,
       "fiftyTwoWeekLow": 683.48,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "COST": {
@@ -1257,7 +1257,7 @@
       "totalAssets": 447552225280,
       "fiftyTwoWeekHigh": 1067.08,
       "fiftyTwoWeekLow": 844.06,
-      "updatedAt": "2026-05-10T03:30:03.330Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "CVX": {
@@ -1272,7 +1272,7 @@
       "totalAssets": 361713958912,
       "fiftyTwoWeekHigh": 214.71,
       "fiftyTwoWeekLow": 133.77,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "ABBV": {
@@ -1287,7 +1287,7 @@
       "totalAssets": 356494049280,
       "fiftyTwoWeekHigh": 244.81,
       "fiftyTwoWeekLow": 176.57,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "BAC": {
@@ -1302,7 +1302,7 @@
       "totalAssets": 364126076928,
       "fiftyTwoWeekHigh": 57.55,
       "fiftyTwoWeekLow": 42.35,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "PG": {
@@ -1317,7 +1317,7 @@
       "totalAssets": 340953464832,
       "fiftyTwoWeekHigh": 170.99,
       "fiftyTwoWeekLow": 137.62,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "CSCO": {
@@ -1332,7 +1332,7 @@
       "totalAssets": 381441179648,
       "fiftyTwoWeekHigh": 97.02,
       "fiftyTwoWeekLow": 60.85,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "MS": {
@@ -1347,7 +1347,7 @@
       "totalAssets": 304557916160,
       "fiftyTwoWeekHigh": 194.83,
       "fiftyTwoWeekLow": 123.88,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "UNH": {
@@ -1362,7 +1362,7 @@
       "totalAssets": 345076727808,
       "fiftyTwoWeekHigh": 387.21,
       "fiftyTwoWeekLow": 234.6,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "MCD": {
@@ -1377,7 +1377,7 @@
       "totalAssets": 195921985536,
       "fiftyTwoWeekHigh": 341.75,
       "fiftyTwoWeekLow": 274.83,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "PEP": {
@@ -1392,7 +1392,7 @@
       "totalAssets": 211356401664,
       "fiftyTwoWeekHigh": 171.48,
       "fiftyTwoWeekLow": 127.6,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "VZ": {
@@ -1407,7 +1407,7 @@
       "totalAssets": 197190729728,
       "fiftyTwoWeekHigh": 51.68,
       "fiftyTwoWeekLow": 38.39,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "NEE": {
@@ -1422,7 +1422,7 @@
       "totalAssets": 194145288192,
       "fiftyTwoWeekHigh": 98.75,
       "fiftyTwoWeekLow": 63.88,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "DE": {
@@ -1437,7 +1437,7 @@
       "totalAssets": 155268481024,
       "fiftyTwoWeekHigh": 674.19,
       "fiftyTwoWeekLow": 433,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "PFE": {
@@ -1452,7 +1452,7 @@
       "totalAssets": 146361729024,
       "fiftyTwoWeekHigh": 28.75,
       "fiftyTwoWeekLow": 21.97,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "LMT": {
@@ -1467,7 +1467,7 @@
       "totalAssets": 116782776320,
       "fiftyTwoWeekHigh": 692,
       "fiftyTwoWeekLow": 410.11,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.866Z",
       "source": "yahoo+stockanalysis"
     },
     "LOW": {
@@ -1482,7 +1482,7 @@
       "totalAssets": 128366419968,
       "fiftyTwoWeekHigh": 293.06,
       "fiftyTwoWeekLow": 210.33,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.867Z",
       "source": "yahoo+stockanalysis"
     },
     "QCOM": {
@@ -1497,7 +1497,7 @@
       "totalAssets": 230920863744,
       "fiftyTwoWeekHigh": 228.05,
       "fiftyTwoWeekLow": 121.99,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.867Z",
       "source": "yahoo+stockanalysis"
     },
     "MO": {
@@ -1512,7 +1512,7 @@
       "totalAssets": 113752989696,
       "fiftyTwoWeekHigh": 74.56,
       "fiftyTwoWeekLow": 54.7,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.867Z",
       "source": "yahoo+stockanalysis"
     },
     "GOOGL": {
@@ -1527,7 +1527,7 @@
       "totalAssets": 4855869472768,
       "fiftyTwoWeekHigh": 402,
       "fiftyTwoWeekLow": 156.16,
-      "updatedAt": "2026-05-10T03:30:03.331Z",
+      "updatedAt": "2026-05-10T16:04:16.867Z",
       "source": "yahoo-only"
     }
   }
