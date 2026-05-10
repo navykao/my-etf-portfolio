@@ -1,24 +1,11 @@
 /**
  * =====================================================
- * update-etf-data.cjs v5.1 PRODUCTION
+ * update-etf-data.cjs v2.0 (Fixed - Preserve Symbols)
  * =====================================================
- * GitHub Actions script — รันทุกวันอัตโนมัติ
+ * อัพเดทข้อมูลหุ้นที่มีอยู่ใน etf-database.json
+ * ไม่ overwrite symbols - เก็บรายการหุ้นเดิมไว้
  * 
- * ✅ v5.1 อัพเดต (May 7, 2026):
- *   1. [FIX] แก้บั๊ก divGrowth10Y ไม่ถูกเขียนลง database (ตัวแปรไม่ได้ประกาศ)
- *   2. [FIX] แก้บั๊ก database[symbol] → database[sym] ใน console.log
- *   3. [UPDATE] Div Growth 5Y + 10Y: ข้อมูลจาก stockanalysis.com (ถูกต้อง 100%)
- *   2. [NEW] เพิ่มหุ้นรายตัว 33 ตัว (AAPL, MSFT, NVDA, AVGO ฯลฯ)
- *   3. [NEW] เพิ่ม ETF ที่ขาด (COWZ, DGRW, DVY, HDV ฯลฯ)
- *   4. [FIX] ค่า COST=-16.60% (ถูกต้องตาม stockanalysis.com)
- *   5. [DATA] ข้อมูลอื่น: จาก Yahoo Finance API (เรียลไทม์)
- *   6. [DATA] ไม่มี FALLBACK — ข้อมูลทั้งหมดจาก API
- * 
- * แหล่งข้อมูล:
- *   - Div Growth 5Y: https://stockanalysis.com (manual จาก CSV export)
- *   - Price, Yield, Growth: Yahoo Finance API (realtime)
- * 
- * เวอร์ชันก่อนหน้า: v4.2
+ * Output: etf-database.json (update prices/yields only)
  * =====================================================
  */
 
@@ -26,205 +13,55 @@ const fs = require('fs');
 const path = require('path');
 
 // ==========================================
-// 📋 ETF/STOCK SYMBOLS
+// 🔄 Read existing database
 // ==========================================
-const SYMBOLS = [
-  // S&P 500
-  'VOO', 'SPY', 'IVV', 'SPLG', 'SPYM',
-  // Total Market
-  'VTI', 'SCHB',
-  // Dividend
-  'SCHD', 'VYM', 'VIG', 'DGRO', 'HDV', 'DVY',
-  // Growth
-  'QQQ', 'VGT', 'QQQM', 'MGK', 'SCHG', 'VUG', 'VOOG', 'VONG',
-  // Income / Covered Call
-  'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD', 'QQQI', 'SPYI',
-  // International
-  'VT', 'VXUS', 'VEA', 'VWO',
-  // Bond
-  'BND', 'BNDX', 'TLT', 'SHY', 'VGIT', 'AGG',
-  // Sector
-  'XLK', 'XLV', 'XLF', 'XLE', 'XLRE', 'SPMO',
-  // REIT
-  'VNQ', 'SCHH',
-  // Small Cap
-  'VB', 'SCHA', 'IJR', 'AVUV',
-  // Mid Cap + Other
-  'VO', 'SCHM', 'GLD', 'SGOV',
-  'VCIT', 'IVW', 'VEU',
-  'DIA', 'SPYG', 'SMH', 'VGIT',
-  'GLDM', 'DGRW', 'O',
-  'ARKK', 'COWZ', 'AVUV', 'SCHX',
-  
-  // Stocks
-  'V', 'MSFT', 'KO', 'GOOG', 'JPM', 'AVGO', 'MA',
-  'NVDA', 'AAPL', 'TSM', 'META', 'WMT', 'LLY', 'XOM',
-  'JNJ', 'ASML', 'COST', 'CVX', 'ABBV', 'BAC', 'PG',
-  'CSCO', 'MS', 'UNH', 'MCD', 'PEP', 'VZ', 'NEE',
-  'DE', 'PFE', 'LMT', 'LOW', 'QCOM', 'MO', 'GOOGL',
-];
+const databasePath = path.join(__dirname, '..', 'data', 'etf-database.json');
 
-const UNIQUE_SYMBOLS = [...new Set(SYMBOLS)];
+console.log('🔍 Reading existing database...');
+console.log(`   Path: ${databasePath}`);
 
-// =====================================================
-// 📊 DIVIDEND GROWTH DATA (v5.0)
-// แหล่งข้อมูล: https://stockanalysis.com
-// วันที่: Apr 12, 2026
-// =====================================================
-// วิธีอัพเดตข้อมูล:
-// 1. ETF: ไป https://stockanalysis.com/etf/screener/ → Export CSV
-// 2. Stock: ไป https://stockanalysis.com/stocks/screener/ → Export CSV
-// 3. คัดลอก Div. Growth 5Y มาใส่ตรงนี้
-// =====================================================
-// ==========================================
-// 📋 AUTOMATIC DIVIDEND GROWTH DATA (v5.1)
-// ==========================================
-// 1. อ่านไฟล์ที่คุณโหลดมาเผื่อไว้ (ต้องมีไฟล์ stockanalysis-divgrowth.json )
-const divGrowthRaw = fs.readFileSync(path.join(__dirname, '..', 'data', 'stockanalysis-divgrowth.json'));
-const divGrowthData = JSON.parse(divGrowthRaw);
-
-const DIV_GROWTH_5Y = {};
-const DIV_GROWTH_10Y = {};
-
-// 2. ลูปดึงค่า 5Y และ 10Y จากไฟล์ JSON มาใช้โดยตรง
-for (const symbol in divGrowthData) {
-  DIV_GROWTH_5Y[symbol] = divGrowthData[symbol].divGrowth5Y;
-  DIV_GROWTH_10Y[symbol] = divGrowthData[symbol].divGrowth10Y;
+if (!fs.existsSync(databasePath)) {
+  console.error('❌ etf-database.json not found!');
+  process.exit(1);
 }
-// ==========================================
-// 🔐 Yahoo Finance Session
-// ==========================================
-let yahooCookie = '';
-let yahooCrumb = '';
 
-async function initYahooSession() {
-  console.log('🔑 Initializing Yahoo Finance session...');
+const existingDb = JSON.parse(fs.readFileSync(databasePath, 'utf8'));
+const SYMBOLS = Object.keys(existingDb.data || {});
+
+console.log(`✅ Found ${SYMBOLS.length} existing symbols`);
+console.log(`📋 First 5: ${SYMBOLS.slice(0, 5).join(', ')}`);
+console.log('');
+
+// ==========================================
+// 📊 Fetch updated data for each symbol
+// ==========================================
+async function fetchStockData(symbol) {
   try {
-    const initRes = await fetch('https://fc.yahoo.com', { redirect: 'manual' });
-    const cookies = initRes.headers.getSetCookie ? initRes.headers.getSetCookie() : [];
-    yahooCookie = cookies.length > 0 ? cookies[0].split(';')[0] : (initRes.headers.get('set-cookie') || '').split(';')[0];
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1y`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
     
-    if (yahooCookie) {
-      const crumbRes = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', {
-        headers: { 'Cookie': yahooCookie, 'User-Agent': 'Mozilla/5.0' }
-      });
-      if (crumbRes.ok) {
-        yahooCrumb = await crumbRes.text();
-        if (yahooCrumb && yahooCrumb.length < 50 && !yahooCrumb.includes('<')) {
-          console.log(`✅ Session ready (crumb: ${yahooCrumb.substring(0, 8)}...)\n`);
-          return true;
-        }
-      }
-    }
-  } catch (e) {
-    console.error(`❌ Session error: ${e.message}`);
+    const data = await res.json();
+    const result = data?.chart?.result?.[0];
+    if (!result) return null;
+    
+    const meta = result.meta;
+    const quote = result.indicators?.quote?.[0];
+    if (!meta || !quote) return null;
+    
+    const closes = quote.close.filter(c => c !== null);
+    const firstPrice = closes[0];
+    const lastPrice = closes[closes.length - 1];
+    const growthRate = firstPrice ? ((lastPrice - firstPrice) / firstPrice) * 100 : 0;
+    
+    return {
+      price: lastPrice || 0,
+      divYield: meta.dividendYield ? (meta.dividendYield * 100) : 0,
+      growthRate: parseFloat(growthRate.toFixed(2)),
+    };
+  } catch (error) {
+    return null;
   }
-  
-  console.log('❌ Failed to get Yahoo session\n');
-  return false;
-}
-
-function buildUrl(baseUrl) {
-  if (!yahooCrumb) return baseUrl;
-  const separator = baseUrl.includes('?') ? '&' : '?';
-  return `${baseUrl}${separator}crumb=${encodeURIComponent(yahooCrumb)}`;
-}
-
-const HEADERS = () => ({
-  'Cookie': yahooCookie,
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-});
-
-// ==========================================
-// 📈 Fetch Quote Data (Price, Yield, etc.)
-// ==========================================
-async function fetchQuotes(symbols) {
-  console.log('📥 Fetching quotes from Yahoo Finance...');
-  const results = {};
-  const batchSize = 10;
-  
-  for (let i = 0; i < symbols.length; i += batchSize) {
-    const batch = symbols.slice(i, i + batchSize);
-    
-    try {
-      const url = buildUrl(`https://query2.finance.yahoo.com/v7/finance/quote?symbols=${batch.join(',')}`);
-      const res = await fetch(url, { headers: HEADERS() });
-      
-      if (res.ok) {
-        const json = await res.json();
-        const quotes = json?.quoteResponse?.result || [];
-        
-        for (const q of quotes) {
-          results[q.symbol] = {
-            price: q.regularMarketPrice || 0,
-            name: q.shortName || q.longName || q.symbol,
-            divYield: Math.round((q.trailingAnnualDividendYield || 0) * 10000) / 100,
-            trailingDividendRate: q.trailingAnnualDividendRate || 0,
-            fiftyTwoWeekHigh: q.fiftyTwoWeekHigh || 0,
-            fiftyTwoWeekLow: q.fiftyTwoWeekLow || 0,
-            totalAssets: q.totalAssets || q.marketCap || 0,
-          };
-        }
-        
-        console.log(`  ✅ Batch ${Math.floor(i/batchSize)+1}/${Math.ceil(symbols.length/batchSize)}: ${quotes.length} quotes`);
-      } else {
-        console.log(`  ❌ Batch ${Math.floor(i/batchSize)+1}: HTTP ${res.status}`);
-      }
-    } catch (e) {
-      console.log(`  ❌ Batch error: ${e.message}`);
-    }
-    
-    await new Promise(r => setTimeout(r, 500));
-  }
-  
-  console.log(`  → Total: ${Object.keys(results).length}/${symbols.length}\n`);
-  return results;
-}
-
-// ==========================================
-// 📊 Fetch Chart Data (Growth Rate)
-// ==========================================
-async function fetchChartData(symbol, currentPrice) {
-  const result = { growthRate: 0, calcDivYield: 0 };
-  
-  try {
-    const url = buildUrl(`https://query2.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1mo&range=5y&events=div`);
-    const res = await fetch(url, { headers: HEADERS() });
-    if (!res.ok) return result;
-    
-    const json = await res.json();
-    const chart = json?.chart?.result?.[0];
-    if (!chart) return result;
-    
-    // 1. Growth Rate (CAGR from price)
-    const closes = chart?.indicators?.quote?.[0]?.close?.filter(c => c != null && c > 0);
-    if (closes && closes.length >= 12) {
-      const years = closes.length / 12;
-      const cagr = (Math.pow(closes[closes.length - 1] / closes[0], 1 / years) - 1) * 100;
-      result.growthRate = Math.round(cagr * 100) / 100;
-    }
-    
-    // 2. Calculated Div Yield (Trailing 12 months)
-    const dividends = chart?.events?.dividends;
-    if (dividends && Object.keys(dividends).length > 0 && currentPrice > 0) {
-      const divArray = Object.values(dividends)
-        .map(d => ({ date: d.date * 1000, amount: d.amount }))
-        .sort((a, b) => a.date - b.date);
-      
-      const now = Date.now();
-      const oneYearAgo = now - (365.25 * 24 * 60 * 60 * 1000);
-      const trailing = divArray.filter(d => d.date >= oneYearAgo);
-      
-      if (trailing.length > 0) {
-        const total = trailing.reduce((sum, d) => sum + d.amount, 0);
-        result.calcDivYield = Math.round((total / currentPrice) * 10000) / 100;
-      }
-    }
-  } catch (e) {
-    // Silent fail
-  }
-  
-  return result;
 }
 
 // ==========================================
@@ -232,151 +69,67 @@ async function fetchChartData(symbol, currentPrice) {
 // ==========================================
 async function main() {
   console.log('='.repeat(70));
-  console.log('🚀 ETF Data Update v5.0 PRODUCTION');
+  console.log('📊 ETF Data Update v2.0 (Preserve Symbols)');
   console.log('='.repeat(70));
   console.log(`📅 ${new Date().toISOString()}`);
-  console.log(`📊 Symbols: ${UNIQUE_SYMBOLS.length}`);
-  console.log(`📍 Div Growth 5Y: stockanalysis.com (${Object.keys(DIV_GROWTH_5Y).length} symbols)`);
-  console.log(`📍 Div Growth 10Y: stockanalysis.com (${Object.keys(DIV_GROWTH_10Y).length} symbols)`);
-  console.log(`📍 Other Data: Yahoo Finance API (realtime)`);
+  console.log(`📊 Updating ${SYMBOLS.length} symbols`);
   console.log('='.repeat(70));
   console.log('');
   
-  // Step 1: Initialize session
-  const hasSession = await initYahooSession();
-  if (!hasSession) {
-    console.error('❌ Cannot proceed without Yahoo session');
-    process.exit(1);
-  }
+  const updatedData = {};
+  let successCount = 0;
+  let failCount = 0;
   
-  // Step 2: Fetch quotes
-  const quotes = await fetchQuotes(UNIQUE_SYMBOLS);
-  if (Object.keys(quotes).length === 0) {
-    console.error('❌ No quotes received from Yahoo');
-    process.exit(1);
-  }
-  
-  // Step 3: Fetch chart data
-  console.log('📈 Fetching chart data (growth rates)...');
-  const chartData = {};
-  
-  for (let i = 0; i < UNIQUE_SYMBOLS.length; i++) {
-    const sym = UNIQUE_SYMBOLS[i];
-    const price = quotes[sym]?.price || 0;
+  for (let i = 0; i < SYMBOLS.length; i++) {
+    const symbol = SYMBOLS[i];
+    const existing = existingDb.data[symbol];
     
-    if (price > 0) {
-      chartData[sym] = await fetchChartData(sym, price);
+    const newData = await fetchStockData(symbol);
+    
+    if (newData) {
+      updatedData[symbol] = {
+        ...existing,  // Keep old data
+        ...newData,   // Update price, yield, growth
+      };
+      successCount++;
+      console.log(`  ✅ ${symbol.padEnd(8)} - $${newData.price.toFixed(2)}`);
+    } else {
+      // Keep old data if fetch fails
+      updatedData[symbol] = existing;
+      failCount++;
+      console.log(`  ⚠️  ${symbol.padEnd(8)} - Using cached data`);
     }
     
-    if ((i + 1) % 10 === 0 || i === UNIQUE_SYMBOLS.length - 1) {
-      console.log(`  ... ${i + 1}/${UNIQUE_SYMBOLS.length}`);
+    if ((i + 1) % 10 === 0 || i === SYMBOLS.length - 1) {
+      console.log(`  ... Progress: ${i + 1}/${SYMBOLS.length}\n`);
     }
     
     await new Promise(r => setTimeout(r, 250));
-  }
-  console.log('  ✅ Chart data complete\n');
-  
-  // Step 4: Build database
-  console.log('🔧 Building database...\n');
-  console.log(`  ${'Symbol'.padEnd(8)} ${'Price'.padStart(10)} | ${'Yield'.padStart(7)} | ${'Growth'.padStart(8)} | ${'DivGr 5Y/10Y'.padStart(18)} | ${'Source'.padEnd(12)}`);
-  console.log(`  ${'-'.repeat(85)}`);
-  
-  const database = {};
-  let stats = {
-    withDivGrowth: 0,
-    noDivGrowth: 0,
-    withYield: 0,
-    withGrowth: 0,
-  };
-  
-  for (const sym of UNIQUE_SYMBOLS) {
-    const q = quotes[sym];
-    if (!q || q.price === 0) {
-      console.log(`  ${sym.padEnd(8)} ❌ No data from Yahoo`);
-      continue;
-    }
-    
-    const c = chartData[sym] || { growthRate: 0, calcDivYield: 0 };
-    
-    // Dividend Yield (prefer Yahoo > calculated)
-    const divYield = q.divYield > 0 ? q.divYield : c.calcDivYield;
-    
-    // Growth Rate
-    const growthRate = c.growthRate || 0;
-    
-    // Div Growth 5Y & 10Y (from Stock Analysis)
-    const divGrowth5Y = DIV_GROWTH_5Y[sym] !== undefined ? DIV_GROWTH_5Y[sym] : null;
-    const divGrowth10Y = DIV_GROWTH_10Y[sym] !== undefined ? DIV_GROWTH_10Y[sym] : null;
-    
-    database[sym] = {
-      symbol: sym,
-      name: q.name,
-      price: q.price,
-      divYield,
-      growthRate,
-      divGrowth5Y,
-      divGrowth10Y,
-      trailingDividendRate: q.trailingDividendRate,
-      totalAssets: q.totalAssets,
-      fiftyTwoWeekHigh: q.fiftyTwoWeekHigh,
-      fiftyTwoWeekLow: q.fiftyTwoWeekLow,
-      updatedAt: new Date().toISOString(),
-      source: divGrowth5Y !== null ? 'yahoo+stockanalysis' : 'yahoo-only',
-    };
-    
-    // Update stats
-    if (divGrowth5Y !== null) stats.withDivGrowth++;
-    else stats.noDivGrowth++;
-    if (divYield > 0) stats.withYield++;
-    if (growthRate !== 0) stats.withGrowth++;
-    
-    // Display
-    const fmtPrice = `$${q.price.toFixed(2)}`.padStart(10);
-    const fmtYield = divYield > 0 ? `${divYield.toFixed(2)}%`.padStart(6) : '-'.padStart(6);
-    const fmtGrowth = growthRate !== 0 ? `${growthRate >= 0 ? '+' : ''}${growthRate.toFixed(2)}%`.padStart(8) : '-'.padStart(8);
-    const fmtDivGr = (divGrowth5Y != null ? divGrowth5Y.toFixed(2) : '---') + '%' + 
-                     ' / ' + (divGrowth10Y != null ? divGrowth10Y.toFixed(2) : '---') + '%';
-    const source = divGrowth5Y !== null ? 'Yahoo+SA' : 'Yahoo';
-    
-    console.log(`  ${sym.padEnd(8)} ${fmtPrice} | ${fmtYield} | ${fmtGrowth} | ${fmtDivGr} | ${source.padEnd(12)}`);
   }
   
   console.log('');
   console.log('='.repeat(70));
   console.log('📊 Summary:');
-  console.log(`   Total symbols: ${Object.keys(database).length}`);
-  console.log(`   With Div Growth 5Y: ${stats.withDivGrowth} (from stockanalysis.com)`);
-  console.log(`   Without Div Growth: ${stats.noDivGrowth}`);
-  console.log(`   With Dividend Yield: ${stats.withYield}`);
-  console.log(`   With Growth Rate: ${stats.withGrowth}`);
+  console.log(`   Updated: ${successCount}`);
+  console.log(`   Cached: ${failCount}`);
+  console.log(`   Total: ${SYMBOLS.length}`);
   console.log('='.repeat(70));
   
-  // Step 5: Save to file
-  const outputPath = path.join(__dirname, '..', 'data', 'etf-database.json');
+  // Save updated database
   const output = {
     _meta: {
-      lastUpdated: new Date().toISOString(),
-      totalSymbols: Object.keys(database).length,
-      version: '5.0',
-      dataSource: {
-        divGrowth: 'stockanalysis.com (5Y + 10Y from JSON)',
-        other: 'Yahoo Finance API (realtime)',
-      },
-      stats,
+      lastUpdate: new Date().toISOString(),
+      totalSymbols: SYMBOLS.length,
+      dataSource: 'Yahoo Finance API',
     },
-    data: database,
+    data: updatedData
   };
   
-  const dataDir = path.dirname(outputPath);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
+  fs.writeFileSync(databasePath, JSON.stringify(output, null, 2), 'utf8');
   
-  fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf8');
-  
-  const fileSize = (fs.statSync(outputPath).size / 1024).toFixed(1);
+  const fileSize = (fs.statSync(databasePath).size / 1024).toFixed(1);
   console.log('');
-  console.log(`✅ Database saved: ${outputPath}`);
+  console.log(`✅ Database updated: ${databasePath}`);
   console.log(`📦 File size: ${fileSize} KB`);
   console.log('='.repeat(70));
 }
