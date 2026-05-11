@@ -17,12 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
-      - name: Install dependencies
-        run: |
-          cd scripts
-          npm install
-      
+                
       - name: Update 300 Stocks + 250 ETF
         run: node scripts/update-combined-top300.cjs
         env:
