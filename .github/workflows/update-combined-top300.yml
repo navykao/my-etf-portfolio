@@ -1,4 +1,4 @@
-name: Update Combined 746 Assets (S&P 500 + Top 250 ETF)
+name: update-combined-top300.cjs (S&P 300 + Top 250 ETF)
 
 on:
   schedule:
