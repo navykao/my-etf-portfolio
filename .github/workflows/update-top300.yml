@@ -1,0 +1,38 @@
+name: Update 300 Stocks + 250 ETF
+
+on:
+  schedule:
+    - cron: '0 23 * * 1-5'  # Monday-Friday 23:00 UTC = 09:00 AM Thailand
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: |
+          cd scripts
+          npm install
+      
+      - name: Update 300 Stocks + 250 ETF
+        run: node scripts/update-combined-top300.cjs
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+          FMP0N8_API_KEY: ${{ secrets.FMP0N8_API_KEY }}
+      
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Update 300 stocks + 250 ETF data" || true
+          git push
