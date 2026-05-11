@@ -15,7 +15,7 @@ if (!EODHD_API_KEY || !FMP_API_KEY) {
 }
 
 // Load symbols
-const sp500Symbols = require('./sp500-symbols-top300.json');
+// const sp500Symbols = require('./sp500-symbols-top300.json');
 const etfSymbols = require('./top250-etf-symbols.json');
 
 const DELAY_MS = 8000; // 8 seconds per request
@@ -116,7 +116,7 @@ async function delay(ms) {
 
 async function main() {
   console.log('📊 Fetching combined top 300 S&P 500 + 250 ETF data...\n');
-  
+  /*
   // Fetch S&P 500 (Top 300)
   console.log(`📈 Fetching ${sp500Symbols.length} S&P 500 stocks...`);
   for (let i = 0; i < sp500Symbols.length; i++) {
@@ -127,7 +127,7 @@ async function main() {
       allAssets.push(data);
       console.log(`✅ [${i + 1}/${sp500Symbols.length}] ${symbol} - $${data.price}`);
     }
-    
+    */
     await delay(DELAY_MS);
   }
   
