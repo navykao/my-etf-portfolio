@@ -20,10 +20,8 @@ jobs:
         with:
           node-version: '18'
       
-      - name: Update 746 Combined Assets
-        run: |
-          cd scripts
-          node update-combined-746-assets.cjs
+      - nname: Update 250 ETF
+        run: node scripts/update-combined-top300.cjs
         env:
           TZ: 'Asia/Bangkok'
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
