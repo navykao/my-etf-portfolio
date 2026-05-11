@@ -2,7 +2,7 @@ name: Update 300 Stocks + 250 ETF
 
 on:
   schedule:
-    - cron: '0 23 * * 1-5'  # Monday-Friday 23:00 UTC = 09:00 AM Thailand
+    - cron: '0 2 * * 1-5'
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-                
+      
       - name: Update 300 Stocks + 250 ETF
         run: node scripts/update-combined-top300.cjs
         env:
@@ -29,5 +29,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "Update 300 stocks + 250 ETF data" || true
+          git commit -m "Update ETF data" || true
           git push
