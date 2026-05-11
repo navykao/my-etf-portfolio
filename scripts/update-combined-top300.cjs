@@ -4,36 +4,88 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-// API Key
+// API Keys
+const EODHD_API_KEY = process.env.EODHD_API_KEY;
 const FMP_API_KEY = process.env.FMP0N8_API_KEY;
 
-if (!FMP_API_KEY) {
-  console.error('Error: FMP0N8_API_KEY not found');
+if (!EODHD_API_KEY || !FMP_API_KEY) {
+  console.error('Error: API keys not found');
+  console.error('Need: EODHD_API_KEY and FMP0N8_API_KEY');
   process.exit(1);
 }
 
-// Load ETF symbols
-const symbolsPath = path.join(__dirname, 'top250-etf-symbols.json');
+// Load symbols
+const stocksPath = path.join(__dirname, 'sp500-symbols-top300.json');
+const etfPath = path.join(__dirname, 'top250-etf-symbols.json');
 
-if (!fs.existsSync(symbolsPath)) {
-  console.error('Error: top250-etf-symbols.json not found at ' + symbolsPath);
+if (!fs.existsSync(stocksPath)) {
+  console.error('Error: sp500-symbols-top300.json not found');
+  process.exit(1);
+}
+if (!fs.existsSync(etfPath)) {
+  console.error('Error: top250-etf-symbols.json not found');
   process.exit(1);
 }
 
-const rawData = JSON.parse(fs.readFileSync(symbolsPath, 'utf8'));
-const etfSymbols = rawData.symbols || rawData;
-console.log('Loaded ' + etfSymbols.length + ' ETF symbols');
+const stocksRaw = JSON.parse(fs.readFileSync(stocksPath, 'utf8'));
+const etfRaw = JSON.parse(fs.readFileSync(etfPath, 'utf8'));
+
+const sp500Symbols = stocksRaw.symbols || stocksRaw;
+const etfSymbols = etfRaw.symbols || etfRaw;
+
+console.log('Loaded ' + sp500Symbols.length + ' stocks + ' + etfSymbols.length + ' ETFs');
 
 // Ensure data directory exists
 const dataDir = path.join(__dirname, '..', 'data');
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
-  console.log('Created data directory: ' + dataDir);
 }
 
 const DELAY_MS = 8000;
 const allAssets = [];
 const errors = [];
+
+function fetchEODHD(symbol) {
+  return new Promise((resolve) => {
+    const url = 'https://eodhistoricaldata.com/api/real-time/' + symbol + '.US?api_token=' + EODHD_API_KEY + '&fmt=json';
+    
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          if (json.code || json.message) {
+            console.log('X [' + symbol + '] ' + (json.message || 'Error'));
+            errors.push(symbol);
+            resolve(null);
+          } else {
+            resolve({
+              symbol: symbol,
+              name: json.name || symbol,
+              type: 'STOCK',
+              price: json.close || json.lastPrice || 0,
+              divYield: (json.dividend_yield || 0) * 100,
+              growthRate: 0,
+              peRatio: json.pe || 0,
+              high52w: json.year_high || json.close || 0,
+              low52w: json.year_low || json.close || 0,
+              updatedAt: new Date().toISOString()
+            });
+          }
+        } catch (e) {
+          console.log('X [' + symbol + '] Parse error');
+          errors.push(symbol);
+          resolve(null);
+        }
+      });
+    }).on('error', () => {
+      console.log('X [' + symbol + '] Network error');
+      errors.push(symbol);
+      resolve(null);
+    });
+  });
+}
 
 function fetchFMP(symbol) {
   return new Promise((resolve) => {
@@ -84,10 +136,29 @@ async function delay(ms) {
 
 async function main() {
   console.log('--- START ---');
-  console.log('Fetching ' + etfSymbols.length + ' ETF data (FMP only)');
   console.log('Date: ' + new Date().toISOString());
   console.log('');
-  
+
+  // Part 1: Stocks (EODHD)
+  console.log('[1/2] Fetching ' + sp500Symbols.length + ' S&P 500 stocks (EODHD)...');
+  for (let i = 0; i < sp500Symbols.length; i++) {
+    const symbol = sp500Symbols[i];
+    const data = await fetchEODHD(symbol);
+    
+    if (data) {
+      allAssets.push(data);
+      console.log('[' + (i + 1) + '/' + sp500Symbols.length + '] OK ' + symbol + ' $' + data.price);
+    }
+    
+    if (i < sp500Symbols.length - 1) {
+      await delay(DELAY_MS);
+    }
+  }
+
+  console.log('');
+
+  // Part 2: ETFs (FMP)
+  console.log('[2/2] Fetching ' + etfSymbols.length + ' ETFs (FMP)...');
   for (let i = 0; i < etfSymbols.length; i++) {
     const symbol = etfSymbols[i];
     const data = await fetchFMP(symbol);
