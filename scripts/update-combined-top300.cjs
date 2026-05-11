@@ -14,14 +14,14 @@ if (!FMP_API_KEY) {
 
 // Load ETF symbols
 const symbolsPath = path.join(__dirname, 'top250-etf-symbols.json');
-console.log('Loading symbols from: ' + symbolsPath);
 
 if (!fs.existsSync(symbolsPath)) {
   console.error('Error: top250-etf-symbols.json not found at ' + symbolsPath);
   process.exit(1);
 }
 
-const etfSymbols = JSON.parse(fs.readFileSync(symbolsPath, 'utf8'));
+const rawData = JSON.parse(fs.readFileSync(symbolsPath, 'utf8'));
+const etfSymbols = rawData.symbols || rawData;
 console.log('Loaded ' + etfSymbols.length + ' ETF symbols');
 
 // Ensure data directory exists
