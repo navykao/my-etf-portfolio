@@ -7,20 +7,22 @@ import { Search, Star, Bell, DollarSign, TrendingUp, Trash2, Plus, RefreshCw } f
 
 // Firebase Configuration - ใช้ค่าจาก Environment Variables หรือ fallback
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDzl3so9I793U1GGs6aQUs3d0GK-4uyy8k",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "my-etf-portfolio.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "my-etf-portfolio",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "my-etf-portfolio.firebasestorage.app",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "999667791801",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:999667791801:web:6e413d5e34f37982002868"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Check if Firebase config is valid before initializing
 const hasValidFirebaseConfig = 
   firebaseConfig.apiKey && 
   firebaseConfig.apiKey !== "" && 
-  !firebaseConfig.apiKey.includes("YOUR_") &&
-  firebaseConfig.apiKey.length > 30; // Valid API keys are longer
+  firebaseConfig.apiKey !== "undefined" &&
+  firebaseConfig.projectId &&
+  firebaseConfig.projectId !== "" &&
+  firebaseConfig.projectId !== "undefined"
 
 const app = hasValidFirebaseConfig ? initializeApp(firebaseConfig) : null;
 const auth = app ? getAuth(app) : null;
