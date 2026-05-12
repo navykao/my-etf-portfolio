@@ -62,8 +62,8 @@ const DIVIDEND_FREQUENCIES = {
 const DEFAULT_CACHE_CONFIG = {
   LOCAL_CACHE_KEY: 'etf_local_cache_v5',
   LOCAL_CACHE_DAYS: 7,
-  GITHUB_JSON_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/data/etf-database.json',
-  GITHUB_CACHE_KEY: 'etf_github_cache_v3',
+  GITHUB_JSON_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/data/combined-all-assets.json',
+  GITHUB_CACHE_KEY: 'etf_github_cache_v5',
   GITHUB_CACHE_HOURS: 6,
   API_CALL_LOG_KEY: 'etf_api_calls_v5',
   DAILY_API_LIMIT: 30,
@@ -245,7 +245,21 @@ export default function App() {
       const res = await fetch(CacheManager.config.GITHUB_JSON_URL);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();
-      const database = json.data || json;
+      
+      // รองรับทั้ง format เก่า (object) และใหม่ (array)
+      let database;
+      if (Array.isArray(json)) {
+        // combined-all-assets.json = array → แปลงเป็น object keyed by symbol
+        database = {};
+        for (const item of json) {
+          if (item.symbol) {
+            database[item.symbol] = item;
+          }
+        }
+      } else {
+        database = json.data || json;
+      }
+      
       localStorage.setItem(cacheKey, JSON.stringify({ 
         data: database, 
         timestamp: Date.now() 
