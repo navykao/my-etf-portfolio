@@ -340,7 +340,7 @@ function App() {
       allocation: parseFloat(allocation),
       divFrequency: frequency,
       currentPrice: parseFloat(asset.price) || 0,
-      dividendYield: parseFloat(asset.dividendYield) || 0
+      dividendYield: parseFloat(asset.divYield || asset.dividendYield) || 0
     }]);
   };
 
@@ -705,7 +705,7 @@ function App() {
                   <div className="font-medium text-blue-600">{asset.symbol}</div>
                   <div className="text-slate-600 text-xs">{asset.name}</div>
                   <div className="text-right">${parseFloat(asset.price || 0).toFixed(2)}</div>
-                  <div className="text-right">{parseFloat(asset.dividendYield || 0).toFixed(2)}%</div>
+                  <div className="text-right">{parseFloat(asset.divYield || asset.dividendYield || 0).toFixed(2)}%</div>
                   <div className="flex justify-center gap-2">
                     <button
                       onClick={() => addToPortfolio(asset)}
@@ -757,7 +757,7 @@ function App() {
                     </div>
                     <div className="text-right">
                       <div className="font-medium">${parseFloat(asset.price || 0).toFixed(2)}</div>
-                      <div className="text-xs text-slate-600">{parseFloat(asset.dividendYield || 0).toFixed(2)}% yield</div>
+                      <div className="text-xs text-slate-600">{parseFloat(asset.divYield || asset.dividendYield || 0).toFixed(2)}% yield</div>
                     </div>
                   </div>
                   <div className="flex gap-2">
@@ -819,7 +819,7 @@ function App() {
                     <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
                       <div className="text-right">
                         <div className="font-medium text-sm sm:text-base">${parseFloat(item.price || 0).toFixed(2)}</div>
-                        <div className="text-xs text-slate-600">{parseFloat(item.dividendYield || 0).toFixed(2)}% yield</div>
+                        <div className="text-xs text-slate-600">{parseFloat(item.divYield || item.dividendYield || 0).toFixed(2)}% yield</div>
                       </div>
                       <button
                         onClick={() => setWatchlist(watchlist.filter((_, i) => i !== idx))}
