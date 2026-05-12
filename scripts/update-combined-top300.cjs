@@ -112,8 +112,8 @@ function chunkArray(arr, size) {
 // =====================================================
 
 /**
- * Fetch batch quotes from FMP
- * URL: https://financialmodelingprep.com/api/v3/quote/AAPL,MSFT,GOOGL?apikey=KEY
+ * Fetch batch quotes from FMP (Stable API - 2025+)
+ * NEW URL: https://financialmodelingprep.com/stable/batch-quote?symbols=AAPL,MSFT,GOOGL&apikey=KEY
  * 
  * 1 request = หลายตัว (แนะนำ 50 ตัว/request)
  */
@@ -127,7 +127,8 @@ async function fetchFMPBatch(symbols, type) {
   for (let i = 0; i < chunks.length; i++) {
     const chunk = chunks[i];
     const symbolList = chunk.join(',');
-    const url = 'https://financialmodelingprep.com/api/v3/quote/' + symbolList + '?apikey=' + FMP_API_KEY;
+    // ✅ ใช้ Stable API endpoint ใหม่ (Legacy /api/v3/ ถูกยกเลิกแล้ว)
+    const url = 'https://financialmodelingprep.com/stable/batch-quote?symbols=' + symbolList + '&apikey=' + FMP_API_KEY;
     
     try {
       const data = await httpsGet(url);
