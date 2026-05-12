@@ -22,6 +22,9 @@ jobs:
         with:
           node-version: '22'
       
+      - name: Install yahoo-finance2
+        run: npm install yahoo-finance2
+      
       - name: Update 300 Stocks + 250 ETF
         run: node scripts/update-combined-top300.cjs
       
@@ -29,7 +32,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A
+          git add data/
           if git diff --staged --quiet; then
             echo "No changes"
           else
