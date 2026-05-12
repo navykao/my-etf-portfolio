@@ -146,7 +146,7 @@ async function fetchStockData() {
   console.log('📥 Fetching data from Yahoo Finance...\n');
   
   const results = [];
-  const batchSize = 100; // Yahoo can handle 100 symbols per request
+  const batchSize = 50; // Reduce batch size to avoid rate limits
   const batches = [];
   
   // Split into batches
@@ -162,12 +162,16 @@ async function fetchStockData() {
     
     try {
       const symbols = batch.join(',');
-      const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=symbol,shortName,longName,regularMarketPrice,trailingAnnualDividendYield,trailingAnnualDividendRate,dividendYield,quoteType`;
+      // Use query2 endpoint which is more reliable
+      const url = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`;
       
       const response = await fetch(url, {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-          'Accept': 'application/json'
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          'Accept': '*/*',
+          'Accept-Language': 'en-US,en;q=0.9',
+          'Accept-Encoding': 'gzip, deflate, br',
+          'Referer': 'https://finance.yahoo.com'
         }
       });
       
@@ -202,15 +206,52 @@ async function fetchStockData() {
         console.log(`  ✅ Batch ${batchNum}/${batches.length}: ${quotes.length} symbols fetched`);
       } else {
         console.log(`  ❌ Batch ${batchNum}/${batches.length}: HTTP ${response.status}`);
+        
+        // If 401, try alternative endpoint
+        if (response.status === 401) {
+          console.log(`  🔄 Retrying with alternative endpoint...`);
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          
+          const altUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`;
+          const altResponse = await fetch(altUrl, {
+            headers: {
+              'User-Agent': 'curl/7.68.0',
+              'Accept': '*/*'
+            }
+          });
+          
+          if (altResponse.ok) {
+            const altData = await altResponse.json();
+            const altQuotes = altData?.quoteResponse?.result || [];
+            
+            for (const quote of altQuotes) {
+              if (quote.regularMarketPrice && quote.regularMarketPrice > 0) {
+                let divYield = 0;
+                if (quote.trailingAnnualDividendYield) {
+                  divYield = quote.trailingAnnualDividendYield * 100;
+                }
+                
+                results.push({
+                  symbol: quote.symbol,
+                  name: quote.shortName || quote.longName || quote.symbol,
+                  price: quote.regularMarketPrice.toString(),
+                  dividendYield: divYield.toFixed(2),
+                  type: quote.quoteType === 'ETF' ? 'ETF' : 'Stock'
+                });
+              }
+            }
+            console.log(`  ✅ Retry successful: ${altQuotes.length} symbols`);
+          }
+        }
       }
       
     } catch (error) {
       console.log(`  ❌ Batch ${batchNum}/${batches.length}: ${error.message}`);
     }
     
-    // Rate limiting: wait 500ms between batches
+    // Rate limiting: wait 1 second between batches
     if (i < batches.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
   
