@@ -13,19 +13,21 @@ console.log('- VITE_FIREBASE_PROJECT_ID:', import.meta.env.VITE_FIREBASE_PROJECT
 console.log('- Mode:', import.meta.env.MODE);
 console.log('- Prod:', import.meta.env.PROD);
 
+// TEMPORARY: Use hardcoded values to test if API key is correct
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDzL3so9I793U1GGs6aQUs3d0GK-4uyyBk",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "my-etf-portfolio.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "my-etf-portfolio",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "my-etf-portfolio.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "999667791801",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:999667791801:web:6e413d5e34f379820B2868"
 };
 
 console.log('[Debug] Firebase config loaded:', {
   hasApiKey: !!firebaseConfig.apiKey,
   hasProjectId: !!firebaseConfig.projectId,
-  apiKeyLength: firebaseConfig.apiKey?.length || 0
+  apiKeyLength: firebaseConfig.apiKey?.length || 0,
+  apiKeyPreview: firebaseConfig.apiKey?.substring(0, 10) + '...'
 });
 
 // Check if Firebase config is valid before initializing
