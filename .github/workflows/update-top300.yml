@@ -2,8 +2,8 @@ name: Update 300 Stocks + 250 ETF
 
 on:
   schedule:
-    - cron: '0 2 * * 1-5'
-  workflow_dispatch:
+    - cron: '0 2 * * 1-5'  # รันเวลา 02:00 UTC ทุกวันจันทร์-ศุกร์
+  workflow_dispatch:  # สามารถรันด้วยตัวเองได้
 
 jobs:
   update:
@@ -11,12 +11,13 @@ jobs:
     timeout-minutes: 120
     
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4  # ✅ อัพเกรดจาก v3 เป็น v4
       
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # ✅ อัพเกรดจาก v3 เป็น v4
         with:
-          node-version: '18'
+          node-version: '22'  # ✅ เปลี่ยนจาก 18 เป็น 22 (LTS)
       
       - name: Update 300 Stocks + 250 ETF
         run: node scripts/update-combined-top300.cjs
@@ -29,5 +30,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "Update ETF data" || true
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update 300 Stocks + 250 ETF data [$(date +'%Y-%m-%d %H:%M:%S')]"
           git push
