@@ -19,13 +19,17 @@ jobs:
       - name: 📥 Checkout repository
         uses: actions/checkout@v3
       
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v3
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '18'
+          python-version: '3.10'
+      
+      - name: 📦 Install dependencies
+        run: |
+          pip install yfinance
       
       - name: 📊 Run update script
-        run: node scripts/update-stock-data.cjs
+        run: python scripts/update-stock-data.py
       
       - name: 💾 Commit and push changes
         run: |
