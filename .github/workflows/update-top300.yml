@@ -2,8 +2,13 @@ name: Update 300 Stocks + 250 ETF
 
 on:
   schedule:
-    - cron: '0 2 * * 1-5'  # รันเวลา 02:00 UTC ทุกวันจันทร์-ศุกร์
+    # รันทุกวันเวลา 02:00 UTC (09:00 เวลาไทย)
+    - cron: '0 2 * * *'  # ✅ เปลี่ยนจาก '0 2 * * 1-5' เป็นรันทุกวัน
   workflow_dispatch:  # สามารถรันด้วยตัวเองได้
+
+# กำหนด permissions สำหรับ GITHUB_TOKEN
+permissions:
+  contents: write  # อนุญาตให้ commit และ push ได้
 
 jobs:
   update:
@@ -12,12 +17,33 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # ✅ อัพเกรดจาก v3 เป็น v4
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # เพื่อให้ git history ครบ
       
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # ✅ อัพเกรดจาก v3 เป็น v4
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'  # ✅ เปลี่ยนจาก 18 เป็น 22 (LTS)
+          node-version: '22'
+      
+      - name: Check if scripts exist
+        run: |
+          echo "📁 Checking required files..."
+          ls -la scripts/
+          if [ ! -f "scripts/update-combined-top300.cjs" ]; then
+            echo "❌ Error: update-combined-top300.cjs not found!"
+            exit 1
+          fi
+          if [ ! -f "scripts/sp500-symbols-top300.json" ]; then
+            echo "❌ Error: sp500-symbols-top300.json not found!"
+            exit 1
+          fi
+          if [ ! -f "scripts/top250-etf-symbols.json" ]; then
+            echo "❌ Error: top250-etf-symbols.json not found!"
+            exit 1
+          fi
+          echo "✅ All required files found!"
       
       - name: Update 300 Stocks + 250 ETF
         run: node scripts/update-combined-top300.cjs
@@ -25,10 +51,45 @@ jobs:
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
           FMP0N8_API_KEY: ${{ secrets.FMP0N8_API_KEY }}
       
+      - name: Check if data was updated
+        id: check_changes
+        run: |
+          echo "📊 Checking for data changes..."
+          if [ -f "data/combined-746-assets.json" ]; then
+            echo "✅ Data file exists"
+            echo "has_data=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Data file not found"
+            echo "has_data=false" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Commit and push if changed
+        if: steps.check_changes.outputs.has_data == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update 300 Stocks + 250 ETF data [$(date +'%Y-%m-%d %H:%M:%S')]"
-          git push
+          
+          # ตรวจสอบว่ามีการเปลี่ยนแปลงหรือไม่
+          if git diff --staged --quiet; then
+            echo "ℹ️ No changes to commit"
+          else
+            TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
+            git commit -m "Update 300 Stocks + 250 ETF data [$TIMESTAMP]"
+            git push
+            echo "✅ Changes committed and pushed!"
+          fi
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "🎯 Workflow Summary:"
+          echo "- Date: $(date)"
+          echo "- Node version: $(node --version)"
+          echo "- Status: ${{ job.status }}"
+          if [ -f "data/combined-746-assets.json" ]; then
+            FILE_SIZE=$(du -h data/combined-746-assets.json | cut -f1)
+            echo "- Data file size: $FILE_SIZE"
+            RECORD_COUNT=$(cat data/combined-746-assets.json | grep -o "\"symbol\"" | wc -l)
+            echo "- Records: $RECORD_COUNT"
+          fi
