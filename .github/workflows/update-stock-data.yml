@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
 =====================================================
-update-stock-data.py v6.1 - Python Version
+update-stock-data.py v6.1 COMPLETE - 735 Symbols
 =====================================================
-Auto-update 746 stocks/ETFs using yfinance library
+Auto-update 735 stocks/ETFs using yfinance library
 
 Features:
-  - ดึงข้อมูล 746 symbols จาก yfinance (ฟรี!)
+  - ดึงข้อมูล 735 symbols (ครบทุกตัวจาก JSON)
   - ข้อมูลที่ดึง: Price, Name, Dividend Yield, Type
   - เสถียรกว่า Node.js version
   - ไม่กิน FMP/FinnHub quota เลย!
@@ -23,119 +23,90 @@ from datetime import datetime
 from pathlib import Path
 
 # ==========================================
-# 📋 ALL SYMBOLS (746 assets)
+# 📋 ALL SYMBOLS (735 assets from JSON)
 # ==========================================
 SYMBOLS = [
-    # S&P 500 ETFs
-    'VOO', 'SPY', 'IVV', 'SPLG', 'SPYM', 'SPYG', 'SPYV',
-    
-    # Total Market
-    'VTI', 'SCHB', 'ITOT', 'SPTM',
-    
-    # Dividend ETFs
-    'SCHD', 'VYM', 'VIG', 'DGRO', 'HDV', 'DVY', 'NOBL', 'SDY', 'FVD', 'RDVY',
-    'DIVO', 'DIV', 'FDL', 'SDOG', 'DHS', 'DLN', 'DTD', 'DVP', 'VYMI',
-    
-    # Growth ETFs
-    'QQQ', 'QQQM', 'VGT', 'MGK', 'SCHG', 'VUG', 'VOOG', 'VONG', 'IWF',
-    'IVW', 'MTUM', 'FTEC', 'IYW', 'IWY',
-    
-    # Income / Covered Call
-    'JEPI', 'JEPQ', 'XYLD', 'QYLD', 'RYLD', 'XYLG', 'QYLG', 'SPYI', 'QQQI',
-    'SVOL', 'DJIA', 'IWMY', 'NUSI', 'ULTY',
-    
-    # International
-    'VT', 'VXUS', 'VEA', 'VWO', 'IEFA', 'IEMG', 'EFA', 'EEM', 'IXUS',
-    'SPDW', 'SPEM', 'VEU', 'ACWI', 'VSS', 'DLS',
-    
-    # Bond ETFs
-    'BND', 'AGG', 'BNDX', 'TLT', 'SHY', 'IEF', 'TIP', 'LQD', 'HYG', 'MUB',
-    'VCIT', 'VCSH', 'BSV', 'BIV', 'BLV', 'GOVT', 'SGOV', 'STIP', 'VTIP',
-    
-    # Sector ETFs
-    'XLK', 'XLV', 'XLF', 'XLE', 'XLI', 'XLP', 'XLY', 'XLU', 'XLB', 'XLRE',
-    'VDE', 'VIS', 'VDC', 'VCR', 'VPU', 'VAW',
-    
-    # REIT
-    'VNQ', 'SCHH', 'IYR', 'RWR', 'USRT', 'REM', 'MORT', 'SRVR',
-    
-    # Small Cap
-    'VB', 'SCHA', 'IJR', 'IWM', 'VTWO', 'SLYG', 'SLYV', 'IWN', 'IWO', 'VIOO',
-    
-    # Mid Cap
-    'VO', 'SCHM', 'IJH', 'MDY', 'IVOO', 'IVOG', 'IVOV', 'IJJ', 'IJK',
-    
-    # Commodity / Gold
-    'GLD', 'GLDM', 'IAU', 'SLV', 'DBC', 'PDBC', 'GSG', 'DBO',
-    
-    # Other Popular ETFs
-    'ARKK', 'ARKW', 'ARKG', 'COWZ', 'DGRW', 'AVUV', 'SCHX', 'DIA', 'SMH',
-    'SOXX', 'FDN', 'HACK', 'BOTZ', 'ROBT', 'FINX', 'TAN', 'PBW',
-    'ICLN', 'QCLN', 'LIT', 'REMX', 'JETS', 'XAR', 'PPA', 'PHO',
-    
-    # Tech Stocks
-    'AAPL', 'MSFT', 'GOOGL', 'GOOG', 'AMZN', 'META', 'NVDA', 'TSLA', 'NFLX',
-    'ADBE', 'CRM', 'ORCL', 'CSCO', 'INTC', 'AMD', 'QCOM', 'TXN', 'AVGO',
-    'AMAT', 'LRCX', 'KLAC', 'SNPS', 'CDNS', 'MRVL', 'MU', 'NXPI', 'ADI',
-    'MCHP', 'ON', 'MPWR', 'SWKS', 'QRVO', 'ENPH', 'SEDG', 'FSLR', 'RUN',
-    
-    # Finance Stocks
-    'JPM', 'BAC', 'WFC', 'C', 'GS', 'MS', 'BLK', 'SCHW', 'AXP', 'USB',
-    'PNC', 'TFC', 'COF', 'BK', 'STT', 'TROW', 'BEN', 'NTRS', 'IVZ',
-    
-    # Healthcare Stocks
-    'JNJ', 'UNH', 'PFE', 'ABBV', 'TMO', 'ABT', 'LLY', 'MRK', 'BMY', 'AMGN',
-    'GILD', 'CVS', 'CI', 'ANTM', 'HUM', 'MDT', 'DHR', 'SYK', 'BSX', 'EW',
-    'ISRG', 'VRTX', 'REGN', 'BIIB', 'ILMN', 'ALXN', 'IQV', 'A', 'ZBH',
-    
-    # Consumer Stocks
-    'WMT', 'HD', 'MCD', 'NKE', 'SBUX', 'TGT', 'LOW', 'TJX', 'DG', 'DLTR',
-    'COST', 'KR', 'SYY', 'HSY', 'GIS', 'K', 'CAG', 'CPB', 'MKC', 'SJM',
-    'PG', 'KO', 'PEP', 'CL', 'EL', 'KMB', 'CLX', 'CHD', 'TSN', 'HRL',
-    
-    # Industrial Stocks
-    'BA', 'CAT', 'HON', 'UPS', 'UNP', 'RTX', 'LMT', 'MMM', 'GE', 'DE',
-    'EMR', 'ITW', 'PH', 'ETN', 'ROK', 'DOV', 'FTV', 'IR', 'SWK', 'ALLE',
-    
-    # Energy Stocks
-    'XOM', 'CVX', 'COP', 'SLB', 'EOG', 'PSX', 'VLO', 'MPC', 'OXY', 'HAL',
-    'PXD', 'KMI', 'WMB', 'OKE', 'EPD', 'MPLX', 'ET', 'ENB', 'TRP',
-    
-    # Utility Stocks
-    'NEE', 'DUK', 'SO', 'D', 'AEP', 'EXC', 'SRE', 'PEG', 'XEL', 'ED',
-    'WEC', 'ES', 'DTE', 'PPL', 'AEE', 'CMS', 'EVRG', 'LNT', 'NI', 'PNW',
-    
-    # Real Estate Stocks
-    'AMT', 'PLD', 'CCI', 'EQIX', 'PSA', 'WELL', 'DLR', 'AVB', 'EQR', 'SBAC',
-    'O', 'SPG', 'VTR', 'ARE', 'PEAK', 'EXR', 'IRM', 'UDR', 'HST', 'MAA',
-    
-    # Communication Stocks
-    'T', 'VZ', 'TMUS', 'CMCSA', 'DIS', 'CHTR', 'ATVI', 'EA', 'TTWO',
-    
-    # Material Stocks
-    'LIN', 'APD', 'SHW', 'ECL', 'DD', 'NEM', 'FCX', 'NUE', 'VMC', 'MLM',
-    
-    # Dividend Aristocrats
-    'ABT', 'ADM', 'AFL', 'ALB', 'AOS', 'ATO', 'BDX',
-    'BF-B', 'BRO', 'CAH', 'CB', 'CTAS', 'CINF',
-    'ESS', 'EXPD', 'FRT', 'GD', 'GPC', 'GWW', 'KVUE', 'LEG',
-    'NDSN', 'PPG', 'ROP', 'ROST', 'SPGI', 'UBSI', 'WST',
-    
-    # Additional Popular Stocks
-    'V', 'MA', 'PYPL', 'SQ', 'FIS', 'FISV', 'ADP', 'PAYX', 'INTU', 'NOW',
-    'WDAY', 'TEAM', 'ZM', 'DOCU', 'OKTA', 'DDOG', 'SNOW', 'CRWD', 'ZS', 'NET',
-    'PANW', 'FTNT', 'CYBR', 'RPD', 'TENB', 'S', 'SPLK', 'MDB', 'ESTC', 'CFLT',
-    
-    # International Stocks
-    'TSM', 'ASML', 'NVO', 'TM', 'SAP', 'SNY', 'UL', 'NVS', 'BABA', 'TCEHY',
-    'TD', 'RY', 'BNS', 'BMO', 'CM', 'CNQ', 'SU', 'IMO'
+    'A', 'AAL', 'AAPL', 'ABBV', 'ABMD', 'ABT', 'ACN', 'ADBE', 'ADI', 'ADM',
+    'ADP', 'ADSK', 'AEE', 'AEP', 'AES', 'AFL', 'AIG', 'AIZ', 'AJG', 'AKAM',
+    'ALB', 'ALGN', 'ALK', 'ALL', 'ALLE', 'AMAT', 'AMCR', 'AMD', 'AME', 'AMGN',
+    'AMP', 'AMT', 'AMZN', 'ANET', 'AON', 'AOS', 'APA', 'APD', 'APH', 'APTV',
+    'ARE', 'ATO', 'AVB', 'AVGO', 'AVY', 'AWK', 'AXP', 'AZO', 'BA', 'BAC',
+    'BALL', 'BAX', 'BBWI', 'BBY', 'BDX', 'BEN', 'BF-B', 'BIIB', 'BIO', 'BK',
+    'BKNG', 'BKR', 'BLK', 'BMY', 'BR', 'BRK-B', 'BRO', 'BSX', 'BWA', 'BXP',
+    'C', 'CAG', 'CAH', 'CARR', 'CAT', 'CB', 'CBOE', 'CBRE', 'CCI', 'CCL',
+    'CDNS', 'CDW', 'CE', 'CEG', 'CF', 'CFG', 'CHD', 'CHRW', 'CHTR', 'CI',
+    'CINF', 'CL', 'CLX', 'CMCSA', 'CME', 'CMG', 'CMI', 'CMS', 'CNC', 'CNP',
+    'COF', 'COO', 'COP', 'COST', 'CPB', 'CPRT', 'CPT', 'CRL', 'CRM', 'CSCO',
+    'CSX', 'CTAS', 'CTRA', 'CTSH', 'CTVA', 'CVS', 'CVX', 'CZR', 'D', 'DAL',
+    'DD', 'DE', 'DFS', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR',
+    'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVA', 'DVN', 'DXC', 'DXCM',
+    'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EIX', 'EL', 'EMN', 'EMR', 'ENPH',
+    'EOG', 'EPAM', 'EQIX', 'EQR', 'ES', 'ESS', 'ETN', 'ETR', 'ETSY', 'EVRG',
+    'EW', 'EXC', 'EXPD', 'EXPE', 'EXR', 'F', 'FANG', 'FAST', 'FBHS', 'FCX',
+    'FDS', 'FDX', 'FE', 'FFIV', 'FICO', 'FIS', 'FITB', 'FMC', 'FOX', 'FOXA',
+    'FRT', 'FTNT', 'FTV', 'GD', 'GE', 'GILD', 'GIS', 'GL', 'GLW', 'GM',
+    'GNRC', 'GOOG', 'GOOGL', 'GPC', 'GPN', 'GRMN', 'GS', 'GWW', 'HAL', 'HAS',
+    'HBAN', 'HCA', 'HD', 'HIG', 'HII', 'HLT', 'HON', 'HPE', 'HPQ', 'HRL',
+    'HSIC', 'HST', 'HSY', 'HUBB', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX',
+    'IFF', 'ILMN', 'INCY', 'INTC', 'INTU', 'INVH', 'IP', 'IQV', 'IR', 'IRM',
+    'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JBHT', 'JCI', 'JKHY', 'JNJ', 'JPM',
+    'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KLAC', 'KMB', 'KMI', 'KMX', 'KO',
+    'KR', 'KVUE', 'L', 'LDOS', 'LEN', 'LH', 'LHX', 'LIN', 'LKQ', 'LLY',
+    'LMT', 'LNC', 'LNT', 'LOW', 'LRCX', 'LULU', 'LUV', 'LVS', 'LW', 'LYB',
+    'LYV', 'MA', 'MAA', 'MAR', 'MAS', 'MCD', 'MCHP', 'MCK', 'MCO', 'MDLZ',
+    'MDT', 'MET', 'META', 'MGM', 'MHK', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM',
+    'MNST', 'MO', 'MOH', 'MOS', 'MPC', 'MPWR', 'MRK', 'MRNA', 'MRO', 'MS',
+    'MSCI', 'MSFT', 'MSI', 'MTB', 'MTCH', 'MTD', 'MU', 'NCLH', 'NDAQ', 'NDSN',
+    'NEE', 'NEM', 'NFLX', 'NI', 'NKE', 'NOC', 'NOW', 'NRG', 'NSC', 'NTAP',
+    'NTRS', 'NUE', 'NVDA', 'NVR', 'NWS', 'NWSA', 'NXPI', 'O', 'ODFL', 'OKE',
+    'OMC', 'ON', 'ORCL', 'ORLY', 'OTIS', 'OXY', 'PANW', 'PAYC', 'PAYX', 'PCAR',
+    'PCG', 'PEG', 'PEP', 'PFE', 'PFG', 'PG', 'PGR', 'PH', 'PHM', 'PKG',
+    'PKI', 'PLD', 'PM', 'PNC', 'PNR', 'PNW', 'PODD', 'POOL', 'PPG', 'PPL',
+    'PRU', 'PSA', 'PSX', 'PTC', 'PWR', 'PYPL', 'QCOM', 'QRVO', 'RCL', 'REG',
+    'REGN', 'RF', 'RHI', 'RJF', 'RL', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST',
+    'RSG', 'RTX', 'RVTY', 'SBAC', 'SBUX', 'SCHW', 'SHW', 'SJM', 'SLB', 'SNA',
+    'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ',
+    'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH',
+    'TEL', 'TER', 'TFC', 'TFX', 'TGT', 'TJX', 'TMO', 'TMOS', 'TPR', 'TRGP',
+    'TRMB', 'TROW', 'TRV', 'TSCO', 'TSLA', 'TSN', 'TT', 'TTWO', 'TXN', 'TXT',
+    'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNH', 'UNP', 'UPS', 'URI', 'USB',
+    'V', 'VFC', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS',
+    'VZ', 'WAB', 'WAT', 'WBD', 'WDC', 'WEC', 'WELL', 'WFC', 'WHR', 'WM',
+    'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XOM', 'XRAY',
+    'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZION', 'ZTS', 'SPY', 'VOO', 'VTI', 'QQQ',
+    'IVV', 'VEA', 'IEFA', 'AGG', 'VWO', 'BND', 'VUG', 'IEMG', 'VTV', 'VO',
+    'VB', 'SCHD', 'VIG', 'VXUS', 'IWF', 'IWM', 'VYM', 'GLD', 'IWD', 'IJR',
+    'SCHX', 'VGT', 'IWB', 'IJH', 'SHV', 'VCSH', 'BNDX', 'VCIT', 'VNQ', 'XLE',
+    'XLF', 'XLK', 'XLV', 'XLI', 'XLP', 'XLY', 'XLU', 'XLC', 'XLB', 'XLRE',
+    'VGK', 'EFA', 'VPL', 'EWJ', 'EWY', 'EWG', 'IBIT', 'ETHA', 'GBTC', 'ARKK',
+    'ARKG', 'ARKW', 'SMH', 'SOXX', 'XBI', 'IBB', 'TLT', 'IEF', 'SHY', 'LQD',
+    'HYG', 'TIP', 'VTIP', 'MUB', 'EMB', 'VEU', 'ACWI', 'URTH', 'IOO', 'VT',
+    'IXUS', 'VSS', 'DLS', 'SCZ', 'INDA', 'EWZ', 'EWC', 'EWU', 'EWA', 'EWH',
+    'EWT', 'THD', 'PIN', 'ASHR', 'DGRO', 'DVY', 'HDV', 'NOBL', 'SDY', 'FDN',
+    'HACK', 'CIBR', 'BOTZ', 'ROBO', 'TAN', 'ICLN', 'PBW', 'QCLN', 'ACES', 'LIT',
+    'REMX', 'COPX', 'SIL', 'SGOL', 'SLV', 'PALL', 'PPLT', 'USO', 'UNG', 'DBA',
+    'DBC', 'CORN', 'WEAT', 'SOYB', 'VNM', 'RSX', 'MCHI', 'FXI', 'KWEB', 'CQQQ',
+    'KBA', 'CNYA', 'GXC', 'EWW', 'GOVT', 'SCHO', 'SCHP', 'SCHZ', 'VGIT', 'VGLT',
+    'BSV', 'BIV', 'BLV', 'JPST', 'IAU', 'BAR', 'OUNZ', 'GLDM', 'PHYS', 'DGL',
+    'DBO', 'BNO', 'OIL', 'UGA', 'VHT', 'IHI', 'IYH', 'XPH', 'PBE', 'FBT',
+    'VDE', 'IYE', 'XOP', 'VFH', 'KBE', 'KRE', 'IAI', 'VIS', 'ITB', 'XHB',
+    'VCR', 'FDIS', 'XRT', 'RTH', 'VDC', 'VPU', 'IDU', 'FUTY', 'SKYY', 'CLOU',
+    'FIVG', 'VGI', 'IYR', 'USRT', 'RWR', 'SCHH', 'ICF', 'REZ', 'MORT', 'REM',
+    'IYW', 'IGV', 'QTEC', 'VONG', 'MGK', 'RPG', 'IWP', 'IWO', 'IWN', 'VBR',
+    'VBK', 'VIOO', 'VIOG', 'SCHA', 'SCHM', 'SLYV', 'SLYG', 'IJS', 'IJJ', 'IJT',
+    'VXF', 'VTWO', 'VTWG', 'VTWV', 'IWC', 'FSMD', 'ESML', 'IJK', 'SMMV', 'EEMV',
+    'EFAV', 'SPLV', 'USMV', 'SPHD', 'COWZ', 'FDL', 'FDVV', 'DGRW', 'DTD', 'SCHG',
+    'VOOG', 'IVW', 'SPYG', 'VV', 'MGC', 'RPV', 'VFVA', 'VLUE', 'VOOV', 'IVE',
+    'SPYV', 'IUSV', 'SCHV', 'FNDB', 'FNDX', 'PWB', 'PWV', 'SPLG', 'SPYM', 'SCHB',
+    'QQQM', 'JEPI', 'JEPQ', 'DIVO', 'XYLD', 'QYLD', 'QQQI', 'SPYI', 'SPMO', 'AVUV',
+    'SGOV', 'DIA', 'TSM', 'ASML', 'TMUS',
 ]
 
 # Remove duplicates
 UNIQUE_SYMBOLS = list(set(SYMBOLS))
 
 print("=" * 70)
-print("🚀 Stock Data Update v6.1 (Python/yfinance)")
+print("🚀 Stock Data Update v6.1 COMPLETE (Python/yfinance)")
 print("=" * 70)
 print(f"📅 {datetime.now().isoformat()}")
 print(f"📊 Total Symbols: {len(UNIQUE_SYMBOLS)}")
@@ -157,7 +128,7 @@ def fetch_stock_data():
     
     for i, batch in enumerate(batches):
         batch_num = i + 1
-        print(f"  Processing batch {batch_num}/{len(batches)}...", end=" ")
+        print(f"  Processing batch {batch_num}/{len(batches)}...", end=" ", flush=True)
         
         try:
             # Download data for batch
