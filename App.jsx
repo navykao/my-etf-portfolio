@@ -1,17 +1,20 @@
 /**
  * =====================================================
- * App.jsx v5.2 — Stock Screener Integration
+ * App.jsx v6.0 — Enhanced Features Edition
  * =====================================================
  * 
- * ✅ v5.2 อัพเดต (May 10, 2026):
- *   1. [NEW] เพิ่ม Stock Screener - กรองหุ้นที่ร่วง
- *   2. [NEW] โหลดข้อมูลราคาย้อนหลัง 30 วัน
- *   3. [NEW] Navigation Menu - สลับระหว่าง Dashboard และ Screener
+ * ✅ v6.0 อัพเดต (May 12, 2026):
+ *   1. [NEW] 📊 Pie Chart - แสดงสัดส่วนพอร์ต
+ *   2. [NEW] 💾 Data Source Indicator - แสดงแหล่งข้อมูล + Timestamp
+ *   3. [NEW] 💰 Dividend Calendar - ปฏิทินเงินปันผล
+ *   4. [NEW] ⭐ Watchlist + 🔔 Alerts - ติดตามหุ้น + แจ้งเตือนราคา
+ *   5. [IMPROVED] 🔥 Firebase Integration - บันทึกพอร์ตอัตโนมัติ
+ *   6. [IMPROVED] 🎨 Modern Minimal Design - ออกแบบใหม่สไตล์มินิมอล
  * 
  * ⚠️ คำแนะนำการติดตั้ง:
- * 1. วางไฟล์ StockScreener.jsx ไว้ใน src/StockScreener.jsx
- * 2. แทนที่ไฟล์ App.jsx เดิมด้วยไฟล์นี้
- * 3. Commit และ push ขึ้น GitHub
+ * 1. แทนที่ไฟล์ App.jsx เดิมด้วยไฟล์นี้
+ * 2. Commit และ push ขึ้น GitHub
+ * 3. Deploy จะอัพเดทอัตโนมัติ
  * =====================================================
  */
 
@@ -22,18 +25,16 @@ import {
   AlertCircle, Trash2, Plus, Info, CheckCircle2, 
   Database, Cloud, CloudOff, Save, X, HardDrive,
   Clock, Zap, Shield, Github, Server, Smartphone,
-  Settings, BarChart3, Activity, Package, Radio
+  Settings, BarChart3, Activity, Package, Radio,
+  Bell, Star, Search, Filter
 } from 'lucide-react';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
-// ⭐ NEW: Import Stock Screener
-import StockScreener from './StockScreener';
-
 // =====================================================
-// 🔥 FIREBASE CONFIG — ใส่ config ของคุณตรงนี้
+// 🔥 FIREBASE CONFIG
 // =====================================================
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDzl3so9I793U1GGs6aQUs3d0GK-4uyy8k",
@@ -60,16 +61,25 @@ const DIVIDEND_FREQUENCIES = {
 // Cache Configuration
 // =====================================================
 const DEFAULT_CACHE_CONFIG = {
-  LOCAL_CACHE_KEY: 'etf_local_cache_v5',
+  LOCAL_CACHE_KEY: 'etf_local_cache_v6',
   LOCAL_CACHE_DAYS: 7,
   GITHUB_JSON_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/data/combined-all-assets.json',
-  GITHUB_CACHE_KEY: 'etf_github_cache_v5',
+  GITHUB_CACHE_KEY: 'etf_github_cache_v6',
   GITHUB_CACHE_HOURS: 6,
-  API_CALL_LOG_KEY: 'etf_api_calls_v5',
+  API_CALL_LOG_KEY: 'etf_api_calls_v6',
   DAILY_API_LIMIT: 30,
-  SETTINGS_KEY: 'etf_cache_settings_v5',
-  STATS_KEY: 'etf_cache_stats_v3',
+  SETTINGS_KEY: 'etf_cache_settings_v6',
+  STATS_KEY: 'etf_cache_stats_v6',
 };
+
+// =====================================================
+// Color Palette - Modern Minimal
+// =====================================================
+const PIE_COLORS = [
+  '#A8DADC', '#457B9D', '#F1FAEE', '#E63946', '#F4A261',
+  '#2A9D8F', '#E76F51', '#264653', '#8AB4F8', '#FAD2E1',
+  '#C9ADA7', '#9A8C98', '#4A4E69', '#F2CC8F', '#81B29A'
+];
 
 // =====================================================
 // Cache Manager with Hit/Miss Stats
@@ -164,832 +174,1020 @@ let auth = null;
 if (hasFirebaseConfig) {
   try {
     firebaseApp = initializeApp(FIREBASE_CONFIG);
-    auth = getAuth(firebaseApp);
     firestoreDb = getFirestore(firebaseApp);
+    auth = getAuth(firebaseApp);
   } catch (error) {
-    console.error('❌ Firebase init error:', error.message);
+    console.error('[Firebase Init Error]', error);
   }
 }
+
+// =====================================================
+// Utility Functions
+// =====================================================
+const formatCurrency = (value) => {
+  return new Intl.NumberFormat('th-TH', { 
+    style: 'currency', 
+    currency: 'THB', 
+    maximumFractionDigits: 0 
+  }).format(value);
+};
+
+const formatNumber = (num, decimals = 2) => {
+  return num.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+};
 
 // =====================================================
 // Main App Component
 // =====================================================
 export default function App() {
-  // ⭐ NEW: Stock Screener States
-  const [activeMenu, setActiveMenu] = useState('dashboard'); // 'dashboard' | 'screener'
-  const [historicalPrices, setHistoricalPrices] = useState(null);
+  // Portfolio State
+  const [portfolio, setPortfolio] = useState(INITIAL_PORTFOLIO);
+  const [allAssets, setAllAssets] = useState([]);
+  const [totalInvestment, setTotalInvestment] = useState(100000);
   
-  // Existing States
-  const [portfolio, setPortfolio] = useState([]);
-  const [stocksDatabase, setStocksDatabase] = useState({});
-  const [newSymbol, setNewSymbol] = useState('');
-  const [newAllocation, setNewAllocation] = useState('');
-  const [newDivFrequency, setNewDivFrequency] = useState('quarterly');
-  const [isAdding, setIsAdding] = useState(false);
+  // UI State
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [initialInvestment, setInitialInvestment] = useState(100000);
-  const [monthlyContribution, setMonthlyContribution] = useState(5000);
-  const [contributionStepUp, setContributionStepUp] = useState(10);
-  const [investmentYears, setInvestmentYears] = useState(15);
-  const [user, setUser] = useState(null);
-  const [showSettings, setShowSettings] = useState(false);
-  const [cacheSettings, setCacheSettings] = useState({
-    cacheDays: CacheManager.config.LOCAL_CACHE_DAYS,
-    githubCacheHours: CacheManager.config.GITHUB_CACHE_HOURS,
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  
+  // Data Source State
+  const [dataSource, setDataSource] = useState({ 
+    type: 'cache', 
+    timestamp: null,
+    assetsCount: 0
   });
-
-  // ⭐ NEW: Load Historical Prices
-  useEffect(() => {
-    async function loadHistoricalPrices() {
-      try {
-        console.log('📥 Loading historical prices...');
-        const res = await fetch(
-          'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/data/stock-prices-30d.json'
-        );
-        
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        
-        const data = await res.json();
-        setHistoricalPrices(data.data);
-        
-        console.log('✅ Loaded historical prices:', Object.keys(data.data).length, 'symbols');
-      } catch (err) {
-        console.error('❌ Failed to load historical prices:', err);
-        setHistoricalPrices({}); // Set empty object to prevent infinite loading
-      }
-    }
-    
-    loadHistoricalPrices();
-  }, []);
+  
+  // Watchlist & Alerts State
+  const [watchlist, setWatchlist] = useState([]);
+  const [alerts, setAlerts] = useState([]);
+  const [showAlertModal, setShowAlertModal] = useState(false);
+  const [selectedAssetForAlert, setSelectedAssetForAlert] = useState(null);
+  const [alertForm, setAlertForm] = useState({ priceHigh: '', priceLow: '' });
+  
+  // Search State
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  // Dividend Calendar State
+  const [selectedQuarter, setSelectedQuarter] = useState('all');
+  
+  // Firebase State
+  const [currentUser, setCurrentUser] = useState(null);
+  const [cloudSyncStatus, setCloudSyncStatus] = useState('disconnected');
 
   // =====================================================
-  // Data Fetching Functions
-  // =====================================================
-  const loadGitHubData = async () => {
-    const cacheKey = CacheManager.config.GITHUB_CACHE_KEY;
-    const cached = localStorage.getItem(cacheKey);
-    if (cached) {
-      const parsed = JSON.parse(cached);
-      const age = (Date.now() - parsed.timestamp) / (1000 * 60 * 60);
-      if (age < CacheManager.config.GITHUB_CACHE_HOURS) {
-        CacheManager.recordCacheHit();
-        return parsed.data || {};
-      }
-    }
-    
-    CacheManager.recordCacheMiss();
-    try {
-      const res = await fetch(CacheManager.config.GITHUB_JSON_URL);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json();
-      
-      // รองรับทั้ง format เก่า (object) และใหม่ (array)
-      let database;
-      if (Array.isArray(json)) {
-        // combined-all-assets.json = array → แปลงเป็น object keyed by symbol
-        database = {};
-        for (const item of json) {
-          if (item.symbol) {
-            database[item.symbol] = item;
-          }
-        }
-      } else {
-        database = json.data || json;
-      }
-      
-      localStorage.setItem(cacheKey, JSON.stringify({ 
-        data: database, 
-        timestamp: Date.now() 
-      }));
-      return database;
-    } catch (error) {
-      console.error('Failed to load from GitHub:', error);
-      return {};
-    }
-  };
-
-  const getStockData = async (symbol) => {
-    const key = symbol.toUpperCase();
-    const db = await loadGitHubData();
-    if (db[key]) {
-      return { data: db[key], source: 'github' };
-    }
-    return { data: null, source: null };
-  };
-
-  const fetchAllData = async (portfolioList) => {
-    const db = await loadGitHubData();
-    setStocksDatabase(db);
-    const updated = portfolioList.map(p => ({
-      ...p,
-      data: db[p.symbol.toUpperCase()] || null
-    }));
-    setPortfolio(updated);
-  };
-
-  // =====================================================
-  // Firebase Functions
-  // =====================================================
-  const getFirestoreDocRef = (uid) => {
-    if (!firestoreDb) return null;
-    return doc(firestoreDb, 'portfolios', uid);
-  };
-
-  const saveToCloud = async (portfolioData, settings) => {
-    if (!user || !firestoreDb) return;
-    try {
-      const docRef = getFirestoreDocRef(user.uid);
-      await setDoc(docRef, {
-        portfolio: portfolioData.map(p => ({
-          symbol: p.symbol,
-          allocation: p.allocation,
-          divFrequency: p.divFrequency
-        })),
-        ...settings,
-        updatedAt: new Date().toISOString(),
-      }, { merge: true });
-    } catch (error) {
-      console.error('❌ Save to cloud failed:', error);
-    }
-  };
-
-  const saveToCloudOrLocal = (portfolioData, settings) => {
-    if (hasFirebaseConfig && user) {
-      saveToCloud(portfolioData, settings);
-    } else {
-      const data = {
-        portfolio: portfolioData.map(p => ({
-          symbol: p.symbol,
-          allocation: p.allocation,
-          divFrequency: p.divFrequency
-        })),
-        ...settings,
-      };
-      localStorage.setItem('etf_portfolio_data_v5', JSON.stringify(data));
-    }
-  };
-
-  // =====================================================
-  // Effects
+  // Firebase Auth
   // =====================================================
   useEffect(() => {
-    if (!hasFirebaseConfig) {
-      setIsLoading(true);
-      (async () => {
-        const localData = localStorage.getItem('etf_portfolio_data_v5') 
-                       || localStorage.getItem('etf_portfolio_data');
-        if (localData) {
-          try {
-            const parsed = JSON.parse(localData);
-            const portfolioList = parsed.portfolio || [];
-            setInitialInvestment(parsed.initialInvestment || 100000);
-            setMonthlyContribution(parsed.monthlyContribution || 5000);
-            setContributionStepUp(parsed.contributionStepUp || 10);
-            setInvestmentYears(parsed.investmentYears || 15);
-            await fetchAllData(portfolioList);
-          } catch { 
-            await fetchAllData(INITIAL_PORTFOLIO); 
-          }
-        } else {
-          await fetchAllData(INITIAL_PORTFOLIO);
-        }
-        setIsLoading(false);
-      })();
-      return;
-    }
-
-    if (!auth) return;
-
-    signInAnonymously(auth).catch(err => {
-      console.error('❌ Firebase auth error:', err);
-      (async () => {
-        await fetchAllData(INITIAL_PORTFOLIO);
-        setIsLoading(false);
-      })();
-    });
-
-    const unsubAuth = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        setIsLoading(true);
-      } else {
-        setUser(null);
-        await fetchAllData(INITIAL_PORTFOLIO);
-        setIsLoading(false);
-      }
-    });
-
-    return () => unsubAuth();
-  }, []);
-
-  useEffect(() => {
-    if (!hasFirebaseConfig || !firestoreDb || !user) return;
-
-    const docRef = getFirestoreDocRef(user.uid);
+    if (!hasFirebaseConfig || !auth) return;
     
-    const unsub = onSnapshot(docRef, async (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.data();
-        const portfolioList = data.portfolio || [];
-        setInitialInvestment(data.initialInvestment || 100000);
-        setMonthlyContribution(data.monthlyContribution || 5000);
-        setContributionStepUp(data.contributionStepUp || 10);
-        setInvestmentYears(data.investmentYears || 15);
-        await fetchAllData(portfolioList);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+        setCloudSyncStatus('connected');
+        console.log('[Firebase] User authenticated:', user.uid);
       } else {
-        await fetchAllData(INITIAL_PORTFOLIO);
-        await saveToCloud(INITIAL_PORTFOLIO.map(p => ({ ...p, data: null })), {
-          initialInvestment: 100000,
-          monthlyContribution: 5000,
-          contributionStepUp: 10,
-          investmentYears: 15,
+        signInAnonymously(auth).catch(err => {
+          console.error('[Firebase] Auth error:', err);
+          setCloudSyncStatus('error');
         });
       }
-      setIsLoading(false);
-    }, (error) => {
-      console.error('❌ Firestore listener error:', error);
-      fetchAllData(INITIAL_PORTFOLIO);
-      setIsLoading(false);
     });
 
-    return () => unsub();
-  }, [user]);
+    return () => unsubscribe();
+  }, []);
 
   // =====================================================
-  // Event Handlers
+  // Load Portfolio from Firebase
   // =====================================================
-  const handleAddStock = async () => {
-    if (!newSymbol.trim()) return;
-    const sym = newSymbol.toUpperCase().trim();
-    if (portfolio.some(p => p.symbol === sym)) { 
-      setErrorMsg("หุ้นนี้มีอยู่แล้ว"); 
-      return; 
-    }
-    setIsAdding(true); 
-    setErrorMsg(null);
-    const result = await getStockData(sym);
-    if (result.data) { 
-      const next = [...portfolio, { 
-        symbol: sym, 
-        allocation: Number(newAllocation) || 10, 
-        divFrequency: newDivFrequency,
-        data: result.data 
-      }]; 
-      setPortfolio(next); 
-      saveToCloudOrLocal(next, { 
-        initialInvestment, 
-        monthlyContribution, 
-        contributionStepUp, 
-        investmentYears 
-      }); 
-      setNewSymbol(''); 
-      setNewAllocation(''); 
-      setNewDivFrequency('quarterly');
-    } else {
-      setErrorMsg("ไม่พบข้อมูลหุ้นนี้");
-    }
-    setIsAdding(false);
-  };
+  useEffect(() => {
+    if (!currentUser || !firestoreDb) return;
 
-  const handleRemoveStock = (sym) => { 
-    const next = portfolio.filter(p => p.symbol !== sym); 
-    setPortfolio(next); 
-    saveToCloudOrLocal(next, { 
-      initialInvestment, 
-      monthlyContribution, 
-      contributionStepUp, 
-      investmentYears 
-    }); 
-  };
-
-  const handleForceRefreshAll = async () => {
-    if (!CacheManager.canMakeApiCall()) { 
-      alert(`⚠️ API quota หมดแล้ววันนี้`); 
-      return; 
-    }
-    localStorage.removeItem(CacheManager.config.GITHUB_CACHE_KEY);
-    await fetchAllData(portfolio);
-  };
-
-  const handleUpdateSetting = (setter, key, value) => {
-    setter(value);
-    saveToCloudOrLocal(portfolio, { 
-      initialInvestment, 
-      monthlyContribution, 
-      contributionStepUp, 
-      investmentYears, 
-      [key]: value 
-    });
-  };
-
-  const handleSaveCacheSettings = () => {
-    CacheManager.saveSettings(cacheSettings);
-    setShowSettings(false);
-  };
-
-  // =====================================================
-  // Computed Values
-  // =====================================================
-  const metrics = useMemo(() => {
-    const totalAlloc = portfolio.reduce((sum, p) => sum + p.allocation, 0) || 1;
-    let weightedYield = 0, weightedGrowth = 0;
-    portfolio.forEach(p => { 
-      const w = p.allocation / totalAlloc; 
-      weightedYield += (p.data?.divYield || 0) * w; 
-      weightedGrowth += (p.data?.growthRate || 0) * w; 
-    });
-    return { yield: weightedYield, growth: weightedGrowth, totalAlloc };
-  }, [portfolio]);
-
-  // =====================================================
-  // ✨ Accurate Compounding Calculation (DRIP)
-  // =====================================================
-  const projections = useMemo(() => {
-    let drip = initialInvestment;
-    let noDrip = initialInvestment;
-    let cash = 0;
-    let monthly = monthlyContribution;
-    let totalInvested = initialInvestment;
-    const history = [];
-    const mG = (metrics.growth / 100) / 12;
-    let milestoneHit = false;
+    const portfolioRef = doc(firestoreDb, 'portfolios', currentUser.uid);
     
-    const stockDividends = portfolio.map(stock => {
-      const weight = stock.allocation / (metrics.totalAlloc || 1);
-      const stockYield = (stock.data?.divYield || 0) / 100;
-      const frequency = DIVIDEND_FREQUENCIES[stock.divFrequency || 'quarterly'];
+    const unsubscribe = onSnapshot(portfolioRef, 
+      (docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.holdings) setPortfolio(data.holdings);
+          if (data.totalInvestment) setTotalInvestment(data.totalInvestment);
+          if (data.watchlist) setWatchlist(data.watchlist);
+          if (data.alerts) setAlerts(data.alerts);
+          console.log('[Firebase] Portfolio loaded from cloud');
+        }
+      },
+      (error) => {
+        console.error('[Firebase] Snapshot error:', error);
+        setCloudSyncStatus('error');
+      }
+    );
+
+    return () => unsubscribe();
+  }, [currentUser]);
+
+  // =====================================================
+  // Save Portfolio to Firebase
+  // =====================================================
+  const saveToFirebase = async (data) => {
+    if (!currentUser || !firestoreDb) return;
+    
+    try {
+      const portfolioRef = doc(firestoreDb, 'portfolios', currentUser.uid);
+      await setDoc(portfolioRef, {
+        ...data,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      console.log('[Firebase] Portfolio saved to cloud');
+    } catch (error) {
+      console.error('[Firebase] Save error:', error);
+    }
+  };
+
+  // =====================================================
+  // Load Assets Data
+  // =====================================================
+  const loadAssetsData = async (forceRefresh = false) => {
+    setIsRefreshing(true);
+    
+    try {
+      // Check local cache first
+      if (!forceRefresh) {
+        const cached = localStorage.getItem(DEFAULT_CACHE_CONFIG.LOCAL_CACHE_KEY);
+        const timestamp = localStorage.getItem('etf_cache_timestamp');
+        
+        if (cached && timestamp) {
+          const data = JSON.parse(cached);
+          setAllAssets(data);
+          setDataSource({ 
+            type: 'cache', 
+            timestamp: new Date(timestamp),
+            assetsCount: data.length
+          });
+          setIsLoading(false);
+          setIsRefreshing(false);
+          CacheManager.recordCacheHit();
+          return;
+        }
+      }
+      
+      // Check API limit
+      if (!CacheManager.canMakeApiCall()) {
+        alert('เกินจำนวน API calls วันนี้แล้ว (30 calls/day)');
+        setIsRefreshing(false);
+        return;
+      }
+      
+      // Fetch from GitHub
+      console.log('[Data] Fetching from GitHub...');
+      const response = await fetch(DEFAULT_CACHE_CONFIG.GITHUB_JSON_URL);
+      const data = await response.json();
+      
+      setAllAssets(data);
+      const now = new Date();
+      
+      // Save to cache
+      localStorage.setItem(DEFAULT_CACHE_CONFIG.LOCAL_CACHE_KEY, JSON.stringify(data));
+      localStorage.setItem('etf_cache_timestamp', now.toISOString());
+      
+      setDataSource({ 
+        type: 'github', 
+        timestamp: now,
+        assetsCount: data.length
+      });
+      
+      CacheManager.logApiCall();
+      CacheManager.recordCacheMiss();
+      
+    } catch (error) {
+      console.error('[Data] Load error:', error);
+      alert('ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่');
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  };
+
+  // Load data on mount
+  useEffect(() => {
+    loadAssetsData();
+  }, []);
+
+  // =====================================================
+  // Load Watchlist & Alerts from localStorage
+  // =====================================================
+  useEffect(() => {
+    try {
+      const savedWatchlist = localStorage.getItem('etf_watchlist_v6');
+      const savedAlerts = localStorage.getItem('etf_alerts_v6');
+      if (savedWatchlist) setWatchlist(JSON.parse(savedWatchlist));
+      if (savedAlerts) setAlerts(JSON.parse(savedAlerts));
+    } catch (error) {
+      console.error('[Storage] Load error:', error);
+    }
+  }, []);
+
+  // =====================================================
+  // Request Notification Permission
+  // =====================================================
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  }, []);
+
+  // =====================================================
+  // Check Price Alerts
+  // =====================================================
+  useEffect(() => {
+    if (alerts.length === 0 || allAssets.length === 0) return;
+    
+    alerts.forEach(alert => {
+      const asset = allAssets.find(a => a.symbol === alert.symbol);
+      if (!asset) return;
+      
+      const price = parseFloat(asset.price);
+      const high = parseFloat(alert.priceHigh);
+      const low = parseFloat(alert.priceLow);
+      
+      if ((high && price >= high) || (low && price <= low)) {
+        // Show notification
+        if (Notification.permission === 'granted') {
+          new Notification(`🔔 Alert: ${alert.symbol}`, {
+            body: `ราคา: $${price} (เป้า: สูง $${high}, ต่ำ $${low})`,
+            icon: '📈'
+          });
+        }
+      }
+    });
+  }, [allAssets, alerts]);
+
+  // =====================================================
+  // Portfolio Calculations
+  // =====================================================
+  const portfolioWithData = useMemo(() => {
+    return portfolio.map(item => {
+      const asset = allAssets.find(a => a.symbol === item.symbol);
+      const amount = totalInvestment * (item.allocation / 100);
+      const shares = asset ? amount / parseFloat(asset.price) : 0;
+      const currentValue = asset ? shares * parseFloat(asset.price) : amount;
+      const dividendYield = asset?.dividendYield ? parseFloat(asset.dividendYield) : 0;
+      const annualDividend = currentValue * (dividendYield / 100);
       
       return {
-        symbol: stock.symbol,
-        weight,
-        annualYield: stockYield,
-        frequency: frequency.periodsPerYear,
-        monthsPerPeriod: frequency.months,
+        ...item,
+        asset,
+        amount,
+        shares,
+        currentValue,
+        price: asset ? parseFloat(asset.price) : 0,
+        dividendYield,
+        annualDividend
       };
     });
-    
-    for (let y = 1; y <= investmentYears; y++) {
-      let yearlyDividend = 0;
-      const monthlyThisYear = monthly;
+  }, [portfolio, allAssets, totalInvestment]);
+
+  const totalValue = portfolioWithData.reduce((sum, item) => sum + item.currentValue, 0);
+  const totalAnnualDividend = portfolioWithData.reduce((sum, item) => sum + item.annualDividend, 0);
+  const portfolioYield = totalValue > 0 ? (totalAnnualDividend / totalValue) * 100 : 0;
+
+  // =====================================================
+  // Pie Chart Data
+  // =====================================================
+  const pieData = portfolioWithData.map(item => ({
+    name: item.symbol,
+    value: item.allocation,
+    amount: item.currentValue
+  }));
+
+  // =====================================================
+  // Dividend Calendar (Mock Data - แทนด้วยข้อมูลจริงภายหลัง)
+  // =====================================================
+  const dividendCalendar = useMemo(() => {
+    return portfolioWithData.map(item => {
+      const freq = DIVIDEND_FREQUENCIES[item.divFrequency];
+      const dividendPerPeriod = item.annualDividend / freq.periodsPerYear;
       
-      for (let m = 1; m <= 12; m++) {
-        drip = drip * (1 + mG) + monthly;
-        noDrip = noDrip * (1 + mG) + monthly;
-        totalInvested += monthly;
-        
-        let monthDividendDrip = 0;
-        let monthDividendNoDrip = 0;
-        
-        stockDividends.forEach(stock => {
-          if (m % stock.monthsPerPeriod === 0) {
-            const periodDividend = (drip * stock.weight * stock.annualYield) / stock.frequency;
-            const periodDividendNoDrip = (noDrip * stock.weight * stock.annualYield) / stock.frequency;
-            monthDividendDrip += periodDividend;
-            monthDividendNoDrip += periodDividendNoDrip;
-          }
-        });
-        
-        drip += monthDividendDrip;
-        cash += monthDividendNoDrip;
-        yearlyDividend += monthDividendDrip;
-      }
-      
-      const shouldShow = y <= 10 || y % 2 === 0 || y === investmentYears;
-      const justHitMillion = !milestoneHit && drip >= 1000000;
-      
-      if (shouldShow || justHitMillion) {
-        history.push({ 
-          year: y, 
-          drip, 
-          totalNoDrip: noDrip + cash, 
-          totalInvested: Math.round(totalInvested),
-          yearlyDividend: Math.round(yearlyDividend),
-          monthlyContrib: Math.round(monthlyThisYear),
-          isMilestone: justHitMillion && !shouldShow
-        });
-      }
-      
-      if (justHitMillion) milestoneHit = true;
-      monthly *= (1 + (contributionStepUp / 100));
+      return {
+        symbol: item.symbol,
+        name: item.asset?.name || item.symbol,
+        frequency: freq.label,
+        periodsPerYear: freq.periodsPerYear,
+        dividendPerPeriod,
+        annualDividend: item.annualDividend,
+        exDate: new Date(2026, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
+        payDate: new Date(2026, Math.floor(Math.random() * 12) + 1, Math.floor(Math.random() * 28) + 1)
+      };
+    }).sort((a, b) => a.exDate - b.exDate);
+  }, [portfolioWithData]);
+
+  const filteredDividends = useMemo(() => {
+    if (selectedQuarter === 'all') return dividendCalendar;
+    const q = parseInt(selectedQuarter);
+    return dividendCalendar.filter(d => Math.ceil((d.exDate.getMonth() + 1) / 3) === q);
+  }, [dividendCalendar, selectedQuarter]);
+
+  // =====================================================
+  // Search Filtered Assets
+  // =====================================================
+  const filteredAssets = useMemo(() => {
+    if (!searchQuery) return allAssets.slice(0, 50);
+    const query = searchQuery.toLowerCase();
+    return allAssets.filter(a => 
+      a.symbol.toLowerCase().includes(query) || 
+      a.name?.toLowerCase().includes(query)
+    ).slice(0, 50);
+  }, [allAssets, searchQuery]);
+
+  // =====================================================
+  // Watchlist Management
+  // =====================================================
+  const addToWatchlist = (asset) => {
+    if (watchlist.find(w => w.symbol === asset.symbol)) {
+      alert('มีในรายการติดตามอยู่แล้ว');
+      return;
+    }
+    const updated = [...watchlist, { symbol: asset.symbol, name: asset.name }];
+    setWatchlist(updated);
+    localStorage.setItem('etf_watchlist_v6', JSON.stringify(updated));
+    saveToFirebase({ watchlist: updated });
+  };
+
+  const removeFromWatchlist = (symbol) => {
+    const updated = watchlist.filter(w => w.symbol !== symbol);
+    setWatchlist(updated);
+    localStorage.setItem('etf_watchlist_v6', JSON.stringify(updated));
+    saveToFirebase({ watchlist: updated });
+  };
+
+  // =====================================================
+  // Alert Management
+  // =====================================================
+  const openAlertModal = (asset) => {
+    setSelectedAssetForAlert(asset);
+    setShowAlertModal(true);
+    setAlertForm({ priceHigh: '', priceLow: '' });
+  };
+
+  const saveAlert = () => {
+    if (!selectedAssetForAlert) return;
+    if (!alertForm.priceHigh && !alertForm.priceLow) {
+      alert('กรุณาระบุราคาเป้าหมายอย่างน้อย 1 ค่า');
+      return;
     }
     
-    return { 
-      history, 
-      finalDrip: drip, 
-      finalNoDrip: noDrip + cash, 
-      totalInvested: Math.round(totalInvested) 
+    const newAlert = {
+      symbol: selectedAssetForAlert.symbol,
+      name: selectedAssetForAlert.name || selectedAssetForAlert.symbol,
+      priceHigh: alertForm.priceHigh,
+      priceLow: alertForm.priceLow,
+      createdAt: new Date().toISOString()
     };
-  }, [portfolio, metrics, initialInvestment, monthlyContribution, contributionStepUp, investmentYears]);
-
-  const formatCurrency = (v) => {
-    return isNaN(v) || v === null 
-      ? '฿0' 
-      : new Intl.NumberFormat('th-TH', { 
-          style: 'currency', 
-          currency: 'THB', 
-          maximumFractionDigits: 0 
-        }).format(v);
+    
+    const updated = [...alerts, newAlert];
+    setAlerts(updated);
+    localStorage.setItem('etf_alerts_v6', JSON.stringify(updated));
+    saveToFirebase({ alerts: updated });
+    setShowAlertModal(false);
   };
-  
-  const getSourceIcon = (source) => {
-    switch(source) {
-      case 'local': return <Package size={11} className="text-violet-400" />;
-      case 'github': return <Github size={11} className="text-cyan-400" />;
-      case 'api': return <Radio size={11} className="text-emerald-400" />;
-      default: return <AlertCircle size={11} className="text-gray-300" />;
+
+  const removeAlert = (index) => {
+    const updated = alerts.filter((_, i) => i !== index);
+    setAlerts(updated);
+    localStorage.setItem('etf_alerts_v6', JSON.stringify(updated));
+    saveToFirebase({ alerts: updated });
+  };
+
+  // =====================================================
+  // Portfolio Management
+  // =====================================================
+  const updateAllocation = (symbol, newAllocation) => {
+    const updated = portfolio.map(item => 
+      item.symbol === symbol ? { ...item, allocation: newAllocation } : item
+    );
+    setPortfolio(updated);
+    saveToFirebase({ holdings: updated });
+  };
+
+  const removeFromPortfolio = (symbol) => {
+    const updated = portfolio.filter(item => item.symbol !== symbol);
+    setPortfolio(updated);
+    saveToFirebase({ holdings: updated });
+  };
+
+  const addToPortfolio = (asset) => {
+    const allocation = prompt(`เปอร์เซ็นต์การลงทุนใน ${asset.symbol}? (0-100)`);
+    if (!allocation || isNaN(allocation)) return;
+    
+    const newAllocation = parseFloat(allocation);
+    if (newAllocation <= 0 || newAllocation > 100) {
+      alert('กรุณาระบุค่าระหว่าง 0-100');
+      return;
     }
+    
+    const divFreq = prompt('ความถี่เงินปันผล? (monthly/quarterly/semiannual/annual)', 'quarterly');
+    if (!DIVIDEND_FREQUENCIES[divFreq]) {
+      alert('กรุณาระบุ: monthly, quarterly, semiannual, หรือ annual');
+      return;
+    }
+    
+    const newItem = {
+      symbol: asset.symbol,
+      allocation: newAllocation,
+      divFrequency: divFreq,
+      data: null
+    };
+    
+    const updated = [...portfolio, newItem];
+    setPortfolio(updated);
+    saveToFirebase({ holdings: updated });
   };
 
-  const isFirebaseConnected = hasFirebaseConfig && !!user;
-
   // =====================================================
-  // RENDER
+  // Loading Screen
   // =====================================================
-  
-  // Loading State
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block w-16 h-16 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-          <p className="text-stone-600 font-medium">กำลังโหลดข้อมูล...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
+          <p className="text-slate-600 font-medium">กำลังโหลดข้อมูล...</p>
+          <p className="text-slate-400 text-sm mt-2">746 assets • 487 stocks • 259 ETFs</p>
         </div>
       </div>
     );
   }
 
-  // ⭐ Stock Screener View
-  if (activeMenu === 'screener') {
-    return (
-      <div className="min-h-screen bg-stone-50">
-        {/* Navigation (ในหน้า Screener ก็ยังมี) */}
-        <nav className="bg-white shadow-sm border-b border-stone-200">
-          <div className="max-w-7xl mx-auto px-4 py-3 flex gap-3">
-            <button 
-              onClick={() => setActiveMenu('dashboard')}
-              className="px-6 py-2.5 rounded-xl font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all"
-            >
-              📊 Dashboard
-            </button>
-            
-            <button 
-              onClick={() => setActiveMenu('screener')}
-              className="px-6 py-2.5 rounded-xl font-semibold bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-md transition-all"
-            >
-              🔻 Stock Screener
-            </button>
-          </div>
-        </nav>
-
-        {/* Stock Screener Component */}
-        {!historicalPrices ? (
-          <div className="max-w-7xl mx-auto p-6">
-            <div className="bg-white rounded-2xl p-12 text-center">
-              <div className="inline-block w-16 h-16 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-              <p className="text-stone-600 font-medium">กำลังโหลดข้อมูลราคา...</p>
-            </div>
-          </div>
-        ) : (
-          <StockScreener 
-            stocksDatabase={stocksDatabase}
-            historicalPrices={historicalPrices}
-            onClose={() => setActiveMenu('dashboard')}
-          />
-        )}
-      </div>
-    );
-  }
-
-  // ⭐ Dashboard View (Original)
+  // =====================================================
+  // Main Render
+  // =====================================================
   return (
-    <div className="min-h-screen bg-stone-50 p-4 md:p-6 lg:p-8 text-stone-700">
-      <div className="max-w-6xl mx-auto space-y-5">
-        
-        {/* ⭐ NEW: Navigation Menu */}
-        <nav className="bg-white rounded-2xl shadow-sm border border-stone-200/60 p-4">
-          <div className="flex gap-3">
-            <button 
-              onClick={() => setActiveMenu('dashboard')}
-              className="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-md transition-all"
-            >
-              📊 Dashboard
-            </button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      
+      {/* Header */}
+      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                My ETF Portfolio v6.0
+              </h1>
+              <p className="text-sm text-slate-500 mt-1">
+                {dataSource.assetsCount} assets • {portfolio.length} holdings
+              </p>
+            </div>
             
-            <button 
-              onClick={() => setActiveMenu('screener')}
-              className="px-6 py-3 rounded-xl font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all"
-            >
-              🔻 Stock Screener
-            </button>
-          </div>
-        </nav>
-
-        {/* Original Dashboard Content (รักษาไว้ทั้งหมด - แสดงเฉพาะส่วนสำคัญ) */}
-        {/* Note: ในไฟล์จริง จะมี Dashboard content เต็ม ๆ ตามเดิม */}
-        {/* เนื่องจากไฟล์ยาวมาก ผมจะใส่ Comment แทน */}
-        
-        {/* Header Section */}
-        <header className="bg-gradient-to-br from-teal-500 to-cyan-600 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden">
-          {/* ... existing header code ... */}
-          <div className="relative z-10">
-            <h1 className="text-2xl md:text-3xl font-bold mb-2">
-              📊 ETF Portfolio Tracker
-            </h1>
-            <p className="text-teal-50 text-sm md:text-base">
-              คำนวณผลตอบแทนจากพอร์ตหุ้นและเงินปันผล (DRIP)
-            </p>
-          </div>
-        </header>
-
-        {/* Portfolio Management Section */}
-        <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
-          <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700 mb-4">
-            <PiggyBank size={16} className="text-teal-500" /> จัดการพอร์ตหุ้น
-          </h2>
-          
-          {/* Add Stock Form */}
-          <div className="space-y-3 mb-5 p-4 bg-stone-50 rounded-xl">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-              <input
-                type="text"
-                placeholder="Symbol (เช่น VOO)"
-                value={newSymbol}
-                onChange={(e) => setNewSymbol(e.target.value)}
-                className="px-4 py-2.5 border border-stone-200 rounded-xl text-sm font-medium outline-none focus:border-teal-400 focus:bg-white transition-all"
-              />
-              <input
-                type="number"
-                placeholder="สัดส่วน %"
-                value={newAllocation}
-                onChange={(e) => setNewAllocation(e.target.value)}
-                className="px-4 py-2.5 border border-stone-200 rounded-xl text-sm font-medium outline-none focus:border-teal-400 focus:bg-white transition-all"
-              />
-              <select
-                value={newDivFrequency}
-                onChange={(e) => setNewDivFrequency(e.target.value)}
-                className="px-4 py-2.5 border border-stone-200 rounded-xl text-sm font-medium outline-none focus:border-teal-400 focus:bg-white transition-all bg-white"
-              >
-                {Object.entries(DIVIDEND_FREQUENCIES).map(([key, val]) => (
-                  <option key={key} value={key}>{val.label}</option>
-                ))}
-              </select>
-              <button
-                onClick={handleAddStock}
-                disabled={isAdding}
-                className="bg-teal-600 hover:bg-teal-700 disabled:bg-stone-300 text-white font-semibold py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm"
-              >
-                {isAdding ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>กำลังเพิ่ม...</span>
-                  </>
-                ) : (
-                  <>
-                    <Plus size={16} />
-                    <span>เพิ่มหุ้น</span>
-                  </>
+            {/* Data Source Indicator */}
+            <div className="flex items-center gap-3">
+              <div className="bg-white rounded-lg px-4 py-2 shadow-sm border border-slate-200">
+                <div className="flex items-center gap-2 text-sm">
+                  {dataSource.type === 'cache' ? (
+                    <>
+                      <HardDrive className="w-4 h-4 text-green-500" />
+                      <span className="font-medium text-slate-700">💾 Local Cache</span>
+                    </>
+                  ) : (
+                    <>
+                      <Cloud className="w-4 h-4 text-blue-500" />
+                      <span className="font-medium text-slate-700">🌐 GitHub API</span>
+                    </>
+                  )}
+                </div>
+                {dataSource.timestamp && (
+                  <div className="text-xs text-slate-500 mt-1">
+                    {dataSource.timestamp.toLocaleString('th-TH')}
+                  </div>
                 )}
+              </div>
+              
+              {hasFirebaseConfig && (
+                <div className={`bg-white rounded-lg px-3 py-2 shadow-sm border ${
+                  cloudSyncStatus === 'connected' ? 'border-green-200' : 'border-slate-200'
+                }`}>
+                  <div className="flex items-center gap-2">
+                    {cloudSyncStatus === 'connected' ? (
+                      <>
+                        <Shield className="w-4 h-4 text-green-500" />
+                        <span className="text-xs font-medium text-green-700">Cloud Sync</span>
+                      </>
+                    ) : (
+                      <>
+                        <CloudOff className="w-4 h-4 text-slate-400" />
+                        <span className="text-xs font-medium text-slate-500">Offline</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              <button
+                onClick={() => loadAssetsData(true)}
+                disabled={isRefreshing}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+                <span className="text-sm font-medium">Refresh</span>
               </button>
             </div>
-            {errorMsg && (
-              <div className="text-red-600 text-sm flex items-center gap-2 bg-red-50 p-3 rounded-lg">
-                <AlertCircle size={16} />
-                <span>{errorMsg}</span>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6 bg-white/60 backdrop-blur-sm p-2 rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
+          {[
+            { id: 'dashboard', icon: '📊', label: 'Dashboard' },
+            { id: 'search', icon: '🔍', label: 'Search' },
+            { id: 'watchlist', icon: '⭐', label: 'Watchlist' },
+            { id: 'alerts', icon: '🔔', label: 'Alerts' },
+            { id: 'dividends', icon: '💰', label: 'Dividends' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex-1 min-w-[120px] px-4 py-3 rounded-lg font-medium transition-all whitespace-nowrap ${
+                activeTab === tab.id
+                  ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md'
+                  : 'text-slate-600 hover:bg-white/80'
+              }`}
+            >
+              {tab.icon} {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Dashboard Tab */}
+        {activeTab === 'dashboard' && (
+          <div className="space-y-6">
+            
+            {/* Summary Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                <div className="text-sm text-slate-500 mb-1">มูลค่าพอร์ต</div>
+                <div className="text-2xl font-bold text-slate-800">
+                  {formatCurrency(totalValue)}
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                <div className="text-sm text-slate-500 mb-1">เงินปันผลต่อปี</div>
+                <div className="text-2xl font-bold text-emerald-600">
+                  {formatCurrency(totalAnnualDividend)}
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                <div className="text-sm text-slate-500 mb-1">Dividend Yield</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {portfolioYield.toFixed(2)}%
+                </div>
+              </div>
+            </div>
+
+            {/* Pie Chart */}
+            {portfolio.length > 0 && (
+              <div className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                <h2 className="text-xl font-bold text-slate-800 mb-4">สัดส่วนการลงทุน</h2>
+                <ResponsiveContainer width="100%" height={400}>
+                  <PieChart>
+                    <Pie
+                      data={pieData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, value }) => `${name} ${value}%`}
+                      outerRadius={120}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {pieData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                      formatter={(value, name, props) => [
+                        `${value}% (${formatCurrency(props.payload.amount)})`,
+                        name
+                      ]}
+                    />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            )}
+
+            {/* Portfolio Table */}
+            <div className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                <h2 className="text-xl font-bold text-slate-800">Holdings</h2>
+                <div className="text-sm text-slate-500">
+                  Total Investment: {formatCurrency(totalInvestment)}
+                </div>
+              </div>
+              
+              {portfolio.length === 0 ? (
+                <div className="p-12 text-center">
+                  <Package className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+                  <p className="text-slate-500 text-lg">ยังไม่มีการลงทุน</p>
+                  <p className="text-slate-400 text-sm mt-2">ไปที่ Search เพื่อเพิ่มหุ้น</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead className="bg-slate-50 border-b border-slate-200">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Symbol</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Name</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Allocation</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Amount</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Shares</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Price</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Yield</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Annual Div</th>
+                        <th className="px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {portfolioWithData.map((item, idx) => (
+                        <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                          <td className="px-6 py-4 font-bold text-blue-600">{item.symbol}</td>
+                          <td className="px-6 py-4 text-slate-700">{item.asset?.name || '-'}</td>
+                          <td className="px-6 py-4 text-right text-slate-700">{item.allocation}%</td>
+                          <td className="px-6 py-4 text-right text-slate-700">{formatCurrency(item.amount)}</td>
+                          <td className="px-6 py-4 text-right text-slate-700">{formatNumber(item.shares, 2)}</td>
+                          <td className="px-6 py-4 text-right text-slate-700">${formatNumber(item.price, 2)}</td>
+                          <td className="px-6 py-4 text-right text-emerald-600 font-semibold">{item.dividendYield.toFixed(2)}%</td>
+                          <td className="px-6 py-4 text-right text-emerald-600 font-semibold">{formatCurrency(item.annualDividend)}</td>
+                          <td className="px-6 py-4 text-center">
+                            <button
+                              onClick={() => removeFromPortfolio(item.symbol)}
+                              className="text-rose-500 hover:text-rose-700 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+
+          </div>
+        )}
+
+        {/* Search Tab */}
+        {activeTab === 'search' && (
+          <div className="space-y-6">
+            
+            <div className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="ค้นหาด้วย Symbol หรือชื่อ..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-slate-50 border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Symbol</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Name</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Price</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Yield</th>
+                      <th className="px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {filteredAssets.map((asset, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                        <td className="px-6 py-4 font-bold text-blue-600">{asset.symbol}</td>
+                        <td className="px-6 py-4 text-slate-700">{asset.name || '-'}</td>
+                        <td className="px-6 py-4 text-right text-slate-700">${formatNumber(parseFloat(asset.price), 2)}</td>
+                        <td className="px-6 py-4 text-right text-emerald-600">
+                          {asset.dividendYield ? `${parseFloat(asset.dividendYield).toFixed(2)}%` : '-'}
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center justify-center gap-2">
+                            <button
+                              onClick={() => addToPortfolio(asset)}
+                              className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg text-sm transition-all"
+                              title="เพิ่มเข้าพอร์ต"
+                            >
+                              <Plus className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => addToWatchlist(asset)}
+                              className="bg-amber-500 hover:bg-amber-600 text-white p-2 rounded-lg text-sm transition-all"
+                              title="เพิ่มเข้า Watchlist"
+                            >
+                              <Star className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => openAlertModal(asset)}
+                              className="bg-rose-500 hover:bg-rose-600 text-white p-2 rounded-lg text-sm transition-all"
+                              title="ตั้งแจ้งเตือนราคา"
+                            >
+                              <Bell className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+          </div>
+        )}
+
+        {/* Watchlist Tab */}
+        {activeTab === 'watchlist' && (
+          <div className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-200">
+              <h2 className="text-xl font-bold text-slate-800">⭐ Watchlist</h2>
+            </div>
+            
+            {watchlist.length === 0 ? (
+              <div className="p-12 text-center">
+                <Star className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+                <p className="text-slate-500 text-lg">ยังไม่มีรายการติดตาม</p>
+                <p className="text-slate-400 text-sm mt-2">เพิ่มจาก Search tab</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-slate-50 border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Symbol</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Name</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Current Price</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Yield</th>
+                      <th className="px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {watchlist.map((item, idx) => {
+                      const asset = allAssets.find(a => a.symbol === item.symbol);
+                      return (
+                        <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                          <td className="px-6 py-4 font-bold text-blue-600">{item.symbol}</td>
+                          <td className="px-6 py-4 text-slate-700">{item.name}</td>
+                          <td className="px-6 py-4 text-right text-slate-700">
+                            {asset ? `$${formatNumber(parseFloat(asset.price), 2)}` : 'N/A'}
+                          </td>
+                          <td className="px-6 py-4 text-right text-emerald-600">
+                            {asset?.dividendYield ? `${parseFloat(asset.dividendYield).toFixed(2)}%` : '-'}
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center justify-center gap-2">
+                              <button
+                                onClick={() => asset && addToPortfolio(asset)}
+                                className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition-all"
+                                disabled={!asset}
+                              >
+                                เพิ่มเข้าพอร์ต
+                              </button>
+                              <button
+                                onClick={() => removeFromWatchlist(item.symbol)}
+                                className="text-rose-500 hover:text-rose-700 transition-colors"
+                              >
+                                <X className="w-5 h-5" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             )}
           </div>
+        )}
 
-          {/* Portfolio Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-stone-50/50 text-xs font-medium text-stone-600">
-                <tr>
-                  <th className="px-3 py-2.5 text-left">Symbol</th>
-                  <th className="px-3 py-2.5 text-left">Name</th>
-                  <th className="px-3 py-2.5 text-right">สัดส่วน</th>
-                  <th className="px-3 py-2.5 text-right">ราคา</th>
-                  <th className="px-3 py-2.5 text-right">Yield</th>
-                  <th className="px-3 py-2.5 text-right">Growth</th>
-                  <th className="px-3 py-2.5 text-right">DivGr 5Y</th>
-                  <th className="px-3 py-2.5 text-right">DivGr 10Y</th>
-                  <th className="px-3 py-2.5 text-center">ปันผล</th>
-                  <th className="px-3 py-2.5 text-center">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-stone-100">
-                {portfolio.map((stock) => {
-                  const d = stock.data;
-                  const freq = DIVIDEND_FREQUENCIES[stock.divFrequency] || DIVIDEND_FREQUENCIES.quarterly;
-                  return (
-                    <tr key={stock.symbol} className="hover:bg-stone-50/50 transition-colors">
-                      <td className="px-3 py-3 font-semibold text-stone-800">{stock.symbol}</td>
-                      <td className="px-3 py-3 text-stone-600 max-w-[200px] truncate">{d?.name || '—'}</td>
-                      <td className="px-3 py-3 text-right font-medium text-teal-700">{stock.allocation}%</td>
-                      <td className="px-3 py-3 text-right text-stone-700">{d?.price ? `$${d.price.toFixed(2)}` : '—'}</td>
-                      <td className="px-3 py-3 text-right text-emerald-600 font-medium">{d?.divYield?.toFixed(2) ?? '—'}%</td>
-                      <td className="px-3 py-3 text-right text-cyan-600 font-medium">{d?.growthRate ? `${d.growthRate >= 0 ? '+' : ''}${d.growthRate.toFixed(2)}%` : '—'}</td>
-                      <td className="px-3 py-3 text-right text-violet-600 font-medium">{d?.divGrowth5Y !== null && d?.divGrowth5Y !== undefined ? `${d.divGrowth5Y.toFixed(2)}%` : '—'}</td>
-                      <td className="px-3 py-3 text-right text-indigo-600 font-medium">{d?.divGrowth10Y !== null && d?.divGrowth10Y !== undefined ? `${d.divGrowth10Y.toFixed(2)}%` : '—'}</td>
-                      <td className="px-3 py-3 text-center">
-                        <span className="text-xs px-2 py-1 bg-stone-100 rounded-full text-stone-700 font-medium">{freq.label}</span>
-                      </td>
-                      <td className="px-3 py-3 text-center">
-                        <button
-                          onClick={() => handleRemoveStock(stock.symbol)}
-                          className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-lg transition-all"
-                          title="ลบ"
-                        >
-                          <Trash2 size={14} />
-                        </button>
-                      </td>
+        {/* Alerts Tab */}
+        {activeTab === 'alerts' && (
+          <div className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-200">
+              <h2 className="text-xl font-bold text-slate-800">🔔 Price Alerts</h2>
+            </div>
+            
+            {alerts.length === 0 ? (
+              <div className="p-12 text-center">
+                <Bell className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+                <p className="text-slate-500 text-lg">ยังไม่มีการตั้งแจ้งเตือน</p>
+                <p className="text-slate-400 text-sm mt-2">ตั้งแจ้งเตือนจาก Search tab</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-slate-50 border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Symbol</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Name</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Current</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Target High</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Target Low</th>
+                      <th className="px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase">Action</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* Settings Section */}
-        <section className="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
-          <h2 className="font-semibold text-sm flex items-center gap-2 text-stone-700 mb-3">
-            <Calculator size={16} className="text-teal-500" /> ตั้งค่าการลงทุน
-          </h2>
-          <div className="space-y-3">
-            <div>
-              <label className="text-[11px] font-medium text-stone-600">เงินลงทุนเริ่มต้น (บาท)</label>
-              <input 
-                type="number" 
-                value={initialInvestment} 
-                onChange={e => handleUpdateSetting(setInitialInvestment, 'initialInvestment', Number(e.target.value) || 0)} 
-                className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" 
-              />
-            </div>
-            <div>
-              <label className="text-[11px] font-medium text-stone-600">ลงทุนเพิ่มรายเดือน (บาท)</label>
-              <input 
-                type="number" 
-                value={monthlyContribution} 
-                onChange={e => handleUpdateSetting(setMonthlyContribution, 'monthlyContribution', Number(e.target.value) || 0)} 
-                className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" 
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-[11px] font-medium text-stone-600">เพิ่มปีละ (%)</label>
-                <input 
-                  type="number" 
-                  value={contributionStepUp} 
-                  onChange={e => handleUpdateSetting(setContributionStepUp, 'contributionStepUp', Number(e.target.value) || 0)} 
-                  className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" 
-                />
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {alerts.map((alert, idx) => {
+                      const asset = allAssets.find(a => a.symbol === alert.symbol);
+                      const currentPrice = asset ? parseFloat(asset.price) : 0;
+                      return (
+                        <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                          <td className="px-6 py-4 font-bold text-blue-600">{alert.symbol}</td>
+                          <td className="px-6 py-4 text-slate-700">{alert.name}</td>
+                          <td className="px-6 py-4 text-right text-slate-700">
+                            ${formatNumber(currentPrice, 2)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-emerald-600 font-semibold">
+                            {alert.priceHigh ? `$${alert.priceHigh}` : '-'}
+                          </td>
+                          <td className="px-6 py-4 text-right text-rose-600 font-semibold">
+                            {alert.priceLow ? `$${alert.priceLow}` : '-'}
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            <button
+                              onClick={() => removeAlert(idx)}
+                              className="text-rose-500 hover:text-rose-700 transition-colors"
+                            >
+                              <X className="w-5 h-5" />
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-              <div>
-                <label className="text-[11px] font-medium text-stone-600">ระยะเวลา (ปี)</label>
-                <input 
-                  type="number" 
-                  value={investmentYears} 
-                  onChange={e => handleUpdateSetting(setInvestmentYears, 'investmentYears', Number(e.target.value) || 1)} 
-                  className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-2.5 font-bold text-sm outline-none focus:border-teal-300 focus:bg-white mt-1 transition-all" 
-                />
-              </div>
-            </div>
+            )}
           </div>
-        </section>
+        )}
 
-        {/* Projections Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white p-5 rounded-2xl border-2 border-teal-200 shadow-sm">
-            <h3 className="text-stone-600 text-xs font-medium mb-1">มูลค่าพอร์ตทบต้น (DRIP) ✨</h3>
-            <div className="text-2xl font-bold mb-2 text-teal-700 tracking-tight">{formatCurrency(projections.finalDrip)}</div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="bg-teal-50 text-teal-600 px-2.5 py-0.5 rounded-full text-[10px] font-medium">ทบต้นตามจริง ✨</span>
-              <span className="text-[10px] text-stone-600">ลงทุนจริง {formatCurrency(projections.totalInvested)}</span>
-            </div>
-          </div>
-          <div className="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col justify-center">
-            <h3 className="text-stone-600 text-xs font-medium mb-1">หากไม่ทบต้น</h3>
-            <div className="text-2xl font-bold text-stone-600 mb-2 tracking-tight">{formatCurrency(projections.finalNoDrip)}</div>
-            <div className="text-xs text-rose-500 font-medium flex items-center gap-1">
-              <ArrowUpRight size={12} className="rotate-90" /> 
-              ส่วนต่าง: {formatCurrency(projections.finalDrip - projections.finalNoDrip)}
-            </div>
-          </div>
-        </div>
-
-        {/* Chart Section */}
-        <div className="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm">
-          <div className="flex justify-between items-end mb-4">
-            <div>
-              <h2 className="font-bold text-sm mb-0.5 text-stone-700 tracking-tight">เปรียบเทียบการเติบโต</h2>
-              <p className="text-stone-600 text-xs">ผลตอบแทน {investmentYears} ปี</p>
-            </div>
-            <div className="text-right space-y-0.5">
-              <div>
-                <span className="text-[10px] text-stone-600 font-medium">Yield </span>
-                <span className="text-xs font-bold text-emerald-600">{metrics.yield.toFixed(2)}%</span>
-              </div>
-              <div>
-                <span className="text-[10px] text-stone-600 font-medium">Growth </span>
-                <span className="text-xs font-bold text-cyan-600">+{metrics.growth.toFixed(2)}%</span>
+        {/* Dividends Tab */}
+        {activeTab === 'dividends' && (
+          <div className="space-y-6">
+            
+            <div className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-slate-800">💰 Dividend Calendar</h2>
+                <select
+                  value={selectedQuarter}
+                  onChange={(e) => setSelectedQuarter(e.target.value)}
+                  className="px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
+                >
+                  <option value="all">ทุกไตรมาส</option>
+                  <option value="1">Q1 (ม.ค.-มี.ค.)</option>
+                  <option value="2">Q2 (เม.ย.-มิ.ย.)</option>
+                  <option value="3">Q3 (ก.ค.-ก.ย.)</option>
+                  <option value="4">Q4 (ต.ค.-ธ.ค.)</option>
+                </select>
               </div>
             </div>
-          </div>
-          <ResponsiveContainer width="100%" height={280}>
-            <AreaChart 
-              data={projections.history.map(r => ({ 
-                year: `ปี ${r.year}`, 
-                'ทบต้น (DRIP)': Math.round(r.drip), 
-                'ไม่ทบต้น': Math.round(r.totalNoDrip), 
-                'เงินต้นสะสม': Math.round(r.totalInvested) 
-              }))} 
-              margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
-            >
-              <defs>
-                <linearGradient id="gradDrip" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#0d9488" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#0d9488" stopOpacity={0.02}/>
-                </linearGradient>
-                <linearGradient id="gradNoDrip" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#6366f1" stopOpacity={0.2}/>
-                  <stop offset="95%" stopColor="#6366f1" stopOpacity={0.02}/>
-                </linearGradient>
-                <linearGradient id="gradInvested" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.15}/>
-                  <stop offset="95%" stopColor="#94a3b8" stopOpacity={0.02}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f1f0ee" />
-              <XAxis 
-                dataKey="year" 
-                tick={{ fontSize: 10, fill: '#78716c' }} 
-                tickLine={false} 
-                axisLine={false} 
-              />
-              <YAxis 
-                tick={{ fontSize: 10, fill: '#78716c' }} 
-                tickLine={false} 
-                axisLine={false} 
-                tickFormatter={(v) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v} 
-              />
-              <Tooltip 
-                formatter={(value) => new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', maximumFractionDigits: 0 }).format(value)}
-                contentStyle={{ borderRadius: '12px', border: '1px solid #e7e5e4', fontSize: '11px', padding: '8px 12px' }}
-                labelStyle={{ fontWeight: 600, marginBottom: '4px' }}
-              />
-              <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
-              <Area type="monotone" dataKey="ทบต้น (DRIP)" stroke="#0d9488" strokeWidth={2.5} fill="url(#gradDrip)" />
-              <Area type="monotone" dataKey="ไม่ทบต้น" stroke="#6366f1" strokeWidth={1.5} fill="url(#gradNoDrip)" strokeDasharray="5 3" />
-              <Area type="monotone" dataKey="เงินต้นสะสม" stroke="#94a3b8" strokeWidth={1} fill="url(#gradInvested)" strokeDasharray="3 3" />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
 
-        {/* Yearly Table */}
-        <div className="bg-white rounded-2xl border border-stone-200/60 overflow-hidden shadow-sm">
-          <div className="px-5 py-3.5 bg-stone-50/50 font-semibold text-xs text-stone-700 border-b border-stone-100">
-            ตารางสรุปรายปี
+            <div className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+              {filteredDividends.length === 0 ? (
+                <div className="p-12 text-center">
+                  <Calendar className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+                  <p className="text-slate-500 text-lg">ไม่มีกำหนดการจ่ายเงินปันผล</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead className="bg-slate-50 border-b border-slate-200">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Symbol</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Name</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Frequency</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Ex-Date</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Pay Date</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Per Period</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase">Annual</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {filteredDividends.map((div, idx) => (
+                        <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                          <td className="px-6 py-4 font-bold text-blue-600">{div.symbol}</td>
+                          <td className="px-6 py-4 text-slate-700">{div.name}</td>
+                          <td className="px-6 py-4 text-slate-600">
+                            <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium">
+                              {div.frequency}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 text-right text-slate-700">
+                            {div.exDate.toLocaleDateString('th-TH')}
+                          </td>
+                          <td className="px-6 py-4 text-right text-slate-700">
+                            {div.payDate.toLocaleDateString('th-TH')}
+                          </td>
+                          <td className="px-6 py-4 text-right text-emerald-600 font-semibold">
+                            {formatCurrency(div.dividendPerPeriod)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-emerald-600 font-bold">
+                            {formatCurrency(div.annualDividend)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+            
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead className="bg-stone-50/50 text-[10px] font-medium">
-                <tr>
-                  <th className="px-3 py-2.5 text-left text-stone-600">ปีที่</th>
-                  <th className="px-3 py-2.5 text-right text-sky-600">ลงทุน/เดือน</th>
-                  <th className="px-3 py-2.5 text-right text-indigo-500">เงินต้นสะสม</th>
-                  <th className="px-3 py-2.5 text-right text-teal-600">ทบต้น</th>
-                  <th className="px-3 py-2.5 text-right text-stone-600">ไม่ทบต้น</th>
-                  <th className="px-3 py-2.5 text-right text-violet-500">ปันผล/ปี</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-stone-50">
-                {projections.history.map((row) => (
-                  <tr key={row.year} className={`transition-colors ${row.isMilestone ? 'bg-amber-50/60' : 'hover:bg-stone-50/50'}`}>
-                    <td className="px-3 py-3 font-semibold text-stone-700">
-                      {row.year}
-                      {row.isMilestone && <span className="ml-1.5 text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-medium">1M</span>}
-                    </td>
-                    <td className="px-3 py-3 text-right text-sky-600 font-medium">{formatCurrency(row.monthlyContrib)}</td>
-                    <td className="px-3 py-3 text-right text-indigo-500 font-medium">{formatCurrency(row.totalInvested)}</td>
-                    <td className="px-3 py-3 text-right font-semibold text-teal-700">{formatCurrency(row.drip)}</td>
-                    <td className="px-3 py-3 text-right text-stone-600">{formatCurrency(row.totalNoDrip)}</td>
-                    <td className="px-3 py-3 text-right text-violet-500 font-medium">{formatCurrency(row.yearlyDividend)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <footer className="text-center text-xs text-stone-400 py-4">
-          ETF Portfolio Tracker v5.2 with Stock Screener
-        </footer>
+        )}
 
       </div>
+
+      {/* Alert Modal */}
+      {showAlertModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-slate-800">ตั้งแจ้งเตือนราคา</h3>
+              <button
+                onClick={() => setShowAlertModal(false)}
+                className="text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="space-y-4">
+              <div>
+                <p className="text-lg font-semibold text-slate-700 mb-2">
+                  {selectedAssetForAlert?.symbol} - {selectedAssetForAlert?.name}
+                </p>
+                <p className="text-sm text-slate-500">
+                  ราคาปัจจุบัน: ${selectedAssetForAlert && formatNumber(parseFloat(selectedAssetForAlert.price), 2)}
+                </p>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  ราคาเป้าหมายสูงสุด ($)
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={alertForm.priceHigh}
+                  onChange={(e) => setAlertForm({ ...alertForm, priceHigh: e.target.value })}
+                  placeholder="เช่น 150.00"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  ราคาเป้าหมายต่ำสุด ($)
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={alertForm.priceLow}
+                  onChange={(e) => setAlertForm({ ...alertForm, priceLow: e.target.value })}
+                  placeholder="เช่น 100.00"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none"
+                />
+              </div>
+              
+              <div className="flex gap-3 mt-6">
+                <button
+                  onClick={() => setShowAlertModal(false)}
+                  className="flex-1 px-4 py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-all"
+                >
+                  ยกเลิก
+                </button>
+                <button
+                  onClick={saveAlert}
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all shadow-md"
+                >
+                  บันทึก
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="text-center text-xs text-slate-400 py-8">
+        ETF Portfolio Tracker v6.0 — Enhanced Features Edition
+      </footer>
+
     </div>
   );
 }
