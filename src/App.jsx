@@ -15,9 +15,23 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:999667791801:web:6e413d5e34f37982002868"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+// Check if Firebase config is valid before initializing
+const hasValidFirebaseConfig = 
+  firebaseConfig.apiKey && 
+  firebaseConfig.apiKey !== "" && 
+  !firebaseConfig.apiKey.includes("YOUR_") &&
+  firebaseConfig.apiKey.length > 30; // Valid API keys are longer
+
+const app = hasValidFirebaseConfig ? initializeApp(firebaseConfig) : null;
+const auth = app ? getAuth(app) : null;
+const db = app ? getFirestore(app) : null;
+
+// Log Firebase status
+if (hasValidFirebaseConfig && app) {
+  console.log('🔥 Firebase initialized successfully');
+} else {
+  console.log('ℹ️  Firebase not configured - using localStorage only');
+}
 
 // API Configuration
 const API_KEYS = {
@@ -178,6 +192,11 @@ function App() {
 
   // Firebase Authentication
   useEffect(() => {
+    if (!auth) {
+      console.log('ℹ️  Skipping Firebase auth - not configured');
+      return;
+    }
+    
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
@@ -259,7 +278,7 @@ function App() {
 
   // Load Portfolio from Firebase
   const loadPortfolio = useCallback(async () => {
-    if (!user) return;
+    if (!user || !db) return;
     
     try {
       const docRef = doc(db, 'portfolios', user.uid);
@@ -284,7 +303,7 @@ function App() {
 
   // Save Portfolio to Firebase
   const savePortfolio = useCallback(async () => {
-    if (!user) return;
+    if (!user || !db) return;
     
     try {
       const docRef = doc(db, 'portfolios', user.uid);
