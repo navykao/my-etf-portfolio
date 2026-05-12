@@ -21,10 +21,13 @@ const db = getFirestore(app);
 
 // API Configuration
 const API_KEYS = {
-  FMP: import.meta.env.VITE_FMP0N8_API_KEY || process.env.REACT_APP_FMP0N8_API_KEY,
-  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY || process.env.REACT_APP_FINNHUB_API_KEY,
-  TWELVE: import.meta.env.VITE_TWELVE_DATA_API_KEY || process.env.REACT_APP_TWELVE_DATA_API_KEY,
-  EODHD: import.meta.env.VITE_EODHD_API_KEY || process.env.REACT_APP_EODHD_API_KEY
+  FMP: import.meta.env.VITE_FMP0N8_API_KEY,
+
+  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY,
+
+  TWELVE: import.meta.env.VITE_TWELVE_DATA_API_KEY,
+
+  EODHD: import.meta.env.VITE_EODHD_API_KEY
 };
 
 // Cache Manager
