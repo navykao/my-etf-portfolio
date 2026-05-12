@@ -5,30 +5,30 @@ import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { Search, Star, Bell, DollarSign, TrendingUp, Trash2, Plus, RefreshCw, Menu, X, Calendar, TrendingDown } from 'lucide-react';
 
+// Import data files
+import assetsData from './combined-746-assets.json';
+// or use: import assetsData from './combined-all-assets.json';
+
 // Firebase Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDqL8F3qH_VvX9jW6kZ7nN8mP5oQ2rS4tU",
-  authDomain: "my-etf-portfolio.firebaseapp.com",
-  projectId: "my-etf-portfolio",
-  storageBucket: "my-etf-portfolio.appspot.com",
-  messagingSenderId: "123456789012",
-  appId: "1:123456789012:web:abcdef1234567890abcdef"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDqL8F3qH_VvX9jW6kZ7nN8mP5oQ2rS4tU",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "my-etf-portfolio.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "my-etf-portfolio",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "my-etf-portfolio.appspot.com",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "123456789012",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:123456789012:web:abcdef1234567890abcdef"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// API Configuration
-// API Configuration
+// API Configuration - ใช้ || fallback เพื่อป้องกันค่า undefined
 const API_KEYS = {
-  FMP: import.meta.env.VITE_FMP_API_KEY,
-
-  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY,
-
-  TWELVE: import.meta.env.VITE_TWELVE_DATA_API_KEY,
-
-  EODHD: import.meta.env.VITE_EODHD_API_KEY
+  FMP: import.meta.env.VITE_FMP_API_KEY || '',
+  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY || '',
+  TWELVE: import.meta.env.VITE_TWELVE_DATA_API_KEY || '',
+  EODHD: import.meta.env.VITE_EODHD_API_KEY || ''
 };
 
 // Cache Manager
@@ -180,6 +180,7 @@ function App() {
   const [isLiveMode, setIsLiveMode] = useState(false);
   const [lastUpdate, setLastUpdate] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Firebase Authentication
   useEffect(() => {
@@ -196,609 +197,601 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  // Load Assets Data from JSON
+  // Load Assets Data from imported JSON
   useEffect(() => {
-    const loadAssetsData = async () => {
-      const cached = localStorage.getItem('etf_local_cache_v7');
-      if (cached) {
-        console.log('[Data] Loading from local cache');
-        setAllAssets(JSON.parse(cached));
-        return;
+    console.log('[Data] Loading assets from imported JSON...');
+    try {
+      if (assetsData && Array.isArray(assetsData)) {
+        setAllAssets(assetsData);
+        console.log(`[Data] Loaded ${assetsData.length} assets successfully`);
+      } else {
+        console.error('[Data] Invalid assets data format');
+        setAllAssets([]);
       }
+    } catch (error) {
+      console.error('[Data] Error loading assets:', error);
+      setAllAssets([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
+  // Load User Data from Firebase
+  useEffect(() => {
+    if (!user) return;
+
+    const loadUserData = async () => {
       try {
-        // ลองโหลดจาก combined-746-assets.json
-        const response = await fetch('/data/combined-746-assets.json');
-        if (response.ok) {
-          const data = await response.json();
-          console.log('[Data] Loaded', data.length, 'assets from JSON');
-          setAllAssets(data);
-          localStorage.setItem('etf_local_cache_v7', JSON.stringify(data));
-          return;
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          console.log('[Firebase] User data loaded:', data);
+          setHoldings(data.holdings || []);
+          setWatchlist(data.watchlist || []);
+          setAlerts(data.alerts || []);
+          setTotalInvestment(data.totalInvestment || 100000);
+        } else {
+          console.log('[Firebase] No user data found, using defaults');
         }
       } catch (error) {
-        console.log('[Data] JSON file not found, falling back to text file');
-      }
-
-      // Fallback ไปที่ไฟล์ text
-      try {
-        const response = await fetch('/sp500-top100.txt');
-        const text = await response.text();
-        const lines = text.trim().split('\n').slice(1);
-        
-        const assets = lines.map(line => {
-          const [symbol, name, price, divYield, divFrequency, growthRate] = line.split('\t');
-          return {
-            symbol: symbol?.trim() || '',
-            name: name?.trim() || '',
-            price: parseFloat(price) || 0,
-            divYield: parseFloat(divYield) || 0,
-            dividendYield: parseFloat(divYield) || 0,
-            trailingDividendRate: 0,
-            divFrequency: divFrequency?.trim() || 'quarterly',
-            growthRate: parseFloat(growthRate) || 5,
-            divGrowth3Y: null,
-            divGrowth5Y: null,
-            divGrowth10Y: null
-          };
-        });
-
-        console.log('[Data] Loaded', assets.length, 'assets from text file');
-        setAllAssets(assets);
-        localStorage.setItem('etf_local_cache_v7', JSON.stringify(assets));
-      } catch (error) {
-        console.error('[Data] Load error:', error);
+        console.error('[Firebase] Error loading user data:', error);
       }
     };
 
-    loadAssetsData();
-  }, []);
+    loadUserData();
+  }, [user]);
 
-  // Auto-refresh data in Live Mode
+  // Save User Data to Firebase
+  const saveUserData = useCallback(async () => {
+    if (!user) return;
+
+    try {
+      const docRef = doc(db, 'users', user.uid);
+      await setDoc(docRef, {
+        holdings,
+        watchlist,
+        alerts,
+        totalInvestment,
+        lastUpdated: new Date().toISOString()
+      });
+      console.log('[Firebase] User data saved successfully');
+    } catch (error) {
+      console.error('[Firebase] Error saving user data:', error);
+    }
+  }, [user, holdings, watchlist, alerts, totalInvestment]);
+
+  // Auto-save when data changes
   useEffect(() => {
-    if (!isLiveMode || holdings.length === 0) return;
+    if (user) {
+      const timeoutId = setTimeout(saveUserData, 1000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [holdings, watchlist, alerts, totalInvestment, user, saveUserData]);
 
-    const interval = setInterval(async () => {
-      console.log('[Live] Auto-updating prices...');
-      const updates = {};
-      
-      for (const holding of holdings) {
-        const liveData = await APIService.fetchLivePrice(holding.symbol);
-        if (liveData) {
-          updates[holding.symbol] = liveData.price;
-        }
-      }
+  // Calculate Portfolio Statistics
+  const stats = React.useMemo(() => {
+    const holdingsWithDetails = holdings.map(h => {
+      const asset = allAssets.find(a => a.symbol === h.symbol);
+      if (!asset) return null;
 
-      if (Object.keys(updates).length > 0) {
-        setHoldings(prev => prev.map(h => ({
-          ...h,
-          price: updates[h.symbol] || h.price
-        })));
-        setLastUpdate(new Date());
-      }
-    }, 30000);
+      const shares = h.shares || 0;
+      const currentValue = shares * parseFloat(asset.price || 0);
+      const invested = h.invested || 0;
+      const gain = currentValue - invested;
+      const gainPercent = invested > 0 ? (gain / invested) * 100 : 0;
 
-    return () => clearInterval(interval);
-  }, [isLiveMode, holdings]);
+      const divYield = parseFloat(asset.divYield || asset.dividendYield || 0);
+      const annualDiv = currentValue * (divYield / 100);
+      const divFrequency = asset.divFrequency || 'quarterly';
 
-  const addToPortfolio = (asset) => {
-    const shares = prompt(`จำนวนหุ้น ${asset.symbol} ที่ต้องการซื้อ:`, '10');
-    if (!shares || isNaN(shares)) return;
-
-    const qty = parseInt(shares);
-    const existing = holdings.find(h => h.symbol === asset.symbol);
-
-    if (existing) {
-      setHoldings(holdings.map(h => 
-        h.symbol === asset.symbol 
-          ? { ...h, shares: h.shares + qty }
-          : h
-      ));
-    } else {
-      setHoldings([...holdings, {
+      return {
+        ...h,
         ...asset,
-        shares: qty,
-        dividendYield: asset.divYield || asset.dividendYield || 0
-      }]);
+        shares,
+        currentValue,
+        invested,
+        gain,
+        gainPercent,
+        dividendYield: divYield,
+        annualDiv,
+        divFrequency,
+        trailingDividendRate: parseFloat(asset.trailingDividendRate || 0),
+        divGrowth3Y: asset.divGrowth3Y,
+        divGrowth5Y: asset.divGrowth5Y,
+        divGrowth10Y: asset.divGrowth10Y
+      };
+    }).filter(Boolean);
+
+    const totalValue = holdingsWithDetails.reduce((sum, h) => sum + h.currentValue, 0);
+    const totalGain = holdingsWithDetails.reduce((sum, h) => sum + h.gain, 0);
+    const totalGainPercent = totalInvestment > 0 ? (totalGain / totalInvestment) * 100 : 0;
+    const totalAnnualDiv = holdingsWithDetails.reduce((sum, h) => sum + h.annualDiv, 0);
+    const avgYield = totalValue > 0 ? (totalAnnualDiv / totalValue) * 100 : 0;
+
+    return {
+      holdings: holdingsWithDetails,
+      totalValue,
+      totalGain,
+      totalGainPercent,
+      totalAnnualDiv,
+      avgYield
+    };
+  }, [holdings, allAssets, totalInvestment]);
+
+  // Filtered Assets for Search
+  const filteredAssets = React.useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    
+    const query = searchQuery.toLowerCase();
+    return allAssets
+      .filter(asset => 
+        asset.symbol.toLowerCase().includes(query) ||
+        asset.name.toLowerCase().includes(query)
+      )
+      .slice(0, 20);
+  }, [searchQuery, allAssets]);
+
+  // Add to Holdings
+  const addToHoldings = (asset) => {
+    const shares = parseFloat(prompt(`จำนวนหุ้น ${asset.symbol}:`) || '0');
+    if (shares <= 0 || isNaN(shares)) return;
+
+    const avgPrice = parseFloat(prompt(`ราคาเฉลี่ย (ปัจจุบัน: $${asset.price}):`) || asset.price);
+    const invested = shares * avgPrice;
+
+    const newHolding = {
+      symbol: asset.symbol,
+      shares,
+      invested,
+      addedAt: new Date().toISOString()
+    };
+
+    setHoldings(prev => [...prev, newHolding]);
+    setSearchQuery('');
+  };
+
+  // Delete from Holdings
+  const deleteHolding = (index) => {
+    if (confirm('ต้องการลบหุ้นนี้ออกจากพอร์ตหรือไม่?')) {
+      setHoldings(prev => prev.filter((_, i) => i !== index));
     }
   };
 
-  const removeHolding = (symbol) => {
-    setHoldings(holdings.filter(h => h.symbol !== symbol));
+  // Refresh Live Prices
+  const refreshLivePrices = async () => {
+    if (!isLiveMode) {
+      alert('⚠️ กรุณาเปิดโหมด Live Prices ก่อน');
+      return;
+    }
+
+    setLastUpdate('กำลังอัปเดต...');
+    
+    for (const holding of stats.holdings) {
+      const liveData = await APIService.fetchLivePrice(holding.symbol);
+      if (liveData) {
+        console.log(`[Update] ${holding.symbol}: $${liveData.price}`);
+      }
+    }
+
+    setLastUpdate(new Date().toLocaleString('th-TH'));
   };
 
-  const stats = {
-    holdings: holdings.map(h => {
-      const value = h.shares * h.price;
-      const freq = DIVIDEND_FREQUENCIES[h.divFrequency] || DIVIDEND_FREQUENCIES.quarterly;
-      const annualDiv = value * (h.dividendYield / 100);
-      
-      return {
-        ...h,
-        value,
-        annualDiv,
-        divFrequency: h.divFrequency
-      };
-    }),
-    totalValue: holdings.reduce((sum, h) => sum + (h.shares * h.price), 0),
-    totalAnnualDiv: holdings.reduce((sum, h) => {
-      const value = h.shares * h.price;
-      return sum + (value * (h.dividendYield / 100));
-    }, 0),
-    avgYield: holdings.length > 0
-      ? holdings.reduce((sum, h) => sum + h.dividendYield, 0) / holdings.length
-      : 0
-  };
-
-  const searchResults = allAssets.filter(asset =>
-    searchQuery === '' || 
-    asset.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    asset.name.toLowerCase().includes(searchQuery.toLowerCase())
-  ).slice(0, 50);
-
-  const pieData = stats.holdings.map(h => ({
-    name: h.symbol,
-    value: h.value
-  }));
-
-  const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
+  // Loading State
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+        <div className="text-center">
+          <RefreshCw className="animate-spin mx-auto mb-4 text-blue-600" size={48} />
+          <p className="text-lg text-slate-600">กำลังโหลดข้อมูล...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
+      <header className="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-md">
-                <TrendingUp className="text-white" size={20} />
-              </div>
-              <div>
-                <h1 className="text-lg sm:text-2xl font-bold text-blue-600">My ETF Portfolio</h1>
-                <p className="text-xs sm:text-sm text-slate-500">
-                  {allAssets.length} assets • {holdings.length} holdings
-                </p>
-              </div>
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">My ETF Portfolio</h1>
+              <p className="text-sm text-slate-500 mt-1">
+                {allAssets.length} assets • {holdings.length} holdings
+              </p>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3">
-              {lastUpdate && (
-                <div className="hidden sm:block text-xs text-slate-500">
-                  อัพเดท: {lastUpdate.toLocaleTimeString('th-TH')}
-                </div>
-              )}
-              
-              <button
-                onClick={() => setIsLiveMode(!isLiveMode)}
-                className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-medium transition-all text-xs sm:text-sm flex items-center gap-2 ${
-                  isLiveMode 
-                    ? 'bg-green-500 text-white shadow-lg' 
-                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-                }`}
-              >
-                <RefreshCw size={14} className={isLiveMode ? 'animate-spin' : ''} />
-                <span className="hidden sm:inline">{isLiveMode ? 'Live' : 'Static'}</span>
-              </button>
+            {/* Mobile Menu Toggle */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg hover:bg-slate-100"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
 
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-2">
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="sm:hidden p-2 rounded-lg hover:bg-slate-100"
-              >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation */}
-      <div className={`bg-white border-b sm:block ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-1 py-2">
-            {[
-              { id: 'dashboard', icon: TrendingUp, label: 'Dashboard' },
-              { id: 'search', icon: Search, label: 'Search' },
-              { id: 'watchlist', icon: Star, label: 'Watchlist' },
-              { id: 'alerts', icon: Bell, label: 'Alerts' },
-              { id: 'dividends', icon: DollarSign, label: 'Dividends' }
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id);
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-colors text-sm ${
-                  activeTab === tab.id
-                    ? 'bg-blue-500 text-white shadow-md'
+                onClick={() => setActiveTab('dashboard')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeTab === 'dashboard'
+                    ? 'bg-blue-600 text-white'
                     : 'text-slate-600 hover:bg-slate-100'
                 }`}
               >
-                <tab.icon size={18} />
-                {tab.label}
+                <TrendingUp size={18} />
+                <span className="hidden sm:inline">Dashboard</span>
               </button>
-            ))}
+              <button
+                onClick={() => setActiveTab('search')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeTab === 'search'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                <Search size={18} />
+                <span className="hidden sm:inline">Search</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('watchlist')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeTab === 'watchlist'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                <Star size={18} />
+                <span className="hidden sm:inline">Watchlist</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('alerts')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeTab === 'alerts'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                <Bell size={18} />
+                <span className="hidden sm:inline">Alerts</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('dividends')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeTab === 'dividends'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                <DollarSign size={18} />
+                <span className="hidden sm:inline">Dividends</span>
+              </button>
+            </nav>
           </div>
-        </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+          {/* Mobile Navigation */}
+          {isMobileMenuOpen && (
+            <nav className="lg:hidden mt-4 flex flex-col gap-2 pb-2">
+              <button
+                onClick={() => {
+                  setActiveTab('dashboard');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium ${
+                  activeTab === 'dashboard'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-700'
+                }`}
+              >
+                <TrendingUp size={18} />
+                Dashboard
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('search');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium ${
+                  activeTab === 'search'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-700'
+                }`}
+              >
+                <Search size={18} />
+                Search
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('watchlist');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium ${
+                  activeTab === 'watchlist'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-700'
+                }`}
+              >
+                <Star size={18} />
+                Watchlist
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('alerts');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium ${
+                  activeTab === 'alerts'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-700'
+                }`}
+              >
+                <Bell size={18} />
+                Alerts
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('dividends');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium ${
+                  activeTab === 'dividends'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-700'
+                }`}
+              >
+                <DollarSign size={18} />
+                Dividends
+              </button>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8">
         {/* Dashboard Tab */}
         {activeTab === 'dashboard' && (
           <>
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
-              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <DollarSign className="text-blue-600" size={20} />
-                  </div>
-                  <span className="text-sm text-slate-600">มูลค่าพอร์ต</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-slate-500">มูลค่าพอร์ต</span>
+                  <DollarSign className="text-blue-600" size={20} />
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold text-slate-800">
+                <div className="text-2xl font-bold text-slate-800">
                   ฿{Math.round(stats.totalValue).toLocaleString()}
                 </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  ลงทุน: ฿{Math.round(totalInvestment).toLocaleString()}
+                </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
-                    <TrendingUp className="text-green-600" size={20} />
-                  </div>
-                  <span className="text-sm text-slate-600">ปันผล/ปี</span>
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-slate-500">กำไร/ขาดทุน</span>
+                  <TrendingUp className={stats.totalGain >= 0 ? 'text-green-600' : 'text-red-600'} size={20} />
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold text-green-600">
+                <div className={`text-2xl font-bold ${stats.totalGain >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {stats.totalGain >= 0 ? '+' : ''}฿{Math.round(stats.totalGain).toLocaleString()}
+                </div>
+                <div className={`text-xs mt-1 ${stats.totalGainPercent >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {stats.totalGainPercent >= 0 ? '+' : ''}{stats.totalGainPercent.toFixed(2)}%
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-slate-500">เงินปันผลรายปี</span>
+                  <DollarSign className="text-green-600" size={20} />
+                </div>
+                <div className="text-2xl font-bold text-green-600">
                   ฿{Math.round(stats.totalAnnualDiv).toLocaleString()}
                 </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  ~฿{Math.round(stats.totalAnnualDiv / 12).toLocaleString()} / เดือน
+                </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-                    <Star className="text-purple-600" size={20} />
-                  </div>
-                  <span className="text-sm text-slate-600">Avg Yield</span>
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-slate-500">Avg Yield</span>
+                  <Percent className="text-emerald-600" size={20} />
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold text-purple-600">
+                <div className="text-2xl font-bold text-emerald-600">
                   {stats.avgYield.toFixed(2)}%
                 </div>
               </div>
             </div>
 
-            {/* Portfolio Allocation */}
-            {holdings.length > 0 && (
-              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm mb-4 sm:mb-6">
-                <h2 className="text-lg sm:text-xl font-bold mb-4">Portfolio Allocation</h2>
-                <div className="h-64 sm:h-80">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={pieData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                        outerRadius={window.innerWidth < 640 ? 80 : 120}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {pieData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip formatter={(value) => `฿${Math.round(value).toLocaleString()}`} />
-                    </PieChart>
-                  </ResponsiveContainer>
+            {/* Holdings Section */}
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg sm:text-xl font-bold">Holdings</h2>
+                <div className="flex items-center gap-2">
+                  <label className="flex items-center gap-2 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={isLiveMode}
+                      onChange={(e) => setIsLiveMode(e.target.checked)}
+                      className="rounded"
+                    />
+                    <span className="text-slate-600">Live Prices</span>
+                  </label>
+                  {isLiveMode && (
+                    <button
+                      onClick={refreshLivePrices}
+                      className="p-2 hover:bg-slate-100 rounded-lg"
+                      title="Refresh prices"
+                    >
+                      <RefreshCw size={16} className="text-blue-600" />
+                    </button>
+                  )}
                 </div>
               </div>
-            )}
 
-            {/* Holdings Table */}
-            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
-              <h2 className="text-lg sm:text-xl font-bold mb-4">Holdings</h2>
               {holdings.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="text-slate-400 mb-2">
-                    <TrendingUp size={48} className="mx-auto" />
-                  </div>
-                  <p className="text-slate-500 mb-4 text-sm sm:text-base">ยังไม่มีหุ้นในพอร์ต</p>
+                  <TrendingDown size={48} className="mx-auto text-slate-300 mb-4" />
+                  <p className="text-slate-500 mb-4">ยังไม่มีหุ้นในพอร์ต</p>
                   <button
                     onClick={() => setActiveTab('search')}
-                    className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 inline-flex items-center gap-2"
                   >
-                    เริ่มค้นหาหุ้น
+                    <Plus size={18} />
+                    เพิ่มหุ้นเข้าพอร์ต
                   </button>
                 </div>
               ) : (
-                <>
-                  {/* Desktop Table */}
-                  <div className="hidden sm:block overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="text-left border-b text-sm">
-                        <tr className="text-slate-600">
-                          <th className="pb-3 font-medium">Symbol</th>
-                          <th className="pb-3 font-medium">ราคา</th>
-                          <th className="pb-3 font-medium">จำนวน</th>
-                          <th className="pb-3 font-medium">มูลค่า</th>
-                          <th className="pb-3 font-medium">Yield</th>
-                          <th className="pb-3 font-medium">ปันผล/ปี</th>
-                          <th className="pb-3 font-medium"></th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y">
-                        {stats.holdings.map((holding, idx) => (
-                          <tr key={idx} className="text-sm">
-                            <td className="py-3">
-                              <div className="font-bold text-blue-600">{holding.symbol}</div>
-                              <div className="text-xs text-slate-500">{holding.name}</div>
-                            </td>
-                            <td className="py-3">฿{holding.price.toFixed(2)}</td>
-                            <td className="py-3">{holding.shares}</td>
-                            <td className="py-3 font-medium">฿{Math.round(holding.value).toLocaleString()}</td>
-                            <td className="py-3 text-green-600 font-medium">{holding.dividendYield.toFixed(2)}%</td>
-                            <td className="py-3 text-green-600 font-medium">
-                              ฿{Math.round(holding.annualDiv).toLocaleString()}
-                            </td>
-                            <td className="py-3">
-                              <button
-                                onClick={() => removeHolding(holding.symbol)}
-                                className="text-red-500 hover:text-red-700"
-                              >
-                                <Trash2 size={18} />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Mobile Cards */}
-                  <div className="sm:hidden space-y-3">
-                    {stats.holdings.map((holding, idx) => (
-                      <div key={idx} className="bg-slate-50 rounded-xl p-4">
-                        <div className="flex justify-between items-start mb-3">
-                          <div>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full text-sm">
+                    <thead className="bg-slate-50 border-y border-slate-200">
+                      <tr>
+                        <th className="px-4 py-3 text-left font-medium text-slate-600">Symbol</th>
+                        <th className="px-4 py-3 text-left font-medium text-slate-600 hidden sm:table-cell">Name</th>
+                        <th className="px-4 py-3 text-right font-medium text-slate-600">Shares</th>
+                        <th className="px-4 py-3 text-right font-medium text-slate-600">Price</th>
+                        <th className="px-4 py-3 text-right font-medium text-slate-600">Value</th>
+                        <th className="px-4 py-3 text-right font-medium text-slate-600 hidden md:table-cell">Gain/Loss</th>
+                        <th className="px-4 py-3 text-right font-medium text-slate-600 hidden lg:table-cell">Yield</th>
+                        <th className="px-4 py-3 text-center font-medium text-slate-600">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {stats.holdings.map((holding, idx) => (
+                        <tr key={idx} className="hover:bg-slate-50">
+                          <td className="px-4 py-3">
                             <div className="font-bold text-blue-600">{holding.symbol}</div>
-                            <div className="text-xs text-slate-600 mt-1">{holding.name}</div>
-                          </div>
-                          <button
-                            onClick={() => removeHolding(holding.symbol)}
-                            className="text-red-500 hover:text-red-700 p-1"
-                          >
-                            <Trash2 size={18} />
-                          </button>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 text-sm">
-                          <div>
-                            <div className="text-xs text-slate-500">ราคา</div>
-                            <div className="font-medium">฿{holding.price.toFixed(2)}</div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-slate-500">จำนวน</div>
-                            <div className="font-medium">{holding.shares}</div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-slate-500">มูลค่า</div>
-                            <div className="font-medium">฿{Math.round(holding.value).toLocaleString()}</div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-slate-500">Yield</div>
-                            <div className="font-medium text-green-600">{holding.dividendYield.toFixed(2)}%</div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
+                          </td>
+                          <td className="px-4 py-3 text-slate-600 hidden sm:table-cell max-w-xs truncate">
+                            {holding.name}
+                          </td>
+                          <td className="px-4 py-3 text-right">{holding.shares}</td>
+                          <td className="px-4 py-3 text-right font-medium">
+                            ${parseFloat(holding.price || 0).toFixed(2)}
+                          </td>
+                          <td className="px-4 py-3 text-right font-bold">
+                            ฿{Math.round(holding.currentValue).toLocaleString()}
+                          </td>
+                          <td className={`px-4 py-3 text-right font-medium hidden md:table-cell ${
+                            holding.gain >= 0 ? 'text-green-600' : 'text-red-600'
+                          }`}>
+                            {holding.gain >= 0 ? '+' : ''}฿{Math.round(holding.gain).toLocaleString()}
+                            <div className="text-xs">
+                              ({holding.gainPercent >= 0 ? '+' : ''}{holding.gainPercent.toFixed(1)}%)
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-right text-green-600 font-medium hidden lg:table-cell">
+                            {holding.dividendYield.toFixed(2)}%
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            <button
+                              onClick={() => deleteHolding(idx)}
+                              className="text-red-500 hover:text-red-700 p-2"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {lastUpdate && (
+                <div className="mt-4 text-xs text-slate-500 text-center">
+                  Last update: {lastUpdate}
+                </div>
               )}
             </div>
           </>
         )}
 
-        {/* Search Tab - แสดงข้อมูลปันผลในการ์ด */}
+        {/* Search Tab */}
         {activeTab === 'search' && (
           <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
-            <div className="mb-6">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                <input
-                  type="text"
-                  placeholder="ค้นหา Symbol หรือชื่อบริษัท..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
-                />
-              </div>
+            <h2 className="text-lg sm:text-xl font-bold mb-4">ค้นหาหุ้น</h2>
+            
+            <div className="relative mb-6">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="ค้นหาด้วย Symbol หรือชื่อหุ้น..."
+                className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
 
-            {/* Desktop Table */}
-            <div className="hidden sm:block overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="text-left border-b">
-                  <tr className="text-slate-600">
-                    <th className="pb-3 font-medium">Symbol</th>
-                    <th className="pb-3 font-medium">Name</th>
-                    <th className="pb-3 font-medium text-right">ราคา</th>
-                    <th className="pb-3 font-medium text-right">Div Yield</th>
-                    <th className="pb-3 font-medium text-right">ปันผล/หุ้น</th>
-                    <th className="pb-3 font-medium text-right">Div Growth</th>
-                    <th className="pb-3 font-medium text-center">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y">
-                  {searchResults.map((asset, idx) => (
-                    <tr key={idx} className="hover:bg-slate-50">
-                      <td className="py-3 font-bold text-blue-600">{asset.symbol}</td>
-                      <td className="py-3 text-slate-600 max-w-xs truncate">{asset.name}</td>
-                      <td className="py-3 text-right font-medium">${parseFloat(asset.price || 0).toFixed(2)}</td>
-                      <td className="py-3 text-right">
-                        <span className="text-green-600 font-medium">
-                          {parseFloat(asset.divYield || asset.dividendYield || 0).toFixed(2)}%
-                        </span>
-                      </td>
-                      <td className="py-3 text-right">
-                        {asset.trailingDividendRate ? (
-                          <span className="text-slate-700 font-medium">
-                            ${asset.trailingDividendRate.toFixed(3)}
-                          </span>
-                        ) : (
-                          <span className="text-slate-400 text-xs">N/A</span>
-                        )}
-                      </td>
-                      <td className="py-3 text-right">
-                        <div className="flex flex-col gap-0.5 text-xs">
-                          {asset.divGrowth3Y !== null && asset.divGrowth3Y !== undefined ? (
-                            <>
-                              <span className="text-emerald-600">3Y: {asset.divGrowth3Y.toFixed(1)}%</span>
-                              {asset.divGrowth5Y !== null && (
-                                <span className="text-blue-600">5Y: {asset.divGrowth5Y.toFixed(1)}%</span>
-                              )}
-                              {asset.divGrowth10Y !== null && (
-                                <span className="text-purple-600">10Y: {asset.divGrowth10Y.toFixed(1)}%</span>
-                              )}
-                            </>
-                          ) : (
-                            <span className="text-slate-400">N/A</span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="py-3">
-                        <div className="flex justify-center gap-2">
-                          <button
-                            onClick={() => addToPortfolio(asset)}
-                            className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                            title="Add to Portfolio"
-                          >
-                            <Plus size={14} />
-                          </button>
-                          <button
-                            onClick={() => {
-                              if (!watchlist.find(w => w.symbol === asset.symbol)) {
-                                setWatchlist([...watchlist, asset]);
-                              }
-                            }}
-                            className="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
-                            title="Add to Watchlist"
-                          >
-                            <Star size={14} />
-                          </button>
-                          <button
-                            onClick={() => {
-                              const price = prompt(`Set alert price for ${asset.symbol}:`);
-                              if (price && !isNaN(price)) {
-                                setAlerts([...alerts, {
-                                  symbol: asset.symbol,
-                                  targetPrice: parseFloat(price),
-                                  currentPrice: parseFloat(asset.price)
-                                }]);
-                              }
-                            }}
-                            className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                            title="Set Alert"
-                          >
-                            <Bell size={14} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile Cards - แสดงข้อมูลปันผล */}
-            <div className="sm:hidden space-y-3">
-              {searchResults.map((asset, idx) => (
-                <div key={idx} className="bg-slate-50 rounded-xl p-4">
-                  <div className="flex justify-between items-start mb-3">
+            <div className="space-y-3">
+              {filteredAssets.length === 0 && searchQuery && (
+                <p className="text-center text-slate-500 py-8">ไม่พบข้อมูลที่ค้นหา</p>
+              )}
+              
+              {filteredAssets.map((asset, idx) => (
+                <div key={idx} className="p-4 border border-slate-200 rounded-xl hover:border-blue-300 transition-colors">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                     <div className="flex-1">
                       <div className="font-bold text-blue-600 text-lg">{asset.symbol}</div>
-                      <div className="text-xs text-slate-600 mt-1 line-clamp-2">{asset.name}</div>
-                    </div>
-                    <div className="text-right ml-2">
-                      <div className="font-medium text-lg">${parseFloat(asset.price || 0).toFixed(2)}</div>
-                    </div>
-                  </div>
-
-                  {/* Dividend Info Card */}
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 mb-3 border border-green-200">
-                    <div className="grid grid-cols-2 gap-3 text-sm">
-                      <div>
-                        <div className="text-xs text-slate-600 mb-0.5">Dividend Yield</div>
-                        <div className="font-bold text-green-600 text-base">
-                          {parseFloat(asset.divYield || asset.dividendYield || 0).toFixed(2)}%
+                      <div className="text-sm text-slate-600 mt-1">{asset.name}</div>
+                      
+                      <div className="mt-2 flex flex-wrap gap-3 text-xs">
+                        <div>
+                          <span className="text-slate-500">Price: </span>
+                          <span className="font-medium">${parseFloat(asset.price || 0).toFixed(2)}</span>
                         </div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-slate-600 mb-0.5">ปันผล/หุ้น/ปี</div>
-                        <div className="font-bold text-green-700 text-base">
-                          {asset.trailingDividendRate ? `$${asset.trailingDividendRate.toFixed(3)}` : 'N/A'}
+                        <div>
+                          <span className="text-slate-500">Yield: </span>
+                          <span className="font-medium text-green-600">
+                            {parseFloat(asset.divYield || asset.dividendYield || 0).toFixed(2)}%
+                          </span>
                         </div>
-                      </div>
-                    </div>
-
-                    {/* Dividend Growth */}
-                    {(asset.divGrowth3Y !== null && asset.divGrowth3Y !== undefined) && (
-                      <div className="mt-3 pt-3 border-t border-green-200">
-                        <div className="text-xs text-slate-600 mb-2">การเติบโตของปันผล</div>
-                        <div className="flex gap-3 text-xs">
-                          <div className="flex items-center gap-1">
-                            <TrendingUp size={12} className="text-emerald-600" />
-                            <span className="font-medium text-emerald-600">3Y: {asset.divGrowth3Y.toFixed(1)}%</span>
+                        {asset.trailingDividendRate > 0 && (
+                          <div>
+                            <span className="text-slate-500">Div: </span>
+                            <span className="font-medium text-green-700">
+                              ${asset.trailingDividendRate.toFixed(3)}/sh
+                            </span>
                           </div>
-                          {asset.divGrowth5Y !== null && (
-                            <div className="flex items-center gap-1">
-                              <TrendingUp size={12} className="text-blue-600" />
-                              <span className="font-medium text-blue-600">5Y: {asset.divGrowth5Y.toFixed(1)}%</span>
-                            </div>
-                          )}
-                          {asset.divGrowth10Y !== null && (
-                            <div className="flex items-center gap-1">
-                              <TrendingUp size={12} className="text-purple-600" />
-                              <span className="font-medium text-purple-600">10Y: {asset.divGrowth10Y.toFixed(1)}%</span>
-                            </div>
-                          )}
-                        </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => addToPortfolio(asset)}
-                      className="flex-1 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2 text-sm font-medium"
-                    >
-                      <Plus size={16} />
-                      Add
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (!watchlist.find(w => w.symbol === asset.symbol)) {
-                          setWatchlist([...watchlist, asset]);
-                        }
-                      }}
-                      className="flex-1 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 flex items-center justify-center gap-2 text-sm font-medium"
-                    >
-                      <Star size={16} />
-                      Watch
-                    </button>
-                    <button
-                      onClick={() => {
-                        const price = prompt(`Set alert price for ${asset.symbol}:`);
-                        if (price && !isNaN(price)) {
-                          setAlerts([...alerts, {
-                            symbol: asset.symbol,
-                            targetPrice: parseFloat(price),
-                            currentPrice: parseFloat(asset.price)
-                          }]);
-                        }
-                      }}
-                      className="flex-1 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center gap-2 text-sm font-medium"
-                    >
-                      <Bell size={16} />
-                      Alert
-                    </button>
+                    </div>
+                    
+                    <div className="flex gap-2 w-full sm:w-auto">
+                      <button
+                        onClick={() => addToHoldings(asset)}
+                        className="flex-1 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 text-sm font-medium"
+                      >
+                        <Plus size={16} />
+                        Add
+                      </button>
+                      <button
+                        onClick={() => setWatchlist([...watchlist, asset])}
+                        className="flex-1 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 flex items-center justify-center gap-2 text-sm font-medium"
+                      >
+                        <Star size={16} />
+                        Watch
+                      </button>
+                      <button
+                        onClick={() => {
+                          const price = prompt(`Set alert price for ${asset.symbol}:`);
+                          if (price && !isNaN(price)) {
+                            setAlerts([...alerts, {
+                              symbol: asset.symbol,
+                              targetPrice: parseFloat(price),
+                              currentPrice: parseFloat(asset.price)
+                            }]);
+                          }
+                        }}
+                        className="flex-1 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center gap-2 text-sm font-medium"
+                      >
+                        <Bell size={16} />
+                        Alert
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -820,7 +813,6 @@ function App() {
                       <div className="font-bold text-blue-600 text-lg">{item.symbol}</div>
                       <div className="text-sm text-slate-600 mt-1">{item.name}</div>
                       
-                      {/* Dividend Info */}
                       <div className="mt-2 flex gap-4 text-xs">
                         <div>
                           <span className="text-slate-500">Yield: </span>
@@ -837,19 +829,6 @@ function App() {
                           </div>
                         )}
                       </div>
-
-                      {/* Dividend Growth */}
-                      {item.divGrowth3Y !== null && item.divGrowth3Y !== undefined && (
-                        <div className="mt-2 flex gap-3 text-xs">
-                          <span className="text-emerald-600 font-medium">3Y: {item.divGrowth3Y.toFixed(1)}%</span>
-                          {item.divGrowth5Y !== null && (
-                            <span className="text-blue-600 font-medium">5Y: {item.divGrowth5Y.toFixed(1)}%</span>
-                          )}
-                          {item.divGrowth10Y !== null && (
-                            <span className="text-purple-600 font-medium">10Y: {item.divGrowth10Y.toFixed(1)}%</span>
-                          )}
-                        </div>
-                      )}
                     </div>
                     
                     <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
@@ -926,7 +905,6 @@ function App() {
                               ความถี่: {freq.label} • Yield: {holding.dividendYield.toFixed(2)}%
                             </div>
                             
-                            {/* Dividend Growth Info */}
                             {(holding.divGrowth3Y !== null && holding.divGrowth3Y !== undefined) && (
                               <div className="mt-2 flex gap-3 text-xs">
                                 <span className="text-emerald-600 font-medium">
@@ -972,6 +950,7 @@ function App() {
       {/* Footer */}
       <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8 text-center text-xs sm:text-sm text-slate-500">
         <p>ETF Portfolio Tracker v6.3 — Enhanced Dividend Information Display</p>
+        <p className="mt-1">Loaded {allAssets.length} assets from JSON</p>
       </div>
     </div>
   );
