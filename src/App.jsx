@@ -20,6 +20,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // API Configuration
+// API Configuration
 const API_KEYS = {
   FMP: import.meta.env.VITE_FMP_API_KEY,
 
