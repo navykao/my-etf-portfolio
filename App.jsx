@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { Search, Star, Bell, DollarSign, TrendingUp, Trash2, Plus, RefreshCw } from 'lucide-react';
+import { Search, Star, Bell, DollarSign, TrendingUp, Trash2, Plus, RefreshCw, Menu, X } from 'lucide-react';
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -30,7 +30,7 @@ const API_KEYS = {
 // Cache Manager
 const CacheManager = {
   PRICE_CACHE_KEY: 'price_cache_v1',
-  CACHE_DURATION: 5 * 60 * 1000, // 5 minutes
+  CACHE_DURATION: 5 * 60 * 1000,
   
   getPriceCache: (symbol) => {
     try {
@@ -175,6 +175,7 @@ function App() {
   const [totalInvestment, setTotalInvestment] = useState(100000);
   const [isLiveMode, setIsLiveMode] = useState(false);
   const [lastUpdate, setLastUpdate] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Firebase Authentication
   useEffect(() => {
@@ -302,7 +303,7 @@ function App() {
     
     const interval = setInterval(() => {
       fetchLivePrices();
-    }, 5 * 60 * 1000); // 5 minutes
+    }, 5 * 60 * 1000);
 
     return () => clearInterval(interval);
   }, [isLiveMode, fetchLivePrices]);
@@ -389,121 +390,163 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Header */}
+      {/* Header - Mobile Responsive */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                My ETF Portfolio v6.1
+            {/* Logo & Stats */}
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent truncate">
+                My ETF Portfolio
               </h1>
-              <p className="text-sm text-slate-600 mt-1">
+              <p className="text-xs sm:text-sm text-slate-600 mt-0.5 sm:mt-1">
                 {allAssets.length} assets • {holdings.length} holdings
               </p>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="text-right">
-                <div className="flex items-center gap-2 text-xs text-slate-600">
-                  <span className={isLiveMode ? 'text-green-600 font-medium' : 'text-slate-600'}>
-                    {isLiveMode ? '📶 Live Mode' : '💾 Local Cache'}
-                  </span>
+            
+            {/* Desktop Controls */}
+            <div className="hidden md:flex items-center gap-3">
+              <div className="text-right text-xs">
+                <div className={`font-medium ${isLiveMode ? 'text-green-600' : 'text-slate-600'}`}>
+                  {isLiveMode ? '📶 Live Mode' : '💾 Cache'}
                 </div>
                 {lastUpdate && isLiveMode && (
-                  <div className="text-xs text-slate-500">
+                  <div className="text-slate-500">
                     {lastUpdate.toLocaleTimeString('th-TH')}
-                  </div>
-                )}
-                {!isLiveMode && (
-                  <div className="text-xs text-slate-500">
-                    {new Date().toLocaleString('th-TH')}
                   </div>
                 )}
               </div>
               <button
                 onClick={() => setIsLiveMode(!isLiveMode)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                   isLiveMode
-                    ? 'bg-green-500 text-white hover:bg-green-600 shadow-lg'
+                    ? 'bg-green-500 text-white hover:bg-green-600'
                     : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
                 }`}
               >
-                {isLiveMode ? '✅ Live' : '💾 Static'}
+                {isLiveMode ? 'Live' : 'Static'}
               </button>
               <button
                 onClick={isLiveMode ? fetchLivePrices : loadPortfolio}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all flex items-center gap-2 shadow-md"
+                className="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all flex items-center gap-2"
+              >
+                <RefreshCw size={16} />
+                <span className="hidden lg:inline">Refresh</span>
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-3 pt-3 border-t border-slate-200 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-slate-600">Mode:</span>
+                <button
+                  onClick={() => {
+                    setIsLiveMode(!isLiveMode);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                    isLiveMode
+                      ? 'bg-green-500 text-white'
+                      : 'bg-slate-200 text-slate-700'
+                  }`}
+                >
+                  {isLiveMode ? '📶 Live' : '💾 Static'}
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  isLiveMode ? fetchLivePrices() : loadPortfolio();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2"
               >
                 <RefreshCw size={16} />
                 Refresh
               </button>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex gap-2 mb-6">
-          {[
-            { id: 'dashboard', icon: TrendingUp, label: 'Dashboard' },
-            { id: 'search', icon: Search, label: 'Search' },
-            { id: 'watchlist', icon: Star, label: 'Watchlist' },
-            { id: 'alerts', icon: Bell, label: 'Alerts' },
-            { id: 'dividends', icon: DollarSign, label: 'Dividends' }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg'
-                  : 'bg-white text-slate-600 hover:bg-slate-50'
-              }`}
-            >
-              <tab.icon size={20} />
-              {tab.label}
-            </button>
-          ))}
+      {/* Tabs - Mobile Responsive */}
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+        {/* Mobile: Horizontal Scroll */}
+        <div className="overflow-x-auto -mx-3 sm:mx-0">
+          <div className="flex gap-2 px-3 sm:px-0 min-w-max sm:min-w-0">
+            {[
+              { id: 'dashboard', icon: TrendingUp, label: 'Dashboard' },
+              { id: 'search', icon: Search, label: 'Search' },
+              { id: 'watchlist', icon: Star, label: 'Watchlist' },
+              { id: 'alerts', icon: Bell, label: 'Alerts' },
+              { id: 'dividends', icon: DollarSign, label: 'Dividends' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all whitespace-nowrap ${
+                  activeTab === tab.id
+                    ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg'
+                    : 'bg-white text-slate-600 hover:bg-slate-50'
+                }`}
+              >
+                <tab.icon size={18} />
+                <span className="text-sm sm:text-base">{tab.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Dashboard Tab */}
         {activeTab === 'dashboard' && (
-          <div className="space-y-6">
-            {/* Summary Cards */}
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-sm text-slate-600 mb-1">มูลค่าพอร์ต</div>
-                <div className="text-3xl font-bold text-slate-900">
+          <div className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
+            {/* Summary Cards - Mobile: Stack, Desktop: Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                <div className="text-xs sm:text-sm text-slate-600 mb-1">มูลค่าพอร์ต</div>
+                <div className="text-2xl sm:text-3xl font-bold text-slate-900">
                   ฿{totalInvestment.toLocaleString()}
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-sm text-slate-600 mb-1">เงินปันผลต่อปี</div>
-                <div className="text-3xl font-bold text-green-600">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                <div className="text-xs sm:text-sm text-slate-600 mb-1">เงินปันผลต่อปี</div>
+                <div className="text-2xl sm:text-3xl font-bold text-green-600">
                   ฿{Math.round(stats.totalAnnualDiv).toLocaleString()}
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-sm text-slate-600 mb-1">Dividend Yield</div>
-                <div className="text-3xl font-bold text-blue-600">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                <div className="text-xs sm:text-sm text-slate-600 mb-1">Dividend Yield</div>
+                <div className="text-2xl sm:text-3xl font-bold text-blue-600">
                   {stats.avgYield.toFixed(2)}%
                 </div>
               </div>
             </div>
 
-            {/* Pie Chart */}
+            {/* Pie Chart - Mobile: Smaller */}
             {pieData.length > 0 && (
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h2 className="text-xl font-bold mb-4">สัดส่วนการลงทุน</h2>
-                <ResponsiveContainer width="100%" height={400}>
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                <h2 className="text-lg sm:text-xl font-bold mb-4">สัดส่วนการลงทุน</h2>
+                <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
                     <Pie
                       data={pieData}
                       cx="50%"
                       cy="50%"
-                      labelLine={true}
+                      labelLine={false}
                       label={({ name, value }) => `${name} ${value}%`}
-                      outerRadius={120}
+                      outerRadius={80}
                       fill="#8884d8"
                       dataKey="value"
                     >
@@ -518,63 +561,61 @@ function App() {
               </div>
             )}
 
-            {/* Holdings Table */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Holdings</h2>
-                <div className="text-sm text-slate-600">
-                  Total Investment: ฿{totalInvestment.toLocaleString()}
+            {/* Holdings Table - Mobile: Cards, Desktop: Table */}
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                <h2 className="text-lg sm:text-xl font-bold">Holdings</h2>
+                <div className="text-xs sm:text-sm text-slate-600">
+                  Total: ฿{totalInvestment.toLocaleString()}
                 </div>
               </div>
-              <div className="overflow-x-auto">
-                <table className="w-full">
+
+              {/* Desktop Table */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3 px-4 text-sm font-medium text-slate-600">SYMBOL</th>
-                      <th className="text-left py-3 px-4 text-sm font-medium text-slate-600">NAME</th>
-                      <th className="text-right py-3 px-4 text-sm font-medium text-slate-600">ALLOCATION</th>
-                      <th className="text-right py-3 px-4 text-sm font-medium text-slate-600">AMOUNT</th>
-                      <th className="text-right py-3 px-4 text-sm font-medium text-slate-600">SHARES</th>
-                      <th className="text-right py-3 px-4 text-sm font-medium text-slate-600">PRICE</th>
-                      <th className="text-right py-3 px-4 text-sm font-medium text-slate-600">YIELD</th>
-                      <th className="text-right py-3 px-4 text-sm font-medium text-slate-600">ANNUAL DIV</th>
+                      <th className="text-left py-3 px-2 font-medium text-slate-600">SYMBOL</th>
+                      <th className="text-left py-3 px-2 font-medium text-slate-600">NAME</th>
+                      <th className="text-right py-3 px-2 font-medium text-slate-600">ALLOC</th>
+                      <th className="text-right py-3 px-2 font-medium text-slate-600">AMOUNT</th>
+                      <th className="text-right py-3 px-2 font-medium text-slate-600">PRICE</th>
+                      <th className="text-right py-3 px-2 font-medium text-slate-600">YIELD</th>
                       {isLiveMode && (
-                        <th className="text-right py-3 px-4 text-sm font-medium text-slate-600">CHANGE</th>
+                        <th className="text-right py-3 px-2 font-medium text-slate-600">CHANGE</th>
                       )}
-                      <th className="text-center py-3 px-4 text-sm font-medium text-slate-600">ACTION</th>
+                      <th className="text-center py-3 px-2 font-medium text-slate-600">ACTION</th>
                     </tr>
                   </thead>
                   <tbody>
                     {stats.holdings.map((holding, idx) => (
                       <tr key={idx} className="border-b hover:bg-slate-50">
-                        <td className="py-3 px-4 font-medium text-blue-600">{holding.symbol}</td>
-                        <td className="py-3 px-4 text-sm text-slate-600">{holding.name}</td>
-                        <td className="py-3 px-4 text-right">{holding.allocation}%</td>
-                        <td className="py-3 px-4 text-right">฿{holding.amount.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
-                        <td className="py-3 px-4 text-right">{holding.shares.toFixed(2)}</td>
-                        <td className="py-3 px-4 text-right">
+                        <td className="py-3 px-2 font-medium text-blue-600">{holding.symbol}</td>
+                        <td className="py-3 px-2 text-slate-600 text-xs">{holding.name}</td>
+                        <td className="py-3 px-2 text-right">{holding.allocation}%</td>
+                        <td className="py-3 px-2 text-right">฿{holding.amount.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                        <td className="py-3 px-2 text-right">
                           ${holding.currentPrice.toFixed(2)}
                           {holding.dataSource && (
-                            <span className="ml-2 text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
+                            <span className="ml-1 text-xs bg-blue-100 text-blue-600 px-1 py-0.5 rounded">
                               {holding.dataSource}
                             </span>
                           )}
                         </td>
-                        <td className="py-3 px-4 text-right">{holding.dividendYield.toFixed(2)}%</td>
-                        <td className="py-3 px-4 text-right text-green-600">฿{Math.round(holding.annualDiv).toLocaleString()}</td>
+                        <td className="py-3 px-2 text-right">{holding.dividendYield.toFixed(2)}%</td>
                         {isLiveMode && (
-                          <td className="py-3 px-4 text-right">
+                          <td className="py-3 px-2 text-right">
                             <span className={holding.changePercent >= 0 ? 'text-green-600 font-medium' : 'text-red-600 font-medium'}>
                               {holding.changePercent >= 0 ? '+' : ''}{holding.changePercent?.toFixed(2)}%
                             </span>
                           </td>
                         )}
-                        <td className="py-3 px-4 text-center">
+                        <td className="py-3 px-2 text-center">
                           <button
                             onClick={() => deleteFromPortfolio(holding.symbol)}
-                            className="text-red-500 hover:text-red-700 transition-colors"
+                            className="text-red-500 hover:text-red-700 p-1"
                           >
-                            <Trash2 size={18} />
+                            <Trash2 size={16} />
                           </button>
                         </td>
                       </tr>
@@ -582,23 +623,76 @@ function App() {
                   </tbody>
                 </table>
               </div>
+
+              {/* Mobile Cards */}
+              <div className="sm:hidden space-y-3">
+                {stats.holdings.map((holding, idx) => (
+                  <div key={idx} className="bg-slate-50 rounded-xl p-4 space-y-2">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <div className="font-bold text-blue-600">{holding.symbol}</div>
+                        <div className="text-xs text-slate-600 mt-1">{holding.name}</div>
+                      </div>
+                      <button
+                        onClick={() => deleteFromPortfolio(holding.symbol)}
+                        className="text-red-500 p-2"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div>
+                        <span className="text-slate-500">Allocation:</span>
+                        <span className="ml-2 font-medium">{holding.allocation}%</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-500">Amount:</span>
+                        <span className="ml-2 font-medium">฿{holding.amount.toLocaleString(undefined, {maximumFractionDigits: 0})}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-500">Price:</span>
+                        <span className="ml-2 font-medium">${holding.currentPrice.toFixed(2)}</span>
+                        {holding.dataSource && (
+                          <span className="ml-1 text-xs bg-blue-100 text-blue-600 px-1 py-0.5 rounded">
+                            {holding.dataSource}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <span className="text-slate-500">Yield:</span>
+                        <span className="ml-2 font-medium">{holding.dividendYield.toFixed(2)}%</span>
+                      </div>
+                      {isLiveMode && holding.changePercent !== undefined && (
+                        <div className="col-span-2">
+                          <span className="text-slate-500">Change:</span>
+                          <span className={`ml-2 font-medium ${holding.changePercent >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {holding.changePercent >= 0 ? '+' : ''}{holding.changePercent?.toFixed(2)}%
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
 
         {/* Search Tab */}
         {activeTab === 'search' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm">
-            <div className="mb-6">
+          <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm mt-4 sm:mt-6">
+            <div className="mb-4 sm:mb-6">
               <input
                 type="text"
                 placeholder="Search stocks or ETFs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
               />
             </div>
-            <div className="space-y-2">
+
+            {/* Desktop View */}
+            <div className="hidden sm:block space-y-2">
               <div className="grid grid-cols-5 gap-4 py-2 px-4 bg-slate-50 rounded-lg font-medium text-sm text-slate-600">
                 <div>SYMBOL</div>
                 <div>NAME</div>
@@ -607,18 +701,18 @@ function App() {
                 <div className="text-center">ACTIONS</div>
               </div>
               {searchResults.map((asset, idx) => (
-                <div key={idx} className="grid grid-cols-5 gap-4 py-3 px-4 hover:bg-slate-50 rounded-lg items-center">
+                <div key={idx} className="grid grid-cols-5 gap-4 py-3 px-4 hover:bg-slate-50 rounded-lg items-center text-sm">
                   <div className="font-medium text-blue-600">{asset.symbol}</div>
-                  <div className="text-sm text-slate-600">{asset.name}</div>
+                  <div className="text-slate-600 text-xs">{asset.name}</div>
                   <div className="text-right">${parseFloat(asset.price || 0).toFixed(2)}</div>
                   <div className="text-right">{parseFloat(asset.dividendYield || 0).toFixed(2)}%</div>
                   <div className="flex justify-center gap-2">
                     <button
                       onClick={() => addToPortfolio(asset)}
-                      className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                      className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                       title="Add to Portfolio"
                     >
-                      <Plus size={16} />
+                      <Plus size={14} />
                     </button>
                     <button
                       onClick={() => {
@@ -626,10 +720,10 @@ function App() {
                           setWatchlist([...watchlist, asset]);
                         }
                       }}
-                      className="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
+                      className="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
                       title="Add to Watchlist"
                     >
-                      <Star size={16} />
+                      <Star size={14} />
                     </button>
                     <button
                       onClick={() => {
@@ -642,10 +736,64 @@ function App() {
                           }]);
                         }
                       }}
-                      className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                      className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
                       title="Set Alert"
                     >
+                      <Bell size={14} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Cards */}
+            <div className="sm:hidden space-y-3">
+              {searchResults.map((asset, idx) => (
+                <div key={idx} className="bg-slate-50 rounded-xl p-4">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <div className="font-bold text-blue-600">{asset.symbol}</div>
+                      <div className="text-xs text-slate-600 mt-1">{asset.name}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-medium">${parseFloat(asset.price || 0).toFixed(2)}</div>
+                      <div className="text-xs text-slate-600">{parseFloat(asset.dividendYield || 0).toFixed(2)}% yield</div>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => addToPortfolio(asset)}
+                      className="flex-1 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2 text-sm"
+                    >
+                      <Plus size={16} />
+                      Add
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (!watchlist.find(w => w.symbol === asset.symbol)) {
+                          setWatchlist([...watchlist, asset]);
+                        }
+                      }}
+                      className="flex-1 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 flex items-center justify-center gap-2 text-sm"
+                    >
+                      <Star size={16} />
+                      Watch
+                    </button>
+                    <button
+                      onClick={() => {
+                        const price = prompt(`Set alert price for ${asset.symbol}:`);
+                        if (price && !isNaN(price)) {
+                          setAlerts([...alerts, {
+                            symbol: asset.symbol,
+                            targetPrice: parseFloat(price),
+                            currentPrice: parseFloat(asset.price)
+                          }]);
+                        }
+                      }}
+                      className="flex-1 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center gap-2 text-sm"
+                    >
                       <Bell size={16} />
+                      Alert
                     </button>
                   </div>
                 </div>
@@ -656,28 +804,30 @@ function App() {
 
         {/* Watchlist Tab */}
         {activeTab === 'watchlist' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm">
-            <h2 className="text-xl font-bold mb-4">Watchlist</h2>
+          <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm mt-4 sm:mt-6">
+            <h2 className="text-lg sm:text-xl font-bold mb-4">Watchlist</h2>
             {watchlist.length === 0 ? (
-              <p className="text-slate-500 text-center py-8">No items in watchlist</p>
+              <p className="text-slate-500 text-center py-8 text-sm sm:text-base">No items in watchlist</p>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-2 sm:space-y-3">
                 {watchlist.map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-4 hover:bg-slate-50 rounded-lg">
-                    <div>
+                  <div key={idx} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 sm:p-4 hover:bg-slate-50 rounded-lg gap-3">
+                    <div className="flex-1">
                       <div className="font-medium text-blue-600">{item.symbol}</div>
-                      <div className="text-sm text-slate-600">{item.name}</div>
+                      <div className="text-xs sm:text-sm text-slate-600 mt-1">{item.name}</div>
                     </div>
-                    <div className="text-right">
-                      <div className="font-medium">${parseFloat(item.price || 0).toFixed(2)}</div>
-                      <div className="text-sm text-slate-600">{parseFloat(item.dividendYield || 0).toFixed(2)}% yield</div>
+                    <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                      <div className="text-right">
+                        <div className="font-medium text-sm sm:text-base">${parseFloat(item.price || 0).toFixed(2)}</div>
+                        <div className="text-xs text-slate-600">{parseFloat(item.dividendYield || 0).toFixed(2)}% yield</div>
+                      </div>
+                      <button
+                        onClick={() => setWatchlist(watchlist.filter((_, i) => i !== idx))}
+                        className="text-red-500 hover:text-red-700 p-2"
+                      >
+                        <Trash2 size={18} />
+                      </button>
                     </div>
-                    <button
-                      onClick={() => setWatchlist(watchlist.filter((_, i) => i !== idx))}
-                      className="text-red-500 hover:text-red-700 transition-colors"
-                    >
-                      <Trash2 size={18} />
-                    </button>
                   </div>
                 ))}
               </div>
@@ -687,23 +837,23 @@ function App() {
 
         {/* Alerts Tab */}
         {activeTab === 'alerts' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm">
-            <h2 className="text-xl font-bold mb-4">Price Alerts</h2>
+          <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm mt-4 sm:mt-6">
+            <h2 className="text-lg sm:text-xl font-bold mb-4">Price Alerts</h2>
             {alerts.length === 0 ? (
-              <p className="text-slate-500 text-center py-8">No alerts set</p>
+              <p className="text-slate-500 text-center py-8 text-sm sm:text-base">No alerts set</p>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-2 sm:space-y-3">
                 {alerts.map((alert, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-4 hover:bg-slate-50 rounded-lg">
-                    <div>
+                  <div key={idx} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 sm:p-4 hover:bg-slate-50 rounded-lg gap-3">
+                    <div className="flex-1">
                       <div className="font-medium text-blue-600">{alert.symbol}</div>
-                      <div className="text-sm text-slate-600">
+                      <div className="text-xs sm:text-sm text-slate-600 mt-1">
                         Current: ${alert.currentPrice.toFixed(2)} → Target: ${alert.targetPrice.toFixed(2)}
                       </div>
                     </div>
                     <button
                       onClick={() => setAlerts(alerts.filter((_, i) => i !== idx))}
-                      className="text-red-500 hover:text-red-700 transition-colors"
+                      className="text-red-500 hover:text-red-700 p-2"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -716,25 +866,25 @@ function App() {
 
         {/* Dividends Tab */}
         {activeTab === 'dividends' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm">
-            <h2 className="text-xl font-bold mb-4">Dividend Calendar</h2>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm mt-4 sm:mt-6">
+            <h2 className="text-lg sm:text-xl font-bold mb-4">Dividend Calendar</h2>
+            <div className="space-y-3 sm:space-y-4">
               {stats.holdings.map((holding, idx) => {
                 const freq = DIVIDEND_FREQUENCIES[holding.divFrequency];
                 const quarterlyDiv = holding.annualDiv / freq.perYear;
                 
                 return (
-                  <div key={idx} className="p-4 bg-slate-50 rounded-lg">
-                    <div className="flex justify-between items-start mb-2">
+                  <div key={idx} className="p-3 sm:p-4 bg-slate-50 rounded-lg">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-start gap-2 mb-2">
                       <div>
                         <div className="font-medium text-blue-600">{holding.symbol}</div>
-                        <div className="text-sm text-slate-600">{freq.label}</div>
+                        <div className="text-xs sm:text-sm text-slate-600">{freq.label}</div>
                       </div>
-                      <div className="text-right">
-                        <div className="font-medium text-green-600">
+                      <div className="text-left sm:text-right">
+                        <div className="font-medium text-green-600 text-sm sm:text-base">
                           ฿{Math.round(quarterlyDiv).toLocaleString()} / period
                         </div>
-                        <div className="text-sm text-slate-600">
+                        <div className="text-xs sm:text-sm text-slate-600">
                           ฿{Math.round(holding.annualDiv).toLocaleString()} / year
                         </div>
                       </div>
@@ -751,8 +901,8 @@ function App() {
       </div>
 
       {/* Footer */}
-      <div className="max-w-7xl mx-auto px-4 py-8 text-center text-sm text-slate-500">
-        <p>ETF Portfolio Tracker v6.1 — Enhanced Features Edition with Live Mode</p>
+      <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8 text-center text-xs sm:text-sm text-slate-500">
+        <p>ETF Portfolio Tracker v6.1 Mobile — Live Mode with Auto-update</p>
       </div>
     </div>
   );
