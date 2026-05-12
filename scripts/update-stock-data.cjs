@@ -162,11 +162,12 @@ async function fetchStockData() {
     
     try {
       const symbols = batch.join(',');
-      const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=symbol,shortName,longName,regularMarketPrice,trailingAnnualDividendYield,quoteType`;
+      const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=symbol,shortName,longName,regularMarketPrice,trailingAnnualDividendYield,trailingAnnualDividendRate,dividendYield,quoteType`;
       
       const response = await fetch(url, {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          'Accept': 'application/json'
         }
       });
       
@@ -176,11 +177,23 @@ async function fetchStockData() {
         
         for (const quote of quotes) {
           if (quote.regularMarketPrice && quote.regularMarketPrice > 0) {
+            // Try multiple sources for dividend yield
+            let divYield = 0;
+            
+            if (quote.trailingAnnualDividendYield) {
+              divYield = quote.trailingAnnualDividendYield * 100;
+            } else if (quote.dividendYield) {
+              divYield = quote.dividendYield * 100;
+            } else if (quote.trailingAnnualDividendRate && quote.regularMarketPrice > 0) {
+              // Calculate from dividend rate / price
+              divYield = (quote.trailingAnnualDividendRate / quote.regularMarketPrice) * 100;
+            }
+            
             results.push({
               symbol: quote.symbol,
               name: quote.shortName || quote.longName || quote.symbol,
               price: quote.regularMarketPrice.toString(),
-              dividendYield: ((quote.trailingAnnualDividendYield || 0) * 100).toFixed(2),
+              dividendYield: divYield.toFixed(2),
               type: quote.quoteType === 'ETF' ? 'ETF' : 'Stock'
             });
           }
