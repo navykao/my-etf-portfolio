@@ -21,7 +21,7 @@ const db = getFirestore(app);
 
 // API Configuration
 const API_KEYS = {
-  FMP: import.meta.env.VITE_FMP0N8_API_KEY,
+  FMP: import.meta.env.VITE_FMP_API_KEY,
 
   FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY,
 
