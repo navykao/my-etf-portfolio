@@ -6,6 +6,13 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recha
 import { Search, Star, Bell, DollarSign, TrendingUp, Trash2, Plus, RefreshCw } from 'lucide-react';
 
 // Firebase Configuration - ใช้ค่าจาก Environment Variables หรือ fallback
+// Debug: Check environment variables
+console.log('[Debug] Environment variables check:');
+console.log('- VITE_FIREBASE_API_KEY:', import.meta.env.VITE_FIREBASE_API_KEY ? '✅ Set' : '❌ Missing');
+console.log('- VITE_FIREBASE_PROJECT_ID:', import.meta.env.VITE_FIREBASE_PROJECT_ID ? '✅ Set' : '❌ Missing');
+console.log('- Mode:', import.meta.env.MODE);
+console.log('- Prod:', import.meta.env.PROD);
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -14,6 +21,12 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
+
+console.log('[Debug] Firebase config loaded:', {
+  hasApiKey: !!firebaseConfig.apiKey,
+  hasProjectId: !!firebaseConfig.projectId,
+  apiKeyLength: firebaseConfig.apiKey?.length || 0
+});
 
 // Check if Firebase config is valid before initializing
 const hasValidFirebaseConfig = 
