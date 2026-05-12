@@ -458,12 +458,67 @@ async function main() {
     console.log('   ✅ ' + etfDbPath + ' (' + etfAssets.length + ' ETFs)');
   }
   
-  // Also save old format for backward compatibility
-  const oldJsonPath = path.join(DATA_DIR, 'combined-746-assets.json');
-  fs.writeFileSync(oldJsonPath, JSON.stringify(uniqueAssets, null, 2));
-  const oldCsvPath = path.join(DATA_DIR, 'combined-746-assets.csv');
-  fs.writeFileSync(oldCsvPath, header + '\n' + rows.join('\n'));
-  console.log('   ✅ ' + oldJsonPath + ' (backward compat)');
+  // ==========================================
+  // Fetch Historical Prices 30d (for Stock Screener)
+  // ==========================================
+  console.log('');
+  console.log('📈 Fetching 30-day historical prices...');
+  
+  const historicalData = {};
+  const priceChunks = chunkArray(uniqueAssets.map(a => a.symbol), 50);
+  let priceCount = 0;
+  
+  for (let i = 0; i < priceChunks.length; i++) {
+    for (const symbol of priceChunks[i]) {
+      try {
+        const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + symbol + '?interval=1d&range=1mo';
+        const res = await httpsGet(url);
+        if (res.statusCode === 200) {
+          const json = JSON.parse(res.data);
+          const result = json?.chart?.result?.[0];
+          if (result) {
+            const timestamps = result.timestamp || [];
+            const quote = result.indicators?.quote?.[0] || {};
+            const prices = [];
+            for (let j = timestamps.length - 1; j >= 0; j--) {
+              if (quote.close?.[j] != null) {
+                const prev = j > 0 ? (quote.close[j - 1] || quote.close[j]) : quote.close[j];
+                prices.push({
+                  date: new Date(timestamps[j] * 1000).toISOString().split('T')[0],
+                  open: quote.open?.[j] || 0,
+                  high: quote.high?.[j] || 0,
+                  low: quote.low?.[j] || 0,
+                  close: quote.close[j],
+                  volume: quote.volume?.[j] || 0,
+                  change: parseFloat(((quote.close[j] - prev) / prev * 100).toFixed(2))
+                });
+              }
+            }
+            if (prices.length > 0) {
+              historicalData[symbol] = prices;
+              priceCount++;
+            }
+          }
+        }
+      } catch (e) {}
+    }
+    if (i < priceChunks.length - 1) await delay(500);
+    if ((i + 1) % 4 === 0) console.log('   ⏳ Prices: ' + priceCount + '/' + uniqueAssets.length);
+  }
+  
+  // Save stock-prices-30d.json
+  const pricesOutput = {
+    _meta: {
+      lastUpdate: new Date().toISOString(),
+      dataSource: 'Yahoo Finance v8 chart API',
+      period: '30 days',
+      totalSymbols: priceCount
+    },
+    data: historicalData
+  };
+  const pricesPath = path.join(DATA_DIR, 'stock-prices-30d.json');
+  fs.writeFileSync(pricesPath, JSON.stringify(pricesOutput));
+  console.log('   ✅ ' + pricesPath + ' (' + priceCount + ' symbols)');
   
   // ==========================================
   // Summary
@@ -481,6 +536,7 @@ async function main() {
   console.log('║  📈 Stocks:     ' + String(stocks.length).padStart(5) + '                     ║');
   console.log('║  📊 ETFs:       ' + String(etfs.length).padStart(5) + '                     ║');
   console.log('║  💰 DivGrowth:  ' + String(withDivGrowth.length).padStart(5) + ' symbols           ║');
+  console.log('║  📉 Prices30d:  ' + String(priceCount).padStart(5) + ' symbols           ║');
   console.log('║  ⏱️  Time:       ' + String(elapsed + 's').padStart(5) + '                     ║');
   console.log('║  💵 Cost:        $0.00                   ║');
   console.log('╚══════════════════════════════════════════╝');
