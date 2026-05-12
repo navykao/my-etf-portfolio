@@ -1,0 +1,59 @@
+name: Update Stock Data Daily
+
+on:
+  schedule:
+    # รันทุกวันเวลา 00:00 UTC (07:00 เวลาไทย)
+    - cron: '0 0 * * *'
+  
+  # อนุญาตให้รันด้วยมือผ่าน GitHub UI
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  # ให้สิทธิ์เขียนไฟล์
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: 📊 Run update script
+        run: node scripts/update-stock-data.cjs
+      
+      - name: 💾 Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/combined-all-assets.json
+          
+          # Commit เฉพาะเมื่อมีการเปลี่ยนแปลง
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🤖 Auto-update: Stock data $(date +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "✅ Data updated and pushed"
+          fi
+      
+      - name: ✅ Success notification
+        if: success()
+        run: |
+          echo "============================================"
+          echo "✅ Stock data updated successfully!"
+          echo "📅 Time: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "============================================"
+      
+      - name: ❌ Failure notification
+        if: failure()
+        run: |
+          echo "============================================"
+          echo "❌ Stock data update failed!"
+          echo "📅 Time: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "============================================"
