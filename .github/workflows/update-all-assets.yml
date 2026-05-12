@@ -1,0 +1,43 @@
+name: Update All Assets (Stocks + ETFs)
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # ทุกวัน 09:00 เวลาไทย
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      
+      - name: Update All Assets
+        run: node scripts/update-all-assets.cjs
+        env:
+          # Backup APIs (optional - ใส่หรือไม่ใส่ก็ได้)
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+      
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update all assets [$(date +'%Y-%m-%d %H:%M')]"
+            git push
+            echo "✅ Pushed!"
+          fi
