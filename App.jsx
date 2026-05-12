@@ -30,7 +30,7 @@ import { getFirestore, doc, setDoc, getDoc, onSnapshot } from 'firebase/firestor
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
 // ⭐ NEW: Import Stock Screener
-import StockScreener from './src/StockScreener';
+import StockScreener from './StockScreener';
 
 // =====================================================
 // 🔥 FIREBASE CONFIG — ใส่ config ของคุณตรงนี้
