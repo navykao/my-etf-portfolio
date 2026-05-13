@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETF Portfolio Tracker v6.3 - Firebase Edition</title>
+    <title>ETF Portfolio Tracker v6.4 - Modern UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Firebase Configuration จากไฟล์ firebes.txt ของคุณ
+        // Config เดิมของคุณ 
         const firebaseConfig = {
             apiKey: "AIzaSyCItvIP2yRlxjblvaWn9sqw-ykv-dmk84A",
             authDomain: "my-etf-portfolio-v2.firebaseapp.com",
@@ -22,15 +23,12 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const userDoc = doc(db, "users", "weeradet_p"); // ใช้ ID ประจำตัวคุณ
+        const userDoc = doc(db, "users", "weeradet_p");
 
-        // เชื่อมต่อตัวแปรเข้ากับ Window เพื่อให้ฟังก์ชันอื่นเรียกใช้ได้
         window.saveData = async (portfolio, watchlist) => {
             await setDoc(userDoc, { portfolio, watchlist, lastUpdated: new Date() });
-            console.log("💾 บันทึกข้อมูลไปที่ Firestore แล้ว");
         };
 
-        // ระบบโหลดข้อมูลแบบ Real-time (F5 แล้วข้อมูลไม่หาย)
         onSnapshot(userDoc, (doc) => {
             if (doc.exists()) {
                 const data = doc.data();
@@ -46,83 +44,130 @@
         window.watchlist = [];
         window.prices = {};
 
-        // ดึงราคาล่าสุดจาก GitHub Data
         async function loadPrices() {
             try {
                 const res = await fetch('public/data/combined-all-assets.json');
                 const data = await res.json();
-                data.forEach(item => window.prices[item.symbol] = item.price);
+                data.forEach(item => window.prices[item.symbol] = item);
                 window.renderAll();
-            } catch (e) { console.error("ราคาโหลดไม่สำเร็จ:", e); }
+            } catch (e) { console.error("Price load error"); }
         }
 
-        // ฟังก์ชันเพิ่มหุ้นเข้าพอร์ต
         window.addAsset = function() {
-            const symbol = document.getElementById('symbol').value.toUpperCase();
-            const amount = parseFloat(document.getElementById('amount').value);
-            const avg = parseFloat(document.getElementById('avg').value);
-
-            if (symbol && amount) {
-                window.portfolio.push({ symbol, amount, avgPrice: avg });
-                window.saveData(window.portfolio, window.watchlist); // บันทึกทันที
-                document.getElementById('symbol').value = '';
-                document.getElementById('amount').value = '';
+            const sym = document.getElementById('sym').value.toUpperCase();
+            const qty = parseFloat(document.getElementById('qty').value);
+            const avg = parseFloat(document.getElementById('cost').value);
+            if(sym && qty) {
+                window.portfolio.push({ symbol: sym, amount: qty, avgPrice: avg });
+                window.saveData(window.portfolio, window.watchlist);
+                document.getElementById('sym').value = '';
             }
         };
 
-        // ฟังก์ชันลบหุ้น
-        window.removeAsset = function(index) {
-            window.portfolio.splice(index, 1);
+        window.addToWatchlist = function() {
+            const sym = document.getElementById('search-sym').value.toUpperCase();
+            if(sym && !window.watchlist.includes(sym)) {
+                window.watchlist.push(sym);
+                window.saveData(window.portfolio, window.watchlist);
+                document.getElementById('search-sym').value = '';
+            }
+        };
+
+        window.removeFromWatchlist = function(index) {
+            window.watchlist.splice(index, 1);
             window.saveData(window.portfolio, window.watchlist);
         };
 
-        // ฟังก์ชันวาด UI
         window.renderAll = function() {
-            const list = document.getElementById('portfolio-list');
-            list.innerHTML = window.portfolio.map((item, index) => {
-                const currentPrice = window.prices[item.symbol] || 0;
-                const marketValue = (item.amount * currentPrice).toLocaleString();
+            // Render Portfolio
+            const pList = document.getElementById('portfolio-list');
+            pList.innerHTML = window.portfolio.map((item, i) => {
+                const p = window.prices[item.symbol]?.price || 0;
+                const change = window.prices[item.symbol]?.changePercent || 0;
                 return `
-                    <div class="flex justify-between items-center bg-slate-800 p-3 rounded mb-2 border-l-4 border-blue-500">
+                    <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center mb-3">
                         <div>
-                            <span class="font-bold text-blue-400">${item.symbol}</span>
-                            <div class="text-xs text-slate-400">${item.amount} Shares @ $${currentPrice}</div>
+                            <h3 class="font-bold text-lg">${item.symbol}</h3>
+                            <p class="text-xs text-slate-400">${item.amount} Shares @ $${p}</p>
                         </div>
                         <div class="text-right">
-                            <div class="font-bold">$${marketValue}</div>
-                            <button onclick="window.removeAsset(${index})" class="text-red-500 text-xs">ลบออก</button>
+                            <p class="font-bold text-blue-400">$${(item.amount * p).toLocaleString()}</p>
+                            <p class="text-xs ${change >= 0 ? 'text-green-400' : 'text-red-400'}">${change}%</p>
+                            <button onclick="window.portfolio.splice(${i},1); window.saveData(window.portfolio, window.watchlist);" class="text-[10px] text-slate-500 hover:text-red-400 mt-1">Remove</button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
+            }).join('');
+
+            // Render Watchlist
+            const wList = document.getElementById('watchlist-list');
+            wList.innerHTML = window.watchlist.map((sym, i) => {
+                const p = window.prices[sym]?.price || 'N/A';
+                return `
+                    <div class="flex justify-between items-center p-3 hover:bg-slate-700 rounded-lg transition mb-1">
+                        <span class="font-medium">${sym}</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-mono">$${p}</span>
+                            <button onclick="window.removeFromWatchlist(${i})" class="text-slate-500 hover:text-red-400"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>`;
             }).join('');
         };
 
         window.onload = loadPrices;
     </script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen p-4">
-    <div class="max-w-md mx-auto">
-        <header class="mb-8">
-            <h1 class="text-2xl font-bold text-blue-500">Portfolio Tracker v6.3</h1>
-            <p class="text-xs text-slate-400">สถานะ: <span class="text-green-500">● เชื่อมต่อ Firebase Firestore แล้ว</span></p>
-        </header>
-
-        <div class="bg-slate-800 p-4 rounded-xl mb-6 shadow-xl">
-            <h2 class="text-sm font-semibold mb-3 border-b border-slate-700 pb-2">เพิ่มสินทรัพย์ใหม่</h2>
-            <div class="grid grid-cols-3 gap-2 mb-3">
-                <input id="symbol" placeholder="Symbol (เช่น QQQI)" class="bg-slate-700 p-2 rounded text-xs outline-none focus:ring-1 ring-blue-500" />
-                <input id="amount" type="number" placeholder="จำนวนหุ้น" class="bg-slate-700 p-2 rounded text-xs outline-none" />
-                <input id="avg" type="number" placeholder="ราคาเฉลี่ย" class="bg-slate-700 p-2 rounded text-xs outline-none" />
+<body class="bg-[#0f172a] text-slate-100 min-h-screen font-sans">
+    <nav class="border-b border-slate-800 p-4 bg-[#0f172a]/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg"><i class="fa-solid fa-chart-line text-white"></i></div>
+                <span class="font-bold text-xl tracking-tight">Millionaire<span class="text-blue-500">Growth</span></span>
             </div>
-            <button onclick="window.addAsset()" class="w-full bg-blue-600 hover:bg-blue-500 p-2 rounded text-sm font-bold transition">เพิ่มเข้าพอร์ต</button>
+            <div class="text-[10px] bg-slate-800 px-3 py-1 rounded-full text-slate-400">
+                <span class="text-green-500 mr-1">●</span> Firebase Active
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-1 space-y-6">
+            <section class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-plus-circle"></i> Add Asset
+                </h2>
+                <div class="space-y-3">
+                    <input id="sym" placeholder="Symbol (e.g. VTI)" class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl focus:ring-2 ring-blue-500 outline-none transition" />
+                    <div class="grid grid-cols-2 gap-2">
+                        <input id="qty" type="number" placeholder="Shares" class="bg-slate-900 border border-slate-700 p-3 rounded-xl outline-none" />
+                        <input id="cost" type="number" placeholder="Avg Cost" class="bg-slate-900 border border-slate-700 p-3 rounded-xl outline-none" />
+                    </div>
+                    <button onclick="window.addAsset()" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl font-bold shadow-lg shadow-blue-900/20 transition-all active:scale-95">Add to Portfolio</button>
+                </div>
+            </section>
+
+            <section class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i> Watchlist Search
+                </h2>
+                <div class="flex gap-2">
+                    <input id="search-sym" placeholder="Symbol..." class="flex-1 bg-slate-900 border border-slate-700 p-3 rounded-xl outline-none focus:ring-2 ring-blue-500 transition" />
+                    <button onclick="window.addToWatchlist()" class="bg-slate-700 hover:bg-slate-600 px-4 rounded-xl transition"><i class="fa-solid fa-star text-yellow-400"></i></button>
+                </div>
+                <div id="watchlist-list" class="mt-4 divide-y divide-slate-700/50">
+                    </div>
+            </section>
         </div>
 
-        <div>
-            <h2 class="text-sm font-semibold mb-4">รายการสินทรัพย์ของคุณ</h2>
+        <div class="lg:col-span-2">
+            <div class="flex justify-between items-end mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">My Portfolio</h2>
+                    <p class="text-slate-500 text-sm">Tracking ${window.portfolio.length} assets</p>
+                </div>
+            </div>
             <div id="portfolio-list">
-                <p class="text-center text-slate-500 py-10 text-xs">กำลังโหลดข้อมูลจาก Firestore...</p>
-            </div>
+                </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
