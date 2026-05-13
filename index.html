@@ -1,172 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ETF Portfolio Tracker v6.3 - Original UI (Fixed)</title>
+    <title>ETF Portfolio Tracker V6.5 Hybrid</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        // 1. Firebase Config (ใช้ค่าเดิมของคุณ)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCItvIP2yRlxjblvaWn9sqw-ykv-dmk84A",
-            authDomain: "my-etf-portfolio-v2.firebaseapp.com",
-            projectId: "my-etf-portfolio-v2",
-            storageBucket: "my-etf-portfolio-v2.firebasestorage.app",
-            messagingSenderId: "420167991494",
-            appId: "1:420167991494:web:0129fd79f25c81f412d7c7"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const userDoc = doc(db, "users", "weeradet_p"); // ใช้ ID เดิม
-
-        // 2. ตัวแปรเก็บข้อมูล
-        window.portfolio = [];
-        window.watchlist = [];
-        window.assetPrices = {}; // เก็บราคาจาก JSON
-
-        // 3. ฟังก์ชันดึงราคาหุ้นจาก JSON
-        const loadPrices = async () => {
-            try {
-                const response = await fetch('/data/combined-all-assets.json');
-                const data = await response.json();
-                data.forEach(asset => { window.assetPrices[asset.symbol] = asset; });
-                window.renderAll(); // วาดหน้าจอเมื่อราคามา
-            } catch (e) {
-                console.error("[Prices] ❌ Load error:", e);
-                document.getElementById('root').innerHTML += `<p class="text-red-500 text-center py-4">โหลดข้อมูลราคาไม่สำเร็จ</p>`;
-            }
-        };
-
-        // 4. ระบบ Real-time Sync กับ Firebase (ดึงข้อมูลกลับมา)
-        useEffect(() => {
-            console.log("[Firebase] 🔄 Connecting to user data...");
-            const unsubscribe = onSnapshot(userDoc, (docSnap) => {
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    window.portfolio = data.portfolio || [];
-                    window.watchlist = data.watchlist || [];
-                    console.log("[Firebase] ✅ Data loaded:", window.portfolio.length, "assets");
-                    window.renderAll(); // วาดหน้าจอเมื่อข้อมูล Firebase มา
-                }
-            });
-            loadPrices(); // เริ่มดึงราคา
-            return unsubscribe; // ยกเลิกเชื่อมต่อเมื่อปิดหน้าเว็บ
-        }, []);
-
-        // 5. ฟังก์ชันเพิ่มหุ้นเข้าพอร์ต
-        window.addAsset = async () => {
-            const symbol = document.getElementById('input-symbol').value.toUpperCase().trim();
-            const amount = parseFloat(document.getElementById('input-amount').value);
-            const avgPrice = parseFloat(document.getElementById('input-avg').value);
-
-            if (symbol && amount > 0 && avgPrice >= 0) {
-                window.portfolio.push({ symbol, amount, avgPrice });
-                await setDoc(userDoc, { portfolio: window.portfolio }, { merge: true });
-                document.getElementById('input-symbol').value = '';
-                document.getElementById('input-amount').value = '';
-                document.getElementById('input-avg').value = '';
-            } else {
-                alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-            }
-        };
-
-        // 6. ฟังก์ชันลบหุ้น
-        window.deleteAsset = async (symbol) => {
-            if (confirm(`คุณต้องการลบ ${symbol} ออกจากพอร์ตใช่หรือไม่?`)) {
-                window.portfolio = window.portfolio.filter(p => p.symbol !== symbol);
-                await setDoc(userDoc, { portfolio: window.portfolio }, { merge: true });
-            }
-        };
-
-        // 7. ฟังก์ชันค้นหาและจัดการ Watchlist
-        window.toggleWatchlist = async () => {
-            const symbol = document.getElementById('search-stock').value.toUpperCase().trim();
-            if (symbol) {
-                const index = window.watchlist.indexOf(symbol);
-                if (index > -1) {
-                    window.watchlist.splice(index, 1); // ลบถ้ามีอยู่แล้ว
-                } else {
-                    window.watchlist.push(symbol); // เพิ่มถ้ายังไม่มี
-                }
-                await setDoc(userDoc, { watchlist: window.watchlist }, { merge: true });
-                document.getElementById('search-stock').value = '';
-            }
-        };
-
-        // 8. ฟังก์ชันวาดหน้าจอใหม่ทั้งหมด
-        window.renderAll = () => {
-            const pContainer = document.getElementById('portfolio-list');
-            const wContainer = document.getElementById('watchlist-list');
-            
-            if (pContainer) {
-                pContainer.innerHTML = window.portfolio.map(item => {
-                    const priceData = window.assetPrices[item.symbol] || { price: 0 };
-                    return `
-                        <div class="flex justify-between items-center bg-slate-800 p-4 rounded-xl border border-slate-700 mb-2">
-                            <div>
-                                <span class="font-bold text-lg text-white">${item.symbol}</span>
-                                <p class="text-xs text-slate-400">${item.amount} หุ้น @ ${priceData.price ? '$'+priceData.price : 'รอข้อมูล'}</p>
-                            </div>
-                            <div class="text-right">
-                                <span class="font-bold text-blue-400">$${(item.amount * priceData.price).toLocaleString()}</span>
-                                <button onclick="window.deleteAsset('${item.symbol}')" class="ml-3 text-red-500 text-xs hover:text-red-400">✕</button>
-                            </div>
-                        </div>`;
-                }).join('');
-            }
-
-            if (wContainer) {
-                wContainer.innerHTML = window.watchlist.map(sym => `
-                    <div class="flex justify-between p-2 border-b border-slate-700">
-                        <span>${sym}</span>
-                        <span>${window.assetPrices[sym]?.price ? '$'+window.assetPrices[sym].price : '---'}</span>
-                    </div>`).join('');
-            }
-        };
-
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-      body { background-color: #0f172a; color: white; font-family: sans-serif; }
+      /* ตั้งค่า Font พื้นฐานเพื่อความรวดเร็วในการโหลดก่อน React ทำงาน */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #0f172a; /* สีพื้นหลัง Navy Dark ของ V6.5 */
+        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      /* สไตล์สำหรับ Loading Screen ระหว่างรอแอปโหลด */
+      #root:empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      #root:empty::after {
+        content: "";
+        width: 40px;
+        height: 40px;
+        border: 4px solid #1e293b;
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
     </style>
-</head>
-<body class="p-5">
-    <div id="root" class="max-w-4xl mx-auto">
-      <h1 class="text-2xl font-bold mb-2">ETF Portfolio Tracker v6.3</h1>
-      <p class="text-xs text-slate-400 mb-6">สถานะ: <span class="text-green-500">● เชื่อมต่อ Firebase สำเร็จ</span></p>
+  </head>
+  <body>
+    <div id="root"></div>
 
-      <div class="bg-slate-800 p-4 rounded-xl mb-6 grid grid-cols-1 md:grid-cols-4 gap-3 border border-slate-700">
-        <input id="input-symbol" placeholder="Symbol" class="bg-slate-700 p-2 rounded outline-none" />
-        <input id="input-amount" type="number" placeholder="จำนวน" class="bg-slate-700 p-2 rounded outline-none" />
-        <input id="input-avg" type="number" placeholder="ราคาเฉลี่ย" class="bg-slate-700 p-2 rounded outline-none" />
-        <button onclick="window.addAsset()" class="bg-blue-600 rounded font-bold hover:bg-blue-500 transition-all">เพิ่มเข้าพอร์ต</button>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h2 class="font-bold mb-3">My Portfolio</h2>
-          <div id="portfolio-list" class="space-y-1">
-             <p class="text-slate-500 text-center py-6 text-xs">กำลังโหลดข้อมูลจาก Firebase...</p>
-          </div>
-        </div>
-
-        <div>
-          <h2 class="font-bold mb-3">Watchlist & Search</h2>
-          <div class="flex gap-2 mb-4">
-            <input id="search-stock" placeholder="ค้นหาหุ้น/ETF..." class="flex-1 bg-slate-800 p-2 rounded outline-none border border-slate-700" />
-            <button onclick="window.toggleWatchlist()" class="bg-slate-700 px-4 rounded hover:bg-slate-600 transition-all">★</button>
-          </div>
-          <div id="watchlist-list" class="bg-slate-800/50 rounded-xl p-3 divide-y divide-slate-700/50">
-             </div>
-        </div>
-      </div>
-    </div>
-</body>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
