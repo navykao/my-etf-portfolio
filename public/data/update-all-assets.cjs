@@ -29,7 +29,7 @@ const API_KEYS = {
 const CONFIG = {
   DATA_FILE: path.join(__dirname, '..', 'public', 'data', 'combined-all-assets.json'),
   FINNHUB_RATE_LIMIT: 55,      // ใช้ 55/min (เผื่อ buffer จาก 60/min)
-  FINNHUB_DELAY_MS: 1100,      // 1.1 วินาที ระหว่าง request (safe)
+  FINNHUB_DELAY_MS: 1200,      // 1.2 วินาที ระหว่าง request (safe)
   YAHOO_BATCH_SIZE: 50,        // Yahoo batch 50 ตัว/ครั้ง
   YAHOO_BATCH_DELAY_MS: 2000,  // 2 วินาที ระหว่าง batch
   EODHD_DELAY_MS: 3500,        // 3.5 วินาที (20/min safe)
