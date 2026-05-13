@@ -1,0 +1,95 @@
+# ============================================
+# GitHub Actions: Daily Price Update
+# รันทุกวัน จันทร์-ศุกร์ หลังตลาด US ปิด
+# ดึงข้อมูล 746 ตัว → อัปเดต JSON → Push → Vercel deploy
+# ============================================
+
+name: 📊 Daily Price Update
+
+on:
+  # รันอัตโนมัติ: ทุกวัน จันทร์-ศุกร์ เวลา 21:30 UTC (ตี 4:30 เวลาไทย)
+  # ตลาด US ปิด 4 PM EST = 21:00 UTC → รอ 30 นาทีให้ข้อมูลนิ่ง
+  schedule:
+    - cron: '30 21 * * 1-5'  # จันทร์-ศุกร์ 21:30 UTC
+
+  # รัน Manual ได้ (กดปุ่มบน GitHub)
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'เหตุผลที่รัน manual'
+        required: false
+        default: 'Manual trigger'
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30  # จำกัด 30 นาที (ปกติใช้ ~15 นาที)
+
+    steps:
+      # Step 1: Checkout repo
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      # Step 2: Setup Node.js
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Step 3: Run update script
+      - name: 📊 Update all asset prices
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+        run: |
+          echo "🚀 Starting daily price update..."
+          echo "⏰ $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo ""
+          node scripts/update-all-assets.cjs
+
+      # Step 4: Check if file changed
+      - name: 🔍 Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet public/data/combined-all-assets.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Changes detected!"
+          fi
+
+      # Step 5: Commit and push
+      - name: 📤 Commit and push updated data
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add public/data/combined-all-assets.json
+          
+          # Commit message with date and stats
+          DATE=$(date -u '+%Y-%m-%d')
+          git commit -m "📊 Daily price update: ${DATE}
+
+          - Updated via GitHub Actions
+          - Primary API: Finnhub
+          - Triggered: ${{ github.event_name }}"
+          
+          git push
+
+      # Step 6: Summary
+      - name: 📋 Job Summary
+        if: always()
+        run: |
+          echo "## 📊 Daily Price Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 📅 Date | $(date -u '+%Y-%m-%d') |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⏰ Time | $(date -u '+%H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔄 Trigger | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📤 Changes | ${{ steps.check_changes.outputs.changed }} |" >> $GITHUB_STEP_SUMMARY
