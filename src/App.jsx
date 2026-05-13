@@ -1,985 +1,996 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { Search, Star, Bell, DollarSign, TrendingUp, Trash2, Plus, RefreshCw, AlertCircle } from 'lucide-react';
+// ============================================================
+// src/App.jsx  — ETF & Stock Portfolio Tracker
+// 
+// ✅ ระหว่างวัน: อ่านจาก combined-all-assets.json (ไม่เสีย quota)
+// ✅ Live Mode:  ดึงราคาจริงทุก 2 ชม. เฉพาะ Portfolio + Watchlist
+//               ทำงาน 7 วัน (จันทร์-อาทิตย์)
+// ✅ Fallback:   Finnhub → Yahoo → EODHD → Twelve Data
+// ============================================================
 
-// ============================================
-// FIREBASE CONFIGURATION - ใช้ Environment Variables
-// ============================================
-const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "my-etf-portfolio.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "my-etf-portfolio",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "my-etf-portfolio.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+import { useState, useEffect, useCallback, useRef } from "react";
+
+// ============================================================
+// CONFIG
+// ============================================================
+const CONFIG = {
+  DATA_URL: "/data/combined-all-assets.json",
+  LIVE_INTERVAL_MS: 2 * 60 * 60 * 1000, // 2 ชั่วโมง
+  FINNHUB_API_KEY: import.meta.env.VITE_FINNHUB_API_KEY || "",
+  EODHD_API_KEY: import.meta.env.VITE_EODHD_API_KEY || "",
+  TWELVE_API_KEY: import.meta.env.VITE_TWELVE_DATA_API_KEY || "",
+  CACHE_TTL_MS: 90 * 60 * 1000, // cache 90 นาที
 };
 
-let app, auth, db;
-try {
-  app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getFirestore(app);
-  console.log('[Firebase] ✅ Initialized successfully');
-} catch (error) {
-  console.error('[Firebase] ❌ Initialization failed:', error);
-}
-
-// ============================================
-// API CONFIGURATION
-// ============================================
-const API_KEYS = {
-  FMP: import.meta.env.VITE_FMP0N8_API_KEY,
-  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY,
-  TWELVE: import.meta.env.VITE_TWELVE_DATA_API_KEY,
-  EODHD: import.meta.env.VITE_EODHD_API_KEY
+const STORAGE_KEYS = {
+  PORTFOLIO: "etf_portfolio_v3",
+  WATCHLIST: "etf_watchlist_v3",
+  LIVE_MODE: "etf_live_mode_v3",
+  PRICE_CACHE: "etf_price_cache_v3",
 };
 
-// ตรวจสอบ API Keys
-const checkAPIKeys = () => {
-  const missing = Object.entries(API_KEYS).filter(([key, value]) => !value);
-  if (missing.length > 0) {
-    console.warn('[API] ⚠️ Missing API keys:', missing.map(([k]) => k).join(', '));
-  } else {
-    console.log('[API] ✅ All API keys configured');
-  }
-};
-checkAPIKeys();
-
-// ============================================
-// CACHE MANAGER - เพิ่ม Cache Duration
-// ============================================
+// ============================================================
+// CACHE MANAGER
+// ============================================================
 const CacheManager = {
-  PRICE_CACHE_KEY: 'price_cache_v2',
-  CACHE_DURATION: 15 * 60 * 1000, // เพิ่มเป็น 15 นาที
-  
-  getPriceCache: (symbol) => {
+  getAll() {
     try {
-      const cache = JSON.parse(localStorage.getItem(CacheManager.PRICE_CACHE_KEY) || '{}');
-      const cached = cache[symbol];
-      if (cached && Date.now() - new Date(cached.timestamp).getTime() < CacheManager.CACHE_DURATION) {
-        console.log(`[Cache] ✅ Hit: ${symbol}`);
-        return cached;
+      return JSON.parse(localStorage.getItem(STORAGE_KEYS.PRICE_CACHE) || "{}");
+    } catch { return {}; }
+  },
+  get(symbol) {
+    const cache = this.getAll();
+    const entry = cache[symbol];
+    if (!entry) return null;
+    if (Date.now() - entry.ts > CONFIG.CACHE_TTL_MS) return null;
+    return entry.data;
+  },
+  set(symbol, data) {
+    try {
+      const cache = this.getAll();
+      cache[symbol] = { data, ts: Date.now() };
+      // เก็บแค่ 200 ตัวล่าสุด
+      const keys = Object.keys(cache);
+      if (keys.length > 200) {
+        const oldest = keys.sort((a, b) => cache[a].ts - cache[b].ts).slice(0, keys.length - 200);
+        oldest.forEach(k => delete cache[k]);
       }
-      console.log(`[Cache] ❌ Miss: ${symbol}`);
-    } catch (e) {
-      console.error('[Cache] Read error:', e);
-    }
-    return null;
+      localStorage.setItem(STORAGE_KEYS.PRICE_CACHE, JSON.stringify(cache));
+    } catch { /* quota full */ }
   },
-  
-  setPriceCache: (symbol, data) => {
-    try {
-      const cache = JSON.parse(localStorage.getItem(CacheManager.PRICE_CACHE_KEY) || '{}');
-      cache[symbol] = { ...data, timestamp: new Date().toISOString() };
-      localStorage.setItem(CacheManager.PRICE_CACHE_KEY, JSON.stringify(cache));
-      console.log(`[Cache] ✅ Saved: ${symbol}`);
-    } catch (e) {
-      console.error('[Cache] Write error:', e);
-    }
-  },
-
-  clearCache: () => {
-    try {
-      localStorage.removeItem(CacheManager.PRICE_CACHE_KEY);
-      console.log('[Cache] ✅ Cleared');
-    } catch (e) {
-      console.error('[Cache] Clear error:', e);
-    }
+  clear() {
+    localStorage.removeItem(STORAGE_KEYS.PRICE_CACHE);
   }
 };
 
-// ============================================
-// API SERVICE - ปรับปรุง Error Handling และ Retry Logic
-// ============================================
-const APIService = {
-  // Helper: Fetch with retry
-  async fetchWithRetry(url, options = {}, retries = 2) {
-    for (let i = 0; i <= retries; i++) {
-      try {
-        const response = await fetch(url, {
-          ...options,
-          signal: AbortSignal.timeout(10000) // 10 second timeout
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        return await response.json();
-      } catch (error) {
-        console.error(`[API] Attempt ${i + 1}/${retries + 1} failed:`, error.message);
-        
-        if (i === retries) throw error;
-        
-        // Exponential backoff
-        await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
-      }
+// ============================================================
+// API FETCHER — Finnhub → Yahoo → EODHD → Twelve
+// ============================================================
+const API = {
+  async fetchWithTimeout(url, timeout = 8000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timer);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } catch (e) {
+      clearTimeout(timer);
+      throw e;
     }
   },
 
-  async fetchFromFMP(symbol) {
-    if (!API_KEYS.FMP) {
-      console.warn('[API] FMP key not configured');
-      return null;
-    }
-    
+  async fromFinnhub(symbol) {
+    if (!CONFIG.FINNHUB_API_KEY) return null;
     try {
-      console.log(`[API] 🔄 FMP: Fetching ${symbol}...`);
-      const data = await this.fetchWithRetry(
-        `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${API_KEYS.FMP}`
+      const data = await this.fetchWithTimeout(
+        `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${CONFIG.FINNHUB_API_KEY}`
       );
-      
-      if (data && data[0] && data[0].price) {
-        console.log(`[API] ✅ FMP: ${symbol} = $${data[0].price}`);
-        return {
-          price: data[0].price,
-          change: data[0].change || 0,
-          changePercent: data[0].changesPercentage || 0,
-          source: 'FMP'
-        };
-      }
-      
-      console.warn(`[API] ⚠️ FMP: No data for ${symbol}`);
-      return null;
-    } catch (error) {
-      console.error(`[API] ❌ FMP error for ${symbol}:`, error.message);
-      return null;
-    }
-  },
-
-  async fetchFromFinnhub(symbol) {
-    if (!API_KEYS.FINNHUB) {
-      console.warn('[API] Finnhub key not configured');
-      return null;
-    }
-    
-    try {
-      console.log(`[API] 🔄 Finnhub: Fetching ${symbol}...`);
-      const data = await this.fetchWithRetry(
-        `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${API_KEYS.FINNHUB}`
-      );
-      
       if (data && data.c > 0) {
-        console.log(`[API] ✅ Finnhub: ${symbol} = $${data.c}`);
         return {
           price: data.c,
           change: data.d || 0,
           changePercent: data.dp || 0,
-          source: 'Finnhub'
+          high: data.h,
+          low: data.l,
+          open: data.o,
+          prevClose: data.pc,
+          source: "Finnhub",
         };
       }
-      
-      console.warn(`[API] ⚠️ Finnhub: No data for ${symbol}`);
-      return null;
-    } catch (error) {
-      console.error(`[API] ❌ Finnhub error for ${symbol}:`, error.message);
-      return null;
+    } catch (e) {
+      console.warn(`[Finnhub] ${symbol}:`, e.message);
     }
+    return null;
   },
 
-  async fetchFromTwelve(symbol) {
-    if (!API_KEYS.TWELVE) {
-      console.warn('[API] Twelve Data key not configured');
-      return null;
-    }
-    
+  async fromYahoo(symbol) {
     try {
-      console.log(`[API] 🔄 Twelve Data: Fetching ${symbol}...`);
-      const data = await this.fetchWithRetry(
-        `https://api.twelvedata.com/price?symbol=${symbol}&apikey=${API_KEYS.TWELVE}`
-      );
-      
-      if (data && data.price) {
-        console.log(`[API] ✅ Twelve Data: ${symbol} = $${data.price}`);
+      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`;
+      const data = await this.fetchWithTimeout(url);
+      const meta = data?.chart?.result?.[0]?.meta;
+      if (meta?.regularMarketPrice > 0) {
+        const price = meta.regularMarketPrice;
+        const prev = meta.chartPreviousClose || meta.previousClose || price;
+        const change = price - prev;
         return {
-          price: parseFloat(data.price),
-          change: 0,
-          changePercent: 0,
-          source: 'TwelveData'
+          price,
+          change,
+          changePercent: prev > 0 ? (change / prev) * 100 : 0,
+          high: meta.regularMarketDayHigh,
+          low: meta.regularMarketDayLow,
+          prevClose: prev,
+          source: "Yahoo",
         };
       }
-      
-      console.warn(`[API] ⚠️ Twelve Data: No data for ${symbol}`);
-      return null;
-    } catch (error) {
-      console.error(`[API] ❌ Twelve Data error for ${symbol}:`, error.message);
-      return null;
+    } catch (e) {
+      console.warn(`[Yahoo] ${symbol}:`, e.message);
     }
+    return null;
+  },
+
+  async fromEODHD(symbol) {
+    if (!CONFIG.EODHD_API_KEY) return null;
+    try {
+      const data = await this.fetchWithTimeout(
+        `https://eodhd.com/api/real-time/${symbol}.US?api_token=${CONFIG.EODHD_API_KEY}&fmt=json`
+      );
+      if (data?.close > 0) {
+        return {
+          price: parseFloat(data.close),
+          change: parseFloat(data.change) || 0,
+          changePercent: parseFloat(data.change_p) || 0,
+          source: "EODHD",
+        };
+      }
+    } catch (e) {
+      console.warn(`[EODHD] ${symbol}:`, e.message);
+    }
+    return null;
+  },
+
+  async fromTwelve(symbol) {
+    if (!CONFIG.TWELVE_API_KEY) return null;
+    try {
+      const data = await this.fetchWithTimeout(
+        `https://api.twelvedata.com/price?symbol=${symbol}&apikey=${CONFIG.TWELVE_API_KEY}`
+      );
+      if (data?.price) {
+        return { price: parseFloat(data.price), change: 0, changePercent: 0, source: "TwelveData" };
+      }
+    } catch (e) {
+      console.warn(`[Twelve] ${symbol}:`, e.message);
+    }
+    return null;
   },
 
   async fetchLivePrice(symbol) {
-    // ตรวจสอบ cache ก่อน
-    const cached = CacheManager.getPriceCache(symbol);
-    if (cached) return cached;
+    const cached = CacheManager.get(symbol);
+    if (cached) return { ...cached, fromCache: true };
 
-    console.log(`[API] 🎯 Fetching live price for ${symbol}...`);
-    
-    // พยายามดึงจาก API แต่ละตัว
-    const apis = [
-      { name: 'FMP', fn: () => this.fetchFromFMP(symbol) },
-      { name: 'Finnhub', fn: () => this.fetchFromFinnhub(symbol) },
-      { name: 'Twelve Data', fn: () => this.fetchFromTwelve(symbol) }
+    const chains = [
+      () => this.fromFinnhub(symbol),
+      () => this.fromYahoo(symbol),
+      () => this.fromEODHD(symbol),
+      () => this.fromTwelve(symbol),
     ];
 
-    for (const api of apis) {
-      try {
-        const result = await api.fn();
-        if (result && result.price > 0) {
-          console.log(`[API] ✅ Success with ${api.name} for ${symbol}`);
-          CacheManager.setPriceCache(symbol, result);
-          return result;
-        }
-      } catch (error) {
-        console.error(`[API] ${api.name} failed:`, error);
+    for (const fn of chains) {
+      const result = await fn();
+      if (result && result.price > 0) {
+        CacheManager.set(symbol, result);
+        return result;
       }
     }
-
-    console.error(`[API] ❌ All APIs failed for ${symbol}`);
     return null;
-  }
+  },
 };
 
-// ============================================
-// DIVIDEND FREQUENCIES
-// ============================================
-const DIVIDEND_FREQUENCIES = {
-  monthly: { label: 'รายเดือน', perYear: 12 },
-  quarterly: { label: 'ราย 3 เดือน', perYear: 4 },
-  semiannual: { label: 'ราย 6 เดือน', perYear: 2 },
-  annual: { label: 'รายปี', perYear: 1 }
+// ============================================================
+// STORAGE HELPERS
+// ============================================================
+const Storage = {
+  get(key, fallback) {
+    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+    catch { return fallback; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch { }
+  },
 };
 
-// ============================================
-// TOAST NOTIFICATION COMPONENT
-// ============================================
-const Toast = ({ message, type = 'info', onClose }) => {
-  useEffect(() => {
-    const timer = setTimeout(onClose, 3000);
-    return () => clearTimeout(timer);
-  }, [onClose]);
+// ============================================================
+// UTILS
+// ============================================================
+const fmt = {
+  price: (n) => n == null ? "—" : `$${Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+  pct: (n) => n == null ? "—" : `${n >= 0 ? "+" : ""}${Number(n).toFixed(2)}%`,
+  num: (n) => n == null ? "—" : Number(n).toLocaleString("en-US"),
+  date: (iso) => {
+    if (!iso) return "—";
+    return new Date(iso).toLocaleDateString("th-TH", { day: "2-digit", month: "short", year: "numeric" });
+  },
+  time: (ms) => {
+    if (!ms) return null;
+    const diff = Date.now() - ms;
+    const m = Math.floor(diff / 60000);
+    if (m < 1) return "เมื่อกี้";
+    if (m < 60) return `${m} นาทีที่แล้ว`;
+    const h = Math.floor(m / 60);
+    return `${h} ชม.ที่แล้ว`;
+  },
+};
 
-  const bgColor = {
-    success: 'bg-green-500',
-    error: 'bg-red-500',
-    info: 'bg-blue-500',
-    warning: 'bg-yellow-500'
-  }[type];
+function colorClass(n) {
+  if (n == null) return "text-gray-400";
+  return n > 0 ? "text-emerald-400" : n < 0 ? "text-red-400" : "text-gray-400";
+}
+
+// ============================================================
+// HOOKS
+// ============================================================
+function useLocalStorage(key, fallback) {
+  const [val, setVal] = useState(() => Storage.get(key, fallback));
+  const update = useCallback((v) => {
+    setVal(v);
+    Storage.set(key, v);
+  }, [key]);
+  return [val, update];
+}
+
+// ============================================================
+// MINI COMPONENTS
+// ============================================================
+function Badge({ children, color = "gray" }) {
+  const colors = {
+    gray: "bg-gray-700 text-gray-300",
+    blue: "bg-blue-900/50 text-blue-300",
+    green: "bg-emerald-900/50 text-emerald-300",
+    red: "bg-red-900/50 text-red-300",
+    yellow: "bg-yellow-900/50 text-yellow-300",
+    purple: "bg-purple-900/50 text-purple-300",
+    teal: "bg-teal-900/50 text-teal-300",
+  };
+  return (
+    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${colors[color] || colors.gray}`}>
+      {children}
+    </span>
+  );
+}
+
+function Spinner({ size = "sm" }) {
+  const s = size === "sm" ? "w-4 h-4" : "w-8 h-8";
+  return (
+    <svg className={`${s} animate-spin text-blue-400`} viewBox="0 0 24 24" fill="none">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+    </svg>
+  );
+}
+
+function PriceChange({ change, pct, showIcon = true }) {
+  const up = change >= 0;
+  return (
+    <span className={`inline-flex items-center gap-1 font-medium ${up ? "text-emerald-400" : "text-red-400"}`}>
+      {showIcon && <span>{up ? "▲" : "▼"}</span>}
+      {fmt.pct(pct)}
+    </span>
+  );
+}
+
+function LiveDot({ active }) {
+  if (!active) return null;
+  return (
+    <span className="relative flex h-2 w-2">
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+    </span>
+  );
+}
+
+// ============================================================
+// LIVE MODE PANEL
+// ============================================================
+function LiveModePanel({ liveMode, setLiveMode, lastUpdate, nextUpdate, updateCount, loading }) {
+  const timeLeft = nextUpdate ? Math.max(0, Math.ceil((nextUpdate - Date.now()) / 60000)) : null;
 
   return (
-    <div className={`fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-in`}>
-      {message}
-    </div>
-  );
-};
-
-// ============================================
-// MAIN APP COMPONENT
-// ============================================
-function App() {
-  const [user, setUser] = useState(null);
-  const [allAssets, setAllAssets] = useState([]);
-  const [holdings, setHoldings] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
-  const [alerts, setAlerts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [totalInvestment, setTotalInvestment] = useState(100000);
-  const [isLiveMode, setIsLiveMode] = useState(false);
-  const [lastUpdate, setLastUpdate] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState(null);
-  const [errors, setErrors] = useState([]);
-
-  // Toast helper
-  const showToast = useCallback((message, type = 'info') => {
-    setToast({ message, type });
-  }, []);
-
-  // ============================================
-  // FIREBASE AUTHENTICATION
-  // ============================================
-  useEffect(() => {
-    if (!auth) {
-      console.error('[Firebase] Auth not initialized');
-      return;
-    }
-
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        console.log('[Firebase] ✅ User authenticated:', currentUser.uid);
-      } else {
-        console.log('[Firebase] 🔄 Signing in anonymously...');
-        signInAnonymously(auth)
-          .then(() => console.log('[Firebase] ✅ Anonymous sign-in successful'))
-          .catch(err => {
-            console.error('[Firebase] ❌ Auth error:', err);
-            setErrors(prev => [...prev, 'Firebase authentication failed']);
-          });
-      }
-    });
-    
-    return () => unsubscribe();
-  }, []);
-
-  // ============================================
-  // LOAD ASSETS DATA
-  // ============================================
-  useEffect(() => {
-    const loadAssetsData = async () => {
-      // ลองโหลดจาก cache ก่อน
-      const cached = localStorage.getItem('etf_local_cache_v7');
-      if (cached) {
-        try {
-          const parsedData = JSON.parse(cached);
-          console.log('[Data] ✅ Loaded from cache:', parsedData.length, 'assets');
-          setAllAssets(parsedData);
-          return;
-        } catch (e) {
-          console.error('[Data] Cache parse error:', e);
-        }
-      }
-
-      // ถ้าไม่มี cache ให้ดึงจาก GitHub
-      console.log('[Data] 🔄 Fetching from GitHub...');
-      setLoading(true);
-      
-      try {
-        const response = await fetch(
-          'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/combined-746-assets.json',
-          { cache: 'no-cache' }
-        );
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('[Data] ✅ Fetched from GitHub:', data.length, 'assets');
-        
-        setAllAssets(data);
-        localStorage.setItem('etf_local_cache_v7', JSON.stringify(data));
-        showToast('ข้อมูลโหลดสำเร็จ', 'success');
-      } catch (error) {
-        console.error('[Data] ❌ Fetch error:', error);
-        setErrors(prev => [...prev, 'Failed to load assets data']);
-        showToast('โหลดข้อมูลล้มเหลว', 'error');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadAssetsData();
-  }, [showToast]);
-
-  // ============================================
-  // LOAD USER DATA FROM FIREBASE
-  // ============================================
-  useEffect(() => {
-    if (!user || !db) return;
-
-    const loadUserData = async () => {
-      try {
-        console.log('[Firebase] 🔄 Loading user data...');
-        const docRef = doc(db, 'users', user.uid);
-        const docSnap = await getDoc(docRef);
-        
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          console.log('[Firebase] ✅ User data loaded');
-          setHoldings(data.holdings || []);
-          setWatchlist(data.watchlist || []);
-          setAlerts(data.alerts || []);
-          setTotalInvestment(data.totalInvestment || 100000);
-        } else {
-          console.log('[Firebase] ℹ️ No existing user data');
-        }
-      } catch (error) {
-        console.error('[Firebase] ❌ Load error:', error);
-        setErrors(prev => [...prev, 'Failed to load user data']);
-      }
-    };
-
-    loadUserData();
-  }, [user]);
-
-  // ============================================
-  // SAVE USER DATA TO FIREBASE
-  // ============================================
-  const saveUserData = useCallback(async () => {
-    if (!user || !db) return;
-
-    try {
-      console.log('[Firebase] 💾 Saving user data...');
-      const docRef = doc(db, 'users', user.uid);
-      await setDoc(docRef, {
-        holdings,
-        watchlist,
-        alerts,
-        totalInvestment,
-        lastUpdated: new Date().toISOString()
-      });
-      console.log('[Firebase] ✅ Data saved');
-    } catch (error) {
-      console.error('[Firebase] ❌ Save error:', error);
-      showToast('บันทึกข้อมูลล้มเหลว', 'error');
-    }
-  }, [user, holdings, watchlist, alerts, totalInvestment, showToast]);
-
-  // Auto-save เมื่อข้อมูลเปลี่ยน
-  useEffect(() => {
-    if (user) {
-      const timer = setTimeout(() => {
-        saveUserData();
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [holdings, watchlist, alerts, totalInvestment, user, saveUserData]);
-
-  // ============================================
-  // LIVE MODE - UPDATE PRICES
-  // ============================================
-  useEffect(() => {
-    if (!isLiveMode || holdings.length === 0) return;
-
-    const updatePrices = async () => {
-      console.log('[Live] 🔄 Updating prices...');
-      setLoading(true);
-
-      const updatedHoldings = [];
-      for (const holding of holdings) {
-        const liveData = await APIService.fetchLivePrice(holding.symbol);
-        
-        if (liveData) {
-          updatedHoldings.push({
-            ...holding,
-            currentPrice: liveData.price,
-            change: liveData.change,
-            changePercent: liveData.changePercent,
-            dataSource: liveData.source
-          });
-        } else {
-          updatedHoldings.push(holding);
-        }
-      }
-
-      setHoldings(updatedHoldings);
-      setLastUpdate(new Date());
-      setLoading(false);
-      console.log('[Live] ✅ Prices updated');
-    };
-
-    updatePrices();
-    const interval = setInterval(updatePrices, 60000); // ทุก 1 นาที
-
-    return () => clearInterval(interval);
-  }, [isLiveMode, holdings.length]); // ใช้ length แทน holdings ทั้งหมด
-
-  // ============================================
-  // COMPUTED STATS - ใช้ useMemo เพื่อ Performance
-  // ============================================
-  const stats = useMemo(() => {
-    const totalValue = holdings.reduce((sum, h) => sum + (h.shares * h.currentPrice), 0);
-    const totalDividend = holdings.reduce((sum, h) => sum + h.annualDiv, 0);
-    const avgYield = holdings.length > 0 
-      ? holdings.reduce((sum, h) => sum + h.dividendYield, 0) / holdings.length 
-      : 0;
-
-    return {
-      totalValue,
-      totalDividend,
-      avgYield,
-      holdings: holdings.map(h => ({
-        ...h,
-        value: h.shares * h.currentPrice,
-        annualDiv: h.shares * h.currentPrice * (h.dividendYield / 100)
-      }))
-    };
-  }, [holdings]);
-
-  // ============================================
-  // SEARCH RESULTS - ใช้ useMemo
-  // ============================================
-  const searchResults = useMemo(() => {
-    if (!searchQuery.trim()) return [];
-    
-    const query = searchQuery.toLowerCase();
-    return allAssets
-      .filter(asset => 
-        asset.symbol.toLowerCase().includes(query) ||
-        asset.name.toLowerCase().includes(query)
-      )
-      .slice(0, 20);
-  }, [searchQuery, allAssets]);
-
-  // ============================================
-  // PORTFOLIO ACTIONS
-  // ============================================
-  const addToPortfolio = useCallback((asset) => {
-    const shares = prompt(`How many shares of ${asset.symbol}?`);
-    if (!shares || isNaN(shares)) return;
-
-    const newHolding = {
-      symbol: asset.symbol,
-      name: asset.name,
-      shares: parseFloat(shares),
-      currentPrice: parseFloat(asset.price || 0),
-      dividendYield: parseFloat(asset.dividendYield || 0),
-      divFrequency: 'quarterly',
-      change: 0,
-      changePercent: 0
-    };
-
-    setHoldings(prev => [...prev, newHolding]);
-    showToast(`เพิ่ม ${asset.symbol} สำเร็จ`, 'success');
-  }, [showToast]);
-
-  const deleteFromPortfolio = useCallback((symbol) => {
-    if (confirm(`Delete ${symbol} from portfolio?`)) {
-      setHoldings(prev => prev.filter(h => h.symbol !== symbol));
-      showToast(`ลบ ${symbol} สำเร็จ`, 'success');
-    }
-  }, [showToast]);
-
-  const refreshPrices = useCallback(async () => {
-    console.log('[Refresh] 🔄 Manual refresh triggered');
-    CacheManager.clearCache();
-    setIsLiveMode(false);
-    setTimeout(() => setIsLiveMode(true), 100);
-    showToast('กำลังรีเฟรชข้อมูล...', 'info');
-  }, [showToast]);
-
-  // ============================================
-  // PIE CHART DATA
-  // ============================================
-  const pieData = useMemo(() => 
-    stats.holdings.map(h => ({
-      name: h.symbol,
-      value: h.value
-    })),
-    [stats.holdings]
-  );
-
-  const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316'];
-
-  // ============================================
-  // RENDER
-  // ============================================
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Toast Notifications */}
-      {toast && (
-        <Toast 
-          message={toast.message} 
-          type={toast.type} 
-          onClose={() => setToast(null)} 
-        />
-      )}
-
-      {/* Header */}
-      <div className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <DollarSign className="text-blue-600" size={32} />
-              <div>
-                <h1 className="text-2xl font-bold text-slate-800">ETF Portfolio Tracker</h1>
-                <p className="text-sm text-slate-500">v6.3 Enhanced Edition</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4">
-              {/* Live Mode Toggle */}
-              <button
-                onClick={() => setIsLiveMode(!isLiveMode)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                  isLiveMode 
-                    ? 'bg-green-500 text-white shadow-lg' 
-                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-                }`}
-              >
-                {isLiveMode ? '🟢 Live Mode' : '⚫ Static Mode'}
-              </button>
-
-              {/* Refresh Button */}
-              <button
-                onClick={refreshPrices}
-                disabled={loading}
-                className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-all"
-                title="Refresh Prices"
-              >
-                <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
-              </button>
-
-              {lastUpdate && (
-                <div className="text-xs text-slate-500">
-                  Updated: {lastUpdate.toLocaleTimeString('th-TH')}
-                </div>
-              )}
-            </div>
+    <div className={`rounded-xl border p-4 transition-all ${liveMode
+      ? "bg-emerald-950/30 border-emerald-700/50"
+      : "bg-gray-800/30 border-gray-700/50"
+      }`}>
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div className="flex items-center gap-3">
+          <LiveDot active={liveMode} />
+          <div>
+            <p className="text-sm font-semibold text-white">
+              Live Mode
+              {liveMode && <span className="ml-2 text-xs text-emerald-400 font-normal">ทำงานอยู่</span>}
+            </p>
+            <p className="text-xs text-gray-400 mt-0.5">
+              อัปเดต Portfolio + Watchlist ทุก 2 ชั่วโมง
+            </p>
           </div>
+        </div>
 
-          {/* Error Messages */}
-          {errors.length > 0 && (
-            <div className="mt-4 bg-red-50 border border-red-200 rounded-lg p-3">
-              <div className="flex items-start gap-2">
-                <AlertCircle className="text-red-500 flex-shrink-0" size={20} />
-                <div className="text-sm text-red-700">
-                  {errors.map((error, i) => (
-                    <div key={i}>• {error}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
+        <div className="flex items-center gap-3">
+          {loading && <Spinner />}
+          <button
+            onClick={() => setLiveMode(!liveMode)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${liveMode
+              ? "bg-emerald-600 hover:bg-emerald-700 text-white"
+              : "bg-gray-700 hover:bg-gray-600 text-gray-300"
+              }`}
+          >
+            {liveMode ? "ปิด Live" : "เปิด Live"}
+          </button>
+        </div>
+      </div>
+
+      {liveMode && (
+        <div className="mt-3 pt-3 border-t border-emerald-800/40 flex flex-wrap gap-4 text-xs text-gray-400">
+          {lastUpdate && (
+            <span>
+              อัปเดตล่าสุด: <span className="text-emerald-300">{fmt.time(lastUpdate)}</span>
+            </span>
+          )}
+          {timeLeft !== null && (
+            <span>
+              อัปเดตครั้งถัดไป: <span className="text-emerald-300">ใน {timeLeft} นาที</span>
+            </span>
+          )}
+          {updateCount > 0 && (
+            <span>
+              อัปเดตแล้ว: <span className="text-emerald-300">{updateCount} ครั้ง</span>
+            </span>
           )}
         </div>
-      </div>
-
-      {/* Navigation Tabs */}
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex gap-2 overflow-x-auto">
-          {[
-            { id: 'dashboard', label: 'Dashboard', icon: TrendingUp },
-            { id: 'search', label: 'Search', icon: Search },
-            { id: 'watchlist', label: 'Watchlist', icon: Star },
-            { id: 'alerts', label: 'Alerts', icon: Bell },
-            { id: 'dividends', label: 'Dividends', icon: DollarSign }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
-                activeTab === tab.id
-                  ? 'bg-blue-500 text-white shadow-md'
-                  : 'bg-white text-slate-600 hover:bg-slate-50'
-              }`}
-            >
-              <tab.icon size={18} />
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 pb-8">
-        {/* Dashboard Tab */}
-        {activeTab === 'dashboard' && (
-          <div className="space-y-6">
-            {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                <div className="text-sm text-slate-500 mb-1">Total Value</div>
-                <div className="text-2xl font-bold text-slate-800">
-                  ฿{Math.round(stats.totalValue).toLocaleString()}
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                <div className="text-sm text-slate-500 mb-1">Investment</div>
-                <div className="text-2xl font-bold text-slate-800">
-                  ฿{totalInvestment.toLocaleString()}
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                <div className="text-sm text-slate-500 mb-1">Annual Dividend</div>
-                <div className="text-2xl font-bold text-green-600">
-                  ฿{Math.round(stats.totalDividend).toLocaleString()}
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                <div className="text-sm text-slate-500 mb-1">Avg Yield</div>
-                <div className="text-2xl font-bold text-blue-600">
-                  {stats.avgYield.toFixed(2)}%
-                </div>
-              </div>
-            </div>
-
-            {/* Chart & Portfolio */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Pie Chart */}
-              {holdings.length > 0 && (
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                  <h2 className="text-xl font-bold mb-4 text-slate-800">Portfolio Allocation</h2>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={pieData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {pieData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip formatter={(value) => `฿${Math.round(value).toLocaleString()}`} />
-                      <Legend />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              )}
-
-              {/* Holdings Table */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                <h2 className="text-xl font-bold mb-4 text-slate-800">Holdings</h2>
-                {holdings.length === 0 ? (
-                  <p className="text-slate-500 text-center py-8">No holdings yet. Add some from Search!</p>
-                ) : (
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="border-b border-slate-200">
-                          <th className="py-2 px-2 text-left">Symbol</th>
-                          <th className="py-2 px-2 text-right">Shares</th>
-                          <th className="py-2 px-2 text-right">Price</th>
-                          <th className="py-2 px-2 text-right">Yield</th>
-                          {isLiveMode && <th className="py-2 px-2 text-right">Change</th>}
-                          <th className="py-2 px-2 text-center">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {stats.holdings.map((holding, idx) => (
-                          <tr key={idx} className="border-b border-slate-100 hover:bg-slate-50">
-                            <td className="py-3 px-2 font-medium text-blue-600">{holding.symbol}</td>
-                            <td className="py-3 px-2 text-right">{holding.shares}</td>
-                            <td className="py-3 px-2 text-right">
-                              ${holding.currentPrice.toFixed(2)}
-                              {holding.dataSource && (
-                                <span className="ml-1 text-xs bg-blue-100 text-blue-600 px-1 py-0.5 rounded">
-                                  {holding.dataSource}
-                                </span>
-                              )}
-                            </td>
-                            <td className="py-3 px-2 text-right">{holding.dividendYield.toFixed(2)}%</td>
-                            {isLiveMode && (
-                              <td className="py-3 px-2 text-right">
-                                <span className={holding.changePercent >= 0 ? 'text-green-600' : 'text-red-600'}>
-                                  {holding.changePercent >= 0 ? '+' : ''}{holding.changePercent?.toFixed(2)}%
-                                </span>
-                              </td>
-                            )}
-                            <td className="py-3 px-2 text-center">
-                              <button
-                                onClick={() => deleteFromPortfolio(holding.symbol)}
-                                className="text-red-500 hover:text-red-700 transition-colors"
-                              >
-                                <Trash2 size={16} />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Search Tab */}
-        {activeTab === 'search' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-            <div className="mb-6">
-              <input
-                type="text"
-                placeholder="Search stocks or ETFs by symbol or name..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <p className="text-xs text-slate-500 mt-2">
-                {allAssets.length} assets available • {searchResults.length} results
-              </p>
-            </div>
-            
-            {searchResults.length > 0 ? (
-              <div className="space-y-2">
-                <div className="grid grid-cols-6 gap-4 py-2 px-4 bg-slate-50 rounded-lg font-medium text-sm text-slate-600">
-                  <div>SYMBOL</div>
-                  <div className="col-span-2">NAME</div>
-                  <div className="text-right">PRICE</div>
-                  <div className="text-right">YIELD</div>
-                  <div className="text-center">ACTIONS</div>
-                </div>
-                {searchResults.map((asset, idx) => (
-                  <div key={idx} className="grid grid-cols-6 gap-4 py-3 px-4 hover:bg-slate-50 rounded-lg items-center border border-slate-100">
-                    <div className="font-medium text-blue-600">{asset.symbol}</div>
-                    <div className="text-sm text-slate-600 col-span-2 truncate">{asset.name}</div>
-                    <div className="text-right">${parseFloat(asset.price || 0).toFixed(2)}</div>
-                    <div className="text-right">{parseFloat(asset.dividendYield || 0).toFixed(2)}%</div>
-                    <div className="flex justify-center gap-2">
-                      <button
-                        onClick={() => addToPortfolio(asset)}
-                        className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                        title="Add to Portfolio"
-                      >
-                        <Plus size={16} />
-                      </button>
-                      <button
-                        onClick={() => {
-                          if (!watchlist.find(w => w.symbol === asset.symbol)) {
-                            setWatchlist([...watchlist, asset]);
-                            showToast(`เพิ่ม ${asset.symbol} ใน Watchlist`, 'success');
-                          }
-                        }}
-                        className="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
-                        title="Add to Watchlist"
-                      >
-                        <Star size={16} />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : searchQuery ? (
-              <p className="text-slate-500 text-center py-8">No results found</p>
-            ) : (
-              <p className="text-slate-500 text-center py-8">Start typing to search...</p>
-            )}
-          </div>
-        )}
-
-        {/* Watchlist Tab */}
-        {activeTab === 'watchlist' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-            <h2 className="text-xl font-bold mb-4 text-slate-800">Watchlist</h2>
-            {watchlist.length === 0 ? (
-              <p className="text-slate-500 text-center py-8">No items in watchlist</p>
-            ) : (
-              <div className="space-y-2">
-                {watchlist.map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-4 hover:bg-slate-50 rounded-lg border border-slate-100">
-                    <div>
-                      <div className="font-medium text-blue-600">{item.symbol}</div>
-                      <div className="text-sm text-slate-600">{item.name}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-medium">${parseFloat(item.price || 0).toFixed(2)}</div>
-                      <div className="text-sm text-slate-600">{parseFloat(item.dividendYield || 0).toFixed(2)}% yield</div>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setWatchlist(watchlist.filter((_, i) => i !== idx));
-                        showToast(`ลบ ${item.symbol} จาก Watchlist`, 'success');
-                      }}
-                      className="text-red-500 hover:text-red-700 transition-colors"
-                    >
-                      <Trash2 size={18} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Alerts Tab */}
-        {activeTab === 'alerts' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-            <h2 className="text-xl font-bold mb-4 text-slate-800">Price Alerts</h2>
-            {alerts.length === 0 ? (
-              <p className="text-slate-500 text-center py-8">No alerts set</p>
-            ) : (
-              <div className="space-y-2">
-                {alerts.map((alert, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-4 hover:bg-slate-50 rounded-lg border border-slate-100">
-                    <div>
-                      <div className="font-medium text-blue-600">{alert.symbol}</div>
-                      <div className="text-sm text-slate-600">
-                        Current: ${alert.currentPrice.toFixed(2)} → Target: ${alert.targetPrice.toFixed(2)}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setAlerts(alerts.filter((_, i) => i !== idx));
-                        showToast(`ลบ Alert สำหรับ ${alert.symbol}`, 'success');
-                      }}
-                      className="text-red-500 hover:text-red-700 transition-colors"
-                    >
-                      <Trash2 size={18} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Dividends Tab */}
-        {activeTab === 'dividends' && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-            <h2 className="text-xl font-bold mb-4 text-slate-800">Dividend Calendar</h2>
-            {holdings.length === 0 ? (
-              <p className="text-slate-500 text-center py-8">No holdings to show dividends</p>
-            ) : (
-              <div className="space-y-4">
-                {stats.holdings.map((holding, idx) => {
-                  const freq = DIVIDEND_FREQUENCIES[holding.divFrequency || 'quarterly'];
-                  const periodDiv = holding.annualDiv / freq.perYear;
-                  
-                  return (
-                    <div key={idx} className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <div className="font-medium text-blue-600">{holding.symbol}</div>
-                          <div className="text-sm text-slate-600">{freq.label}</div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-medium text-green-600">
-                            ฿{Math.round(periodDiv).toLocaleString()} / period
-                          </div>
-                          <div className="text-sm text-slate-600">
-                            ฿{Math.round(holding.annualDiv).toLocaleString()} / year
-                          </div>
-                        </div>
-                      </div>
-                      <div className="text-xs text-slate-500">
-                        Yield: {holding.dividendYield.toFixed(2)}% • {freq.perYear} payments/year
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Footer */}
-      <div className="max-w-7xl mx-auto px-4 py-8 text-center text-sm text-slate-500 border-t border-slate-200">
-        <p>ETF Portfolio Tracker v6.3 — Enhanced with Better Error Handling & Performance</p>
-        <p className="text-xs mt-1">Cache: 15min • Live Mode: 1min update • Auto-save enabled</p>
-      </div>
-
-      {/* CSS Animation */}
-      <style jsx>{`
-        @keyframes slide-in {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-        .animate-slide-in {
-          animation: slide-in 0.3s ease-out;
-        }
-      `}</style>
+      )}
     </div>
   );
 }
 
-export default App;
+// ============================================================
+// SEARCH BAR
+// ============================================================
+function SearchBar({ value, onChange, placeholder }) {
+  return (
+    <div className="relative">
+      <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input
+        type="text"
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder || "ค้นหา Symbol หรือชื่อ..."}
+        className="w-full bg-gray-800/60 border border-gray-700/60 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/70 focus:ring-1 focus:ring-blue-500/30 transition-all"
+      />
+    </div>
+  );
+}
+
+// ============================================================
+// ASSET CARD (ใน Search/Browse)
+// ============================================================
+function AssetCard({ asset, onAdd, onWatchlist, inPortfolio, inWatchlist }) {
+  const typeColor = { STOCK: "blue", ETF: "teal", REIT: "purple", BOND: "yellow" };
+  return (
+    <div className="bg-gray-800/50 border border-gray-700/40 rounded-xl p-4 hover:border-gray-600/60 transition-all group">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-white font-bold text-base">{asset.symbol}</span>
+            <Badge color={typeColor[asset.type] || "gray"}>{asset.type}</Badge>
+            {asset.sector && <Badge>{asset.sector}</Badge>}
+          </div>
+          <p className="text-gray-400 text-xs mt-1 truncate">{asset.name}</p>
+        </div>
+        <div className="text-right shrink-0">
+          <p className="text-white font-semibold">{fmt.price(asset.price)}</p>
+          {asset.changePercent != null && (
+            <PriceChange change={asset.change || 0} pct={asset.changePercent} />
+          )}
+        </div>
+      </div>
+
+      <div className="mt-3 flex items-center gap-2 flex-wrap">
+        {asset.dividendYield != null && (
+          <span className="text-xs text-gray-400">
+            Yield: <span className="text-emerald-400">{asset.dividendYield?.toFixed(2)}%</span>
+          </span>
+        )}
+        {asset.exDividendDate && (
+          <span className="text-xs text-gray-400">
+            Ex-Div: <span className="text-yellow-300">{fmt.date(asset.exDividendDate)}</span>
+          </span>
+        )}
+      </div>
+
+      <div className="mt-3 flex gap-2">
+        <button
+          onClick={() => onAdd(asset)}
+          className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-all ${inPortfolio
+            ? "bg-blue-900/40 border border-blue-700/50 text-blue-300 hover:bg-blue-900/60"
+            : "bg-blue-600/80 hover:bg-blue-600 text-white"
+            }`}
+        >
+          {inPortfolio ? "✓ ในพอร์ต" : "+ พอร์ต"}
+        </button>
+        <button
+          onClick={() => onWatchlist(asset)}
+          className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-all ${inWatchlist
+            ? "bg-yellow-900/40 border border-yellow-700/50 text-yellow-300 hover:bg-yellow-900/60"
+            : "bg-gray-700 hover:bg-gray-600 text-gray-300"
+            }`}
+        >
+          {inWatchlist ? "★ ติดตาม" : "☆ Watchlist"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// PORTFOLIO ROW
+// ============================================================
+function PortfolioRow({ item, livePrice, onRemove, onEdit }) {
+  const price = livePrice?.price ?? item.currentPrice ?? item.price ?? 0;
+  const cost = item.avgCost ?? 0;
+  const qty = item.quantity ?? 0;
+  const value = price * qty;
+  const invested = cost * qty;
+  const gainLoss = value - invested;
+  const gainLossPct = invested > 0 ? (gainLoss / invested) * 100 : 0;
+
+  return (
+    <div className="bg-gray-800/40 border border-gray-700/30 rounded-xl p-4 hover:border-gray-600/50 transition-all">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="text-white font-bold">{item.symbol}</span>
+            {livePrice && (
+              <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-900/40 text-emerald-400 border border-emerald-800/40">
+                Live
+              </span>
+            )}
+          </div>
+          <p className="text-gray-400 text-xs truncate mt-0.5">{item.name}</p>
+        </div>
+        <div className="text-right shrink-0">
+          <p className="text-white font-semibold">{fmt.price(price)}</p>
+          {livePrice?.changePercent != null && (
+            <PriceChange change={livePrice.change} pct={livePrice.changePercent} />
+          )}
+        </div>
+      </div>
+
+      <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+        <div>
+          <p className="text-gray-500">จำนวน</p>
+          <p className="text-white font-medium">{fmt.num(qty)} หุ้น</p>
+        </div>
+        <div>
+          <p className="text-gray-500">ต้นทุน/หุ้น</p>
+          <p className="text-white font-medium">{fmt.price(cost)}</p>
+        </div>
+        <div>
+          <p className="text-gray-500">มูลค่ารวม</p>
+          <p className="text-white font-medium">{fmt.price(value)}</p>
+        </div>
+        <div>
+          <p className="text-gray-500">กำไร/ขาดทุน</p>
+          <p className={`font-medium ${colorClass(gainLoss)}`}>
+            {gainLoss >= 0 ? "+" : ""}{fmt.price(gainLoss)}
+            <span className="ml-1 text-xs">({fmt.pct(gainLossPct)})</span>
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-3 flex gap-2 justify-end">
+        <button onClick={() => onEdit(item)} className="text-xs px-3 py-1.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-gray-300 transition-all">แก้ไข</button>
+        <button onClick={() => onRemove(item.symbol)} className="text-xs px-3 py-1.5 rounded-lg bg-red-900/40 hover:bg-red-900/60 text-red-400 border border-red-800/30 transition-all">ลบ</button>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// ADD TO PORTFOLIO MODAL
+// ============================================================
+function AddPortfolioModal({ asset, existing, onSave, onClose }) {
+  const [qty, setQty] = useState(existing?.quantity ?? "");
+  const [cost, setCost] = useState(existing?.avgCost ?? asset.price ?? "");
+
+  const handleSave = () => {
+    const q = parseFloat(qty);
+    const c = parseFloat(cost);
+    if (!q || q <= 0 || !c || c <= 0) return;
+    onSave({ ...asset, quantity: q, avgCost: c });
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-gray-900 border border-gray-700/60 rounded-2xl p-6 w-full max-w-sm shadow-2xl" onClick={e => e.stopPropagation()}>
+        <h3 className="text-white font-bold text-lg mb-1">{existing ? "แก้ไข" : "เพิ่ม"} — {asset.symbol}</h3>
+        <p className="text-gray-400 text-sm mb-5 truncate">{asset.name}</p>
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-xs text-gray-400 mb-1.5">จำนวนหุ้น</label>
+            <input
+              type="number" min="0" step="1"
+              value={qty} onChange={e => setQty(e.target.value)}
+              className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500/70 transition-all"
+              placeholder="0"
+            />
+          </div>
+          <div>
+            <label className="block text-xs text-gray-400 mb-1.5">ต้นทุนเฉลี่ยต่อหุ้น ($)</label>
+            <input
+              type="number" min="0" step="0.01"
+              value={cost} onChange={e => setCost(e.target.value)}
+              className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500/70 transition-all"
+              placeholder="0.00"
+            />
+          </div>
+        </div>
+
+        {qty && cost && (
+          <div className="mt-4 p-3 bg-blue-900/20 border border-blue-800/30 rounded-xl">
+            <p className="text-xs text-gray-400">มูลค่าลงทุนรวม</p>
+            <p className="text-white font-bold">{fmt.price(parseFloat(qty) * parseFloat(cost))}</p>
+          </div>
+        )}
+
+        <div className="mt-5 flex gap-3">
+          <button onClick={onClose} className="flex-1 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm transition-all">ยกเลิก</button>
+          <button onClick={handleSave} className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-all">บันทึก</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// PORTFOLIO SUMMARY
+// ============================================================
+function PortfolioSummary({ items, livePrices }) {
+  let totalValue = 0, totalInvested = 0;
+  items.forEach(item => {
+    const price = livePrices[item.symbol]?.price ?? item.currentPrice ?? item.price ?? 0;
+    totalValue += price * (item.quantity ?? 0);
+    totalInvested += (item.avgCost ?? 0) * (item.quantity ?? 0);
+  });
+  const gain = totalValue - totalInvested;
+  const gainPct = totalInvested > 0 ? (gain / totalInvested) * 100 : 0;
+
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+      {[
+        { label: "มูลค่าพอร์ต", value: fmt.price(totalValue), color: "text-white" },
+        { label: "ลงทุนทั้งหมด", value: fmt.price(totalInvested), color: "text-white" },
+        { label: "กำไร/ขาดทุน", value: `${gain >= 0 ? "+" : ""}${fmt.price(gain)}`, color: colorClass(gain) },
+        { label: "ผลตอบแทน", value: fmt.pct(gainPct), color: colorClass(gainPct) },
+      ].map(s => (
+        <div key={s.label} className="bg-gray-800/40 border border-gray-700/30 rounded-xl p-3 text-center">
+          <p className="text-gray-400 text-xs mb-1">{s.label}</p>
+          <p className={`font-bold text-base ${s.color}`}>{s.value}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function Tabs({ tabs, active, onChange }) {
+  return (
+    <div className="flex gap-1 p-1 bg-gray-800/60 rounded-xl border border-gray-700/40">
+      {tabs.map(t => (
+        <button
+          key={t.id}
+          onClick={() => onChange(t.id)}
+          className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-sm font-medium transition-all ${active === t.id
+            ? "bg-blue-600 text-white shadow-md shadow-blue-900/30"
+            : "text-gray-400 hover:text-gray-200 hover:bg-gray-700/50"
+            }`}
+        >
+          <span>{t.icon}</span>
+          <span className="hidden sm:inline">{t.label}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ============================================================
+// MAIN APP
+// ============================================================
+export default function App() {
+  // ——— Data
+  const [allAssets, setAllAssets] = useState([]);
+  const [dataLoading, setDataLoading] = useState(true);
+  const [dataError, setDataError] = useState(null);
+  const [dataTimestamp, setDataTimestamp] = useState(null);
+
+  // ——— UI
+  const [tab, setTab] = useState("portfolio");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterType, setFilterType] = useState("ALL");
+
+  // ——— Portfolio & Watchlist
+  const [portfolio, setPortfolio] = useLocalStorage(STORAGE_KEYS.PORTFOLIO, []);
+  const [watchlist, setWatchlist] = useLocalStorage(STORAGE_KEYS.WATCHLIST, []);
+
+  // ——— Live Mode
+  const [liveMode, setLiveModeStorage] = useLocalStorage(STORAGE_KEYS.LIVE_MODE, false);
+  const [livePrices, setLivePrices] = useState({});
+  const [liveLoading, setLiveLoading] = useState(false);
+  const [lastUpdate, setLastUpdate] = useState(null);
+  const [nextUpdate, setNextUpdate] = useState(null);
+  const [updateCount, setUpdateCount] = useState(0);
+  const liveTimerRef = useRef(null);
+
+  // ——— Modal
+  const [addModal, setAddModal] = useState(null); // { asset, existing? }
+
+  // ============================================================
+  // โหลด JSON ตอนเริ่ม
+  // ============================================================
+  useEffect(() => {
+    setDataLoading(true);
+    fetch(CONFIG.DATA_URL + `?v=${Date.now()}`)
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        setDataTimestamp(r.headers.get("last-modified"));
+        return r.json();
+      })
+      .then(data => {
+        setAllAssets(Array.isArray(data) ? data : []);
+        setDataLoading(false);
+      })
+      .catch(err => {
+        setDataError(err.message);
+        setDataLoading(false);
+      });
+  }, []);
+
+  // ============================================================
+  // Live Mode — ดึงราคาเฉพาะ Portfolio + Watchlist
+  // ============================================================
+  const doLiveUpdate = useCallback(async () => {
+    const symbols = [
+      ...new Set([
+        ...portfolio.map(p => p.symbol),
+        ...watchlist.map(w => w.symbol),
+      ]),
+    ];
+    if (symbols.length === 0) return;
+
+    setLiveLoading(true);
+    const results = {};
+
+    for (const sym of symbols) {
+      const data = await API.fetchLivePrice(sym);
+      if (data) results[sym] = data;
+      // หน่วงเล็กน้อยระหว่างตัว ไม่ให้ Finnhub rate-limit
+      await new Promise(r => setTimeout(r, 100));
+    }
+
+    setLivePrices(prev => ({ ...prev, ...results }));
+    setLastUpdate(Date.now());
+    setUpdateCount(c => c + 1);
+    setLiveLoading(false);
+
+    // ตั้ง next update
+    setNextUpdate(Date.now() + CONFIG.LIVE_INTERVAL_MS);
+  }, [portfolio, watchlist]);
+
+  // ตั้ง/ยกเลิก Live timer
+  useEffect(() => {
+    if (liveTimerRef.current) {
+      clearInterval(liveTimerRef.current);
+      liveTimerRef.current = null;
+    }
+
+    if (liveMode) {
+      doLiveUpdate(); // รันทันที
+      liveTimerRef.current = setInterval(doLiveUpdate, CONFIG.LIVE_INTERVAL_MS);
+      setNextUpdate(Date.now() + CONFIG.LIVE_INTERVAL_MS);
+    } else {
+      setNextUpdate(null);
+    }
+
+    return () => {
+      if (liveTimerRef.current) clearInterval(liveTimerRef.current);
+    };
+  }, [liveMode, doLiveUpdate]);
+
+  // ============================================================
+  // PORTFOLIO ACTIONS
+  // ============================================================
+  const handleAddPortfolio = useCallback((asset) => {
+    const existing = portfolio.find(p => p.symbol === asset.symbol);
+    setAddModal({ asset, existing });
+  }, [portfolio]);
+
+  const handleSavePortfolio = useCallback((item) => {
+    setPortfolio(prev => {
+      const filtered = prev.filter(p => p.symbol !== item.symbol);
+      return [...filtered, item];
+    });
+    setAddModal(null);
+  }, [setPortfolio]);
+
+  const handleRemovePortfolio = useCallback((symbol) => {
+    setPortfolio(prev => prev.filter(p => p.symbol !== symbol));
+  }, [setPortfolio]);
+
+  // ============================================================
+  // WATCHLIST ACTIONS
+  // ============================================================
+  const handleToggleWatchlist = useCallback((asset) => {
+    setWatchlist(prev => {
+      const exists = prev.find(w => w.symbol === asset.symbol);
+      return exists ? prev.filter(w => w.symbol !== asset.symbol) : [...prev, asset];
+    });
+  }, [setWatchlist]);
+
+  // ============================================================
+  // SEARCH / FILTER
+  // ============================================================
+  const filteredAssets = (() => {
+    if (!searchQuery && filterType === "ALL") return [];
+    const q = searchQuery.toLowerCase();
+    return allAssets.filter(a => {
+      const matchType = filterType === "ALL" || a.type === filterType;
+      const matchQ = !q || a.symbol.toLowerCase().includes(q) || (a.name || "").toLowerCase().includes(q);
+      return matchType && matchQ;
+    }).slice(0, 50);
+  })();
+
+  const assetMap = Object.fromEntries(allAssets.map(a => [a.symbol, a]));
+  const portfolioSymbols = new Set(portfolio.map(p => p.symbol));
+  const watchlistSymbols = new Set(watchlist.map(w => w.symbol));
+
+  // ============================================================
+  // TABS CONFIG
+  // ============================================================
+  const TABS = [
+    { id: "portfolio", label: "พอร์ต", icon: "💼" },
+    { id: "watchlist", label: "Watchlist", icon: "⭐" },
+    { id: "search", label: "ค้นหา", icon: "🔍" },
+  ];
+
+  // ============================================================
+  // RENDER
+  // ============================================================
+  return (
+    <div className="min-h-screen bg-gray-950 text-white" style={{ fontFamily: "'DM Sans', 'Noto Sans Thai', sans-serif" }}>
+      {/* ═══ HEADER ═══ */}
+      <header className="sticky top-0 z-40 bg-gray-950/90 backdrop-blur border-b border-gray-800/60">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-sm font-bold shadow-md shadow-blue-900/40">
+              P
+            </div>
+            <div>
+              <h1 className="text-sm font-bold text-white leading-none">Portfolio Tracker</h1>
+              {dataTimestamp && (
+                <p className="text-xs text-gray-500 mt-0.5">
+                  ข้อมูล: {new Date(dataTimestamp).toLocaleDateString("th-TH")}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {liveLoading && <Spinner size="sm" />}
+            {liveMode && (
+              <span className="flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-900/30 border border-emerald-800/40 px-2.5 py-1 rounded-full">
+                <LiveDot active />
+                Live
+              </span>
+            )}
+            <span className="text-xs text-gray-500 bg-gray-800/60 px-2.5 py-1 rounded-full border border-gray-700/40">
+              {allAssets.length} ตัว
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 py-5 space-y-4">
+        {/* ═══ LOADING / ERROR ═══ */}
+        {dataLoading && (
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center space-y-3">
+              <Spinner size="lg" />
+              <p className="text-gray-400 text-sm">กำลังโหลดข้อมูล...</p>
+            </div>
+          </div>
+        )}
+
+        {dataError && (
+          <div className="bg-red-950/30 border border-red-800/50 rounded-xl p-4 text-center">
+            <p className="text-red-400 text-sm font-medium">โหลดข้อมูลไม่ได้</p>
+            <p className="text-red-500/70 text-xs mt-1">{dataError}</p>
+            <button onClick={() => window.location.reload()} className="mt-3 px-4 py-2 bg-red-900/40 hover:bg-red-900/60 border border-red-800/40 text-red-300 rounded-lg text-xs transition-all">ลองใหม่</button>
+          </div>
+        )}
+
+        {!dataLoading && !dataError && (
+          <>
+            {/* ═══ LIVE MODE ═══ */}
+            <LiveModePanel
+              liveMode={liveMode}
+              setLiveMode={setLiveModeStorage}
+              lastUpdate={lastUpdate}
+              nextUpdate={nextUpdate}
+              updateCount={updateCount}
+              loading={liveLoading}
+            />
+
+            {/* ═══ TABS ═══ */}
+            <Tabs tabs={TABS} active={tab} onChange={setTab} />
+
+            {/* ═══════════════════════════════ */}
+            {/* TAB: PORTFOLIO */}
+            {/* ═══════════════════════════════ */}
+            {tab === "portfolio" && (
+              <div className="space-y-3">
+                {portfolio.length === 0 ? (
+                  <div className="text-center py-16">
+                    <div className="text-5xl mb-3">💼</div>
+                    <p className="text-gray-400 text-sm">ยังไม่มีหุ้นในพอร์ต</p>
+                    <p className="text-gray-600 text-xs mt-1">ไปที่ "ค้นหา" เพื่อเพิ่มหุ้น</p>
+                    <button onClick={() => setTab("search")} className="mt-4 px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-xl text-sm font-medium transition-all">ค้นหาหุ้น</button>
+                  </div>
+                ) : (
+                  <>
+                    <PortfolioSummary items={portfolio} livePrices={livePrices} />
+                    {portfolio.map(item => (
+                      <PortfolioRow
+                        key={item.symbol}
+                        item={item}
+                        livePrice={livePrices[item.symbol] || null}
+                        onRemove={handleRemovePortfolio}
+                        onEdit={(item) => setAddModal({ asset: assetMap[item.symbol] || item, existing: item })}
+                      />
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
+
+            {/* ═══════════════════════════════ */}
+            {/* TAB: WATCHLIST */}
+            {/* ═══════════════════════════════ */}
+            {tab === "watchlist" && (
+              <div className="space-y-3">
+                {watchlist.length === 0 ? (
+                  <div className="text-center py-16">
+                    <div className="text-5xl mb-3">⭐</div>
+                    <p className="text-gray-400 text-sm">ยังไม่มีหุ้นใน Watchlist</p>
+                    <button onClick={() => setTab("search")} className="mt-4 px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-xl text-sm font-medium transition-all">ค้นหาหุ้น</button>
+                  </div>
+                ) : (
+                  watchlist.map(item => {
+                    const live = livePrices[item.symbol];
+                    const base = assetMap[item.symbol] || item;
+                    const price = live?.price ?? base.price ?? 0;
+                    return (
+                      <div key={item.symbol} className="bg-gray-800/40 border border-gray-700/30 rounded-xl p-4 hover:border-gray-600/50 transition-all">
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-white font-bold">{item.symbol}</span>
+                              {live && <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-900/40 text-emerald-400 border border-emerald-800/40">Live</span>}
+                              <Badge color={{ STOCK: "blue", ETF: "teal" }[base.type] || "gray"}>{base.type}</Badge>
+                            </div>
+                            <p className="text-gray-400 text-xs mt-0.5 truncate">{base.name}</p>
+                          </div>
+                          <div className="text-right shrink-0">
+                            <p className="text-white font-semibold">{fmt.price(price)}</p>
+                            {(live?.changePercent ?? base.changePercent) != null && (
+                              <PriceChange
+                                change={live?.change ?? base.change ?? 0}
+                                pct={live?.changePercent ?? base.changePercent}
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="mt-3 flex gap-2 justify-end">
+                          <button onClick={() => handleAddPortfolio(base)} className="text-xs px-3 py-1.5 rounded-lg bg-blue-900/40 border border-blue-800/30 text-blue-300 hover:bg-blue-900/60 transition-all">
+                            {portfolioSymbols.has(item.symbol) ? "✓ ในพอร์ต" : "+ พอร์ต"}
+                          </button>
+                          <button onClick={() => handleToggleWatchlist(item)} className="text-xs px-3 py-1.5 rounded-lg bg-red-900/30 border border-red-800/30 text-red-400 hover:bg-red-900/50 transition-all">ลบ</button>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            )}
+
+            {/* ═══════════════════════════════ */}
+            {/* TAB: SEARCH */}
+            {/* ═══════════════════════════════ */}
+            {tab === "search" && (
+              <div className="space-y-4">
+                <SearchBar
+                  value={searchQuery}
+                  onChange={setSearchQuery}
+                  placeholder="ค้นหา Symbol หรือชื่อบริษัท..."
+                />
+
+                {/* Filter Type */}
+                <div className="flex gap-2 flex-wrap">
+                  {["ALL", "STOCK", "ETF", "REIT", "BOND"].map(t => (
+                    <button
+                      key={t}
+                      onClick={() => setFilterType(t)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filterType === t
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200 border border-gray-700/50"
+                        }`}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Results */}
+                {!searchQuery && filterType === "ALL" ? (
+                  <div className="text-center py-12">
+                    <div className="text-4xl mb-3">🔍</div>
+                    <p className="text-gray-400 text-sm">พิมพ์เพื่อค้นหาหุ้น</p>
+                    <p className="text-gray-600 text-xs mt-1">มีหุ้นทั้งหมด {allAssets.length} ตัว</p>
+                  </div>
+                ) : filteredAssets.length === 0 ? (
+                  <div className="text-center py-12">
+                    <p className="text-gray-400 text-sm">ไม่พบ "{searchQuery}"</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p className="text-xs text-gray-500">พบ {filteredAssets.length} รายการ{filteredAssets.length === 50 ? " (แสดง 50 รายการแรก)" : ""}</p>
+                    {filteredAssets.map(asset => (
+                      <AssetCard
+                        key={asset.symbol}
+                        asset={asset}
+                        onAdd={handleAddPortfolio}
+                        onWatchlist={handleToggleWatchlist}
+                        inPortfolio={portfolioSymbols.has(asset.symbol)}
+                        inWatchlist={watchlistSymbols.has(asset.symbol)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </>
+        )}
+      </main>
+
+      {/* ═══ ADD MODAL ═══ */}
+      {addModal && (
+        <AddPortfolioModal
+          asset={addModal.asset}
+          existing={addModal.existing}
+          onSave={handleSavePortfolio}
+          onClose={() => setAddModal(null)}
+        />
+      )}
+
+      {/* ═══ GOOGLE FONTS ═══ */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+        * { box-sizing: border-box; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+      `}</style>
+    </div>
+  );
+}
