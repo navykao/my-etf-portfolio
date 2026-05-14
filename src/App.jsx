@@ -16,7 +16,7 @@ const CONFIG = {
 
 const API_KEYS = {
   FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY || '',
-  FMP: import.meta.env.VITE_FMPNNG_API_KEY || '',
+  FMP: import.meta.env.VITE_FMP_API_KEY || '',
   TWELVE: import.meta.env.VITE_TWELVE_DATA_API_KEY || '',
   EODHD: import.meta.env.VITE_EODHD_API_KEY || ''
 }
