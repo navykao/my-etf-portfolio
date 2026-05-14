@@ -1,24 +1,17 @@
 # ============================================
 # GitHub Actions: Daily Price Update (2x/day)
-# รันทุกวัน จันทร์-ศุกร์ 2 ครั้ง:
-#   1. หลังตลาด US ปิด 1 ชม. (5:00 AM เวลาไทย)
-#   2. หลังตลาด US เปิด 1 ชม. (10:30 PM เวลาไทย)
-# ดึงข้อมูล 746 ตัว → อัปเดต JSON → Push → Vercel deploy
 # ============================================
 
 name: 📊 Daily Price Update (2x/day)
 
 on:
-  # ครั้งที่ 1: หลังตลาด US ปิด 1 ชม.
-  # ตลาด US ปิด 4 PM EST (16:00) = 4:00 AM ไทย → +1 ชม. = 5:00 AM ไทย
   schedule:
-    - cron: '0 22 * * 1-5'  # 10:00 PM UTC = 5:00 AM ไทย (หลังปิด 1 ชม.)
+    # รอบที่ 1: หลังตลาดปิด 1 ชม. (5:00 AM ไทย)
+    - cron: '0 22 * * 1-5'
     
-  # ครั้งที่ 2: หลังตลาด US เปิด 1 ชม.
-  # ตลาด US เปิด 9:30 AM EST = 9:30 PM ไทย → +1 ชม. = 10:30 PM ไทย
-    - cron: '30 15 * * 1-5'  # 3:30 PM UTC = 10:30 PM ไทย (หลังเปิด 1 ชม.)
+    # รอบที่ 2: หลังตลาดเปิด 1 ชม. (10:30 PM ไทย)
+    - cron: '30 15 * * 1-5'
 
-  # รัน Manual ได้ (กดปุ่มบน GitHub)
   workflow_dispatch:
     inputs:
       reason:
@@ -29,22 +22,19 @@ on:
 jobs:
   update-prices:
     runs-on: ubuntu-latest
-    timeout-minutes: 30  # จำกัด 30 นาที (ปกติใช้ ~15 นาที)
+    timeout-minutes: 30
 
     steps:
-      # Step 1: Checkout repo
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-      # Step 2: Setup Node.js (แก้ไขแล้ว - ไม่ใช้ cache)
       - name: 🟢 Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Step 3: Run update script
       - name: 📊 Update all asset prices
         env:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
@@ -53,23 +43,9 @@ jobs:
         run: |
           echo "🚀 Starting price update..."
           echo "⏰ $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          echo "🌍 Thai time: $(TZ='Asia/Bangkok' date '+%Y-%m-%d %H:%M:%S')"
           echo ""
-          
-          # Determine which update round
-          HOUR=$(date -u '+%H')
-          if [ "$HOUR" == "22" ]; then
-            echo "📍 Update Round: AFTER MARKET CLOSE (หลังตลาดปิด 1 ชม.)"
-          elif [ "$HOUR" == "15" ]; then
-            echo "📍 Update Round: AFTER MARKET OPEN (หลังตลาดเปิด 1 ชม.)"
-          else
-            echo "📍 Update Round: Manual / Other"
-          fi
-          echo ""
-          
           node scripts/update-all-assets.cjs
 
-      # Step 4: Check if file changed
       - name: 🔍 Check for changes
         id: check_changes
         run: |
@@ -81,7 +57,6 @@ jobs:
             echo "✅ Changes detected!"
           fi
 
-      # Step 5: Commit and push
       - name: 📤 Commit and push updated data
         if: steps.check_changes.outputs.changed == 'true'
         run: |
@@ -90,55 +65,23 @@ jobs:
           
           git add public/data/combined-all-assets.json
           
-          # Determine update round for commit message
-          HOUR=$(date -u '+%H')
-          ROUND="Unknown"
-          if [ "$HOUR" == "22" ]; then
-            ROUND="After Market Close (หลังปิด 1 ชม.)"
-          elif [ "$HOUR" == "15" ]; then
-            ROUND="After Market Open (หลังเปิด 1 ชม.)"
-          fi
-          
-          # Commit message with date, time, and round
           DATE=$(date -u '+%Y-%m-%d')
-          TIME_THAI=$(TZ='Asia/Bangkok' date '+%H:%M')
-          
-          git commit -m "📊 Price update: ${DATE} | ${ROUND}
+          git commit -m "📊 Daily price update: ${DATE}
 
-          - Update time: ${TIME_THAI} (เวลาไทย)
-          - Trigger: ${{ github.event_name }}
-          - API: Finnhub → Yahoo → EODHD/Twelve
-          - Updated: 746 stocks"
+          - Updated via GitHub Actions
+          - Primary API: Finnhub
+          - Triggered: ${{ github.event_name }}"
           
           git push
 
-      # Step 6: Summary
       - name: 📋 Job Summary
         if: always()
         run: |
-          HOUR=$(date -u '+%H')
-          ROUND="Unknown"
-          if [ "$HOUR" == "22" ]; then
-            ROUND="📍 After Market Close (หลังปิด 1 ชม.)"
-          elif [ "$HOUR" == "15" ]; then
-            ROUND="📍 After Market Open (หลังเปิด 1 ชม.)"
-          fi
-          
-          echo "## 📊 Price Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Daily Price Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| 📅 Date | $(date -u '+%Y-%m-%d') |" >> $GITHUB_STEP_SUMMARY
-          echo "| ⏰ UTC Time | $(date -u '+%H:%M:%S') |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🇹🇭 Thai Time | $(TZ='Asia/Bangkok' date '+%H:%M:%S') |" >> $GITHUB_STEP_SUMMARY
-          echo "| ${ROUND} | |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⏰ Time | $(date -u '+%H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔄 Trigger | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 📤 Changes | ${{ steps.check_changes.outputs.changed }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| 📊 Total Assets | 746 stocks |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Next Update" >> $GITHUB_STEP_SUMMARY
-          if [ "$HOUR" == "22" ]; then
-            echo "Next update: **10:30 PM** (เวลาไทย) - After Market Open" >> $GITHUB_STEP_SUMMARY
-          elif [ "$HOUR" == "15" ]; then
-            echo "Next update: **5:00 AM** tomorrow (เวลาไทย) - After Market Close" >> $GITHUB_STEP_SUMMARY
-          fi
