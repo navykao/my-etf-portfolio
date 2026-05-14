@@ -619,11 +619,11 @@ function App() {
                 </div>
                 <div className="form-group">
                   <label className="form-label">จำนวนหุ้น</label>
-                  <input type="number" name="shares" className="form-input" placeholder="0" required />
+                  <input type="number" name="shares" step="0.0000001" min="0.0000001" className="form-input" placeholder="0 หรือ 0.0024" required />
                 </div>
                 <div className="form-group">
                   <label className="form-label">ราคาซื้อเฉลี่ย ($)</label>
-                  <input type="number" name="avgCost" step="0.0000001" className="form-input" placeholder="0.00" required />
+                  <input type="number" name="avgCost" step="0.01" className="form-input" placeholder="0.00" required />
                 </div>
                 <button type="submit" className="btn-secondary">เพิ่มในพอร์ต</button>
               </form>
