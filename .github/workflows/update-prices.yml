@@ -1,16 +1,22 @@
 # ============================================
-# GitHub Actions: Daily Price Update
-# รันทุกวัน จันทร์-ศุกร์ หลังตลาด US ปิด
+# GitHub Actions: Daily Price Update (2x/day)
+# รันทุกวัน จันทร์-ศุกร์ 2 ครั้ง:
+#   1. หลังตลาด US ปิด 1 ชม. (5:00 AM เวลาไทย)
+#   2. หลังตลาด US เปิด 1 ชม. (11:30 PM เวลาไทย)
 # ดึงข้อมูล 746 ตัว → อัปเดต JSON → Push → Vercel deploy
 # ============================================
 
-name: 📊 Daily Price Update
+name: 📊 Daily Price Update (2x/day)
 
 on:
-  # รันอัตโนมัติ: ทุกวัน จันทร์-ศุกร์ เวลา 21:30 UTC (ตี 4:30 เวลาไทย)
-  # ตลาด US ปิด 4 PM EST = 21:00 UTC → รอ 30 นาทีให้ข้อมูลนิ่ง
+  # ครั้งที่ 1: หลังตลาด US ปิด 1 ชม.
+  # ตลาด US ปิด 4 PM EST (16:00) = 4:00 AM ไทย → +1 ชม. = 5:00 AM ไทย
   schedule:
-    - cron: '30 21 * * 1-5'  # จันทร์-ศุกร์ 21:30 UTC
+    - cron: '0 22 * * 1-5'  # 10:00 PM UTC = 5:00 AM ไทย (หลังปิด 1 ชม.)
+    
+  # ครั้งที่ 2: หลังตลาด US เปิด 1 ชม.
+  # ตลาด US เปิด 9:30 AM EST = 9:30 PM ไทย → +1 ชม. = 10:30 PM ไทย
+    - cron: '30 15 * * 1-5'  # 3:30 PM UTC = 10:30 PM ไทย (หลังเปิด 1 ชม.)
 
   # รัน Manual ได้ (กดปุ่มบน GitHub)
   workflow_dispatch:
@@ -45,9 +51,22 @@ jobs:
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
           TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
         run: |
-          echo "🚀 Starting daily price update..."
+          echo "🚀 Starting price update..."
           echo "⏰ $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "🌍 Thai time: $(TZ='Asia/Bangkok' date '+%Y-%m-%d %H:%M:%S')"
           echo ""
+          
+          # Determine which update round
+          HOUR=$(date -u '+%H')
+          if [ "$HOUR" == "22" ]; then
+            echo "📍 Update Round: AFTER MARKET CLOSE (หลังตลาดปิด 1 ชม.)"
+          elif [ "$HOUR" == "15" ]; then
+            echo "📍 Update Round: AFTER MARKET OPEN (หลังตลาดเปิด 1 ชม.)"
+          else
+            echo "📍 Update Round: Manual / Other"
+          fi
+          echo ""
+          
           node scripts/update-all-assets.cjs
 
       # Step 4: Check if file changed
@@ -71,13 +90,25 @@ jobs:
           
           git add public/data/combined-all-assets.json
           
-          # Commit message with date and stats
+          # Determine update round for commit message
+          HOUR=$(date -u '+%H')
+          ROUND="Unknown"
+          if [ "$HOUR" == "22" ]; then
+            ROUND="After Market Close (หลังปิด 1 ชม.)"
+          elif [ "$HOUR" == "15" ]; then
+            ROUND="After Market Open (หลังเปิด 1 ชม.)"
+          fi
+          
+          # Commit message with date, time, and round
           DATE=$(date -u '+%Y-%m-%d')
-          git commit -m "📊 Daily price update: ${DATE}
+          TIME_THAI=$(TZ='Asia/Bangkok' date '+%H:%M')
+          
+          git commit -m "📊 Price update: ${DATE} | ${ROUND}
 
-          - Updated via GitHub Actions
-          - Primary API: Finnhub
-          - Triggered: ${{ github.event_name }}"
+          - Update time: ${TIME_THAI} (เวลาไทย)
+          - Trigger: ${{ github.event_name }}
+          - API: Finnhub → Yahoo → EODHD/Twelve
+          - Updated: 746 stocks"
           
           git push
 
@@ -85,11 +116,29 @@ jobs:
       - name: 📋 Job Summary
         if: always()
         run: |
-          echo "## 📊 Daily Price Update Summary" >> $GITHUB_STEP_SUMMARY
+          HOUR=$(date -u '+%H')
+          ROUND="Unknown"
+          if [ "$HOUR" == "22" ]; then
+            ROUND="📍 After Market Close (หลังปิด 1 ชม.)"
+          elif [ "$HOUR" == "15" ]; then
+            ROUND="📍 After Market Open (หลังเปิด 1 ชม.)"
+          fi
+          
+          echo "## 📊 Price Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| 📅 Date | $(date -u '+%Y-%m-%d') |" >> $GITHUB_STEP_SUMMARY
-          echo "| ⏰ Time | $(date -u '+%H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⏰ UTC Time | $(date -u '+%H:%M:%S') |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🇹🇭 Thai Time | $(TZ='Asia/Bangkok' date '+%H:%M:%S') |" >> $GITHUB_STEP_SUMMARY
+          echo "| ${ROUND} | |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔄 Trigger | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 📤 Changes | ${{ steps.check_changes.outputs.changed }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📊 Total Assets | 746 stocks |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Update" >> $GITHUB_STEP_SUMMARY
+          if [ "$HOUR" == "22" ]; then
+            echo "Next update: **10:30 PM** (เวลาไทย) - After Market Open" >> $GITHUB_STEP_SUMMARY
+          elif [ "$HOUR" == "15" ]; then
+            echo "Next update: **5:00 AM** tomorrow (เวลาไทย) - After Market Close" >> $GITHUB_STEP_SUMMARY
+          fi
