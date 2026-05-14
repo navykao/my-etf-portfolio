@@ -1,23 +1,15 @@
 # ============================================
 # GitHub Actions: Daily Price Update (2x/day)
+# ไฟล์นี้แน่ใจว่าไม่มี cache: 'npm'
 # ============================================
 
 name: 📊 Daily Price Update (2x/day)
 
 on:
   schedule:
-    # รอบที่ 1: หลังตลาดปิด 1 ชม. (5:00 AM ไทย)
-    - cron: '0 22 * * 1-5'
-    
-    # รอบที่ 2: หลังตลาดเปิด 1 ชม. (10:30 PM ไทย)
-    - cron: '30 15 * * 1-5'
-
+    - cron: '0 22 * * 1-5'   # 5:00 AM ไทย
+    - cron: '30 15 * * 1-5'  # 10:30 PM ไทย
   workflow_dispatch:
-    inputs:
-      reason:
-        description: 'เหตุผลที่รัน manual'
-        required: false
-        default: 'Manual trigger'
 
 jobs:
   update-prices:
@@ -42,8 +34,6 @@ jobs:
           TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
         run: |
           echo "🚀 Starting price update..."
-          echo "⏰ $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          echo ""
           node scripts/update-all-assets.cjs
 
       - name: 🔍 Check for changes
@@ -51,10 +41,8 @@ jobs:
         run: |
           if git diff --quiet public/data/combined-all-assets.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "ℹ️ No changes detected"
           else
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "✅ Changes detected!"
           fi
 
       - name: 📤 Commit and push updated data
@@ -62,26 +50,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
           git add public/data/combined-all-assets.json
-          
-          DATE=$(date -u '+%Y-%m-%d')
-          git commit -m "📊 Daily price update: ${DATE}
-
-          - Updated via GitHub Actions
-          - Primary API: Finnhub
-          - Triggered: ${{ github.event_name }}"
-          
+          git commit -m "📊 Daily price update: $(date -u '+%Y-%m-%d')"
           git push
-
-      - name: 📋 Job Summary
-        if: always()
-        run: |
-          echo "## 📊 Daily Price Update Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| 📅 Date | $(date -u '+%Y-%m-%d') |" >> $GITHUB_STEP_SUMMARY
-          echo "| ⏰ Time | $(date -u '+%H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🔄 Trigger | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| 📤 Changes | ${{ steps.check_changes.outputs.changed }} |" >> $GITHUB_STEP_SUMMARY
