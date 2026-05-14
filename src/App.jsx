@@ -623,7 +623,7 @@ function App() {
                 </div>
                 <div className="form-group">
                   <label className="form-label">ราคาซื้อเฉลี่ย ($)</label>
-                  <input type="number" name="avgCost" step="0.01" className="form-input" placeholder="0.00" required />
+                  <input type="number" name="avgCost" step="0.0000001" className="form-input" placeholder="0.00" required />
                 </div>
                 <button type="submit" className="btn-secondary">เพิ่มในพอร์ต</button>
               </form>
