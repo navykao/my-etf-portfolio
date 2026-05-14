@@ -359,54 +359,22 @@ function App() {
   }
 
   // Search stocks
-  const handleSearch = (e) => {
-  e.preventDefault();
-  
-  // หา input
-  const searchInput = e.target.querySelector('input[name="search"]') || 
-                      e.target.querySelector('input[type="text"]');
-  
-  // ดึงค่า symbol
-  const symbol = searchInput.value.trim().toUpperCase();
-  
-  // เช็คว่ากรอกหรือไม่
-  if (!symbol) {
-    alert('กรุณาใส่ Symbol หุ้น');
-    return;
-  }
-  
-  // ค้นหาในข้อมูล
-  const found = assets.find(stock => stock.symbol === symbol);
-  
-  if (found) {
-    // ดึง watchlist จาก localStorage
-    const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
-    
-    // เช็คว่ามีอยู่แล้วหรือไม่
-    const exists = watchlist.some(item => item.symbol === found.symbol);
-    
-    if (!exists) {
-      // เพิ่มหุ้นใหม่
-      watchlist.push(found);
-      
-      // บันทึกลง localStorage
-      localStorage.setItem('watchlist', JSON.stringify(watchlist));
-      
-      // อัพเดท state
-      setWatchlist(watchlist);
-      
-      // แสดงข้อความสำเร็จ
-      alert('เพิ่ม ' + found.symbol + ' ใน Watchlist แล้ว!');
+  const handleSearch = () => {
+    const query = searchQuery.trim().toUpperCase()
+    if (!query) return
+
+    const found = allAssets.find(a => 
+      a.symbol === query || a.name.toUpperCase().includes(query)
+    )
+
+    if (found) {
+      setSelectedStock(found)
+      addToWatchlist(found.symbol)
     } else {
-      // มีอยู่แล้ว
-      alert(found.symbol + ' มีใน Watchlist อยู่แล้ว');
+      alert(`ไม่พบหุ้น: ${query}`)
     }
-    // ล้าง input
-    searchInput.value = '';
-  } else {
-    // ไม่พบหุ้น
-    alert('ไม่พบหุ้น ' + symbol + ' ในฐานข้อมูล');
-    
+  }
+
   // Filtered watchlist
   const filteredWatchlist = useMemo(() => {
     let stocks = allAssets.filter(a => watchlist.includes(a.symbol))
