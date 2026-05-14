@@ -401,14 +401,12 @@ function App() {
       // มีอยู่แล้ว
       alert(found.symbol + ' มีใน Watchlist อยู่แล้ว');
     }
-    
     // ล้าง input
     searchInput.value = '';
   } else {
     // ไม่พบหุ้น
     alert('ไม่พบหุ้น ' + symbol + ' ในฐานข้อมูล');
-    }
-
+    
   // Filtered watchlist
   const filteredWatchlist = useMemo(() => {
     let stocks = allAssets.filter(a => watchlist.includes(a.symbol))
