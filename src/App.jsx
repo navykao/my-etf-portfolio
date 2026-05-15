@@ -586,7 +586,53 @@ function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, bar
             <div className="charts-grid">
               <div className="chart-wrapper">
                 <div className="chart-title">สัดส่วนตามมูลค่า (Pie Chart)</div>
-                <Pie data={pieChartData} options={{ responsive: true, maintainAspectRatio: false }} />
+                <Pie
+                  data={pieChartData}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: {
+                        position: 'bottom',
+                        labels: {
+                          font: { size: 12, family: "'DM Sans', sans-serif" },
+                          padding: 16,
+                          generateLabels: (chart) => {
+                            const data = chart.data
+                            const total = data.datasets[0].data.reduce((a, b) => a + b, 0)
+                            return data.labels.map((label, i) => {
+                              const value = data.datasets[0].data[i]
+                              const pct = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0'
+                              const formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value)
+                              return {
+                                text: `${label}  ${pct}%  (${formatted})`,
+                                fillStyle: data.datasets[0].backgroundColor[i],
+                                strokeStyle: '#fff',
+                                lineWidth: 2,
+                                index: i,
+                              }
+                            })
+                          }
+                        }
+                      },
+                      tooltip: {
+                        callbacks: {
+                          label: (context) => {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0)
+                            const value = context.parsed
+                            const pct = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00'
+                            const formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value)
+                            return [`  มูลค่า: ${formatted}`, `  สัดส่วน: ${pct}%`]
+                          }
+                        },
+                        backgroundColor: 'rgba(15,23,42,0.85)',
+                        padding: 12,
+                        titleFont: { size: 13, weight: 'bold' },
+                        bodyFont: { size: 13 },
+                      }
+                    }
+                  }}
+                />
               </div>
               <div className="chart-wrapper">
                 <div className="chart-title">เปรียบเทียบมูลค่า (Bar Chart)</div>
@@ -1542,7 +1588,112 @@ function App() {
           from { opacity: 0; transform: translateX(20px); }
           to { opacity: 1; transform: translateX(0); }
         }
+
+        /* ── Bottom Nav Bar (mobile only) ── */
+        .bottom-nav {
+          display: none;
+        }
+        @media (max-width: 768px) {
+          .bottom-nav {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            box-shadow: 0 -4px 16px rgba(15,23,42,0.10);
+            padding: 6px 0 10px;
+            justify-content: space-around;
+            align-items: center;
+          }
+          .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            flex: 1;
+            cursor: pointer;
+            padding: 4px 0;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            transition: color 0.2s;
+          }
+          .bottom-nav-item.active {
+            color: #1e40af;
+          }
+          .bottom-nav-item svg {
+            width: 22px;
+            height: 22px;
+          }
+          .bottom-nav-item .nav-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #1e40af;
+            margin-top: 2px;
+            opacity: 0;
+          }
+          .bottom-nav-item.active .nav-dot {
+            opacity: 1;
+          }
+          /* เพิ่ม padding ด้านล่างให้ content ไม่ถูก bottom nav บัง */
+          .app > *:not(.bottom-nav):not(header) {
+            padding-bottom: 70px;
+          }
+        }
       `}</style>
+
+      {/* ── Bottom Navigation Bar (mobile only) ── */}
+      <nav className="bottom-nav">
+        {[
+          { id: 'dashboard', label: 'หน้าหลัก', icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          )},
+          { id: 'portfolio', label: 'พอร์ต', icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+              <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+            </svg>
+          )},
+          { id: 'watchlist', label: 'วอชลิสต์', icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          )},
+          { id: 'market', label: 'ตลาด', icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+              <polyline points="16 7 22 7 22 13"/>
+            </svg>
+          )},
+          { id: 'settings', label: 'ตั้งค่า', icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          )},
+        ].map(({ id, label, icon }) => (
+          <button
+            key={id}
+            className={`bottom-nav-item ${currentPage === id ? 'active' : ''}`}
+            onClick={() => navigateTo(id)}
+          >
+            {icon}
+            <span>{label}</span>
+            <div className="nav-dot" />
+          </button>
+        ))}
+      </nav>
     </div>
   )
 }
