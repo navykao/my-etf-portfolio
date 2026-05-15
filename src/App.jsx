@@ -235,6 +235,8 @@ function App() {
   const [selectedStock, setSelectedStock] = useState(null)
   const [liveMode, setLiveMode] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(null)
+  const [dataSource, setDataSource] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [filterType, setFilterType] = useState('ALL')
   const [countdown, setCountdown] = useState(7200) // 2 hours
@@ -273,18 +275,42 @@ function App() {
   // Load initial data
   const loadInitialData = async () => {
     setLoading(true)
+    setLoadError(null)
     try {
-      // Try local first
-      let res = await fetch(CONFIG.DATA_URL)
-      if (!res.ok) {
-        // Fallback to GitHub
-        res = await fetch(CONFIG.GITHUB_DATA_URL)
+      let data = null
+
+      // Try local first (/public/data/combined-all-assets.json)
+      try {
+        const res = await fetch(CONFIG.DATA_URL)
+        if (res.ok) {
+          const text = await res.text()
+          if (text && text.trim().startsWith('[')) {
+            data = JSON.parse(text)
+            setDataSource('local')
+          }
+        }
+      } catch (localErr) {
+        console.warn('Local fetch failed, trying GitHub...', localErr)
       }
-      const data = await res.json()
+
+      // Fallback to GitHub raw URL
+      if (!data || data.length === 0) {
+        console.log('Fetching from GitHub...')
+        const res = await fetch(CONFIG.GITHUB_DATA_URL)
+        if (!res.ok) throw new Error('GitHub fetch failed: ' + res.status)
+        data = await res.json()
+        setDataSource('github')
+      }
+
+      if (!Array.isArray(data) || data.length === 0) {
+        throw new Error('ข้อมูลที่โหลดมาไม่ถูกต้อง (ไม่ใช่ Array หรือว่างเปล่า)')
+      }
+
       setAllAssets(data)
       setLastUpdate(new Date())
     } catch (e) {
       console.error('Failed to load data:', e)
+      setLoadError(e.message || 'โหลดข้อมูลไม่สำเร็จ')
     } finally {
       setLoading(false)
     }
@@ -300,7 +326,9 @@ function App() {
 
   // Update live data
   const updateLiveData = async () => {
-    const symbols = [...new Set([...watchlist, ...portfolio.map(p => p.symbol)])]
+    // watchlist เป็น array ของ string (symbol) เท่านั้น
+    const watchlistSymbols = watchlist.filter(s => typeof s === 'string')
+    const symbols = [...new Set([...watchlistSymbols, ...portfolio.map(p => p.symbol)])]
     
     for (const symbol of symbols) {
       const data = await APIService.fetchQuote(symbol)
@@ -454,6 +482,21 @@ function App() {
     )
   }
 
+  if (loadError) {
+    return (
+      <div className="loading">
+        <p style={{ color: '#ef4444', fontSize: '18px', marginBottom: '12px' }}>⚠️ โหลดข้อมูลไม่สำเร็จ</p>
+        <p style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '20px' }}>{loadError}</p>
+        <button
+          onClick={loadInitialData}
+          style={{ padding: '10px 24px', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+        >
+          🔄 ลองใหม่อีกครั้ง
+        </button>
+      </div>
+    )
+  }
+
   return (
     <div className="app">
       {/* Header */}
@@ -475,6 +518,12 @@ function App() {
               <LiveDot active={liveMode} />
               <span>{liveMode ? 'Live Mode' : 'Paused'}</span>
             </div>
+            {dataSource && (
+              <div style={{ fontSize: '11px', color: '#94a3b8', marginLeft: '12px' }}>
+                {dataSource === 'local' ? '📁 Local' : '☁️ GitHub'}
+                {lastUpdate && ` · ${lastUpdate.toLocaleTimeString('th-TH')}`}
+              </div>
+            )}
           </nav>
         </div>
       </header>
