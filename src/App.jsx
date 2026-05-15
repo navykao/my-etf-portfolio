@@ -913,8 +913,13 @@ function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotifi
             className={liveMode ? 'btn-secondary' : 'btn-primary'}
             style={{ minWidth: '120px' }}
             onClick={() => {
-              setLiveMode(!liveMode)
-              addNotification(liveMode ? 'ปิด Live Mode แล้ว' : 'เปิด Live Mode แล้ว', 'info')
+              const newMode = !liveMode
+              setLiveMode(newMode)
+              if (newMode) {
+                updateLiveData()   // ดึงทันทีเลยเมื่อกดเปิด
+                setCountdown(7200) // reset นับใหม่
+              }
+              addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
             }}
           >
             {liveMode ? '⏸ Pause' : '▶ เปิด Live'}
@@ -1297,7 +1302,15 @@ function App() {
                 </li>
               ))}
             </ul>
-            <div className="live-status" onClick={() => setLiveMode(!liveMode)}>
+            <div className="live-status" onClick={() => {
+              const newMode = !liveMode
+              setLiveMode(newMode)
+              if (newMode) {
+                updateLiveData()
+                setCountdown(7200)
+              }
+              addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
+            }}>
               <LiveDot active={liveMode} />
               <span>{liveMode ? 'Live Mode' : 'Paused'}</span>
             </div>
