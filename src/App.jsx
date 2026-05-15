@@ -3,6 +3,24 @@ import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, P
 import { Pie, Bar, Line } from 'react-chartjs-2'
 import './App.css'
 
+// ==================== FIREBASE ====================
+import { initializeApp } from 'firebase/app'
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut, onAuthStateChanged } from 'firebase/auth'
+import { getFirestore, doc, collection, onSnapshot, setDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+}
+const firebaseApp = initializeApp(firebaseConfig)
+const auth = getAuth(firebaseApp)
+const googleProvider = new GoogleAuthProvider()
+const db = getFirestore(firebaseApp)
+
 // Register ChartJS components
 ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend)
 
@@ -846,21 +864,19 @@ function MarketPage({ allAssets }) {
 }
 
 // --- SETTINGS PAGE ---
-function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotification, allAssets, watchlist, portfolio, setWatchlist, setPortfolio }) {
+function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotification, allAssets, watchlist, portfolio, onClearWatchlist, onClearPortfolio, onImport, onToggleLive }) {
   const hasApiKey = Object.values(API_KEYS).some(k => k && k.length > 0)
 
   const clearWatchlist = () => {
     if (confirm('ยืนยันการล้าง Watchlist ทั้งหมด?')) {
-      setWatchlist([])
-      Storage.set('watchlist', [])
+      onClearWatchlist()
       addNotification('ล้าง Watchlist แล้ว', 'info')
     }
   }
 
   const clearPortfolio = () => {
     if (confirm('ยืนยันการล้าง Portfolio ทั้งหมด?')) {
-      setPortfolio([])
-      Storage.set('portfolio', [])
+      onClearPortfolio()
       addNotification('ล้าง Portfolio แล้ว', 'info')
     }
   }
@@ -882,8 +898,7 @@ function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotifi
     reader.onload = (ev) => {
       try {
         const data = JSON.parse(ev.target.result)
-        if (data.watchlist) { setWatchlist(data.watchlist); Storage.set('watchlist', data.watchlist) }
-        if (data.portfolio) { setPortfolio(data.portfolio); Storage.set('portfolio', data.portfolio) }
+        onImport(data)
         addNotification('Import ข้อมูลสำเร็จ ✓', 'success')
       } catch {
         addNotification('ไฟล์ไม่ถูกต้อง', 'error')
@@ -912,15 +927,7 @@ function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotifi
           <button
             className={liveMode ? 'btn-secondary' : 'btn-primary'}
             style={{ minWidth: '120px' }}
-            onClick={() => {
-              const newMode = !liveMode
-              setLiveMode(newMode)
-              if (newMode) {
-                updateLiveData()   // ดึงทันทีเลยเมื่อกดเปิด
-                setCountdown(7200) // reset นับใหม่
-              }
-              addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
-            }}
+            onClick={() => onToggleLive()}
           >
             {liveMode ? '⏸ Pause' : '▶ เปิด Live'}
           </button>
@@ -994,11 +1001,54 @@ function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotifi
   )
 }
 
+// ==================== AUTH BUTTON COMPONENT ====================
+function AuthNavButton({ user, authLoading, onSignIn, onSignOut }) {
+  if (authLoading) return <div style={{ width: 90, height: 34, background: '#e2e8f0', borderRadius: 8 }} />
+
+  if (!user) return (
+    <button onClick={onSignIn} style={{
+      display: 'flex', alignItems: 'center', gap: 8,
+      padding: '7px 14px', background: '#fff', border: '1px solid #e2e8f0',
+      borderRadius: 8, fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
+      fontSize: 13, color: '#0f172a', cursor: 'pointer',
+      boxShadow: '0 1px 4px rgba(15,23,42,0.08)', whiteSpace: 'nowrap'
+    }}>
+      <svg width="16" height="16" viewBox="0 0 48 48">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      Sign in
+    </button>
+  )
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      {user.photoURL
+        ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer"
+            style={{ width: 30, height: 30, borderRadius: '50%', border: '2px solid #e2e8f0', objectFit: 'cover' }} />
+        : <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#1e40af', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 13 }}>
+            {user.displayName?.[0] ?? 'U'}
+          </div>
+      }
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#0f172a', maxWidth: 80, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        {user.displayName?.split(' ')[0]}
+      </span>
+      <button onClick={onSignOut} style={{
+        padding: '4px 10px', background: 'transparent', border: '1px solid #e2e8f0',
+        borderRadius: 6, fontSize: 12, fontWeight: 600, color: '#64748b',
+        cursor: 'pointer', fontFamily: "'DM Sans', sans-serif"
+      }}>ออก</button>
+    </div>
+  )
+}
+
 // ==================== MAIN APP ====================
 function App() {
   const [allAssets, setAllAssets] = useState([])
-  const [watchlist, setWatchlist] = useState([])
-  const [portfolio, setPortfolio] = useState([])
+  const [watchlist, setWatchlist] = useState([])   // array of symbols (strings)
+  const [portfolio, setPortfolio] = useState([])   // array of holding objects
   const [selectedStock, setSelectedStock] = useState(null)
   const [liveMode, setLiveMode] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -1012,6 +1062,57 @@ function App() {
   // FIX: currentPage state สำหรับ navigation จริง
   const [currentPage, setCurrentPage] = useState('dashboard')
 
+  // ── Firebase Auth ──────────────────────────────────────────────────────────
+  const [user, setUser] = useState(null)
+  const [authLoading, setAuthLoading] = useState(true)
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser)
+      setAuthLoading(false)
+    })
+    return unsub
+  }, [])
+
+  const handleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider)
+    } catch (err) {
+      if (err.code !== 'auth/popup-closed-by-user') {
+        addNotification('เข้าสู่ระบบไม่สำเร็จ กรุณาลองใหม่', 'error')
+      }
+    }
+  }
+
+  const handleSignOut = async () => {
+    await firebaseSignOut(auth)
+    setWatchlist([])
+    setPortfolio([])
+    addNotification('ออกจากระบบแล้ว', 'info')
+  }
+
+  // ── Firestore real-time sync ───────────────────────────────────────────────
+  useEffect(() => {
+    if (!user) return
+
+    const uid = user.uid
+
+    // subscribe watchlist: users/{uid}/watchlist/{symbol}
+    const unsubWatch = onSnapshot(collection(db, 'users', uid, 'watchlist'), (snap) => {
+      const items = snap.docs.map(d => d.id) // symbol strings
+      setWatchlist(items)
+    })
+
+    // subscribe portfolio: users/{uid}/portfolio/{symbol}
+    const unsubPort = onSnapshot(collection(db, 'users', uid, 'portfolio'), (snap) => {
+      const items = snap.docs.map(d => ({ ...d.data(), symbol: d.id }))
+      items.sort((a, b) => (a.createdAt?.seconds ?? 0) - (b.createdAt?.seconds ?? 0))
+      setPortfolio(items)
+    })
+
+    return () => { unsubWatch(); unsubPort() }
+  }, [user])
+
   // Notification system
   const addNotification = useCallback((message, type = 'info') => {
     const id = Date.now()
@@ -1021,7 +1122,7 @@ function App() {
 
   useEffect(() => {
     loadInitialData()
-    loadUserData()
+    // loadUserData() ← ถูกแทนที่ด้วย Firestore onSnapshot ด้านบนแล้ว
   }, [])
 
   useEffect(() => {
@@ -1095,10 +1196,7 @@ function App() {
     }
   }
 
-  const loadUserData = () => {
-    setWatchlist(Storage.get('watchlist', []))
-    setPortfolio(Storage.get('portfolio', []))
-  }
+  // loadUserData ถูกแทนที่ด้วย Firestore onSnapshot แล้ว — ไม่ต้องใช้ localStorage อีกต่อไป
 
   const updateLiveData = async () => {
     const symbols = [...new Set([...watchlist.filter(s => typeof s === 'string'), ...portfolio.map(p => p.symbol)])]
@@ -1113,57 +1211,52 @@ function App() {
     setLastUpdate(new Date())
   }
 
-  const addToWatchlist = (symbol) => {
+  const addToWatchlist = async (symbol) => {
+    if (!user) { addNotification('กรุณาเข้าสู่ระบบก่อน', 'error'); return }
     if (!watchlist.includes(symbol)) {
-      const newList = [...watchlist, symbol]
-      setWatchlist(newList)
-      Storage.set('watchlist', newList)
+      await setDoc(doc(db, 'users', user.uid, 'watchlist', symbol.toUpperCase()), {
+        symbol: symbol.toUpperCase(), createdAt: serverTimestamp()
+      })
     }
   }
 
-  const removeFromWatchlist = (symbol) => {
-    const newList = watchlist.filter(s => s !== symbol)
-    setWatchlist(newList)
-    Storage.set('watchlist', newList)
+  const removeFromWatchlist = async (symbol) => {
+    if (!user) return
+    await deleteDoc(doc(db, 'users', user.uid, 'watchlist', symbol.toUpperCase()))
   }
 
   // FIX: return true/false เพื่อให้ form รู้ว่าสำเร็จหรือไม่
-  const addToPortfolio = (symbol, shares, avgCost) => {
+  const addToPortfolio = async (symbol, shares, avgCost) => {
+    if (!user) { addNotification('กรุณาเข้าสู่ระบบก่อน', 'error'); return false }
     const stock = allAssets.find(a => a.symbol === symbol.toUpperCase())
     if (!stock) return false
 
-    // ถ้ามี symbol อยู่แล้ว ให้อัพเดทจำนวน (average down/up)
-    const existing = portfolio.find(p => p.symbol === symbol.toUpperCase())
+    const sym = symbol.toUpperCase()
+    const existing = portfolio.find(p => p.symbol === sym)
+    const docRef = doc(db, 'users', user.uid, 'portfolio', sym)
+
     if (existing) {
       const totalShares = existing.shares + parseFloat(shares)
       const avgPrice = ((existing.shares * existing.avgCost) + (parseFloat(shares) * parseFloat(avgCost))) / totalShares
-      const newPortfolio = portfolio.map(p =>
-        p.symbol === symbol.toUpperCase()
-          ? { ...p, shares: totalShares, avgCost: avgPrice }
-          : p
-      )
-      setPortfolio(newPortfolio)
-      Storage.set('portfolio', newPortfolio)
+      await setDoc(docRef, { shares: totalShares, avgCost: avgPrice, updatedAt: serverTimestamp() }, { merge: true })
     } else {
-      const newHolding = {
-        symbol: symbol.toUpperCase(),
+      await setDoc(docRef, {
+        symbol: sym,
         name: stock.name,
         type: stock.type,
         shares: parseFloat(shares),
         avgCost: parseFloat(avgCost),
-        currentPrice: stock.price
-      }
-      const newPortfolio = [...portfolio, newHolding]
-      setPortfolio(newPortfolio)
-      Storage.set('portfolio', newPortfolio)
+        currentPrice: stock.price,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      })
     }
     return true
   }
 
-  const removeFromPortfolio = (symbol) => {
-    const newPortfolio = portfolio.filter(p => p.symbol !== symbol)
-    setPortfolio(newPortfolio)
-    Storage.set('portfolio', newPortfolio)
+  const removeFromPortfolio = async (symbol) => {
+    if (!user) return
+    await deleteDoc(doc(db, 'users', user.uid, 'portfolio', symbol.toUpperCase()))
   }
 
   const handleSearch = () => {
@@ -1253,7 +1346,7 @@ function App() {
   const sharedProps = {
     allAssets, portfolio, watchlist, portfolioStats, pieChartData, barChartData,
     addToPortfolio, removeFromPortfolio, addToWatchlist, removeFromWatchlist,
-    selectedStock, setSelectedStock, addNotification, setWatchlist, setPortfolio
+    selectedStock, setSelectedStock, addNotification
   }
 
   return (
@@ -1319,6 +1412,8 @@ function App() {
                 {lastUpdate && ` · ${lastUpdate.toLocaleTimeString('th-TH')}`}
               </div>
             )}
+            {/* ── Google Auth Button ── */}
+            <AuthNavButton user={user} authLoading={authLoading} onSignIn={handleSignIn} onSignOut={handleSignOut} />
           </nav>
         </div>
       </header>
@@ -1404,8 +1499,41 @@ function App() {
           allAssets={allAssets}
           watchlist={watchlist}
           portfolio={portfolio}
-          setWatchlist={setWatchlist}
-          setPortfolio={setPortfolio}
+          onClearWatchlist={async () => {
+            if (!user) return
+            const snap = await import('firebase/firestore').then(({ getDocs, collection: col }) =>
+              getDocs(col(db, 'users', user.uid, 'watchlist'))
+            )
+            const { deleteDoc: del, doc: d } = await import('firebase/firestore')
+            await Promise.all(snap.docs.map(dc => del(d(db, 'users', user.uid, 'watchlist', dc.id))))
+          }}
+          onClearPortfolio={async () => {
+            if (!user) return
+            const snap = await import('firebase/firestore').then(({ getDocs, collection: col }) =>
+              getDocs(col(db, 'users', user.uid, 'portfolio'))
+            )
+            const { deleteDoc: del, doc: d } = await import('firebase/firestore')
+            await Promise.all(snap.docs.map(dc => del(d(db, 'users', user.uid, 'portfolio', dc.id))))
+          }}
+          onImport={async (data) => {
+            if (!user) return
+            if (data.watchlist) {
+              await Promise.all(data.watchlist.map(sym =>
+                setDoc(doc(db, 'users', user.uid, 'watchlist', sym), { symbol: sym, createdAt: serverTimestamp() })
+              ))
+            }
+            if (data.portfolio) {
+              await Promise.all(data.portfolio.map(h =>
+                setDoc(doc(db, 'users', user.uid, 'portfolio', h.symbol), { ...h, createdAt: serverTimestamp(), updatedAt: serverTimestamp() })
+              ))
+            }
+          }}
+          onToggleLive={() => {
+            const newMode = !liveMode
+            setLiveMode(newMode)
+            if (newMode) { updateLiveData(); setCountdown(7200) }
+            addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
+          }}
         />
       )}
 
