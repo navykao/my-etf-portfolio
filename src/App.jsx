@@ -1172,8 +1172,7 @@ function App() {
     const found = allAssets.find(a => a.symbol === query || a.name.toUpperCase().includes(query))
     if (found) {
       setSelectedStock(found)
-      addToWatchlist(found.symbol)
-      addNotification(`เพิ่ม ${found.symbol} ใน Watchlist แล้ว`, 'success')
+      addNotification(`พบ ${found.symbol} — กด + เพิ่ม Watchlist`, 'info') 
     } else {
       addNotification(`ไม่พบหุ้น: ${query}`, 'error')
     }
