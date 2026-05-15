@@ -434,6 +434,22 @@ function App() {
   }, [portfolio, allAssets])
 
   // Chart data
+  // Chart data อัพเดททุก 15 นาที (ไม่กระตุกทุก render)
+  const [chartData, setChartData] = useState(() =>
+    Array.from({ length: 14 }, () => 0)
+  )
+
+  useEffect(() => {
+    if (!selectedStock) return
+    const generateData = () =>
+      Array.from({ length: 14 }, () =>
+        selectedStock.price + (Math.random() - 0.5) * 5
+      )
+    setChartData(generateData())
+    const interval = setInterval(() => setChartData(generateData()), 15 * 60 * 1000)
+    return () => clearInterval(interval)
+  }, [selectedStock?.symbol])
+
   const pieChartData = useMemo(() => {
     const data = portfolio.map(p => {
       const stock = allAssets.find(a => a.symbol === p.symbol)
@@ -615,7 +631,7 @@ function App() {
                     labels: ['9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00'],
                     datasets: [{
                       label: selectedStock.symbol,
-                      data: Array.from({ length: 14 }, () => selectedStock.price + (Math.random() - 0.5) * 5),
+                      data: chartData,
                       borderColor: '#3b82f6',
                       backgroundColor: 'rgba(59, 130, 246, 0.1)',
                       borderWidth: 2,
