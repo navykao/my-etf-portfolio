@@ -38,7 +38,8 @@ jobs:
       - name: 🔍 Check for changes
         id: check_changes
         run: |
-          if git diff --quiet public/data/combined-all-assets.json; then
+          # ✅ ตรวจสอบทั้ง stocks.json และ etfs.json
+          if git diff --quiet public/data/stocks.json public/data/etfs.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -49,6 +50,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/data/combined-all-assets.json
+          # ✅ commit ทั้ง 2 ไฟล์
+          git add public/data/stocks.json public/data/etfs.json
           git commit -m "📊 Daily price update: $(date -u '+%Y-%m-%d')"
           git push
