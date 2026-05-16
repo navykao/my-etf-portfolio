@@ -28,8 +28,11 @@ ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, PointElemen
 const CONFIG = {
   UPDATE_INTERVAL: 2 * 60 * 60 * 1000,
   CACHE_DURATION: 90 * 60 * 1000,
-  DATA_URL: '/data/combined-all-assets.json',
-  GITHUB_DATA_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/combined-all-assets.json'
+  // ✅ แยก URL สำหรับ stocks และ ETFs
+  STOCKS_URL: '/data/stocks.json',
+  ETFS_URL:   '/data/etfs.json',
+  GITHUB_STOCKS_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/stocks.json',
+  GITHUB_ETFS_URL:   'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/etfs.json',
 }
 
 const API_KEYS = {
@@ -1212,27 +1215,41 @@ function App() {
     setLoading(true)
     setLoadError(null)
     try {
-      let data = null
+      // ✅ โหลด stocks.json และ etfs.json แยกกัน แล้วรวม
+      let stocksData = null
+      let etfsData = null
+
+      // --- ลอง local ก่อน ---
       try {
-        const res = await fetch(CONFIG.DATA_URL)
-        if (res.ok) {
-          const text = await res.text()
-          if (text && text.trim().startsWith('[')) {
-            data = JSON.parse(text)
+        const [sRes, eRes] = await Promise.all([
+          fetch(CONFIG.STOCKS_URL),
+          fetch(CONFIG.ETFS_URL)
+        ])
+        if (sRes.ok && eRes.ok) {
+          const [sText, eText] = await Promise.all([sRes.text(), eRes.text()])
+          if (sText.trim().startsWith('[') && eText.trim().startsWith('[')) {
+            stocksData = JSON.parse(sText)
+            etfsData   = JSON.parse(eText)
             setDataSource('local')
           }
         }
       } catch (localErr) { console.warn('Local fetch failed', localErr) }
 
-      if (!data || data.length === 0) {
-        const res = await fetch(CONFIG.GITHUB_DATA_URL)
-        if (!res.ok) throw new Error('GitHub fetch failed: ' + res.status)
-        data = await res.json()
+      // --- fallback GitHub ---
+      if (!stocksData || !etfsData) {
+        const [sRes, eRes] = await Promise.all([
+          fetch(CONFIG.GITHUB_STOCKS_URL),
+          fetch(CONFIG.GITHUB_ETFS_URL)
+        ])
+        if (!sRes.ok || !eRes.ok) throw new Error('GitHub fetch failed')
+        ;[stocksData, etfsData] = await Promise.all([sRes.json(), eRes.json()])
         setDataSource('github')
       }
 
-      if (!Array.isArray(data) || data.length === 0) throw new Error('ข้อมูลไม่ถูกต้อง')
-      setAllAssets(data)
+      if (!Array.isArray(stocksData) || !Array.isArray(etfsData)) throw new Error('ข้อมูลไม่ถูกต้อง')
+
+      // ✅ รวม stocks + ETFs เพื่อใช้กับ allAssets (สำหรับ search/portfolio/watchlist)
+      setAllAssets([...stocksData, ...etfsData])
       setLastUpdate(new Date())
     } catch (e) {
       console.error('Failed to load data:', e)
