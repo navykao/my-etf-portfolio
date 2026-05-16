@@ -38,10 +38,10 @@ const CONFIG = {
 }
 
 const API_KEYS = {
-  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY || '',
-  FMP: import.meta.env.VITE_FMP_API_KEY || '',
-  TWELVE: import.meta.env.VITE_TWELVE_DATA_API_KEY || '',
-  EODHD: import.meta.env.VITE_EODHD_API_KEY || ''
+  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY     || '',
+  FMP:     import.meta.env.VITE_FMP0N8_API_KEY      || '',  // ✅ ชื่อถูกต้องตาม .env.example
+  TWELVE:  import.meta.env.VITE_TWELVE_DATA_API_KEY || '',
+  EODHD:   import.meta.env.VITE_EODHD_API_KEY       || ''
 }
 
 // ==================== UTILITY FUNCTIONS ====================
