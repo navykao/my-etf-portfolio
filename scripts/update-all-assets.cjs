@@ -1,6 +1,6 @@
 // ============================================
 // update-all-assets.cjs
-// อัปเดตข้อมูลหุ้นทั้ง 500 ตัว → stocks.json และ ETFs 200 ตัว → etfs.json
+// อัปเดตข้อมูลหุ้น → stocks.json และ ETFs → etfs.json
 //
 // Strategy:
 //   Phase 1: Finnhub /quote       → ราคา + การเปลี่ยนแปลงรายวัน (PRIMARY)
@@ -31,7 +31,7 @@ const CONFIG = {
   // ✅ แยกไฟล์ stocks และ ETFs แทน combined
   STOCKS_FILE: path.join(__dirname, '..', 'public', 'data', 'stocks.json'),
   ETFS_FILE:   path.join(__dirname, '..', 'public', 'data', 'etfs.json'),
-  FINNHUB_DELAY_MS: 1100,         // ✅ 1.1 วินาที/ตัว (~54 calls/นาที เซฟ)
+  FINNHUB_DELAY_MS: 1100,         // ✅ 1.2 วินาที/ตัว (~54 calls/นาที เซฟ)
   FINNHUB_RATE_LIMIT_WAIT: 70000, // ✅ รอ 70 วินาที เมื่อโดน 429
   EODHD_DELAY_MS: 3500,
   TWELVE_DELAY_MS: 1500,
@@ -154,6 +154,42 @@ async function fetchFinnhubFundamental(symbol) {
 }
 
 // ============================================
+// API 2B: FINNHUB ETF PROFILE — ETF-specific fields
+// ดึง: expenseRatio, totalAssets, numHoldings, trackingIndex
+// เรียกเฉพาะ type === 'ETF' เท่านั้น
+// ============================================
+async function fetchFinnhubETFProfile(symbol) {
+  if (!API_KEYS.FINNHUB) return null;
+  try {
+    const url = `https://finnhub.io/api/v1/etf/profile?symbol=${symbol}&token=${API_KEYS.FINNHUB}`;
+    const response = await fetchWithTimeout(url);
+
+    if (response.status === 429) {
+      console.log(`  [Finnhub ETF] ⏳ Rate limited, waiting 70s...`);
+      await sleep(CONFIG.FINNHUB_RATE_LIMIT_WAIT);
+      return null;
+    }
+
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+
+    if (data && data.profile) {
+      const p = data.profile;
+      return {
+        totalAssets:    p.totalNav        || 0,
+        expenseRatio:   p.expenseRatio    || 0,
+        numHoldings:    p.numberOfHoldings || 0,
+        trackingIndex:  p.benchmarkIndex  || '',
+        inceptionDate:  p.inceptionDate   || '',
+      };
+    }
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
+
+// ============================================
 // API 3: EODHD — fallback ราคา (เฉพาะ Finnhub fail)
 // ============================================
 async function fetchEODHD(symbol) {
@@ -258,7 +294,6 @@ async function updateAllAssets() {
     process.exit(1);
   }
 
-  // รวมสำหรับ loop อัพเดทราคา (Phase 1-4 ใช้ร่วมกัน)
   const existingData = [...stocksData, ...etfsData];
   stats.total = existingData.length;
   const finnhubFailed = [];
@@ -359,6 +394,43 @@ async function updateAllAssets() {
   console.log(`\n[Phase 2 Done] Finnhub Fundamental: ${stats.finnhubFundamental.success}/${existingData.length} ✅ | Failed: ${stats.finnhubFundamental.failed} ❌`);
 
   // ============================================
+  // PHASE 2B: FINNHUB ETF PROFILE — ETF fields พิเศษ
+  // เรียกเฉพาะ ETF เท่านั้น (ประหยัด API calls)
+  // ============================================
+  const etfAssets = existingData.filter(a => a.type === 'ETF');
+  console.log('\n' + '═'.repeat(55));
+  console.log('📡 PHASE 2B: Finnhub ETF Profile (ETF-specific fields)');
+  console.log(`   ${etfAssets.length} ETFs @ 1.1s/ตัว`);
+  console.log(`   Fields: totalAssets, expenseRatio, numHoldings, trackingIndex`);
+  console.log('═'.repeat(55));
+
+  let etfProfileSuccess = 0, etfProfileFailed = 0;
+  for (let i = 0; i < existingData.length; i++) {
+    const asset = existingData[i];
+    if (asset.type !== 'ETF') continue;  // ข้าม stocks
+
+    const profile = await fetchFinnhubETFProfile(asset.symbol);
+    if (profile) {
+      existingData[i] = {
+        ...existingData[i],
+        totalAssets:   profile.totalAssets   || existingData[i].totalAssets   || 0,
+        expenseRatio:  profile.expenseRatio   || existingData[i].expenseRatio  || 0,
+        numHoldings:   profile.numHoldings    || existingData[i].numHoldings   || 0,
+        trackingIndex: profile.trackingIndex  || existingData[i].trackingIndex || '',
+        inceptionDate: profile.inceptionDate  || existingData[i].inceptionDate || '',
+      };
+      etfProfileSuccess++;
+      if (etfProfileSuccess <= 3 || etfProfileSuccess % 50 === 0) {
+        console.log(`  ✅ ${asset.symbol}: AUM=${ (profile.totalAssets/1e9).toFixed(1)}B | ER=${profile.expenseRatio}% | Holdings=${profile.numHoldings}`);
+      }
+    } else {
+      etfProfileFailed++;
+    }
+    await sleep(CONFIG.FINNHUB_DELAY_MS);
+  }
+  console.log(`\n[Phase 2B Done] ETF Profile: ${etfProfileSuccess}/${etfAssets.length} ✅ | Failed: ${etfProfileFailed} ❌`);
+
+  // ============================================
   // PHASE 3 & 4: EODHD + Twelve — ราคา fallback
   // เฉพาะตัวที่ Finnhub price fail เท่านั้น
   // ============================================
@@ -414,7 +486,6 @@ async function updateAllAssets() {
     const dir = path.dirname(CONFIG.STOCKS_FILE);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-    // แยก stocks และ ETFs จาก existingData ที่อัพเดทแล้ว
     const updatedStocks = existingData.filter(a => a.type === 'STOCK');
     const updatedEtfs   = existingData.filter(a => a.type === 'ETF');
 
