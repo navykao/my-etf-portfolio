@@ -20,7 +20,7 @@ const path = require('path');
 // ============================================
 const API_KEYS = {
   FINNHUB: process.env.FINNHUB_API_KEY || process.env.VITE_FINNHUB_API_KEY || '',
-  FMP:     process.env.FMP0N8_API_KEY  || process.env.VITE_FMP0N8_API_KEY  || '',
+  FMP:     process.env.FMP_API_KEY     || process.env.VITE_FMP0N8_API_KEY  || '',
   EODHD:   process.env.EODHD_API_KEY   || process.env.VITE_EODHD_API_KEY   || '',
   TWELVE:  process.env.TWELVE_DATA_API_KEY || process.env.VITE_TWELVE_DATA_API_KEY || '',
 };
@@ -156,42 +156,6 @@ async function fetchFinnhubFundamental(symbol) {
 }
 
 // ============================================
-// API 2B: FINNHUB ETF PROFILE — ETF-specific fields
-// ดึง: expenseRatio, totalAssets, numHoldings, trackingIndex
-// เรียกเฉพาะ type === 'ETF' เท่านั้น
-// ============================================
-async function fetchFinnhubETFProfile(symbol) {
-  if (!API_KEYS.FINNHUB) return null;
-  try {
-    const url = `https://finnhub.io/api/v1/etf/profile?symbol=${symbol}&token=${API_KEYS.FINNHUB}`;
-    const response = await fetchWithTimeout(url);
-
-    if (response.status === 429) {
-      console.log(`  [Finnhub ETF] ⏳ Rate limited, waiting 70s...`);
-      await sleep(CONFIG.FINNHUB_RATE_LIMIT_WAIT);
-      return null;
-    }
-
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-
-    if (data && data.profile) {
-      const p = data.profile;
-      return {
-        totalAssets:    p.totalNav        || 0,
-        expenseRatio:   p.expenseRatio    || 0,
-        numHoldings:    p.numberOfHoldings || 0,
-        trackingIndex:  p.benchmarkIndex  || '',
-        inceptionDate:  p.inceptionDate   || '',
-      };
-    }
-    return null;
-  } catch (error) {
-    return null;
-  }
-}
-
-// ============================================
 // API 3: FMP — Phase 3 fallback (250 req/day)
 // ดึง: price, change, changePercent + volume
 // ============================================
@@ -293,9 +257,9 @@ async function updateAllAssets() {
   console.log('║  📊 ETF Portfolio - Daily Price Update              ║');
   console.log('║  Phase 1 : Finnhub /quote  → ราคา (PRIMARY)        ║');
   console.log('║  Phase 2 : Finnhub /metric → Fundamental Data       ║');
-  console.log('║  Phase 2B: Finnhub /etf    → ETF Profile            ║');
   console.log('║  Phase 3 : FMP             → fallback ราคา          ║');
   console.log('║  Phase 4 : EODHD + Twelve  → fallback สุดท้าย      ║');
+  console.log('║  Phase 2B (ETF Profile) → update-etf-profile.cjs   ║');
   console.log('╚══════════════════════════════════════════════════════╝\n');
 
   console.log('[Config] API Keys:');
@@ -426,43 +390,6 @@ async function updateAllAssets() {
   }
 
   console.log(`\n[Phase 2 Done] Finnhub Fundamental: ${stats.finnhubFundamental.success}/${existingData.length} ✅ | Failed: ${stats.finnhubFundamental.failed} ❌`);
-
-  // ============================================
-  // PHASE 2B: FINNHUB ETF PROFILE — ETF fields พิเศษ
-  // เรียกเฉพาะ ETF เท่านั้น (ประหยัด API calls)
-  // ============================================
-  const etfAssets = existingData.filter(a => a.type === 'ETF');
-  console.log('\n' + '═'.repeat(55));
-  console.log('📡 PHASE 2B: Finnhub ETF Profile (ETF-specific fields)');
-  console.log(`   ${etfAssets.length} ETFs @ 1.1s/ตัว`);
-  console.log(`   Fields: totalAssets, expenseRatio, numHoldings, trackingIndex`);
-  console.log('═'.repeat(55));
-
-  let etfProfileSuccess = 0, etfProfileFailed = 0;
-  for (let i = 0; i < existingData.length; i++) {
-    const asset = existingData[i];
-    if (asset.type !== 'ETF') continue;  // ข้าม stocks
-
-    const profile = await fetchFinnhubETFProfile(asset.symbol);
-    if (profile) {
-      existingData[i] = {
-        ...existingData[i],
-        totalAssets:   profile.totalAssets   || existingData[i].totalAssets   || 0,
-        expenseRatio:  profile.expenseRatio   || existingData[i].expenseRatio  || 0,
-        numHoldings:   profile.numHoldings    || existingData[i].numHoldings   || 0,
-        trackingIndex: profile.trackingIndex  || existingData[i].trackingIndex || '',
-        inceptionDate: profile.inceptionDate  || existingData[i].inceptionDate || '',
-      };
-      etfProfileSuccess++;
-      if (etfProfileSuccess <= 3 || etfProfileSuccess % 50 === 0) {
-        console.log(`  ✅ ${asset.symbol}: AUM=${ (profile.totalAssets/1e9).toFixed(1)}B | ER=${profile.expenseRatio}% | Holdings=${profile.numHoldings}`);
-      }
-    } else {
-      etfProfileFailed++;
-    }
-    await sleep(CONFIG.FINNHUB_DELAY_MS);
-  }
-  console.log(`\n[Phase 2B Done] ETF Profile: ${etfProfileSuccess}/${etfAssets.length} ✅ | Failed: ${etfProfileFailed} ❌`);
 
   // ============================================
   // PHASE 3: FMP — fallback ราคา (250 req/day)
