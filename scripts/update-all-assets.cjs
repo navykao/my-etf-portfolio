@@ -20,8 +20,9 @@ const path = require('path');
 // ============================================
 const API_KEYS = {
   FINNHUB: process.env.FINNHUB_API_KEY || process.env.VITE_FINNHUB_API_KEY || '',
-  EODHD: process.env.EODHD_API_KEY || process.env.VITE_EODHD_API_KEY || '',
-  TWELVE: process.env.TWELVE_DATA_API_KEY || process.env.VITE_TWELVE_DATA_API_KEY || '',
+  FMP:     process.env.FMP_API_KEY     || process.env.VITE_FMP0N8_API_KEY  || '',
+  EODHD:   process.env.EODHD_API_KEY   || process.env.VITE_EODHD_API_KEY   || '',
+  TWELVE:  process.env.TWELVE_DATA_API_KEY || process.env.VITE_TWELVE_DATA_API_KEY || '',
 };
 
 // ============================================
@@ -31,7 +32,7 @@ const CONFIG = {
   // ✅ แยกไฟล์ stocks และ ETFs แทน combined
   STOCKS_FILE: path.join(__dirname, '..', 'public', 'data', 'stocks.json'),
   ETFS_FILE:   path.join(__dirname, '..', 'public', 'data', 'etfs.json'),
-  FINNHUB_DELAY_MS: 1100,         // ✅ 1.2 วินาที/ตัว (~54 calls/นาที เซฟ)
+  FINNHUB_DELAY_MS: 1100,         // ✅ 1.1 วินาที/ตัว (~54 calls/นาที เซฟ)
   FINNHUB_RATE_LIMIT_WAIT: 70000, // ✅ รอ 70 วินาที เมื่อโดน 429
   EODHD_DELAY_MS: 3500,
   TWELVE_DELAY_MS: 1500,
@@ -43,10 +44,11 @@ const CONFIG = {
 // ============================================
 const stats = {
   total: 0,
-  finnhubPrice: { success: 0, failed: 0 },
+  finnhubPrice:       { success: 0, failed: 0 },
   finnhubFundamental: { success: 0, failed: 0 },
-  eodhd: { success: 0, failed: 0 },
-  twelve: { success: 0, failed: 0 },
+  fmp:                { success: 0, failed: 0 },  // ✅ Phase 3
+  eodhd:              { success: 0, failed: 0 },  // Phase 4
+  twelve:             { success: 0, failed: 0 },  // Phase 4
   startTime: Date.now(),
 };
 
@@ -190,7 +192,37 @@ async function fetchFinnhubETFProfile(symbol) {
 }
 
 // ============================================
-// API 3: EODHD — fallback ราคา (เฉพาะ Finnhub fail)
+// API 3: FMP — Phase 3 fallback (250 req/day)
+// ดึง: price, change, changePercent + volume
+// ============================================
+async function fetchFMP(symbol) {
+  if (!API_KEYS.FMP) return null;
+  try {
+    const url = `https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=${API_KEYS.FMP}`;
+    const response = await fetchWithTimeout(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+
+    if (data && data[0] && data[0].price > 0) {
+      stats.fmp.success++;
+      return {
+        price:         data[0].price,
+        change:        data[0].change        || 0,
+        changePercent: data[0].changesPercentage || 0,
+        volume:        data[0].volume         || 0,
+        source: 'FMP',
+      };
+    }
+    stats.fmp.failed++;
+    return null;
+  } catch (error) {
+    stats.fmp.failed++;
+    return null;
+  }
+}
+
+// ============================================
+// API 4A: EODHD — Phase 4 fallback (20 req/day)
 // ============================================
 async function fetchEODHD(symbol) {
   if (!API_KEYS.EODHD) return null;
@@ -222,7 +254,7 @@ async function fetchEODHD(symbol) {
 }
 
 // ============================================
-// API 4: TWELVE DATA — fallback สุดท้าย
+// API 4B: TWELVE DATA — Phase 4 fallback สุดท้าย (800 credits/day)
 // ============================================
 async function fetchTwelve(symbol) {
   if (!API_KEYS.TWELVE) return null;
@@ -259,17 +291,19 @@ async function fetchTwelve(symbol) {
 async function updateAllAssets() {
   console.log('╔══════════════════════════════════════════════════════╗');
   console.log('║  📊 ETF Portfolio - Daily Price Update              ║');
-  console.log('║  Phase 1: Finnhub /quote  → ราคา (PRIMARY)         ║');
-  console.log('║  Phase 2: Finnhub /metric → Fundamental Data        ║');
-  console.log('║  Phase 3: EODHD           → fallback ราคา          ║');
-  console.log('║  Phase 4: Twelve          → fallback สุดท้าย       ║');
+  console.log('║  Phase 1 : Finnhub /quote  → ราคา (PRIMARY)        ║');
+  console.log('║  Phase 2 : Finnhub /metric → Fundamental Data       ║');
+  console.log('║  Phase 2B: Finnhub /etf    → ETF Profile            ║');
+  console.log('║  Phase 3 : FMP             → fallback ราคา          ║');
+  console.log('║  Phase 4 : EODHD + Twelve  → fallback สุดท้าย      ║');
   console.log('╚══════════════════════════════════════════════════════╝\n');
 
   console.log('[Config] API Keys:');
-  console.log(`  Finnhub:  ${API_KEYS.FINNHUB ? '✅ Ready' : '❌ Missing'}`);
-  console.log(`  EODHD:    ${API_KEYS.EODHD ? '✅ Ready' : '❌ Missing'}`);
-  console.log(`  Twelve:   ${API_KEYS.TWELVE ? '✅ Ready' : '❌ Missing'}`);
-  console.log(`  Delay:    1.1s/ตัว | Rate limit wait: 70s\n`);
+  console.log(`  Finnhub:     ${API_KEYS.FINNHUB ? '✅ Ready' : '❌ Missing (Required!)'}`);
+  console.log(`  FMP:         ${API_KEYS.FMP     ? '✅ Ready' : '⚠️  Missing (Phase 3 skip)'}`);
+  console.log(`  EODHD:       ${API_KEYS.EODHD   ? '✅ Ready' : '⚠️  Missing (Phase 4 skip)'}`);
+  console.log(`  Twelve Data: ${API_KEYS.TWELVE  ? '✅ Ready' : '⚠️  Missing (Phase 4 skip)'}`);
+  console.log(`  Delay:       1.1s/ตัว | Rate limit wait: 70s\n`);
 
   if (!API_KEYS.FINNHUB) {
     console.error('❌ FINNHUB_API_KEY is required!');
@@ -431,24 +465,79 @@ async function updateAllAssets() {
   console.log(`\n[Phase 2B Done] ETF Profile: ${etfProfileSuccess}/${etfAssets.length} ✅ | Failed: ${etfProfileFailed} ❌`);
 
   // ============================================
-  // PHASE 3 & 4: EODHD + Twelve — ราคา fallback
+  // PHASE 3: FMP — fallback ราคา (250 req/day)
   // เฉพาะตัวที่ Finnhub price fail เท่านั้น
   // ============================================
+  const fmpFailed = [];  // ตัวที่ FMP ก็ fail → ส่งต่อ Phase 4
+
   if (finnhubFailed.length > 0) {
     console.log('\n' + '═'.repeat(55));
-    console.log(`📡 PHASE 3: EODHD + Twelve (fallback ${finnhubFailed.length} ตัว)`);
+    console.log(`📡 PHASE 3: FMP fallback (${finnhubFailed.length} ตัว)`);
+    console.log(`   Free tier: 250 req/day | ใช้ไป: ${stats.fmp.success + stats.fmp.failed}`);
     console.log('═'.repeat(55));
 
-    for (const symbol of finnhubFailed) {
+    if (!API_KEYS.FMP) {
+      console.log('  ⚠️  ไม่มี FMP_API_KEY — ข้าม Phase 3 ทั้งหมด → ไป Phase 4');
+      fmpFailed.push(...finnhubFailed);
+    } else {
+      for (const symbol of finnhubFailed) {
+        const idx = existingData.findIndex(a => a.symbol === symbol);
+        if (idx < 0) continue;
+
+        // FMP free tier: 250 req/day — เผื่อไว้ 230 เพื่อความปลอดภัย
+        if (stats.fmp.success + stats.fmp.failed >= 230) {
+          console.log(`  ⚠️  FMP quota ใกล้หมด (${stats.fmp.success + stats.fmp.failed}/230) → ${symbol} ไป Phase 4`);
+          fmpFailed.push(symbol);
+          continue;
+        }
+
+        const data = await fetchFMP(symbol);
+        if (data) {
+          existingData[idx] = {
+            ...existingData[idx],
+            price:         data.price,
+            change:        data.change,
+            changePercent: data.changePercent,
+            volume:        data.volume || existingData[idx].volume,
+            updatedAt:     now,
+            priceSource:   'FMP',
+          };
+          console.log(`  ✅ [FMP] ${symbol}: $${data.price} (${data.changePercent > 0 ? '+' : ''}${data.changePercent?.toFixed(2)}%)`);
+        } else {
+          console.log(`  ⚠️  [FMP] ${symbol}: failed → ไป Phase 4`);
+          fmpFailed.push(symbol);
+        }
+
+        await sleep(300);  // FMP ไม่มี rate limit เข้มงวด — 300ms พอ
+      }
+    }
+
+    console.log(`\n[Phase 3 Done] FMP: ${stats.fmp.success} ✅ | Failed: ${stats.fmp.failed} ❌ | ส่งต่อ Phase 4: ${fmpFailed.length} ตัว`);
+  }
+
+  // ============================================
+  // PHASE 4: EODHD + Twelve — fallback สุดท้าย
+  // เฉพาะตัวที่ FMP ก็ fail (หรือ FMP ไม่มี key)
+  // ============================================
+  if (fmpFailed.length > 0) {
+    console.log('\n' + '═'.repeat(55));
+    console.log(`📡 PHASE 4: EODHD + Twelve (${fmpFailed.length} ตัว)`);
+    console.log(`   EODHD: 20 req/day | Twelve: 800 credits/day`);
+    console.log('═'.repeat(55));
+
+    for (const symbol of fmpFailed) {
       const idx = existingData.findIndex(a => a.symbol === symbol);
       if (idx < 0) continue;
 
       let data = null;
+
+      // ลอง EODHD ก่อน (ถ้ายังมี quota)
       if (API_KEYS.EODHD && stats.eodhd.success + stats.eodhd.failed < 18) {
         data = await fetchEODHD(symbol);
         if (data) await sleep(CONFIG.EODHD_DELAY_MS);
       }
 
+      // ถ้า EODHD fail หรือ quota หมด → ลอง Twelve
       if (!data && API_KEYS.TWELVE && stats.twelve.success + stats.twelve.failed < 780) {
         data = await fetchTwelve(symbol);
         if (data) await sleep(CONFIG.TWELVE_DELAY_MS);
@@ -457,15 +546,15 @@ async function updateAllAssets() {
       if (data) {
         existingData[idx] = {
           ...existingData[idx],
-          price: data.price,
-          change: data.change,
+          price:         data.price,
+          change:        data.change,
           changePercent: data.changePercent,
-          dayHigh: data.dayHigh || existingData[idx].dayHigh,
-          dayLow: data.dayLow || existingData[idx].dayLow,
-          open: data.open || existingData[idx].open,
+          dayHigh:       data.dayHigh       || existingData[idx].dayHigh,
+          dayLow:        data.dayLow        || existingData[idx].dayLow,
+          open:          data.open          || existingData[idx].open,
           previousClose: data.previousClose || existingData[idx].previousClose,
-          updatedAt: now,
-          priceSource: data.source,
+          updatedAt:     now,
+          priceSource:   data.source,
         };
         console.log(`  ✅ [${data.source}] ${symbol}: $${data.price}`);
       } else {
@@ -473,7 +562,7 @@ async function updateAllAssets() {
       }
     }
 
-    console.log(`\n[Phase 3 Done] EODHD: ${stats.eodhd.success} ✅ | Twelve: ${stats.twelve.success} ✅`);
+    console.log(`\n[Phase 4 Done] EODHD: ${stats.eodhd.success} ✅ | Twelve: ${stats.twelve.success} ✅`);
   }
 
   // ============================================
@@ -506,7 +595,7 @@ async function updateAllAssets() {
   // FINAL REPORT
   // ============================================
   const totalTime = formatTime(Date.now() - stats.startTime);
-  const totalSuccess = stats.finnhubPrice.success + stats.eodhd.success + stats.twelve.success;
+  const totalSuccess = stats.finnhubPrice.success + stats.fmp.success + stats.eodhd.success + stats.twelve.success;
 
   console.log('\n╔══════════════════════════════════════════════════════╗');
   console.log('║  📊 UPDATE COMPLETE                                 ║');
@@ -517,9 +606,10 @@ async function updateAllAssets() {
   console.log(`  ⏱️  Total time:      ${totalTime}`);
   console.log('');
   console.log('  Price Sources:');
-  console.log(`    Finnhub:    ✅ ${stats.finnhubPrice.success} | ❌ ${stats.finnhubPrice.failed}`);
-  console.log(`    EODHD:      ✅ ${stats.eodhd.success} | ❌ ${stats.eodhd.failed}`);
-  console.log(`    Twelve:     ✅ ${stats.twelve.success} | ❌ ${stats.twelve.failed}`);
+  console.log(`    Finnhub (P1): ✅ ${stats.finnhubPrice.success} | ❌ ${stats.finnhubPrice.failed}`);
+  console.log(`    FMP     (P3): ✅ ${stats.fmp.success}   | ❌ ${stats.fmp.failed}`);
+  console.log(`    EODHD   (P4): ✅ ${stats.eodhd.success}   | ❌ ${stats.eodhd.failed}`);
+  console.log(`    Twelve  (P4): ✅ ${stats.twelve.success}   | ❌ ${stats.twelve.failed}`);
   console.log('');
   console.log('  Fundamental (Finnhub /metric):');
   console.log(`    Success:    ✅ ${stats.finnhubFundamental.success} | ❌ ${stats.finnhubFundamental.failed}`);
