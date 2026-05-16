@@ -148,7 +148,7 @@ async function fetchYahooBatch(symbols) {
   try {
     const symbolsParam = symbols.join(',');
     // ✅ แก้ไข: query2 + v8 แทน query1 + v7
-    const url = `https://query2.finance.yahoo.com/v8/finance/quote?symbols=${symbolsParam}`;
+    const url = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${symbolsParam}`;
     // ✅ แก้ไข: ส่ง YAHOO_HEADERS ไปด้วย
     const response = await fetchWithTimeout(url, 15000, { headers: YAHOO_HEADERS });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
