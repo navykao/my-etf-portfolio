@@ -1,6 +1,6 @@
 // ============================================
 // update-all-assets.cjs
-// อัปเดตข้อมูลหุ้นทั้ง 725 ตัว ลง combined-all-assets.json
+// อัปเดตข้อมูลหุ้นทั้ง 500 ตัว → stocks.json และ ETFs 200 ตัว → etfs.json
 //
 // Strategy:
 //   Phase 1: Finnhub /quote       → ราคา + การเปลี่ยนแปลงรายวัน (PRIMARY)
@@ -28,7 +28,9 @@ const API_KEYS = {
 // CONFIGURATION
 // ============================================
 const CONFIG = {
-  DATA_FILE: path.join(__dirname, '..', 'public', 'data', 'combined-all-assets.json'),
+  // ✅ แยกไฟล์ stocks และ ETFs แทน combined
+  STOCKS_FILE: path.join(__dirname, '..', 'public', 'data', 'stocks.json'),
+  ETFS_FILE:   path.join(__dirname, '..', 'public', 'data', 'etfs.json'),
   FINNHUB_DELAY_MS: 1100,         // ✅ 1.1 วินาที/ตัว (~54 calls/นาที เซฟ)
   FINNHUB_RATE_LIMIT_WAIT: 70000, // ✅ รอ 70 วินาที เมื่อโดน 429
   EODHD_DELAY_MS: 3500,
@@ -238,17 +240,26 @@ async function updateAllAssets() {
     process.exit(1);
   }
 
-  // Load existing data
-  let existingData = [];
+  // ✅ Load stocks และ ETFs แยกกัน
+  let stocksData = [];
+  let etfsData = [];
   try {
-    const raw = fs.readFileSync(CONFIG.DATA_FILE, 'utf8');
-    existingData = JSON.parse(raw);
-    console.log(`[Data] ✅ Loaded ${existingData.length} assets\n`); 
+    stocksData = JSON.parse(fs.readFileSync(CONFIG.STOCKS_FILE, 'utf8'));
+    console.log(`[Data] ✅ Loaded ${stocksData.length} stocks`);
   } catch (error) {
-    console.error('[Data] ❌ Failed to load JSON:', error.message);
+    console.error('[Data] ❌ Failed to load stocks.json:', error.message);
+    process.exit(1);
+  }
+  try {
+    etfsData = JSON.parse(fs.readFileSync(CONFIG.ETFS_FILE, 'utf8'));
+    console.log(`[Data] ✅ Loaded ${etfsData.length} ETFs\n`);
+  } catch (error) {
+    console.error('[Data] ❌ Failed to load etfs.json:', error.message);
     process.exit(1);
   }
 
+  // รวมสำหรับ loop อัพเดทราคา (Phase 1-4 ใช้ร่วมกัน)
+  const existingData = [...stocksData, ...etfsData];
   stats.total = existingData.length;
   const finnhubFailed = [];
   const now = new Date().toISOString();
@@ -394,20 +405,27 @@ async function updateAllAssets() {
   }
 
   // ============================================
-  // SAVE
+  // SAVE — แยกบันทึก stocks.json และ etfs.json
   // ============================================
   console.log('\n' + '═'.repeat(55));
   console.log('💾 Saving...');
 
   try {
-    const dir = path.dirname(CONFIG.DATA_FILE);
+    const dir = path.dirname(CONFIG.STOCKS_FILE);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-    const jsonStr = JSON.stringify(existingData, null, 2);
-    fs.writeFileSync(CONFIG.DATA_FILE, jsonStr, 'utf8');
+    // แยก stocks และ ETFs จาก existingData ที่อัพเดทแล้ว
+    const updatedStocks = existingData.filter(a => a.type === 'STOCK');
+    const updatedEtfs   = existingData.filter(a => a.type === 'ETF');
 
-    const fileSizeKB = (Buffer.byteLength(jsonStr, 'utf8') / 1024).toFixed(1);
-    console.log(`✅ Saved: ${CONFIG.DATA_FILE} (${fileSizeKB} KB)`);
+    const stocksJson = JSON.stringify(updatedStocks, null, 2);
+    const etfsJson   = JSON.stringify(updatedEtfs, null, 2);
+
+    fs.writeFileSync(CONFIG.STOCKS_FILE, stocksJson, 'utf8');
+    fs.writeFileSync(CONFIG.ETFS_FILE, etfsJson, 'utf8');
+
+    console.log(`✅ Saved stocks.json: ${updatedStocks.length} items (${(Buffer.byteLength(stocksJson, 'utf8') / 1024).toFixed(1)} KB)`);
+    console.log(`✅ Saved etfs.json:   ${updatedEtfs.length} items (${(Buffer.byteLength(etfsJson, 'utf8') / 1024).toFixed(1)} KB)`);
   } catch (error) {
     console.error('❌ Failed to save:', error.message);
     process.exit(1);
