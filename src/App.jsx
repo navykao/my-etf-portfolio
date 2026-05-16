@@ -28,6 +28,8 @@ ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, PointElemen
 const CONFIG = {
   UPDATE_INTERVAL: 2 * 60 * 60 * 1000,
   CACHE_DURATION: 90 * 60 * 1000,
+  DATA_URL: '/data/stocks.json',   // legacy fallback ไม่ใช้แล้ว
+  GITHUB_DATA_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/stocks.json',
   // ✅ แยก URL สำหรับ stocks และ ETFs
   STOCKS_URL: '/data/stocks.json',
   ETFS_URL:   '/data/etfs.json',
@@ -765,11 +767,235 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
 }
 
 // --- MARKET PAGE ---
+// ==================== DETAIL MODALS ====================
+
+// --- STOCK DETAIL MODAL ---
+function StockDetailModal({ stock, onClose }) {
+  if (!stock) return null
+  const formatBig = (n) => {
+    if (!n || isNaN(n)) return '-'
+    if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`
+    if (n >= 1e9)  return `$${(n / 1e9).toFixed(2)}B`
+    if (n >= 1e6)  return `$${(n / 1e6).toFixed(2)}M`
+    return `$${n.toLocaleString()}`
+  }
+  const formatPct = (n) => n != null && !isNaN(n) ? `${(n * 100).toFixed(2)}%` : '-'
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}
+      onClick={onClose}>
+      <div style={{ background: 'var(--bg-primary)', borderRadius: '16px', width: '100%', maxWidth: '680px', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}
+        onClick={e => e.stopPropagation()}>
+        {/* Header */}
+        <div style={{ padding: '24px 24px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+              <span style={{ fontSize: '28px', fontWeight: '800', color: 'var(--text-primary)' }}>{stock.symbol}</span>
+              <Badge type={stock.type}>{stock.type}</Badge>
+              {stock.sector && <SectorBadge sector={stock.sector} />}
+            </div>
+            <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '8px' }}>{stock.name}</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+              <span style={{ fontSize: '32px', fontWeight: '700', color: 'var(--text-primary)' }}>{formatPrice(stock.price)}</span>
+              <PriceChange value={stock.changePercent || 0} />
+            </div>
+          </div>
+          <button onClick={onClose} style={{ background: 'var(--bg-secondary)', border: 'none', borderRadius: '8px', width: '32px', height: '32px', cursor: 'pointer', fontSize: '18px', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+        </div>
+
+        {/* Body */}
+        <div style={{ padding: '20px 24px 24px', display: 'grid', gap: '16px' }}>
+          {/* Price Info */}
+          <div style={{ background: 'var(--bg-secondary)', borderRadius: '12px', padding: '16px' }}>
+            <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>📈 ข้อมูลราคา</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+              {[
+                { label: 'Open',    val: formatPrice(stock.open) },
+                { label: 'Day High', val: formatPrice(stock.dayHigh) },
+                { label: 'Day Low',  val: formatPrice(stock.dayLow) },
+                { label: '52W High', val: formatPrice(stock.high52w) },
+                { label: '52W Low',  val: formatPrice(stock.low52w) },
+                { label: 'Prev Close', val: formatPrice(stock.previousClose) },
+              ].map(({ label, val }) => (
+                <div key={label}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{label}</div>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)' }}>{val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Fundamental */}
+          <div style={{ background: 'var(--bg-secondary)', borderRadius: '12px', padding: '16px' }}>
+            <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>🏢 Fundamental</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+              {[
+                { label: 'Market Cap', val: formatBig(stock.marketCap) },
+                { label: 'P/E Ratio',  val: stock.peRatio ? stock.peRatio.toFixed(1) : '-' },
+                { label: 'EPS',        val: stock.eps ? `$${stock.eps.toFixed(2)}` : '-' },
+                { label: 'Div Yield',  val: stock.divYield ? `${(stock.divYield * 100).toFixed(2)}%` : '-' },
+                { label: 'Beta',       val: stock.beta ? stock.beta.toFixed(2) : '-' },
+                { label: 'ROE',        val: stock.roe ? `${(stock.roe * 100).toFixed(1)}%` : '-' },
+              ].map(({ label, val }) => (
+                <div key={label}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{label}</div>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)' }}>{val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dividend Growth */}
+          {(stock.divGrowth3Y || stock.divGrowth5Y || stock.divGrowth10Y) ? (
+            <div style={{ background: 'var(--bg-secondary)', borderRadius: '12px', padding: '16px' }}>
+              <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>💰 Dividend Growth</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                {[
+                  { label: '3Y Growth',  val: stock.divGrowth3Y  ? `${stock.divGrowth3Y.toFixed(1)}%`  : '-' },
+                  { label: '5Y Growth',  val: stock.divGrowth5Y  ? `${stock.divGrowth5Y.toFixed(1)}%`  : '-' },
+                  { label: '10Y Growth', val: stock.divGrowth10Y ? `${stock.divGrowth10Y.toFixed(1)}%` : '-' },
+                ].map(({ label, val }) => (
+                  <div key={label}>
+                    <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{label}</div>
+                    <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)' }}>{val}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {/* Company Info */}
+          {stock.industry && (
+            <div style={{ background: 'var(--bg-secondary)', borderRadius: '12px', padding: '16px' }}>
+              <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>🏭 บริษัท</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                {[
+                  { label: 'Sector',   val: stock.sector   || '-' },
+                  { label: 'Industry', val: stock.industry || '-' },
+                  { label: 'Revenue Growth YoY', val: stock.revenueGrowthYoY ? `${(stock.revenueGrowthYoY * 100).toFixed(1)}%` : '-' },
+                  { label: 'Operating Margin',   val: stock.operatingMargin  ? `${(stock.operatingMargin * 100).toFixed(1)}%`  : '-' },
+                ].map(({ label, val }) => (
+                  <div key={label}>
+                    <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{label}</div>
+                    <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)' }}>{val}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// --- ETF DETAIL MODAL ---
+function ETFDetailModal({ etf, onClose }) {
+  if (!etf) return null
+  const formatBig = (n) => {
+    if (!n || isNaN(n)) return '-'
+    if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`
+    if (n >= 1e9)  return `$${(n / 1e9).toFixed(2)}B`
+    if (n >= 1e6)  return `$${(n / 1e6).toFixed(2)}M`
+    return `$${n.toLocaleString()}`
+  }
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}
+      onClick={onClose}>
+      <div style={{ background: 'var(--bg-primary)', borderRadius: '16px', width: '100%', maxWidth: '680px', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}
+        onClick={e => e.stopPropagation()}>
+        {/* Header */}
+        <div style={{ padding: '24px 24px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+              <span style={{ fontSize: '28px', fontWeight: '800', color: 'var(--text-primary)' }}>{etf.symbol}</span>
+              <Badge type="ETF">ETF</Badge>
+              {etf.category && <SectorBadge sector={etf.category} />}
+            </div>
+            <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '8px' }}>{etf.name}</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+              <span style={{ fontSize: '32px', fontWeight: '700', color: 'var(--text-primary)' }}>{formatPrice(etf.price)}</span>
+              <PriceChange value={etf.changePercent || 0} />
+            </div>
+          </div>
+          <button onClick={onClose} style={{ background: 'var(--bg-secondary)', border: 'none', borderRadius: '8px', width: '32px', height: '32px', cursor: 'pointer', fontSize: '18px', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+        </div>
+
+        {/* Body */}
+        <div style={{ padding: '20px 24px 24px', display: 'grid', gap: '16px' }}>
+          {/* ETF Overview */}
+          <div style={{ background: 'var(--bg-secondary)', borderRadius: '12px', padding: '16px' }}>
+            <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>📊 ETF Overview</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+              {[
+                { label: 'AUM (Total Assets)', val: formatBig(etf.totalAssets) },
+                { label: 'Expense Ratio',      val: etf.expenseRatio ? `${etf.expenseRatio.toFixed(2)}%` : '-' },
+                { label: 'Num Holdings',       val: etf.numHoldings  ? etf.numHoldings.toLocaleString() : '-' },
+                { label: 'Tracking Index',     val: etf.trackingIndex || '-' },
+                { label: 'Inception Date',     val: etf.inceptionDate || '-' },
+                { label: 'Beta',               val: etf.beta ? etf.beta.toFixed(2) : '-' },
+              ].map(({ label, val }) => (
+                <div key={label}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{label}</div>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)', wordBreak: 'break-word' }}>{val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Price Info */}
+          <div style={{ background: 'var(--bg-secondary)', borderRadius: '12px', padding: '16px' }}>
+            <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>📈 ข้อมูลราคา</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+              {[
+                { label: 'Open',      val: formatPrice(etf.open) },
+                { label: 'Day High',  val: formatPrice(etf.dayHigh) },
+                { label: 'Day Low',   val: formatPrice(etf.dayLow) },
+                { label: '52W High',  val: formatPrice(etf.high52w) },
+                { label: '52W Low',   val: formatPrice(etf.low52w) },
+                { label: 'Prev Close',val: formatPrice(etf.previousClose) },
+              ].map(({ label, val }) => (
+                <div key={label}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{label}</div>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)' }}>{val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dividend */}
+          <div style={{ background: 'var(--bg-secondary)', borderRadius: '12px', padding: '16px' }}>
+            <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>💰 Dividend & Yield</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+              {[
+                { label: 'Div Yield',         val: etf.divYield          ? `${(etf.divYield * 100).toFixed(2)}%` : '-' },
+                { label: 'Distribution Rate', val: etf.distributionRate   ? `${etf.distributionRate.toFixed(2)}%`  : '-' },
+                { label: 'Yield TTM',         val: etf.yieldTTM           ? `${etf.yieldTTM.toFixed(2)}%`          : '-' },
+                { label: 'Div Freq',          val: etf.dividendFrequency  || '-' },
+                { label: '3Y Div Growth',     val: etf.divGrowth3Y        ? `${etf.divGrowth3Y.toFixed(1)}%`  : '-' },
+                { label: '5Y Div Growth',     val: etf.divGrowth5Y        ? `${etf.divGrowth5Y.toFixed(1)}%`  : '-' },
+              ].map(({ label, val }) => (
+                <div key={label}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{label}</div>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)' }}>{val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ==================== MARKET PAGE ====================
 function MarketPage({ allAssets }) {
   const [filterType, setFilterType] = useState('ALL')
-  const [sortBy, setSortBy] = useState('changePercent')
-  const [sortDir, setSortDir] = useState('desc')
-  const [search, setSearch] = useState('')
+  const [sortBy, setSortBy]         = useState('changePercent')
+  const [sortDir, setSortDir]       = useState('desc')
+  const [search, setSearch]         = useState('')
+  const [selectedDetail, setSelectedDetail] = useState(null)
 
   const filtered = useMemo(() => {
     let list = [...allAssets]
@@ -792,7 +1018,11 @@ function MarketPage({ allAssets }) {
   }
 
   const gainers = allAssets.filter(a => a.changePercent > 0).sort((a, b) => b.changePercent - a.changePercent).slice(0, 5)
-  const losers = allAssets.filter(a => a.changePercent < 0).sort((a, b) => a.changePercent - b.changePercent).slice(0, 5)
+  const losers  = allAssets.filter(a => a.changePercent < 0).sort((a, b) => a.changePercent - b.changePercent).slice(0, 5)
+
+  // คอลัมน์ตามประเภท filter
+  const isETFView   = filterType === 'ETF'
+  const isStockView = filterType === 'STOCK'
 
   return (
     <div className="container" style={{ paddingTop: '24px' }}>
@@ -804,10 +1034,10 @@ function MarketPage({ allAssets }) {
       <div className="card" style={{ marginBottom: '24px' }}>
         <div className="card-header"><h2 className="card-title">📈 ดัชนีตลาด</h2></div>
         <div className="market-indices">
-          <MarketIndex name="S&P 500" value={4783.45} change={0.54} />
-          <MarketIndex name="DOW JONES" value={37305.16} change={0.36} />
-          <MarketIndex name="NASDAQ" value={14813.92} change={0.82} />
-          <MarketIndex name="VIX" value={13.45} change={-2.1} />
+          <MarketIndex name="S&P 500"   value={4783.45}  change={0.54}  />
+          <MarketIndex name="DOW JONES" value={37305.16} change={0.36}  />
+          <MarketIndex name="NASDAQ"    value={14813.92} change={0.82}  />
+          <MarketIndex name="VIX"       value={13.45}    change={-2.1}  />
         </div>
         <div style={{ marginTop: '8px', fontSize: '11px', color: 'var(--text-muted)', textAlign: 'right' }}>
           ⚠️ ดัชนีนี้เป็นข้อมูล static — ใส่ API key ใน .env เพื่อดึงข้อมูลจริง
@@ -820,7 +1050,8 @@ function MarketPage({ allAssets }) {
           <div className="card">
             <div className="card-header"><h2 className="card-title">🚀 Top Gainers</h2></div>
             {gainers.map(s => (
-              <div key={s.symbol} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
+              <div key={s.symbol} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', cursor: 'pointer' }}
+                onClick={() => setSelectedDetail(s)}>
                 <div>
                   <span className="stock-symbol">{s.symbol}</span>
                   <Badge type={s.type} style={{ marginLeft: '6px' }}>{s.type}</Badge>
@@ -835,7 +1066,8 @@ function MarketPage({ allAssets }) {
           <div className="card">
             <div className="card-header"><h2 className="card-title">📉 Top Losers</h2></div>
             {losers.map(s => (
-              <div key={s.symbol} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
+              <div key={s.symbol} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', cursor: 'pointer' }}
+                onClick={() => setSelectedDetail(s)}>
                 <div>
                   <span className="stock-symbol">{s.symbol}</span>
                   <Badge type={s.type}>{s.type}</Badge>
@@ -854,6 +1086,7 @@ function MarketPage({ allAssets }) {
       <div className="card">
         <div className="card-header">
           <h2 className="card-title">📊 ข้อมูลหุ้นทั้งหมด ({filtered.length} รายการ)</h2>
+          <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>คลิกแถวเพื่อดูรายละเอียด</span>
         </div>
         <div style={{ display: 'flex', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
           <input type="text" className="form-input" style={{ flex: 1, minWidth: '200px' }}
@@ -862,7 +1095,7 @@ function MarketPage({ allAssets }) {
           <div className="type-filter" style={{ margin: 0 }}>
             {['ALL', 'STOCK', 'ETF', 'REIT', 'BOND'].map(t => (
               <button key={t} className={`filter-btn ${filterType === t ? 'active' : ''}`}
-                onClick={() => setFilterType(t)}>{t}</button>
+                onClick={() => { setFilterType(t); setSortBy('changePercent'); setSortDir('desc') }}>{t}</button>
             ))}
           </div>
         </div>
@@ -882,21 +1115,51 @@ function MarketPage({ allAssets }) {
                 <th style={{ cursor: 'pointer' }} onClick={() => handleSort('divYield')}>
                   Div Yield {sortBy === 'divYield' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
                 </th>
-                <th style={{ cursor: 'pointer' }} onClick={() => handleSort('peRatio')}>
-                  P/E {sortBy === 'peRatio' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
-                </th>
+                {/* คอลัมน์ Stock เท่านั้น */}
+                {!isETFView && (
+                  <th style={{ cursor: 'pointer' }} onClick={() => handleSort('peRatio')}>
+                    P/E {sortBy === 'peRatio' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+                  </th>
+                )}
+                {/* คอลัมน์ ETF เท่านั้น */}
+                {isETFView && (
+                  <>
+                    <th style={{ cursor: 'pointer' }} onClick={() => handleSort('expenseRatio')}>
+                      Exp. Ratio {sortBy === 'expenseRatio' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+                    </th>
+                    <th style={{ cursor: 'pointer' }} onClick={() => handleSort('totalAssets')}>
+                      AUM {sortBy === 'totalAssets' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+                    </th>
+                    <th>Tracking Index</th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>
               {filtered.slice(0, 100).map(a => (
-                <tr key={a.symbol}>
+                <tr key={a.symbol} style={{ cursor: 'pointer' }} onClick={() => setSelectedDetail(a)}>
                   <td><strong className="stock-symbol">{a.symbol}</strong></td>
                   <td style={{ fontSize: '13px', maxWidth: '180px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.name}</td>
                   <td><Badge type={a.type}>{a.type}</Badge></td>
                   <td>{formatPrice(a.price)}</td>
                   <td><PriceChange value={a.changePercent || 0} /></td>
                   <td>{a.divYield ? `${(a.divYield * 100).toFixed(2)}%` : '-'}</td>
-                  <td>{a.peRatio ? a.peRatio.toFixed(1) : '-'}</td>
+                  {!isETFView && <td>{a.peRatio ? a.peRatio.toFixed(1) : '-'}</td>}
+                  {isETFView && (
+                    <>
+                      <td style={{ color: 'var(--text-secondary)' }}>{a.expenseRatio ? `${a.expenseRatio.toFixed(2)}%` : '-'}</td>
+                      <td style={{ color: 'var(--text-secondary)' }}>
+                        {a.totalAssets
+                          ? a.totalAssets >= 1e9
+                            ? `$${(a.totalAssets / 1e9).toFixed(1)}B`
+                            : `$${(a.totalAssets / 1e6).toFixed(0)}M`
+                          : '-'}
+                      </td>
+                      <td style={{ fontSize: '12px', color: 'var(--text-secondary)', maxWidth: '140px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {a.trackingIndex || '-'}
+                      </td>
+                    </>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -908,11 +1171,20 @@ function MarketPage({ allAssets }) {
           )}
         </div>
       </div>
+
+      {/* Detail Modal */}
+      {selectedDetail && selectedDetail.type === 'ETF' && (
+        <ETFDetailModal etf={selectedDetail} onClose={() => setSelectedDetail(null)} />
+      )}
+      {selectedDetail && selectedDetail.type !== 'ETF' && (
+        <StockDetailModal stock={selectedDetail} onClose={() => setSelectedDetail(null)} />
+      )}
     </div>
   )
 }
 
 // --- SETTINGS PAGE ---
+
 function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotification, allAssets, watchlist, portfolio, onClearWatchlist, onClearPortfolio, onImport, onToggleLive }) {
   const hasApiKey = Object.values(API_KEYS).some(k => k && k.length > 0)
 
@@ -1215,7 +1487,6 @@ function App() {
     setLoading(true)
     setLoadError(null)
     try {
-      // ✅ โหลด stocks.json และ etfs.json แยกกัน แล้วรวม
       let stocksData = null
       let etfsData = null
 
@@ -1247,8 +1518,6 @@ function App() {
       }
 
       if (!Array.isArray(stocksData) || !Array.isArray(etfsData)) throw new Error('ข้อมูลไม่ถูกต้อง')
-
-      // ✅ รวม stocks + ETFs เพื่อใช้กับ allAssets (สำหรับ search/portfolio/watchlist)
       setAllAssets([...stocksData, ...etfsData])
       setLastUpdate(new Date())
     } catch (e) {
