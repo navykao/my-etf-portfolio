@@ -23,9 +23,9 @@
     "divGrowth5Y": 5.82,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 503,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.28,
     "inceptionDate": "1993-01-22",
     "category": "US Large Cap Blend",
@@ -37,7 +37,7 @@
       },
       {
         "year": 2021,
-        "dividendPerShare": 6.0
+        "dividendPerShare": 6
       },
       {
         "year": 2022,
@@ -51,7 +51,10 @@
         "year": 2024,
         "dividendPerShare": 6.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "QQQ",
@@ -77,7 +80,7 @@
     "divGrowth5Y": 9.72,
     "divGrowth10Y": 9.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 101,
     "beta": 1.15,
     "yieldTTM": 0.5,
@@ -105,7 +108,10 @@
         "year": 2024,
         "dividendPerShare": 2.1
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWM",
@@ -131,7 +137,7 @@
     "divGrowth5Y": 4.63,
     "divGrowth10Y": 4.23,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1971,
     "beta": 1.25,
     "yieldTTM": 1.36,
@@ -141,7 +147,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       },
       {
         "year": 2021,
@@ -159,7 +165,10 @@
         "year": 2024,
         "dividendPerShare": 2.32
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SMH",
@@ -185,7 +194,7 @@
     "divGrowth5Y": 7.03,
     "divGrowth10Y": 14.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 26,
     "beta": 1.35,
     "yieldTTM": 0.55,
@@ -213,7 +222,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IVV",
@@ -239,9 +251,9 @@
     "divGrowth5Y": 7.22,
     "divGrowth10Y": 5.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 503,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.27,
     "inceptionDate": "2000-05-15",
     "category": "US Large Cap Blend",
@@ -267,7 +279,10 @@
         "year": 2024,
         "dividendPerShare": 6.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VOO",
@@ -293,9 +308,9 @@
     "divGrowth5Y": 5.76,
     "divGrowth10Y": 6.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 503,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.26,
     "inceptionDate": "2010-09-07",
     "category": "US Large Cap Blend",
@@ -321,7 +336,10 @@
         "year": 2024,
         "dividendPerShare": 5.68
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SOXX",
@@ -347,7 +365,7 @@
     "divGrowth5Y": 9.81,
     "divGrowth10Y": 15.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 30,
     "beta": 1.33,
     "yieldTTM": 0.6,
@@ -375,7 +393,10 @@
         "year": 2024,
         "dividendPerShare": 3.16
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "HYG",
@@ -401,7 +422,7 @@
     "divGrowth5Y": 2.88,
     "divGrowth10Y": -0.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1000,
     "beta": 0.35,
     "yieldTTM": 5.8,
@@ -429,7 +450,10 @@
         "year": 2024,
         "dividendPerShare": 3.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "LQD",
@@ -455,7 +479,7 @@
     "divGrowth5Y": 7.4,
     "divGrowth10Y": 2.23,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1100,
     "beta": 0.15,
     "yieldTTM": 3.9,
@@ -473,7 +497,7 @@
       },
       {
         "year": 2022,
-        "dividendPerShare": 3.0
+        "dividendPerShare": 3
       },
       {
         "year": 2023,
@@ -483,7 +507,10 @@
         "year": 2024,
         "dividendPerShare": 3.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWY",
@@ -509,7 +536,7 @@
     "divGrowth5Y": 3.95,
     "divGrowth10Y": 12.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 107,
     "beta": 0.98,
     "yieldTTM": 1.2,
@@ -537,7 +564,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "GLD",
@@ -563,10 +593,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.04,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2004-11-18",
     "category": "Gold",
     "dividendFrequency": "None",
@@ -591,7 +621,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLE",
@@ -617,7 +650,7 @@
     "divGrowth5Y": 7.43,
     "divGrowth10Y": 4.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 23,
     "beta": 0.8,
     "yieldTTM": 2.8,
@@ -645,7 +678,10 @@
         "year": 2024,
         "dividendPerShare": 2.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SGOV",
@@ -671,9 +707,9 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 10,
-    "beta": 0.0,
+    "beta": 0,
     "yieldTTM": 0.83,
     "inceptionDate": "2020-05-26",
     "category": "Ultra Short-Term Treasury",
@@ -699,7 +735,10 @@
         "year": 2024,
         "dividendPerShare": 0.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DIA",
@@ -725,7 +764,7 @@
     "divGrowth5Y": 4.75,
     "divGrowth10Y": 5.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 30,
     "beta": 0.92,
     "yieldTTM": 1.5,
@@ -753,7 +792,10 @@
         "year": 2024,
         "dividendPerShare": 5.24
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "TLT",
@@ -779,7 +821,7 @@
     "divGrowth5Y": 12.3,
     "divGrowth10Y": 2.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 40,
     "beta": 0.18,
     "yieldTTM": 2.5,
@@ -805,9 +847,12 @@
       },
       {
         "year": 2024,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IGV",
@@ -833,7 +878,7 @@
     "divGrowth5Y": 1.69,
     "divGrowth10Y": -30.32,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 120,
     "beta": 1.3,
     "yieldTTM": 0.2,
@@ -861,7 +906,10 @@
         "year": 2024,
         "dividendPerShare": 0.24
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLK",
@@ -887,7 +935,7 @@
     "divGrowth5Y": 6.84,
     "divGrowth10Y": 6.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 65,
     "beta": 1.2,
     "yieldTTM": 0.85,
@@ -913,9 +961,12 @@
       },
       {
         "year": 2024,
-        "dividendPerShare": 1.0
+        "dividendPerShare": 1
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "USO",
@@ -941,10 +992,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.4,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2006-04-10",
     "category": "Oil",
     "dividendFrequency": "None",
@@ -969,7 +1020,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLF",
@@ -995,7 +1049,7 @@
     "divGrowth5Y": 6.07,
     "divGrowth10Y": 4.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 66,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -1023,7 +1077,10 @@
         "year": 2024,
         "dividendPerShare": 0.6
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IBIT",
@@ -1049,10 +1106,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.85,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2024-01-11",
     "category": "Bitcoin",
     "dividendFrequency": "None",
@@ -1077,7 +1134,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SLV",
@@ -1103,10 +1163,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.12,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2006-04-28",
     "category": "Silver",
     "dividendFrequency": "None",
@@ -1131,7 +1191,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EFA",
@@ -1157,7 +1220,7 @@
     "divGrowth5Y": 12.57,
     "divGrowth10Y": 6.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 780,
     "beta": 0.88,
     "yieldTTM": 3.2,
@@ -1183,9 +1246,12 @@
       },
       {
         "year": 2024,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLI",
@@ -1211,7 +1277,7 @@
     "divGrowth5Y": 9.96,
     "divGrowth10Y": 5.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 77,
     "beta": 1.02,
     "yieldTTM": 1.1,
@@ -1221,7 +1287,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 1.0
+        "dividendPerShare": 1
       },
       {
         "year": 2021,
@@ -1239,7 +1305,10 @@
         "year": 2024,
         "dividendPerShare": 1.28
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLV",
@@ -1265,7 +1334,7 @@
     "divGrowth5Y": 8.01,
     "divGrowth10Y": 8.97,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 65,
     "beta": 0.72,
     "yieldTTM": 1.6,
@@ -1293,7 +1362,10 @@
         "year": 2024,
         "dividendPerShare": 1.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XBI",
@@ -1319,7 +1391,7 @@
     "divGrowth5Y": 6.74,
     "divGrowth10Y": 1.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 150,
     "beta": 1.4,
     "yieldTTM": 0.3,
@@ -1329,25 +1401,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VTI",
@@ -1373,9 +1448,9 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 6.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 3600,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.3,
     "inceptionDate": "2001-05-24",
     "category": "US Total Market",
@@ -1401,7 +1476,10 @@
         "year": 2024,
         "dividendPerShare": 2.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "QQQM",
@@ -1427,7 +1505,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 101,
     "beta": 1.15,
     "yieldTTM": 0.48,
@@ -1455,7 +1533,10 @@
         "year": 2024,
         "dividendPerShare": 0.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLY",
@@ -1481,7 +1562,7 @@
     "divGrowth5Y": 8.97,
     "divGrowth10Y": 4.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 52,
     "beta": 1.18,
     "yieldTTM": 0.9,
@@ -1509,7 +1590,10 @@
         "year": 2024,
         "dividendPerShare": 1.16
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLP",
@@ -1535,7 +1619,7 @@
     "divGrowth5Y": 4.34,
     "divGrowth10Y": 5.7,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 38,
     "beta": 0.62,
     "yieldTTM": 2.4,
@@ -1563,7 +1647,10 @@
         "year": 2024,
         "dividendPerShare": 1.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IEFA",
@@ -1589,7 +1676,7 @@
     "divGrowth5Y": 13.31,
     "divGrowth10Y": 8.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2800,
     "beta": 0.87,
     "yieldTTM": 3.1,
@@ -1599,7 +1686,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -1617,7 +1704,10 @@
         "year": 2024,
         "dividendPerShare": 1.6
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "AGG",
@@ -1643,7 +1733,7 @@
     "divGrowth5Y": 10.69,
     "divGrowth10Y": 3.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 9800,
     "beta": 0.06,
     "yieldTTM": 2.85,
@@ -1671,7 +1761,10 @@
         "year": 2024,
         "dividendPerShare": 2.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWZ",
@@ -1697,7 +1790,7 @@
     "divGrowth5Y": 12.8,
     "divGrowth10Y": 14.09,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 56,
     "beta": 0.82,
     "yieldTTM": 3.2,
@@ -1725,7 +1818,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "FXI",
@@ -1751,7 +1847,7 @@
     "divGrowth5Y": 2.07,
     "divGrowth10Y": -0.97,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 50,
     "beta": 0.9,
     "yieldTTM": 2.8,
@@ -1779,7 +1875,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IEMG",
@@ -1805,7 +1904,7 @@
     "divGrowth5Y": 9.14,
     "divGrowth10Y": 7.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2850,
     "beta": 0.9,
     "yieldTTM": 2.2,
@@ -1833,7 +1932,10 @@
         "year": 2024,
         "dividendPerShare": 1.28
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VEA",
@@ -1859,7 +1961,7 @@
     "divGrowth5Y": 12,
     "divGrowth10Y": 6.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 3900,
     "beta": 0.86,
     "yieldTTM": 3.05,
@@ -1869,7 +1971,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -1887,7 +1989,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLU",
@@ -1913,7 +2018,7 @@
     "divGrowth5Y": 3.99,
     "divGrowth10Y": 4.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 31,
     "beta": 0.52,
     "yieldTTM": 3.1,
@@ -1939,9 +2044,12 @@
       },
       {
         "year": 2024,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "KRE",
@@ -1967,7 +2075,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 130,
     "beta": 1.1,
     "yieldTTM": 1.5,
@@ -1977,7 +2085,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -1995,7 +2103,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWF",
@@ -2021,7 +2132,7 @@
     "divGrowth5Y": 2.12,
     "divGrowth10Y": 1.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 421,
     "beta": 1.14,
     "yieldTTM": 0.55,
@@ -2049,7 +2160,10 @@
         "year": 2024,
         "dividendPerShare": 1.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "KWEB",
@@ -2075,7 +2189,7 @@
     "divGrowth5Y": -4.07,
     "divGrowth10Y": 17.62,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 35,
     "beta": 0.98,
     "yieldTTM": 0.3,
@@ -2085,25 +2199,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XOP",
@@ -2129,7 +2246,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 56,
     "beta": 0.85,
     "yieldTTM": 1.2,
@@ -2157,7 +2274,10 @@
         "year": 2024,
         "dividendPerShare": 1.44
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VCIT",
@@ -2183,7 +2303,7 @@
     "divGrowth5Y": 9.23,
     "divGrowth10Y": 3.4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1900,
     "beta": 0.15,
     "yieldTTM": 3.8,
@@ -2211,7 +2331,10 @@
         "year": 2024,
         "dividendPerShare": 1.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHD",
@@ -2237,7 +2360,7 @@
     "divGrowth5Y": 8.68,
     "divGrowth10Y": 10.43,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 0.78,
     "yieldTTM": 3.9,
@@ -2265,7 +2388,10 @@
         "year": 2024,
         "dividendPerShare": 2.08
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SPYM",
@@ -2291,7 +2417,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 1.1,
     "yieldTTM": 0.7,
@@ -2319,7 +2445,10 @@
         "year": 2024,
         "dividendPerShare": 0.32
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IEF",
@@ -2345,7 +2474,7 @@
     "divGrowth5Y": 27.83,
     "divGrowth10Y": 6.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 13,
     "beta": 0.1,
     "yieldTTM": 1.8,
@@ -2373,7 +2502,10 @@
         "year": 2024,
         "dividendPerShare": 0.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLC",
@@ -2399,7 +2531,7 @@
     "divGrowth5Y": 24.05,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 26,
     "beta": 1.1,
     "yieldTTM": 0.8,
@@ -2427,7 +2559,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EMB",
@@ -2453,7 +2588,7 @@
     "divGrowth5Y": 2.29,
     "divGrowth10Y": -0.89,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 600,
     "beta": 0.38,
     "yieldTTM": 5.6,
@@ -2481,7 +2616,10 @@
         "year": 2024,
         "dividendPerShare": 2.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "BND",
@@ -2507,7 +2645,7 @@
     "divGrowth5Y": 7.48,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 10600,
     "beta": 0.06,
     "yieldTTM": 2.9,
@@ -2517,7 +2655,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       },
       {
         "year": 2021,
@@ -2535,7 +2673,10 @@
         "year": 2024,
         "dividendPerShare": 2.16
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "ACWI",
@@ -2561,7 +2702,7 @@
     "divGrowth5Y": 9.27,
     "divGrowth10Y": 4.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2400,
     "beta": 0.95,
     "yieldTTM": 1.8,
@@ -2589,7 +2730,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VUG",
@@ -2615,7 +2759,7 @@
     "divGrowth5Y": 3.59,
     "divGrowth10Y": 3.75,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 225,
     "beta": 1.13,
     "yieldTTM": 0.52,
@@ -2643,7 +2787,10 @@
         "year": 2024,
         "dividendPerShare": 1.6
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IJH",
@@ -2669,7 +2816,7 @@
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 400,
     "beta": 1.07,
     "yieldTTM": 1.5,
@@ -2697,7 +2844,10 @@
         "year": 2024,
         "dividendPerShare": 2.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VXUS",
@@ -2723,7 +2873,7 @@
     "divGrowth5Y": 11.35,
     "divGrowth10Y": 6.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 7800,
     "beta": 0.85,
     "yieldTTM": 2.8,
@@ -2733,7 +2883,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -2751,7 +2901,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWJ",
@@ -2777,7 +2930,7 @@
     "divGrowth5Y": 36.77,
     "divGrowth10Y": 17.66,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 250,
     "beta": 0.6,
     "yieldTTM": 1.5,
@@ -2805,7 +2958,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "ARKK",
@@ -2831,10 +2987,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": 4.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 35,
     "beta": 1.55,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2014-10-31",
     "category": "Disruptive Innovation",
     "dividendFrequency": "None",
@@ -2859,7 +3015,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWD",
@@ -2885,7 +3044,7 @@
     "divGrowth5Y": 6.39,
     "divGrowth10Y": 3.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 848,
     "beta": 0.86,
     "yieldTTM": 1.9,
@@ -2913,7 +3072,10 @@
         "year": 2024,
         "dividendPerShare": 2.64
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLB",
@@ -2939,7 +3101,7 @@
     "divGrowth5Y": 6.09,
     "divGrowth10Y": 6.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 28,
     "beta": 0.95,
     "yieldTTM": 2.1,
@@ -2967,7 +3129,10 @@
         "year": 2024,
         "dividendPerShare": 1.44
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VTV",
@@ -2993,7 +3158,7 @@
     "divGrowth5Y": 5.88,
     "divGrowth10Y": 6.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 335,
     "beta": 0.87,
     "yieldTTM": 1.8,
@@ -3021,7 +3186,10 @@
         "year": 2024,
         "dividendPerShare": 3.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IAU",
@@ -3047,10 +3215,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.04,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2005-01-21",
     "category": "Gold",
     "dividendFrequency": "None",
@@ -3075,7 +3243,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IYR",
@@ -3101,7 +3272,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 75,
     "beta": 0.85,
     "yieldTTM": 2.6,
@@ -3129,7 +3300,10 @@
         "year": 2024,
         "dividendPerShare": 1.92
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "URTH",
@@ -3155,7 +3329,7 @@
     "divGrowth5Y": 9.01,
     "divGrowth10Y": 5.74,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1400,
     "beta": 0.96,
     "yieldTTM": 1.9,
@@ -3183,7 +3357,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VGT",
@@ -3209,7 +3386,7 @@
     "divGrowth5Y": 2.54,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 370,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -3237,7 +3414,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IJR",
@@ -3263,7 +3443,7 @@
     "divGrowth5Y": 9.03,
     "divGrowth10Y": 6.94,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 600,
     "beta": 1.1,
     "yieldTTM": 1.2,
@@ -3291,7 +3471,10 @@
         "year": 2024,
         "dividendPerShare": 1.36
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "JEPQ",
@@ -3317,7 +3500,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 105,
     "beta": 0.82,
     "yieldTTM": 10.5,
@@ -3345,7 +3528,10 @@
         "year": 2024,
         "dividendPerShare": 6.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VWO",
@@ -3371,7 +3557,7 @@
     "divGrowth5Y": 9.19,
     "divGrowth10Y": 3.59,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 5100,
     "beta": 0.88,
     "yieldTTM": 2.5,
@@ -3399,7 +3585,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWT",
@@ -3425,9 +3614,9 @@
     "divGrowth5Y": 15.11,
     "divGrowth10Y": 14.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 87,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.8,
     "inceptionDate": "2000-06-20",
     "category": "Taiwan",
@@ -3453,7 +3642,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VCSH",
@@ -3479,7 +3671,7 @@
     "divGrowth5Y": 15.73,
     "divGrowth10Y": 7.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2400,
     "beta": 0.07,
     "yieldTTM": 3.2,
@@ -3507,7 +3699,10 @@
         "year": 2024,
         "dividendPerShare": 1.04
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VT",
@@ -3533,7 +3728,7 @@
     "divGrowth5Y": 9.91,
     "divGrowth10Y": 6.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 9500,
     "beta": 0.93,
     "yieldTTM": 1.75,
@@ -3561,7 +3756,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XRT",
@@ -3587,7 +3785,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 1.12,
     "yieldTTM": 0.9,
@@ -3615,7 +3813,10 @@
         "year": 2024,
         "dividendPerShare": 0.56
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "JEPI",
@@ -3641,10 +3842,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 130,
     "beta": 0.55,
-    "yieldTTM": 7.0,
+    "yieldTTM": 7,
     "inceptionDate": "2020-05-20",
     "category": "US Covered Call Income",
     "dividendFrequency": "Monthly",
@@ -3669,7 +3870,10 @@
         "year": 2024,
         "dividendPerShare": 6.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHX",
@@ -3695,9 +3899,9 @@
     "divGrowth5Y": 4.49,
     "divGrowth10Y": 5.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 800,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.1,
     "inceptionDate": "2009-11-03",
     "category": "US Large Cap Blend",
@@ -3723,7 +3927,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "COPX",
@@ -3749,7 +3956,7 @@
     "divGrowth5Y": 31.77,
     "divGrowth10Y": 32.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 35,
     "beta": 1.05,
     "yieldTTM": 1.2,
@@ -3777,7 +3984,10 @@
         "year": 2024,
         "dividendPerShare": 0.48
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHG",
@@ -3803,7 +4013,7 @@
     "divGrowth5Y": 9.57,
     "divGrowth10Y": 4.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 250,
     "beta": 1.12,
     "yieldTTM": 0.55,
@@ -3831,7 +4041,10 @@
         "year": 2024,
         "dividendPerShare": 0.56
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SPYG",
@@ -3857,7 +4070,7 @@
     "divGrowth5Y": 3.49,
     "divGrowth10Y": 3.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 233,
     "beta": 1.1,
     "yieldTTM": 0.47,
@@ -3885,7 +4098,10 @@
         "year": 2024,
         "dividendPerShare": 0.48
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "JPST",
@@ -3911,7 +4127,7 @@
     "divGrowth5Y": 32.04,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 120,
     "beta": 0.02,
     "yieldTTM": 1.2,
@@ -3939,7 +4155,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "ETHA",
@@ -3965,10 +4184,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.95,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2024-07-23",
     "category": "Ethereum",
     "dividendFrequency": "None",
@@ -3993,7 +4212,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "QQQI",
@@ -4019,10 +4241,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 101,
     "beta": 0.95,
-    "yieldTTM": 14.0,
+    "yieldTTM": 14,
     "inceptionDate": "2024-01-22",
     "category": "US Covered Call Income",
     "dividendFrequency": "Monthly",
@@ -4047,7 +4269,10 @@
         "year": 2024,
         "dividendPerShare": 4.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VGK",
@@ -4073,7 +4298,7 @@
     "divGrowth5Y": 13.77,
     "divGrowth10Y": 4.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1260,
     "beta": 0.88,
     "yieldTTM": 3.5,
@@ -4101,7 +4326,10 @@
         "year": 2024,
         "dividendPerShare": 1.84
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "GLDM",
@@ -4127,10 +4355,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.04,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2018-06-25",
     "category": "Gold",
     "dividendFrequency": "None",
@@ -4155,7 +4383,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VNQ",
@@ -4181,7 +4412,7 @@
     "divGrowth5Y": 1.64,
     "divGrowth10Y": -0.13,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 159,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -4209,7 +4440,10 @@
         "year": 2024,
         "dividendPerShare": 3.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SPMO",
@@ -4235,7 +4469,7 @@
     "divGrowth5Y": 12.03,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 1.1,
     "yieldTTM": 0.75,
@@ -4263,7 +4497,10 @@
         "year": 2024,
         "dividendPerShare": 0.24
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "MUB",
@@ -4289,7 +4526,7 @@
     "divGrowth5Y": 7.48,
     "divGrowth10Y": 2.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 5000,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -4317,7 +4554,10 @@
         "year": 2024,
         "dividendPerShare": 1.6
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IYW",
@@ -4343,7 +4583,7 @@
     "divGrowth5Y": -6.89,
     "divGrowth10Y": -1.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 150,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -4371,7 +4611,10 @@
         "year": 2024,
         "dividendPerShare": 0.03
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IVW",
@@ -4397,7 +4640,7 @@
     "divGrowth5Y": -0.22,
     "divGrowth10Y": 0.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 233,
     "beta": 1.1,
     "yieldTTM": 0.55,
@@ -4425,7 +4668,10 @@
         "year": 2024,
         "dividendPerShare": 0.44
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SHY",
@@ -4451,7 +4697,7 @@
     "divGrowth5Y": 42.73,
     "divGrowth10Y": 19.99,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 92,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -4479,7 +4725,10 @@
         "year": 2024,
         "dividendPerShare": 0.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SHV",
@@ -4505,7 +4754,7 @@
     "divGrowth5Y": 200.94,
     "divGrowth10Y": 50.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 37,
     "beta": 0.01,
     "yieldTTM": 0.85,
@@ -4533,7 +4782,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWB",
@@ -4559,9 +4811,9 @@
     "divGrowth5Y": 5.56,
     "divGrowth10Y": 5.06,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1001,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 0.94,
     "inceptionDate": "2000-05-15",
     "category": "US Large Cap Blend",
@@ -4587,7 +4839,10 @@
         "year": 2024,
         "dividendPerShare": 2.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VTWO",
@@ -4613,7 +4868,7 @@
     "divGrowth5Y": 8.94,
     "divGrowth10Y": 7.19,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1971,
     "beta": 1.25,
     "yieldTTM": 1.32,
@@ -4641,7 +4896,10 @@
         "year": 2024,
         "dividendPerShare": 1.28
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XLRE",
@@ -4667,7 +4925,7 @@
     "divGrowth5Y": 0.99,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 31,
     "beta": 0.88,
     "yieldTTM": 2.9,
@@ -4695,7 +4953,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "BNO",
@@ -4721,10 +4982,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.38,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2010-06-02",
     "category": "Oil",
     "dividendFrequency": "None",
@@ -4749,7 +5010,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "BNDX",
@@ -4775,7 +5039,7 @@
     "divGrowth5Y": 27.31,
     "divGrowth10Y": 9.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 6800,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -4803,7 +5067,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "INDA",
@@ -4829,7 +5096,7 @@
     "divGrowth5Y": 40.31,
     "divGrowth10Y": 0.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 130,
     "beta": 0.7,
     "yieldTTM": 0.3,
@@ -4839,25 +5106,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IBB",
@@ -4883,7 +5153,7 @@
     "divGrowth5Y": 0.08,
     "divGrowth10Y": 16.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 349,
     "beta": 1.38,
     "yieldTTM": 0.4,
@@ -4911,7 +5181,10 @@
         "year": 2024,
         "dividendPerShare": 0.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VIG",
@@ -4937,7 +5210,7 @@
     "divGrowth5Y": 8.14,
     "divGrowth10Y": 6.91,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 338,
     "beta": 0.8,
     "yieldTTM": 1.7,
@@ -4965,7 +5238,10 @@
         "year": 2024,
         "dividendPerShare": 1.68
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "USMV",
@@ -4991,7 +5267,7 @@
     "divGrowth5Y": 4.29,
     "divGrowth10Y": 5.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 178,
     "beta": 0.68,
     "yieldTTM": 1.8,
@@ -5019,7 +5295,10 @@
         "year": 2024,
         "dividendPerShare": 1.28
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SIL",
@@ -5045,7 +5324,7 @@
     "divGrowth5Y": 1.59,
     "divGrowth10Y": -0.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 25,
     "beta": 0.98,
     "yieldTTM": 0.8,
@@ -5055,25 +5334,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "XHB",
@@ -5099,7 +5381,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 35,
     "beta": 1.2,
     "yieldTTM": 0.7,
@@ -5109,7 +5391,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -5127,7 +5409,10 @@
         "year": 2024,
         "dividendPerShare": 0.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VLUE",
@@ -5153,7 +5438,7 @@
     "divGrowth5Y": 8.63,
     "divGrowth10Y": 5.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 150,
     "beta": 0.88,
     "yieldTTM": 2.2,
@@ -5181,7 +5466,10 @@
         "year": 2024,
         "dividendPerShare": 0.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHB",
@@ -5207,9 +5495,9 @@
     "divGrowth5Y": 4.45,
     "divGrowth10Y": 5.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2500,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.2,
     "inceptionDate": "2009-11-03",
     "category": "US Total Market",
@@ -5235,7 +5523,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VONG",
@@ -5261,7 +5552,7 @@
     "divGrowth5Y": 4.13,
     "divGrowth10Y": 4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 421,
     "beta": 1.14,
     "yieldTTM": 0.52,
@@ -5289,7 +5580,10 @@
         "year": 2024,
         "dividendPerShare": 0.56
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IXUS",
@@ -5315,7 +5609,7 @@
     "divGrowth5Y": 11.95,
     "divGrowth10Y": 7.51,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 4400,
     "beta": 0.85,
     "yieldTTM": 2.6,
@@ -5343,7 +5637,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VEU",
@@ -5369,7 +5666,7 @@
     "divGrowth5Y": 12.6,
     "divGrowth10Y": 5.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 3900,
     "beta": 0.85,
     "yieldTTM": 2.7,
@@ -5397,7 +5694,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VO",
@@ -5423,7 +5723,7 @@
     "divGrowth5Y": 8.41,
     "divGrowth10Y": 7.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 370,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -5451,7 +5751,10 @@
         "year": 2024,
         "dividendPerShare": 3.04
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "ICLN",
@@ -5477,7 +5780,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 0.78,
     "yieldTTM": 0.8,
@@ -5487,25 +5790,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VB",
@@ -5531,7 +5837,7 @@
     "divGrowth5Y": 8.57,
     "divGrowth10Y": 6.36,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1400,
     "beta": 1.18,
     "yieldTTM": 1.12,
@@ -5559,7 +5865,10 @@
         "year": 2024,
         "dividendPerShare": 2.64
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "BSV",
@@ -5585,7 +5894,7 @@
     "divGrowth5Y": 18.49,
     "divGrowth10Y": 10.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2800,
     "beta": 0.05,
     "yieldTTM": 2.8,
@@ -5613,7 +5922,10 @@
         "year": 2024,
         "dividendPerShare": 0.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "TIP",
@@ -5639,7 +5951,7 @@
     "divGrowth5Y": 20.62,
     "divGrowth10Y": 25.09,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 44,
     "beta": 0.16,
     "yieldTTM": 2.8,
@@ -5667,7 +5979,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "ITB",
@@ -5693,7 +6008,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 45,
     "beta": 1.25,
     "yieldTTM": 0.7,
@@ -5703,7 +6018,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -5721,7 +6036,10 @@
         "year": 2024,
         "dividendPerShare": 0.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SPYV",
@@ -5747,7 +6065,7 @@
     "divGrowth5Y": 4.21,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 451,
     "beta": 0.89,
     "yieldTTM": 1.72,
@@ -5775,7 +6093,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SPLV",
@@ -5801,7 +6122,7 @@
     "divGrowth5Y": 7.41,
     "divGrowth10Y": 6.08,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 0.58,
     "yieldTTM": 2.8,
@@ -5829,7 +6150,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VYM",
@@ -5855,10 +6179,10 @@
     "divGrowth5Y": 3.15,
     "divGrowth10Y": 4.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 550,
     "beta": 0.8,
-    "yieldTTM": 3.0,
+    "yieldTTM": 3,
     "inceptionDate": "2006-11-10",
     "category": "US High Dividend",
     "dividendFrequency": "Quarterly",
@@ -5883,7 +6207,10 @@
         "year": 2024,
         "dividendPerShare": 3.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWC",
@@ -5909,7 +6236,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 90,
     "beta": 0.92,
     "yieldTTM": 2.1,
@@ -5937,7 +6264,10 @@
         "year": 2024,
         "dividendPerShare": 0.64
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "ASHR",
@@ -5963,35 +6293,38 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 300,
     "beta": 0.85,
-    "yieldTTM": 2.0,
+    "yieldTTM": 2,
     "inceptionDate": "2013-11-06",
     "category": "China",
     "dividendFrequency": "Annual",
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "GOVT",
@@ -6017,10 +6350,10 @@
     "divGrowth5Y": 8.55,
     "divGrowth10Y": 9.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 230,
     "beta": 0.11,
-    "yieldTTM": 2.0,
+    "yieldTTM": 2,
     "inceptionDate": "2012-02-14",
     "category": "US Treasury Bond",
     "dividendFrequency": "Monthly",
@@ -6045,7 +6378,10 @@
         "year": 2024,
         "dividendPerShare": 0.64
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VGIT",
@@ -6071,7 +6407,7 @@
     "divGrowth5Y": 9.99,
     "divGrowth10Y": 7.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 85,
     "beta": 0.1,
     "yieldTTM": 1.8,
@@ -6099,7 +6435,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWN",
@@ -6125,7 +6464,7 @@
     "divGrowth5Y": 8.52,
     "divGrowth10Y": 4.71,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1396,
     "beta": 1.14,
     "yieldTTM": 1.9,
@@ -6153,7 +6492,10 @@
         "year": 2024,
         "dividendPerShare": 2.16
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "AVUV",
@@ -6179,7 +6521,7 @@
     "divGrowth5Y": 13.11,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 700,
     "beta": 1.08,
     "yieldTTM": 1.9,
@@ -6207,7 +6549,10 @@
         "year": 2024,
         "dividendPerShare": 1.04
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "MCHI",
@@ -6233,7 +6578,7 @@
     "divGrowth5Y": 10.22,
     "divGrowth10Y": 3.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 600,
     "beta": 0.9,
     "yieldTTM": 2.5,
@@ -6261,7 +6606,10 @@
         "year": 2024,
         "dividendPerShare": 0.64
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "REMX",
@@ -6287,7 +6635,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 22,
     "beta": 0.88,
     "yieldTTM": 0.9,
@@ -6297,25 +6645,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "KBE",
@@ -6341,7 +6692,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 90,
     "beta": 1.08,
     "yieldTTM": 1.6,
@@ -6369,7 +6720,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "UNG",
@@ -6395,10 +6749,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.1,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2007-04-18",
     "category": "Natural Gas",
     "dividendFrequency": "None",
@@ -6423,7 +6777,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IVE",
@@ -6449,10 +6806,10 @@
     "divGrowth5Y": 3.6,
     "divGrowth10Y": 4.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 451,
     "beta": 0.89,
-    "yieldTTM": 2.0,
+    "yieldTTM": 2,
     "inceptionDate": "2000-05-22",
     "category": "US Large Cap Value",
     "dividendFrequency": "Quarterly",
@@ -6477,7 +6834,10 @@
         "year": 2024,
         "dividendPerShare": 3.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IHI",
@@ -6503,7 +6863,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 52,
     "beta": 0.82,
     "yieldTTM": 0.35,
@@ -6513,7 +6873,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -6531,7 +6891,10 @@
         "year": 2024,
         "dividendPerShare": 0.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SPYI",
@@ -6557,10 +6920,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 503,
     "beta": 0.72,
-    "yieldTTM": 12.0,
+    "yieldTTM": 12,
     "inceptionDate": "2022-08-30",
     "category": "US Covered Call Income",
     "dividendFrequency": "Monthly",
@@ -6585,7 +6948,10 @@
         "year": 2024,
         "dividendPerShare": 6.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCZ",
@@ -6611,7 +6977,7 @@
     "divGrowth5Y": 16.23,
     "divGrowth10Y": 8.78,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2200,
     "beta": 0.92,
     "yieldTTM": 2.4,
@@ -6639,7 +7005,10 @@
         "year": 2024,
         "dividendPerShare": 1.04
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VTIP",
@@ -6665,7 +7034,7 @@
     "divGrowth5Y": 20.68,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 43,
     "beta": 0.06,
     "yieldTTM": 2.6,
@@ -6693,7 +7062,10 @@
         "year": 2024,
         "dividendPerShare": 0.64
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VV",
@@ -6719,9 +7091,9 @@
     "divGrowth5Y": 6.01,
     "divGrowth10Y": 6.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 540,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 1.1,
     "inceptionDate": "2004-01-27",
     "category": "US Large Cap Blend",
@@ -6747,7 +7119,10 @@
         "year": 2024,
         "dividendPerShare": 2.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "FDN",
@@ -6773,7 +7148,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 40,
     "beta": 1.2,
     "yieldTTM": 0.15,
@@ -6783,25 +7158,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHH",
@@ -6827,7 +7205,7 @@
     "divGrowth5Y": 5.54,
     "divGrowth10Y": 2.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 135,
     "beta": 0.83,
     "yieldTTM": 3.5,
@@ -6855,7 +7233,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "BIV",
@@ -6881,7 +7262,7 @@
     "divGrowth5Y": 1.86,
     "divGrowth10Y": 2.54,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2100,
     "beta": 0.12,
     "yieldTTM": 3.4,
@@ -6909,7 +7290,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "MGK",
@@ -6935,7 +7319,7 @@
     "divGrowth5Y": 2.22,
     "divGrowth10Y": 1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 85,
     "beta": 1.15,
     "yieldTTM": 0.48,
@@ -6963,7 +7347,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "PHYS",
@@ -6989,10 +7376,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.04,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2010-02-26",
     "category": "Gold",
     "dividendFrequency": "None",
@@ -7017,7 +7404,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 5.4123,
+    "eps": 0,
+    "marketCap": 17306370000
   },
   {
     "symbol": "VOOG",
@@ -7043,7 +7433,7 @@
     "divGrowth5Y": 2.77,
     "divGrowth10Y": 3.55,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 233,
     "beta": 1.1,
     "yieldTTM": 0.5,
@@ -7071,7 +7461,10 @@
         "year": 2024,
         "dividendPerShare": 0.56
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VDE",
@@ -7097,7 +7490,7 @@
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 1.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 0.8,
     "yieldTTM": 3.2,
@@ -7107,7 +7500,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       },
       {
         "year": 2021,
@@ -7125,7 +7518,10 @@
         "year": 2024,
         "dividendPerShare": 2.56
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "CIBR",
@@ -7151,7 +7547,7 @@
     "divGrowth5Y": 34.48,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 40,
     "beta": 1.05,
     "yieldTTM": 0.3,
@@ -7161,25 +7557,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DGRO",
@@ -7205,7 +7604,7 @@
     "divGrowth5Y": 7.09,
     "divGrowth10Y": 8.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 416,
     "beta": 0.82,
     "yieldTTM": 2.5,
@@ -7233,7 +7632,10 @@
         "year": 2024,
         "dividendPerShare": 1.36
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWO",
@@ -7259,7 +7661,7 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 2.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1130,
     "beta": 1.38,
     "yieldTTM": 0.5,
@@ -7287,7 +7689,10 @@
         "year": 2024,
         "dividendPerShare": 1.12
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWP",
@@ -7313,7 +7718,7 @@
     "divGrowth5Y": 6.83,
     "divGrowth10Y": -0.77,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 320,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -7341,7 +7746,10 @@
         "year": 2024,
         "dividendPerShare": 0.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SGOL",
@@ -7367,10 +7775,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.04,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2009-09-09",
     "category": "Gold",
     "dividendFrequency": "None",
@@ -7395,7 +7803,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VGLT",
@@ -7421,7 +7832,7 @@
     "divGrowth5Y": 4.9,
     "divGrowth10Y": 2.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 55,
     "beta": 0.24,
     "yieldTTM": 2.5,
@@ -7449,7 +7860,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHV",
@@ -7475,7 +7889,7 @@
     "divGrowth5Y": 1.42,
     "divGrowth10Y": 4.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 360,
     "beta": 0.87,
     "yieldTTM": 1.9,
@@ -7503,7 +7917,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "GBTC",
@@ -7529,10 +7946,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.85,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2013-09-25",
     "category": "Bitcoin",
     "dividendFrequency": "None",
@@ -7557,7 +7974,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 24187258000
   },
   {
     "symbol": "VPL",
@@ -7583,7 +8003,7 @@
     "divGrowth5Y": 18.03,
     "divGrowth10Y": 10.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2400,
     "beta": 0.68,
     "yieldTTM": 2.1,
@@ -7611,7 +8031,10 @@
         "year": 2024,
         "dividendPerShare": 0.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWW",
@@ -7637,7 +8060,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 65,
     "beta": 0.72,
     "yieldTTM": 2.2,
@@ -7665,7 +8088,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "TAN",
@@ -7691,7 +8117,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 38,
     "beta": 0.82,
     "yieldTTM": 0.6,
@@ -7701,25 +8127,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHP",
@@ -7745,7 +8174,7 @@
     "divGrowth5Y": 20.3,
     "divGrowth10Y": 23.27,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 47,
     "beta": 0.16,
     "yieldTTM": 2.7,
@@ -7773,7 +8202,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWG",
@@ -7799,7 +8231,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 67,
     "beta": 0.9,
     "yieldTTM": 2.3,
@@ -7827,7 +8259,10 @@
         "year": 2024,
         "dividendPerShare": 0.72
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IUSV",
@@ -7853,10 +8288,10 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 700,
     "beta": 0.88,
-    "yieldTTM": 2.0,
+    "yieldTTM": 2,
     "inceptionDate": "2000-07-25",
     "category": "US Large Cap Value",
     "dividendFrequency": "Quarterly",
@@ -7881,7 +8316,10 @@
         "year": 2024,
         "dividendPerShare": 1.44
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "ARKG",
@@ -7907,10 +8345,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 38,
     "beta": 1.42,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2014-10-31",
     "category": "Biotech",
     "dividendFrequency": "None",
@@ -7935,7 +8373,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IYE",
@@ -7961,7 +8402,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 52,
     "beta": 0.8,
     "yieldTTM": 2.5,
@@ -7989,7 +8430,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "FNDX",
@@ -8015,7 +8459,7 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 8.37,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1000,
     "beta": 0.9,
     "yieldTTM": 1.8,
@@ -8043,7 +8487,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VXF",
@@ -8069,7 +8516,7 @@
     "divGrowth5Y": 1.87,
     "divGrowth10Y": 5.66,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 3300,
     "beta": 1.12,
     "yieldTTM": 1.1,
@@ -8097,7 +8544,10 @@
         "year": 2024,
         "dividendPerShare": 1.92
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DBC",
@@ -8123,7 +8573,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 14,
     "beta": 0.2,
     "yieldTTM": 2.5,
@@ -8133,15 +8583,15 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
@@ -8151,7 +8601,10 @@
         "year": 2024,
         "dividendPerShare": 0.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHO",
@@ -8177,7 +8630,7 @@
     "divGrowth5Y": 31.05,
     "divGrowth10Y": 18.09,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 80,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -8205,7 +8658,10 @@
         "year": 2024,
         "dividendPerShare": 0.4
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHA",
@@ -8231,7 +8687,7 @@
     "divGrowth5Y": 8.16,
     "divGrowth10Y": 5.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1750,
     "beta": 1.15,
     "yieldTTM": 1.3,
@@ -8259,7 +8715,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "QYLD",
@@ -8285,10 +8744,10 @@
     "divGrowth5Y": -4.79,
     "divGrowth10Y": -0.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 101,
     "beta": 0.72,
-    "yieldTTM": 11.0,
+    "yieldTTM": 11,
     "inceptionDate": "2013-12-11",
     "category": "US Covered Call Income",
     "dividendFrequency": "Monthly",
@@ -8313,7 +8772,10 @@
         "year": 2024,
         "dividendPerShare": 3.04
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWU",
@@ -8339,7 +8801,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 88,
     "beta": 0.82,
     "yieldTTM": 3.5,
@@ -8367,7 +8829,10 @@
         "year": 2024,
         "dividendPerShare": 0.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VBK",
@@ -8393,7 +8858,7 @@
     "divGrowth5Y": 7.15,
     "divGrowth10Y": 1.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 820,
     "beta": 1.32,
     "yieldTTM": 0.52,
@@ -8421,7 +8886,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VFH",
@@ -8447,7 +8915,7 @@
     "divGrowth5Y": 3.64,
     "divGrowth10Y": 6.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 420,
     "beta": 1.02,
     "yieldTTM": 1.8,
@@ -8475,7 +8943,10 @@
         "year": 2024,
         "dividendPerShare": 1.92
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHZ",
@@ -8501,7 +8972,7 @@
     "divGrowth5Y": 7.94,
     "divGrowth10Y": 5.67,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 4200,
     "beta": 0.06,
     "yieldTTM": 2.8,
@@ -8529,7 +9000,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VBR",
@@ -8555,7 +9029,7 @@
     "divGrowth5Y": 9.54,
     "divGrowth10Y": 6.26,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 830,
     "beta": 1.07,
     "yieldTTM": 1.95,
@@ -8583,7 +9057,10 @@
         "year": 2024,
         "dividendPerShare": 3.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWH",
@@ -8609,7 +9086,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 38,
     "beta": 0.6,
     "yieldTTM": 3.6,
@@ -8637,7 +9114,10 @@
         "year": 2024,
         "dividendPerShare": 0.64
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "CQQQ",
@@ -8663,7 +9143,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 60,
     "beta": 0.95,
     "yieldTTM": 0.4,
@@ -8673,25 +9153,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "COWZ",
@@ -8717,7 +9200,7 @@
     "divGrowth5Y": 13.2,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 0.9,
     "yieldTTM": 1.5,
@@ -8745,7 +9228,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "HDV",
@@ -8771,7 +9257,7 @@
     "divGrowth5Y": 2.29,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 75,
     "beta": 0.72,
     "yieldTTM": 3.8,
@@ -8799,7 +9285,10 @@
         "year": 2024,
         "dividendPerShare": 3.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DGRW",
@@ -8825,7 +9314,7 @@
     "divGrowth5Y": 3.97,
     "divGrowth10Y": 7.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 300,
     "beta": 0.88,
     "yieldTTM": 1.8,
@@ -8853,7 +9342,10 @@
         "year": 2024,
         "dividendPerShare": 0.8
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DBA",
@@ -8879,7 +9371,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 10,
     "beta": 0.1,
     "yieldTTM": 0.9,
@@ -8907,7 +9399,10 @@
         "year": 2024,
         "dividendPerShare": 0.56
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VSS",
@@ -8933,7 +9428,7 @@
     "divGrowth5Y": 11.12,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 3600,
     "beta": 0.88,
     "yieldTTM": 2.8,
@@ -8961,7 +9456,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VHT",
@@ -8987,7 +9485,7 @@
     "divGrowth5Y": 10.1,
     "divGrowth10Y": 8.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 440,
     "beta": 0.72,
     "yieldTTM": 1.5,
@@ -9015,7 +9513,10 @@
         "year": 2024,
         "dividendPerShare": 2.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EWA",
@@ -9041,10 +9542,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 70,
     "beta": 0.82,
-    "yieldTTM": 4.0,
+    "yieldTTM": 4,
     "inceptionDate": "1996-03-12",
     "category": "Australia",
     "dividendFrequency": "Semi-Annual",
@@ -9069,7 +9570,10 @@
         "year": 2024,
         "dividendPerShare": 0.56
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IWC",
@@ -9095,7 +9599,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1400,
     "beta": 1.3,
     "yieldTTM": 1.5,
@@ -9123,7 +9627,10 @@
         "year": 2024,
         "dividendPerShare": 1.04
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "BOTZ",
@@ -9149,7 +9656,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 45,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -9159,25 +9666,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VDC",
@@ -9203,7 +9713,7 @@
     "divGrowth5Y": 0.54,
     "divGrowth10Y": 2.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 0.6,
     "yieldTTM": 2.2,
@@ -9217,7 +9727,7 @@
       },
       {
         "year": 2021,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       },
       {
         "year": 2022,
@@ -9231,7 +9741,10 @@
         "year": 2024,
         "dividendPerShare": 2.24
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "EFAV",
@@ -9257,10 +9770,10 @@
     "divGrowth5Y": 16.88,
     "divGrowth10Y": 5.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 290,
     "beta": 0.65,
-    "yieldTTM": 3.0,
+    "yieldTTM": 3,
     "inceptionDate": "2011-10-18",
     "category": "International Min Vol",
     "dividendFrequency": "Semi-Annual",
@@ -9285,7 +9798,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DVY",
@@ -9311,7 +9827,7 @@
     "divGrowth5Y": 8.2,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 99,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -9339,7 +9855,10 @@
         "year": 2024,
         "dividendPerShare": 3.68
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "PPLT",
@@ -9365,10 +9884,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.05,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2010-01-08",
     "category": "Platinum",
     "dividendFrequency": "None",
@@ -9393,7 +9912,10 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "NOBL",
@@ -9419,7 +9941,7 @@
     "divGrowth5Y": 5.49,
     "divGrowth10Y": 8.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 66,
     "beta": 0.8,
     "yieldTTM": 2.4,
@@ -9447,7 +9969,10 @@
         "year": 2024,
         "dividendPerShare": 1.44
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "QTEC",
@@ -9473,7 +9998,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 42,
     "beta": 1.25,
     "yieldTTM": 0.4,
@@ -9483,7 +10008,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -9501,7 +10026,10 @@
         "year": 2024,
         "dividendPerShare": 0.28
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "FDL",
@@ -9527,7 +10055,7 @@
     "divGrowth5Y": 7.56,
     "divGrowth10Y": 8.31,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 100,
     "beta": 0.75,
     "yieldTTM": 3.8,
@@ -9555,7 +10083,10 @@
         "year": 2024,
         "dividendPerShare": 1.76
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "BLV",
@@ -9581,7 +10112,7 @@
     "divGrowth5Y": -12.35,
     "divGrowth10Y": -1.22,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 2800,
     "beta": 0.22,
     "yieldTTM": 3.8,
@@ -9609,7 +10140,10 @@
         "year": 2024,
         "dividendPerShare": 2.24
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "FDVV",
@@ -9635,7 +10169,7 @@
     "divGrowth5Y": 10.85,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 102,
     "beta": 0.82,
     "yieldTTM": 3.5,
@@ -9663,7 +10197,10 @@
         "year": 2024,
         "dividendPerShare": 1.68
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "LIT",
@@ -9689,7 +10226,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 40,
     "beta": 0.95,
     "yieldTTM": 0.8,
@@ -9699,25 +10236,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SPHD",
@@ -9743,7 +10283,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 51,
     "beta": 0.55,
     "yieldTTM": 4.2,
@@ -9771,7 +10311,10 @@
         "year": 2024,
         "dividendPerShare": 1.68
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VPU",
@@ -9797,7 +10340,7 @@
     "divGrowth5Y": 2.82,
     "divGrowth10Y": 4.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 67,
     "beta": 0.5,
     "yieldTTM": 3.2,
@@ -9825,7 +10368,10 @@
         "year": 2024,
         "dividendPerShare": 4.24
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DIVO",
@@ -9851,7 +10397,7 @@
     "divGrowth5Y": 11.6,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 30,
     "beta": 0.78,
     "yieldTTM": 4.8,
@@ -9879,7 +10425,10 @@
         "year": 2024,
         "dividendPerShare": 1.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SCHM",
@@ -9905,7 +10454,7 @@
     "divGrowth5Y": 11.14,
     "divGrowth10Y": 6.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 500,
     "beta": 1.03,
     "yieldTTM": 1.2,
@@ -9933,7 +10482,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IJS",
@@ -9959,7 +10511,7 @@
     "divGrowth5Y": 13.67,
     "divGrowth10Y": 7.69,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 459,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -9987,7 +10539,10 @@
         "year": 2024,
         "dividendPerShare": 1.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SDY",
@@ -10013,7 +10568,7 @@
     "divGrowth5Y": 3.14,
     "divGrowth10Y": -2.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 136,
     "beta": 0.83,
     "yieldTTM": 3.7,
@@ -10041,7 +10596,10 @@
         "year": 2024,
         "dividendPerShare": 3.04
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SKYY",
@@ -10067,7 +10625,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 68,
     "beta": 1.12,
     "yieldTTM": 0.2,
@@ -10077,25 +10635,28 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "RPG",
@@ -10121,7 +10682,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 72,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -10131,7 +10692,7 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
@@ -10149,7 +10710,10 @@
         "year": 2024,
         "dividendPerShare": 0.2
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "RWR",
@@ -10175,7 +10739,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 104,
     "beta": 0.82,
     "yieldTTM": 3.5,
@@ -10203,7 +10767,10 @@
         "year": 2024,
         "dividendPerShare": 3.52
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "USRT",
@@ -10229,7 +10796,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 140,
     "beta": 0.84,
     "yieldTTM": 3.4,
@@ -10257,7 +10824,10 @@
         "year": 2024,
         "dividendPerShare": 1.68
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "MGC",
@@ -10283,9 +10853,9 @@
     "divGrowth5Y": 4.86,
     "divGrowth10Y": 4.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 232,
-    "beta": 1.0,
+    "beta": 1,
     "yieldTTM": 0.95,
     "inceptionDate": "2007-12-17",
     "category": "US Mega Cap Blend",
@@ -10311,7 +10881,10 @@
         "year": 2024,
         "dividendPerShare": 1.28
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IYH",
@@ -10337,7 +10910,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 119,
     "beta": 0.72,
     "yieldTTM": 1.8,
@@ -10365,7 +10938,10 @@
         "year": 2024,
         "dividendPerShare": 2.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "FBT",
@@ -10391,7 +10967,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 20,
     "beta": 1.3,
     "yieldTTM": 0.2,
@@ -10401,15 +10977,15 @@
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
@@ -10419,7 +10995,10 @@
         "year": 2024,
         "dividendPerShare": 0.02
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "PBW",
@@ -10445,7 +11024,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 43,
     "beta": 0.9,
     "yieldTTM": 0.7,
@@ -10473,7 +11052,10 @@
         "year": 2024,
         "dividendPerShare": 0.48
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "IJK",
@@ -10499,7 +11081,7 @@
     "divGrowth5Y": 5.68,
     "divGrowth10Y": 3.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 244,
     "beta": 1.15,
     "yieldTTM": 0.55,
@@ -10527,7 +11109,10 @@
         "year": 2024,
         "dividendPerShare": 0.48
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VCR",
@@ -10553,7 +11138,7 @@
     "divGrowth5Y": -8.46,
     "divGrowth10Y": 3.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 300,
     "beta": 1.18,
     "yieldTTM": 0.8,
@@ -10581,7 +11166,10 @@
         "year": 2024,
         "dividendPerShare": 0.88
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "VIS",
@@ -10607,7 +11195,7 @@
     "divGrowth5Y": 6.64,
     "divGrowth10Y": 2.13,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 350,
     "beta": 1.05,
     "yieldTTM": 1.1,
@@ -10625,7 +11213,7 @@
       },
       {
         "year": 2022,
-        "dividendPerShare": 2.0
+        "dividendPerShare": 2
       },
       {
         "year": 2023,
@@ -10635,7 +11223,10 @@
         "year": 2024,
         "dividendPerShare": 2.16
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "DBO",
@@ -10661,35 +11252,38 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.38,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2007-01-05",
     "category": "Oil",
     "dividendFrequency": "Annual",
     "dividendHistory": [
       {
         "year": 2020,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2021,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2022,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2023,
-        "dividendPerShare": 0.0
+        "dividendPerShare": 0
       },
       {
         "year": 2024,
         "dividendPerShare": 0.16
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "SLYV",
@@ -10715,7 +11309,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 459,
     "beta": 1.05,
     "yieldTTM": 1.5,
@@ -10743,7 +11337,10 @@
         "year": 2024,
         "dividendPerShare": 0.96
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   },
   {
     "symbol": "WEAT",
@@ -10769,10 +11366,10 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-16T05:02:05.561Z",
+    "updatedAt": "2026-05-16T22:31:38.423Z",
     "numHoldings": 1,
     "beta": 0.05,
-    "yieldTTM": 0.0,
+    "yieldTTM": 0,
     "inceptionDate": "2011-09-19",
     "category": "Agriculture",
     "dividendFrequency": "None",
@@ -10797,6 +11394,9 @@
         "year": 2024,
         "dividendPerShare": null
       }
-    ]
+    ],
+    "peRatio": 0,
+    "eps": 0,
+    "marketCap": 0
   }
 ]
