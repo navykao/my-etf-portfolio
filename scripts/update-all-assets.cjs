@@ -243,7 +243,7 @@ async function updateAllAssets() {
   try {
     const raw = fs.readFileSync(CONFIG.DATA_FILE, 'utf8');
     existingData = JSON.parse(raw);
-    console.log(`[Data] ✅ Loaded ${existingData.length} assets\n`); existingData = existingData.slice(0, 10);
+    console.log(`[Data] ✅ Loaded ${existingData.length} assets\n`); 
   } catch (error) {
     console.error('[Data] ❌ Failed to load JSON:', error.message);
     process.exit(1);
