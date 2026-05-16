@@ -1,0 +1,57 @@
+# ============================================
+# GitHub Actions: Weekly ETF Profile Update
+# รันทุกวันจันทร์ 06:00 AM ไทย (23:00 UTC อาทิตย์)
+# อัพเดท: totalAssets, expenseRatio, numHoldings,
+#          inceptionDate, category
+# Source: FMP /etf-info (Free 250 req/day)
+# ============================================
+
+name: 📈 Weekly ETF Profile Update
+
+on:
+  schedule:
+    - cron: '0 23 * * 0'   # อาทิตย์ 23:00 UTC = จันทร์ 06:00 ไทย
+  workflow_dispatch:         # รันมือได้
+
+jobs:
+  update-etf-profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20     # 200 ETFs × 0.3s = ~1 นาที (เผื่อไว้ 20 นาที)
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📈 Update ETF Profile data
+        env:
+          FMP0N8_API_KEY: ${{ secrets.FMP0N8_API_KEY }}
+        run: |
+          echo "🚀 Starting weekly ETF profile update..."
+          node scripts/update-etf-profile.cjs
+
+      - name: 🔍 Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet public/data/etfs.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes in etfs.json"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✅ etfs.json has been updated"
+          fi
+
+      - name: 📤 Commit and push updated ETF data
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/etfs.json
+          git commit -m "📈 Weekly ETF profile update: $(date -u '+%Y-%m-%d')"
+          git push
