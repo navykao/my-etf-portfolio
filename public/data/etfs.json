@@ -23,7 +23,7 @@
     "divGrowth5Y": 5.82,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 505,
     "beta": 1,
     "yieldTTM": 1.28,
@@ -84,7 +84,7 @@
     "divGrowth5Y": 9.72,
     "divGrowth10Y": 9.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 103,
     "beta": 1.15,
     "yieldTTM": 0.5,
@@ -145,7 +145,7 @@
     "divGrowth5Y": 4.63,
     "divGrowth10Y": 4.23,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1795,
     "beta": 1.25,
     "yieldTTM": 1.36,
@@ -206,7 +206,7 @@
     "divGrowth5Y": 7.03,
     "divGrowth10Y": 14.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 26,
     "beta": 1.35,
     "yieldTTM": 0.55,
@@ -267,7 +267,7 @@
     "divGrowth5Y": 7.22,
     "divGrowth10Y": 5.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 467,
     "beta": 1,
     "yieldTTM": 1.27,
@@ -328,7 +328,7 @@
     "divGrowth5Y": 5.76,
     "divGrowth10Y": 6.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 518,
     "beta": 1,
     "yieldTTM": 1.26,
@@ -389,7 +389,7 @@
     "divGrowth5Y": 9.81,
     "divGrowth10Y": 15.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 33,
     "beta": 1.33,
     "yieldTTM": 0.6,
@@ -450,7 +450,7 @@
     "divGrowth5Y": 2.88,
     "divGrowth10Y": -0.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1000,
     "beta": 0.35,
     "yieldTTM": 5.8,
@@ -511,7 +511,7 @@
     "divGrowth5Y": 7.4,
     "divGrowth10Y": 2.23,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1100,
     "beta": 0.15,
     "yieldTTM": 3.9,
@@ -572,7 +572,7 @@
     "divGrowth5Y": 3.95,
     "divGrowth10Y": 12.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 107,
     "beta": 0.98,
     "yieldTTM": 1.2,
@@ -633,7 +633,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -694,7 +694,7 @@
     "divGrowth5Y": 7.43,
     "divGrowth10Y": 4.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 25,
     "beta": 0.8,
     "yieldTTM": 2.8,
@@ -755,7 +755,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 10,
     "beta": 0,
     "yieldTTM": 0.83,
@@ -816,7 +816,7 @@
     "divGrowth5Y": 4.75,
     "divGrowth10Y": 5.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 31,
     "beta": 0.92,
     "yieldTTM": 1.5,
@@ -868,16 +868,16 @@
     "low52w": 83.295,
     "volume": 4950044,
     "avgVolume": 23103020,
-    "totalAssets": 50000000000,
+    "totalAssets": 42900000000,
     "expenseRatio": 0.15,
     "trackingIndex": "ICE US Treasury 20+ Year Bond Index",
-    "divYield": 2.515194,
+    "divYield": 0.0493,
     "distributionRate": 2.152,
     "divGrowth3Y": 10.91,
     "divGrowth5Y": 12.3,
     "divGrowth10Y": 2.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 40,
     "beta": 0.18,
     "yieldTTM": 2.5,
@@ -911,8 +911,10 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [],
+    "sectorBreakdown": []
   },
   {
     "symbol": "IGV",
@@ -929,21 +931,21 @@
     "low52w": 73.935,
     "volume": 4796071,
     "avgVolume": 19961800,
-    "totalAssets": 10000000000,
-    "expenseRatio": 0.41,
+    "totalAssets": 12100000000,
+    "expenseRatio": 0.38999999999999996,
     "trackingIndex": "S&P North American Technology-Software Index",
-    "divYield": 0,
+    "divYield": 0.0003,
     "distributionRate": 0,
     "divGrowth3Y": null,
     "divGrowth5Y": 1.69,
     "divGrowth10Y": -30.32,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 120,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 115,
     "beta": 1.3,
     "yieldTTM": 0.2,
     "inceptionDate": "2001-07-10",
-    "category": "Technology",
+    "category": "INFORMATION TECHNOLOGY",
     "dividendFrequency": "Annual",
     "dividendHistory": [
       {
@@ -972,8 +974,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "ORCL",
+        "name": "ORACLE CORP",
+        "weight": 0.0959
+      },
+      {
+        "symbol": "MSFT",
+        "name": "MICROSOFT CORP",
+        "weight": 0.0823
+      },
+      {
+        "symbol": "PLTR",
+        "name": "n/a",
+        "weight": 0.0729
+      },
+      {
+        "symbol": "PANW",
+        "name": "PALO ALTO NETWORKS INC",
+        "weight": 0.0645
+      },
+      {
+        "symbol": "CRM",
+        "name": "SALESFORCE INC",
+        "weight": 0.0621
+      },
+      {
+        "symbol": "CRWD",
+        "name": "CROWDSTRIKE HOLDINGS INC CLASS A",
+        "weight": 0.0517
+      },
+      {
+        "symbol": "APP",
+        "name": "APPLOVIN CORP ORDINARY SHARES CLASS A",
+        "weight": 0.0484
+      },
+      {
+        "symbol": "ADBE",
+        "name": "ADOBE INC",
+        "weight": 0.0382
+      },
+      {
+        "symbol": "INTU",
+        "name": "INTUIT INC",
+        "weight": 0.0381
+      },
+      {
+        "symbol": "CDNS",
+        "name": "CADENCE DESIGN SYSTEMS INC",
+        "weight": 0.0375
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0.96
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0.034
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "XLK",
@@ -990,21 +1090,21 @@
     "low52w": 112.55,
     "volume": 2582290,
     "avgVolume": 10075360,
-    "totalAssets": 68000000000,
-    "expenseRatio": 0.09,
+    "totalAssets": 103300000000,
+    "expenseRatio": 0.08,
     "trackingIndex": "Technology Select Sector Index",
-    "divYield": 0.62008095,
+    "divYield": 0.0046,
     "distributionRate": 1.103,
     "divGrowth3Y": 4.98,
     "divGrowth5Y": 6.84,
     "divGrowth10Y": 6.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 65,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 76,
     "beta": 1.2,
     "yieldTTM": 0.85,
     "inceptionDate": "1998-12-16",
-    "category": "Technology",
+    "category": "INFORMATION TECHNOLOGY",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -1033,8 +1133,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "NVDA",
+        "name": "NVIDIA CORP",
+        "weight": 0.1489
+      },
+      {
+        "symbol": "AAPL",
+        "name": "APPLE INC",
+        "weight": 0.1201
+      },
+      {
+        "symbol": "MSFT",
+        "name": "MICROSOFT CORP",
+        "weight": 0.084
+      },
+      {
+        "symbol": "MU",
+        "name": "MICRON TECHNOLOGY INC",
+        "weight": 0.0583
+      },
+      {
+        "symbol": "AVGO",
+        "name": "BROADCOM INC",
+        "weight": 0.0552
+      },
+      {
+        "symbol": "AMD",
+        "name": "ADVANCED MICRO DEVICES INC",
+        "weight": 0.0494
+      },
+      {
+        "symbol": "INTC",
+        "name": "INTEL CORP",
+        "weight": 0.0383
+      },
+      {
+        "symbol": "CSCO",
+        "name": "CISCO SYSTEMS INC",
+        "weight": 0.0265
+      },
+      {
+        "symbol": "LRCX",
+        "name": "LAM RESEARCH CORP",
+        "weight": 0.0244
+      },
+      {
+        "symbol": "AMAT",
+        "name": "APPLIED MATERIALS INC",
+        "weight": 0.0231
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0.995
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "USO",
@@ -1051,8 +1249,8 @@
     "low52w": 65.96,
     "volume": 1522595,
     "avgVolume": 11639100,
-    "totalAssets": 1000000000,
-    "expenseRatio": 0.7,
+    "totalAssets": 1900000000,
+    "expenseRatio": 0.86,
     "trackingIndex": "Crude Oil Spot Price (WTI)",
     "divYield": 0,
     "distributionRate": 0,
@@ -1060,7 +1258,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.4,
     "yieldTTM": 0,
@@ -1094,8 +1292,10 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [],
+    "sectorBreakdown": []
   },
   {
     "symbol": "XLF",
@@ -1112,21 +1312,21 @@
     "low52w": 47.67,
     "volume": 7455682,
     "avgVolume": 32582970,
-    "totalAssets": 42000000000,
-    "expenseRatio": 0.09,
+    "totalAssets": 51500000000,
+    "expenseRatio": 0.08,
     "trackingIndex": "Financial Select Sector Index",
-    "divYield": 1.1332551,
+    "divYield": 0.0137,
     "distributionRate": 0.58,
     "divGrowth3Y": 4.28,
     "divGrowth5Y": 6.07,
     "divGrowth10Y": 4.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 66,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 80,
     "beta": 1.05,
     "yieldTTM": 1.3,
     "inceptionDate": "1998-12-16",
-    "category": "Financials",
+    "category": "FINANCIALS",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -1155,8 +1355,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "BRK-B",
+        "name": "BERKSHIRE HATHAWAY INC CLASS B",
+        "weight": 0.1158
+      },
+      {
+        "symbol": "JPM",
+        "name": "JPMORGAN CHASE & CO",
+        "weight": 0.1132
+      },
+      {
+        "symbol": "V",
+        "name": "VISA INC CLASS A",
+        "weight": 0.0735
+      },
+      {
+        "symbol": "MA",
+        "name": "MASTERCARD INC CLASS A",
+        "weight": 0.0549
+      },
+      {
+        "symbol": "BAC",
+        "name": "BANK OF AMERICA CORP",
+        "weight": 0.0478
+      },
+      {
+        "symbol": "GS",
+        "name": "THE GOLDMAN SACHS GROUP INC",
+        "weight": 0.0374
+      },
+      {
+        "symbol": "WFC",
+        "name": "WELLS FARGO & CO",
+        "weight": 0.0335
+      },
+      {
+        "symbol": "MS",
+        "name": "MORGAN STANLEY",
+        "weight": 0.0309
+      },
+      {
+        "symbol": "C",
+        "name": "CITIGROUP INC",
+        "weight": 0.0304
+      },
+      {
+        "symbol": "AXP",
+        "name": "AMERICAN EXPRESS CO",
+        "weight": 0.023
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "FINANCIALS",
+        "weight": 0.865
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.016
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "IBIT",
@@ -1173,7 +1471,7 @@
     "low52w": 35.3,
     "volume": 9022487,
     "avgVolume": 35730640,
-    "totalAssets": 55000000000,
+    "totalAssets": 61900000000,
     "expenseRatio": 0.25,
     "trackingIndex": "Bitcoin Spot Price",
     "divYield": 0,
@@ -1182,11 +1480,11 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.85,
     "yieldTTM": 0,
-    "inceptionDate": "2024-01-11",
+    "inceptionDate": "2024-01-05",
     "category": "Bitcoin",
     "dividendFrequency": "None",
     "dividendHistory": [
@@ -1216,8 +1514,10 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [],
+    "sectorBreakdown": []
   },
   {
     "symbol": "SLV",
@@ -1234,7 +1534,7 @@
     "low52w": 29.095,
     "volume": 7965537,
     "avgVolume": 22506650,
-    "totalAssets": 10000000000,
+    "totalAssets": 35600000000,
     "expenseRatio": 0.5,
     "trackingIndex": "Silver Spot Price",
     "divYield": 0,
@@ -1243,11 +1543,11 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.12,
     "yieldTTM": 0,
-    "inceptionDate": "2006-04-28",
+    "inceptionDate": "2006-04-21",
     "category": "Silver",
     "dividendFrequency": "None",
     "dividendHistory": [
@@ -1277,8 +1577,10 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [],
+    "sectorBreakdown": []
   },
   {
     "symbol": "EFA",
@@ -1295,21 +1597,21 @@
     "low52w": 85.68,
     "volume": 2202429,
     "avgVolume": 14341280,
-    "totalAssets": 52000000000,
+    "totalAssets": 75600000000,
     "expenseRatio": 0.32,
     "trackingIndex": "MSCI EAFE Index",
-    "divYield": 1.697513,
+    "divYield": 0.0217,
     "distributionRate": 1.761,
     "divGrowth3Y": 27.15,
     "divGrowth5Y": 12.57,
     "divGrowth10Y": 6.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 780,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 734,
     "beta": 0.88,
     "yieldTTM": 3.2,
     "inceptionDate": "2001-08-14",
-    "category": "International Developed",
+    "category": "MATERIALS",
     "dividendFrequency": "Semi-Annual",
     "dividendHistory": [
       {
@@ -1338,8 +1640,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "ASML HOLDING NV",
+        "weight": 0.0273
+      },
+      {
+        "symbol": "n/a",
+        "name": "HSBC HOLDINGS PLC",
+        "weight": 0.0142
+      },
+      {
+        "symbol": "n/a",
+        "name": "ROCHE HOLDING AG ORDINARY SHARES NEW",
+        "weight": 0.0132
+      },
+      {
+        "symbol": "AZN:XLON",
+        "name": "ASTRAZENECA PLC",
+        "weight": 0.013
+      },
+      {
+        "symbol": "n/a",
+        "name": "NOVARTIS AG REGISTERED SHARES",
+        "weight": 0.0127
+      },
+      {
+        "symbol": "n/a",
+        "name": "NESTLE SA",
+        "weight": 0.0115
+      },
+      {
+        "symbol": "n/a",
+        "name": "SHELL PLC",
+        "weight": 0.0111
+      },
+      {
+        "symbol": "n/a",
+        "name": "SIEMENS AG",
+        "weight": 0.011
+      },
+      {
+        "symbol": "n/a",
+        "name": "BHP GROUP LTD",
+        "weight": 0.0098
+      },
+      {
+        "symbol": "n/a",
+        "name": "COMMONWEALTH BANK OF AUSTRALIA",
+        "weight": 0.0097
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "MATERIALS",
+        "weight": 0.015
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.012
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0.004
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0.003
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0.003
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0.001
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0.001
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0.001
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "XLI",
@@ -1356,21 +1756,21 @@
     "low52w": 139.63,
     "volume": 1267822,
     "avgVolume": 8392970,
-    "totalAssets": 22000000000,
-    "expenseRatio": 0.09,
+    "totalAssets": 30100000000,
+    "expenseRatio": 0.08,
     "trackingIndex": "Industrial Select Sector Index",
-    "divYield": 0.70840954,
+    "divYield": 0.0103,
     "distributionRate": 1.24,
     "divGrowth3Y": 7.23,
     "divGrowth5Y": 9.96,
     "divGrowth10Y": 5.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 77,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 82,
     "beta": 1.02,
     "yieldTTM": 1.1,
     "inceptionDate": "1998-12-16",
-    "category": "Industrials",
+    "category": "INDUSTRIALS",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -1399,8 +1799,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "CAT",
+        "name": "CATERPILLAR INC",
+        "weight": 0.0781
+      },
+      {
+        "symbol": "GE",
+        "name": "GE AEROSPACE",
+        "weight": 0.0574
+      },
+      {
+        "symbol": "GEV",
+        "name": "GE VERNOVA INC",
+        "weight": 0.0532
+      },
+      {
+        "symbol": "RTX",
+        "name": "RTX CORP",
+        "weight": 0.0442
+      },
+      {
+        "symbol": "BA",
+        "name": "BOEING CO",
+        "weight": 0.0342
+      },
+      {
+        "symbol": "UNP",
+        "name": "UNION PACIFIC CORP",
+        "weight": 0.029
+      },
+      {
+        "symbol": "UBER",
+        "name": "UBER TECHNOLOGIES INC",
+        "weight": 0.0289
+      },
+      {
+        "symbol": "ETN",
+        "name": "EATON CORP PLC",
+        "weight": 0.0287
+      },
+      {
+        "symbol": "DE",
+        "name": "DEERE & CO",
+        "weight": 0.0273
+      },
+      {
+        "symbol": "VRT",
+        "name": "VERTIV HOLDINGS CO CLASS A",
+        "weight": 0.0258
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0.999
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "XLV",
@@ -1417,21 +1915,21 @@
     "low52w": 127.35,
     "volume": 1714239,
     "avgVolume": 9765310,
-    "totalAssets": 37000000000,
-    "expenseRatio": 0.09,
+    "totalAssets": 37900000000,
+    "expenseRatio": 0.08,
     "trackingIndex": "Health Care Select Sector Index",
-    "divYield": 1.2653803,
+    "divYield": 0.0172,
     "distributionRate": 1.81,
     "divGrowth3Y": 6.84,
     "divGrowth5Y": 8.01,
     "divGrowth10Y": 8.97,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 65,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 62,
     "beta": 0.72,
     "yieldTTM": 1.6,
     "inceptionDate": "1998-12-16",
-    "category": "Health Care",
+    "category": "HEALTHCARE",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -1460,8 +1958,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "LLY",
+        "name": "ELI LILLY AND CO",
+        "weight": 0.1494
+      },
+      {
+        "symbol": "JNJ",
+        "name": "JOHNSON & JOHNSON",
+        "weight": 0.1037
+      },
+      {
+        "symbol": "ABBV",
+        "name": "ABBVIE INC",
+        "weight": 0.0695
+      },
+      {
+        "symbol": "UNH",
+        "name": "UNITEDHEALTH GROUP INC",
+        "weight": 0.0629
+      },
+      {
+        "symbol": "MRK",
+        "name": "MERCK & CO INC",
+        "weight": 0.0536
+      },
+      {
+        "symbol": "AMGN",
+        "name": "AMGEN INC",
+        "weight": 0.0338
+      },
+      {
+        "symbol": "TMO",
+        "name": "THERMO FISHER SCIENTIFIC INC",
+        "weight": 0.0334
+      },
+      {
+        "symbol": "GILD",
+        "name": "GILEAD SCIENCES INC",
+        "weight": 0.0316
+      },
+      {
+        "symbol": "ISRG",
+        "name": "INTUITIVE SURGICAL INC",
+        "weight": 0.0306
+      },
+      {
+        "symbol": "ABT",
+        "name": "ABBOTT LABORATORIES",
+        "weight": 0.0289
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0.996
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "XBI",
@@ -1478,21 +2074,21 @@
     "low52w": 75.71,
     "volume": 1154635,
     "avgVolume": 9061260,
-    "totalAssets": 8000000000,
-    "expenseRatio": 0.35,
+    "totalAssets": 8300000000,
+    "expenseRatio": 0.35000000000000003,
     "trackingIndex": "S&P Biotech Select Industry Index",
-    "divYield": 0,
+    "divYield": -0.0013,
     "distributionRate": 0,
     "divGrowth3Y": 454.12,
     "divGrowth5Y": 6.74,
     "divGrowth10Y": 1.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 150,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 154,
     "beta": 1.4,
     "yieldTTM": 0.3,
     "inceptionDate": "2006-01-31",
-    "category": "Biotech",
+    "category": "HEALTHCARE",
     "dividendFrequency": "Annual",
     "dividendHistory": [
       {
@@ -1521,8 +2117,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "APELLIS PHARMACEUTICALS INC",
+        "weight": 0.0182
+      },
+      {
+        "symbol": "TGTX",
+        "name": "TG THERAPEUTICS INC",
+        "weight": 0.0168
+      },
+      {
+        "symbol": "RVMD",
+        "name": "REVOLUTION MEDICINES INC ORDINARY SHARES",
+        "weight": 0.0162
+      },
+      {
+        "symbol": "TVTX",
+        "name": "TRAVERE THERAPEUTICS INC ORDINARY SHARES",
+        "weight": 0.016
+      },
+      {
+        "symbol": "ALKS",
+        "name": "ALKERMES PLC",
+        "weight": 0.0153
+      },
+      {
+        "symbol": "ARWR",
+        "name": "ARROWHEAD PHARMACEUTICALS INC",
+        "weight": 0.0151
+      },
+      {
+        "symbol": "KRYS",
+        "name": "KRYSTAL BIOTECH INC",
+        "weight": 0.0135
+      },
+      {
+        "symbol": "BEAM",
+        "name": "BEAM THERAPEUTICS INC",
+        "weight": 0.0134
+      },
+      {
+        "symbol": "NBIX",
+        "name": "NEUROCRINE BIOSCIENCES INC",
+        "weight": 0.0133
+      },
+      {
+        "symbol": "TWST",
+        "name": "TWIST BIOSCIENCE CORP",
+        "weight": 0.0132
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0.95
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "VTI",
@@ -1548,7 +2242,7 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 6.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2494,
     "beta": 1,
     "yieldTTM": 1.3,
@@ -1600,21 +2294,21 @@
     "low52w": 208.175,
     "volume": 1333987,
     "avgVolume": 3721880,
-    "totalAssets": 35000000000,
+    "totalAssets": 82900000000,
     "expenseRatio": 0.15,
     "trackingIndex": "Nasdaq-100 Index",
-    "divYield": 0,
+    "divYield": 0.0047,
     "distributionRate": 0,
     "divGrowth3Y": 9.18,
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 101,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 105,
     "beta": 1.15,
     "yieldTTM": 0.48,
     "inceptionDate": "2020-10-13",
-    "category": "US Large Cap Growth",
+    "category": "INFORMATION TECHNOLOGY",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -1643,8 +2337,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "NVDA",
+        "name": "NVIDIA CORP",
+        "weight": 0.089
+      },
+      {
+        "symbol": "AAPL",
+        "name": "APPLE INC",
+        "weight": 0.0718
+      },
+      {
+        "symbol": "MSFT",
+        "name": "MICROSOFT CORP",
+        "weight": 0.0503
+      },
+      {
+        "symbol": "AMZN",
+        "name": "AMAZON.COM INC",
+        "weight": 0.0474
+      },
+      {
+        "symbol": "MU",
+        "name": "MICRON TECHNOLOGY INC",
+        "weight": 0.0395
+      },
+      {
+        "symbol": "GOOGL",
+        "name": "ALPHABET INC CLASS A",
+        "weight": 0.0374
+      },
+      {
+        "symbol": "TSLA",
+        "name": "TESLA INC",
+        "weight": 0.0359
+      },
+      {
+        "symbol": "GOOG",
+        "name": "ALPHABET INC CLASS C",
+        "weight": 0.0346
+      },
+      {
+        "symbol": "AMD",
+        "name": "ADVANCED MICRO DEVICES INC",
+        "weight": 0.0335
+      },
+      {
+        "symbol": "AVGO",
+        "name": "BROADCOM INC",
+        "weight": 0.033
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0.551
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0.147
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.111
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0.07
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0.039
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0.029
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0.013
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0.011
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0.006
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0.002
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "XLY",
@@ -1661,21 +2453,21 @@
     "low52w": 103.86,
     "volume": 1190327,
     "avgVolume": 8544480,
-    "totalAssets": 19000000000,
-    "expenseRatio": 0.09,
+    "totalAssets": 23100000000,
+    "expenseRatio": 0.08,
     "trackingIndex": "Consumer Discret. Select Sector Index",
-    "divYield": 0.9801457,
+    "divYield": 0.0072,
     "distributionRate": 1.17,
     "divGrowth3Y": 7.42,
     "divGrowth5Y": 8.97,
     "divGrowth10Y": 4.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 52,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 51,
     "beta": 1.18,
     "yieldTTM": 0.9,
     "inceptionDate": "1998-12-16",
-    "category": "Consumer Discretionary",
+    "category": "CONSUMER DISCRETIONARY",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -1704,8 +2496,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "AMZN",
+        "name": "AMAZON.COM INC",
+        "weight": 0.2765
+      },
+      {
+        "symbol": "TSLA",
+        "name": "TESLA INC",
+        "weight": 0.2036
+      },
+      {
+        "symbol": "HD",
+        "name": "THE HOME DEPOT INC",
+        "weight": 0.0516
+      },
+      {
+        "symbol": "TJX",
+        "name": "TJX COMPANIES INC",
+        "weight": 0.0382
+      },
+      {
+        "symbol": "MCD",
+        "name": "MCDONALD'S CORP",
+        "weight": 0.0366
+      },
+      {
+        "symbol": "BKNG",
+        "name": "BOOKING HOLDINGS INC",
+        "weight": 0.0296
+      },
+      {
+        "symbol": "LOW",
+        "name": "LOWE'S COMPANIES INC",
+        "weight": 0.0289
+      },
+      {
+        "symbol": "SBUX",
+        "name": "STARBUCKS CORP",
+        "weight": 0.0278
+      },
+      {
+        "symbol": "ORLY",
+        "name": "O'REILLY AUTOMOTIVE INC",
+        "weight": 0.0177
+      },
+      {
+        "symbol": "MAR",
+        "name": "MARRIOTT INTERNATIONAL INC CLASS A",
+        "weight": 0.0177
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.989
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0.009
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "XLP",
@@ -1722,21 +2612,21 @@
     "low52w": 75.16,
     "volume": 3110100,
     "avgVolume": 11746850,
-    "totalAssets": 15000000000,
-    "expenseRatio": 0.09,
+    "totalAssets": 14500000000,
+    "expenseRatio": 0.08,
     "trackingIndex": "Consumer Staples Select Sector Index",
-    "divYield": 2.0750869,
+    "divYield": 0.0259,
     "distributionRate": 1.73,
     "divGrowth3Y": 5.53,
     "divGrowth5Y": 4.34,
     "divGrowth10Y": 5.7,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 38,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 39,
     "beta": 0.62,
     "yieldTTM": 2.4,
     "inceptionDate": "1998-12-16",
-    "category": "Consumer Staples",
+    "category": "CONSUMER STAPLES",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -1765,8 +2655,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "WMT",
+        "name": "WALMART INC",
+        "weight": 0.12
+      },
+      {
+        "symbol": "COST",
+        "name": "COSTCO WHOLESALE CORP",
+        "weight": 0.0953
+      },
+      {
+        "symbol": "PG",
+        "name": "PROCTER & GAMBLE CO",
+        "weight": 0.0702
+      },
+      {
+        "symbol": "KO",
+        "name": "COCA-COLA CO",
+        "weight": 0.0651
+      },
+      {
+        "symbol": "PM",
+        "name": "PHILIP MORRIS INTERNATIONAL INC",
+        "weight": 0.0611
+      },
+      {
+        "symbol": "MDLZ",
+        "name": "MONDELEZ INTERNATIONAL INC CLASS A",
+        "weight": 0.0496
+      },
+      {
+        "symbol": "MO",
+        "name": "ALTRIA GROUP INC",
+        "weight": 0.0468
+      },
+      {
+        "symbol": "PEP",
+        "name": "PEPSICO INC",
+        "weight": 0.0436
+      },
+      {
+        "symbol": "CL",
+        "name": "COLGATE-PALMOLIVE CO",
+        "weight": 0.0434
+      },
+      {
+        "symbol": "MNST",
+        "name": "MONSTER BEVERAGE CORP",
+        "weight": 0.0399
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0.994
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "IEFA",
@@ -1783,21 +2771,21 @@
     "low52w": 79.82,
     "volume": 992165,
     "avgVolume": 9827170,
-    "totalAssets": 98000000000,
-    "expenseRatio": 0.07,
+    "totalAssets": 180700000000,
+    "expenseRatio": 0.06999999999999999,
     "trackingIndex": "MSCI EAFE IMI Index",
-    "divYield": 0,
+    "divYield": 0.0238,
     "distributionRate": 0,
     "divGrowth3Y": 25.21,
     "divGrowth5Y": 13.31,
     "divGrowth10Y": 8.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 2800,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 2324,
     "beta": 0.87,
     "yieldTTM": 3.1,
     "inceptionDate": "2012-10-18",
-    "category": "International Developed",
+    "category": "MATERIALS",
     "dividendFrequency": "Semi-Annual",
     "dividendHistory": [
       {
@@ -1826,8 +2814,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "ASML HOLDING NV",
+        "weight": 0.0225
+      },
+      {
+        "symbol": "AZN:XLON",
+        "name": "ASTRAZENECA PLC",
+        "weight": 0.0122
+      },
+      {
+        "symbol": "n/a",
+        "name": "NOVARTIS AG REGISTERED SHARES",
+        "weight": 0.0119
+      },
+      {
+        "symbol": "n/a",
+        "name": "ROCHE HOLDING AG ORDINARY SHARES NEW",
+        "weight": 0.0116
+      },
+      {
+        "symbol": "n/a",
+        "name": "HSBC HOLDINGS PLC",
+        "weight": 0.0116
+      },
+      {
+        "symbol": "n/a",
+        "name": "SHELL PLC",
+        "weight": 0.0109
+      },
+      {
+        "symbol": "n/a",
+        "name": "NESTLE SA",
+        "weight": 0.0104
+      },
+      {
+        "symbol": "n/a",
+        "name": "COMMONWEALTH BANK OF AUSTRALIA",
+        "weight": 0.0087
+      },
+      {
+        "symbol": "n/a",
+        "name": "TOYOTA MOTOR CORP",
+        "weight": 0.0083
+      },
+      {
+        "symbol": "n/a",
+        "name": "SIEMENS AG",
+        "weight": 0.0079
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "MATERIALS",
+        "weight": 0.015
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.01
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0.003
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0.003
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0.002
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0.002
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0.001
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0.001
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "AGG",
@@ -1844,16 +2930,16 @@
     "low52w": 96.66,
     "volume": 616607,
     "avgVolume": 9096960,
-    "totalAssets": 95000000000,
+    "totalAssets": 135400000000,
     "expenseRatio": 0.03,
     "trackingIndex": "Bloomberg US Aggregate Bond Index",
-    "divYield": 2.5070764,
+    "divYield": 0.0435,
     "distributionRate": 2.48,
     "divGrowth3Y": 15.06,
     "divGrowth5Y": 10.69,
     "divGrowth10Y": 3.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 9800,
     "beta": 0.06,
     "yieldTTM": 2.85,
@@ -1887,8 +2973,10 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [],
+    "sectorBreakdown": []
   },
   {
     "symbol": "EWZ",
@@ -1905,21 +2993,21 @@
     "low52w": 26.3,
     "volume": 5865972,
     "avgVolume": 24282430,
-    "totalAssets": 5000000000,
-    "expenseRatio": 0.57,
+    "totalAssets": 11600000000,
+    "expenseRatio": 0.59,
     "trackingIndex": "MSCI Brazil 25/50 Index",
-    "divYield": 2.3331608999999998,
+    "divYield": 0.0148,
     "distributionRate": 0.902,
     "divGrowth3Y": -15.97,
     "divGrowth5Y": 12.8,
     "divGrowth10Y": 14.09,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 56,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 55,
     "beta": 0.82,
     "yieldTTM": 3.2,
     "inceptionDate": "2000-07-10",
-    "category": "Brazil",
+    "category": "CONSUMER STAPLES",
     "dividendFrequency": "Semi-Annual",
     "dividendHistory": [
       {
@@ -1948,8 +3036,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "VALE SA",
+        "weight": 0.1087
+      },
+      {
+        "symbol": "NU",
+        "name": "NU HOLDINGS LTD ORDINARY SHARES CLASS A",
+        "weight": 0.0873
+      },
+      {
+        "symbol": "n/a",
+        "name": "n/a",
+        "weight": 0.0866
+      },
+      {
+        "symbol": "n/a",
+        "name": "n/a",
+        "weight": 0.0719
+      },
+      {
+        "symbol": "n/a",
+        "name": "PETROLEO BRASILEIRO SA PETROBRAS",
+        "weight": 0.0654
+      },
+      {
+        "symbol": "n/a",
+        "name": "B3 SA BRASIL BOLSA BALCAO",
+        "weight": 0.0368
+      },
+      {
+        "symbol": "n/a",
+        "name": "BANK BRADESCO SA PARTICIPATING PREFERRED",
+        "weight": 0.0349
+      },
+      {
+        "symbol": "n/a",
+        "name": "n/a",
+        "weight": 0.0318
+      },
+      {
+        "symbol": "n/a",
+        "name": "WEG SA",
+        "weight": 0.0295
+      },
+      {
+        "symbol": "n/a",
+        "name": "AXIA ENERGIA",
+        "weight": 0.0283
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0.012
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "FXI",
@@ -1966,17 +3152,17 @@
     "low52w": 34.77,
     "volume": 4871185,
     "avgVolume": 23748260,
-    "totalAssets": 5500000000,
-    "expenseRatio": 0.74,
+    "totalAssets": 6100000000,
+    "expenseRatio": 0.73,
     "trackingIndex": "FTSE China 50 Index",
-    "divYield": 2.2177741,
+    "divYield": 0.0188,
     "distributionRate": 0.831,
     "divGrowth3Y": 1.04,
     "divGrowth5Y": 2.07,
     "divGrowth10Y": -0.97,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 50,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 57,
     "beta": 0.9,
     "yieldTTM": 2.8,
     "inceptionDate": "2004-10-05",
@@ -2009,8 +3195,61 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "ALIBABA GROUP HOLDING LTD ORDINARY SHARES",
+        "weight": 0.0899
+      },
+      {
+        "symbol": "n/a",
+        "name": "TENCENT HOLDINGS LTD",
+        "weight": 0.0829
+      },
+      {
+        "symbol": "n/a",
+        "name": "CHINA CONSTRUCTION BANK CORP CLASS H",
+        "weight": 0.081
+      },
+      {
+        "symbol": "n/a",
+        "name": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA LTD CLASS H",
+        "weight": 0.06
+      },
+      {
+        "symbol": "n/a",
+        "name": "XIAOMI CORP CLASS B",
+        "weight": 0.0582
+      },
+      {
+        "symbol": "n/a",
+        "name": "MEITUAN CLASS B",
+        "weight": 0.0473
+      },
+      {
+        "symbol": "n/a",
+        "name": "BYD CO LTD CLASS H",
+        "weight": 0.0423
+      },
+      {
+        "symbol": "n/a",
+        "name": "PING AN INSURANCE (GROUP) CO. OF CHINA LTD CLASS H",
+        "weight": 0.0417
+      },
+      {
+        "symbol": "n/a",
+        "name": "BANK OF CHINA LTD CLASS H",
+        "weight": 0.0373
+      },
+      {
+        "symbol": "n/a",
+        "name": "NETEASE INC ORDINARY SHARES",
+        "weight": 0.0349
+      }
+    ],
+    "sectorBreakdown": []
   },
   {
     "symbol": "IEMG",
@@ -2027,21 +3266,21 @@
     "low52w": 56.3755,
     "volume": 1990714,
     "avgVolume": 10755910,
-    "totalAssets": 85000000000,
+    "totalAssets": 151200000000,
     "expenseRatio": 0.09,
     "trackingIndex": "MSCI Emerging Markets IMI Index",
-    "divYield": 1.3980957,
+    "divYield": 0.017,
     "distributionRate": 1.16,
     "divGrowth3Y": 17.41,
     "divGrowth5Y": 9.14,
     "divGrowth10Y": 7.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 2850,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 2350,
     "beta": 0.9,
     "yieldTTM": 2.2,
     "inceptionDate": "2012-10-18",
-    "category": "Emerging Markets",
+    "category": "MATERIALS",
     "dividendFrequency": "Semi-Annual",
     "dividendHistory": [
       {
@@ -2070,8 +3309,102 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "n/a",
+        "weight": 0.102
+      },
+      {
+        "symbol": "n/a",
+        "name": "TENCENT HOLDINGS LTD",
+        "weight": 0.044
+      },
+      {
+        "symbol": "n/a",
+        "name": "n/a",
+        "weight": 0.0299
+      },
+      {
+        "symbol": "n/a",
+        "name": "SAMSUNG ELECTRONICS CO LTD",
+        "weight": 0.0286
+      },
+      {
+        "symbol": "n/a",
+        "name": "SK HYNIX INC",
+        "weight": 0.0157
+      },
+      {
+        "symbol": "n/a",
+        "name": "HDFC BANK LTD",
+        "weight": 0.0114
+      },
+      {
+        "symbol": "n/a",
+        "name": "XIAOMI CORP CLASS B",
+        "weight": 0.0089
+      },
+      {
+        "symbol": "n/a",
+        "name": "RELIANCE INDUSTRIES LTD",
+        "weight": 0.0086
+      },
+      {
+        "symbol": "n/a",
+        "name": "CHINA CONSTRUCTION BANK CORP CLASS H",
+        "weight": 0.0083
+      },
+      {
+        "symbol": "n/a",
+        "name": "BLACKROCK CASH FUNDS TREASURY SL AGENCY",
+        "weight": 0.0081
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "MATERIALS",
+        "weight": 0.001
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "VEA",
@@ -2088,21 +3421,21 @@
     "low52w": 54.05,
     "volume": 1178618,
     "avgVolume": 12237010,
-    "totalAssets": 85000000000,
-    "expenseRatio": 0.06,
+    "totalAssets": 304300000000,
+    "expenseRatio": 0.03,
     "trackingIndex": "FTSE Developed All Cap ex US Index",
-    "divYield": 0,
+    "divYield": 0.0273,
     "distributionRate": 0,
     "divGrowth3Y": 13.04,
     "divGrowth5Y": 12,
     "divGrowth10Y": 6.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 3900,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 2785,
     "beta": 0.86,
     "yieldTTM": 3.05,
-    "inceptionDate": "2007-07-02",
-    "category": "International Developed",
+    "inceptionDate": "2007-07-20",
+    "category": "CONSUMER DISCRETIONARY",
     "dividendFrequency": "Semi-Annual",
     "dividendHistory": [
       {
@@ -2131,8 +3464,102 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "ASML HOLDING NV",
+        "weight": 0.0151
+      },
+      {
+        "symbol": "n/a",
+        "name": "SAMSUNG ELECTRONICS CO LTD",
+        "weight": 0.0128
+      },
+      {
+        "symbol": "n/a",
+        "name": "SAP SE",
+        "weight": 0.0097
+      },
+      {
+        "symbol": "n/a",
+        "name": "ASTRAZENECA PLC",
+        "weight": 0.009
+      },
+      {
+        "symbol": "n/a",
+        "name": "SLBBH1142",
+        "weight": 0.0089
+      },
+      {
+        "symbol": "n/a",
+        "name": "NESTLE SA",
+        "weight": 0.0088
+      },
+      {
+        "symbol": "n/a",
+        "name": "HSBC HOLDINGS PLC",
+        "weight": 0.0088
+      },
+      {
+        "symbol": "n/a",
+        "name": "NOVARTIS AG REGISTERED SHARES",
+        "weight": 0.0084
+      },
+      {
+        "symbol": "n/a",
+        "name": "ROCHE HOLDING AG",
+        "weight": 0.0082
+      },
+      {
+        "symbol": "n/a",
+        "name": "SHELL PLC",
+        "weight": 0.008
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.009
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0.004
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0.002
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0.001
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0.001
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0.001
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "XLU",
@@ -2149,21 +3576,21 @@
     "low52w": 39.58,
     "volume": 2461676,
     "avgVolume": 18974960,
-    "totalAssets": 13000000000,
-    "expenseRatio": 0.09,
+    "totalAssets": 24100000000,
+    "expenseRatio": 0.08,
     "trackingIndex": "Utilities Select Sector Index",
-    "divYield": 4.319894,
+    "divYield": 0.0255,
     "distributionRate": 1.95,
     "divGrowth3Y": 4.61,
     "divGrowth5Y": 3.99,
     "divGrowth10Y": 4.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 31,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 34,
     "beta": 0.52,
     "yieldTTM": 3.1,
     "inceptionDate": "1998-12-16",
-    "category": "Utilities",
+    "category": "UTILITIES",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -2192,8 +3619,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "NEE",
+        "name": "NEXTERA ENERGY INC",
+        "weight": 0.1405
+      },
+      {
+        "symbol": "SO",
+        "name": "SOUTHERN CO",
+        "weight": 0.0734
+      },
+      {
+        "symbol": "DUK",
+        "name": "DUKE ENERGY CORP",
+        "weight": 0.0694
+      },
+      {
+        "symbol": "CEG",
+        "name": "CONSTELLATION ENERGY CORP",
+        "weight": 0.0652
+      },
+      {
+        "symbol": "AEP",
+        "name": "AMERICAN ELECTRIC POWER CO INC",
+        "weight": 0.0509
+      },
+      {
+        "symbol": "SRE",
+        "name": "SEMPRA",
+        "weight": 0.0435
+      },
+      {
+        "symbol": "D",
+        "name": "DOMINION ENERGY INC",
+        "weight": 0.0383
+      },
+      {
+        "symbol": "ETR",
+        "name": "ENTERGY CORP",
+        "weight": 0.0364
+      },
+      {
+        "symbol": "XEL",
+        "name": "XCEL ENERGY INC",
+        "weight": 0.0337
+      },
+      {
+        "symbol": "VST",
+        "name": "VISTRA CORP",
+        "weight": 0.0334
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "UTILITIES",
+        "weight": 0.997
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "KRE",
@@ -2210,21 +3735,21 @@
     "low52w": 55.37,
     "volume": 4448439,
     "avgVolume": 12309280,
-    "totalAssets": 2500000000,
-    "expenseRatio": 0.35,
+    "totalAssets": 4200000000,
+    "expenseRatio": 0.35000000000000003,
     "trackingIndex": "S&P Regional Banks Select Industry Index",
-    "divYield": 0,
+    "divYield": 0.0218,
     "distributionRate": 0,
     "divGrowth3Y": null,
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 130,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 148,
     "beta": 1.1,
     "yieldTTM": 1.5,
     "inceptionDate": "2006-06-19",
-    "category": "Financials",
+    "category": "FINANCIALS",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -2253,8 +3778,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "UMBF",
+        "name": "UMB FINANCIAL CORP",
+        "weight": 0.0162
+      },
+      {
+        "symbol": "EWBC",
+        "name": "EAST WEST BANCORP INC",
+        "weight": 0.016
+      },
+      {
+        "symbol": "PNFP",
+        "name": "PINNACLE FINANCIAL PARTNERS INC",
+        "weight": 0.0159
+      },
+      {
+        "symbol": "ASB",
+        "name": "ASSOCIATED BANC-CORP",
+        "weight": 0.0158
+      },
+      {
+        "symbol": "BPOP",
+        "name": "POPULAR INC",
+        "weight": 0.0158
+      },
+      {
+        "symbol": "FLG",
+        "name": "FLAGSTAR BANK NA",
+        "weight": 0.0157
+      },
+      {
+        "symbol": "WAL",
+        "name": "WESTERN ALLIANCE BANCORP",
+        "weight": 0.0156
+      },
+      {
+        "symbol": "ZION",
+        "name": "ZIONS BANCORP NA",
+        "weight": 0.0155
+      },
+      {
+        "symbol": "ONB",
+        "name": "OLD NATIONAL BANCORP",
+        "weight": 0.0155
+      },
+      {
+        "symbol": "WTFC",
+        "name": "WINTRUST FINANCIAL CORP",
+        "weight": 0.0154
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "FINANCIALS",
+        "weight": 0.969
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "IWF",
@@ -2271,21 +3894,21 @@
     "low52w": 97.08,
     "volume": 627458,
     "avgVolume": 5671090,
-    "totalAssets": 72000000000,
-    "expenseRatio": 0.19,
+    "totalAssets": 124700000000,
+    "expenseRatio": 0.18,
     "trackingIndex": "Russell 1000 Growth Index",
-    "divYield": 1.2313796,
+    "divYield": 0.0035,
     "distributionRate": 1.521,
     "divGrowth3Y": -6.46,
     "divGrowth5Y": 2.12,
     "divGrowth10Y": 1.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 421,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 387,
     "beta": 1.14,
     "yieldTTM": 0.55,
     "inceptionDate": "2000-05-22",
-    "category": "US Large Cap Growth",
+    "category": "INFORMATION TECHNOLOGY",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -2314,8 +3937,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "NVDA",
+        "name": "NVIDIA CORP",
+        "weight": 0.1415
+      },
+      {
+        "symbol": "AAPL",
+        "name": "APPLE INC",
+        "weight": 0.1169
+      },
+      {
+        "symbol": "MSFT",
+        "name": "MICROSOFT CORP",
+        "weight": 0.084
+      },
+      {
+        "symbol": "AVGO",
+        "name": "BROADCOM INC",
+        "weight": 0.0561
+      },
+      {
+        "symbol": "AMZN",
+        "name": "AMAZON.COM INC",
+        "weight": 0.0514
+      },
+      {
+        "symbol": "GOOGL",
+        "name": "ALPHABET INC CLASS A",
+        "weight": 0.0412
+      },
+      {
+        "symbol": "TSLA",
+        "name": "TESLA INC",
+        "weight": 0.0358
+      },
+      {
+        "symbol": "GOOG",
+        "name": "ALPHABET INC CLASS C",
+        "weight": 0.0332
+      },
+      {
+        "symbol": "META",
+        "name": "META PLATFORMS INC CLASS A",
+        "weight": 0.0315
+      },
+      {
+        "symbol": "LLY",
+        "name": "ELI LILLY AND CO",
+        "weight": 0.0247
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0.519
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.128
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0.124
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0.068
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0.065
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0.051
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0.026
+      },
+      {
+        "sector": "ENERGY",
+        "weight": 0.004
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0.003
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0.002
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "KWEB",
@@ -2332,17 +4053,17 @@
     "low52w": 27.62,
     "volume": 5074590,
     "avgVolume": 24875700,
-    "totalAssets": 5000000000,
-    "expenseRatio": 0.76,
+    "totalAssets": 6300000000,
+    "expenseRatio": 0.7000000000000001,
     "trackingIndex": "CSI Overseas China Internet Index",
-    "divYield": 0,
+    "divYield": 0.0742,
     "distributionRate": 0,
     "divGrowth3Y": 70.99,
     "divGrowth5Y": -4.07,
     "divGrowth10Y": 17.62,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 35,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 32,
     "beta": 0.98,
     "yieldTTM": 0.3,
     "inceptionDate": "2013-07-31",
@@ -2375,8 +4096,61 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "n/a",
+        "name": "ALIBABA GROUP HOLDING LTD ORDINARY SHARES",
+        "weight": 0.0953
+      },
+      {
+        "symbol": "n/a",
+        "name": "TENCENT HOLDINGS LTD",
+        "weight": 0.091
+      },
+      {
+        "symbol": "PDD",
+        "name": "PDD HOLDINGS INC ADR",
+        "weight": 0.0793
+      },
+      {
+        "symbol": "n/a",
+        "name": "MEITUAN CLASS B",
+        "weight": 0.0712
+      },
+      {
+        "symbol": "n/a",
+        "name": "NETEASE INC ORDINARY SHARES",
+        "weight": 0.0615
+      },
+      {
+        "symbol": "n/a",
+        "name": "KE HOLDINGS INC CLASS A",
+        "weight": 0.054
+      },
+      {
+        "symbol": "n/a",
+        "name": "BAIDU INC",
+        "weight": 0.0539
+      },
+      {
+        "symbol": "n/a",
+        "name": "JD.COM INC ORDINARY SHARES CLASS A",
+        "weight": 0.0491
+      },
+      {
+        "symbol": "n/a",
+        "name": "KUAISHOU TECHNOLOGY ORDINARY SHARES CLASS B",
+        "weight": 0.037
+      },
+      {
+        "symbol": "n/a",
+        "name": "JD HEALTH INTERNATIONAL INC",
+        "weight": 0.0369
+      }
+    ],
+    "sectorBreakdown": []
   },
   {
     "symbol": "XOP",
@@ -2393,21 +4167,21 @@
     "low52w": 118.14,
     "volume": 649145,
     "avgVolume": 3953110,
-    "totalAssets": 3000000000,
-    "expenseRatio": 0.35,
+    "totalAssets": 3600000000,
+    "expenseRatio": 0.35000000000000003,
     "trackingIndex": "S&P Oil & Gas E&P Select Industry Index",
-    "divYield": 0.8241432,
+    "divYield": 0.0166,
     "distributionRate": 1.39,
     "divGrowth3Y": null,
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
-    "numHoldings": 56,
+    "updatedAt": "2026-05-17T11:41:48.507Z",
+    "numHoldings": 52,
     "beta": 0.85,
     "yieldTTM": 1.2,
     "inceptionDate": "2006-06-19",
-    "category": "Energy",
+    "category": "ENERGY",
     "dividendFrequency": "Quarterly",
     "dividendHistory": [
       {
@@ -2436,8 +4210,106 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": null,
-    "profileSource": null
+    "profileUpdatedAt": "2026-05-17T11:41:48.507Z",
+    "profileSource": "AlphaVantage",
+    "top10Holdings": [
+      {
+        "symbol": "DINO",
+        "name": "HF SINCLAIR CORP",
+        "weight": 0.0325
+      },
+      {
+        "symbol": "SM",
+        "name": "SM ENERGY CO",
+        "weight": 0.0315
+      },
+      {
+        "symbol": "CHRD",
+        "name": "CHORD ENERGY CORP ORDINARY SHARES NEW",
+        "weight": 0.0293
+      },
+      {
+        "symbol": "MUR",
+        "name": "MURPHY OIL CORP",
+        "weight": 0.0293
+      },
+      {
+        "symbol": "FANG",
+        "name": "DIAMONDBACK ENERGY INC",
+        "weight": 0.0289
+      },
+      {
+        "symbol": "APA",
+        "name": "APA CORP",
+        "weight": 0.0289
+      },
+      {
+        "symbol": "MPC",
+        "name": "MARATHON PETROLEUM CORP",
+        "weight": 0.0286
+      },
+      {
+        "symbol": "VNOM",
+        "name": "VIPER ENERGY INC ORDINARY SHARES CLASS A",
+        "weight": 0.0282
+      },
+      {
+        "symbol": "VLO",
+        "name": "VALERO ENERGY CORP",
+        "weight": 0.0275
+      },
+      {
+        "symbol": "VG",
+        "name": "VENTURE GLOBAL INC ORDINARY SHARES CLASS A",
+        "weight": 0.0274
+      }
+    ],
+    "sectorBreakdown": [
+      {
+        "sector": "ENERGY",
+        "weight": 0.999
+      },
+      {
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0
+      },
+      {
+        "sector": "COMMUNICATION SERVICES",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0
+      },
+      {
+        "sector": "HEALTHCARE",
+        "weight": 0
+      },
+      {
+        "sector": "CONSUMER STAPLES",
+        "weight": 0
+      },
+      {
+        "sector": "INDUSTRIALS",
+        "weight": 0
+      },
+      {
+        "sector": "MATERIALS",
+        "weight": 0
+      },
+      {
+        "sector": "UTILITIES",
+        "weight": 0
+      },
+      {
+        "sector": "FINANCIALS",
+        "weight": 0
+      },
+      {
+        "sector": "REAL ESTATE",
+        "weight": 0
+      }
+    ]
   },
   {
     "symbol": "VCIT",
@@ -2463,7 +4335,7 @@
     "divGrowth5Y": 9.23,
     "divGrowth10Y": 3.4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1900,
     "beta": 0.15,
     "yieldTTM": 3.8,
@@ -2524,7 +4396,7 @@
     "divGrowth5Y": 8.68,
     "divGrowth10Y": 10.43,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 103,
     "beta": 0.78,
     "yieldTTM": 3.9,
@@ -2585,7 +4457,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 1.1,
     "yieldTTM": 0.7,
@@ -2646,7 +4518,7 @@
     "divGrowth5Y": 27.83,
     "divGrowth10Y": 6.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 13,
     "beta": 0.1,
     "yieldTTM": 1.8,
@@ -2707,7 +4579,7 @@
     "divGrowth5Y": 24.05,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 26,
     "beta": 1.1,
     "yieldTTM": 0.8,
@@ -2768,7 +4640,7 @@
     "divGrowth5Y": 2.29,
     "divGrowth10Y": -0.89,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 600,
     "beta": 0.38,
     "yieldTTM": 5.6,
@@ -2829,7 +4701,7 @@
     "divGrowth5Y": 7.48,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 10600,
     "beta": 0.06,
     "yieldTTM": 2.9,
@@ -2890,7 +4762,7 @@
     "divGrowth5Y": 9.27,
     "divGrowth10Y": 4.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2400,
     "beta": 0.95,
     "yieldTTM": 1.8,
@@ -2951,7 +4823,7 @@
     "divGrowth5Y": 3.59,
     "divGrowth10Y": 3.75,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 225,
     "beta": 1.13,
     "yieldTTM": 0.52,
@@ -3012,7 +4884,7 @@
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 400,
     "beta": 1.07,
     "yieldTTM": 1.5,
@@ -3073,7 +4945,7 @@
     "divGrowth5Y": 11.35,
     "divGrowth10Y": 6.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 37,
     "beta": 0.85,
     "yieldTTM": 2.8,
@@ -3134,7 +5006,7 @@
     "divGrowth5Y": 36.77,
     "divGrowth10Y": 17.66,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 250,
     "beta": 0.6,
     "yieldTTM": 1.5,
@@ -3195,7 +5067,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": 4.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 35,
     "beta": 1.55,
     "yieldTTM": 0,
@@ -3256,7 +5128,7 @@
     "divGrowth5Y": 6.39,
     "divGrowth10Y": 3.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 848,
     "beta": 0.86,
     "yieldTTM": 1.9,
@@ -3317,7 +5189,7 @@
     "divGrowth5Y": 6.09,
     "divGrowth10Y": 6.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 28,
     "beta": 0.95,
     "yieldTTM": 2.1,
@@ -3378,7 +5250,7 @@
     "divGrowth5Y": 5.88,
     "divGrowth10Y": 6.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 335,
     "beta": 0.87,
     "yieldTTM": 1.8,
@@ -3439,7 +5311,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -3500,7 +5372,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 75,
     "beta": 0.85,
     "yieldTTM": 2.6,
@@ -3561,7 +5433,7 @@
     "divGrowth5Y": 9.01,
     "divGrowth10Y": 5.74,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1400,
     "beta": 0.96,
     "yieldTTM": 1.9,
@@ -3622,7 +5494,7 @@
     "divGrowth5Y": 2.54,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 370,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -3683,7 +5555,7 @@
     "divGrowth5Y": 9.03,
     "divGrowth10Y": 6.94,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 600,
     "beta": 1.1,
     "yieldTTM": 1.2,
@@ -3744,7 +5616,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 105,
     "beta": 0.82,
     "yieldTTM": 10.5,
@@ -3805,7 +5677,7 @@
     "divGrowth5Y": 9.19,
     "divGrowth10Y": 3.59,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 5100,
     "beta": 0.88,
     "yieldTTM": 2.5,
@@ -3866,7 +5738,7 @@
     "divGrowth5Y": 15.11,
     "divGrowth10Y": 14.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 87,
     "beta": 1,
     "yieldTTM": 1.8,
@@ -3927,7 +5799,7 @@
     "divGrowth5Y": 15.73,
     "divGrowth10Y": 7.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2400,
     "beta": 0.07,
     "yieldTTM": 3.2,
@@ -3988,7 +5860,7 @@
     "divGrowth5Y": 9.91,
     "divGrowth10Y": 6.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 9500,
     "beta": 0.93,
     "yieldTTM": 1.75,
@@ -4049,7 +5921,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 1.12,
     "yieldTTM": 0.9,
@@ -4110,7 +5982,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 130,
     "beta": 0.55,
     "yieldTTM": 7,
@@ -4171,7 +6043,7 @@
     "divGrowth5Y": 4.49,
     "divGrowth10Y": 5.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 800,
     "beta": 1,
     "yieldTTM": 1.1,
@@ -4232,7 +6104,7 @@
     "divGrowth5Y": 31.77,
     "divGrowth10Y": 32.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 35,
     "beta": 1.05,
     "yieldTTM": 1.2,
@@ -4293,7 +6165,7 @@
     "divGrowth5Y": 9.57,
     "divGrowth10Y": 4.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 196,
     "beta": 1.12,
     "yieldTTM": 0.55,
@@ -4354,7 +6226,7 @@
     "divGrowth5Y": 3.49,
     "divGrowth10Y": 3.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 233,
     "beta": 1.1,
     "yieldTTM": 0.47,
@@ -4415,7 +6287,7 @@
     "divGrowth5Y": 32.04,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 120,
     "beta": 0.02,
     "yieldTTM": 1.2,
@@ -4476,7 +6348,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.95,
     "yieldTTM": 0,
@@ -4537,7 +6409,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 106,
     "beta": 0.95,
     "yieldTTM": 14,
@@ -4598,7 +6470,7 @@
     "divGrowth5Y": 13.77,
     "divGrowth10Y": 4.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1260,
     "beta": 0.88,
     "yieldTTM": 3.5,
@@ -4659,7 +6531,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -4720,7 +6592,7 @@
     "divGrowth5Y": 1.64,
     "divGrowth10Y": -0.13,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 159,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -4781,7 +6653,7 @@
     "divGrowth5Y": 12.03,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 102,
     "beta": 1.1,
     "yieldTTM": 0.75,
@@ -4842,7 +6714,7 @@
     "divGrowth5Y": 7.48,
     "divGrowth10Y": 2.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 5000,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -4903,7 +6775,7 @@
     "divGrowth5Y": -6.89,
     "divGrowth10Y": -1.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 150,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -4964,7 +6836,7 @@
     "divGrowth5Y": -0.22,
     "divGrowth10Y": 0.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 233,
     "beta": 1.1,
     "yieldTTM": 0.55,
@@ -5025,7 +6897,7 @@
     "divGrowth5Y": 42.73,
     "divGrowth10Y": 19.99,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 92,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -5086,7 +6958,7 @@
     "divGrowth5Y": 200.94,
     "divGrowth10Y": 50.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 37,
     "beta": 0.01,
     "yieldTTM": 0.85,
@@ -5147,7 +7019,7 @@
     "divGrowth5Y": 5.56,
     "divGrowth10Y": 5.06,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1001,
     "beta": 1,
     "yieldTTM": 0.94,
@@ -5208,7 +7080,7 @@
     "divGrowth5Y": 8.94,
     "divGrowth10Y": 7.19,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1971,
     "beta": 1.25,
     "yieldTTM": 1.32,
@@ -5269,7 +7141,7 @@
     "divGrowth5Y": 0.99,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 31,
     "beta": 0.88,
     "yieldTTM": 2.9,
@@ -5330,7 +7202,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.38,
     "yieldTTM": 0,
@@ -5391,7 +7263,7 @@
     "divGrowth5Y": 27.31,
     "divGrowth10Y": 9.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 6800,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -5452,7 +7324,7 @@
     "divGrowth5Y": 40.31,
     "divGrowth10Y": 0.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 130,
     "beta": 0.7,
     "yieldTTM": 0.3,
@@ -5513,7 +7385,7 @@
     "divGrowth5Y": 0.08,
     "divGrowth10Y": 16.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 349,
     "beta": 1.38,
     "yieldTTM": 0.4,
@@ -5574,7 +7446,7 @@
     "divGrowth5Y": 8.14,
     "divGrowth10Y": 6.91,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 303,
     "beta": 0.8,
     "yieldTTM": 1.7,
@@ -5635,7 +7507,7 @@
     "divGrowth5Y": 4.29,
     "divGrowth10Y": 5.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 178,
     "beta": 0.68,
     "yieldTTM": 1.8,
@@ -5696,7 +7568,7 @@
     "divGrowth5Y": 1.59,
     "divGrowth10Y": -0.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 25,
     "beta": 0.98,
     "yieldTTM": 0.8,
@@ -5757,7 +7629,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 35,
     "beta": 1.2,
     "yieldTTM": 0.7,
@@ -5818,7 +7690,7 @@
     "divGrowth5Y": 8.63,
     "divGrowth10Y": 5.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 150,
     "beta": 0.88,
     "yieldTTM": 2.2,
@@ -5879,7 +7751,7 @@
     "divGrowth5Y": 4.45,
     "divGrowth10Y": 5.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2500,
     "beta": 1,
     "yieldTTM": 1.2,
@@ -5940,7 +7812,7 @@
     "divGrowth5Y": 4.13,
     "divGrowth10Y": 4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 421,
     "beta": 1.14,
     "yieldTTM": 0.52,
@@ -6001,7 +7873,7 @@
     "divGrowth5Y": 11.95,
     "divGrowth10Y": 7.51,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 4400,
     "beta": 0.85,
     "yieldTTM": 2.6,
@@ -6062,7 +7934,7 @@
     "divGrowth5Y": 12.6,
     "divGrowth10Y": 5.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 3900,
     "beta": 0.85,
     "yieldTTM": 2.7,
@@ -6123,7 +7995,7 @@
     "divGrowth5Y": 8.41,
     "divGrowth10Y": 7.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 370,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -6184,7 +8056,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 0.78,
     "yieldTTM": 0.8,
@@ -6245,7 +8117,7 @@
     "divGrowth5Y": 8.57,
     "divGrowth10Y": 6.36,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1400,
     "beta": 1.18,
     "yieldTTM": 1.12,
@@ -6306,7 +8178,7 @@
     "divGrowth5Y": 18.49,
     "divGrowth10Y": 10.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2800,
     "beta": 0.05,
     "yieldTTM": 2.8,
@@ -6367,7 +8239,7 @@
     "divGrowth5Y": 20.62,
     "divGrowth10Y": 25.09,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 44,
     "beta": 0.16,
     "yieldTTM": 2.8,
@@ -6428,7 +8300,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 45,
     "beta": 1.25,
     "yieldTTM": 0.7,
@@ -6489,7 +8361,7 @@
     "divGrowth5Y": 4.21,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 451,
     "beta": 0.89,
     "yieldTTM": 1.72,
@@ -6550,7 +8422,7 @@
     "divGrowth5Y": 7.41,
     "divGrowth10Y": 6.08,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 0.58,
     "yieldTTM": 2.8,
@@ -6611,7 +8483,7 @@
     "divGrowth5Y": 3.15,
     "divGrowth10Y": 4.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 550,
     "beta": 0.8,
     "yieldTTM": 3,
@@ -6672,7 +8544,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 90,
     "beta": 0.92,
     "yieldTTM": 2.1,
@@ -6733,7 +8605,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 300,
     "beta": 0.85,
     "yieldTTM": 2,
@@ -6794,7 +8666,7 @@
     "divGrowth5Y": 8.55,
     "divGrowth10Y": 9.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 230,
     "beta": 0.11,
     "yieldTTM": 2,
@@ -6855,7 +8727,7 @@
     "divGrowth5Y": 9.99,
     "divGrowth10Y": 7.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 85,
     "beta": 0.1,
     "yieldTTM": 1.8,
@@ -6916,7 +8788,7 @@
     "divGrowth5Y": 8.52,
     "divGrowth10Y": 4.71,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1396,
     "beta": 1.14,
     "yieldTTM": 1.9,
@@ -6977,7 +8849,7 @@
     "divGrowth5Y": 13.11,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 795,
     "beta": 1.08,
     "yieldTTM": 1.9,
@@ -7038,7 +8910,7 @@
     "divGrowth5Y": 10.22,
     "divGrowth10Y": 3.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 600,
     "beta": 0.9,
     "yieldTTM": 2.5,
@@ -7099,7 +8971,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 22,
     "beta": 0.88,
     "yieldTTM": 0.9,
@@ -7160,7 +9032,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 90,
     "beta": 1.08,
     "yieldTTM": 1.6,
@@ -7221,7 +9093,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.1,
     "yieldTTM": 0,
@@ -7282,7 +9154,7 @@
     "divGrowth5Y": 3.6,
     "divGrowth10Y": 4.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 451,
     "beta": 0.89,
     "yieldTTM": 2,
@@ -7343,7 +9215,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 52,
     "beta": 0.82,
     "yieldTTM": 0.35,
@@ -7404,7 +9276,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 471,
     "beta": 0.72,
     "yieldTTM": 12,
@@ -7465,7 +9337,7 @@
     "divGrowth5Y": 16.23,
     "divGrowth10Y": 8.78,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2200,
     "beta": 0.92,
     "yieldTTM": 2.4,
@@ -7526,7 +9398,7 @@
     "divGrowth5Y": 20.68,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 43,
     "beta": 0.06,
     "yieldTTM": 2.6,
@@ -7587,7 +9459,7 @@
     "divGrowth5Y": 6.01,
     "divGrowth10Y": 6.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 540,
     "beta": 1,
     "yieldTTM": 1.1,
@@ -7648,7 +9520,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 40,
     "beta": 1.2,
     "yieldTTM": 0.15,
@@ -7709,7 +9581,7 @@
     "divGrowth5Y": 5.54,
     "divGrowth10Y": 2.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 135,
     "beta": 0.83,
     "yieldTTM": 3.5,
@@ -7770,7 +9642,7 @@
     "divGrowth5Y": 1.86,
     "divGrowth10Y": 2.54,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2100,
     "beta": 0.12,
     "yieldTTM": 3.4,
@@ -7831,7 +9703,7 @@
     "divGrowth5Y": 2.22,
     "divGrowth10Y": 1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 85,
     "beta": 1.15,
     "yieldTTM": 0.48,
@@ -7892,7 +9764,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -7953,7 +9825,7 @@
     "divGrowth5Y": 2.77,
     "divGrowth10Y": 3.55,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 233,
     "beta": 1.1,
     "yieldTTM": 0.5,
@@ -8014,7 +9886,7 @@
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 1.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 0.8,
     "yieldTTM": 3.2,
@@ -8075,7 +9947,7 @@
     "divGrowth5Y": 34.48,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 40,
     "beta": 1.05,
     "yieldTTM": 0.3,
@@ -8136,7 +10008,7 @@
     "divGrowth5Y": 7.09,
     "divGrowth10Y": 8.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 400,
     "beta": 0.82,
     "yieldTTM": 2.5,
@@ -8197,7 +10069,7 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 2.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1130,
     "beta": 1.38,
     "yieldTTM": 0.5,
@@ -8258,7 +10130,7 @@
     "divGrowth5Y": 6.83,
     "divGrowth10Y": -0.77,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 320,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -8319,7 +10191,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -8380,7 +10252,7 @@
     "divGrowth5Y": 4.9,
     "divGrowth10Y": 2.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 55,
     "beta": 0.24,
     "yieldTTM": 2.5,
@@ -8441,7 +10313,7 @@
     "divGrowth5Y": 1.42,
     "divGrowth10Y": 4.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 360,
     "beta": 0.87,
     "yieldTTM": 1.9,
@@ -8502,7 +10374,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.85,
     "yieldTTM": 0,
@@ -8563,7 +10435,7 @@
     "divGrowth5Y": 18.03,
     "divGrowth10Y": 10.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2400,
     "beta": 0.68,
     "yieldTTM": 2.1,
@@ -8624,7 +10496,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 65,
     "beta": 0.72,
     "yieldTTM": 2.2,
@@ -8685,7 +10557,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 38,
     "beta": 0.82,
     "yieldTTM": 0.6,
@@ -8746,7 +10618,7 @@
     "divGrowth5Y": 20.3,
     "divGrowth10Y": 23.27,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 47,
     "beta": 0.16,
     "yieldTTM": 2.7,
@@ -8807,7 +10679,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 67,
     "beta": 0.9,
     "yieldTTM": 2.3,
@@ -8868,7 +10740,7 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 700,
     "beta": 0.88,
     "yieldTTM": 2,
@@ -8929,7 +10801,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 38,
     "beta": 1.42,
     "yieldTTM": 0,
@@ -8990,7 +10862,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 52,
     "beta": 0.8,
     "yieldTTM": 2.5,
@@ -9051,7 +10923,7 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 8.37,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1000,
     "beta": 0.9,
     "yieldTTM": 1.8,
@@ -9112,7 +10984,7 @@
     "divGrowth5Y": 1.87,
     "divGrowth10Y": 5.66,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 3300,
     "beta": 1.12,
     "yieldTTM": 1.1,
@@ -9173,7 +11045,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 14,
     "beta": 0.2,
     "yieldTTM": 2.5,
@@ -9234,7 +11106,7 @@
     "divGrowth5Y": 31.05,
     "divGrowth10Y": 18.09,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 80,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -9295,7 +11167,7 @@
     "divGrowth5Y": 8.16,
     "divGrowth10Y": 5.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1750,
     "beta": 1.15,
     "yieldTTM": 1.3,
@@ -9356,7 +11228,7 @@
     "divGrowth5Y": -4.79,
     "divGrowth10Y": -0.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 101,
     "beta": 0.72,
     "yieldTTM": 11,
@@ -9417,7 +11289,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 88,
     "beta": 0.82,
     "yieldTTM": 3.5,
@@ -9478,7 +11350,7 @@
     "divGrowth5Y": 7.15,
     "divGrowth10Y": 1.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 820,
     "beta": 1.32,
     "yieldTTM": 0.52,
@@ -9539,7 +11411,7 @@
     "divGrowth5Y": 3.64,
     "divGrowth10Y": 6.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 420,
     "beta": 1.02,
     "yieldTTM": 1.8,
@@ -9600,7 +11472,7 @@
     "divGrowth5Y": 7.94,
     "divGrowth10Y": 5.67,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 4200,
     "beta": 0.06,
     "yieldTTM": 2.8,
@@ -9661,7 +11533,7 @@
     "divGrowth5Y": 9.54,
     "divGrowth10Y": 6.26,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 830,
     "beta": 1.07,
     "yieldTTM": 1.95,
@@ -9722,7 +11594,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 38,
     "beta": 0.6,
     "yieldTTM": 3.6,
@@ -9783,7 +11655,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 60,
     "beta": 0.95,
     "yieldTTM": 0.4,
@@ -9844,7 +11716,7 @@
     "divGrowth5Y": 13.2,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 0.9,
     "yieldTTM": 1.5,
@@ -9905,7 +11777,7 @@
     "divGrowth5Y": 2.29,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 75,
     "beta": 0.72,
     "yieldTTM": 3.8,
@@ -9966,7 +11838,7 @@
     "divGrowth5Y": 3.97,
     "divGrowth10Y": 7.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 300,
     "beta": 0.88,
     "yieldTTM": 1.8,
@@ -10027,7 +11899,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 10,
     "beta": 0.1,
     "yieldTTM": 0.9,
@@ -10088,7 +11960,7 @@
     "divGrowth5Y": 11.12,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 3600,
     "beta": 0.88,
     "yieldTTM": 2.8,
@@ -10149,7 +12021,7 @@
     "divGrowth5Y": 10.1,
     "divGrowth10Y": 8.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 440,
     "beta": 0.72,
     "yieldTTM": 1.5,
@@ -10210,7 +12082,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 70,
     "beta": 0.82,
     "yieldTTM": 4,
@@ -10271,7 +12143,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1400,
     "beta": 1.3,
     "yieldTTM": 1.5,
@@ -10332,7 +12204,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 45,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -10393,7 +12265,7 @@
     "divGrowth5Y": 0.54,
     "divGrowth10Y": 2.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 0.6,
     "yieldTTM": 2.2,
@@ -10454,7 +12326,7 @@
     "divGrowth5Y": 16.88,
     "divGrowth10Y": 5.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 290,
     "beta": 0.65,
     "yieldTTM": 3,
@@ -10515,7 +12387,7 @@
     "divGrowth5Y": 8.2,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 99,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -10576,7 +12448,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.05,
     "yieldTTM": 0,
@@ -10637,7 +12509,7 @@
     "divGrowth5Y": 5.49,
     "divGrowth10Y": 8.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 66,
     "beta": 0.8,
     "yieldTTM": 2.4,
@@ -10698,7 +12570,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 42,
     "beta": 1.25,
     "yieldTTM": 0.4,
@@ -10759,7 +12631,7 @@
     "divGrowth5Y": 7.56,
     "divGrowth10Y": 8.31,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 100,
     "beta": 0.75,
     "yieldTTM": 3.8,
@@ -10820,7 +12692,7 @@
     "divGrowth5Y": -12.35,
     "divGrowth10Y": -1.22,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 2800,
     "beta": 0.22,
     "yieldTTM": 3.8,
@@ -10881,7 +12753,7 @@
     "divGrowth5Y": 10.85,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 102,
     "beta": 0.82,
     "yieldTTM": 3.5,
@@ -10942,7 +12814,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 40,
     "beta": 0.95,
     "yieldTTM": 0.8,
@@ -11003,7 +12875,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 51,
     "beta": 0.55,
     "yieldTTM": 4.2,
@@ -11064,7 +12936,7 @@
     "divGrowth5Y": 2.82,
     "divGrowth10Y": 4.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 67,
     "beta": 0.5,
     "yieldTTM": 3.2,
@@ -11125,7 +12997,7 @@
     "divGrowth5Y": 11.6,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 30,
     "beta": 0.78,
     "yieldTTM": 4.8,
@@ -11186,7 +13058,7 @@
     "divGrowth5Y": 11.14,
     "divGrowth10Y": 6.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 500,
     "beta": 1.03,
     "yieldTTM": 1.2,
@@ -11247,7 +13119,7 @@
     "divGrowth5Y": 13.67,
     "divGrowth10Y": 7.69,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 459,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -11308,7 +13180,7 @@
     "divGrowth5Y": 3.14,
     "divGrowth10Y": -2.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 136,
     "beta": 0.83,
     "yieldTTM": 3.7,
@@ -11369,7 +13241,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 68,
     "beta": 1.12,
     "yieldTTM": 0.2,
@@ -11430,7 +13302,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 72,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -11491,7 +13363,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 104,
     "beta": 0.82,
     "yieldTTM": 3.5,
@@ -11552,7 +13424,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 140,
     "beta": 0.84,
     "yieldTTM": 3.4,
@@ -11613,7 +13485,7 @@
     "divGrowth5Y": 4.86,
     "divGrowth10Y": 4.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 232,
     "beta": 1,
     "yieldTTM": 0.95,
@@ -11674,7 +13546,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 119,
     "beta": 0.72,
     "yieldTTM": 1.8,
@@ -11735,7 +13607,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 20,
     "beta": 1.3,
     "yieldTTM": 0.2,
@@ -11796,7 +13668,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 43,
     "beta": 0.9,
     "yieldTTM": 0.7,
@@ -11857,7 +13729,7 @@
     "divGrowth5Y": 5.68,
     "divGrowth10Y": 3.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 244,
     "beta": 1.15,
     "yieldTTM": 0.55,
@@ -11918,7 +13790,7 @@
     "divGrowth5Y": -8.46,
     "divGrowth10Y": 3.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 300,
     "beta": 1.18,
     "yieldTTM": 0.8,
@@ -11979,7 +13851,7 @@
     "divGrowth5Y": 6.64,
     "divGrowth10Y": 2.13,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 350,
     "beta": 1.05,
     "yieldTTM": 1.1,
@@ -12040,7 +13912,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.38,
     "yieldTTM": 0,
@@ -12101,7 +13973,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 459,
     "beta": 1.05,
     "yieldTTM": 1.5,
@@ -12162,7 +14034,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-05-17T10:28:25.988Z",
+    "updatedAt": "2026-05-17T11:41:48.507Z",
     "numHoldings": 1,
     "beta": 0.05,
     "yieldTTM": 0,
