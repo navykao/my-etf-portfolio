@@ -3,8 +3,10 @@
 // อัพเดท ETF-specific fields ผ่าน FMP API
 // รันอาทิตย์ละ 1 ครั้ง (ทุกวันจันทร์)
 //
-// Fields: totalAssets, expenseRatio, numHoldings,
-//         trackingIndex, inceptionDate, category
+// Fields: totalAssets (marketCap), inceptionDate (ipoDate),
+//         category (sector/industry), name, isEtf
+//
+// Endpoint: /stable/profile (Free plan ✅)
 //
 // วิธีรัน: node scripts/update-etf-profile.cjs
 // ============================================
@@ -24,7 +26,7 @@ const API_KEYS = {
 // ============================================
 const CONFIG = {
   ETFS_FILE:        path.join(__dirname, '..', 'public', 'data', 'etfs.json'),
-  FMP_DELAY_MS:     300,   // 300ms/ตัว — FMP ไม่มี rate limit เข้มงวด
+  FMP_DELAY_MS:     300,   // 300ms/ตัว
   FMP_QUOTA:        230,   // เผื่อไว้ 20 req จาก 250/day
   FETCH_TIMEOUT_MS: 10000,
 };
@@ -68,30 +70,35 @@ function formatTime(ms) {
 }
 
 // ============================================
-// FMP: ETF Profile
-// Endpoint: /etf/info?symbol=SPY
-// Fields: expenseRatio, aum, holdingsCount,
-//         domicile, etfCompany, inceptionDate
+// FMP: /stable/profile (Free plan ✅)
+// Fields ที่ได้:
+//   marketCap   → totalAssets (ใกล้เคียง AUM)
+//   ipoDate     → inceptionDate
+//   sector      → category
+//   companyName → name
+//   isEtf       → ยืนยันว่าเป็น ETF
+// Fields ที่ไม่มีใน Free:
+//   expenseRatio  → คงค่าเดิม
+//   numHoldings   → คงค่าเดิม
 // ============================================
 async function fetchFMPETFProfile(symbol) {
   if (!API_KEYS.FMP) return null;
   try {
-    const url = `https://financialmodelingprep.com/api/v4/etf-info?symbol=${symbol}&apikey=${API_KEYS.FMP}`;
+    const url = `https://financialmodelingprep.com/stable/profile?symbol=${symbol}&apikey=${API_KEYS.FMP}`;
     const response = await fetchWithTimeout(url);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
 
-    // FMP returns array
+    // /stable/profile returns array
     const d = Array.isArray(data) ? data[0] : data;
-    if (!d) return null;
+    if (!d || !d.symbol) return null;
 
     return {
-      totalAssets:   d.aum              || 0,
-      expenseRatio:  d.expenseRatio      ? parseFloat(d.expenseRatio) * 100 : 0,
-      numHoldings:   d.holdingsCount     || 0,
-      trackingIndex: d.domicile          || '',   // FMP ไม่มี trackingIndex ตรงๆ
-      inceptionDate: d.inceptionDate     || '',
-      category:      d.etfCompany        || '',
+      totalAssets:   d.marketCap     || 0,
+      inceptionDate: d.ipoDate       || '',
+      category:      d.sector        || d.industry || '',
+      name:          d.companyName   || '',
+      isEtf:         d.isEtf         ?? true,
     };
   } catch (error) {
     return null;
@@ -104,8 +111,8 @@ async function fetchFMPETFProfile(symbol) {
 async function updateETFProfile() {
   console.log('╔══════════════════════════════════════════════════════╗');
   console.log('║  📊 ETF Portfolio - Weekly ETF Profile Update       ║');
-  console.log('║  Source: FMP /etf-info (Free 250 req/day)           ║');
-  console.log('║  Fields: AUM, Expense Ratio, Holdings, Inception    ║');
+  console.log('║  Source: FMP /stable/profile (Free 250 req/day) ✅  ║');
+  console.log('║  Fields: MarketCap, Inception, Category, Name       ║');
   console.log('║  Schedule: ทุกวันจันทร์ สัปดาห์ละ 1 ครั้ง         ║');
   console.log('╚══════════════════════════════════════════════════════╝\n');
 
@@ -115,7 +122,8 @@ async function updateETFProfile() {
     process.exit(1);
   }
   console.log(`[Config] FMP API Key: ✅ Ready`);
-  console.log(`[Config] Quota limit: ${CONFIG.FMP_QUOTA} req/run\n`);
+  console.log(`[Config] Quota limit: ${CONFIG.FMP_QUOTA} req/run`);
+  console.log(`[Config] Endpoint: /stable/profile (Free plan)\n`);
 
   // โหลด ETFs
   let etfsData = [];
@@ -132,7 +140,7 @@ async function updateETFProfile() {
 
   console.log('═'.repeat(55));
   console.log(`📡 Updating ETF Profile: ${etfsData.length} ETFs`);
-  console.log(`   Source: FMP /etf-info @ ${CONFIG.FMP_DELAY_MS}ms/ตัว`);
+  console.log(`   Source: FMP /stable/profile @ ${CONFIG.FMP_DELAY_MS}ms/ตัว`);
   console.log(`   Estimated time: ~${Math.ceil(etfsData.length * CONFIG.FMP_DELAY_MS / 1000 / 60)} minutes`);
   console.log('═'.repeat(55));
 
@@ -157,12 +165,15 @@ async function updateETFProfile() {
     if (profile) {
       etfsData[i] = {
         ...etfsData[i],
+        // อัปเดตจาก /stable/profile
         totalAssets:   profile.totalAssets   || etfsData[i].totalAssets   || 0,
-        expenseRatio:  profile.expenseRatio   || etfsData[i].expenseRatio  || 0,
-        numHoldings:   profile.numHoldings    || etfsData[i].numHoldings   || 0,
-        trackingIndex: etfsData[i].trackingIndex || '',  // คงของเดิม (FMP ไม่มี)
-        inceptionDate: profile.inceptionDate   || etfsData[i].inceptionDate || '',
-        category:      profile.category        || etfsData[i].category      || '',
+        inceptionDate: profile.inceptionDate  || etfsData[i].inceptionDate || '',
+        category:      profile.category       || etfsData[i].category      || '',
+        name:          profile.name           || etfsData[i].name          || etf.symbol,
+        // คงค่าเดิม (Free plan ไม่มี)
+        expenseRatio:  etfsData[i].expenseRatio  || 0,
+        numHoldings:   etfsData[i].numHoldings   || 0,
+        trackingIndex: etfsData[i].trackingIndex || '',
         profileUpdatedAt: now,
       };
       stats.success++;
@@ -172,7 +183,7 @@ async function updateETFProfile() {
         const aum = profile.totalAssets >= 1e9
           ? `$${(profile.totalAssets / 1e9).toFixed(1)}B`
           : `$${(profile.totalAssets / 1e6).toFixed(0)}M`;
-        console.log(`  ✅ ${etf.symbol}: AUM=${aum} | ER=${profile.expenseRatio.toFixed(2)}% | Holdings=${profile.numHoldings}`);
+        console.log(`  ✅ ${etf.symbol}: AUM=${aum} | Inception=${profile.inceptionDate} | Category=${profile.category}`);
       }
     } else {
       stats.failed++;
