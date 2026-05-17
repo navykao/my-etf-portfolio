@@ -175,7 +175,7 @@ async function updateETFProfile() {
         console.log(`  ✅ ${etf.symbol}: AUM=${aum} | ER=${profile.expenseRatio.toFixed(2)}% | Holdings=${profile.numHoldings}`);
       }
     } else {
-      stats.failed++;
+      stats.skipped++;
       if (stats.failed <= 5) {
         console.log(`  ⚠️  ${etf.symbol}: FMP failed — คงข้อมูลเดิม`);
       }
