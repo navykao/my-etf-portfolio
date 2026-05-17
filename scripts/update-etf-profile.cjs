@@ -140,7 +140,7 @@ async function updateETFProfile() {
     const etf = etfsData[i];
 
     // ตรวจ quota
-    if (stats.success + stats.failed >= CONFIG.FMP_QUOTA) {
+    if (stats.success >= CONFIG.FMP_QUOTA) {
       console.log(`\n⚠️  FMP quota ครบ ${CONFIG.FMP_QUOTA} req — หยุดที่ ${i}/${etfsData.length}`);
       stats.skipped = etfsData.length - i;
       break;
@@ -175,9 +175,9 @@ async function updateETFProfile() {
         console.log(`  ✅ ${etf.symbol}: AUM=${aum} | ER=${profile.expenseRatio.toFixed(2)}% | Holdings=${profile.numHoldings}`);
       }
     } else {
-      stats.skipped++;
+      stats.failed++;
       if (stats.failed <= 5) {
-        console.log(`  ⚠️  ${etf.symbol}: FMP failed — คงข้อมูลเดิม`);
+        console.log(`  ❌ ${etf.symbol}: FMP failed — ไม่ได้ข้อมูล`);
       }
     }
 
