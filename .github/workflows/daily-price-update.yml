@@ -62,6 +62,8 @@ jobs:
 
           git commit -m "📈 Auto-update: prices + ETF profiles [$(date '+%Y-%m-%d %H:%M ICT')]"
 
+          git pull --rebase origin main
+
           git push
 
       - name: No changes detected
