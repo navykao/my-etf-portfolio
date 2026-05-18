@@ -1,7 +1,7 @@
 // src/hooks/useAuth.js
 // Hook สำหรับจัดการ Google Authentication
 // คืนค่า: { user, loading, signIn, signOut }
-
+   
 import { useState, useEffect } from "react";
 import { signInWithPopup, signOut as firebaseSignOut, onAuthStateChanged } from "firebase/auth";
 import { auth, provider } from "../firebase";
