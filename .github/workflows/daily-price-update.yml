@@ -1,0 +1,60 @@
+# .github/workflows/daily-price-update.yml
+# ════════════════════════════════════════════════
+# Daily Price Update + ETF Profile
+# Schedule: ทุกวัน 08:35 และ 19:35 ICT
+# ════════════════════════════════════════════════
+
+name: Daily Price Update 
+
+on:
+  schedule:
+    - cron: '35 1 * * *'    # 08:35 ICT (01:35 UTC) - เช้าทุกวัน
+    - cron: '35 12 * * *'   # 19:35 ICT (12:35 UTC) - หลังตลาดสหรัฐปิด
+    - cron: '0 15 * * *'    # 🧪 TEST 22:00 ICT - ลบหลังทดสอบ
+  workflow_dispatch:
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update-all-assets
+        env:
+          FINNHUB_API_KEY:      ${{ secrets.FINNHUB_API_KEY }}
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+          FMP0N8_API_KEY:       ${{ secrets.FMP0N8_API_KEY }}
+          EODHD_API_KEY:        ${{ secrets.EODHD_API_KEY }}
+          TWELVE_DATA_API_KEY:  ${{ secrets.TWELVE_DATA_API_KEY }}
+        run: node scripts/update-all-assets.cjs
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet public/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push updated data
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/stocks.json public/data/etfs.json || true
+          git commit -m "📊 Auto-update: prices + ETF profiles [$(date '+%Y-%m-%d %H:%M ICT')]"
+          git push
+
+      - name: No changes detected
+        if: steps.check_changes.outputs.changed != 'true'
+        run: echo "✅ No data changes — skip commit"
