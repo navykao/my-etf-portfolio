@@ -5,6 +5,12 @@
 # ════════════════════════════════════════════════
 
 name: Daily Price Update 
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-price-update
+  cancel-in-progress: true
 
 on:
   schedule:
