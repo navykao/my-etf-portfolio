@@ -7,13 +7,12 @@
 #   - 19:35 ICT (12:35 UTC) - หลังตลาดสหรัฐปิด
 # ════════════════════════════════════════════════
 
-name: Daily Price Update
-
+name: Daily Price Update v3
 on:
   schedule:
     - cron: '35 1 * * *'    # 08:35 ICT (01:35 UTC) - เช้าทุกวัน
     - cron: '35 12 * * *'   # 19:35 ICT (12:35 UTC) - หลังตลาดสหรัฐปิด
-    - cron: '5 14 * * *'    # 🧪 TEST 21:05 ICT - ลบหลังทดสอบ
+    - cron: '30 14 * * *'   # 🧪 TEST 21:30 ICT - ลบหลังทดสอบ
   workflow_dispatch:        # รันมือได้จาก GitHub Actions tab
 
 jobs:
