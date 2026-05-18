@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-
+    
 // ระบบป้องกันหน้าจอขาว (Error Boundary)
 window.onerror = function(message, source, lineno, colno, error) {
   const root = document.getElementById('root');
