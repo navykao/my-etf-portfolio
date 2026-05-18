@@ -13,7 +13,7 @@ on:
   schedule:
     - cron: '35 1 * * *'    # 08:35 ICT (01:35 UTC) - เช้าทุกวัน
     - cron: '35 12 * * *'   # 19:35 ICT (12:35 UTC) - หลังตลาดสหรัฐปิด
-    - cron: '30 13 * * *'   # 🧪 TEST 20:30 ICT - ลบหลังทดสอบ
+    - cron: '5 14 * * *'    # 🧪 TEST 21:05 ICT - ลบหลังทดสอบ
   workflow_dispatch:        # รันมือได้จาก GitHub Actions tab
 
 jobs:
