@@ -5,8 +5,8 @@
 // Phase 1 : Finnhub /quote        → ราคาทุก asset (หุ้น+ETF) ทุกวัน
 // Phase 2 : Finnhub /metric       → P/E, EPS, divYield, MarketCap, 52w ทุกวัน
 // Phase 3 : Alpha Vantage         → ETF Profile เฉพาะ ETF ครบ 7 วัน
-//           Priority 1: Portfolio ETF
-//           Priority 2: Watchlist ETF
+//           Priority 1: Portfolio ETF    
+//           Priority 2: Watchlist ETF  
 //           Priority 3: ETF ทั่วไป (ถ้า quota เหลือ)
 // Phase 4 : FMP /quote-short      → fallback ราคา เฉพาะ Finnhub fail
 // Phase 5 : EODHD + Twelve Data   → fallback สุดท้าย
