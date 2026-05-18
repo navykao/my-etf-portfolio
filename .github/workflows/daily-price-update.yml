@@ -1,3 +1,10 @@
+# .github/workflows/daily-price-update.yml
+#
+# ระบบหลัก:  cron-job.org → workflow_dispatch เวลา 04:10 ICT
+# ระบบสำรอง: GitHub Actions cron → 05:30 ICT (22:30 UTC วันก่อน)
+#
+# ถ้าระบบหลักรันสำเร็จแล้ว ระบบสำรองจะเจอ "No data changes" → skip commit
+
 name: Daily Price Update
 
 permissions:
@@ -35,7 +42,7 @@ jobs:
         env:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
-          FMPQNB_API_KEY: ${{ secrets.FMPQNB_API_KEY }}
+          FMP0N8_API_KEY: ${{ secrets.FMP0N8_API_KEY }}
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
           TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
         run: node scripts/update-all-assets.cjs
