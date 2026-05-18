@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
 import { Pie, Bar, Line } from 'react-chartjs-2'
-import './App.css'
+import './App.css'   
 
 // ==================== FIREBASE ====================
 import { initializeApp } from 'firebase/app'
