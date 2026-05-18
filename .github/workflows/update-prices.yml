@@ -2,29 +2,23 @@
 # ════════════════════════════════════════════════
 # Daily Price Update + ETF Profile (รวมในไฟล์เดียว)
 #
-# Phase 1: Finnhub /quote       → ราคาทุก asset
-# Phase 2: Finnhub /metric      → Fundamental
-# Phase 3: Alpha Vantage        → ETF Profile (7-day)
-# Phase 4: FMP                  → fallback ราคา
-# Phase 5: EODHD + Twelve Data  → fallback สุดท้าย
-#
 # Schedule: ทุกวัน (จันทร์-อาทิตย์) วันละ 2 ครั้ง
-#   - 19:00 ICT (12:00 UTC)
-#   - 04:00 ICT (21:00 UTC) ← หลังตลาดอเมริกาปิด 1 ชม.
+#   - 08:35 ICT (01:35 UTC) - เช้า
+#   - 19:35 ICT (12:35 UTC) - หลังตลาดสหรัฐปิด
 # ════════════════════════════════════════════════
 
 name: Daily Price Update
 
 on:
   schedule:
-   - cron: '25 1 * * *'    # 08:25 ICT (01:25 UTC) - เช้าทุกวัน
-    - cron: '55 12 * * *'   # 19:55 ICT (12:25 UTC) - หลังตลาดปิด 45 นาที
+    - cron: '35 1 * * *'    # 08:35 ICT (01:35 UTC) - เช้าทุกวัน
+    - cron: '35 12 * * *'   # 19:35 ICT (12:35 UTC) - หลังตลาดสหรัฐปิด
   workflow_dispatch:        # รันมือได้จาก GitHub Actions tab
 
 jobs:
   update-prices:
     runs-on: ubuntu-latest
-    timeout-minutes: 90     # Phase 1+2 ใช้เวลา ~60-80 นาที
+    timeout-minutes: 90
 
     steps:
       - name: Checkout repository
