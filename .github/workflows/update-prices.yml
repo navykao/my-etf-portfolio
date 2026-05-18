@@ -14,30 +14,29 @@
 # ════════════════════════════════════════════════
 
 name: Daily Price Update
-  
+
 on:
   schedule:
     - cron: '0 1 * * *'   # 08:00 ICT (01:00 UTC) - ทุกวัน
     - cron: '0 9 * * *'   # 16:00 ICT (09:00 UTC) - ทุกวัน
-  workflow_dispatch:          # รันมือได้จาก GitHub Actions tab
-   
+  workflow_dispatch:        # รันมือได้จาก GitHub Actions tab
+
 jobs:
   update-prices:
     runs-on: ubuntu-latest
-    timeout-minutes: 90       # Phase 1+2 ใช้เวลา ~60-80 นาที
+    timeout-minutes: 90     # Phase 1+2 ใช้เวลา ~60-80 นาที
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT_TOKEN }}   # ใช้ PAT เพื่อ push ได้
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # ✅ FIX: ติดตั้ง dependencies ก่อนรัน script
       - name: Install dependencies
         run: npm install
 
@@ -60,7 +59,6 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # ✅ FIX: เพิ่ม || true เพื่อไม่ให้ error ถ้าไม่มีไฟล์ใดไฟล์หนึ่ง
           git add public/data/stocks.json public/data/etfs.json || true
           git commit -m "📊 Auto-update: prices + ETF profiles [$(date '+%Y-%m-%d %H:%M ICT')]"
           git push
