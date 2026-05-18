@@ -17,7 +17,7 @@ name: Daily Price Update
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # 19:00 ICT (12:00 UTC) - ทุกวัน
+    - cron: '45 11 * * *'  # 19:00 ICT (12:00 UTC) - ทุกวัน
     - cron: '0 21 * * *'  # 04:00 ICT (21:00 UTC) - หลังตลาดอเมริกาปิด 1 ชม.
   workflow_dispatch:        # รันมือได้จาก GitHub Actions tab
 
