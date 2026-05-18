@@ -5,6 +5,10 @@
 # ════════════════════════════════════════════════
 
 name: Daily Price Update 
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
 permissions:
   contents: write
 
