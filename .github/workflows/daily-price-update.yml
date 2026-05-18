@@ -16,7 +16,7 @@ on:
   schedule:
     - cron: '35 1 * * *'    # 08:35 ICT (01:35 UTC) - เช้าทุกวัน
     - cron: '35 12 * * *'   # 19:35 ICT (12:35 UTC) - หลังตลาดสหรัฐปิด
-    - cron: '0 15 * * *'    # 🧪 TEST 22:00 ICT - ลบหลังทดสอบ
+    - cron: '20 15 * * *'    # 🧪 TEST 22:00 ICT - ลบหลังทดสอบ
   workflow_dispatch:
 
 jobs:
