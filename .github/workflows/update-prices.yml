@@ -14,13 +14,13 @@
 # ════════════════════════════════════════════════
 
 name: Daily Price Update
-
+ 
 on:
   schedule:
     - cron: '0 1 * * *'   # 08:00 ICT (01:00 UTC) - ทุกวัน
     - cron: '0 9 * * *'   # 16:00 ICT (09:00 UTC) - ทุกวัน
   workflow_dispatch:          # รันมือได้จาก GitHub Actions tab
-
+   
 jobs:
   update-prices:
     runs-on: ubuntu-latest
