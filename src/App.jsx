@@ -717,7 +717,10 @@ function DashboardPage({
                       const val = holding.shares * currentPrice
                       const gain = val - (holding.shares * holding.avgCost)
                       return (
-                        <div key={holding.symbol} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 8px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)' }}>
+                        <div key={holding.symbol} onClick={() => { if (stock) setSelectedStock(stock) }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 8px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', cursor: 'pointer', transition: 'all 0.15s' }}
+                          onMouseEnter={e => { e.currentTarget.style.background = 'var(--blue-soft)'; e.currentTarget.style.borderColor = 'var(--blue-mid)' }}
+                          onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg)'; e.currentTarget.style.borderColor = 'var(--border)' }}
+                        >
                           <div>
                             <span className="stock-symbol" style={{ fontSize: '11.5px' }}>{holding.symbol}</span>
                             <span style={{ fontSize: '10px', color: 'var(--ink-4)', marginLeft: '4px' }}>{formatShares(holding.shares)} หุ้น</span>
