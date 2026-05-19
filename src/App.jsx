@@ -709,7 +709,7 @@ function DashboardPage({
                       <div style={{ fontSize: '14px', fontWeight: '700', fontFamily: 'var(--mono)', color: 'var(--ink-1)' }}>{portfolioStats.count} ตัว</div>
                     </div>
                   </div>
-                  {/* Holdings list — NO scroll, show ALL */}
+                  {/* Holdings list — NO scroll, show ALL — ขนาดเท่า Watchlist ฝั่งซ้าย */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
                     {portfolio.map(holding => {
                       const stock = allAssets.find(a => a.symbol === holding.symbol)
@@ -717,17 +717,17 @@ function DashboardPage({
                       const val = holding.shares * currentPrice
                       const gain = val - (holding.shares * holding.avgCost)
                       return (
-                        <div key={holding.symbol} onClick={() => { if (stock) setSelectedStock(stock) }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 8px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', cursor: 'pointer', transition: 'all 0.15s' }}
+                        <div key={holding.symbol} onClick={() => { if (stock) setSelectedStock(stock) }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', cursor: 'pointer', transition: 'all 0.15s' }}
                           onMouseEnter={e => { e.currentTarget.style.background = 'var(--blue-soft)'; e.currentTarget.style.borderColor = 'var(--blue-mid)' }}
                           onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg)'; e.currentTarget.style.borderColor = 'var(--border)' }}
                         >
                           <div>
-                            <span className="stock-symbol" style={{ fontSize: '11.5px' }}>{holding.symbol}</span>
-                            <span style={{ fontSize: '10px', color: 'var(--ink-4)', marginLeft: '4px' }}>{formatShares(holding.shares)} หุ้น</span>
+                            <span className="stock-symbol">{holding.symbol}</span>
+                            <span style={{ fontSize: '11px', color: 'var(--ink-3)', marginLeft: '6px' }}>{formatShares(holding.shares)} หุ้น</span>
                           </div>
                           <div style={{ textAlign: 'right' }}>
-                            <div style={{ fontSize: '11.5px', fontFamily: 'var(--mono)', fontWeight: '600', color: 'var(--ink-1)' }}>{formatPrice(val)}</div>
-                            <div style={{ fontSize: '10px', fontFamily: 'var(--mono)', color: gain >= 0 ? 'var(--success)' : 'var(--danger)' }}>
+                            <div style={{ fontSize: '13.5px', fontFamily: 'var(--mono)', fontWeight: '700', color: 'var(--ink-1)' }}>{formatPrice(val)}</div>
+                            <div style={{ fontSize: '11.5px', fontFamily: 'var(--mono)', fontWeight: '600', color: gain >= 0 ? 'var(--success)' : 'var(--danger)' }}>
                               {gain >= 0 ? '+' : ''}{formatPrice(gain)}
                             </div>
                           </div>
