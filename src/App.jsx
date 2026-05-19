@@ -213,20 +213,140 @@ const MarketIndex = ({ name, value, change }) => (
   </div>
 )
 
+// ==================== CANDLESTICK CANVAS COMPONENT ====================
+// วาดกราฟแท่งเทียนเขียว-แดง ด้วย HTML Canvas
+// รับ props: candles = [{t, o, h, l, c, v}, ...]
+const CandlestickCanvas = ({ candles }) => {
+  const canvasRef = useCallback((canvas) => {
+    if (!canvas || !candles || candles.length === 0) return
+
+    const ctx = canvas.getContext('2d')
+    const dpr = window.devicePixelRatio || 1
+    const rect = canvas.getBoundingClientRect()
+    canvas.width = rect.width * dpr
+    canvas.height = rect.height * dpr
+    ctx.scale(dpr, dpr)
+
+    const W = rect.width
+    const H = rect.height
+    const pad = { top: 10, right: 55, bottom: 30, left: 10 }
+    const chartW = W - pad.left - pad.right
+    const chartH = H - pad.top - pad.bottom
+
+    // Price range
+    let minP = Infinity, maxP = -Infinity
+    candles.forEach(d => { minP = Math.min(minP, d.l); maxP = Math.max(maxP, d.h) })
+    const range = maxP - minP
+    minP -= range * 0.08
+    maxP += range * 0.08
+
+    const toY = (p) => pad.top + chartH - ((p - minP) / (maxP - minP)) * chartH
+    const candleW = chartW / candles.length
+    const bodyW = candleW * 0.6
+
+    ctx.clearRect(0, 0, W, H)
+
+    // Grid lines + price labels
+    const gridSteps = 5
+    ctx.strokeStyle = 'rgba(0,0,0,0.05)'
+    ctx.lineWidth = 1
+    ctx.textAlign = 'right'
+    for (let i = 0; i <= gridSteps; i++) {
+      const price = minP + (maxP - minP) * (i / gridSteps)
+      const y = toY(price)
+      ctx.beginPath()
+      ctx.moveTo(pad.left, y)
+      ctx.lineTo(W - pad.right, y)
+      ctx.stroke()
+      ctx.fillStyle = '#94a3b8'
+      ctx.font = '10px JetBrains Mono, monospace'
+      ctx.fillText('$' + price.toFixed(2), W - 4, y + 3)
+    }
+
+    // Draw candles
+    candles.forEach((d, i) => {
+      const x = pad.left + i * candleW + candleW / 2
+      const isGreen = d.c >= d.o
+      const color = isGreen ? '#22c55e' : '#ef4444'
+
+      // Wick
+      ctx.strokeStyle = color
+      ctx.lineWidth = 1.5
+      ctx.beginPath()
+      ctx.moveTo(x, toY(d.h))
+      ctx.lineTo(x, toY(d.l))
+      ctx.stroke()
+
+      // Body
+      const bodyTop = toY(Math.max(d.o, d.c))
+      const bodyBot = toY(Math.min(d.o, d.c))
+      const bodyH = Math.max(bodyBot - bodyTop, 1)
+      ctx.fillStyle = color
+      ctx.fillRect(x - bodyW / 2, bodyTop, bodyW, bodyH)
+      ctx.strokeStyle = color
+      ctx.lineWidth = 1
+      ctx.strokeRect(x - bodyW / 2, bodyTop, bodyW, bodyH)
+
+      // Date label (every 3rd + last)
+      if (i % 3 === 0 || i === candles.length - 1) {
+        const date = new Date(d.t * 1000)
+        const label = `${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')}`
+        ctx.fillStyle = '#94a3b8'
+        ctx.font = '9px JetBrains Mono, monospace'
+        ctx.textAlign = 'center'
+        ctx.fillText(label, x, H - 8)
+      }
+    })
+
+    // Volume bars (subtle)
+    const maxVol = Math.max(...candles.map(d => d.v || 0))
+    if (maxVol > 0) {
+      candles.forEach((d, i) => {
+        const x = pad.left + i * candleW + candleW / 2
+        const isGreen = d.c >= d.o
+        const volH = ((d.v || 0) / maxVol) * 20
+        ctx.fillStyle = isGreen ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.12)'
+        ctx.fillRect(x - bodyW / 2, H - pad.bottom - volH, bodyW, volH)
+      })
+    }
+  }, [candles])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ width: '100%', height: '100%', display: 'block' }}
+    />
+  )
+}
+
 // ==================== PAGE COMPONENTS ====================
 
 // --- DASHBOARD PAGE ---
 function DashboardPage({
   filteredWatchlist, filterType, setFilterType,
-  selectedStock, setSelectedStock, chartData,
+  selectedStock, setSelectedStock, chartData, candleData,
   countdown, portfolio, allAssets, portfolioStats,
   pieChartData, barChartData, addToPortfolio, removeFromPortfolio,
-  addNotification
+  addNotification, addToWatchlist, watchlist, user
 }) {
   const [formSymbol, setFormSymbol] = useState('')
   const [formShares, setFormShares] = useState('')
   const [formAvgCost, setFormAvgCost] = useState('')
   const [formError, setFormError] = useState('')
+
+  // ── State: เพิ่มหุ้นใน Watchlist (ข้อ 2) ──
+  const [wlSymbol, setWlSymbol] = useState('')
+  const handleAddWatchlist = () => {
+    const sym = wlSymbol.trim().toUpperCase()
+    if (!sym) return
+    if (!user) { addNotification('กรุณาเข้าสู่ระบบก่อน', 'error'); return }
+    const found = allAssets.find(a => a.symbol === sym)
+    if (!found) { addNotification(`ไม่พบ "${sym}" ในฐานข้อมูล`, 'error'); return }
+    if (watchlist.includes(sym)) { addNotification(`${sym} อยู่ใน Watchlist แล้ว`, 'info'); return }
+    addToWatchlist(sym)
+    addNotification(`เพิ่ม ${sym} ใน Watchlist แล้ว ✓`, 'success')
+    setWlSymbol('')
+  }
 
   // FIX: แก้ validation ให้รองรับเศษส่วน
   const handleAddPortfolio = (e) => {
@@ -276,7 +396,7 @@ function DashboardPage({
       { label: 'Day High',       val: formatPrice(s.dayHigh) },
       { label: 'Day Low',        val: formatPrice(s.dayLow) },
       { label: 'Beta',           val: s.beta ? s.beta.toFixed(2) : '-' },
-      { label: 'Tracking Index', val: s.trackingIndex || '-' },
+      { label: 'P/E',            val: s.peRatio ? s.peRatio.toFixed(1) : '-' },
     ]
     return [
       { label: 'Market Cap',  val: formatBig(s.marketCap) },
@@ -328,6 +448,27 @@ function DashboardPage({
               )}
             </div>
             <Countdown seconds={countdown} />
+
+            {/* ── ข้อ 2: เพิ่มหุ้นใน Watchlist ── */}
+            <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid var(--border)' }}>
+              <div style={{ fontSize: '11px', fontWeight: '600', color: 'var(--ink-3)', marginBottom: '6px' }}>➕ เพิ่มหุ้นใน Watchlist</div>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                <input
+                  type="text"
+                  className="form-input"
+                  style={{ flex: 1, padding: '7px 10px', fontSize: '12px' }}
+                  placeholder="เช่น AAPL, VYM..."
+                  value={wlSymbol}
+                  onChange={e => setWlSymbol(e.target.value.toUpperCase())}
+                  onKeyPress={e => e.key === 'Enter' && handleAddWatchlist()}
+                />
+                <button
+                  className="btn-primary"
+                  style={{ padding: '7px 14px', fontSize: '12px', whiteSpace: 'nowrap' }}
+                  onClick={handleAddWatchlist}
+                >เพิ่ม</button>
+              </div>
+            </div>
           </div>
 
           {/* ── COL 2: Stock Info (top) + Chart (bottom) ──────── */}
@@ -384,99 +525,189 @@ function DashboardPage({
             {/* ── Divider ─── */}
             <div style={{ height: '1px', background: 'var(--border)', margin: '0 22px' }} />
 
-            {/* ── Chart ─── */}
-            <div style={{ padding: '18px 22px 22px', flex: 1 }}>
+            {/* ── ข้อ 1: Candlestick Chart ─── */}
+            <div style={{ padding: '18px 22px 16px', flex: 1 }}>
               <div style={{ fontSize: '12px', fontWeight: '600', color: 'var(--ink-4)', textTransform: 'uppercase', letterSpacing: '.7px', marginBottom: '12px' }}>
-                {selectedStock ? `📈 ${selectedStock.symbol} — Price Chart` : '📈 Price Chart'}
+                {selectedStock
+                  ? `📈 ${selectedStock.symbol} — ${candleData ? 'Daily Candles (20 days)' : 'Price Chart'}`
+                  : '📈 Price Chart'}
               </div>
               <div className="chart-container" style={{ marginTop: 0 }}>
                 {selectedStock ? (
-                  <Line
-                    data={{
-                      labels: ['9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00'],
-                      datasets: [{
-                        label: selectedStock.symbol,
-                        data: chartData,
-                        borderColor: '#2563eb',
-                        backgroundColor: 'rgba(37,99,235,0.08)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.4,
-                        pointRadius: 3,
-                        pointBackgroundColor: '#2563eb',
-                      }]
-                    }}
-                    options={{
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      plugins: { legend: { display: false } },
-                      scales: {
-                        x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 11 }, color: '#9ca3af' } },
-                        y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 11 }, color: '#9ca3af' } }
-                      }
-                    }}
-                  />
+                  candleData && candleData.length > 0 ? (
+                    <CandlestickCanvas candles={candleData} />
+                  ) : (
+                    <Line
+                      data={{
+                        labels: ['9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00'],
+                        datasets: [{
+                          label: selectedStock.symbol,
+                          data: chartData,
+                          borderColor: '#2563eb',
+                          backgroundColor: 'rgba(37,99,235,0.08)',
+                          borderWidth: 2, fill: true, tension: 0.4,
+                          pointRadius: 3, pointBackgroundColor: '#2563eb',
+                        }]
+                      }}
+                      options={{
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                          x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 11 }, color: '#9ca3af' } },
+                          y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 11 }, color: '#9ca3af' } }
+                        }
+                      }}
+                    />
+                  )
                 ) : (
                   <div className="empty-state">เลือกหุ้นเพื่อดูกราฟ</div>
                 )}
               </div>
             </div>
+
+            {/* ── ข้อ 4: ETF Holdings / Stock Details ใต้กราฟ ─── */}
+            {selectedStock && (
+              <div style={{ padding: '0 22px 18px', borderTop: '1px solid var(--border)' }}>
+                {selectedStock.type === 'ETF' && selectedStock.top10Holdings && selectedStock.top10Holdings.length > 0 ? (
+                  <>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0 8px' }}>
+                      <div style={{ fontSize: '11px', fontWeight: '600', color: 'var(--ink-4)', textTransform: 'uppercase', letterSpacing: '.7px' }}>
+                        🏦 Top 10 Holdings — {selectedStock.symbol}
+                      </div>
+                      {selectedStock.numHoldings && (
+                        <span style={{ fontSize: '11px', fontWeight: '600', color: 'var(--blue)', background: 'var(--blue-soft)', padding: '2px 8px', borderRadius: '99px', border: '1px solid var(--blue-mid)' }}>
+                          {selectedStock.numHoldings.toLocaleString()} holdings total
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                      {/* Left: Top 10 Holdings list */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                        {selectedStock.top10Holdings.map((h, i) => (
+                          <div key={h.symbol || i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 8px', borderRadius: '4px', background: i % 2 === 0 ? 'var(--bg)' : 'transparent', fontSize: '12px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                              <span style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', width: '16px', textAlign: 'center' }}>{i + 1}</span>
+                              <span style={{ fontFamily: 'var(--mono)', fontWeight: '600', fontSize: '11.5px', color: 'var(--ink-1)', width: '50px' }}>{h.symbol}</span>
+                              <span style={{ fontSize: '10.5px', color: 'var(--ink-3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '140px' }}>{h.name}</span>
+                            </div>
+                            <span style={{ fontFamily: 'var(--mono)', fontWeight: '600', fontSize: '11.5px', color: 'var(--blue)' }}>
+                              {(h.weight * 100).toFixed(2)}%
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Right: Sector Breakdown */}
+                      {selectedStock.sectorBreakdown && selectedStock.sectorBreakdown.length > 0 && (
+                        <div>
+                          <div style={{ fontSize: '10px', fontWeight: '600', color: 'var(--ink-4)', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '8px' }}>📊 Sector Breakdown</div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                            {selectedStock.sectorBreakdown.slice(0, 8).map((s, i) => {
+                              const pct = (s.weight * 100).toFixed(1)
+                              const colors = ['#2563eb', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#64748b']
+                              return (
+                                <div key={s.sector} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                  <span style={{ fontSize: '10.5px', color: 'var(--ink-3)', width: '110px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.sector}</span>
+                                  <div style={{ flex: 1, height: '12px', background: 'var(--surface-2)', borderRadius: '3px', overflow: 'hidden' }}>
+                                    <div style={{ height: '100%', borderRadius: '3px', background: colors[i % colors.length], width: `${Math.min(pct, 100)}%`, minWidth: '2px' }} />
+                                  </div>
+                                  <span style={{ fontSize: '10.5px', fontFamily: 'var(--mono)', fontWeight: '600', color: 'var(--ink-2)', width: '38px', textAlign: 'right' }}>{pct}%</span>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : selectedStock.type === 'ETF' ? (
+                  /* ETF ที่ไม่มี top10Holdings — แสดงข้อมูลพื้นฐาน */
+                  <div style={{ padding: '12px 0', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                    {[
+                      { label: 'Num Holdings', val: selectedStock.numHoldings ? selectedStock.numHoldings.toLocaleString() : '-' },
+                      { label: 'Category', val: selectedStock.category || '-' },
+                      { label: '3Y Return', val: selectedStock.return3Y ? `${selectedStock.return3Y.toFixed(1)}%` : '-' },
+                      { label: '5Y Return', val: selectedStock.return5Y ? `${selectedStock.return5Y.toFixed(1)}%` : '-' },
+                    ].map(({ label, val }) => (
+                      <div key={label}>
+                        <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '3px' }}>{label}</div>
+                        <div style={{ fontSize: '13px', fontWeight: '600', color: 'var(--ink-1)', fontFamily: 'var(--mono)' }}>{val}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  /* STOCK — แสดง Sector/Industry info */
+                  <div style={{ padding: '12px 0', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                    {[
+                      { label: 'Sector', val: selectedStock.sector || '-' },
+                      { label: 'Industry', val: selectedStock.industry || '-' },
+                      { label: 'ROE', val: selectedStock.roe ? `${(selectedStock.roe * 100).toFixed(1)}%` : '-' },
+                      { label: 'Debt/Equity', val: selectedStock.debtToEquity ? selectedStock.debtToEquity.toFixed(2) : '-' },
+                    ].map(({ label, val }) => (
+                      <div key={label}>
+                        <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '3px' }}>{label}</div>
+                        <div style={{ fontSize: '13px', fontWeight: '600', color: 'var(--ink-1)', fontFamily: 'var(--mono)', wordBreak: 'break-word' }}>{val}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
-          {/* ── COL 3: Portfolio Holdings → Market Overview → Add Form ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+          {/* ── COL 3: Portfolio Holdings → Add Form → Market Overview (ย้ายลงล่าง) ── */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
 
-            {/* Portfolio Holdings */}
+            {/* Portfolio Holdings — ข้อ 3: ลดขนาดการ์ด + แสดงหุ้นทั้งหมด */}
             <div className="card">
               <div className="card-header">
                 <h2 className="card-title">💼 Portfolio Holdings</h2>
               </div>
               {portfolio.length === 0 ? (
-                <div className="empty-state" style={{ padding: '20px 0' }}>
-                  <div style={{ fontSize: '24px', marginBottom: '6px' }}>📭</div>
+                <div className="empty-state" style={{ padding: '16px 0' }}>
+                  <div style={{ fontSize: '20px', marginBottom: '4px' }}>📭</div>
                   ยังไม่มีหุ้นในพอร์ต
                 </div>
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {/* Summary numbers */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '4px' }}>
-                    <div style={{ padding: '12px 14px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: '3px solid var(--blue)' }}>
-                      <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.6px', marginBottom: '4px' }}>มูลค่ารวม</div>
-                      <div style={{ fontSize: '16px', fontWeight: '700', fontFamily: 'var(--mono)', color: 'var(--ink-1)' }}>{formatPrice(portfolioStats.totalValue)}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {/* Summary numbers — COMPACT */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', marginBottom: '4px' }}>
+                    <div style={{ padding: '6px 10px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: '3px solid var(--blue)' }}>
+                      <div style={{ fontSize: '9px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '1px' }}>มูลค่ารวม</div>
+                      <div style={{ fontSize: '14px', fontWeight: '700', fontFamily: 'var(--mono)', color: 'var(--ink-1)' }}>{formatPrice(portfolioStats.totalValue)}</div>
                     </div>
-                    <div style={{ padding: '12px 14px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: `3px solid ${portfolioStats.totalGain >= 0 ? 'var(--success)' : 'var(--danger)'}` }}>
-                      <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.6px', marginBottom: '4px' }}>กำไร/ขาดทุน</div>
-                      <div style={{ fontSize: '16px', fontWeight: '700', fontFamily: 'var(--mono)', color: portfolioStats.totalGain >= 0 ? 'var(--success)' : 'var(--danger)' }}>
+                    <div style={{ padding: '6px 10px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: `3px solid ${portfolioStats.totalGain >= 0 ? 'var(--success)' : 'var(--danger)'}` }}>
+                      <div style={{ fontSize: '9px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '1px' }}>กำไร/ขาดทุน</div>
+                      <div style={{ fontSize: '14px', fontWeight: '700', fontFamily: 'var(--mono)', color: portfolioStats.totalGain >= 0 ? 'var(--success)' : 'var(--danger)' }}>
                         {formatPrice(portfolioStats.totalGain)}
                       </div>
                     </div>
-                    <div style={{ padding: '12px 14px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: `3px solid ${portfolioStats.totalGainPercent >= 0 ? 'var(--emerald)' : 'var(--rose)'}` }}>
-                      <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.6px', marginBottom: '4px' }}>% กำไร</div>
-                      <div style={{ fontSize: '16px', fontWeight: '700', fontFamily: 'var(--mono)', color: portfolioStats.totalGainPercent >= 0 ? 'var(--success)' : 'var(--danger)' }}>
+                    <div style={{ padding: '6px 10px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: `3px solid ${portfolioStats.totalGainPercent >= 0 ? 'var(--emerald)' : 'var(--rose)'}` }}>
+                      <div style={{ fontSize: '9px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '1px' }}>% กำไร</div>
+                      <div style={{ fontSize: '14px', fontWeight: '700', fontFamily: 'var(--mono)', color: portfolioStats.totalGainPercent >= 0 ? 'var(--success)' : 'var(--danger)' }}>
                         {formatPercent(portfolioStats.totalGainPercent)}
                       </div>
                     </div>
-                    <div style={{ padding: '12px 14px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: '3px solid var(--cyan)' }}>
-                      <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.6px', marginBottom: '4px' }}>จำนวน</div>
-                      <div style={{ fontSize: '16px', fontWeight: '700', fontFamily: 'var(--mono)', color: 'var(--ink-1)' }}>{portfolioStats.count} ตัว</div>
+                    <div style={{ padding: '6px 10px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)', borderLeft: '3px solid var(--cyan)' }}>
+                      <div style={{ fontSize: '9px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '1px' }}>จำนวน</div>
+                      <div style={{ fontSize: '14px', fontWeight: '700', fontFamily: 'var(--mono)', color: 'var(--ink-1)' }}>{portfolioStats.count} ตัว</div>
                     </div>
                   </div>
-                  {/* Holdings mini list */}
-                  <div style={{ maxHeight: '160px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  {/* Holdings list — NO scroll, show ALL */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
                     {portfolio.map(holding => {
                       const stock = allAssets.find(a => a.symbol === holding.symbol)
                       const currentPrice = stock?.price || holding.currentPrice || holding.avgCost
                       const val = holding.shares * currentPrice
                       const gain = val - (holding.shares * holding.avgCost)
                       return (
-                        <div key={holding.symbol} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)' }}>
+                        <div key={holding.symbol} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 8px', background: 'var(--bg)', borderRadius: 'var(--r-md)', border: '1px solid var(--border)' }}>
                           <div>
-                            <span className="stock-symbol" style={{ fontSize: '12.5px' }}>{holding.symbol}</span>
-                            <span style={{ fontSize: '10.5px', color: 'var(--ink-4)', marginLeft: '6px' }}>{formatShares(holding.shares)} หุ้น</span>
+                            <span className="stock-symbol" style={{ fontSize: '11.5px' }}>{holding.symbol}</span>
+                            <span style={{ fontSize: '10px', color: 'var(--ink-4)', marginLeft: '4px' }}>{formatShares(holding.shares)} หุ้น</span>
                           </div>
                           <div style={{ textAlign: 'right' }}>
-                            <div style={{ fontSize: '12.5px', fontFamily: 'var(--mono)', fontWeight: '600', color: 'var(--ink-1)' }}>{formatPrice(val)}</div>
-                            <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: gain >= 0 ? 'var(--success)' : 'var(--danger)' }}>
+                            <div style={{ fontSize: '11.5px', fontFamily: 'var(--mono)', fontWeight: '600', color: 'var(--ink-1)' }}>{formatPrice(val)}</div>
+                            <div style={{ fontSize: '10px', fontFamily: 'var(--mono)', color: gain >= 0 ? 'var(--success)' : 'var(--danger)' }}>
                               {gain >= 0 ? '+' : ''}{formatPrice(gain)}
                             </div>
                           </div>
@@ -488,19 +719,6 @@ function DashboardPage({
               )}
             </div>
 
-            {/* Market Overview */}
-            <div className="card">
-              <div className="card-header">
-                <h2 className="card-title">🌍 Market Overview</h2>
-              </div>
-              <div className="market-indices">
-                <MarketIndex name="S&P 500"   value={4783.45}  change={0.54} />
-                <MarketIndex name="DOW JONES" value={37305.16} change={0.36} />
-                <MarketIndex name="NASDAQ"    value={14813.92} change={0.82} />
-              </div>
-            </div>
-
-            {/* FIX: ฟอร์มเพิ่มหุ้น - ใช้ step="any" รองรับเศษส่วน */}
             {/* Add to Portfolio form */}
             <div className="card">
               <div className="card-header">
@@ -509,41 +727,15 @@ function DashboardPage({
               <form onSubmit={handleAddPortfolio}>
                 <div className="form-group">
                   <label className="form-label">Symbol</label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    placeholder="เช่น AAPL, VYM, VXUS"
-                    value={formSymbol}
-                    onChange={e => setFormSymbol(e.target.value.toUpperCase())}
-                    required
-                  />
+                  <input type="text" className="form-input" placeholder="เช่น AAPL, VYM, VXUS" value={formSymbol} onChange={e => setFormSymbol(e.target.value.toUpperCase())} required />
                 </div>
                 <div className="form-group">
                   <label className="form-label">จำนวนหุ้น (รองรับเศษส่วน เช่น 0.5, 1.25)</label>
-                  {/* FIX: step="any" แก้ปัญหาใส่เศษส่วนไม่ได้ */}
-                  <input
-                    type="number"
-                    className="form-input"
-                    placeholder="0.00211"
-                    step="any"
-                    min="0.000001"
-                    value={formShares}
-                    onChange={e => setFormShares(e.target.value)}
-                    required
-                  />
+                  <input type="number" className="form-input" placeholder="0.00211" step="any" min="0.000001" value={formShares} onChange={e => setFormShares(e.target.value)} required />
                 </div>
                 <div className="form-group">
                   <label className="form-label">ราคาซื้อเฉลี่ย ($)</label>
-                  <input
-                    type="number"
-                    className="form-input"
-                    placeholder="0.00"
-                    step="any"
-                    min="0.01"
-                    value={formAvgCost}
-                    onChange={e => setFormAvgCost(e.target.value)}
-                    required
-                  />
+                  <input type="number" className="form-input" placeholder="0.00" step="any" min="0.01" value={formAvgCost} onChange={e => setFormAvgCost(e.target.value)} required />
                 </div>
                 {formError && (
                   <div style={{ color: 'var(--rose)', fontSize: '13px', marginBottom: '12px', padding: '8px 12px', background: 'var(--rose-soft)', borderRadius: 'var(--r-md)', borderLeft: '3px solid var(--rose)' }}>
@@ -554,6 +746,18 @@ function DashboardPage({
                   เพิ่มในพอร์ต
                 </button>
               </form>
+            </div>
+
+            {/* Market Overview — ข้อ 3: ย้ายลงล่างสุด */}
+            <div className="card">
+              <div className="card-header">
+                <h2 className="card-title">🌍 Market Overview</h2>
+              </div>
+              <div className="market-indices">
+                <MarketIndex name="S&P 500"   value={4783.45}  change={0.54} />
+                <MarketIndex name="DOW JONES" value={37305.16} change={0.36} />
+                <MarketIndex name="NASDAQ"    value={14813.92} change={0.82} />
+              </div>
             </div>
 
           </div>{/* end col 3 */}
@@ -2049,13 +2253,21 @@ function App() {
   }, [portfolio, allAssets])
 
   const [chartData, setChartData] = useState(() => Array.from({ length: 14 }, () => 0))
+  // ── candleData: ข้อมูล OHLC จาก dailyCandles ใน JSON ──
+  const [candleData, setCandleData] = useState(null)
   useEffect(() => {
-    if (!selectedStock) return
+    if (!selectedStock) { setCandleData(null); return }
+    // ดึง dailyCandles จาก allAssets (เก็บไว้แล้วจาก update-all-assets.cjs Phase 6)
+    const asset = allAssets.find(a => a.symbol === selectedStock.symbol)
+    if (asset && asset.dailyCandles && asset.dailyCandles.length > 0) {
+      setCandleData(asset.dailyCandles)
+    } else {
+      setCandleData(null)
+    }
+    // fallback: สร้างข้อมูลจำลองสำหรับ line chart (กรณียังไม่มี candle data)
     const gen = () => Array.from({ length: 14 }, () => selectedStock.price + (Math.random() - 0.5) * 5)
     setChartData(gen())
-    const interval = setInterval(() => setChartData(gen()), 15 * 60 * 1000)
-    return () => clearInterval(interval)
-  }, [selectedStock?.symbol])
+  }, [selectedStock?.symbol, allAssets])
 
   const pieChartData = useMemo(() => {
     const data = portfolio.map(p => {
@@ -2206,6 +2418,7 @@ function App() {
           selectedStock={selectedStock}
           setSelectedStock={setSelectedStock}
           chartData={chartData}
+          candleData={candleData}
           countdown={countdown}
           portfolio={portfolio}
           allAssets={allAssets}
@@ -2215,6 +2428,9 @@ function App() {
           addToPortfolio={addToPortfolio}
           removeFromPortfolio={removeFromPortfolio}
           addNotification={addNotification}
+          addToWatchlist={addToWatchlist}
+          watchlist={watchlist}
+          user={user}
         />
       )}
 
