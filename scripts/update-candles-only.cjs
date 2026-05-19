@@ -35,48 +35,42 @@ async function fetchWithTimeout(url, ms = CONFIG.FETCH_TIMEOUT) {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-// ── Twelve Data Batch Candle ──
-async function fetchBatchCandles(symbols) {
-  if (!TWELVE_KEY || symbols.length === 0) return {};
+// ── Twelve Data Candle — ดึงทีละตัว (เสถียรกว่า batch บน free tier) ──
+async function fetchSingleCandle(symbol) {
+  if (!TWELVE_KEY) return null;
   try {
     const yesterday = new Date(Date.now() - 86400000);
     const endDate = yesterday.toISOString().split('T')[0];
-    const url = `https://api.twelvedata.com/time_series?symbol=${symbols.join(',')}&interval=1day&outputsize=25&end_date=${endDate}&apikey=${TWELVE_KEY}`;
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&outputsize=25&end_date=${endDate}&apikey=${TWELVE_KEY}`;
     const res = await fetchWithTimeout(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const d = await res.json();
 
-    const result = {};
-    if (symbols.length === 1) {
-      const sym = symbols[0];
-      if (d && d.values && d.values.length > 0) {
-        result[sym] = d.values.slice(0, 20).reverse().map(v => ({
-          t: Math.floor(new Date(v.datetime).getTime() / 1000),
-          o: parseFloat(v.open), h: parseFloat(v.high),
-          l: parseFloat(v.low),  c: parseFloat(v.close),
-          v: parseInt(v.volume) || 0,
-        }));
-        stats.success++;
-      } else { stats.failed++; }
-    } else {
-      for (const sym of symbols) {
-        const item = d[sym];
-        if (item && item.values && item.values.length > 0) {
-          result[sym] = item.values.slice(0, 20).reverse().map(v => ({
-            t: Math.floor(new Date(v.datetime).getTime() / 1000),
-            o: parseFloat(v.open), h: parseFloat(v.high),
-            l: parseFloat(v.low),  c: parseFloat(v.close),
-            v: parseInt(v.volume) || 0,
-          }));
-          stats.success++;
-        } else { stats.failed++; }
-      }
+    // Debug: แสดง response keys สำหรับตัวแรกๆ
+    if (stats.success + stats.failed < 3) {
+      console.log(`     [DEBUG] ${symbol} response keys: ${Object.keys(d).join(', ')}`);
+      if (d.status) console.log(`     [DEBUG] status: ${d.status}, message: ${d.message || 'none'}`);
+      if (d.values) console.log(`     [DEBUG] values count: ${d.values.length}`);
     }
-    return result;
+
+    if (d && d.values && d.values.length > 0) {
+      stats.success++;
+      return d.values.slice(0, 20).reverse().map(v => ({
+        t: Math.floor(new Date(v.datetime).getTime() / 1000),
+        o: parseFloat(v.open), h: parseFloat(v.high),
+        l: parseFloat(v.low),  c: parseFloat(v.close),
+        v: parseInt(v.volume) || 0,
+      }));
+    }
+
+    // Debug: แสดงเหตุผลที่ล้มเหลว
+    if (d.code) console.log(`     [DEBUG] ${symbol} error: code=${d.code} message=${d.message}`);
+    stats.failed++;
+    return null;
   } catch (err) {
-    console.log(`  ❌ Batch error: ${err.message}`);
-    symbols.forEach(() => stats.failed++);
-    return {};
+    if (stats.failed < 5) console.log(`     [DEBUG] ${symbol} fetch error: ${err.message}`);
+    stats.failed++;
+    return null;
   }
 }
 
@@ -113,40 +107,51 @@ async function main() {
   const watchlist = etfsData.filter(e => e.inWatchlist && !e.inPortfolio).map(e => e.symbol);
   const priority  = [...new Set([...portfolio, ...watchlist])];
   const others    = allSymbols.filter(s => !priority.includes(s));
-  const ordered   = [...priority, ...others];
+  // ดึงเฉพาะ Priority (Portfolio + Watchlist) เท่านั้น
+  // Twelve Data free = 8 req/min → 300 ตัวจะนานเกินไป
+  // หุ้นที่ไม่อยู่ใน Watchlist ก็ไม่ได้ดูกราฟบน Dashboard อยู่แล้ว
+  const ordered = [...priority];
+
+  if (ordered.length === 0) {
+    console.log('⚠️  ไม่มี Priority symbols (Portfolio/Watchlist) — ไม่ต้องดึง candle');
+    return;
+  }
 
   console.log(`[Priority] Portfolio: ${portfolio.join(', ') || 'none'}`);
-  console.log(`[Priority] Watchlist: ${watchlist.join(', ') || 'none'}\n`);
-
-  // Batch
-  const batches = [];
-  for (let i = 0; i < ordered.length; i += CONFIG.BATCH_SIZE) {
-    batches.push(ordered.slice(i, i + CONFIG.BATCH_SIZE));
-  }
-  console.log(`${ordered.length} symbols → ${batches.length} batches (${CONFIG.BATCH_SIZE}/batch)\n`);
+  console.log(`[Priority] Watchlist: ${watchlist.join(', ') || 'none'}`);
+  console.log(`\n🎯 ดึงเฉพาะ Priority ${ordered.length} ตัว (Twelve Data free = 8 req/min)\n`);
+  console.log(`${ordered.length} symbols — ดึงทีละตัว (8 req/min safe)\n`);
 
   const startTime = Date.now();
+  const DELAY = 8000; // 8s per request = safe for Twelve Data free (8 req/min)
 
-  for (let b = 0; b < batches.length; b++) {
-    const batch = batches[b];
-    console.log(`📦 Batch ${b + 1}/${batches.length}: ${batch.length} symbols...`);
+  for (let i = 0; i < ordered.length; i++) {
+    const sym = ordered[i];
+    const idx = allData.findIndex(a => a.symbol === sym);
+    if (idx < 0) continue;
 
-    const result = await fetchBatchCandles(batch);
-    const ok = Object.keys(result);
+    const candles = await fetchSingleCandle(sym);
 
-    for (const sym of ok) {
-      const idx = allData.findIndex(a => a.symbol === sym);
-      if (idx >= 0) allData[idx].dailyCandles = result[sym];
+    if (candles && candles.length > 0) {
+      allData[idx].dailyCandles = candles;
+      if (i < 5 || (i + 1) % 50 === 0) {
+        const first = new Date(candles[0].t * 1000).toLocaleDateString();
+        const last = new Date(candles[candles.length - 1].t * 1000).toLocaleDateString();
+        console.log(`  ✅ ${sym}: ${candles.length} candles (${first} → ${last})`);
+      }
+    } else {
+      if (stats.failed <= 10) {
+        console.log(`  ⚠️  ${sym}: no candle data`);
+      }
     }
 
-    console.log(`   ✅ ${ok.length} | ❌ ${batch.length - ok.length}`);
-
-    if (ok.length > 0) {
-      const s = ok[0], c = result[s];
-      console.log(`   📊 ${s}: ${c.length} candles (${new Date(c[0].t*1000).toLocaleDateString()} → ${new Date(c[c.length-1].t*1000).toLocaleDateString()})`);
+    if ((i + 1) % 50 === 0) {
+      const pct = (((i + 1) / ordered.length) * 100).toFixed(1);
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      console.log(`\n  [Progress] ${i + 1}/${ordered.length} (${pct}%) | ✅ ${stats.success} | ❌ ${stats.failed} | ⏱️ ${elapsed}s\n`);
     }
 
-    if (b < batches.length - 1) await sleep(CONFIG.TWELVE_DELAY);
+    await sleep(DELAY);
   }
 
   // Save
