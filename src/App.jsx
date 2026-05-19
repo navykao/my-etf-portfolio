@@ -76,11 +76,21 @@ const getChangeColor = (value) => {
   return 'neutral'
 }
 
-// FIX: divYield จาก Finnhub มาเป็น % อยู่แล้ว (เช่น 0.86 = 0.86%)
-// ไม่ต้องคูณ 100 อีก — แสดงค่าตรงๆ
-const formatDivYield = (val) => {
+// FIX: divYield มาจาก 2 แหล่ง คนละรูปแบบ:
+// - Finnhub (stocks + ETF ไม่มี AV): เป็น % อยู่แล้ว เช่น 0.86 = 0.86%
+// - Alpha Vantage (ETF profile เก่า): เป็น decimal เช่น 0.0333 = 3.33% (ต้อง *100)
+// หลังรัน script ใหม่ ค่าจาก AV จะถูก *100 แล้ว แสดงตรงๆ ได้
+// สำหรับข้อมูลเก่า: ETF ที่ divYield < 0.15 น่าจะเป็น decimal จาก AV (ไม่มี stock/ETF ไหนที่ yield ต่ำกว่า 0.15% จริงๆ ที่สำคัญ)
+// แต่ stocks มี 4 ตัวที่ yield ต่ำมาก (NVDA 0.02%) จึงต้องแยกดู type ด้วย
+const formatDivYield = (val, type) => {
   if (!val || isNaN(val)) return '-'
-  return `${val.toFixed(2)}%`
+  // ETF ที่มีค่าต่ำมาก (< 0.15) = ข้อมูลเก่าจาก AV เป็น decimal → ต้อง *100
+  // Stock ที่ค่าต่ำ = yield ต่ำจริงๆ → แสดงตรงๆ
+  let pct = val
+  if (type === 'ETF' && val > 0 && val < 0.15) {
+    pct = val * 100
+  }
+  return `${pct.toFixed(2)}%`
 }
 
 const getTypeBadgeClass = (type) => {
@@ -395,7 +405,7 @@ function DashboardPage({
       { label: 'AUM',            val: formatBig(s.totalAssets) },
       { label: 'Expense Ratio',  val: s.expenseRatio ? `${s.expenseRatio.toFixed(2)}%` : '-' },
       { label: 'Num Holdings',   val: s.numHoldings  ? s.numHoldings.toLocaleString() : '-' },
-      { label: 'Div Yield',      val: formatDivYield(s.divYield) },
+      { label: 'Div Yield',      val: formatDivYield(s.divYield, s.type) },
       { label: 'Div Freq',       val: s.dividendFrequency || '-' },
       { label: '3Y Div Growth',  val: s.divGrowth3Y  ? `${s.divGrowth3Y.toFixed(1)}%` : '-' },
       { label: '52W High',       val: formatPrice(s.high52w) },
@@ -409,7 +419,7 @@ function DashboardPage({
       { label: 'Market Cap',  val: formatBig(s.marketCap) },
       { label: 'P/E Ratio',   val: s.peRatio  ? s.peRatio.toFixed(1) : '-' },
       { label: 'EPS',         val: s.eps      ? `$${s.eps.toFixed(2)}` : '-' },
-      { label: 'Div Yield',   val: formatDivYield(s.divYield) },
+      { label: 'Div Yield',   val: formatDivYield(s.divYield, s.type) },
       { label: 'Beta',        val: s.beta     ? s.beta.toFixed(2) : '-' },
       { label: 'ROE',         val: s.roe      ? `${(s.roe * 100).toFixed(1)}%` : '-' },
       { label: '52W High',    val: formatPrice(s.high52w) },
@@ -1103,7 +1113,7 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
     const isETF = stock.type === 'ETF'
 
     // Div Yield
-    const divY = formatDivYield(stock.divYield)
+    const divY = formatDivYield(stock.divYield, stock.type)
 
     // P/E (STOCK) หรือ Expense Ratio (ETF)
     const peExp      = isETF
@@ -1392,7 +1402,7 @@ function StockDetailModal({ stock, onClose }) {
                 { label: 'Market Cap', val: formatBig(stock.marketCap) },
                 { label: 'P/E Ratio',  val: stock.peRatio ? stock.peRatio.toFixed(1) : '-' },
                 { label: 'EPS',        val: stock.eps ? `$${stock.eps.toFixed(2)}` : '-' },
-                { label: 'Div Yield',  val: formatDivYield(stock.divYield) },
+                { label: 'Div Yield',  val: formatDivYield(stock.divYield, stock.type) },
                 { label: 'Beta',       val: stock.beta ? stock.beta.toFixed(2) : '-' },
                 { label: 'ROE',        val: stock.roe ? `${(stock.roe * 100).toFixed(1)}%` : '-' },
               ].map(({ label, val }) => (
@@ -1528,7 +1538,7 @@ function ETFDetailModal({ etf, onClose }) {
             <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--ink-4)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>💰 Dividend & Yield</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
               {[
-                { label: 'Div Yield',         val: formatDivYield(etf.divYield) },
+                { label: 'Div Yield',         val: formatDivYield(etf.divYield, 'ETF') },
                 { label: 'Distribution Rate', val: etf.distributionRate   ? `${etf.distributionRate.toFixed(2)}%`  : '-' },
                 { label: 'Yield TTM',         val: etf.yieldTTM           ? `${etf.yieldTTM.toFixed(2)}%`          : '-' },
                 { label: 'Div Freq',          val: etf.dividendFrequency  || '-' },
@@ -1594,10 +1604,12 @@ function MarketPage({ allAssets }) {
 
   // ── divYield fix: ถ้าค่า > 1 แสดงว่าเก็บเป็น % อยู่แล้ว ไม่ต้อง *100
   // ถ้า < 1 แสดงว่าเก็บเป็น decimal (0.035 = 3.5%) ต้อง *100
-  // FIX: divYield จาก Finnhub เป็น % อยู่แล้ว — แสดงค่าตรงๆ
-  const fmtDivYield = (v) => {
+  // FIX: divYield — ETF ค่า < 0.15 = decimal จาก AV (ข้อมูลเก่า) ต้อง *100
+  const fmtDivYield = (v, type) => {
     if (!v || isNaN(v)) return '-'
-    return `${v.toFixed(2)}%`
+    let pct = v
+    if (type === 'ETF' && v > 0 && v < 0.15) pct = v * 100
+    return `${pct.toFixed(2)}%`
   }
 
   // ── sort arrow helper reuses formatPercent for % display ────────────────
@@ -1779,7 +1791,7 @@ function MarketPage({ allAssets }) {
                   <td><PriceChange value={a.changePercent || 0} /></td>
                   {/* ── divYield: ถ้า > 1 = % อยู่แล้ว, ถ้า ≤ 1 = decimal → *100 ── */}
                   <td style={{ fontFamily: 'var(--mono)', color: a.divYield ? 'var(--emerald)' : 'var(--ink-4)' }}>
-                    {fmtDivYield(a.divYield)}
+                    {fmtDivYield(a.divYield, a.type)}
                   </td>
                   {!isETFView && (
                     <>
