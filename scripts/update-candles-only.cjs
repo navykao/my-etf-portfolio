@@ -102,25 +102,17 @@ async function main() {
   const allData = [...stocksData, ...etfsData];
   const allSymbols = allData.map(a => a.symbol);
 
-  // Priority first
+  // Priority first, then others
   const portfolio = etfsData.filter(e => e.inPortfolio).map(e => e.symbol);
   const watchlist = etfsData.filter(e => e.inWatchlist && !e.inPortfolio).map(e => e.symbol);
   const priority  = [...new Set([...portfolio, ...watchlist])];
   const others    = allSymbols.filter(s => !priority.includes(s));
-  // ดึงเฉพาะ Priority (Portfolio + Watchlist) เท่านั้น
-  // Twelve Data free = 8 req/min → 300 ตัวจะนานเกินไป
-  // หุ้นที่ไม่อยู่ใน Watchlist ก็ไม่ได้ดูกราฟบน Dashboard อยู่แล้ว
-  const ordered = [...priority];
-
-  if (ordered.length === 0) {
-    console.log('⚠️  ไม่มี Priority symbols (Portfolio/Watchlist) — ไม่ต้องดึง candle');
-    return;
-  }
+  const ordered   = [...priority, ...others]; // ดึงทุกตัว!
 
   console.log(`[Priority] Portfolio: ${portfolio.join(', ') || 'none'}`);
   console.log(`[Priority] Watchlist: ${watchlist.join(', ') || 'none'}`);
-  console.log(`\n🎯 ดึงเฉพาะ Priority ${ordered.length} ตัว (Twelve Data free = 8 req/min)\n`);
-  console.log(`${ordered.length} symbols — ดึงทีละตัว (8 req/min safe)\n`);
+  console.log(`\n🎯 ดึงทุกตัว ${ordered.length} symbols (Priority ก่อน)`);
+  console.log(`   8s/req → ≈${Math.ceil(ordered.length * 8 / 60)} นาที\n`);
 
   const startTime = Date.now();
   const DELAY = 8000; // 8s per request = safe for Twelve Data free (8 req/min)
@@ -134,7 +126,7 @@ async function main() {
 
     if (candles && candles.length > 0) {
       allData[idx].dailyCandles = candles;
-      if (i < 5 || (i + 1) % 50 === 0) {
+      if (i < 5 || (i + 1) % 50 === 0 || i === ordered.length - 1) {
         const first = new Date(candles[0].t * 1000).toLocaleDateString();
         const last = new Date(candles[candles.length - 1].t * 1000).toLocaleDateString();
         console.log(`  ✅ ${sym}: ${candles.length} candles (${first} → ${last})`);
@@ -145,13 +137,15 @@ async function main() {
       }
     }
 
-    if ((i + 1) % 50 === 0) {
+    // Progress log ทุก 50 ตัว + ตัวสุดท้าย
+    if ((i + 1) % 50 === 0 || i === ordered.length - 1) {
       const pct = (((i + 1) / ordered.length) * 100).toFixed(1);
       const elapsed = Math.floor((Date.now() - startTime) / 1000);
-      console.log(`\n  [Progress] ${i + 1}/${ordered.length} (${pct}%) | ✅ ${stats.success} | ❌ ${stats.failed} | ⏱️ ${elapsed}s\n`);
+      const remaining = Math.ceil((ordered.length - i - 1) * 8 / 60);
+      console.log(`\n  [Progress] ${i + 1}/${ordered.length} (${pct}%) | ✅ ${stats.success} | ❌ ${stats.failed} | ⏱️ ${Math.floor(elapsed/60)}m${elapsed%60}s | เหลือ ~${remaining}m\n`);
     }
 
-    await sleep(DELAY);
+    if (i < ordered.length - 1) await sleep(DELAY);
   }
 
   // Save
