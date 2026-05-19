@@ -80,7 +80,8 @@ const stats = {
   fmp:                { success: 0, failed: 0 },
   eodhd:              { success: 0, failed: 0 },
   twelve:             { success: 0, failed: 0 },
-  finnhubCandle:      { success: 0, failed: 0 },
+  finnhubCandle:      { success: 0, failed: 0 },  // legacy — ไม่ใช้แล้ว
+  twelveCandle:       { success: 0, failed: 0 },
   startTime:          Date.now(),
 };
 
@@ -231,52 +232,37 @@ async function fetchAlphaVantageETFProfile(symbol) {
 }
 
 // ============================================
-// API 1C: FINNHUB CANDLE — Historical OHLC (20 days)
-// /stock/candle?symbol=X&resolution=D&from=...&to=...
-// ดึง 30 วันย้อนหลัง (เผื่อวันหยุด) เอา 20 แท่งสุดท้าย
-// ไม่รวมวันนี้ — นับถอยจากเมื่อวาน
+// API 6: TWELVE DATA — Historical OHLC Single (20 days)
+// /time_series?symbol=X&interval=1day&outputsize=25
+// Free: 8 req/min, 800 credits/day
+// ดึงเฉพาะ Priority (Portfolio + Watchlist) เท่านั้น
+// ไม่รวมวันนี้ — ใช้ end_date = เมื่อวาน
 // ============================================
-async function fetchFinnhubCandle(symbol) {
-  if (!API_KEYS.FINNHUB) return null;
+async function fetchTwelveSingleCandle(symbol) {
+  if (!API_KEYS.TWELVE) return null;
   try {
-    // to = เมื่อวาน 23:59 UTC, from = 35 วันก่อน (เผื่อวันหยุด)
-    const now = Math.floor(Date.now() / 1000);
-    const oneDaySec = 86400;
-    const to   = now - oneDaySec; // เมื่อวาน
-    const from = to - (35 * oneDaySec); // 35 วันย้อนหลัง
-
-    const url = `https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&from=${from}&to=${to}&token=${API_KEYS.FINNHUB}`;
+    const yesterday = new Date(Date.now() - 86400000);
+    const endDate = yesterday.toISOString().split('T')[0];
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&outputsize=25&end_date=${endDate}&apikey=${API_KEYS.TWELVE}`;
     const res = await fetchWithTimeout(url);
-    if (res.status === 429) {
-      console.log(`  [Finnhub Candle] ⏳ Rate limited — รอ 70s...`);
-      await sleep(CONFIG.FINNHUB_RATE_LIMIT_WAIT);
-      return null;
-    }
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const d = await res.json();
 
-    // Finnhub returns { s: "ok", c: [...], h: [...], l: [...], o: [...], t: [...], v: [...] }
-    if (d && d.s === 'ok' && d.c && d.c.length > 0) {
-      const len = d.c.length;
-      const startIdx = Math.max(0, len - 20); // เอา 20 แท่งสุดท้าย
-      const candles = [];
-      for (let i = startIdx; i < len; i++) {
-        candles.push({
-          t: d.t[i],  // unix timestamp
-          o: d.o[i],  // open
-          h: d.h[i],  // high
-          l: d.l[i],  // low
-          c: d.c[i],  // close
-          v: d.v[i],  // volume
-        });
-      }
-      stats.finnhubCandle.success++;
-      return candles;
+    if (d && d.values && d.values.length > 0) {
+      stats.twelveCandle.success++;
+      return d.values.slice(0, 20).reverse().map(v => ({
+        t: Math.floor(new Date(v.datetime).getTime() / 1000),
+        o: parseFloat(v.open),
+        h: parseFloat(v.high),
+        l: parseFloat(v.low),
+        c: parseFloat(v.close),
+        v: parseInt(v.volume) || 0,
+      }));
     }
-    stats.finnhubCandle.failed++;
+    stats.twelveCandle.failed++;
     return null;
   } catch {
-    stats.finnhubCandle.failed++;
+    stats.twelveCandle.failed++;
     return null;
   }
 }
@@ -385,7 +371,7 @@ async function updateAllAssets() {
   console.log('║  Phase 3: Alpha Vantage     → ETF Profile (7 วัน)  ║');
   console.log('║  Phase 4: FMP               → fallback ราคา        ║');
   console.log('║  Phase 5: EODHD + Twelve    → fallback สุดท้าย     ║');
-  console.log('║  Phase 6: Finnhub /candle   → OHLC 20d (ทุกวัน)   ║');
+  console.log('║  Phase 6: Twelve Data batch → OHLC 20d (ทุกวัน)   ║');
   console.log('╚══════════════════════════════════════════════════════╝\n');
 
   // ตรวจ API Keys
@@ -697,52 +683,46 @@ async function updateAllAssets() {
   }
 
   // ============================================
-  // PHASE 6: FINNHUB CANDLE — OHLC 20 วัน (Candlestick Chart)
-  // ดึงเฉพาะ Priority (Portfolio + Watchlist) ก่อน
-  // แล้วค่อยดึง asset ทั่วไปถ้ามีเวลา
+  // PHASE 6: TWELVE DATA — OHLC 20 วัน (Candlestick Chart)
+  // ดึงเฉพาะ Priority (Portfolio + Watchlist) ทีละตัว
+  // Twelve Data free = 8 req/min → ใช้ delay 8s
+  // นับถอยจากเมื่อวาน — ไม่รวมวันนี้
   // ============================================
   console.log('\n' + '═'.repeat(55));
-  console.log('📡 PHASE 6: Finnhub /stock/candle (OHLC 20 วัน)');
+  console.log('📡 PHASE 6: Twelve Data /time_series (OHLC 20 วัน)');
   console.log(`   สำหรับ Candlestick Chart — นับถอยจากเมื่อวาน`);
+  console.log(`   เฉพาะ Priority (Portfolio + Watchlist) | 8s/req`);
   console.log('═'.repeat(55));
 
-  if (!API_KEYS.FINNHUB) {
-    console.log('  ⚠️  ไม่มี FINNHUB_API_KEY — ข้าม Phase 6');
+  if (!API_KEYS.TWELVE) {
+    console.log('  ⚠️  ไม่มี TWELVE_DATA_API_KEY — ข้าม Phase 6');
   } else {
-    // Priority: Portfolio + Watchlist ก่อน, แล้ว Others
     const prioritySymbols = [...ETF_PRIORITY];
-    const allSymbols = allData.map(a => a.symbol);
-    const otherSymbols = allSymbols.filter(s => !prioritySymbols.includes(s));
-    const orderedSymbols = [...prioritySymbols, ...otherSymbols];
+    console.log(`   Priority: ${prioritySymbols.join(', ') || 'none'} (${prioritySymbols.length} ตัว)\n`);
 
-    let candleCount = 0;
-    for (const symbol of orderedSymbols) {
-      const idx = allData.findIndex(a => a.symbol === symbol);
-      if (idx < 0) continue;
+    if (prioritySymbols.length === 0) {
+      console.log('  ⚠️  ไม่มี Priority symbols — ข้าม Phase 6');
+    } else {
+      for (let i = 0; i < prioritySymbols.length; i++) {
+        const symbol = prioritySymbols[i];
+        const idx = allData.findIndex(a => a.symbol === symbol);
+        if (idx < 0) continue;
 
-      const candles = await fetchFinnhubCandle(symbol);
-      candleCount++;
-
-      if (candles) {
-        allData[idx].dailyCandles = candles;
-        if (candleCount <= 5 || candleCount % 50 === 0) {
-          console.log(`  ✅ ${symbol}: ${candles.length} candles (${new Date(candles[0].t * 1000).toLocaleDateString()} → ${new Date(candles[candles.length-1].t * 1000).toLocaleDateString()})`);
+        const candles = await fetchTwelveSingleCandle(symbol);
+        if (candles && candles.length > 0) {
+          allData[idx].dailyCandles = candles;
+          const first = new Date(candles[0].t * 1000).toLocaleDateString();
+          const last = new Date(candles[candles.length - 1].t * 1000).toLocaleDateString();
+          console.log(`  ✅ ${symbol}: ${candles.length} candles (${first} → ${last})`);
+        } else {
+          console.log(`  ⚠️  ${symbol}: no candle data`);
         }
-      } else {
-        if (stats.finnhubCandle.failed <= 10) {
-          console.log(`  ⚠️  ${symbol}: Candle failed — ไม่มีข้อมูลกราฟ`);
-        }
-      }
 
-      if (candleCount % 50 === 0) {
-        const pct = ((candleCount / orderedSymbols.length) * 100).toFixed(1);
-        console.log(`\n  [Progress] ${candleCount}/${orderedSymbols.length} (${pct}%) | ✅ ${stats.finnhubCandle.success} | ❌ ${stats.finnhubCandle.failed} | ⏱️ ${formatTime(Date.now() - stats.startTime)}`);
+        if (i < prioritySymbols.length - 1) await sleep(8000); // 8s = safe for 8 req/min
       }
-
-      await sleep(CONFIG.FINNHUB_DELAY_MS);
     }
 
-    console.log(`\n[Phase 6 Done] Candle: ✅ ${stats.finnhubCandle.success} | ❌ ${stats.finnhubCandle.failed}`);
+    console.log(`\n[Phase 6 Done] Candle: ✅ ${stats.twelveCandle.success} | ❌ ${stats.twelveCandle.failed}`);
   }
 
   // ============================================
@@ -784,7 +764,7 @@ async function updateAllAssets() {
   console.log(`  ✅ Price updated: ${totalSuccess} (${(totalSuccess / stats.total * 100).toFixed(1)}%)`);
   console.log(`  ✅ Fundamental:   ${stats.finnhubFundamental.success}`);
   console.log(`  ✅ ETF Profile:   ${stats.alphaVantage.success} updated | ${stats.alphaVantage.skipped} skipped`);
-  console.log(`  ✅ Candle OHLC:   ${stats.finnhubCandle.success} (for Candlestick Chart)`);
+  console.log(`  ✅ Candle OHLC:   ${stats.twelveCandle.success} (Twelve Data batch, for Candlestick Chart)`);
   console.log(`  ⏱️  Total time:   ${totalTime}`);
   console.log('');
   console.log('  Price Sources:');
