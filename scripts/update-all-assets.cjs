@@ -214,7 +214,7 @@ async function fetchAlphaVantageETFProfile(symbol) {
       return {
         totalAssets:   parseFloat(d.net_assets)          || 0,
         expenseRatio:  parseFloat(d.net_expense_ratio) * 100 || 0, // AV ให้เป็น decimal เช่น 0.000945
-        divYield:      parseFloat(d.dividend_yield)       || 0,
+        divYield:      parseFloat(d.dividend_yield) * 100  || 0,   // FIX: AV ให้เป็น decimal เช่น 0.0333 = 3.33%
         inceptionDate: d.inception_date                   || '',
         numHoldings:   d.holdings ? d.holdings.length     : 0,
         category:      topSector,
