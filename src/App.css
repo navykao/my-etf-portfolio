@@ -17,29 +17,29 @@
 
   --ink-1: #0d0e14;
   --ink-2: #3a3d4a;
-  --ink-3: #6b7280;
-  --ink-4: #9ca3af;
+  --ink-3: #4b5563;
+  --ink-4: #6b7280;
   --ink-5: #d1d5db;
 
-  --blue:       #2563eb;
+  --blue:       #1d4ed8;
   --blue-soft:  #eff4ff;
   --blue-mid:   #c7d7fd;
-  --indigo:     #4f46e5;
-  --violet:     #7c3aed;
+  --indigo:     #4338ca;
+  --violet:     #6d28d9;
   --violet-soft:#f5f3ff;
   --violet-mid: #ddd6fe;
-  --emerald:    #059669;
+  --emerald:    #047857;
   --emerald-soft:#ecfdf5;
   --emerald-mid:#a7f3d0;
-  --rose:       #e11d48;
+  --rose:       #be123c;
   --rose-soft:  #fff1f2;
   --rose-mid:   #fecdd3;
-  --amber:      #d97706;
+  --amber:      #b45309;
   --amber-soft: #fffbeb;
   --amber-mid:  #fde68a;
-  --cyan:       #0891b2;
+  --cyan:       #0e7490;
   --cyan-soft:  #ecfeff;
-  --pink:       #db2777;
+  --pink:       #be185d;
   --pink-soft:  #fdf2f8;
   --pink-mid:   #fbcfe8;
 
