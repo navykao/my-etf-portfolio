@@ -1,0 +1,49 @@
+# .github/workflows/update-candles-only.yml
+# รัน Phase 6 อย่างเดียว — ดึง OHLC 20 วันจาก Twelve Data
+# กดปุ่ม Run workflow ที่หน้า Actions ได้เลย
+
+name: Update Candles Only
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-candles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run update-candles-only
+        env:
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+        run: node scripts/update-candles-only.cjs
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet public/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/stocks.json public/data/etfs.json || true
+          git commit -m "🕯️ Auto-update: candle OHLC data [$(date '+%Y-%m-%d %H:%M ICT')]"
+          git pull --rebase origin main
+          git push
+
+      - name: No changes
+        if: steps.check_changes.outputs.changed != 'true'
+        run: echo "✅ No changes"
