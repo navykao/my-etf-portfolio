@@ -684,45 +684,66 @@ async function updateAllAssets() {
 
   // ============================================
   // PHASE 6: TWELVE DATA — OHLC 20 วัน (Candlestick Chart)
-  // ดึงเฉพาะ Priority (Portfolio + Watchlist) ทีละตัว
-  // Twelve Data free = 8 req/min → ใช้ delay 8s
+  // ดึงทุกตัว (300 symbols) ทีละตัว
+  // Twelve Data free = 8 req/min → delay 8s/ตัว
+  // 300 ตัว ≈ 40 นาที — รันตอนตี 4 ปล่อยยาว
+  // Priority (Portfolio + Watchlist) ดึงก่อน แล้ว Others
   // นับถอยจากเมื่อวาน — ไม่รวมวันนี้
   // ============================================
   console.log('\n' + '═'.repeat(55));
   console.log('📡 PHASE 6: Twelve Data /time_series (OHLC 20 วัน)');
   console.log(`   สำหรับ Candlestick Chart — นับถอยจากเมื่อวาน`);
-  console.log(`   เฉพาะ Priority (Portfolio + Watchlist) | 8s/req`);
+  console.log(`   ดึงทุกตัว ทีละตัว | 8s/req | ~40 นาที`);
   console.log('═'.repeat(55));
 
   if (!API_KEYS.TWELVE) {
     console.log('  ⚠️  ไม่มี TWELVE_DATA_API_KEY — ข้าม Phase 6');
   } else {
+    // Priority first, then others
     const prioritySymbols = [...ETF_PRIORITY];
-    console.log(`   Priority: ${prioritySymbols.join(', ') || 'none'} (${prioritySymbols.length} ตัว)\n`);
+    const allSymbols = allData.map(a => a.symbol);
+    const otherSymbols = allSymbols.filter(s => !prioritySymbols.includes(s));
+    const orderedSymbols = [...prioritySymbols, ...otherSymbols];
 
-    if (prioritySymbols.length === 0) {
-      console.log('  ⚠️  ไม่มี Priority symbols — ข้าม Phase 6');
-    } else {
-      for (let i = 0; i < prioritySymbols.length; i++) {
-        const symbol = prioritySymbols[i];
-        const idx = allData.findIndex(a => a.symbol === symbol);
-        if (idx < 0) continue;
+    console.log(`   Total: ${orderedSymbols.length} symbols`);
+    console.log(`   Priority first: ${prioritySymbols.join(', ') || 'none'}`);
+    console.log(`   Estimated time: ~${Math.ceil(orderedSymbols.length * 8 / 60)} minutes\n`);
 
-        const candles = await fetchTwelveSingleCandle(symbol);
-        if (candles && candles.length > 0) {
-          allData[idx].dailyCandles = candles;
+    const phase6Start = Date.now();
+
+    for (let i = 0; i < orderedSymbols.length; i++) {
+      const symbol = orderedSymbols[i];
+      const idx = allData.findIndex(a => a.symbol === symbol);
+      if (idx < 0) continue;
+
+      const candles = await fetchTwelveSingleCandle(symbol);
+      if (candles && candles.length > 0) {
+        allData[idx].dailyCandles = candles;
+        // แสดง log สำหรับ 5 ตัวแรก + ทุก 50 ตัว
+        if (i < 5 || (i + 1) % 50 === 0 || i === orderedSymbols.length - 1) {
           const first = new Date(candles[0].t * 1000).toLocaleDateString();
           const last = new Date(candles[candles.length - 1].t * 1000).toLocaleDateString();
           console.log(`  ✅ ${symbol}: ${candles.length} candles (${first} → ${last})`);
-        } else {
+        }
+      } else {
+        if (stats.twelveCandle.failed <= 10) {
           console.log(`  ⚠️  ${symbol}: no candle data`);
         }
-
-        if (i < prioritySymbols.length - 1) await sleep(8000); // 8s = safe for 8 req/min
       }
+
+      // Progress log ทุก 50 ตัว
+      if ((i + 1) % 50 === 0 || i === orderedSymbols.length - 1) {
+        const pct = (((i + 1) / orderedSymbols.length) * 100).toFixed(1);
+        const elapsed = Math.floor((Date.now() - phase6Start) / 1000);
+        const remaining = Math.ceil((orderedSymbols.length - i - 1) * 8 / 60);
+        console.log(`\n  [Phase 6 Progress] ${i + 1}/${orderedSymbols.length} (${pct}%) | ✅ ${stats.twelveCandle.success} | ❌ ${stats.twelveCandle.failed} | ⏱️ ${Math.floor(elapsed/60)}m${elapsed%60}s | เหลือ ~${remaining}m\n`);
+      }
+
+      // delay 8s ระหว่างแต่ละตัว (ยกเว้นตัวสุดท้าย)
+      if (i < orderedSymbols.length - 1) await sleep(8000);
     }
 
-    console.log(`\n[Phase 6 Done] Candle: ✅ ${stats.twelveCandle.success} | ❌ ${stats.twelveCandle.failed}`);
+    console.log(`[Phase 6 Done] Candle: ✅ ${stats.twelveCandle.success} | ❌ ${stats.twelveCandle.failed} | ⏱️ ${Math.floor((Date.now() - phase6Start) / 60000)}m`);
   }
 
   // ============================================
