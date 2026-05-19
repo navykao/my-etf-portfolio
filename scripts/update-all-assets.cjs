@@ -80,6 +80,7 @@ const stats = {
   fmp:                { success: 0, failed: 0 },
   eodhd:              { success: 0, failed: 0 },
   twelve:             { success: 0, failed: 0 },
+  finnhubCandle:      { success: 0, failed: 0 },
   startTime:          Date.now(),
 };
 
@@ -230,6 +231,57 @@ async function fetchAlphaVantageETFProfile(symbol) {
 }
 
 // ============================================
+// API 1C: FINNHUB CANDLE — Historical OHLC (20 days)
+// /stock/candle?symbol=X&resolution=D&from=...&to=...
+// ดึง 30 วันย้อนหลัง (เผื่อวันหยุด) เอา 20 แท่งสุดท้าย
+// ไม่รวมวันนี้ — นับถอยจากเมื่อวาน
+// ============================================
+async function fetchFinnhubCandle(symbol) {
+  if (!API_KEYS.FINNHUB) return null;
+  try {
+    // to = เมื่อวาน 23:59 UTC, from = 35 วันก่อน (เผื่อวันหยุด)
+    const now = Math.floor(Date.now() / 1000);
+    const oneDaySec = 86400;
+    const to   = now - oneDaySec; // เมื่อวาน
+    const from = to - (35 * oneDaySec); // 35 วันย้อนหลัง
+
+    const url = `https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&from=${from}&to=${to}&token=${API_KEYS.FINNHUB}`;
+    const res = await fetchWithTimeout(url);
+    if (res.status === 429) {
+      console.log(`  [Finnhub Candle] ⏳ Rate limited — รอ 70s...`);
+      await sleep(CONFIG.FINNHUB_RATE_LIMIT_WAIT);
+      return null;
+    }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const d = await res.json();
+
+    // Finnhub returns { s: "ok", c: [...], h: [...], l: [...], o: [...], t: [...], v: [...] }
+    if (d && d.s === 'ok' && d.c && d.c.length > 0) {
+      const len = d.c.length;
+      const startIdx = Math.max(0, len - 20); // เอา 20 แท่งสุดท้าย
+      const candles = [];
+      for (let i = startIdx; i < len; i++) {
+        candles.push({
+          t: d.t[i],  // unix timestamp
+          o: d.o[i],  // open
+          h: d.h[i],  // high
+          l: d.l[i],  // low
+          c: d.c[i],  // close
+          v: d.v[i],  // volume
+        });
+      }
+      stats.finnhubCandle.success++;
+      return candles;
+    }
+    stats.finnhubCandle.failed++;
+    return null;
+  } catch {
+    stats.finnhubCandle.failed++;
+    return null;
+  }
+}
+
+// ============================================
 // API 4: FMP /quote-short — fallback ราคา
 // ============================================
 async function fetchFMP(symbol) {
@@ -327,12 +379,13 @@ async function fetchTwelve(symbol) {
 // ============================================
 async function updateAllAssets() {
   console.log('╔══════════════════════════════════════════════════════╗');
-  console.log('║  📊 US Stock Portfolio — Daily Asset Update  v2     ║');
+  console.log('║  📊 US Stock Portfolio — Daily Asset Update  v2.1    ║');
   console.log('║  Phase 1: Finnhub /quote    → ราคา (ทุกวัน)        ║');
   console.log('║  Phase 2: Finnhub /metric   → Fundamental (ทุกวัน) ║');
   console.log('║  Phase 3: Alpha Vantage     → ETF Profile (7 วัน)  ║');
   console.log('║  Phase 4: FMP               → fallback ราคา        ║');
   console.log('║  Phase 5: EODHD + Twelve    → fallback สุดท้าย     ║');
+  console.log('║  Phase 6: Finnhub /candle   → OHLC 20d (ทุกวัน)   ║');
   console.log('╚══════════════════════════════════════════════════════╝\n');
 
   // ตรวจ API Keys
@@ -644,6 +697,55 @@ async function updateAllAssets() {
   }
 
   // ============================================
+  // PHASE 6: FINNHUB CANDLE — OHLC 20 วัน (Candlestick Chart)
+  // ดึงเฉพาะ Priority (Portfolio + Watchlist) ก่อน
+  // แล้วค่อยดึง asset ทั่วไปถ้ามีเวลา
+  // ============================================
+  console.log('\n' + '═'.repeat(55));
+  console.log('📡 PHASE 6: Finnhub /stock/candle (OHLC 20 วัน)');
+  console.log(`   สำหรับ Candlestick Chart — นับถอยจากเมื่อวาน`);
+  console.log('═'.repeat(55));
+
+  if (!API_KEYS.FINNHUB) {
+    console.log('  ⚠️  ไม่มี FINNHUB_API_KEY — ข้าม Phase 6');
+  } else {
+    // Priority: Portfolio + Watchlist ก่อน, แล้ว Others
+    const prioritySymbols = [...ETF_PRIORITY];
+    const allSymbols = allData.map(a => a.symbol);
+    const otherSymbols = allSymbols.filter(s => !prioritySymbols.includes(s));
+    const orderedSymbols = [...prioritySymbols, ...otherSymbols];
+
+    let candleCount = 0;
+    for (const symbol of orderedSymbols) {
+      const idx = allData.findIndex(a => a.symbol === symbol);
+      if (idx < 0) continue;
+
+      const candles = await fetchFinnhubCandle(symbol);
+      candleCount++;
+
+      if (candles) {
+        allData[idx].dailyCandles = candles;
+        if (candleCount <= 5 || candleCount % 50 === 0) {
+          console.log(`  ✅ ${symbol}: ${candles.length} candles (${new Date(candles[0].t * 1000).toLocaleDateString()} → ${new Date(candles[candles.length-1].t * 1000).toLocaleDateString()})`);
+        }
+      } else {
+        if (stats.finnhubCandle.failed <= 10) {
+          console.log(`  ⚠️  ${symbol}: Candle failed — ไม่มีข้อมูลกราฟ`);
+        }
+      }
+
+      if (candleCount % 50 === 0) {
+        const pct = ((candleCount / orderedSymbols.length) * 100).toFixed(1);
+        console.log(`\n  [Progress] ${candleCount}/${orderedSymbols.length} (${pct}%) | ✅ ${stats.finnhubCandle.success} | ❌ ${stats.finnhubCandle.failed} | ⏱️ ${formatTime(Date.now() - stats.startTime)}`);
+      }
+
+      await sleep(CONFIG.FINNHUB_DELAY_MS);
+    }
+
+    console.log(`\n[Phase 6 Done] Candle: ✅ ${stats.finnhubCandle.success} | ❌ ${stats.finnhubCandle.failed}`);
+  }
+
+  // ============================================
   // SAVE — แยก stocks.json และ etfs.json
   // ============================================
   console.log('\n' + '═'.repeat(55));
@@ -682,6 +784,7 @@ async function updateAllAssets() {
   console.log(`  ✅ Price updated: ${totalSuccess} (${(totalSuccess / stats.total * 100).toFixed(1)}%)`);
   console.log(`  ✅ Fundamental:   ${stats.finnhubFundamental.success}`);
   console.log(`  ✅ ETF Profile:   ${stats.alphaVantage.success} updated | ${stats.alphaVantage.skipped} skipped`);
+  console.log(`  ✅ Candle OHLC:   ${stats.finnhubCandle.success} (for Candlestick Chart)`);
   console.log(`  ⏱️  Total time:   ${totalTime}`);
   console.log('');
   console.log('  Price Sources:');
