@@ -3,7 +3,7 @@
 # ระบบหลัก:  cron-job.org → workflow_dispatch เวลา 04:10 ICT
 # ระบบสำรอง: GitHub Actions cron → 22:15 ICT (15:15 UTC วันก่อน)
 #
-# ถ้าระบบหลักรันสำเร็จแล้ว ระบบสำรองจะเจอ "No data changes" → skip commit
+# ถ้าระบบหลักรันสำเร็จแล้ว ระบบสำรองจะเจอ "No data changes" → skip commit  
 
 name: Daily Price Update
 
