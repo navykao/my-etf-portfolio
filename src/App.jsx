@@ -26,8 +26,8 @@ ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, PointElemen
 
 // ==================== CONFIG ====================
 const CONFIG = {
-  UPDATE_INTERVAL: 2 * 60 * 60 * 1000,
-  CACHE_DURATION: 90 * 60 * 1000,
+  UPDATE_INTERVAL: 15 * 60 * 1000,
+  CACHE_DURATION: 10 * 60 * 1000,
   DATA_URL: '/data/stocks.json',   // legacy fallback ไม่ใช้แล้ว
   GITHUB_DATA_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/stocks.json',
   // ✅ แยก URL สำหรับ stocks และ ETFs
@@ -1128,7 +1128,7 @@ function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, bar
       ) : (
         <>
           {/* แถว 1: ตาราง + Pie */}
-          <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '18px', marginBottom: '18px', alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '7fr 3fr', gap: '18px', marginBottom: '18px', alignItems: 'start' }}>
 
             {/* ── ซ้าย: ตารางรายการถือครอง ── */}
             <div className="card">
@@ -1171,16 +1171,16 @@ function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, bar
                           <td style={{ fontFamily: 'var(--mono)', fontSize: '13px', color: gain >= 0 ? 'var(--success)' : 'var(--danger)', fontWeight: '600' }}>{formatPercent(gainPercent)}</td>
                           <td>
                             <div className="btn-action-group">
-                              <button className="btn-buy-more" onClick={() => setBuyMoreTarget(holding)}>
-                                ➕ ซื้อเพิ่ม
+                              <button className="btn-icon-buy" title="ซื้อเพิ่ม" onClick={() => setBuyMoreTarget(holding)}>
+                                ➕
                               </button>
-                              <button className="btn-edit-small" onClick={() => setEditTarget(holding)}>
-                                ✏️ แก้ไข
+                              <button className="btn-icon-edit" title="แก้ไข" onClick={() => setEditTarget(holding)}>
+                                ✏️
                               </button>
-                              <button className="btn-danger-small" onClick={() => {
+                              <button className="btn-icon-delete" title="ลบ" onClick={() => {
                                 removeFromPortfolio(holding.symbol)
                                 addNotification(`ลบ ${holding.symbol} ออกจาก Portfolio แล้ว`, 'info')
-                              }}>ลบ</button>
+                              }}>🗑️</button>
                             </div>
                           </td>
                         </tr>
@@ -2271,7 +2271,7 @@ function App() {
   const [dataSource, setDataSource] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [filterType, setFilterType] = useState('ALL')
-  const [countdown, setCountdown] = useState(7200)
+  const [countdown, setCountdown] = useState(900)
   const [lastUpdate, setLastUpdate] = useState(null)
   const [notifications, setNotifications] = useState([])
   // FIX: currentPage state สำหรับ navigation จริง
@@ -2345,7 +2345,7 @@ function App() {
       setCountdown(prev => {
         if (prev <= 0) {
           if (liveMode) updateLiveData()
-          return 7200
+          return 900
         }
         return prev - 1
       })
@@ -2646,7 +2646,7 @@ function App() {
               setLiveMode(newMode)
               if (newMode) {
                 updateLiveData()
-                setCountdown(7200)
+                setCountdown(900)
               }
               addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
             }}>
@@ -2783,7 +2783,7 @@ function App() {
           onToggleLive={() => {
             const newMode = !liveMode
             setLiveMode(newMode)
-            if (newMode) { updateLiveData(); setCountdown(7200) }
+            if (newMode) { updateLiveData(); setCountdown(900) }
             addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
           }}
         />
