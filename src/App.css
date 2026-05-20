@@ -658,41 +658,42 @@ tbody tr:last-child td { border-bottom: none; }
   justify-content: center;
 }
 
-.btn-buy-more {
-  padding: 4px 10px;
+.btn-icon-buy,
+.btn-icon-edit,
+.btn-icon-delete {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--t) var(--ease);
+  border: 1px solid;
+  position: relative;
+}
+
+.btn-icon-buy {
   background: var(--blue-soft);
   color: var(--blue);
-  border: 1px solid var(--blue-mid);
-  border-radius: var(--r-sm);
-  font-size: 11.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--t) var(--ease);
-  font-family: var(--font);
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  white-space: nowrap;
+  border-color: var(--blue-mid);
 }
-.btn-buy-more:hover { background: var(--blue); color: #fff; border-color: transparent; }
+.btn-icon-buy:hover { background: var(--blue); color: #fff; border-color: transparent; transform: scale(1.1); }
 
-.btn-edit-small {
-  padding: 4px 10px;
+.btn-icon-edit {
   background: var(--violet-soft);
   color: var(--violet);
-  border: 1px solid var(--violet-mid);
-  border-radius: var(--r-sm);
-  font-size: 11.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--t) var(--ease);
-  font-family: var(--font);
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  white-space: nowrap;
+  border-color: var(--violet-mid);
 }
-.btn-edit-small:hover { background: var(--violet); color: #fff; border-color: transparent; }
+.btn-icon-edit:hover { background: var(--violet); color: #fff; border-color: transparent; transform: scale(1.1); }
+
+.btn-icon-delete {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--rose-mid);
+}
+.btn-icon-delete:hover { background: var(--danger); color: #fff; border-color: transparent; transform: scale(1.1); }
 
 /* ─── MODAL OVERLAY ─────────────────────────────────── */
 .modal-overlay {
@@ -869,8 +870,8 @@ tbody tr:last-child td { border-bottom: none; }
 }
 
 @media (max-width: 768px) {
-  .btn-action-group { flex-direction: column; gap: 3px; }
-  .btn-buy-more, .btn-edit-small { font-size: 10.5px; padding: 3px 8px; }
+  .btn-action-group { gap: 3px; }
+  .btn-icon-buy, .btn-icon-edit, .btn-icon-delete { width: 26px; height: 26px; font-size: 12px; }
   .modal-box { padding: 20px; }
   .modal-form-grid { grid-template-columns: 1fr; }
 }
