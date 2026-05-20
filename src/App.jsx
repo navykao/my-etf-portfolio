@@ -26,7 +26,7 @@ ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, PointElemen
 
 // ==================== CONFIG ====================
 const CONFIG = {
-  UPDATE_INTERVAL: 2 * 60 * 60 * 1000,
+  UPDATE_INTERVAL: 15 * 60 * 1000,   // 15 นาที
   CACHE_DURATION: 90 * 60 * 1000,
   DATA_URL: '/data/stocks.json',   // legacy fallback ไม่ใช้แล้ว
   GITHUB_DATA_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/stocks.json',
@@ -2102,7 +2102,7 @@ function App() {
       setCountdown(prev => {
         if (prev <= 0) {
           if (liveMode) updateLiveData()
-          return 7200
+          return 900     // 15 นาที
         }
         return prev - 1
       })
@@ -2390,7 +2390,7 @@ function App() {
               setLiveMode(newMode)
               if (newMode) {
                 updateLiveData()
-                setCountdown(7200)
+                setCountdown(900)
               }
               addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
             }}>
@@ -2526,7 +2526,7 @@ function App() {
           onToggleLive={() => {
             const newMode = !liveMode
             setLiveMode(newMode)
-            if (newMode) { updateLiveData(); setCountdown(7200) }
+            if (newMode) { updateLiveData(); setCountdown(900) }
             addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
           }}
         />
