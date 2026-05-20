@@ -16,8 +16,8 @@ concurrency:
 
 on:
   schedule:
-    # ระบบสำรอง: 05:30 ICT = 22:30 UTC (วันก่อน)
-    - cron: '30 22 * * *'
+  # ระบบสำรอง: 22:15 ICT = 15:15 UTC
+  - cron: '15 15 * * *'
 
   workflow_dispatch:
 
