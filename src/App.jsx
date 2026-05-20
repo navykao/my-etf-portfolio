@@ -26,7 +26,7 @@ ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, PointElemen
 
 // ==================== CONFIG ====================
 const CONFIG = {
-  UPDATE_INTERVAL: 15 * 60 * 1000,   // 15 นาที
+  UPDATE_INTERVAL: 2 * 60 * 60 * 1000,
   CACHE_DURATION: 90 * 60 * 1000,
   DATA_URL: '/data/stocks.json',   // legacy fallback ไม่ใช้แล้ว
   GITHUB_DATA_URL: 'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/stocks.json',
@@ -787,12 +787,220 @@ function DashboardPage({
   )
 }
 
+// ==================== BUY MORE MODAL ====================
+function BuyMoreModal({ holding, allAssets, onConfirm, onClose }) {
+  const [shares, setShares] = useState('')
+  const [price, setPrice] = useState('')
+  const [error, setError] = useState('')
+
+  const stock = allAssets.find(a => a.symbol === holding.symbol)
+  const currentPrice = stock?.price || holding.currentPrice || 0
+
+  // Preview calculation
+  const newShares = parseFloat(shares) || 0
+  const newPrice = parseFloat(price) || 0
+  const totalShares = holding.shares + newShares
+  const newAvgCost = totalShares > 0
+    ? ((holding.shares * holding.avgCost) + (newShares * newPrice)) / totalShares
+    : holding.avgCost
+  const newValue = totalShares * currentPrice
+  const showPreview = newShares > 0 && newPrice > 0
+
+  const handleSubmit = () => {
+    setError('')
+    if (!newShares || newShares <= 0) { setError('จำนวนหุ้นต้องมากกว่า 0'); return }
+    if (!newPrice || newPrice <= 0) { setError('ราคาซื้อต้องมากกว่า 0'); return }
+    onConfirm(holding.symbol, newShares, newPrice)
+    onClose()
+  }
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <div className="modal-header">
+          <div className="modal-title">
+            <span>➕</span>
+            <span>ซื้อเพิ่ม {holding.symbol}</span>
+            <Badge type={holding.type}>{holding.type}</Badge>
+          </div>
+          <button className="modal-close" onClick={onClose}>✕</button>
+        </div>
+
+        {/* Current holdings info */}
+        <div className="modal-current-info">
+          <div className="modal-current-row">
+            <span className="modal-current-label">ถือครองปัจจุบัน</span>
+            <span className="modal-current-value">{formatShares(holding.shares)} หุ้น</span>
+          </div>
+          <div className="modal-current-row">
+            <span className="modal-current-label">ต้นทุนเฉลี่ย</span>
+            <span className="modal-current-value">{formatPrice(holding.avgCost)}</span>
+          </div>
+          <div className="modal-current-row">
+            <span className="modal-current-label">ราคาปัจจุบัน</span>
+            <span className="modal-current-value">{formatPrice(currentPrice)}</span>
+          </div>
+        </div>
+
+        {/* Form */}
+        <div className="modal-form-grid">
+          <div className="form-group">
+            <label className="form-label">จำนวนที่ซื้อเพิ่ม</label>
+            <input type="number" className="form-input" placeholder="0.001"
+              step="any" min="0.000001" value={shares}
+              onChange={e => setShares(e.target.value)}
+              autoFocus />
+          </div>
+          <div className="form-group">
+            <label className="form-label">ราคาที่ซื้อ ($)</label>
+            <input type="number" className="form-input" placeholder={currentPrice.toFixed(2)}
+              step="any" min="0.01" value={price}
+              onChange={e => setPrice(e.target.value)} />
+          </div>
+        </div>
+
+        {error && <div className="modal-error">⚠️ {error}</div>}
+
+        {/* Preview */}
+        {showPreview && (
+          <div className="modal-preview">
+            <div className="modal-preview-title">📊 Preview หลังซื้อเพิ่ม</div>
+            <div className="modal-preview-row">
+              <span className="modal-preview-label">จำนวนรวมใหม่</span>
+              <span className="modal-preview-value">{formatShares(totalShares)} หุ้น</span>
+            </div>
+            <div className="modal-preview-row">
+              <span className="modal-preview-label">ต้นทุนเฉลี่ยใหม่</span>
+              <span className="modal-preview-value">{formatPrice(newAvgCost)}</span>
+            </div>
+            <div className="modal-preview-row">
+              <span className="modal-preview-label">มูลค่ารวมใหม่</span>
+              <span className="modal-preview-value">{formatPrice(newValue)}</span>
+            </div>
+            <div className="modal-preview-row">
+              <span className="modal-preview-label">กำไร/ขาดทุน (ใหม่)</span>
+              <span className="modal-preview-value" style={{ color: (newValue - totalShares * newAvgCost) >= 0 ? 'var(--emerald)' : 'var(--rose)' }}>
+                {formatPrice(newValue - totalShares * newAvgCost)} ({formatPercent(totalShares * newAvgCost > 0 ? ((newValue - totalShares * newAvgCost) / (totalShares * newAvgCost)) * 100 : 0)})
+              </span>
+            </div>
+          </div>
+        )}
+
+        <button className="modal-submit" onClick={handleSubmit}>
+          ✅ ยืนยันซื้อเพิ่ม
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// ==================== EDIT HOLDING MODAL ====================
+function EditHoldingModal({ holding, allAssets, onSave, onClose }) {
+  const [shares, setShares] = useState(String(holding.shares))
+  const [avgCost, setAvgCost] = useState(String(holding.avgCost))
+  const [error, setError] = useState('')
+
+  const stock = allAssets.find(a => a.symbol === holding.symbol)
+  const currentPrice = stock?.price || holding.currentPrice || 0
+
+  const editedShares = parseFloat(shares) || 0
+  const editedAvgCost = parseFloat(avgCost) || 0
+  const newValue = editedShares * currentPrice
+  const newCost = editedShares * editedAvgCost
+  const newGain = newValue - newCost
+  const newGainPercent = newCost > 0 ? (newGain / newCost) * 100 : 0
+  const showPreview = editedShares > 0 && editedAvgCost > 0
+
+  const handleSubmit = () => {
+    setError('')
+    if (!editedShares || editedShares <= 0) { setError('จำนวนหุ้นต้องมากกว่า 0'); return }
+    if (!editedAvgCost || editedAvgCost <= 0) { setError('ราคาต้นทุนต้องมากกว่า 0'); return }
+    onSave(holding.symbol, editedShares, editedAvgCost)
+    onClose()
+  }
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <div className="modal-header">
+          <div className="modal-title">
+            <span>✏️</span>
+            <span>แก้ไข {holding.symbol}</span>
+            <Badge type={holding.type}>{holding.type}</Badge>
+          </div>
+          <button className="modal-close" onClick={onClose}>✕</button>
+        </div>
+
+        {/* Current info (read-only) */}
+        <div className="modal-current-info">
+          <div className="modal-current-row">
+            <span className="modal-current-label">ชื่อ</span>
+            <span className="modal-current-value">{stock?.name || holding.symbol}</span>
+          </div>
+          <div className="modal-current-row">
+            <span className="modal-current-label">ราคาปัจจุบัน</span>
+            <span className="modal-current-value">{formatPrice(currentPrice)}</span>
+          </div>
+        </div>
+
+        {/* Editable fields */}
+        <div className="modal-form-grid">
+          <div className="form-group">
+            <label className="form-label">จำนวนหุ้น</label>
+            <input type="number" className="form-input"
+              step="any" min="0.000001" value={shares}
+              onChange={e => setShares(e.target.value)}
+              autoFocus />
+          </div>
+          <div className="form-group">
+            <label className="form-label">ราคาต้นทุนเฉลี่ย ($)</label>
+            <input type="number" className="form-input"
+              step="any" min="0.01" value={avgCost}
+              onChange={e => setAvgCost(e.target.value)} />
+          </div>
+        </div>
+
+        {error && <div className="modal-error">⚠️ {error}</div>}
+
+        {/* Preview */}
+        {showPreview && (
+          <div className="modal-preview">
+            <div className="modal-preview-title">📊 Preview หลังแก้ไข</div>
+            <div className="modal-preview-row">
+              <span className="modal-preview-label">ต้นทุนรวม</span>
+              <span className="modal-preview-value">{formatPrice(newCost)}</span>
+            </div>
+            <div className="modal-preview-row">
+              <span className="modal-preview-label">มูลค่าปัจจุบัน</span>
+              <span className="modal-preview-value">{formatPrice(newValue)}</span>
+            </div>
+            <div className="modal-preview-row">
+              <span className="modal-preview-label">กำไร/ขาดทุน</span>
+              <span className="modal-preview-value" style={{ color: newGain >= 0 ? 'var(--emerald)' : 'var(--rose)' }}>
+                {formatPrice(newGain)} ({formatPercent(newGainPercent)})
+              </span>
+            </div>
+          </div>
+        )}
+
+        <button className="modal-submit" onClick={handleSubmit}>
+          💾 บันทึกการแก้ไข
+        </button>
+      </div>
+    </div>
+  )
+}
+
 // --- PORTFOLIO PAGE ---
-function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, barChartData, removeFromPortfolio, addToPortfolio, addNotification }) {
+function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, barChartData, removeFromPortfolio, addToPortfolio, editPortfolioHolding, addNotification }) {
   const [formSymbol, setFormSymbol] = useState('')
   const [formShares, setFormShares] = useState('')
   const [formAvgCost, setFormAvgCost] = useState('')
   const [formError, setFormError] = useState('')
+
+  // Modal state
+  const [buyMoreTarget, setBuyMoreTarget] = useState(null)
+  const [editTarget, setEditTarget] = useState(null)
 
   const handleAddPortfolio = (e) => {
     e.preventDefault()
@@ -962,10 +1170,18 @@ function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, bar
                           <td style={{ fontFamily: 'var(--mono)', fontSize: '13px', color: gain >= 0 ? 'var(--success)' : 'var(--danger)', fontWeight: '600' }}>{formatPrice(gain)}</td>
                           <td style={{ fontFamily: 'var(--mono)', fontSize: '13px', color: gain >= 0 ? 'var(--success)' : 'var(--danger)', fontWeight: '600' }}>{formatPercent(gainPercent)}</td>
                           <td>
-                            <button className="btn-danger-small" onClick={() => {
-                              removeFromPortfolio(holding.symbol)
-                              addNotification(`ลบ ${holding.symbol} ออกจาก Portfolio แล้ว`, 'info')
-                            }}>ลบ</button>
+                            <div className="btn-action-group">
+                              <button className="btn-buy-more" onClick={() => setBuyMoreTarget(holding)}>
+                                ➕ ซื้อเพิ่ม
+                              </button>
+                              <button className="btn-edit-small" onClick={() => setEditTarget(holding)}>
+                                ✏️ แก้ไข
+                              </button>
+                              <button className="btn-danger-small" onClick={() => {
+                                removeFromPortfolio(holding.symbol)
+                                addNotification(`ลบ ${holding.symbol} ออกจาก Portfolio แล้ว`, 'info')
+                              }}>ลบ</button>
+                            </div>
                           </td>
                         </tr>
                       )
@@ -1082,6 +1298,33 @@ function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, bar
             <Bar data={barChartData} options={barOptions} />
           </div>
         </div>
+      )}
+
+      {/* ══════════════════════════════════════════════════════
+          Modals: ซื้อเพิ่ม / แก้ไข
+      ══════════════════════════════════════════════════════ */}
+      {buyMoreTarget && (
+        <BuyMoreModal
+          holding={buyMoreTarget}
+          allAssets={allAssets}
+          onConfirm={(symbol, shares, price) => {
+            addToPortfolio(symbol, shares, price)
+            addNotification(`ซื้อเพิ่ม ${symbol} สำเร็จ ✓ — ต้นทุนเฉลี่ยอัพเดทแล้ว`, 'success')
+          }}
+          onClose={() => setBuyMoreTarget(null)}
+        />
+      )}
+
+      {editTarget && (
+        <EditHoldingModal
+          holding={editTarget}
+          allAssets={allAssets}
+          onSave={(symbol, shares, avgCost) => {
+            editPortfolioHolding(symbol, shares, avgCost)
+            addNotification(`แก้ไข ${symbol} สำเร็จ ✓`, 'success')
+          }}
+          onClose={() => setEditTarget(null)}
+        />
       )}
     </div>
   )
@@ -2102,7 +2345,7 @@ function App() {
       setCountdown(prev => {
         if (prev <= 0) {
           if (liveMode) updateLiveData()
-          return 900     // 15 นาที
+          return 7200
         }
         return prev - 1
       })
@@ -2240,6 +2483,19 @@ function App() {
   const removeFromPortfolio = async (symbol) => {
     if (!user) return
     await deleteDoc(doc(db, 'users', user.uid, 'portfolio', symbol.toUpperCase()))
+  }
+
+  // ✅ แก้ไขข้อมูลหุ้นใน Portfolio โดยตรง (overwrite shares + avgCost)
+  const editPortfolioHolding = async (symbol, newShares, newAvgCost) => {
+    if (!user) { addNotification('กรุณาเข้าสู่ระบบก่อน', 'error'); return false }
+    const sym = symbol.toUpperCase()
+    const docRef = doc(db, 'users', user.uid, 'portfolio', sym)
+    await setDoc(docRef, {
+      shares: parseFloat(newShares),
+      avgCost: parseFloat(newAvgCost),
+      updatedAt: serverTimestamp()
+    }, { merge: true })
+    return true
   }
 
   const handleSearch = () => {
@@ -2390,7 +2646,7 @@ function App() {
               setLiveMode(newMode)
               if (newMode) {
                 updateLiveData()
-                setCountdown(900)
+                setCountdown(7200)
               }
               addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
             }}>
@@ -2465,6 +2721,7 @@ function App() {
           barChartData={barChartData}
           removeFromPortfolio={removeFromPortfolio}
           addToPortfolio={addToPortfolio}
+          editPortfolioHolding={editPortfolioHolding}
           addNotification={addNotification}
         />
       )}
@@ -2526,7 +2783,7 @@ function App() {
           onToggleLive={() => {
             const newMode = !liveMode
             setLiveMode(newMode)
-            if (newMode) { updateLiveData(); setCountdown(900) }
+            if (newMode) { updateLiveData(); setCountdown(7200) }
             addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
           }}
         />
