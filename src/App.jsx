@@ -520,8 +520,8 @@ function DashboardPage({
                   </div>
                 </div>
 
-                {/* Info grid — 6 cols */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '10px 8px', padding: '14px', background: 'var(--bg)', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)' }}>
+                {/* Info grid — 6 cols desktop / 3 cols mobile */}
+                <div className="info-grid-6col" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '10px 8px', padding: '14px', background: 'var(--bg)', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)' }}>
                   {buildInfoRows(selectedStock).map(({ label, val }) => (
                     <div key={label}>
                       <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '3px' }}>{label}</div>
@@ -597,7 +597,7 @@ function DashboardPage({
                         </span>
                       )}
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                    <div className="etf-holdings-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                       {/* Left: Top 10 Holdings list */}
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                         {selectedStock.top10Holdings.map((h, i) => (
@@ -638,7 +638,7 @@ function DashboardPage({
                   </>
                 ) : selectedStock.type === 'ETF' ? (
                   /* ETF ที่ไม่มี top10Holdings — แสดงข้อมูลพื้นฐาน */
-                  <div style={{ padding: '12px 0', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                  <div className="stock-sub-grid-4" style={{ padding: '12px 0', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
                     {[
                       { label: 'Num Holdings', val: selectedStock.numHoldings ? selectedStock.numHoldings.toLocaleString() : '-' },
                       { label: 'Category', val: selectedStock.category || '-' },
@@ -653,7 +653,7 @@ function DashboardPage({
                   </div>
                 ) : (
                   /* STOCK — แสดง Sector/Industry info */
-                  <div style={{ padding: '12px 0', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                  <div className="stock-sub-grid-4" style={{ padding: '12px 0', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
                     {[
                       { label: 'Sector', val: selectedStock.sector || '-' },
                       { label: 'Industry', val: selectedStock.industry || '-' },
@@ -1128,7 +1128,7 @@ function PortfolioPage({ portfolio, allAssets, portfolioStats, pieChartData, bar
       ) : (
         <>
           {/* แถว 1: ตาราง + Pie */}
-          <div style={{ display: 'grid', gridTemplateColumns: '7fr 3fr', gap: '18px', marginBottom: '18px', alignItems: 'start' }}>
+          <div className="portfolio-main-grid" style={{ display: 'grid', gridTemplateColumns: '7fr 3fr', gap: '18px', marginBottom: '18px', alignItems: 'start' }}>
 
             {/* ── ซ้าย: ตารางรายการถือครอง ── */}
             <div className="card">
@@ -1385,6 +1385,7 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
           cursor: onClick ? 'pointer' : 'default',
           transition: 'all var(--t) var(--ease)',
         }}
+        className="watchlist-stock-row"
         onMouseEnter={e => {
           e.currentTarget.style.background = 'var(--blue-soft)'
           e.currentTarget.style.borderColor = 'var(--blue-mid)'
@@ -1412,7 +1413,7 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
         </div>
 
         {/* Col 3: Div Yield */}
-        <div style={{ textAlign: 'right' }}>
+        <div className="watchlist-row-divyield" style={{ textAlign: 'right' }}>
           <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '3px' }}>Div Yield</div>
           <div style={{
             fontFamily: 'var(--mono)', fontWeight: '600', fontSize: '13px',
@@ -1421,7 +1422,7 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
         </div>
 
         {/* Col 4: P/E หรือ Expense Ratio (ETF) */}
-        <div style={{ textAlign: 'right' }}>
+        <div className="watchlist-row-pe" style={{ textAlign: 'right' }}>
           <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '3px' }}>{peExpLabel}</div>
           <div style={{
             fontFamily: 'var(--mono)', fontWeight: '600', fontSize: '13px',
@@ -1430,7 +1431,7 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
         </div>
 
         {/* Col 5: Div Frequency */}
-        <div style={{ textAlign: 'right' }}>
+        <div className="watchlist-row-divfreq" style={{ textAlign: 'right' }}>
           <div style={{ fontSize: '10px', color: 'var(--ink-4)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: '3px' }}>Div Freq</div>
           <div style={{
             fontFamily: 'var(--mono)', fontWeight: '600', fontSize: '12px',
@@ -1474,7 +1475,7 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
 
   // ── Column header row ────────────────────────────────────────────────────
   const ColHeader = () => (
-    <div style={{
+    <div className="col-header-row" style={{
       display: 'grid',
       gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr auto',
       gap: '0 16px',
@@ -1482,12 +1483,19 @@ function WatchlistPage({ allAssets, watchlist, addToWatchlist, removeFromWatchli
       borderBottom: '1px solid var(--border)',
       marginBottom: '8px',
     }}>
-      {['หุ้น / ชื่อ', 'ราคา / %เปลี่ยน', 'Div Yield', 'P/E · Exp.Ratio', 'Div Freq', ''].map((h, i) => (
-        <div key={i} style={{
+      {[
+        { label: 'หุ้น / ชื่อ', cls: '' },
+        { label: 'ราคา / %เปลี่ยน', cls: '' },
+        { label: 'Div Yield', cls: 'col-header-divyield' },
+        { label: 'P/E · Exp.Ratio', cls: 'col-header-pe' },
+        { label: 'Div Freq', cls: 'col-header-divfreq' },
+        { label: '', cls: '' },
+      ].map(({ label, cls }, i) => (
+        <div key={i} className={cls} style={{
           fontSize: '10px', fontWeight: '700', color: 'var(--ink-4)',
           textTransform: 'uppercase', letterSpacing: '.6px',
           textAlign: i === 0 ? 'left' : 'right',
-        }}>{h}</div>
+        }}>{label}</div>
       ))}
     </div>
   )
@@ -1924,7 +1932,7 @@ function MarketPage({ allAssets }) {
       {/* ══════════════════════════════════════════════════════
           แถวบนสุด: ดัชนีตลาด (ซ้าย) | Top Gainers (กลาง) | Top Losers (ขวา)
       ══════════════════════════════════════════════════════ */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '18px', marginBottom: '20px', alignItems: 'start' }}>
+      <div className="market-top-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '18px', marginBottom: '20px', alignItems: 'start' }}>
 
         {/* ── ซ้าย: ดัชนีตลาด ── */}
         <div className="card">
@@ -2599,7 +2607,7 @@ function App() {
   return (
     <div className="app">
       {/* Notifications */}
-      <div style={{ position: 'fixed', top: '80px', right: '20px', zIndex: 9999, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div className="notification-area" style={{ position: 'fixed', top: '80px', right: '20px', zIndex: 9999, display: 'flex', flexDirection: 'column', gap: '8px' }}>
         {notifications.map(n => (
           <div key={n.id} style={{
             padding: '10px 16px', borderRadius: '8px', fontSize: '14px', fontWeight: '500',
@@ -2651,7 +2659,7 @@ function App() {
               addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
             }}>
               <LiveDot active={liveMode} />
-              <span>{liveMode ? 'Live Mode' : 'Paused'}</span>
+              <span className="live-status-text">{liveMode ? 'Live' : 'Paused'}</span>
             </div>
             {dataSource && (
               <div style={{ fontSize: '11px', color: 'var(--ink-3)', marginLeft: '12px' }}>
@@ -2795,6 +2803,56 @@ function App() {
           to { opacity: 1; transform: translateX(0); }
         }
 
+        /* ── Live status text hide on tiny screens ── */
+        @media (max-width: 480px) {
+          .live-status-text { display: none; }
+        }
+
+        /* ── Auth button: compact on mobile ── */
+        @media (max-width: 480px) {
+          .auth-name-text { display: none; }
+        }
+
+        /* ── Watchlist StockRow: hide some cols on mobile ── */
+        @media (max-width: 768px) {
+          .watchlist-row-divfreq { display: none !important; }
+          .watchlist-row-pe { display: none !important; }
+          .col-header-divfreq { display: none !important; }
+          .col-header-pe { display: none !important; }
+          .watchlist-stock-row {
+            grid-template-columns: 2fr 1fr 1fr auto !important;
+          }
+          .col-header-row {
+            grid-template-columns: 2fr 1fr 1fr auto !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .watchlist-row-divyield { display: none !important; }
+          .col-header-divyield { display: none !important; }
+          .watchlist-stock-row {
+            grid-template-columns: 2fr 1fr auto !important;
+          }
+          .col-header-row {
+            grid-template-columns: 2fr 1fr auto !important;
+          }
+        }
+
+        /* ── Market page: GainerLoser rows compact ── */
+        @media (max-width: 480px) {
+          .gainer-col-cap { display: none !important; }
+          .gainer-col-pe  { display: none !important; }
+        }
+
+        /* ── Sector breakdown hide on mobile ── */
+        @media (max-width: 768px) {
+          .etf-holdings-grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* ── Dashboard: stock info sub-grids responsive ── */
+        @media (max-width: 480px) {
+          .stock-sub-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
         /* ── Bottom Nav Bar (mobile only) ── */
         .bottom-nav {
           display: none;
@@ -2807,10 +2865,12 @@ function App() {
             left: 0;
             right: 0;
             z-index: 200;
-            background: #ffffff;
+            background: rgba(255,255,255,0.95);
             border-top: 1px solid var(--border);
             box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
-            padding: 6px 0 10px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 6px 0 env(safe-area-inset-bottom, 10px);
             justify-content: space-around;
             align-items: center;
           }
@@ -2829,6 +2889,7 @@ function App() {
             font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             transition: color 0.2s;
+            -webkit-tap-highlight-color: transparent;
           }
           .bottom-nav-item.active {
             color: var(--blue);
@@ -2841,16 +2902,16 @@ function App() {
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background: #1e40af;
+            background: var(--blue);
             margin-top: 2px;
             opacity: 0;
+            transition: opacity 0.2s;
           }
           .bottom-nav-item.active .nav-dot {
             opacity: 1;
           }
-          /* เพิ่ม padding ด้านล่างให้ content ไม่ถูก bottom nav บัง */
           .app > *:not(.bottom-nav):not(header) {
-            padding-bottom: 70px;
+            padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
           }
         }
       `}</style>
