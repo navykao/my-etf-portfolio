@@ -1,7 +1,7 @@
 # .github/workflows/daily-price-update.yml
 #
-# ระบบหลัก:  cron-job.org → workflow_dispatch เวลา 04:10 ICT
-# ระบบสำรอง: GitHub Actions cron → 22:15 ICT (15:15 UTC วันก่อน)
+# ระบบหลัก:  cron-job.org → workflow_dispatch เวลา ICT 22:15 ICT (15:15 UTC วันก่อน)
+# ระบบสำรอง: GitHub Actions cron → เวลา 04:20 ICT (21:20 UTC วันก่อน)
 #
 # ถ้าระบบหลักรันสำเร็จแล้ว ระบบสำรองจะเจอ "No data changes" → skip commit  
 
@@ -16,8 +16,8 @@ concurrency:
 
 on:
   schedule:
-  # ระบบสำรอง: 22:15 ICT = 15:15 UTC
-  - cron: '15 15 * * *'
+  # ระบบสำรอง: 04:20 ICT = 21:20 UTC (วันก่อน)
+  - cron: '20 21 * * *'
 
   workflow_dispatch:
 
