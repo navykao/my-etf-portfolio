@@ -3,10 +3,10 @@
     "symbol": "NVDA",
     "name": "NVIDIA Corporation",
     "type": "STOCK",
-    "price": 205.19,
-    "change": 0.32,
-    "changePercent": 0.1562,
-    "open": 204.86,
+    "price": 205.21,
+    "change": 0.34,
+    "changePercent": 0.166,
+    "open": 204.87,
     "dayHigh": 207.07,
     "dayLow": 203.4385,
     "previousClose": 204.87,
@@ -24,7 +24,7 @@
     "divGrowth10Y": 14.17,
     "growthRate": 122.4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.41,
@@ -62,14 +62,6 @@
     "return5Y": 1473.39,
     "return10Y": 21380.19,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 229.85001,
-        "h": 236.53999,
-        "l": 229.3,
-        "c": 235.74001,
-        "v": 180782900
-      },
       {
         "t": 1778803200,
         "o": 229.75999,
@@ -221,6 +213,14 @@
         "l": 199.53999,
         "c": 204.87,
         "v": 158643200
+      },
+      {
+        "t": 1781222400,
+        "o": 204.86,
+        "h": 207.070007,
+        "l": 203.44,
+        "c": 205.19,
+        "v": 112001800
       }
     ]
   },
@@ -228,10 +228,10 @@
     "symbol": "FIX",
     "name": "Comfort Systems USA, Inc.",
     "type": "STOCK",
-    "price": 1877.61,
-    "change": 34.19,
-    "changePercent": 1.8547,
-    "open": 1849.22,
+    "price": 1877.63,
+    "change": 34.21,
+    "changePercent": 1.8558,
+    "open": 1849.23,
     "dayHigh": 1912.87,
     "dayLow": 1845.19,
     "previousClose": 1843.42,
@@ -249,7 +249,7 @@
     "divGrowth10Y": 25.65,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": null,
     "debtToEquity": null,
@@ -266,14 +266,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 2036,
-        "h": 2073.98999,
-        "l": 2015,
-        "c": 2042.35999,
-        "v": 225900
-      },
       {
         "t": 1778803200,
         "o": 1979.13,
@@ -425,6 +417,14 @@
         "l": 1720.5,
         "c": 1843.42004,
         "v": 501000
+      },
+      {
+        "t": 1781222400,
+        "o": 1849.21997,
+        "h": 1912.87,
+        "l": 1845.18994,
+        "c": 1877.60999,
+        "v": 451700
       }
     ]
   },
@@ -432,10 +432,10 @@
     "symbol": "MU",
     "name": "Micron Technology, Inc.",
     "type": "STOCK",
-    "price": 981.61,
-    "change": -14.26,
-    "changePercent": -1.4319,
-    "open": 971.81,
+    "price": 981.63,
+    "change": -14.24,
+    "changePercent": -1.4299,
+    "open": 971.8199999999999,
     "dayHigh": 1012.6198,
     "dayLow": 960.19,
     "previousClose": 995.87,
@@ -453,7 +453,7 @@
     "divGrowth10Y": 17.34,
     "growthRate": 61.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.3,
@@ -491,14 +491,6 @@
     "return5Y": 769.42,
     "return10Y": 7128.13,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 787.62,
-        "h": 812,
-        "l": 775.63,
-        "c": 776.01001,
-        "v": 42142700
-      },
       {
         "t": 1778803200,
         "o": 732.57001,
@@ -650,6 +642,14 @@
         "l": 895.5,
         "c": 995.87,
         "v": 59418900
+      },
+      {
+        "t": 1781222400,
+        "o": 971.81,
+        "h": 1012.62,
+        "l": 960.19,
+        "c": 981.60999,
+        "v": 40785200
       }
     ]
   },
@@ -657,10 +657,10 @@
     "symbol": "AVGO",
     "name": "Broadcom Inc.",
     "type": "STOCK",
-    "price": 382.07,
-    "change": -3.5,
-    "changePercent": -0.9077,
-    "open": 383.72,
+    "price": 382.09,
+    "change": -3.48,
+    "changePercent": -0.9026,
+    "open": 383.73,
     "dayHigh": 384.9799,
     "dayLow": 377,
     "previousClose": 385.57,
@@ -678,7 +678,7 @@
     "divGrowth10Y": 30.36,
     "growthRate": 51.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 1.11,
@@ -716,14 +716,6 @@
     "return5Y": 956.85,
     "return10Y": 3740,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 416.73001,
-        "h": 442.35999,
-        "l": 415.59,
-        "c": 439.79001,
-        "v": 19733800
-      },
       {
         "t": 1778803200,
         "o": 432.81,
@@ -875,6 +867,14 @@
         "l": 370.54999,
         "c": 385.57001,
         "v": 35187600
+      },
+      {
+        "t": 1781222400,
+        "o": 383.72,
+        "h": 384.98001,
+        "l": 377,
+        "c": 382.070007,
+        "v": 27600900
       }
     ]
   },
@@ -882,10 +882,10 @@
     "symbol": "GOOGL",
     "name": "Alphabet Inc.",
     "type": "STOCK",
-    "price": 359.68,
-    "change": 1.91,
-    "changePercent": 0.5339,
-    "open": 362.62,
+    "price": 359.7,
+    "change": 1.93,
+    "changePercent": 0.5395,
+    "open": 362.63,
     "dayHigh": 366.57,
     "dayLow": 354.94,
     "previousClose": 357.77,
@@ -903,7 +903,7 @@
     "divGrowth10Y": null,
     "growthRate": 15.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Communication Services",
     "industry": "Internet Content & Information",
     "debtToEquity": 0.06,
@@ -941,14 +941,6 @@
     "return5Y": 249.72,
     "return10Y": 1011.47,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 397.28,
-        "h": 402.92999,
-        "l": 395.84,
-        "c": 401.070007,
-        "v": 21136700
-      },
       {
         "t": 1778803200,
         "o": 396.32001,
@@ -1100,6 +1092,14 @@
         "l": 346.35999,
         "c": 357.76999,
         "v": 35538200
+      },
+      {
+        "t": 1781222400,
+        "o": 362.62,
+        "h": 366.57001,
+        "l": 354.94,
+        "c": 359.67999,
+        "v": 24704600
       }
     ]
   },
@@ -1107,10 +1107,10 @@
     "symbol": "GOOG",
     "name": "Alphabet Inc.",
     "type": "STOCK",
-    "price": 358.16,
-    "change": 1.6,
-    "changePercent": 0.4487,
-    "open": 361.1,
+    "price": 358.18,
+    "change": 1.62,
+    "changePercent": 0.4543,
+    "open": 361.11,
     "dayHigh": 364.7725,
     "dayLow": 353.34,
     "previousClose": 356.56,
@@ -1128,7 +1128,7 @@
     "divGrowth10Y": null,
     "growthRate": 15.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Communication Services",
     "industry": "Internet Content & Information",
     "debtToEquity": 0.06,
@@ -1166,14 +1166,6 @@
     "return5Y": 241.48,
     "return10Y": 1022.47,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 393.79001,
-        "h": 399.104,
-        "l": 392.728,
-        "c": 397.17001,
-        "v": 13805400
-      },
       {
         "t": 1778803200,
         "o": 393.215,
@@ -1325,6 +1317,14 @@
         "l": 343.63,
         "c": 356.56,
         "v": 28771800
+      },
+      {
+        "t": 1781222400,
+        "o": 361.10001,
+        "h": 364.77301,
+        "l": 353.34,
+        "c": 358.16,
+        "v": 17637100
       }
     ]
   },
@@ -1332,10 +1332,10 @@
     "symbol": "AAPL",
     "name": "Apple Inc.",
     "type": "STOCK",
-    "price": 291.13,
-    "change": -4.5,
-    "changePercent": -1.5222,
-    "open": 296.03,
+    "price": 291.15,
+    "change": -4.48,
+    "changePercent": -1.5154,
+    "open": 296.03999999999996,
     "dayHigh": 297.14,
     "dayLow": 289.62,
     "previousClose": 295.63,
@@ -1353,7 +1353,7 @@
     "divGrowth10Y": 7.03,
     "growthRate": 6.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Consumer Electronics",
     "debtToEquity": 1.52,
@@ -1391,14 +1391,6 @@
     "return5Y": 141.96,
     "return10Y": 1299.49,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 299.82001,
-        "h": 300.45001,
-        "l": 295.38,
-        "c": 298.20999,
-        "v": 35324900
-      },
       {
         "t": 1778803200,
         "o": 297.89999,
@@ -1550,6 +1542,14 @@
         "l": 289.59,
         "c": 295.63,
         "v": 42572500
+      },
+      {
+        "t": 1781222400,
+        "o": 296.029999,
+        "h": 297.14001,
+        "l": 289.62,
+        "c": 291.13,
+        "v": 38742100
       }
     ]
   },
@@ -1557,10 +1557,10 @@
     "symbol": "STX",
     "name": "Seagate Technology Holdings PLC",
     "type": "STOCK",
-    "price": 931.04,
-    "change": 62.95,
-    "changePercent": 7.2516,
-    "open": 880.19,
+    "price": 931.06,
+    "change": 62.97,
+    "changePercent": 7.2539,
+    "open": 880.2,
     "dayHigh": 946.24,
     "dayLow": 868.14,
     "previousClose": 868.09,
@@ -1578,7 +1578,7 @@
     "divGrowth10Y": 1.92,
     "growthRate": 23.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Computer Hardware",
     "debtToEquity": 0.98,
@@ -1616,14 +1616,6 @@
     "return5Y": 724.48,
     "return10Y": 5611.51,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 812.47998,
-        "h": 838.59998,
-        "l": 796.16998,
-        "c": 804.76001,
-        "v": 2360000
-      },
       {
         "t": 1778803200,
         "o": 771.57001,
@@ -1775,6 +1767,14 @@
         "l": 821.47998,
         "c": 868.090027,
         "v": 2755000
+      },
+      {
+        "t": 1781222400,
+        "o": 880.19,
+        "h": 946.23999,
+        "l": 868.14001,
+        "c": 931.039978,
+        "v": 3189700
       }
     ]
   },
@@ -1782,10 +1782,10 @@
     "symbol": "AMD",
     "name": "Advanced Micro Devices, Inc.",
     "type": "STOCK",
-    "price": 511.57,
-    "change": 23.12,
-    "changePercent": 4.7333,
-    "open": 499.685,
+    "price": 511.59,
+    "change": 23.14,
+    "changePercent": 4.7374,
+    "open": 499.695,
     "dayHigh": 521.71,
     "dayLow": 494,
     "previousClose": 488.45,
@@ -1803,7 +1803,7 @@
     "divGrowth10Y": null,
     "growthRate": 14.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.04,
@@ -1841,14 +1841,6 @@
     "return5Y": 463.95,
     "return10Y": 11007.92,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 440.60001,
-        "h": 453.31,
-        "l": 435.67999,
-        "c": 449.70001,
-        "v": 26113600
-      },
       {
         "t": 1778803200,
         "o": 433.34,
@@ -2000,6 +1992,14 @@
         "l": 458.019989,
         "c": 488.45001,
         "v": 30463100
+      },
+      {
+        "t": 1781222400,
+        "o": 499.69,
+        "h": 521.71002,
+        "l": 494,
+        "c": 511.57001,
+        "v": 31553100
       }
     ]
   },
@@ -2007,10 +2007,10 @@
     "symbol": "VRT",
     "name": "Vertiv Holdings Co",
     "type": "STOCK",
-    "price": 302.87,
-    "change": 4.99,
-    "changePercent": 1.6752,
-    "open": 303.48,
+    "price": 302.89,
+    "change": 5.01,
+    "changePercent": 1.6819,
+    "open": 303.49,
     "dayHigh": 305.19,
     "dayLow": 295.1,
     "previousClose": 297.88,
@@ -2028,7 +2028,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": null,
     "debtToEquity": null,
@@ -2045,14 +2045,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 370.23999,
-        "h": 379.935,
-        "l": 365.14999,
-        "c": 376.23001,
-        "v": 3611300
-      },
       {
         "t": 1778803200,
         "o": 364.31,
@@ -2204,6 +2196,14 @@
         "l": 283.39999,
         "c": 297.88,
         "v": 5408800
+      },
+      {
+        "t": 1781222400,
+        "o": 303.48001,
+        "h": 305.19,
+        "l": 295.10001,
+        "c": 302.87,
+        "v": 4948400
       }
     ]
   },
@@ -2211,10 +2211,10 @@
     "symbol": "TSM",
     "name": "Taiwan Semiconductor Manufactur",
     "type": "STOCK",
-    "price": 423.93,
-    "change": 2.86,
-    "changePercent": 0.6792,
-    "open": 420.05,
+    "price": 423.95,
+    "change": 2.88,
+    "changePercent": 0.684,
+    "open": 420.06,
     "dayHigh": 426.94,
     "dayLow": 417.21,
     "previousClose": 421.07,
@@ -2232,7 +2232,7 @@
     "divGrowth10Y": 13.37,
     "growthRate": 38.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.32,
@@ -2270,14 +2270,6 @@
     "return5Y": 291.72,
     "return10Y": 2114.49,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 403.20999,
-        "h": 421.97,
-        "l": 402.10001,
-        "c": 417.72,
-        "v": 18577100
-      },
       {
         "t": 1778803200,
         "o": 406.5,
@@ -2429,6 +2421,14 @@
         "l": 408.85999,
         "c": 421.070007,
         "v": 13826500
+      },
+      {
+        "t": 1781222400,
+        "o": 420.049988,
+        "h": 426.94,
+        "l": 417.20999,
+        "c": 423.92999,
+        "v": 10349500
       }
     ]
   },
@@ -2436,10 +2436,10 @@
     "symbol": "MSFT",
     "name": "Microsoft Corporation",
     "type": "STOCK",
-    "price": 390.74,
-    "change": 0.4,
-    "changePercent": 0.1025,
-    "open": 391.43,
+    "price": 390.76,
+    "change": 0.42,
+    "changePercent": 0.1076,
+    "open": 391.44,
     "dayHigh": 391.74,
     "dayLow": 382.27,
     "previousClose": 390.34,
@@ -2457,7 +2457,7 @@
     "divGrowth10Y": 9.86,
     "growthRate": 16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Software - Infrastructure",
     "debtToEquity": 0.75,
@@ -2495,14 +2495,6 @@
     "return5Y": 80.04,
     "return10Y": 846.37,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 404.48001,
-        "h": 411.84,
-        "l": 400.88,
-        "c": 409.42999,
-        "v": 27077500
-      },
       {
         "t": 1778803200,
         "o": 414.26999,
@@ -2654,6 +2646,14 @@
         "l": 384,
         "c": 390.34,
         "v": 47224100
+      },
+      {
+        "t": 1781222400,
+        "o": 391.42999,
+        "h": 391.73999,
+        "l": 382.26999,
+        "c": 390.73999,
+        "v": 34865800
       }
     ]
   },
@@ -2661,10 +2661,10 @@
     "symbol": "LITE",
     "name": "Lumentum Holdings Inc.",
     "type": "STOCK",
-    "price": 921.56,
-    "change": 31.97,
-    "changePercent": 3.5938,
-    "open": 889.425,
+    "price": 921.58,
+    "change": 31.99,
+    "changePercent": 3.596,
+    "open": 889.435,
     "dayHigh": 934.26,
     "dayLow": 863,
     "previousClose": 889.59,
@@ -2682,7 +2682,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -2699,14 +2699,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1002,
-        "h": 1024.84998,
-        "l": 983.02002,
-        "c": 1001.81,
-        "v": 3557100
-      },
       {
         "t": 1778803200,
         "o": 941.59998,
@@ -2858,6 +2850,14 @@
         "l": 840.52002,
         "c": 889.59003,
         "v": 4672200
+      },
+      {
+        "t": 1781222400,
+        "o": 889.42499,
+        "h": 934.26001,
+        "l": 863,
+        "c": 921.56,
+        "v": 4553700
       }
     ]
   },
@@ -2865,10 +2865,10 @@
     "symbol": "WDC",
     "name": "Western Digital Corporation",
     "type": "STOCK",
-    "price": 562.925,
-    "change": 33.635,
-    "changePercent": 6.3547,
-    "open": 541.99,
+    "price": 562.94,
+    "change": 33.65,
+    "changePercent": 6.3576,
+    "open": 542,
     "dayHigh": 572.29,
     "dayLow": 531.9601,
     "previousClose": 529.29,
@@ -2886,7 +2886,7 @@
     "divGrowth10Y": -12.94,
     "growthRate": 27.3,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Computer Hardware",
     "debtToEquity": 0.55,
@@ -2924,14 +2924,6 @@
     "return5Y": 697.41,
     "return10Y": 1798.27,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 484.76001,
-        "h": 507.97,
-        "l": 480.34,
-        "c": 489.14999,
-        "v": 5540900
-      },
       {
         "t": 1778803200,
         "o": 470.75,
@@ -3083,6 +3075,14 @@
         "l": 489,
         "c": 529.28998,
         "v": 6334600
+      },
+      {
+        "t": 1781222400,
+        "o": 541.98999,
+        "h": 572.28998,
+        "l": 531.96002,
+        "c": 562.92999,
+        "v": 6285300
       }
     ]
   },
@@ -3090,10 +3090,10 @@
     "symbol": "LRCX",
     "name": "Lam Research Corporation",
     "type": "STOCK",
-    "price": 366.81,
-    "change": 4.29,
-    "changePercent": 1.1834,
-    "open": 359.39,
+    "price": 366.83,
+    "change": 4.31,
+    "changePercent": 1.1889,
+    "open": 359.4,
     "dayHigh": 373.82,
     "dayLow": 354.89,
     "previousClose": 362.52,
@@ -3111,7 +3111,7 @@
     "divGrowth10Y": 23.74,
     "growthRate": 23.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0.52,
@@ -3149,14 +3149,6 @@
     "return5Y": 394.97,
     "return10Y": 4258.11,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 296.32999,
-        "h": 302,
-        "l": 293.01001,
-        "c": 299.14999,
-        "v": 6404900
-      },
       {
         "t": 1778803200,
         "o": 289.44,
@@ -3308,6 +3300,14 @@
         "l": 336.20001,
         "c": 362.51999,
         "v": 14984000
+      },
+      {
+        "t": 1781222400,
+        "o": 359.39001,
+        "h": 373.82001,
+        "l": 354.89001,
+        "c": 366.81,
+        "v": 9253300
       }
     ]
   },
@@ -3315,10 +3315,10 @@
     "symbol": "PGR",
     "name": "Progressive Corporation (The)",
     "type": "STOCK",
-    "price": 203.11,
-    "change": 0.85,
-    "changePercent": 0.4203,
-    "open": 203.22,
+    "price": 203.13,
+    "change": 0.87,
+    "changePercent": 0.4301,
+    "open": 203.23,
     "dayHigh": 203.61,
     "dayLow": 200,
     "previousClose": 202.26,
@@ -3336,7 +3336,7 @@
     "divGrowth10Y": 31.66,
     "growthRate": 25.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Insurance - Property & Casualty",
     "debtToEquity": 0.35,
@@ -3374,14 +3374,6 @@
     "return5Y": 114.11,
     "return10Y": 720.07,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 196.75999,
-        "h": 198.85001,
-        "l": 196.48,
-        "c": 196.88,
-        "v": 2074500
-      },
       {
         "t": 1778803200,
         "o": 199.12,
@@ -3533,6 +3525,14 @@
         "l": 202.14999,
         "c": 202.25999,
         "v": 2631100
+      },
+      {
+        "t": 1781222400,
+        "o": 203.22,
+        "h": 203.61,
+        "l": 200,
+        "c": 203.11,
+        "v": 1994200
       }
     ]
   },
@@ -3540,10 +3540,10 @@
     "symbol": "PWR",
     "name": "Quanta Services, Inc.",
     "type": "STOCK",
-    "price": 707.74,
-    "change": 24.45,
-    "changePercent": 3.5783,
-    "open": 688.02,
+    "price": 707.76,
+    "change": 24.47,
+    "changePercent": 3.5812,
+    "open": 688.03,
     "dayHigh": 710,
     "dayLow": 684,
     "previousClose": 683.29,
@@ -3561,7 +3561,7 @@
     "divGrowth10Y": null,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Engineering & Construction",
     "debtToEquity": 0.52,
@@ -3599,14 +3599,6 @@
     "return5Y": 653.41,
     "return10Y": 3142,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 775,
-        "h": 782.67999,
-        "l": 768.14001,
-        "c": 780.080017,
-        "v": 827600
-      },
       {
         "t": 1778803200,
         "o": 761.77002,
@@ -3758,6 +3750,14 @@
         "l": 656.21002,
         "c": 683.28998,
         "v": 940200
+      },
+      {
+        "t": 1781222400,
+        "o": 688.02002,
+        "h": 710,
+        "l": 684,
+        "c": 707.73999,
+        "v": 1029900
       }
     ]
   },
@@ -3765,10 +3765,10 @@
     "symbol": "KLAC",
     "name": "KLA Corporation",
     "type": "STOCK",
-    "price": 254.54,
-    "change": 13.376,
-    "changePercent": 5.5464,
-    "open": 237.6,
+    "price": 254.56,
+    "change": 13.396,
+    "changePercent": 5.5547,
+    "open": 237.60999999999999,
     "dayHigh": 254.93,
     "dayLow": 236,
     "previousClose": 241.164,
@@ -3786,7 +3786,7 @@
     "divGrowth10Y": 14.42,
     "growthRate": 15.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 1.48,
@@ -3825,116 +3825,108 @@
     "return10Y": 2948.55,
     "dailyCandles": [
       {
-        "t": 1778716800,
-        "o": 1845.13,
-        "h": 1911.10999,
-        "l": 1830.64001,
-        "c": 1892.93994,
-        "v": 810000
-      },
-      {
         "t": 1778803200,
-        "o": 1830.75,
-        "h": 1845.5,
-        "l": 1802.56006,
-        "c": 1804.31995,
-        "v": 980400
+        "o": 183.074997,
+        "h": 184.55,
+        "l": 180.256,
+        "c": 180.43201,
+        "v": 9804000
       },
       {
         "t": 1779062400,
-        "o": 1820.88,
-        "h": 1833.25,
-        "l": 1736.21997,
-        "c": 1756.44995,
-        "v": 946900
+        "o": 182.087997,
+        "h": 183.325,
+        "l": 173.62199,
+        "c": 175.645,
+        "v": 9469000
       },
       {
         "t": 1779148800,
-        "o": 1708.68005,
-        "h": 1765,
-        "l": 1690.28003,
-        "c": 1740.57996,
-        "v": 1117000
+        "o": 170.868,
+        "h": 176.5,
+        "l": 169.028,
+        "c": 174.057999,
+        "v": 11170000
       },
       {
         "t": 1779235200,
-        "o": 1777,
-        "h": 1835.85999,
-        "l": 1773,
-        "c": 1829.46997,
-        "v": 900000
+        "o": 177.7,
+        "h": 183.586,
+        "l": 177.3,
+        "c": 182.94701,
+        "v": 9000000
       },
       {
         "t": 1779321600,
-        "o": 1828.94995,
-        "h": 1875,
-        "l": 1823.17004,
-        "c": 1842.18005,
-        "v": 820500
+        "o": 182.895,
+        "h": 187.5,
+        "l": 182.317,
+        "c": 184.218,
+        "v": 8205000
       },
       {
         "t": 1779408000,
-        "o": 1874.98999,
-        "h": 1910.13,
-        "l": 1861.72998,
-        "c": 1888.38,
-        "v": 723100
+        "o": 187.49899,
+        "h": 191.013,
+        "l": 186.173,
+        "c": 188.838,
+        "v": 7231000
       },
       {
         "t": 1779753600,
-        "o": 1936.70996,
-        "h": 2022.81006,
-        "l": 1914.32996,
-        "c": 2011.39001,
-        "v": 1150300
+        "o": 193.67101,
+        "h": 202.28101,
+        "l": 191.433,
+        "c": 201.13901,
+        "v": 11503000
       },
       {
         "t": 1779840000,
-        "o": 2046.63,
-        "h": 2060.080078,
-        "l": 1945.01001,
-        "c": 1957.18994,
-        "v": 950200
+        "o": 204.66299,
+        "h": 206.0079956,
+        "l": 194.50101,
+        "c": 195.71899,
+        "v": 9502000
       },
       {
         "t": 1779926400,
-        "o": 1956.30005,
-        "h": 1960.54004,
-        "l": 1891.38,
-        "c": 1927.63,
-        "v": 885500
+        "o": 195.63,
+        "h": 196.054001,
+        "l": 189.138,
+        "c": 192.763,
+        "v": 8855000
       },
       {
         "t": 1780012800,
-        "o": 1929.90002,
-        "h": 1975,
-        "l": 1911.45996,
-        "c": 1921.70996,
-        "v": 1145700
+        "o": 192.99001,
+        "h": 197.5,
+        "l": 191.146,
+        "c": 192.17101,
+        "v": 11457000
       },
       {
         "t": 1780272000,
-        "o": 1898.55005,
-        "h": 1948.050049,
-        "l": 1886,
-        "c": 1940.040039,
-        "v": 735900
+        "o": 189.855,
+        "h": 194.80499,
+        "l": 188.60001,
+        "c": 194.0039978,
+        "v": 7359000
       },
       {
         "t": 1780358400,
-        "o": 1966.5,
-        "h": 2047.5,
-        "l": 1950,
-        "c": 2045.19995,
-        "v": 1061100
+        "o": 196.64999,
+        "h": 204.75,
+        "l": 195,
+        "c": 204.52,
+        "v": 10611000
       },
       {
         "t": 1780444800,
-        "o": 2048.27002,
-        "h": 2145.52002,
-        "l": 2019.54004,
-        "c": 2125.11011,
-        "v": 1020000
+        "o": 204.827,
+        "h": 214.552,
+        "l": 201.95399,
+        "c": 212.511,
+        "v": 10200000
       },
       {
         "t": 1780531200,
@@ -3942,7 +3934,7 @@
         "h": 215.66901,
         "l": 203.401,
         "c": 213.11,
-        "v": 8252900
+        "v": 8253000
       },
       {
         "t": 1780617600,
@@ -3983,6 +3975,14 @@
         "l": 220.62801,
         "c": 241.164,
         "v": 17694000
+      },
+      {
+        "t": 1781222400,
+        "o": 237.60001,
+        "h": 254.92999,
+        "l": 236,
+        "c": 254.53999,
+        "v": 10056600
       }
     ]
   },
@@ -3990,10 +3990,10 @@
     "symbol": "LLY",
     "name": "Eli Lilly and Company",
     "type": "STOCK",
-    "price": 1133,
-    "change": -27.95,
-    "changePercent": -2.4075,
-    "open": 1165,
+    "price": 1133.02,
+    "change": -27.93,
+    "changePercent": -2.4058,
+    "open": 1165.01,
     "dayHigh": 1169.99,
     "dayLow": 1132.81,
     "previousClose": 1160.95,
@@ -4011,7 +4011,7 @@
     "divGrowth10Y": 12.33,
     "growthRate": 32.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 2.01,
@@ -4049,14 +4049,6 @@
     "return5Y": 429.75,
     "return10Y": 1420.05,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1017.48999,
-        "h": 1018.16998,
-        "l": 996.01001,
-        "c": 1006.70001,
-        "v": 1751700
-      },
       {
         "t": 1778803200,
         "o": 1006.97998,
@@ -4208,6 +4200,14 @@
         "l": 1125.64001,
         "c": 1160.94995,
         "v": 2764900
+      },
+      {
+        "t": 1781222400,
+        "o": 1165,
+        "h": 1169.98999,
+        "l": 1132.81006,
+        "c": 1133,
+        "v": 2435200
       }
     ]
   },
@@ -4215,10 +4215,10 @@
     "symbol": "CIEN",
     "name": "Ciena Corporation",
     "type": "STOCK",
-    "price": 445.98,
-    "change": 0.76,
-    "changePercent": 0.1707,
-    "open": 445.22,
+    "price": 446,
+    "change": 0.78,
+    "changePercent": 0.1752,
+    "open": 445.23,
     "dayHigh": 458.47,
     "dayLow": 440.71,
     "previousClose": 445.22,
@@ -4236,7 +4236,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -4253,14 +4253,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 577.90002,
-        "h": 591.57001,
-        "l": 566,
-        "c": 591.57001,
-        "v": 1121900
-      },
       {
         "t": 1778803200,
         "o": 570.65002,
@@ -4412,6 +4404,14 @@
         "l": 430.82001,
         "c": 445.22,
         "v": 3000400
+      },
+      {
+        "t": 1781222400,
+        "o": 445.22,
+        "h": 458.47,
+        "l": 440.70999,
+        "c": 445.98001,
+        "v": 2663500
       }
     ]
   },
@@ -4419,10 +4419,10 @@
     "symbol": "SONY",
     "name": "Sony Group Corporation",
     "type": "STOCK",
-    "price": 20.53,
-    "change": -0.62,
-    "changePercent": -2.9314,
-    "open": 20.85,
+    "price": 20.54,
+    "change": -0.61,
+    "changePercent": -2.8842,
+    "open": 20.860000000000003,
     "dayHigh": 20.9,
     "dayLow": 20.46,
     "previousClose": 21.15,
@@ -4440,7 +4440,7 @@
     "divGrowth10Y": 53.01,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -4457,14 +4457,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 22.14,
-        "h": 22.21,
-        "l": 22.01,
-        "c": 22.12,
-        "v": 8154100
-      },
       {
         "t": 1778803200,
         "o": 22.51,
@@ -4616,6 +4608,14 @@
         "l": 20.79,
         "c": 21.15,
         "v": 6822700
+      },
+      {
+        "t": 1781222400,
+        "o": 20.85,
+        "h": 20.9,
+        "l": 20.46,
+        "c": 20.53,
+        "v": 6493700
       }
     ]
   },
@@ -4623,10 +4623,10 @@
     "symbol": "BBVA",
     "name": "Banco Bilbao Vizcaya Argentaria, S.A.",
     "type": "STOCK",
-    "price": 23.34,
-    "change": 0.19,
-    "changePercent": 0.8207,
-    "open": 23.13,
+    "price": 23.35,
+    "change": 0.2,
+    "changePercent": 0.8639,
+    "open": 23.14,
     "dayHigh": 23.37,
     "dayLow": 23.01,
     "previousClose": 23.15,
@@ -4644,7 +4644,7 @@
     "divGrowth10Y": 10.19,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -4661,14 +4661,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 22.09,
-        "h": 22.21,
-        "l": 21.89,
-        "c": 21.95,
-        "v": 1492600
-      },
       {
         "t": 1778803200,
         "o": 21.83,
@@ -4820,6 +4812,14 @@
         "l": 22.1,
         "c": 23.15,
         "v": 3420200
+      },
+      {
+        "t": 1781222400,
+        "o": 23.13,
+        "h": 23.37,
+        "l": 23.01,
+        "c": 23.34,
+        "v": 3600900
       }
     ]
   },
@@ -4827,10 +4827,10 @@
     "symbol": "PBR.A",
     "name": "Petróleo Brasileiro S.A. - Petrobras",
     "type": "STOCK",
-    "price": 16.32,
-    "change": -0.02,
-    "changePercent": -0.1224,
-    "open": 16.06,
+    "price": 16.33,
+    "change": -0.01,
+    "changePercent": -0.0612,
+    "open": 16.07,
     "dayHigh": 16.36,
     "dayLow": 16.05,
     "previousClose": 16.34,
@@ -4848,7 +4848,7 @@
     "divGrowth10Y": -0.11,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -4865,14 +4865,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 17.89,
-        "h": 18.22,
-        "l": 17.82,
-        "c": 18.049999,
-        "v": 9590400
-      },
       {
         "t": 1778803200,
         "o": 17.92,
@@ -5024,6 +5016,14 @@
         "l": 16.09,
         "c": 16.34,
         "v": 11650000
+      },
+      {
+        "t": 1781222400,
+        "o": 16.059999,
+        "h": 16.36,
+        "l": 16.049999,
+        "c": 16.32,
+        "v": 6935100
       }
     ]
   },
@@ -5031,10 +5031,10 @@
     "symbol": "TTE",
     "name": "TotalEnergies SE",
     "type": "STOCK",
-    "price": 88.02,
-    "change": 0.3,
-    "changePercent": 0.342,
-    "open": 87.42,
+    "price": 88.04,
+    "change": 0.32,
+    "changePercent": 0.3648,
+    "open": 87.43,
     "dayHigh": 88.58,
     "dayLow": 87.35,
     "previousClose": 87.72,
@@ -5052,7 +5052,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -5069,14 +5069,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 91.099998,
-        "h": 91.89,
-        "l": 90.83,
-        "c": 91.42,
-        "v": 778700
-      },
       {
         "t": 1778803200,
         "o": 91.2,
@@ -5228,6 +5220,14 @@
         "l": 87.61,
         "c": 87.72,
         "v": 1190700
+      },
+      {
+        "t": 1781222400,
+        "o": 87.42,
+        "h": 88.58,
+        "l": 87.35,
+        "c": 88.019997,
+        "v": 1077800
       }
     ]
   },
@@ -5235,10 +5235,10 @@
     "symbol": "AMAT",
     "name": "Applied Materials, Inc.",
     "type": "STOCK",
-    "price": 567.25,
-    "change": 14.61,
-    "changePercent": 2.6437,
-    "open": 548.62,
+    "price": 567.27,
+    "change": 14.63,
+    "changePercent": 2.6473,
+    "open": 548.63,
     "dayHigh": 569.95,
     "dayLow": 544.07,
     "previousClose": 552.64,
@@ -5256,7 +5256,7 @@
     "divGrowth10Y": 16.92,
     "growthRate": 7.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0.34,
@@ -5294,14 +5294,6 @@
     "return5Y": 249.31,
     "return10Y": 2255.18,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 443.34,
-        "h": 448.45001,
-        "l": 438,
-        "c": 440.56,
-        "v": 14936200
-      },
       {
         "t": 1778803200,
         "o": 428.42001,
@@ -5453,6 +5445,14 @@
         "l": 519.90002,
         "c": 552.64001,
         "v": 12427700
+      },
+      {
+        "t": 1781222400,
+        "o": 548.62,
+        "h": 569.95001,
+        "l": 544.070007,
+        "c": 567.25,
+        "v": 8055800
       }
     ]
   },
@@ -5460,10 +5460,10 @@
     "symbol": "HSBC",
     "name": "HSBC Holdings plc",
     "type": "STOCK",
-    "price": 92.67,
-    "change": 1.95,
-    "changePercent": 2.1495,
-    "open": 91.98,
+    "price": 92.69,
+    "change": 1.97,
+    "changePercent": 2.1715,
+    "open": 91.99000000000001,
     "dayHigh": 92.75,
     "dayLow": 91.67,
     "previousClose": 90.72,
@@ -5481,7 +5481,7 @@
     "divGrowth10Y": 3.88,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -5498,14 +5498,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 91.14,
-        "h": 91.65,
-        "l": 90.62,
-        "c": 90.72,
-        "v": 1456300
-      },
       {
         "t": 1778803200,
         "o": 88.69,
@@ -5657,6 +5649,14 @@
         "l": 88.28,
         "c": 90.72,
         "v": 1882700
+      },
+      {
+        "t": 1781222400,
+        "o": 91.98,
+        "h": 92.75,
+        "l": 91.67,
+        "c": 92.67,
+        "v": 1677100
       }
     ]
   },
@@ -5664,10 +5664,10 @@
     "symbol": "META",
     "name": "Meta Platforms, Inc.",
     "type": "STOCK",
-    "price": 566.98,
-    "change": -1.45,
-    "changePercent": -0.2551,
-    "open": 572.95,
+    "price": 567,
+    "change": -1.43,
+    "changePercent": -0.2516,
+    "open": 572.96,
     "dayHigh": 576.07,
     "dayLow": 560.9,
     "previousClose": 568.43,
@@ -5685,7 +5685,7 @@
     "divGrowth10Y": null,
     "growthRate": 22.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Communication Services",
     "industry": "Internet Content & Information",
     "debtToEquity": 0.28,
@@ -5723,14 +5723,6 @@
     "return5Y": 95.26,
     "return10Y": 424.89,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 616,
-        "h": 623.72998,
-        "l": 615,
-        "c": 618.42999,
-        "v": 10651200
-      },
       {
         "t": 1778803200,
         "o": 613.98999,
@@ -5882,6 +5874,14 @@
         "l": 557.01001,
         "c": 568.42999,
         "v": 17628000
+      },
+      {
+        "t": 1781222400,
+        "o": 572.95001,
+        "h": 576.070007,
+        "l": 560.90002,
+        "c": 566.97998,
+        "v": 14326400
       }
     ]
   },
@@ -5889,10 +5889,10 @@
     "symbol": "PBR",
     "name": "Petróleo Brasileiro S.A. - Petrobras",
     "type": "STOCK",
-    "price": 18.38,
-    "change": 0.14,
-    "changePercent": 0.7675,
-    "open": 18,
+    "price": 18.39,
+    "change": 0.15,
+    "changePercent": 0.8224,
+    "open": 18.01,
     "dayHigh": 18.4,
     "dayLow": 17.93,
     "previousClose": 18.24,
@@ -5910,7 +5910,7 @@
     "divGrowth10Y": 6.47,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -5927,14 +5927,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 19.6,
-        "h": 20,
-        "l": 19.59,
-        "c": 19.78,
-        "v": 14153300
-      },
       {
         "t": 1778803200,
         "o": 19.67,
@@ -6086,6 +6078,14 @@
         "l": 18.1,
         "c": 18.24,
         "v": 15380300
+      },
+      {
+        "t": 1781222400,
+        "o": 18,
+        "h": 18.4,
+        "l": 17.93,
+        "c": 18.38,
+        "v": 10526100
       }
     ]
   },
@@ -6093,10 +6093,10 @@
     "symbol": "WMT",
     "name": "Walmart Inc.",
     "type": "STOCK",
-    "price": 121.04,
-    "change": 0.54,
-    "changePercent": 0.4481,
-    "open": 120.59,
+    "price": 121.06,
+    "change": 0.56,
+    "changePercent": 0.4647,
+    "open": 120.60000000000001,
     "dayHigh": 121.61,
     "dayLow": 119.53,
     "previousClose": 120.5,
@@ -6114,7 +6114,7 @@
     "divGrowth10Y": 3.95,
     "growthRate": 5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Staples",
     "industry": "Discount Stores",
     "debtToEquity": 0.75,
@@ -6152,14 +6152,6 @@
     "return5Y": 206.97,
     "return10Y": 629.19,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 131.36,
-        "h": 132.78,
-        "l": 130.86,
-        "c": 132.46001,
-        "v": 14200400
-      },
       {
         "t": 1778803200,
         "o": 133.69,
@@ -6311,6 +6303,14 @@
         "l": 119.46,
         "c": 120.5,
         "v": 22438000
+      },
+      {
+        "t": 1781222400,
+        "o": 120.59,
+        "h": 121.61,
+        "l": 119.53,
+        "c": 121.040001,
+        "v": 14753500
       }
     ]
   },
@@ -6318,10 +6318,10 @@
     "symbol": "AMZN",
     "name": "Amazon.com, Inc.",
     "type": "STOCK",
-    "price": 238.55,
-    "change": -2.96,
-    "changePercent": -1.2256,
-    "open": 243.21,
+    "price": 238.57,
+    "change": -2.94,
+    "changePercent": -1.2173,
+    "open": 243.22,
     "dayHigh": 243.36,
     "dayLow": 233.59,
     "previousClose": 241.51,
@@ -6339,7 +6339,7 @@
     "divGrowth10Y": null,
     "growthRate": 11.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Broadline Retail",
     "debtToEquity": 0.59,
@@ -6377,14 +6377,6 @@
     "return5Y": 61.97,
     "return10Y": 661.88,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 269.14999,
-        "h": 270.78,
-        "l": 266.63,
-        "c": 267.22,
-        "v": 31338400
-      },
       {
         "t": 1778803200,
         "o": 262.5,
@@ -6536,6 +6528,14 @@
         "l": 235.17999,
         "c": 241.50999,
         "v": 41335400
+      },
+      {
+        "t": 1781222400,
+        "o": 243.21001,
+        "h": 243.36,
+        "l": 233.59,
+        "c": 238.55,
+        "v": 51186600
       }
     ]
   },
@@ -6543,10 +6543,10 @@
     "symbol": "CAT",
     "name": "Caterpillar, Inc.",
     "type": "STOCK",
-    "price": 910.57,
-    "change": 12.94,
-    "changePercent": 1.4416,
-    "open": 905.24,
+    "price": 910.59,
+    "change": 12.96,
+    "changePercent": 1.4438,
+    "open": 905.25,
     "dayHigh": 918.975,
     "dayLow": 899.2,
     "previousClose": 897.63,
@@ -6564,7 +6564,7 @@
     "divGrowth10Y": 6.97,
     "growthRate": -5.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Farm & Heavy Construction Machinery",
     "debtToEquity": 2.81,
@@ -6602,14 +6602,6 @@
     "return5Y": 286.02,
     "return10Y": 1425.26,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 910,
-        "h": 920.34998,
-        "l": 902.5,
-        "c": 920.21997,
-        "v": 2095600
-      },
       {
         "t": 1778803200,
         "o": 898.75,
@@ -6761,6 +6753,14 @@
         "l": 870.030029,
         "c": 897.63,
         "v": 3463300
+      },
+      {
+        "t": 1781222400,
+        "o": 905.23999,
+        "h": 918.97998,
+        "l": 899.20001,
+        "c": 910.57001,
+        "v": 2096400
       }
     ]
   },
@@ -6768,10 +6768,10 @@
     "symbol": "ASML",
     "name": "ASML Holding N.V. - New York Re",
     "type": "STOCK",
-    "price": 1863.55,
-    "change": -35.93,
-    "changePercent": -1.8916,
-    "open": 1847.615,
+    "price": 1863.57,
+    "change": -35.91,
+    "changePercent": -1.8905,
+    "open": 1847.625,
     "dayHigh": 1892.8,
     "dayLow": 1839,
     "previousClose": 1899.48,
@@ -6789,7 +6789,7 @@
     "divGrowth10Y": 21.94,
     "growthRate": 22.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0.48,
@@ -6827,14 +6827,6 @@
     "return5Y": 143.74,
     "return10Y": 1615.63,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1573.73999,
-        "h": 1603.48999,
-        "l": 1563.28003,
-        "c": 1584.51001,
-        "v": 1412600
-      },
       {
         "t": 1778803200,
         "o": 1511.73999,
@@ -6986,6 +6978,14 @@
         "l": 1775.099976,
         "c": 1899.47998,
         "v": 2965600
+      },
+      {
+        "t": 1781222400,
+        "o": 1847.62,
+        "h": 1892.80005,
+        "l": 1839,
+        "c": 1863.55005,
+        "v": 2529600
       }
     ]
   },
@@ -6993,10 +6993,10 @@
     "symbol": "GLW",
     "name": "Corning Incorporated",
     "type": "STOCK",
-    "price": 179.2,
-    "change": 2.65,
-    "changePercent": 1.501,
-    "open": 178,
+    "price": 179.22,
+    "change": 2.67,
+    "changePercent": 1.5123,
+    "open": 178.01,
     "dayHigh": 180.77,
     "dayLow": 173.4101,
     "previousClose": 176.55,
@@ -7014,7 +7014,7 @@
     "divGrowth10Y": 8.18,
     "growthRate": 8.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Electronic Components",
     "debtToEquity": 0.6,
@@ -7052,14 +7052,6 @@
     "return5Y": 361.37,
     "return10Y": 1112.73,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 203.37,
-        "h": 210.5,
-        "l": 200.35001,
-        "c": 208.28,
-        "v": 10948500
-      },
       {
         "t": 1778803200,
         "o": 198.11,
@@ -7211,6 +7203,14 @@
         "l": 168.24001,
         "c": 176.55,
         "v": 9891800
+      },
+      {
+        "t": 1781222400,
+        "o": 178,
+        "h": 180.77,
+        "l": 173.41,
+        "c": 179.2,
+        "v": 9294300
       }
     ]
   },
@@ -7218,10 +7218,10 @@
     "symbol": "JPM",
     "name": "JP Morgan Chase & Co.",
     "type": "STOCK",
-    "price": 320.72,
-    "change": 7.23,
-    "changePercent": 2.3063,
-    "open": 315.97,
+    "price": 320.74,
+    "change": 7.25,
+    "changePercent": 2.3127,
+    "open": 315.98,
     "dayHigh": 321.3,
     "dayLow": 315.55,
     "previousClose": 313.49,
@@ -7239,7 +7239,7 @@
     "divGrowth10Y": 12.86,
     "growthRate": 13.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.28,
@@ -7277,14 +7277,6 @@
     "return5Y": 107.32,
     "return10Y": 536.49,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 302.25,
-        "h": 303.75,
-        "l": 298.81,
-        "c": 299.91,
-        "v": 7364300
-      },
       {
         "t": 1778803200,
         "o": 300.20999,
@@ -7436,6 +7428,14 @@
         "l": 308.88,
         "c": 313.48999,
         "v": 9116600
+      },
+      {
+        "t": 1781222400,
+        "o": 315.97,
+        "h": 321.29999,
+        "l": 315.54999,
+        "c": 320.72,
+        "v": 7421100
       }
     ]
   },
@@ -7443,10 +7443,10 @@
     "symbol": "GE",
     "name": "GE Aerospace",
     "type": "STOCK",
-    "price": 335.3,
-    "change": 2.54,
-    "changePercent": 0.7633,
-    "open": 334.56,
+    "price": 335.32,
+    "change": 2.56,
+    "changePercent": 0.7693,
+    "open": 334.57,
     "dayHigh": 336.86,
     "dayLow": 328.47,
     "previousClose": 332.76,
@@ -7464,7 +7464,7 @@
     "divGrowth10Y": -14.43,
     "growthRate": 11.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 0.52,
@@ -7502,14 +7502,6 @@
     "return5Y": 346.78,
     "return10Y": 125.71,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 295.029999,
-        "h": 297.85001,
-        "l": 289.079987,
-        "c": 291.54001,
-        "v": 4686200
-      },
       {
         "t": 1778803200,
         "o": 287.48999,
@@ -7661,6 +7653,14 @@
         "l": 319.76001,
         "c": 332.76001,
         "v": 4451200
+      },
+      {
+        "t": 1781222400,
+        "o": 334.56,
+        "h": 336.85999,
+        "l": 328.47,
+        "c": 335.29999,
+        "v": 4377000
       }
     ]
   },
@@ -7668,10 +7668,10 @@
     "symbol": "GS",
     "name": "Goldman Sachs Group, Inc. (The)",
     "type": "STOCK",
-    "price": 1062.75,
-    "change": 27.11,
-    "changePercent": 2.6177,
-    "open": 1053,
+    "price": 1062.77,
+    "change": 27.13,
+    "changePercent": 2.6196,
+    "open": 1053.01,
     "dayHigh": 1073.74,
     "dayLow": 1048.06,
     "previousClose": 1035.64,
@@ -7689,7 +7689,7 @@
     "divGrowth10Y": 20.66,
     "growthRate": 16.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Capital Markets",
     "debtToEquity": 2.6,
@@ -7727,14 +7727,6 @@
     "return5Y": 188.97,
     "return10Y": 651.42,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 966.90002,
-        "h": 975.65997,
-        "l": 960.5,
-        "c": 968.96002,
-        "v": 1898000
-      },
       {
         "t": 1778803200,
         "o": 953.65002,
@@ -7886,6 +7878,14 @@
         "l": 1000.45001,
         "c": 1035.64001,
         "v": 2561900
+      },
+      {
+        "t": 1781222400,
+        "o": 1053,
+        "h": 1073.73999,
+        "l": 1048.060059,
+        "c": 1062.75,
+        "v": 2205300
       }
     ]
   },
@@ -7893,10 +7893,10 @@
     "symbol": "APH",
     "name": "Amphenol Corporation",
     "type": "STOCK",
-    "price": 153.8,
-    "change": 1.34,
-    "changePercent": 0.8789,
-    "open": 153.77,
+    "price": 153.82,
+    "change": 1.36,
+    "changePercent": 0.892,
+    "open": 153.78,
     "dayHigh": 155.29,
     "dayLow": 151.775,
     "previousClose": 152.46,
@@ -7914,7 +7914,7 @@
     "divGrowth10Y": 20.65,
     "growthRate": 22.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Electronic Components",
     "debtToEquity": 0.46,
@@ -7952,14 +7952,6 @@
     "return5Y": 284.2,
     "return10Y": 869.8,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 124.93,
-        "h": 129.44,
-        "l": 123.55,
-        "c": 129.19,
-        "v": 10849000
-      },
       {
         "t": 1778803200,
         "o": 128.39,
@@ -8111,6 +8103,14 @@
         "l": 147.7,
         "c": 152.46001,
         "v": 11909600
+      },
+      {
+        "t": 1781222400,
+        "o": 153.77,
+        "h": 155.28999,
+        "l": 151.78,
+        "c": 153.8,
+        "v": 9382900
       }
     ]
   },
@@ -8118,10 +8118,10 @@
     "symbol": "MS",
     "name": "Morgan Stanley",
     "type": "STOCK",
-    "price": 214.04,
-    "change": 1.38,
-    "changePercent": 0.6489,
-    "open": 215.05,
+    "price": 214.06,
+    "change": 1.4,
+    "changePercent": 0.6583,
+    "open": 215.06,
     "dayHigh": 217.6237,
     "dayLow": 212.655,
     "previousClose": 212.66,
@@ -8139,7 +8139,7 @@
     "divGrowth10Y": 20.89,
     "growthRate": 9.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Capital Markets",
     "debtToEquity": 2.51,
@@ -8177,14 +8177,6 @@
     "return5Y": 156.66,
     "return10Y": 875.5,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 195.62,
-        "h": 197.5,
-        "l": 193.41,
-        "c": 194.53,
-        "v": 4785000
-      },
       {
         "t": 1778803200,
         "o": 193.88,
@@ -8336,6 +8328,14 @@
         "l": 207,
         "c": 212.66,
         "v": 4631500
+      },
+      {
+        "t": 1781222400,
+        "o": 215.050003,
+        "h": 217.62,
+        "l": 212.66,
+        "c": 214.039993,
+        "v": 4692800
       }
     ]
   },
@@ -8343,10 +8343,10 @@
     "symbol": "XOM",
     "name": "Exxon Mobil Corporation",
     "type": "STOCK",
-    "price": 147.01,
-    "change": 0.41,
-    "changePercent": 0.2797,
-    "open": 145.63,
+    "price": 147.03,
+    "change": 0.43,
+    "changePercent": 0.2933,
+    "open": 145.64,
     "dayHigh": 148.91,
     "dayLow": 145.15,
     "previousClose": 146.6,
@@ -8364,7 +8364,7 @@
     "divGrowth10Y": 3.33,
     "growthRate": 1.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas Integrated",
     "debtToEquity": 0.17,
@@ -8402,14 +8402,6 @@
     "return5Y": 210.15,
     "return10Y": 176.68,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 151.89999,
-        "h": 153.12,
-        "l": 151.25999,
-        "c": 152.78,
-        "v": 11331500
-      },
       {
         "t": 1778803200,
         "o": 153.75,
@@ -8561,6 +8553,14 @@
         "l": 146.42,
         "c": 146.60001,
         "v": 17285800
+      },
+      {
+        "t": 1781222400,
+        "o": 145.63,
+        "h": 148.91,
+        "l": 145.14999,
+        "c": 147.0099945,
+        "v": 17710400
       }
     ]
   },
@@ -8568,10 +8568,10 @@
     "symbol": "SAN",
     "name": "Banco Santander, S.A.",
     "type": "STOCK",
-    "price": 12.87,
-    "change": 0.31,
-    "changePercent": 2.4682,
-    "open": 12.61,
+    "price": 12.86,
+    "change": 0.3,
+    "changePercent": 2.3885,
+    "open": 12.62,
     "dayHigh": 12.875,
     "dayLow": 12.525,
     "previousClose": 12.56,
@@ -8589,7 +8589,7 @@
     "divGrowth10Y": 2.22,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -8606,14 +8606,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 11.87,
-        "h": 11.93,
-        "l": 11.81,
-        "c": 11.84,
-        "v": 5002600
-      },
       {
         "t": 1778803200,
         "o": 11.7,
@@ -8765,6 +8757,14 @@
         "l": 12,
         "c": 12.56,
         "v": 10950100
+      },
+      {
+        "t": 1781222400,
+        "o": 12.61,
+        "h": 12.88,
+        "l": 12.53,
+        "c": 12.87,
+        "v": 8251200
       }
     ]
   },
@@ -8772,10 +8772,10 @@
     "symbol": "SCCO",
     "name": "Southern Copper Corporation",
     "type": "STOCK",
-    "price": 189.79,
-    "change": 7.63,
-    "changePercent": 4.1886,
-    "open": 185.49,
+    "price": 189.81,
+    "change": 7.65,
+    "changePercent": 4.1996,
+    "open": 185.5,
     "dayHigh": 190.47,
     "dayLow": 184.6858,
     "previousClose": 182.16,
@@ -8793,7 +8793,7 @@
     "divGrowth10Y": 33.45,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -8810,14 +8810,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 190.0099945,
-        "h": 190.53,
-        "l": 185.27,
-        "c": 188.5,
-        "v": 1191700
-      },
       {
         "t": 1778803200,
         "o": 179.25999,
@@ -8969,6 +8961,14 @@
         "l": 168.2,
         "c": 182.16,
         "v": 1613700
+      },
+      {
+        "t": 1781222400,
+        "o": 185.49001,
+        "h": 190.47,
+        "l": 184.69,
+        "c": 189.78999,
+        "v": 1119400
       }
     ]
   },
@@ -8976,10 +8976,10 @@
     "symbol": "MRVL",
     "name": "Marvell Technology, Inc.",
     "type": "STOCK",
-    "price": 279.7,
-    "change": -1.01,
-    "changePercent": -0.3598,
-    "open": 270.07,
+    "price": 279.72,
+    "change": -0.99,
+    "changePercent": -0.3527,
+    "open": 270.08,
     "dayHigh": 287.98,
     "dayLow": 267.31,
     "previousClose": 280.71,
@@ -8997,7 +8997,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -9014,14 +9014,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 180.88,
-        "h": 192.14999,
-        "l": 177.33,
-        "c": 182.58,
-        "v": 32661100
-      },
       {
         "t": 1778803200,
         "o": 173.89999,
@@ -9173,6 +9165,14 @@
         "l": 258.42999,
         "c": 280.70999,
         "v": 57254500
+      },
+      {
+        "t": 1781222400,
+        "o": 270.070007,
+        "h": 287.98001,
+        "l": 267.31,
+        "c": 279.70001,
+        "v": 42047300
       }
     ]
   },
@@ -9180,10 +9180,10 @@
     "symbol": "CNQ",
     "name": "Canadian Natural Resources Limited",
     "type": "STOCK",
-    "price": 45.3,
-    "change": -0.14,
-    "changePercent": -0.3081,
-    "open": 44.94,
+    "price": 45.31,
+    "change": -0.13,
+    "changePercent": -0.2861,
+    "open": 44.949999999999996,
     "dayHigh": 45.79,
     "dayLow": 44.85,
     "previousClose": 45.44,
@@ -9201,7 +9201,7 @@
     "divGrowth10Y": 17.41,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -9218,14 +9218,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 47,
-        "h": 47.89,
-        "l": 46.92,
-        "c": 47.57,
-        "v": 4932600
-      },
       {
         "t": 1778803200,
         "o": 47.93,
@@ -9377,6 +9369,14 @@
         "l": 45.14,
         "c": 45.44,
         "v": 8082100
+      },
+      {
+        "t": 1781222400,
+        "o": 44.94,
+        "h": 45.79,
+        "l": 44.85,
+        "c": 45.3,
+        "v": 6838700
       }
     ]
   },
@@ -9384,10 +9384,10 @@
     "symbol": "TSLA",
     "name": "Tesla, Inc.",
     "type": "STOCK",
-    "price": 406.43,
-    "change": 7.28,
-    "changePercent": 1.8239,
-    "open": 399.49,
+    "price": 406.45,
+    "change": 7.3,
+    "changePercent": 1.8289,
+    "open": 399.5,
     "dayHigh": 406.68,
     "dayLow": 386.76,
     "previousClose": 399.15,
@@ -9405,7 +9405,7 @@
     "divGrowth10Y": null,
     "growthRate": -1.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Auto Manufacturers",
     "debtToEquity": 0.09,
@@ -9443,14 +9443,6 @@
     "return5Y": 113.23,
     "return10Y": 2904.91,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 446.48999,
-        "h": 451.98001,
-        "l": 441.16,
-        "c": 443.29999,
-        "v": 46070400
-      },
       {
         "t": 1778803200,
         "o": 433.98001,
@@ -9602,6 +9594,14 @@
         "l": 380.66,
         "c": 399.14999,
         "v": 45324300
+      },
+      {
+        "t": 1781222400,
+        "o": 399.48999,
+        "h": 406.67999,
+        "l": 386.76001,
+        "c": 406.42999,
+        "v": 63514500
       }
     ]
   },
@@ -9609,10 +9609,10 @@
     "symbol": "MUFG",
     "name": "Mitsubishi UFJ Financial Group, Inc.",
     "type": "STOCK",
-    "price": 20.16,
-    "change": 0.08,
-    "changePercent": 0.3984,
-    "open": 19.92,
+    "price": 20.15,
+    "change": 0.07,
+    "changePercent": 0.3486,
+    "open": 19.930000000000003,
     "dayHigh": 20.16,
     "dayLow": 19.895,
     "previousClose": 20.08,
@@ -9630,7 +9630,7 @@
     "divGrowth10Y": 18.08,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -9647,14 +9647,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 18.43,
-        "h": 18.6,
-        "l": 18.29,
-        "c": 18.48,
-        "v": 4101700
-      },
       {
         "t": 1778803200,
         "o": 18.69,
@@ -9806,6 +9798,14 @@
         "l": 19.57,
         "c": 20.08,
         "v": 3740800
+      },
+      {
+        "t": 1781222400,
+        "o": 19.92,
+        "h": 20.16,
+        "l": 19.9,
+        "c": 20.16,
+        "v": 3447800
       }
     ]
   },
@@ -9813,10 +9813,10 @@
     "symbol": "MO",
     "name": "Altria Group, Inc.",
     "type": "STOCK",
-    "price": 71.94,
-    "change": 0.53,
-    "changePercent": 0.7422,
-    "open": 71.69,
+    "price": 71.96,
+    "change": 0.55,
+    "changePercent": 0.7702,
+    "open": 71.7,
     "dayHigh": 72.0199,
     "dayLow": 71.14,
     "previousClose": 71.41,
@@ -9834,7 +9834,7 @@
     "divGrowth10Y": 6.49,
     "growthRate": 1.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Staples",
     "industry": "Tobacco",
     "debtToEquity": 999,
@@ -9872,14 +9872,6 @@
     "return5Y": 116.64,
     "return10Y": 126.72,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 71.63,
-        "h": 72.45,
-        "l": 71.48,
-        "c": 72.41,
-        "v": 8674800
-      },
       {
         "t": 1778803200,
         "o": 73.019997,
@@ -10031,6 +10023,14 @@
         "l": 71.36,
         "c": 71.41,
         "v": 7405600
+      },
+      {
+        "t": 1781222400,
+        "o": 71.69,
+        "h": 72.019997,
+        "l": 71.14,
+        "c": 71.94,
+        "v": 8405100
       }
     ]
   },
@@ -10038,10 +10038,10 @@
     "symbol": "ABBV",
     "name": "AbbVie Inc.",
     "type": "STOCK",
-    "price": 227.73,
-    "change": 2.96,
-    "changePercent": 1.3169,
-    "open": 227.5,
+    "price": 227.75,
+    "change": 2.98,
+    "changePercent": 1.3258,
+    "open": 227.51,
     "dayHigh": 228.3999,
     "dayLow": 224.32,
     "previousClose": 224.77,
@@ -10059,7 +10059,7 @@
     "divGrowth10Y": 12.05,
     "growthRate": 6.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 5.01,
@@ -10097,14 +10097,6 @@
     "return5Y": 116.1,
     "return10Y": 424.82,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 209.5,
-        "h": 213.50999,
-        "l": 208.35001,
-        "c": 210.77,
-        "v": 5006500
-      },
       {
         "t": 1778803200,
         "o": 213.10001,
@@ -10256,6 +10248,14 @@
         "l": 224.039993,
         "c": 224.77,
         "v": 4569000
+      },
+      {
+        "t": 1781222400,
+        "o": 227.5,
+        "h": 228.39999,
+        "l": 224.32001,
+        "c": 227.73,
+        "v": 4084500
       }
     ]
   },
@@ -10263,10 +10263,10 @@
     "symbol": "BTI",
     "name": "British American Tobacco p.l.c.",
     "type": "STOCK",
-    "price": 62.32,
-    "change": 0.93,
-    "changePercent": 1.5149,
-    "open": 61.46,
+    "price": 62.34,
+    "change": 0.95,
+    "changePercent": 1.5475,
+    "open": 61.47,
     "dayHigh": 62.485,
     "dayLow": 61.34,
     "previousClose": 61.39,
@@ -10284,7 +10284,7 @@
     "divGrowth10Y": 3.46,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Staples",
     "industry": null,
     "debtToEquity": null,
@@ -10301,14 +10301,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 66.68,
-        "h": 67.3,
-        "l": 66.17,
-        "c": 66.7,
-        "v": 6088500
-      },
       {
         "t": 1778803200,
         "o": 65.78,
@@ -10460,6 +10452,14 @@
         "l": 61,
         "c": 61.39,
         "v": 4665100
+      },
+      {
+        "t": 1781222400,
+        "o": 61.46,
+        "h": 62.49,
+        "l": 61.34,
+        "c": 62.32,
+        "v": 4971900
       }
     ]
   },
@@ -10467,10 +10467,10 @@
     "symbol": "ORCL",
     "name": "Oracle Corporation",
     "type": "STOCK",
-    "price": 184.13,
-    "change": 0.03,
-    "changePercent": 0.0163,
-    "open": 185.01,
+    "price": 184.15,
+    "change": 0.05,
+    "changePercent": 0.0272,
+    "open": 185.01999999999998,
     "dayHigh": 185.58,
     "dayLow": 179,
     "previousClose": 184.1,
@@ -10488,7 +10488,7 @@
     "divGrowth10Y": 12.79,
     "growthRate": 9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Software - Infrastructure",
     "debtToEquity": 2.88,
@@ -10526,14 +10526,6 @@
     "return5Y": 152.5,
     "return10Y": 447.03,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 188.17999,
-        "h": 200.71001,
-        "l": 185.45,
-        "c": 195.61,
-        "v": 22545000
-      },
       {
         "t": 1778803200,
         "o": 190.49001,
@@ -10685,6 +10677,14 @@
         "l": 175.28,
         "c": 184.10001,
         "v": 63678500
+      },
+      {
+        "t": 1781222400,
+        "o": 185.0099945,
+        "h": 185.58,
+        "l": 179,
+        "c": 184.13,
+        "v": 29498000
       }
     ]
   },
@@ -10692,10 +10692,10 @@
     "symbol": "ANET",
     "name": "Arista Networks, Inc.",
     "type": "STOCK",
-    "price": 163.24,
-    "change": 6.84,
-    "changePercent": 4.3734,
-    "open": 160.11,
+    "price": 163.26,
+    "change": 6.86,
+    "changePercent": 4.3862,
+    "open": 160.12,
     "dayHigh": 165.25,
     "dayLow": 159.135,
     "previousClose": 156.4,
@@ -10713,7 +10713,7 @@
     "divGrowth10Y": null,
     "growthRate": 20.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Computer Hardware",
     "debtToEquity": 0,
@@ -10751,14 +10751,6 @@
     "return5Y": 595.95,
     "return10Y": 3289.38,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 142.5,
-        "h": 147.89,
-        "l": 141,
-        "c": 147.81,
-        "v": 15728200
-      },
       {
         "t": 1778803200,
         "o": 144.99001,
@@ -10910,6 +10902,14 @@
         "l": 150.28,
         "c": 156.39999,
         "v": 5326700
+      },
+      {
+        "t": 1781222400,
+        "o": 160.11,
+        "h": 165.25,
+        "l": 159.13499,
+        "c": 163.24001,
+        "v": 6038500
       }
     ]
   },
@@ -10917,10 +10917,10 @@
     "symbol": "CVX",
     "name": "Chevron Corporation",
     "type": "STOCK",
-    "price": 187.22,
-    "change": 1.4,
-    "changePercent": 0.7534,
-    "open": 185.08,
+    "price": 187.24,
+    "change": 1.42,
+    "changePercent": 0.7642,
+    "open": 185.09,
     "dayHigh": 188.4,
     "dayLow": 184.36,
     "previousClose": 185.82,
@@ -10938,7 +10938,7 @@
     "divGrowth10Y": 5.01,
     "growthRate": 2.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas Integrated",
     "debtToEquity": 0.14,
@@ -10976,14 +10976,6 @@
     "return5Y": 118.12,
     "return10Y": 194.65,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 186.19,
-        "h": 187.57001,
-        "l": 185.25,
-        "c": 186.64,
-        "v": 6222400
-      },
       {
         "t": 1778803200,
         "o": 188.60001,
@@ -11135,6 +11127,14 @@
         "l": 185.55,
         "c": 185.82001,
         "v": 9274100
+      },
+      {
+        "t": 1781222400,
+        "o": 185.080002,
+        "h": 188.39999,
+        "l": 184.36,
+        "c": 187.22,
+        "v": 8700400
       }
     ]
   },
@@ -11142,10 +11142,10 @@
     "symbol": "SHEL",
     "name": "Shell plc",
     "type": "STOCK",
-    "price": 85.66,
-    "change": -0.19,
-    "changePercent": -0.2213,
-    "open": 85.01,
+    "price": 85.68,
+    "change": -0.17,
+    "changePercent": -0.198,
+    "open": 85.02000000000001,
     "dayHigh": 86.47,
     "dayLow": 84.95,
     "previousClose": 85.85,
@@ -11163,7 +11163,7 @@
     "divGrowth10Y": -1.61,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -11180,14 +11180,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 84.72,
-        "h": 85.11,
-        "l": 84.48,
-        "c": 84.51,
-        "v": 7039347
-      },
       {
         "t": 1778803200,
         "o": 84.405,
@@ -11339,6 +11331,14 @@
         "l": 85.675,
         "c": 85.85,
         "v": 6800758
+      },
+      {
+        "t": 1781222400,
+        "o": 85.010002,
+        "h": 86.47,
+        "l": 84.95,
+        "c": 85.66,
+        "v": 7011153
       }
     ]
   },
@@ -11346,10 +11346,10 @@
     "symbol": "TRGP",
     "name": "Targa Resources, Inc.",
     "type": "STOCK",
-    "price": 272.6,
-    "change": 3.23,
-    "changePercent": 1.1991,
-    "open": 267.54,
+    "price": 272.62,
+    "change": 3.25,
+    "changePercent": 1.2065,
+    "open": 267.55,
     "dayHigh": 274.835,
     "dayLow": 265.96,
     "previousClose": 269.37,
@@ -11367,7 +11367,7 @@
     "divGrowth10Y": 1.66,
     "growthRate": 18.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas Midstream",
     "debtToEquity": 1.28,
@@ -11405,14 +11405,6 @@
     "return5Y": 679.9,
     "return10Y": 869.24,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 263.94,
-        "h": 268.019989,
-        "l": 261.92999,
-        "c": 267.48001,
-        "v": 1069500
-      },
       {
         "t": 1778803200,
         "o": 267.16,
@@ -11564,6 +11556,14 @@
         "l": 268.69,
         "c": 269.37,
         "v": 958500
+      },
+      {
+        "t": 1781222400,
+        "o": 267.54001,
+        "h": 274.84,
+        "l": 265.95999,
+        "c": 272.60001,
+        "v": 1173900
       }
     ]
   },
@@ -11571,10 +11571,10 @@
     "symbol": "CSCO",
     "name": "Cisco Systems, Inc.",
     "type": "STOCK",
-    "price": 121.1,
-    "change": -0.73,
-    "changePercent": -0.5992,
-    "open": 122.35,
+    "price": 121.12,
+    "change": -0.71,
+    "changePercent": -0.5828,
+    "open": 122.36,
     "dayHigh": 122.79,
     "dayLow": 120.73,
     "previousClose": 121.83,
@@ -11592,7 +11592,7 @@
     "divGrowth10Y": 5.85,
     "growthRate": 5.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Communication Equipment",
     "debtToEquity": 0.21,
@@ -11630,14 +11630,6 @@
     "return5Y": 159.17,
     "return10Y": 503.48,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 117.55,
-        "h": 119.36,
-        "l": 113.97,
-        "c": 115.53,
-        "v": 70932300
-      },
       {
         "t": 1778803200,
         "o": 114.61,
@@ -11789,6 +11781,14 @@
         "l": 116.5,
         "c": 121.83,
         "v": 24625500
+      },
+      {
+        "t": 1781222400,
+        "o": 122.35,
+        "h": 122.79,
+        "l": 120.73,
+        "c": 121.099998,
+        "v": 18222800
       }
     ]
   },
@@ -11796,10 +11796,10 @@
     "symbol": "COST",
     "name": "Costco Wholesale Corporation",
     "type": "STOCK",
-    "price": 982.35,
-    "change": 6.66,
-    "changePercent": 0.6826,
-    "open": 975.52,
+    "price": 982.37,
+    "change": 6.68,
+    "changePercent": 0.6846,
+    "open": 975.53,
     "dayHigh": 984.78,
     "dayLow": 970,
     "previousClose": 975.69,
@@ -11817,7 +11817,7 @@
     "divGrowth10Y": 12.53,
     "growthRate": 7.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Staples",
     "industry": "Discount Stores",
     "debtToEquity": 0.45,
@@ -11855,14 +11855,6 @@
     "return5Y": 195.82,
     "return10Y": 787.61,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1034.94995,
-        "h": 1041.79004,
-        "l": 1026.099976,
-        "c": 1041.25,
-        "v": 1606600
-      },
       {
         "t": 1778803200,
         "o": 1049.35999,
@@ -12014,6 +12006,14 @@
         "l": 974,
         "c": 975.69,
         "v": 1903400
+      },
+      {
+        "t": 1781222400,
+        "o": 975.52002,
+        "h": 984.78003,
+        "l": 970,
+        "c": 982.34998,
+        "v": 1737300
       }
     ]
   },
@@ -12021,10 +12021,10 @@
     "symbol": "BX",
     "name": "Blackstone Inc.",
     "type": "STOCK",
-    "price": 122.79,
-    "change": 1.91,
-    "changePercent": 1.5801,
-    "open": 122.42,
+    "price": 122.81,
+    "change": 1.93,
+    "changePercent": 1.5966,
+    "open": 122.43,
     "dayHigh": 124.98,
     "dayLow": 120.99,
     "previousClose": 120.88,
@@ -12042,7 +12042,7 @@
     "divGrowth10Y": 8.89,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -12059,14 +12059,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 120.98,
-        "h": 123.96,
-        "l": 120.45,
-        "c": 122.46,
-        "v": 3384000
-      },
       {
         "t": 1778803200,
         "o": 121.49,
@@ -12218,6 +12210,14 @@
         "l": 116.019997,
         "c": 120.88,
         "v": 4298500
+      },
+      {
+        "t": 1781222400,
+        "o": 122.42,
+        "h": 124.98,
+        "l": 120.99,
+        "c": 122.79,
+        "v": 4446700
       }
     ]
   },
@@ -12225,10 +12225,10 @@
     "symbol": "VZ",
     "name": "Verizon Communications Inc.",
     "type": "STOCK",
-    "price": 48.11,
-    "change": 1.17,
-    "changePercent": 2.4925,
-    "open": 47.41,
+    "price": 48.12,
+    "change": 1.18,
+    "changePercent": 2.5138,
+    "open": 47.419999999999995,
     "dayHigh": 48.21,
     "dayLow": 47,
     "previousClose": 46.94,
@@ -12246,7 +12246,7 @@
     "divGrowth10Y": 2.11,
     "growthRate": 0.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Communication Services",
     "industry": "Telecom Services",
     "debtToEquity": 1.6,
@@ -12284,14 +12284,6 @@
     "return5Y": 10.06,
     "return10Y": 56.23,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 47.46,
-        "h": 47.5,
-        "l": 46.91,
-        "c": 47.060001,
-        "v": 16585100
-      },
       {
         "t": 1778803200,
         "o": 47.48,
@@ -12443,6 +12435,14 @@
         "l": 46.9,
         "c": 46.94,
         "v": 26889400
+      },
+      {
+        "t": 1781222400,
+        "o": 47.41,
+        "h": 48.21,
+        "l": 47,
+        "c": 48.11,
+        "v": 21954500
       }
     ]
   },
@@ -12450,10 +12450,10 @@
     "symbol": "PM",
     "name": "Philip Morris International Inc",
     "type": "STOCK",
-    "price": 184.3,
-    "change": 3.53,
-    "changePercent": 1.9528,
-    "open": 181,
+    "price": 184.32,
+    "change": 3.55,
+    "changePercent": 1.9638,
+    "open": 181.01,
     "dayHigh": 185.12,
     "dayLow": 180.42,
     "previousClose": 180.77,
@@ -12471,7 +12471,7 @@
     "divGrowth10Y": 3.56,
     "growthRate": 7.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Staples",
     "industry": "Tobacco",
     "debtToEquity": 999,
@@ -12509,14 +12509,6 @@
     "return5Y": 148.93,
     "return10Y": 214.73,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 188.23,
-        "h": 192.92,
-        "l": 187.63,
-        "c": 191.86,
-        "v": 5355100
-      },
       {
         "t": 1778803200,
         "o": 192.50999,
@@ -12668,6 +12660,14 @@
         "l": 180.23,
         "c": 180.77,
         "v": 5530700
+      },
+      {
+        "t": 1781222400,
+        "o": 181,
+        "h": 185.12,
+        "l": 180.42,
+        "c": 184.3,
+        "v": 3325800
       }
     ]
   },
@@ -12675,10 +12675,10 @@
     "symbol": "ADI",
     "name": "Analog Devices, Inc.",
     "type": "STOCK",
-    "price": 417.79,
-    "change": 5.66,
-    "changePercent": 1.3734,
-    "open": 411.95,
+    "price": 417.81,
+    "change": 5.68,
+    "changePercent": 1.3782,
+    "open": 411.96,
     "dayHigh": 422.23,
     "dayLow": 406.4,
     "previousClose": 412.13,
@@ -12696,7 +12696,7 @@
     "divGrowth10Y": 9.65,
     "growthRate": 9.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.18,
@@ -12734,14 +12734,6 @@
     "return5Y": 208.07,
     "return10Y": 816.57,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 430.97,
-        "h": 433.91,
-        "l": 424.070007,
-        "c": 426.79001,
-        "v": 2811400
-      },
       {
         "t": 1778803200,
         "o": 415.17999,
@@ -12893,6 +12885,14 @@
         "l": 397.01001,
         "c": 412.13,
         "v": 4846300
+      },
+      {
+        "t": 1781222400,
+        "o": 411.95001,
+        "h": 422.23001,
+        "l": 406.39999,
+        "c": 417.79001,
+        "v": 2997500
       }
     ]
   },
@@ -12900,10 +12900,10 @@
     "symbol": "ENB",
     "name": "Enbridge Inc.",
     "type": "STOCK",
-    "price": 56.5,
-    "change": 0.04,
-    "changePercent": 0.0708,
-    "open": 56.23,
+    "price": 56.52,
+    "change": 0.06,
+    "changePercent": 0.1063,
+    "open": 56.239999999999995,
     "dayHigh": 56.99,
     "dayLow": 56.0829,
     "previousClose": 56.46,
@@ -12921,7 +12921,7 @@
     "divGrowth10Y": 6.33,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -12938,14 +12938,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 55.28,
-        "h": 56.22,
-        "l": 55.2,
-        "c": 56.22,
-        "v": 13860300
-      },
       {
         "t": 1778803200,
         "o": 55.48,
@@ -13097,6 +13089,14 @@
         "l": 56.45,
         "c": 56.46,
         "v": 4145300
+      },
+      {
+        "t": 1781222400,
+        "o": 56.23,
+        "h": 56.99,
+        "l": 56.080002,
+        "c": 56.5,
+        "v": 3148800
       }
     ]
   },
@@ -13104,10 +13104,10 @@
     "symbol": "COHR",
     "name": "Coherent Corp.",
     "type": "STOCK",
-    "price": 385.03,
-    "change": 21.45,
-    "changePercent": 5.8997,
-    "open": 374.27,
+    "price": 385.05,
+    "change": 21.47,
+    "changePercent": 5.9052,
+    "open": 374.28,
     "dayHigh": 394.5,
     "dayLow": 354.1901,
     "previousClose": 363.58,
@@ -13125,7 +13125,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -13142,14 +13142,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 400.089996,
-        "h": 411.70999,
-        "l": 390.31,
-        "c": 404.94,
-        "v": 4791300
-      },
       {
         "t": 1778803200,
         "o": 382.72,
@@ -13301,6 +13293,14 @@
         "l": 345.29999,
         "c": 363.57999,
         "v": 6489500
+      },
+      {
+        "t": 1781222400,
+        "o": 374.26999,
+        "h": 394.5,
+        "l": 354.19,
+        "c": 385.029999,
+        "v": 5378800
       }
     ]
   },
@@ -13308,10 +13308,10 @@
     "symbol": "RIO",
     "name": "Rio Tinto Group",
     "type": "STOCK",
-    "price": 105.35,
-    "change": 1.71,
-    "changePercent": 1.6499,
-    "open": 104.2,
+    "price": 105.37,
+    "change": 1.73,
+    "changePercent": 1.6692,
+    "open": 104.21000000000001,
     "dayHigh": 105.43,
     "dayLow": 103.9,
     "previousClose": 103.64,
@@ -13329,7 +13329,7 @@
     "divGrowth10Y": 6.56,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -13346,14 +13346,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 111.099998,
-        "h": 111.099998,
-        "l": 109.28,
-        "c": 109.59,
-        "v": 2479600
-      },
       {
         "t": 1778803200,
         "o": 103.41,
@@ -13505,6 +13497,14 @@
         "l": 100.5,
         "c": 103.64,
         "v": 3567000
+      },
+      {
+        "t": 1781222400,
+        "o": 104.2,
+        "h": 105.43,
+        "l": 103.9,
+        "c": 105.35,
+        "v": 2673000
       }
     ]
   },
@@ -13512,10 +13512,10 @@
     "symbol": "V",
     "name": "Visa Inc.",
     "type": "STOCK",
-    "price": 322.39,
-    "change": 3.34,
-    "changePercent": 1.0469,
-    "open": 321.76,
+    "price": 322.41,
+    "change": 3.36,
+    "changePercent": 1.0531,
+    "open": 321.77,
     "dayHigh": 325.93,
     "dayLow": 319.8,
     "previousClose": 319.05,
@@ -13533,7 +13533,7 @@
     "divGrowth10Y": 17.02,
     "growthRate": 10,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 0.6,
@@ -13571,14 +13571,6 @@
     "return5Y": 52.5,
     "return10Y": 364.8,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 321.37,
-        "h": 323.32999,
-        "l": 320.25,
-        "c": 322.51999,
-        "v": 5277400
-      },
       {
         "t": 1778803200,
         "o": 324,
@@ -13730,6 +13722,14 @@
         "l": 317.95999,
         "c": 319.049988,
         "v": 5958900
+      },
+      {
+        "t": 1781222400,
+        "o": 321.76001,
+        "h": 325.92999,
+        "l": 319.79999,
+        "c": 322.39001,
+        "v": 5543200
       }
     ]
   },
@@ -13737,10 +13737,10 @@
     "symbol": "TT",
     "name": "Trane Technologies plc",
     "type": "STOCK",
-    "price": 458.25,
-    "change": -1.89,
-    "changePercent": -0.4107,
-    "open": 464.17,
+    "price": 458.27,
+    "change": -1.87,
+    "changePercent": -0.4064,
+    "open": 464.18,
     "dayHigh": 465.37,
     "dayLow": 454.1701,
     "previousClose": 460.14,
@@ -13758,7 +13758,7 @@
     "divGrowth10Y": 12.55,
     "growthRate": 12.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
     "debtToEquity": 0.55,
@@ -13796,14 +13796,6 @@
     "return5Y": 167.56,
     "return10Y": 961.5,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 473.29999,
-        "h": 481.98001,
-        "l": 470.85001,
-        "c": 481.67001,
-        "v": 746600
-      },
       {
         "t": 1778803200,
         "o": 473.95999,
@@ -13955,6 +13947,14 @@
         "l": 449.64999,
         "c": 460.14001,
         "v": 1947000
+      },
+      {
+        "t": 1781222400,
+        "o": 464.17001,
+        "h": 465.37,
+        "l": 454.17001,
+        "c": 458.25,
+        "v": 1232800
       }
     ]
   },
@@ -13962,10 +13962,10 @@
     "symbol": "CME",
     "name": "CME Group Inc.",
     "type": "STOCK",
-    "price": 269.53,
-    "change": 7.35,
-    "changePercent": 2.8034,
-    "open": 263.5,
+    "price": 269.55,
+    "change": 7.37,
+    "changePercent": 2.811,
+    "open": 263.51,
     "dayHigh": 270,
     "dayLow": 263.45,
     "previousClose": 262.18,
@@ -13983,7 +13983,7 @@
     "divGrowth10Y": 8.23,
     "growthRate": 9.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Financial Data & Stock Exchanges",
     "debtToEquity": 0.14,
@@ -14021,14 +14021,6 @@
     "return5Y": 73.78,
     "return10Y": 375.73,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 297.32999,
-        "h": 298.85999,
-        "l": 294.39999,
-        "c": 297.70001,
-        "v": 1576800
-      },
       {
         "t": 1778803200,
         "o": 301.28,
@@ -14180,6 +14172,14 @@
         "l": 262,
         "c": 262.17999,
         "v": 3508700
+      },
+      {
+        "t": 1781222400,
+        "o": 263.5,
+        "h": 270,
+        "l": 263.45001,
+        "c": 269.53,
+        "v": 2863100
       }
     ]
   },
@@ -14187,10 +14187,10 @@
     "symbol": "BP",
     "name": "BP p.l.c.",
     "type": "STOCK",
-    "price": 42.78,
-    "change": 0.1,
-    "changePercent": 0.2343,
-    "open": 42.23,
+    "price": 42.79,
+    "change": 0.11,
+    "changePercent": 0.2577,
+    "open": 42.239999999999995,
     "dayHigh": 43.105,
     "dayLow": 42.21,
     "previousClose": 42.68,
@@ -14208,7 +14208,7 @@
     "divGrowth10Y": -1.84,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -14225,14 +14225,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 44.14,
-        "h": 44.4,
-        "l": 44.029999,
-        "c": 44.12,
-        "v": 4697200
-      },
       {
         "t": 1778803200,
         "o": 43.88,
@@ -14384,6 +14376,14 @@
         "l": 42.62,
         "c": 42.68,
         "v": 7863500
+      },
+      {
+        "t": 1781222400,
+        "o": 42.23,
+        "h": 43.11,
+        "l": 42.21,
+        "c": 42.78,
+        "v": 6970300
       }
     ]
   },
@@ -14391,10 +14391,10 @@
     "symbol": "CM",
     "name": "Canadian Imperial Bank of Commerce",
     "type": "STOCK",
-    "price": 113.46,
-    "change": 1.62,
-    "changePercent": 1.4485,
-    "open": 112.37,
+    "price": 113.48,
+    "change": 1.64,
+    "changePercent": 1.4664,
+    "open": 112.38000000000001,
     "dayHigh": 114.06,
     "dayLow": 112.07,
     "previousClose": 111.84,
@@ -14412,7 +14412,7 @@
     "divGrowth10Y": 5.55,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -14429,14 +14429,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 110.5,
-        "h": 112.029999,
-        "l": 110.44,
-        "c": 111.99,
-        "v": 563700
-      },
       {
         "t": 1778803200,
         "o": 110.99,
@@ -14588,6 +14580,14 @@
         "l": 109.94,
         "c": 111.84,
         "v": 2692700
+      },
+      {
+        "t": 1781222400,
+        "o": 112.37,
+        "h": 114.059998,
+        "l": 112.07,
+        "c": 113.46,
+        "v": 1059700
       }
     ]
   },
@@ -14595,10 +14595,10 @@
     "symbol": "PH",
     "name": "Parker-Hannifin Corporation",
     "type": "STOCK",
-    "price": 903.48,
-    "change": 1.11,
-    "changePercent": 0.123,
-    "open": 911.37,
+    "price": 903.5,
+    "change": 1.13,
+    "changePercent": 0.1252,
+    "open": 911.38,
     "dayHigh": 913.52,
     "dayLow": 896.02,
     "previousClose": 902.37,
@@ -14616,7 +14616,7 @@
     "divGrowth10Y": 11.37,
     "growthRate": 7.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
     "debtToEquity": 0.68,
@@ -14654,14 +14654,6 @@
     "return5Y": 189.06,
     "return10Y": 793.24,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 889.090027,
-        "h": 894.31,
-        "l": 877.57001,
-        "c": 880.42999,
-        "v": 544700
-      },
       {
         "t": 1778803200,
         "o": 871.57001,
@@ -14813,6 +14805,14 @@
         "l": 880.82001,
         "c": 902.37,
         "v": 515100
+      },
+      {
+        "t": 1781222400,
+        "o": 911.37,
+        "h": 913.52002,
+        "l": 896.02002,
+        "c": 903.47998,
+        "v": 553600
       }
     ]
   },
@@ -14820,10 +14820,10 @@
     "symbol": "JNJ",
     "name": "Johnson & Johnson",
     "type": "STOCK",
-    "price": 240.87,
-    "change": 2.54,
-    "changePercent": 1.0657,
-    "open": 240,
+    "price": 240.89,
+    "change": 2.56,
+    "changePercent": 1.0741,
+    "open": 240.01,
     "dayHigh": 240.91,
     "dayLow": 237.52,
     "previousClose": 238.33,
@@ -14841,7 +14841,7 @@
     "divGrowth10Y": 5.56,
     "growthRate": 4.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 0.5,
@@ -14879,14 +14879,6 @@
     "return5Y": 54.67,
     "return10Y": 164.68,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 231,
-        "h": 231.75999,
-        "l": 229.16,
-        "c": 230.8,
-        "v": 6974400
-      },
       {
         "t": 1778803200,
         "o": 230.77,
@@ -15038,6 +15030,14 @@
         "l": 238.14,
         "c": 238.33,
         "v": 7399000
+      },
+      {
+        "t": 1781222400,
+        "o": 240,
+        "h": 240.91,
+        "l": 237.52,
+        "c": 240.87,
+        "v": 6458600
       }
     ]
   },
@@ -15045,10 +15045,10 @@
     "symbol": "RY",
     "name": "Royal Bank of Canada",
     "type": "STOCK",
-    "price": 199.54,
-    "change": 0.27,
-    "changePercent": 0.1355,
-    "open": 199.78,
+    "price": 199.56,
+    "change": 0.29,
+    "changePercent": 0.1455,
+    "open": 199.79,
     "dayHigh": 201.74,
     "dayLow": 198.99,
     "previousClose": 199.27,
@@ -15066,7 +15066,7 @@
     "divGrowth10Y": 6.83,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -15083,14 +15083,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 180.72,
-        "h": 183.87,
-        "l": 180.72,
-        "c": 183.83,
-        "v": 712400
-      },
       {
         "t": 1778803200,
         "o": 182.77,
@@ -15242,6 +15234,14 @@
         "l": 196.11,
         "c": 199.27,
         "v": 1788700
+      },
+      {
+        "t": 1781222400,
+        "o": 199.78,
+        "h": 201.74001,
+        "l": 198.99001,
+        "c": 199.53999,
+        "v": 1964500
       }
     ]
   },
@@ -15249,10 +15249,10 @@
     "symbol": "TXN",
     "name": "Texas Instruments Incorporated",
     "type": "STOCK",
-    "price": 301.12,
-    "change": 4.02,
-    "changePercent": 1.3531,
-    "open": 298.99,
+    "price": 301.14,
+    "change": 4.04,
+    "changePercent": 1.3598,
+    "open": 299,
     "dayHigh": 303.03,
     "dayLow": 295.845,
     "previousClose": 297.1,
@@ -15270,7 +15270,7 @@
     "divGrowth10Y": 14.27,
     "growthRate": -11.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.82,
@@ -15308,14 +15308,6 @@
     "return5Y": 91.49,
     "return10Y": 587.95,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 306.67001,
-        "h": 310.29001,
-        "l": 303.5,
-        "c": 308.17001,
-        "v": 5767800
-      },
       {
         "t": 1778803200,
         "o": 302.69,
@@ -15467,6 +15459,14 @@
         "l": 285.79001,
         "c": 297.10001,
         "v": 9862700
+      },
+      {
+        "t": 1781222400,
+        "o": 298.98999,
+        "h": 303.029999,
+        "l": 295.85001,
+        "c": 301.12,
+        "v": 5368300
       }
     ]
   },
@@ -15474,10 +15474,10 @@
     "symbol": "BAC",
     "name": "Bank of America Corporation",
     "type": "STOCK",
-    "price": 56.02,
-    "change": 0.86,
-    "changePercent": 1.5591,
-    "open": 55.36,
+    "price": 56.04,
+    "change": 0.88,
+    "changePercent": 1.5954,
+    "open": 55.37,
     "dayHigh": 56.19,
     "dayLow": 55.26,
     "previousClose": 55.16,
@@ -15495,7 +15495,7 @@
     "divGrowth10Y": 18.8,
     "growthRate": 6.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.12,
@@ -15533,14 +15533,6 @@
     "return5Y": 33.92,
     "return10Y": 351.22,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 50.060001,
-        "h": 50.47,
-        "l": 49.49,
-        "c": 49.85,
-        "v": 37671800
-      },
       {
         "t": 1778803200,
         "o": 49.62,
@@ -15692,6 +15684,14 @@
         "l": 54.07,
         "c": 55.16,
         "v": 31746300
+      },
+      {
+        "t": 1781222400,
+        "o": 55.36,
+        "h": 56.19,
+        "l": 55.26,
+        "c": 56.02,
+        "v": 32976900
       }
     ]
   },
@@ -15699,10 +15699,10 @@
     "symbol": "WFC",
     "name": "Wells Fargo & Company",
     "type": "STOCK",
-    "price": 83.73,
-    "change": 1.33,
-    "changePercent": 1.6141,
-    "open": 82.93,
+    "price": 83.75,
+    "change": 1.35,
+    "changePercent": 1.6383,
+    "open": 82.94000000000001,
     "dayHigh": 84.1,
     "dayLow": 82.62,
     "previousClose": 82.4,
@@ -15720,7 +15720,7 @@
     "divGrowth10Y": 1.81,
     "growthRate": 2.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.08,
@@ -15758,14 +15758,6 @@
     "return5Y": 75.13,
     "return10Y": 106.14,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 73.98,
-        "h": 74.49,
-        "l": 73.22,
-        "c": 73.79,
-        "v": 19388500
-      },
       {
         "t": 1778803200,
         "o": 73.94,
@@ -15917,6 +15909,14 @@
         "l": 80.83,
         "c": 82.4,
         "v": 10929900
+      },
+      {
+        "t": 1781222400,
+        "o": 82.93,
+        "h": 84.099998,
+        "l": 82.62,
+        "c": 83.73,
+        "v": 10524600
       }
     ]
   },
@@ -15924,10 +15924,10 @@
     "symbol": "C",
     "name": "Citigroup, Inc.",
     "type": "STOCK",
-    "price": 139.83,
-    "change": 1.76,
-    "changePercent": 1.2747,
-    "open": 139.75,
+    "price": 139.85,
+    "change": 1.78,
+    "changePercent": 1.2892,
+    "open": 139.76,
     "dayHigh": 141.12,
     "dayLow": 138.21,
     "previousClose": 138.07,
@@ -15945,7 +15945,7 @@
     "divGrowth10Y": 28.21,
     "growthRate": 3.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.31,
@@ -15983,14 +15983,6 @@
     "return5Y": 87.98,
     "return10Y": 277.87,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 125.080002,
-        "h": 126.35,
-        "l": 123.48,
-        "c": 124.82,
-        "v": 8226300
-      },
       {
         "t": 1778803200,
         "o": 124.48,
@@ -16142,6 +16134,14 @@
         "l": 133.81,
         "c": 138.070007,
         "v": 12464200
+      },
+      {
+        "t": 1781222400,
+        "o": 139.75,
+        "h": 141.12,
+        "l": 138.21001,
+        "c": 139.83,
+        "v": 10358400
       }
     ]
   },
@@ -16149,10 +16149,10 @@
     "symbol": "ETN",
     "name": "Eaton Corporation, PLC",
     "type": "STOCK",
-    "price": 391.39,
-    "change": -2.25,
-    "changePercent": -0.5716,
-    "open": 396.55,
+    "price": 391.41,
+    "change": -2.23,
+    "changePercent": -0.5665,
+    "open": 396.56,
     "dayHigh": 399.13,
     "dayLow": 388.336,
     "previousClose": 393.64,
@@ -16170,7 +16170,7 @@
     "divGrowth10Y": 6.69,
     "growthRate": 8.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
     "debtToEquity": 0.5,
@@ -16208,14 +16208,6 @@
     "return5Y": 180.44,
     "return10Y": 686.06,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 409.98999,
-        "h": 409.98999,
-        "l": 403.079987,
-        "c": 408.10001,
-        "v": 2011900
-      },
       {
         "t": 1778803200,
         "o": 399.32001,
@@ -16367,6 +16359,14 @@
         "l": 378.059998,
         "c": 393.64001,
         "v": 2639800
+      },
+      {
+        "t": 1781222400,
+        "o": 396.54999,
+        "h": 399.13,
+        "l": 388.34,
+        "c": 391.39001,
+        "v": 2175100
       }
     ]
   },
@@ -16374,10 +16374,10 @@
     "symbol": "EQNR",
     "name": "Equinor ASA",
     "type": "STOCK",
-    "price": 36.18,
-    "change": -0.57,
-    "changePercent": -1.551,
-    "open": 35.55,
+    "price": 36.19,
+    "change": -0.56,
+    "changePercent": -1.5238,
+    "open": 35.559999999999995,
     "dayHigh": 36.76,
     "dayLow": 35.51,
     "previousClose": 36.75,
@@ -16395,7 +16395,7 @@
     "divGrowth10Y": 7.09,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -16412,14 +16412,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 38.099998,
-        "h": 38.84,
-        "l": 37.98,
-        "c": 38.51,
-        "v": 2322000
-      },
       {
         "t": 1778803200,
         "o": 38.29,
@@ -16571,6 +16563,14 @@
         "l": 36.69,
         "c": 36.75,
         "v": 6132700
+      },
+      {
+        "t": 1781222400,
+        "o": 35.55,
+        "h": 36.76,
+        "l": 35.51,
+        "c": 36.18,
+        "v": 5612900
       }
     ]
   },
@@ -16578,10 +16578,10 @@
     "symbol": "WELL",
     "name": "Welltower Inc.",
     "type": "STOCK",
-    "price": 214.23,
-    "change": 3.56,
-    "changePercent": 1.6898,
-    "open": 212.22,
+    "price": 214.25,
+    "change": 3.58,
+    "changePercent": 1.6993,
+    "open": 212.23,
     "dayHigh": 214.92,
     "dayLow": 211.945,
     "previousClose": 210.67,
@@ -16599,7 +16599,7 @@
     "divGrowth10Y": -1.29,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Real Estate",
     "industry": "REIT - Healthcare Facilities",
     "debtToEquity": 0.95,
@@ -16637,14 +16637,6 @@
     "return5Y": 228.89,
     "return10Y": 326.89,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 221.41,
-        "h": 221.41,
-        "l": 216.89,
-        "c": 217.75,
-        "v": 2901300
-      },
       {
         "t": 1778803200,
         "o": 218.12,
@@ -16796,6 +16788,14 @@
         "l": 210.53,
         "c": 210.67,
         "v": 3807200
+      },
+      {
+        "t": 1781222400,
+        "o": 212.22,
+        "h": 214.92,
+        "l": 211.95,
+        "c": 214.23,
+        "v": 2264100
       }
     ]
   },
@@ -16803,10 +16803,10 @@
     "symbol": "AZN",
     "name": "AstraZeneca PLC",
     "type": "STOCK",
-    "price": 178.75,
-    "change": -3.53,
-    "changePercent": -1.9366,
-    "open": 182.525,
+    "price": 178.77,
+    "change": -3.51,
+    "changePercent": -1.9256,
+    "open": 182.535,
     "dayHigh": 182.7,
     "dayLow": 178.59,
     "previousClose": 182.28,
@@ -16824,7 +16824,7 @@
     "divGrowth10Y": 5.35,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Healthcare",
     "industry": null,
     "debtToEquity": null,
@@ -16841,14 +16841,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 186.69,
-        "h": 186.7,
-        "l": 184.7,
-        "c": 184.96001,
-        "v": 1027700
-      },
       {
         "t": 1778803200,
         "o": 183.25,
@@ -17000,6 +16992,14 @@
         "l": 180.39,
         "c": 182.28,
         "v": 1749400
+      },
+      {
+        "t": 1781222400,
+        "o": 182.53,
+        "h": 182.7,
+        "l": 178.59,
+        "c": 178.75,
+        "v": 2394100
       }
     ]
   },
@@ -17007,10 +17007,10 @@
     "symbol": "BHP",
     "name": "BHP Group Limited",
     "type": "STOCK",
-    "price": 90.82,
-    "change": 2.82,
-    "changePercent": 3.2045,
-    "open": 88.88,
+    "price": 90.84,
+    "change": 2.84,
+    "changePercent": 3.2273,
+    "open": 88.89,
     "dayHigh": 90.92,
     "dayLow": 88.06,
     "previousClose": 88,
@@ -17028,7 +17028,7 @@
     "divGrowth10Y": 5.36,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -17045,14 +17045,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 90.019997,
-        "h": 90.07,
-        "l": 88.65,
-        "c": 88.93,
-        "v": 2437200
-      },
       {
         "t": 1778803200,
         "o": 84.39,
@@ -17204,6 +17196,14 @@
         "l": 84.84,
         "c": 88,
         "v": 3453300
+      },
+      {
+        "t": 1781222400,
+        "o": 88.88,
+        "h": 90.92,
+        "l": 88.059998,
+        "c": 90.82,
+        "v": 3063600
       }
     ]
   },
@@ -17211,10 +17211,10 @@
     "symbol": "AXP",
     "name": "American Express Company",
     "type": "STOCK",
-    "price": 325.44,
-    "change": 6.95,
-    "changePercent": 2.1822,
-    "open": 321.8,
+    "price": 325.46,
+    "change": 6.97,
+    "changePercent": 2.1885,
+    "open": 321.81,
     "dayHigh": 325.62,
     "dayLow": 319.08,
     "previousClose": 318.49,
@@ -17232,7 +17232,7 @@
     "divGrowth10Y": 11.39,
     "growthRate": 9.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 2.05,
@@ -17270,14 +17270,6 @@
     "return5Y": 111.53,
     "return10Y": 472.04,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 313.019989,
-        "h": 314.67999,
-        "l": 311.029999,
-        "c": 312.76999,
-        "v": 3240500
-      },
       {
         "t": 1778803200,
         "o": 312.29001,
@@ -17429,6 +17421,14 @@
         "l": 309.64001,
         "c": 318.48999,
         "v": 2589900
+      },
+      {
+        "t": 1781222400,
+        "o": 321.79999,
+        "h": 325.62,
+        "l": 319.079987,
+        "c": 325.44,
+        "v": 2221700
       }
     ]
   },
@@ -17436,10 +17436,10 @@
     "symbol": "TJX",
     "name": "TJX Companies, Inc. (The)",
     "type": "STOCK",
-    "price": 168.41,
-    "change": 0.07,
-    "changePercent": 0.0416,
-    "open": 169.5,
+    "price": 168.43,
+    "change": 0.09,
+    "changePercent": 0.0535,
+    "open": 169.51,
     "dayHigh": 169.85,
     "dayLow": 166.99,
     "previousClose": 168.34,
@@ -17457,7 +17457,7 @@
     "divGrowth10Y": 14.71,
     "growthRate": 6.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Apparel Retail",
     "debtToEquity": 0.52,
@@ -17495,14 +17495,6 @@
     "return5Y": 124.41,
     "return10Y": 357.22,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 146.75999,
-        "h": 148.12,
-        "l": 146.39999,
-        "c": 147.35001,
-        "v": 7764800
-      },
       {
         "t": 1778803200,
         "o": 147.82001,
@@ -17654,6 +17646,14 @@
         "l": 167.33,
         "c": 168.34,
         "v": 6983900
+      },
+      {
+        "t": 1781222400,
+        "o": 169.5,
+        "h": 169.85001,
+        "l": 166.99001,
+        "c": 168.41,
+        "v": 4875300
       }
     ]
   },
@@ -17661,10 +17661,10 @@
     "symbol": "MPWR",
     "name": "Monolithic Power Systems, Inc.",
     "type": "STOCK",
-    "price": 1577.32,
-    "change": -12.23,
-    "changePercent": -0.7694,
-    "open": 1592.21,
+    "price": 1577.34,
+    "change": -12.21,
+    "changePercent": -0.7681,
+    "open": 1592.22,
     "dayHigh": 1598.42,
     "dayLow": 1558.19,
     "previousClose": 1589.55,
@@ -17682,7 +17682,7 @@
     "divGrowth10Y": 23.64,
     "growthRate": 12.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0,
@@ -17720,14 +17720,6 @@
     "return5Y": 393.48,
     "return10Y": 2500.34,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1639.84998,
-        "h": 1644.90002,
-        "l": 1601,
-        "c": 1613.96997,
-        "v": 373600
-      },
       {
         "t": 1778803200,
         "o": 1562.55005,
@@ -17879,6 +17871,14 @@
         "l": 1506.81995,
         "c": 1589.55005,
         "v": 896700
+      },
+      {
+        "t": 1781222400,
+        "o": 1592.20996,
+        "h": 1598.42004,
+        "l": 1558.18994,
+        "c": 1577.31995,
+        "v": 567500
       }
     ]
   },
@@ -17886,10 +17886,10 @@
     "symbol": "T",
     "name": "AT&T Inc.",
     "type": "STOCK",
-    "price": 23.58,
-    "change": 0.58,
-    "changePercent": 2.5217,
-    "open": 23.1,
+    "price": 23.59,
+    "change": 0.59,
+    "changePercent": 2.5652,
+    "open": 23.110000000000003,
     "dayHigh": 23.61,
     "dayLow": 23.0716,
     "previousClose": 23,
@@ -17907,7 +17907,7 @@
     "divGrowth10Y": -5.23,
     "growthRate": 0.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Communication Services",
     "industry": "Telecom Services",
     "debtToEquity": 0.9,
@@ -17945,14 +17945,6 @@
     "return5Y": 38.29,
     "return10Y": 48.66,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 24.84,
-        "h": 24.98,
-        "l": 24.65,
-        "c": 24.65,
-        "v": 32683600
-      },
       {
         "t": 1778803200,
         "o": 24.86,
@@ -18104,6 +18096,14 @@
         "l": 22.99,
         "c": 23,
         "v": 38147600
+      },
+      {
+        "t": 1781222400,
+        "o": 23.1,
+        "h": 23.61,
+        "l": 23.07,
+        "c": 23.58,
+        "v": 38867000
       }
     ]
   },
@@ -18111,10 +18111,10 @@
     "symbol": "TD",
     "name": "The Toronto-Dominion Bank",
     "type": "STOCK",
-    "price": 117.33,
-    "change": 1.08,
-    "changePercent": 0.929,
-    "open": 116.97,
+    "price": 117.35,
+    "change": 1.1,
+    "changePercent": 0.9462,
+    "open": 116.98,
     "dayHigh": 117.95,
     "dayLow": 116.665,
     "previousClose": 116.25,
@@ -18132,7 +18132,7 @@
     "divGrowth10Y": 6.86,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -18149,14 +18149,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 106.73,
-        "h": 108.34,
-        "l": 106.73,
-        "c": 108.24,
-        "v": 1452700
-      },
       {
         "t": 1778803200,
         "o": 107.41,
@@ -18308,6 +18300,14 @@
         "l": 114.43,
         "c": 116.25,
         "v": 1686900
+      },
+      {
+        "t": 1781222400,
+        "o": 116.97,
+        "h": 117.95,
+        "l": 116.67,
+        "c": 117.33,
+        "v": 2212200
       }
     ]
   },
@@ -18315,10 +18315,10 @@
     "symbol": "MRK",
     "name": "Merck & Company, Inc.",
     "type": "STOCK",
-    "price": 119.05,
-    "change": -1.71,
-    "changePercent": -1.416,
-    "open": 121.5,
+    "price": 119.07,
+    "change": -1.69,
+    "changePercent": -1.3995,
+    "open": 121.51,
     "dayHigh": 121.8999,
     "dayLow": 118.83,
     "previousClose": 120.76,
@@ -18336,7 +18336,7 @@
     "divGrowth10Y": 6.2,
     "growthRate": 7.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 0.61,
@@ -18374,14 +18374,6 @@
     "return5Y": 72.78,
     "return10Y": 195.34,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 113.63,
-        "h": 113.9,
-        "l": 112.57,
-        "c": 113.41,
-        "v": 5284200
-      },
       {
         "t": 1778803200,
         "o": 113.9,
@@ -18533,6 +18525,14 @@
         "l": 119.95,
         "c": 120.76,
         "v": 13180300
+      },
+      {
+        "t": 1781222400,
+        "o": 121.5,
+        "h": 121.9,
+        "l": 118.83,
+        "c": 119.050003,
+        "v": 10926900
       }
     ]
   },
@@ -18540,10 +18540,10 @@
     "symbol": "BMO",
     "name": "Bank of Montreal",
     "type": "STOCK",
-    "price": 168.3,
-    "change": 1.7,
-    "changePercent": 1.0204,
-    "open": 167,
+    "price": 168.32,
+    "change": 1.72,
+    "changePercent": 1.0324,
+    "open": 167.01,
     "dayHigh": 169.35,
     "dayLow": 167,
     "previousClose": 166.6,
@@ -18561,7 +18561,7 @@
     "divGrowth10Y": 6.78,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -18578,14 +18578,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 150.52,
-        "h": 153.029999,
-        "l": 150.36,
-        "c": 152.97,
-        "v": 512500
-      },
       {
         "t": 1778803200,
         "o": 151.67999,
@@ -18737,6 +18729,14 @@
         "l": 163.78,
         "c": 166.60001,
         "v": 728200
+      },
+      {
+        "t": 1781222400,
+        "o": 167,
+        "h": 169.35001,
+        "l": 167,
+        "c": 168.3,
+        "v": 666400
       }
     ]
   },
@@ -18744,10 +18744,10 @@
     "symbol": "KO",
     "name": "Coca-Cola Company (The)",
     "type": "STOCK",
-    "price": 82.62,
-    "change": 0.09,
-    "changePercent": 0.1091,
-    "open": 82.71,
+    "price": 82.64,
+    "change": 0.11,
+    "changePercent": 0.1333,
+    "open": 82.72,
     "dayHigh": 82.89,
     "dayLow": 81.87,
     "previousClose": 82.53,
@@ -18765,7 +18765,7 @@
     "divGrowth10Y": 4.34,
     "growthRate": 2.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Staples",
     "industry": "Beverages - Non-Alcoholic",
     "debtToEquity": 1.7,
@@ -18803,14 +18803,6 @@
     "return5Y": 72.49,
     "return10Y": 148.29,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 80.73,
-        "h": 80.92,
-        "l": 79.91,
-        "c": 80.45,
-        "v": 10642000
-      },
       {
         "t": 1778803200,
         "o": 81.36,
@@ -18962,6 +18954,14 @@
         "l": 82.49,
         "c": 82.53,
         "v": 14264500
+      },
+      {
+        "t": 1781222400,
+        "o": 82.71,
+        "h": 82.89,
+        "l": 81.87,
+        "c": 82.62,
+        "v": 11747500
       }
     ]
   },
@@ -18969,10 +18969,10 @@
     "symbol": "MFG",
     "name": "Mizuho Financial Group, Inc.",
     "type": "STOCK",
-    "price": 9.68,
-    "change": 0.16,
-    "changePercent": 1.6807,
-    "open": 9.6,
+    "price": 9.69,
+    "change": 0.17,
+    "changePercent": 1.7857,
+    "open": 9.61,
     "dayHigh": 9.7,
     "dayLow": 9.53,
     "previousClose": 9.52,
@@ -18990,7 +18990,7 @@
     "divGrowth10Y": 9.28,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -19007,14 +19007,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 8.9,
-        "h": 8.95,
-        "l": 8.8,
-        "c": 8.86,
-        "v": 2638700
-      },
       {
         "t": 1778803200,
         "o": 8.59,
@@ -19166,6 +19158,14 @@
         "l": 9.24,
         "c": 9.52,
         "v": 4431900
+      },
+      {
+        "t": 1781222400,
+        "o": 9.6,
+        "h": 9.7,
+        "l": 9.53,
+        "c": 9.68,
+        "v": 4049500
       }
     ]
   },
@@ -19173,10 +19173,10 @@
     "symbol": "MA",
     "name": "Mastercard Incorporated",
     "type": "STOCK",
-    "price": 489.98,
-    "change": 3.47,
-    "changePercent": 0.7132,
-    "open": 488.88,
+    "price": 490,
+    "change": 3.49,
+    "changePercent": 0.7174,
+    "open": 488.89,
     "dayHigh": 492.37,
     "dayLow": 484.54,
     "previousClose": 486.51,
@@ -19194,7 +19194,7 @@
     "divGrowth10Y": 16.63,
     "growthRate": 13.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 2.06,
@@ -19232,14 +19232,6 @@
     "return5Y": 43.31,
     "return10Y": 461.26,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 491.28,
-        "h": 494.5,
-        "l": 488.01001,
-        "c": 489.94,
-        "v": 2584900
-      },
       {
         "t": 1778803200,
         "o": 493.5,
@@ -19391,6 +19383,14 @@
         "l": 484.39001,
         "c": 486.51001,
         "v": 3801000
+      },
+      {
+        "t": 1781222400,
+        "o": 488.88,
+        "h": 492.37,
+        "l": 484.54001,
+        "c": 489.98001,
+        "v": 3984200
       }
     ]
   },
@@ -19398,10 +19398,10 @@
     "symbol": "NVS",
     "name": "Novartis AG",
     "type": "STOCK",
-    "price": 153.07,
-    "change": -0.85,
-    "changePercent": -0.5522,
-    "open": 153.93,
+    "price": 153.09,
+    "change": -0.83,
+    "changePercent": -0.5392,
+    "open": 153.94,
     "dayHigh": 154.22,
     "dayLow": 152.85,
     "previousClose": 153.92,
@@ -19419,7 +19419,7 @@
     "divGrowth10Y": 5.72,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Healthcare",
     "industry": null,
     "debtToEquity": null,
@@ -19436,14 +19436,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 150.13,
-        "h": 150.56,
-        "l": 148.60001,
-        "c": 149.77,
-        "v": 1521800
-      },
       {
         "t": 1778803200,
         "o": 150.12,
@@ -19595,6 +19587,14 @@
         "l": 151.62,
         "c": 153.92,
         "v": 2128600
+      },
+      {
+        "t": 1781222400,
+        "o": 153.92999,
+        "h": 154.22,
+        "l": 152.85001,
+        "c": 153.070007,
+        "v": 1177800
       }
     ]
   },
@@ -19602,10 +19602,10 @@
     "symbol": "COP",
     "name": "ConocoPhillips",
     "type": "STOCK",
-    "price": 116.98,
-    "change": 1.62,
-    "changePercent": 1.4043,
-    "open": 114.25,
+    "price": 117,
+    "change": 1.64,
+    "changePercent": 1.4216,
+    "open": 114.26,
     "dayHigh": 118.51,
     "dayLow": 113.8,
     "previousClose": 115.36,
@@ -19623,7 +19623,7 @@
     "divGrowth10Y": 5.24,
     "growthRate": -5.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas E&P",
     "debtToEquity": 0.25,
@@ -19661,14 +19661,6 @@
     "return5Y": 155.34,
     "return10Y": 289.97,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 117.13,
-        "h": 119.52,
-        "l": 117.010002,
-        "c": 118.97,
-        "v": 5316400
-      },
       {
         "t": 1778803200,
         "o": 120.78,
@@ -19820,6 +19812,14 @@
         "l": 115.32,
         "c": 115.36,
         "v": 6704700
+      },
+      {
+        "t": 1781222400,
+        "o": 114.25,
+        "h": 118.51,
+        "l": 113.8,
+        "c": 116.98,
+        "v": 6613100
       }
     ]
   },
@@ -19827,10 +19827,10 @@
     "symbol": "HD",
     "name": "Home Depot, Inc. (The)",
     "type": "STOCK",
-    "price": 328.39,
-    "change": 2.38,
-    "changePercent": 0.73,
-    "open": 328.5,
+    "price": 328.41,
+    "change": 2.4,
+    "changePercent": 0.7362,
+    "open": 328.51,
     "dayHigh": 331.02,
     "dayLow": 325.29,
     "previousClose": 326.01,
@@ -19848,7 +19848,7 @@
     "divGrowth10Y": 14.14,
     "growthRate": 4.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Home Improvement Retail",
     "debtToEquity": 999,
@@ -19886,14 +19886,6 @@
     "return5Y": 5.91,
     "return10Y": 188.67,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 305.059998,
-        "h": 305.98001,
-        "l": 301.42001,
-        "c": 304.35001,
-        "v": 5072600
-      },
       {
         "t": 1778803200,
         "o": 300.31,
@@ -20045,6 +20037,14 @@
         "l": 318.54999,
         "c": 326.01001,
         "v": 4656600
+      },
+      {
+        "t": 1781222400,
+        "o": 328.5,
+        "h": 331.019989,
+        "l": 325.29001,
+        "c": 328.39001,
+        "v": 3648200
       }
     ]
   },
@@ -20052,10 +20052,10 @@
     "symbol": "TDG",
     "name": "Transdigm Group Incorporated",
     "type": "STOCK",
-    "price": 1256.05,
-    "change": -1.54,
-    "changePercent": -0.1225,
-    "open": 1260.96,
+    "price": 1256.07,
+    "change": -1.52,
+    "changePercent": -0.1209,
+    "open": 1260.97,
     "dayHigh": 1265.43,
     "dayLow": 1231.01,
     "previousClose": 1257.59,
@@ -20073,7 +20073,7 @@
     "divGrowth10Y": 14.13,
     "growthRate": 11.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 999,
@@ -20111,14 +20111,6 @@
     "return5Y": 138.5,
     "return10Y": 660.11,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1204.65002,
-        "h": 1210,
-        "l": 1170.60999,
-        "c": 1178.81995,
-        "v": 333500
-      },
       {
         "t": 1778803200,
         "o": 1174.70996,
@@ -20270,6 +20262,14 @@
         "l": 1205,
         "c": 1257.58997,
         "v": 268700
+      },
+      {
+        "t": 1781222400,
+        "o": 1260.95996,
+        "h": 1265.43005,
+        "l": 1231.01001,
+        "c": 1256.050049,
+        "v": 245800
       }
     ]
   },
@@ -20277,11 +20277,11 @@
     "symbol": "IBM",
     "name": "International Business Machines",
     "type": "STOCK",
-    "price": 272.24,
-    "change": -2.61,
-    "changePercent": -0.9496,
-    "open": 278.94,
-    "dayHigh": 278.94,
+    "price": 272.26,
+    "change": -2.59,
+    "changePercent": -0.9423,
+    "open": 278.95,
+    "dayHigh": 278.95,
     "dayLow": 267.68,
     "previousClose": 274.85,
     "high52w": 332.46,
@@ -20298,7 +20298,7 @@
     "divGrowth10Y": 2.42,
     "growthRate": 1.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Information Technology Services",
     "debtToEquity": 0.74,
@@ -20336,14 +20336,6 @@
     "return5Y": 95.54,
     "return10Y": 139.45,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 215.55,
-        "h": 220.96001,
-        "l": 215,
-        "c": 218.37,
-        "v": 5906200
-      },
       {
         "t": 1778803200,
         "o": 218.2,
@@ -20495,6 +20487,14 @@
         "l": 266.5,
         "c": 274.85001,
         "v": 7558300
+      },
+      {
+        "t": 1781222400,
+        "o": 278.94,
+        "h": 278.94,
+        "l": 267.67999,
+        "c": 272.23999,
+        "v": 5741900
       }
     ]
   },
@@ -20502,10 +20502,10 @@
     "symbol": "AMGN",
     "name": "Amgen Inc.",
     "type": "STOCK",
-    "price": 355.2,
-    "change": 1.14,
-    "changePercent": 0.322,
-    "open": 357.395,
+    "price": 355.22,
+    "change": 1.16,
+    "changePercent": 0.3276,
+    "open": 357.405,
     "dayHigh": 358.165,
     "dayLow": 351.96,
     "previousClose": 354.06,
@@ -20523,7 +20523,7 @@
     "divGrowth10Y": 10.59,
     "growthRate": -2.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 5.05,
@@ -20561,14 +20561,6 @@
     "return5Y": 50.45,
     "return10Y": 191.18,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 336.26001,
-        "h": 337.94,
-        "l": 333.47,
-        "c": 336.23001,
-        "v": 2041600
-      },
       {
         "t": 1778803200,
         "o": 336.23001,
@@ -20720,6 +20712,14 @@
         "l": 341.45999,
         "c": 354.059998,
         "v": 4727100
+      },
+      {
+        "t": 1781222400,
+        "o": 357.39999,
+        "h": 358.17001,
+        "l": 351.95999,
+        "c": 355.20001,
+        "v": 2730100
       }
     ]
   },
@@ -20727,10 +20727,10 @@
     "symbol": "UBS",
     "name": "UBS Group AG",
     "type": "STOCK",
-    "price": 48.97,
-    "change": 0.78,
-    "changePercent": 1.6186,
-    "open": 48.32,
+    "price": 48.96,
+    "change": 0.77,
+    "changePercent": 1.5978,
+    "open": 48.33,
     "dayHigh": 48.975,
     "dayLow": 48.16,
     "previousClose": 48.19,
@@ -20748,7 +20748,7 @@
     "divGrowth10Y": -7.73,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -20765,14 +20765,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 46.59,
-        "h": 46.71,
-        "l": 46.18,
-        "c": 46.35,
-        "v": 1722400
-      },
       {
         "t": 1778803200,
         "o": 45.66,
@@ -20924,6 +20916,14 @@
         "l": 46.78,
         "c": 48.19,
         "v": 1893600
+      },
+      {
+        "t": 1781222400,
+        "o": 48.32,
+        "h": 48.975,
+        "l": 48.16,
+        "c": 48.97,
+        "v": 2746900
       }
     ]
   },
@@ -20931,10 +20931,10 @@
     "symbol": "NEE",
     "name": "NextEra Energy, Inc.",
     "type": "STOCK",
-    "price": 85.99,
-    "change": 1.15,
-    "changePercent": 1.3555,
-    "open": 85.185,
+    "price": 86.01,
+    "change": 1.17,
+    "changePercent": 1.3791,
+    "open": 85.19500000000001,
     "dayHigh": 86.02,
     "dayLow": 84.88,
     "previousClose": 84.84,
@@ -20952,7 +20952,7 @@
     "divGrowth10Y": 11.32,
     "growthRate": 9.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
     "debtToEquity": 1.01,
@@ -20990,14 +20990,6 @@
     "return5Y": 40.92,
     "return10Y": 283.66,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 94.78,
-        "h": 95.72,
-        "l": 94.21,
-        "c": 95.68,
-        "v": 5438200
-      },
       {
         "t": 1778803200,
         "o": 94.66,
@@ -21149,6 +21141,14 @@
         "l": 84.73,
         "c": 84.84,
         "v": 8639100
+      },
+      {
+        "t": 1781222400,
+        "o": 85.19,
+        "h": 86.019997,
+        "l": 84.88,
+        "c": 85.99,
+        "v": 9971900
       }
     ]
   },
@@ -21156,10 +21156,10 @@
     "symbol": "RTX",
     "name": "RTX Corporation",
     "type": "STOCK",
-    "price": 183.53,
-    "change": -0.68,
-    "changePercent": -0.3691,
-    "open": 184.69,
+    "price": 183.55,
+    "change": -0.66,
+    "changePercent": -0.3583,
+    "open": 184.7,
     "dayHigh": 184.865,
     "dayLow": 181.87,
     "previousClose": 184.21,
@@ -21177,7 +21177,7 @@
     "divGrowth10Y": 0.71,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 0.77,
@@ -21215,14 +21215,6 @@
     "return5Y": 127.33,
     "return10Y": 346.54,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 178.11,
-        "h": 178.89999,
-        "l": 175.3,
-        "c": 175.67999,
-        "v": 6421600
-      },
       {
         "t": 1778803200,
         "o": 175.52,
@@ -21374,6 +21366,14 @@
         "l": 178.020004,
         "c": 184.21001,
         "v": 6492700
+      },
+      {
+        "t": 1781222400,
+        "o": 184.69,
+        "h": 184.87,
+        "l": 181.87,
+        "c": 183.53,
+        "v": 3347900
       }
     ]
   },
@@ -21381,10 +21381,10 @@
     "symbol": "PLD",
     "name": "Prologis, Inc.",
     "type": "STOCK",
-    "price": 148.74,
-    "change": 1.55,
-    "changePercent": 1.0531,
-    "open": 148.41,
+    "price": 148.76,
+    "change": 1.57,
+    "changePercent": 1.0666,
+    "open": 148.42,
     "dayHigh": 149.7,
     "dayLow": 147.849,
     "previousClose": 147.19,
@@ -21402,7 +21402,7 @@
     "divGrowth10Y": 9.76,
     "growthRate": 4.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Real Estate",
     "industry": "REIT - Industrial",
     "debtToEquity": 0.55,
@@ -21440,14 +21440,6 @@
     "return5Y": 43.62,
     "return10Y": 298.38,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 142.53,
-        "h": 143.28,
-        "l": 141.85001,
-        "c": 142.66,
-        "v": 2484000
-      },
       {
         "t": 1778803200,
         "o": 141.14,
@@ -21599,6 +21591,14 @@
         "l": 145.71001,
         "c": 147.19,
         "v": 3493700
+      },
+      {
+        "t": 1781222400,
+        "o": 148.41,
+        "h": 149.7,
+        "l": 147.85001,
+        "c": 148.74001,
+        "v": 2452000
       }
     ]
   },
@@ -21606,10 +21606,10 @@
     "symbol": "QCOM",
     "name": "QUALCOMM Incorporated",
     "type": "STOCK",
-    "price": 211.72,
-    "change": 8.76,
-    "changePercent": 4.3161,
-    "open": 201.85,
+    "price": 211.74,
+    "change": 8.78,
+    "changePercent": 4.326,
+    "open": 201.85999999999999,
     "dayHigh": 215.01,
     "dayLow": 200.1,
     "previousClose": 202.96,
@@ -21627,7 +21627,7 @@
     "divGrowth10Y": 6.18,
     "growthRate": 5.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.59,
@@ -21665,14 +21665,6 @@
     "return5Y": 74.98,
     "return10Y": 417,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 208.50999,
-        "h": 209.53,
-        "l": 199.66,
-        "c": 200.080002,
-        "v": 24883900
-      },
       {
         "t": 1778803200,
         "o": 201.64999,
@@ -21824,6 +21816,14 @@
         "l": 190.75,
         "c": 202.96001,
         "v": 18933100
+      },
+      {
+        "t": 1781222400,
+        "o": 201.85001,
+        "h": 215.0099945,
+        "l": 200.10001,
+        "c": 211.72,
+        "v": 14123700
       }
     ]
   },
@@ -21831,10 +21831,10 @@
     "symbol": "GILD",
     "name": "Gilead Sciences, Inc.",
     "type": "STOCK",
-    "price": 125.59,
-    "change": -0.28,
-    "changePercent": -0.2225,
-    "open": 126.13,
+    "price": 125.61,
+    "change": -0.26,
+    "changePercent": -0.2066,
+    "open": 126.14,
     "dayHigh": 126.505,
     "dayLow": 124.29,
     "previousClose": 125.87,
@@ -21852,7 +21852,7 @@
     "divGrowth10Y": 6.23,
     "growthRate": 4.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 1.02,
@@ -21890,14 +21890,6 @@
     "return5Y": 126.19,
     "return10Y": 123.06,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 133.77,
-        "h": 134.64999,
-        "l": 131.81,
-        "c": 132.059998,
-        "v": 4533200
-      },
       {
         "t": 1778803200,
         "o": 132.27,
@@ -22049,6 +22041,14 @@
         "l": 121.79,
         "c": 125.87,
         "v": 8665600
+      },
+      {
+        "t": 1781222400,
+        "o": 126.13,
+        "h": 126.51,
+        "l": 124.29,
+        "c": 125.59,
+        "v": 5214600
       }
     ]
   },
@@ -22056,10 +22056,10 @@
     "symbol": "DE",
     "name": "Deere & Company",
     "type": "STOCK",
-    "price": 577.48,
-    "change": 8.84,
-    "changePercent": 1.5546,
-    "open": 569.54,
+    "price": 577.5,
+    "change": 8.86,
+    "changePercent": 1.5581,
+    "open": 569.55,
     "dayHigh": 578.525,
     "dayLow": 567.25,
     "previousClose": 568.64,
@@ -22077,7 +22077,7 @@
     "divGrowth10Y": 10.44,
     "growthRate": -24.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Farm & Heavy Construction Machinery",
     "debtToEquity": 3.62,
@@ -22115,14 +22115,6 @@
     "return5Y": 57.17,
     "return10Y": 697.67,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 580.17999,
-        "h": 587.15002,
-        "l": 574,
-        "c": 574.64001,
-        "v": 1056300
-      },
       {
         "t": 1778803200,
         "o": 572.039978,
@@ -22274,6 +22266,14 @@
         "l": 556.62,
         "c": 568.64001,
         "v": 1266000
+      },
+      {
+        "t": 1781222400,
+        "o": 569.53998,
+        "h": 578.53003,
+        "l": 567.25,
+        "c": 577.47998,
+        "v": 854100
       }
     ]
   },
@@ -22281,10 +22281,10 @@
     "symbol": "SO",
     "name": "Southern Company (The)",
     "type": "STOCK",
-    "price": 94,
-    "change": 0.73,
-    "changePercent": 0.7827,
-    "open": 93.59,
+    "price": 94.02,
+    "change": 0.75,
+    "changePercent": 0.8041,
+    "open": 93.60000000000001,
     "dayHigh": 94.68,
     "dayLow": 93.23,
     "previousClose": 93.27,
@@ -22302,7 +22302,7 @@
     "divGrowth10Y": 3.14,
     "growthRate": 8.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
     "debtToEquity": 1.42,
@@ -22340,14 +22340,6 @@
     "return5Y": 73.47,
     "return10Y": 186.37,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 93.11,
-        "h": 93.69,
-        "l": 92.81,
-        "c": 93.68,
-        "v": 4786900
-      },
       {
         "t": 1778803200,
         "o": 93.59,
@@ -22499,6 +22491,14 @@
         "l": 93.21,
         "c": 93.27,
         "v": 4756000
+      },
+      {
+        "t": 1781222400,
+        "o": 93.59,
+        "h": 94.68,
+        "l": 93.23,
+        "c": 94,
+        "v": 8748200
       }
     ]
   },
@@ -22506,10 +22506,10 @@
     "symbol": "LIN",
     "name": "Linde plc",
     "type": "STOCK",
-    "price": 523.57,
-    "change": 8.13,
-    "changePercent": 1.5773,
-    "open": 518.4,
+    "price": 523.59,
+    "change": 8.15,
+    "changePercent": 1.5812,
+    "open": 518.41,
     "dayHigh": 525.82,
     "dayLow": 517.1901,
     "previousClose": 515.44,
@@ -22527,7 +22527,7 @@
     "divGrowth10Y": 7.78,
     "growthRate": 2.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Materials",
     "industry": "Specialty Chemicals",
     "debtToEquity": 0.33,
@@ -22565,14 +22565,6 @@
     "return5Y": 81.76,
     "return10Y": 440.32,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 514.049988,
-        "h": 514.78998,
-        "l": 508.29001,
-        "c": 511.64999,
-        "v": 1969000
-      },
       {
         "t": 1778803200,
         "o": 516.77002,
@@ -22724,6 +22716,14 @@
         "l": 512,
         "c": 515.44,
         "v": 2259500
+      },
+      {
+        "t": 1781222400,
+        "o": 518.40002,
+        "h": 525.82001,
+        "l": 517.19,
+        "c": 523.57001,
+        "v": 2191200
       }
     ]
   },
@@ -22731,10 +22731,10 @@
     "symbol": "MCD",
     "name": "McDonald's Corporation",
     "type": "STOCK",
-    "price": 284.81,
-    "change": 0.04,
-    "changePercent": 0.014,
-    "open": 286,
+    "price": 284.83,
+    "change": 0.06,
+    "changePercent": 0.0211,
+    "open": 286.01,
     "dayHigh": 287.6628,
     "dayLow": 284.027,
     "previousClose": 284.77,
@@ -22752,7 +22752,7 @@
     "divGrowth10Y": 7.63,
     "growthRate": 2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Restaurants",
     "debtToEquity": 999,
@@ -22790,14 +22790,6 @@
     "return5Y": 36.6,
     "return10Y": 181.69,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 277.79999,
-        "h": 277.79999,
-        "l": 274.29999,
-        "c": 274.97,
-        "v": 3428200
-      },
       {
         "t": 1778803200,
         "o": 276,
@@ -22949,6 +22941,14 @@
         "l": 281.040009,
         "c": 284.76999,
         "v": 4565400
+      },
+      {
+        "t": 1781222400,
+        "o": 286,
+        "h": 287.66,
+        "l": 284.029999,
+        "c": 284.81,
+        "v": 4026900
       }
     ]
   },
@@ -22956,10 +22956,10 @@
     "symbol": "NWG",
     "name": "NatWest Group plc",
     "type": "STOCK",
-    "price": 16.58,
-    "change": 0.35,
-    "changePercent": 2.1565,
-    "open": 16.42,
+    "price": 16.57,
+    "change": 0.34,
+    "changePercent": 2.0949,
+    "open": 16.430000000000003,
     "dayHigh": 16.58,
     "dayLow": 16.325,
     "previousClose": 16.23,
@@ -22977,7 +22977,7 @@
     "divGrowth10Y": 31.46,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -22994,14 +22994,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 15.33,
-        "h": 15.42,
-        "l": 15.12,
-        "c": 15.12,
-        "v": 3367100
-      },
       {
         "t": 1778803200,
         "o": 14.99,
@@ -23153,6 +23145,14 @@
         "l": 15.6,
         "c": 16.23,
         "v": 6919300
+      },
+      {
+        "t": 1781222400,
+        "o": 16.42,
+        "h": 16.58,
+        "l": 16.33,
+        "c": 16.58,
+        "v": 3631100
       }
     ]
   },
@@ -23160,10 +23160,10 @@
     "symbol": "BLK",
     "name": "BlackRock, Inc.",
     "type": "STOCK",
-    "price": 1032,
-    "change": 15.42,
-    "changePercent": 1.5169,
-    "open": 1028.38,
+    "price": 1032.02,
+    "change": 15.44,
+    "changePercent": 1.5188,
+    "open": 1028.39,
     "dayHigh": 1041.45,
     "dayLow": 1022,
     "previousClose": 1016.58,
@@ -23181,7 +23181,7 @@
     "divGrowth10Y": 9.24,
     "growthRate": 11.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Asset Management",
     "debtToEquity": 0.41,
@@ -23219,14 +23219,6 @@
     "return5Y": 44.07,
     "return10Y": 298.75,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1100,
-        "h": 1111.089966,
-        "l": 1096.41003,
-        "c": 1104.030029,
-        "v": 502200
-      },
       {
         "t": 1778803200,
         "o": 1094.52002,
@@ -23378,6 +23370,14 @@
         "l": 1000.57001,
         "c": 1016.58002,
         "v": 842000
+      },
+      {
+        "t": 1781222400,
+        "o": 1028.38,
+        "h": 1041.44995,
+        "l": 1022,
+        "c": 1032,
+        "v": 549400
       }
     ]
   },
@@ -23385,10 +23385,10 @@
     "symbol": "DUK",
     "name": "Duke Energy Corporation (Holdin",
     "type": "STOCK",
-    "price": 124.97,
-    "change": 0.78,
-    "changePercent": 0.6281,
-    "open": 124.69,
+    "price": 124.99,
+    "change": 0.8,
+    "changePercent": 0.6442,
+    "open": 124.7,
     "dayHigh": 125.49,
     "dayLow": 124.23,
     "previousClose": 124.19,
@@ -23406,7 +23406,7 @@
     "divGrowth10Y": 2.59,
     "growthRate": 5.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
     "debtToEquity": 1.11,
@@ -23444,14 +23444,6 @@
     "return5Y": 45.45,
     "return10Y": 134.59,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 123.9,
-        "h": 124.4,
-        "l": 123.41,
-        "c": 124.31,
-        "v": 2483100
-      },
       {
         "t": 1778803200,
         "o": 122.95,
@@ -23603,6 +23595,14 @@
         "l": 124.080002,
         "c": 124.19,
         "v": 3286600
+      },
+      {
+        "t": 1781222400,
+        "o": 124.69,
+        "h": 125.49,
+        "l": 124.23,
+        "c": 124.97,
+        "v": 2450300
       }
     ]
   },
@@ -23610,10 +23610,10 @@
     "symbol": "ITUB",
     "name": "Itaú Unibanco Holding S.A.",
     "type": "STOCK",
-    "price": 7.99,
-    "change": 0.08,
-    "changePercent": 1.0114,
-    "open": 8.01,
+    "price": 8,
+    "change": 0.09,
+    "changePercent": 1.1378,
+    "open": 8.02,
     "dayHigh": 8.08,
     "dayLow": 7.94,
     "previousClose": 7.91,
@@ -23631,7 +23631,7 @@
     "divGrowth10Y": 12.96,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -23648,14 +23648,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 8.01,
-        "h": 8.14,
-        "l": 7.99,
-        "c": 8.1,
-        "v": 21684600
-      },
       {
         "t": 1778803200,
         "o": 7.9,
@@ -23807,6 +23799,14 @@
         "l": 7.59,
         "c": 7.91,
         "v": 33977200
+      },
+      {
+        "t": 1781222400,
+        "o": 8.01,
+        "h": 8.08,
+        "l": 7.94,
+        "c": 7.99,
+        "v": 30594300
       }
     ]
   },
@@ -23814,10 +23814,10 @@
     "symbol": "GSK",
     "name": "GSK plc",
     "type": "STOCK",
-    "price": 53.04,
-    "change": 0.18,
-    "changePercent": 0.3405,
-    "open": 53.13,
+    "price": 53.06,
+    "change": 0.2,
+    "changePercent": 0.3784,
+    "open": 53.14,
     "dayHigh": 53.45,
     "dayLow": 52.89,
     "previousClose": 52.86,
@@ -23835,7 +23835,7 @@
     "divGrowth10Y": -6.69,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Healthcare",
     "industry": null,
     "debtToEquity": null,
@@ -23852,14 +23852,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 51.24,
-        "h": 51.31,
-        "l": 50.79,
-        "c": 50.96,
-        "v": 3536000
-      },
       {
         "t": 1778803200,
         "o": 50.15,
@@ -24011,6 +24003,14 @@
         "l": 52.080002,
         "c": 52.86,
         "v": 5018400
+      },
+      {
+        "t": 1781222400,
+        "o": 53.13,
+        "h": 53.45,
+        "l": 52.89,
+        "c": 53.040001,
+        "v": 3805900
       }
     ]
   },
@@ -24018,10 +24018,10 @@
     "symbol": "UL",
     "name": "Unilever PLC",
     "type": "STOCK",
-    "price": 58.92,
-    "change": 0.6,
-    "changePercent": 1.0288,
-    "open": 58.92,
+    "price": 58.94,
+    "change": 0.62,
+    "changePercent": 1.0631,
+    "open": 58.93,
     "dayHigh": 59.125,
     "dayLow": 58.54,
     "previousClose": 58.32,
@@ -24039,7 +24039,7 @@
     "divGrowth10Y": 3.92,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Staples",
     "industry": null,
     "debtToEquity": null,
@@ -24056,14 +24056,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 58,
-        "h": 58.23,
-        "l": 57.22,
-        "c": 57.34,
-        "v": 3275100
-      },
       {
         "t": 1778803200,
         "o": 56.94,
@@ -24215,6 +24207,14 @@
         "l": 58.049999,
         "c": 58.32,
         "v": 4126500
+      },
+      {
+        "t": 1781222400,
+        "o": 58.92,
+        "h": 59.13,
+        "l": 58.54,
+        "c": 58.92,
+        "v": 4002600
       }
     ]
   },
@@ -24222,10 +24222,10 @@
     "symbol": "LMT",
     "name": "Lockheed Martin Corporation",
     "type": "STOCK",
-    "price": 540.33,
-    "change": -8.35,
-    "changePercent": -1.5218,
-    "open": 547,
+    "price": 540.35,
+    "change": -8.33,
+    "changePercent": -1.5182,
+    "open": 547.01,
     "dayHigh": 550.8616,
     "dayLow": 538.31,
     "previousClose": 548.68,
@@ -24243,7 +24243,7 @@
     "divGrowth10Y": 7.78,
     "growthRate": 5.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 2.18,
@@ -24281,14 +24281,6 @@
     "return5Y": 54.58,
     "return10Y": 185.21,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 520.73999,
-        "h": 521.42999,
-        "l": 515.25,
-        "c": 520.40997,
-        "v": 856600
-      },
       {
         "t": 1778803200,
         "o": 521.35999,
@@ -24440,6 +24432,14 @@
         "l": 528.26001,
         "c": 548.67999,
         "v": 1378100
+      },
+      {
+        "t": 1781222400,
+        "o": 547,
+        "h": 550.85999,
+        "l": 538.31,
+        "c": 540.33002,
+        "v": 1028800
       }
     ]
   },
@@ -24447,10 +24447,10 @@
     "symbol": "EQIX",
     "name": "Equinix, Inc.",
     "type": "STOCK",
-    "price": 1055.85,
-    "change": 12.67,
-    "changePercent": 1.2146,
-    "open": 1048.78,
+    "price": 1055.87,
+    "change": 12.69,
+    "changePercent": 1.2165,
+    "open": 1048.79,
     "dayHigh": 1055.88,
     "dayLow": 1043.75,
     "previousClose": 1043.18,
@@ -24468,7 +24468,7 @@
     "divGrowth10Y": 1,
     "growthRate": 5.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Real Estate",
     "industry": "REIT - Specialty",
     "debtToEquity": 1.58,
@@ -24506,14 +24506,6 @@
     "return5Y": 63.82,
     "return10Y": 276.63,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 1077.28003,
-        "h": 1085.76001,
-        "l": 1072.55005,
-        "c": 1079.68005,
-        "v": 479600
-      },
       {
         "t": 1778803200,
         "o": 1077.43994,
@@ -24665,6 +24657,14 @@
         "l": 1032.079956,
         "c": 1043.18005,
         "v": 584700
+      },
+      {
+        "t": 1781222400,
+        "o": 1048.78003,
+        "h": 1055.88,
+        "l": 1043.75,
+        "c": 1055.84998,
+        "v": 500200
       }
     ]
   },
@@ -24672,10 +24672,10 @@
     "symbol": "COF",
     "name": "Capital One Financial Corporati",
     "type": "STOCK",
-    "price": 184.73,
-    "change": 2.69,
-    "changePercent": 1.4777,
-    "open": 184.03,
+    "price": 184.75,
+    "change": 2.71,
+    "changePercent": 1.4887,
+    "open": 184.04,
     "dayHigh": 185.5,
     "dayLow": 181.7,
     "previousClose": 182.04,
@@ -24693,7 +24693,7 @@
     "divGrowth10Y": 6.49,
     "growthRate": 6.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 1.01,
@@ -24731,14 +24731,6 @@
     "return5Y": 27.77,
     "return10Y": 223.12,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 183.16,
-        "h": 186.39999,
-        "l": 182,
-        "c": 185.78999,
-        "v": 3547700
-      },
       {
         "t": 1778803200,
         "o": 185.67999,
@@ -24890,6 +24882,14 @@
         "l": 174.24001,
         "c": 182.039993,
         "v": 6043700
+      },
+      {
+        "t": 1781222400,
+        "o": 184.029999,
+        "h": 185.5,
+        "l": 181.7,
+        "c": 184.73,
+        "v": 4172100
       }
     ]
   },
@@ -24897,10 +24897,10 @@
     "symbol": "UNP",
     "name": "Union Pacific Corporation",
     "type": "STOCK",
-    "price": 272.7,
-    "change": 4.42,
-    "changePercent": 1.6475,
-    "open": 269.97,
+    "price": 272.72,
+    "change": 4.44,
+    "changePercent": 1.655,
+    "open": 269.98,
     "dayHigh": 273.74,
     "dayLow": 267.75,
     "previousClose": 268.28,
@@ -24918,7 +24918,7 @@
     "divGrowth10Y": 9.64,
     "growthRate": -0.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Railroads",
     "debtToEquity": 1.88,
@@ -24956,14 +24956,6 @@
     "return5Y": 36.84,
     "return10Y": 317.51,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 265.37,
-        "h": 269.42999,
-        "l": 263.67999,
-        "c": 269.34,
-        "v": 3947000
-      },
       {
         "t": 1778803200,
         "o": 269,
@@ -25115,6 +25107,14 @@
         "l": 264.56,
         "c": 268.28,
         "v": 2908500
+      },
+      {
+        "t": 1781222400,
+        "o": 269.97,
+        "h": 273.73999,
+        "l": 267.75,
+        "c": 272.70001,
+        "v": 1927100
       }
     ]
   },
@@ -25122,10 +25122,10 @@
     "symbol": "TMUS",
     "name": "T-Mobile US, Inc.",
     "type": "STOCK",
-    "price": 189.1,
-    "change": 3.28,
-    "changePercent": 1.7651,
-    "open": 186.57,
+    "price": 189.12,
+    "change": 3.3,
+    "changePercent": 1.7759,
+    "open": 186.57999999999998,
     "dayHigh": 189.64,
     "dayLow": 184.3,
     "previousClose": 185.82,
@@ -25143,7 +25143,7 @@
     "divGrowth10Y": null,
     "growthRate": 4.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Communication Services",
     "industry": "Telecom Services",
     "debtToEquity": 1.52,
@@ -25181,14 +25181,6 @@
     "return5Y": 41.43,
     "return10Y": 387.86,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 191.050003,
-        "h": 191.55,
-        "l": 187.5,
-        "c": 188.19,
-        "v": 5650300
-      },
       {
         "t": 1778803200,
         "o": 190.77,
@@ -25340,6 +25332,14 @@
         "l": 183.56,
         "c": 185.82001,
         "v": 7188900
+      },
+      {
+        "t": 1781222400,
+        "o": 186.57001,
+        "h": 189.64,
+        "l": 184.3,
+        "c": 189.10001,
+        "v": 4237100
       }
     ]
   },
@@ -25347,10 +25347,10 @@
     "symbol": "LOW",
     "name": "Lowe's Companies, Inc.",
     "type": "STOCK",
-    "price": 220.78,
-    "change": -0.27,
-    "changePercent": -0.1221,
-    "open": 222.77,
+    "price": 220.8,
+    "change": -0.25,
+    "changePercent": -0.1131,
+    "open": 222.78,
     "dayHigh": 223.56,
     "dayLow": 219.28,
     "previousClose": 221.05,
@@ -25368,7 +25368,7 @@
     "divGrowth10Y": 15.67,
     "growthRate": 1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Home Improvement Retail",
     "debtToEquity": 999,
@@ -25406,14 +25406,6 @@
     "return5Y": 23.47,
     "return10Y": 245.09,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 222.78,
-        "h": 224.22,
-        "l": 221.23,
-        "c": 223.61,
-        "v": 2142200
-      },
       {
         "t": 1778803200,
         "o": 222.31,
@@ -25565,6 +25557,14 @@
         "l": 215.7,
         "c": 221.050003,
         "v": 2705300
+      },
+      {
+        "t": 1781222400,
+        "o": 222.77,
+        "h": 223.56,
+        "l": 219.28,
+        "c": 220.78,
+        "v": 2434300
       }
     ]
   },
@@ -25572,10 +25572,10 @@
     "symbol": "SCHW",
     "name": "Charles Schwab Corporation (The",
     "type": "STOCK",
-    "price": 91.1,
-    "change": 2.4,
-    "changePercent": 2.7057,
-    "open": 89.53,
+    "price": 91.12,
+    "change": 2.42,
+    "changePercent": 2.7283,
+    "open": 89.54,
     "dayHigh": 92.21,
     "dayLow": 89.25,
     "previousClose": 88.7,
@@ -25593,7 +25593,7 @@
     "divGrowth10Y": 16.79,
     "growthRate": -9.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Capital Markets",
     "debtToEquity": 0.98,
@@ -25631,14 +25631,6 @@
     "return5Y": 35.24,
     "return10Y": 275.92,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 91.65,
-        "h": 92.17,
-        "l": 89.13,
-        "c": 89.44,
-        "v": 14178800
-      },
       {
         "t": 1778803200,
         "o": 90.48,
@@ -25790,6 +25782,14 @@
         "l": 88.54,
         "c": 88.7,
         "v": 11380700
+      },
+      {
+        "t": 1781222400,
+        "o": 89.53,
+        "h": 92.21,
+        "l": 89.25,
+        "c": 91.099998,
+        "v": 11397700
       }
     ]
   },
@@ -25797,10 +25797,10 @@
     "symbol": "CVS",
     "name": "CVS Health Corporation",
     "type": "STOCK",
-    "price": 101.96,
-    "change": 1.48,
-    "changePercent": 1.4729,
-    "open": 100.89,
+    "price": 101.98,
+    "change": 1.5,
+    "changePercent": 1.4928,
+    "open": 100.9,
     "dayHigh": 102.77,
     "dayLow": 100.0086,
     "previousClose": 100.48,
@@ -25818,7 +25818,7 @@
     "divGrowth10Y": 5.55,
     "growthRate": 4.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Healthcare Plans",
     "debtToEquity": 0.85,
@@ -25856,14 +25856,6 @@
     "return5Y": 33.88,
     "return10Y": 27.68,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 98.32,
-        "h": 98.43,
-        "l": 96.58,
-        "c": 97.15,
-        "v": 9299200
-      },
       {
         "t": 1778803200,
         "o": 97.5,
@@ -26015,6 +26007,14 @@
         "l": 97.099998,
         "c": 100.48,
         "v": 14115900
+      },
+      {
+        "t": 1781222400,
+        "o": 100.89,
+        "h": 102.77,
+        "l": 100.010002,
+        "c": 101.96,
+        "v": 11177900
       }
     ]
   },
@@ -26022,10 +26022,10 @@
     "symbol": "TM",
     "name": "Toyota Motor Corporation",
     "type": "STOCK",
-    "price": 174.95,
-    "change": 0,
-    "changePercent": 0,
-    "open": 174.79,
+    "price": 174.97,
+    "change": 0.02,
+    "changePercent": 0.0114,
+    "open": 174.79999999999998,
     "dayHigh": 175.755,
     "dayLow": 173.98,
     "previousClose": 174.95,
@@ -26043,7 +26043,7 @@
     "divGrowth10Y": 5.7,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": null,
     "debtToEquity": null,
@@ -26060,14 +26060,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 189.83,
-        "h": 191.41,
-        "l": 189.7,
-        "c": 190.5,
-        "v": 399800
-      },
       {
         "t": 1778803200,
         "o": 193.81,
@@ -26219,6 +26211,14 @@
         "l": 171.17,
         "c": 174.95,
         "v": 656600
+      },
+      {
+        "t": 1781222400,
+        "o": 174.78999,
+        "h": 175.75999,
+        "l": 173.98,
+        "c": 174.95,
+        "v": 539900
       }
     ]
   },
@@ -26226,10 +26226,10 @@
     "symbol": "MPLX",
     "name": "MPLX LP",
     "type": "STOCK",
-    "price": 56.87,
-    "change": 0.38,
-    "changePercent": 0.6727,
-    "open": 56.31,
+    "price": 56.89,
+    "change": 0.4,
+    "changePercent": 0.7081,
+    "open": 56.32,
     "dayHigh": 57.68,
     "dayLow": 56.28,
     "previousClose": 56.49,
@@ -26247,7 +26247,7 @@
     "divGrowth10Y": 8.13,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -26264,14 +26264,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 54.61,
-        "h": 55.6,
-        "l": 54.61,
-        "c": 55.57,
-        "v": 5007800
-      },
       {
         "t": 1778803200,
         "o": 55.77,
@@ -26423,6 +26415,14 @@
         "l": 56.12,
         "c": 56.49,
         "v": 1426400
+      },
+      {
+        "t": 1781222400,
+        "o": 56.31,
+        "h": 57.68,
+        "l": 56.28,
+        "c": 56.87,
+        "v": 1768600
       }
     ]
   },
@@ -26430,10 +26430,10 @@
     "symbol": "CB",
     "name": "Chubb Limited",
     "type": "STOCK",
-    "price": 328.14,
-    "change": 0.21,
-    "changePercent": 0.064,
-    "open": 325.62,
+    "price": 328.16,
+    "change": 0.23,
+    "changePercent": 0.0701,
+    "open": 325.63,
     "dayHigh": 328.645,
     "dayLow": 319.71,
     "previousClose": 327.93,
@@ -26451,7 +26451,7 @@
     "divGrowth10Y": 3.77,
     "growthRate": 15.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Insurance - Property & Casualty",
     "debtToEquity": 0.22,
@@ -26489,14 +26489,6 @@
     "return5Y": 111.46,
     "return10Y": 219.95,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 317.82999,
-        "h": 320.31,
-        "l": 317.5,
-        "c": 320.089996,
-        "v": 969700
-      },
       {
         "t": 1778803200,
         "o": 322.32999,
@@ -26648,6 +26640,14 @@
         "l": 327.67999,
         "c": 327.92999,
         "v": 1351100
+      },
+      {
+        "t": 1781222400,
+        "o": 325.62,
+        "h": 328.64999,
+        "l": 319.70999,
+        "c": 328.14001,
+        "v": 1595300
       }
     ]
   },
@@ -26655,10 +26655,10 @@
     "symbol": "SBUX",
     "name": "Starbucks Corporation",
     "type": "STOCK",
-    "price": 103.04,
-    "change": 0.76,
-    "changePercent": 0.7431,
-    "open": 102.78,
+    "price": 103.06,
+    "change": 0.78,
+    "changePercent": 0.7626,
+    "open": 102.79,
     "dayHigh": 103.69,
     "dayLow": 101.8,
     "previousClose": 102.28,
@@ -26676,7 +26676,7 @@
     "divGrowth10Y": 12.51,
     "growthRate": -1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Restaurants",
     "debtToEquity": 999,
@@ -26714,14 +26714,6 @@
     "return5Y": 7.94,
     "return10Y": 140.42,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 108.13,
-        "h": 108.88,
-        "l": 106.35,
-        "c": 106.4,
-        "v": 9941400
-      },
       {
         "t": 1778803200,
         "o": 105.75,
@@ -26873,6 +26865,14 @@
         "l": 98.89,
         "c": 102.28,
         "v": 10434800
+      },
+      {
+        "t": 1781222400,
+        "o": 102.78,
+        "h": 103.69,
+        "l": 101.8,
+        "c": 103.040001,
+        "v": 5305500
       }
     ]
   },
@@ -26880,10 +26880,10 @@
     "symbol": "HON",
     "name": "Honeywell International Inc.",
     "type": "STOCK",
-    "price": 220.31,
-    "change": 1.19,
-    "changePercent": 0.5431,
-    "open": 222,
+    "price": 220.33,
+    "change": 1.21,
+    "changePercent": 0.5522,
+    "open": 222.01,
     "dayHigh": 225.52,
     "dayLow": 219.16,
     "previousClose": 219.12,
@@ -26901,7 +26901,7 @@
     "divGrowth10Y": 7.4,
     "growthRate": 7.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Conglomerates",
     "debtToEquity": 1.4,
@@ -26939,14 +26939,6 @@
     "return5Y": 12.94,
     "return10Y": 162.25,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 217.59,
-        "h": 218.95,
-        "l": 215.75999,
-        "c": 217.72,
-        "v": 3377700
-      },
       {
         "t": 1778803200,
         "o": 215.64,
@@ -27098,6 +27090,14 @@
         "l": 207.17,
         "c": 219.12,
         "v": 6648700
+      },
+      {
+        "t": 1781222400,
+        "o": 222,
+        "h": 225.52,
+        "l": 219.16,
+        "c": 220.31,
+        "v": 4656500
       }
     ]
   },
@@ -27105,10 +27105,10 @@
     "symbol": "SAP",
     "name": "SAP SE",
     "type": "STOCK",
-    "price": 164.18,
-    "change": 0.54,
-    "changePercent": 0.33,
-    "open": 162.45,
+    "price": 164.2,
+    "change": 0.56,
+    "changePercent": 0.3422,
+    "open": 162.45999999999998,
     "dayHigh": 164.37,
     "dayLow": 160.03,
     "previousClose": 163.64,
@@ -27126,7 +27126,7 @@
     "divGrowth10Y": 8.66,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -27143,14 +27143,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 160.97,
-        "h": 165.23,
-        "l": 160.080002,
-        "c": 164.17999,
-        "v": 3454100
-      },
       {
         "t": 1778803200,
         "o": 168.42999,
@@ -27302,6 +27294,14 @@
         "l": 160.42,
         "c": 163.64,
         "v": 4241800
+      },
+      {
+        "t": 1781222400,
+        "o": 162.45,
+        "h": 164.37,
+        "l": 160.029999,
+        "c": 164.17999,
+        "v": 2504000
       }
     ]
   },
@@ -27309,10 +27309,10 @@
     "symbol": "NEM",
     "name": "Newmont Corporation",
     "type": "STOCK",
-    "price": 100.23,
-    "change": 2.64,
-    "changePercent": 2.7052,
-    "open": 98.73,
+    "price": 100.25,
+    "change": 2.66,
+    "changePercent": 2.7257,
+    "open": 98.74000000000001,
     "dayHigh": 100.7,
     "dayLow": 97.37,
     "previousClose": 97.59,
@@ -27330,7 +27330,7 @@
     "divGrowth10Y": 26.14,
     "growthRate": 19.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Materials",
     "industry": "Gold",
     "debtToEquity": 0.42,
@@ -27368,14 +27368,6 @@
     "return5Y": 72.5,
     "return10Y": 294.2,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 119.019997,
-        "h": 119.07,
-        "l": 115.43,
-        "c": 116.33,
-        "v": 4529700
-      },
       {
         "t": 1778803200,
         "o": 112.23,
@@ -27527,6 +27519,14 @@
         "l": 92.019997,
         "c": 97.59,
         "v": 9980600
+      },
+      {
+        "t": 1781222400,
+        "o": 98.73,
+        "h": 100.7,
+        "l": 97.37,
+        "c": 100.23,
+        "v": 7708600
       }
     ]
   },
@@ -27534,10 +27534,10 @@
     "symbol": "RCL",
     "name": "Royal Caribbean Cruises Ltd.",
     "type": "STOCK",
-    "price": 294.38,
-    "change": 6.42,
-    "changePercent": 2.2295,
-    "open": 289,
+    "price": 294.4,
+    "change": 6.44,
+    "changePercent": 2.2364,
+    "open": 289.01,
     "dayHigh": 294.78,
     "dayLow": 283.45,
     "previousClose": 287.96,
@@ -27555,7 +27555,7 @@
     "divGrowth10Y": 12.79,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Travel & Leisure",
     "debtToEquity": 3.22,
@@ -27593,14 +27593,6 @@
     "return5Y": 205.71,
     "return10Y": 273.98,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 272.73999,
-        "h": 275.26999,
-        "l": 264.42999,
-        "c": 265.38,
-        "v": 1662500
-      },
       {
         "t": 1778803200,
         "o": 263.57999,
@@ -27752,6 +27744,14 @@
         "l": 266.35001,
         "c": 287.95999,
         "v": 2663100
+      },
+      {
+        "t": 1781222400,
+        "o": 289,
+        "h": 294.78,
+        "l": 283.45001,
+        "c": 294.38,
+        "v": 2002400
       }
     ]
   },
@@ -27759,10 +27759,10 @@
     "symbol": "ING",
     "name": "ING Groep N.V.",
     "type": "STOCK",
-    "price": 30.21,
-    "change": 0.53,
-    "changePercent": 1.7857,
-    "open": 29.965,
+    "price": 30.2,
+    "change": 0.52,
+    "changePercent": 1.752,
+    "open": 29.975,
     "dayHigh": 30.21,
     "dayLow": 29.77,
     "previousClose": 29.68,
@@ -27780,7 +27780,7 @@
     "divGrowth10Y": 7.66,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -27797,14 +27797,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 30.35,
-        "h": 30.45,
-        "l": 30.040001,
-        "c": 30.049999,
-        "v": 2138200
-      },
       {
         "t": 1778803200,
         "o": 29.65,
@@ -27956,6 +27948,14 @@
         "l": 28.72,
         "c": 29.68,
         "v": 6614300
+      },
+      {
+        "t": 1781222400,
+        "o": 29.97,
+        "h": 30.21,
+        "l": 29.77,
+        "c": 30.21,
+        "v": 5438900
       }
     ]
   },
@@ -27963,10 +27963,10 @@
     "symbol": "SYK",
     "name": "Stryker Corporation",
     "type": "STOCK",
-    "price": 312.2,
-    "change": 6.56,
-    "changePercent": 2.1463,
-    "open": 308.28,
+    "price": 312.22,
+    "change": 6.58,
+    "changePercent": 2.1529,
+    "open": 308.28999999999996,
     "dayHigh": 314.27,
     "dayLow": 306.39,
     "previousClose": 305.64,
@@ -27984,7 +27984,7 @@
     "divGrowth10Y": 8.89,
     "growthRate": 9.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Health Care",
     "industry": "Medical Devices",
     "debtToEquity": 0.75,
@@ -28022,14 +28022,6 @@
     "return5Y": 30.96,
     "return10Y": 217.82,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 301.23001,
-        "h": 306.79999,
-        "l": 298.47,
-        "c": 305.51001,
-        "v": 3178200
-      },
       {
         "t": 1778803200,
         "o": 309.89001,
@@ -28181,6 +28173,14 @@
         "l": 302.67001,
         "c": 305.64001,
         "v": 2030200
+      },
+      {
+        "t": 1781222400,
+        "o": 308.28,
+        "h": 314.26999,
+        "l": 306.39001,
+        "c": 312.20001,
+        "v": 3182300
       }
     ]
   },
@@ -28188,10 +28188,10 @@
     "symbol": "BN",
     "name": "Brookfield Corporation",
     "type": "STOCK",
-    "price": 45.21,
-    "change": 0.18,
-    "changePercent": 0.3997,
-    "open": 45.48,
+    "price": 45.22,
+    "change": 0.19,
+    "changePercent": 0.4219,
+    "open": 45.489999999999995,
     "dayHigh": 45.7,
     "dayLow": 45.06,
     "previousClose": 45.03,
@@ -28209,7 +28209,7 @@
     "divGrowth10Y": 1.65,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -28226,14 +28226,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 45.88,
-        "h": 48.6,
-        "l": 45.71,
-        "c": 47.53,
-        "v": 8233200
-      },
       {
         "t": 1778803200,
         "o": 46.64,
@@ -28385,6 +28377,14 @@
         "l": 43.84,
         "c": 45.029999,
         "v": 3943700
+      },
+      {
+        "t": 1781222400,
+        "o": 45.48,
+        "h": 45.7,
+        "l": 45.060001,
+        "c": 45.21,
+        "v": 3339200
       }
     ]
   },
@@ -28392,10 +28392,10 @@
     "symbol": "SPGI",
     "name": "S&P Global Inc.",
     "type": "STOCK",
-    "price": 418.91,
-    "change": 5.57,
-    "changePercent": 1.3476,
-    "open": 415.23,
+    "price": 418.93,
+    "change": 5.59,
+    "changePercent": 1.3524,
+    "open": 415.24,
     "dayHigh": 419.98,
     "dayLow": 409.3288,
     "previousClose": 413.34,
@@ -28413,7 +28413,7 @@
     "divGrowth10Y": 11.05,
     "growthRate": 14.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": "Financial Data & Stock Exchanges",
     "debtToEquity": 0.82,
@@ -28451,14 +28451,6 @@
     "return5Y": 16.05,
     "return10Y": 333.44,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 409.029999,
-        "h": 413.57001,
-        "l": 402.45999,
-        "c": 403.92001,
-        "v": 2238200
-      },
       {
         "t": 1778803200,
         "o": 406,
@@ -28610,6 +28602,14 @@
         "l": 411.51001,
         "c": 413.34,
         "v": 2126600
+      },
+      {
+        "t": 1781222400,
+        "o": 415.23001,
+        "h": 419.98001,
+        "l": 409.32999,
+        "c": 418.91,
+        "v": 1761900
       }
     ]
   },
@@ -28617,10 +28617,10 @@
     "symbol": "BKNG",
     "name": "Booking Holdings Inc. Common St",
     "type": "STOCK",
-    "price": 164.94,
-    "change": 1.35,
-    "changePercent": 0.8252,
-    "open": 166.21,
+    "price": 164.96,
+    "change": 1.37,
+    "changePercent": 0.8375,
+    "open": 166.22,
     "dayHigh": 168.44,
     "dayLow": 161.69,
     "previousClose": 163.59,
@@ -28638,7 +28638,7 @@
     "divGrowth10Y": null,
     "growthRate": 12.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Consumer Discretionary",
     "industry": "Travel Services",
     "debtToEquity": 0.64,
@@ -28676,14 +28676,6 @@
     "return5Y": 77.63,
     "return10Y": 208.99,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 154.92999,
-        "h": 158.19,
-        "l": 153.97,
-        "c": 154.48,
-        "v": 5678600
-      },
       {
         "t": 1778803200,
         "o": 154.94,
@@ -28835,6 +28827,14 @@
         "l": 158.12,
         "c": 163.59,
         "v": 8094500
+      },
+      {
+        "t": 1781222400,
+        "o": 166.21001,
+        "h": 168.44,
+        "l": 161.69,
+        "c": 164.94,
+        "v": 6491800
       }
     ]
   },
@@ -28842,10 +28842,10 @@
     "symbol": "ASX",
     "name": "ASE Technology Holding Co., Ltd.",
     "type": "STOCK",
-    "price": 38.12,
-    "change": 1.32,
-    "changePercent": 3.587,
-    "open": 37,
+    "price": 38.13,
+    "change": 1.33,
+    "changePercent": 3.6141,
+    "open": 37.01,
     "dayHigh": 38.56,
     "dayLow": 36.6,
     "previousClose": 36.8,
@@ -28863,7 +28863,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -28880,14 +28880,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 35,
-        "h": 35.51,
-        "l": 34.79,
-        "c": 35.25,
-        "v": 5835000
-      },
       {
         "t": 1778803200,
         "o": 33.9,
@@ -29039,6 +29031,14 @@
         "l": 34.99,
         "c": 36.8,
         "v": 15847700
+      },
+      {
+        "t": 1781222400,
+        "o": 37,
+        "h": 38.56,
+        "l": 36.6,
+        "c": 38.12,
+        "v": 9416100
       }
     ]
   },
@@ -29046,10 +29046,10 @@
     "symbol": "ET",
     "name": "Energy Transfer LP",
     "type": "STOCK",
-    "price": 19.07,
-    "change": 0.31,
-    "changePercent": 1.6525,
-    "open": 18.773,
+    "price": 19.08,
+    "change": 0.32,
+    "changePercent": 1.7058,
+    "open": 18.783,
     "dayHigh": 19.22,
     "dayLow": 18.68,
     "previousClose": 18.76,
@@ -29067,7 +29067,7 @@
     "divGrowth10Y": 1.77,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -29084,14 +29084,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 20.1,
-        "h": 20.47,
-        "l": 20.07,
-        "c": 20.36,
-        "v": 12903500
-      },
       {
         "t": 1778803200,
         "o": 20.4,
@@ -29243,6 +29235,14 @@
         "l": 18.76,
         "c": 18.76,
         "v": 9615500
+      },
+      {
+        "t": 1781222400,
+        "o": 18.77,
+        "h": 19.22,
+        "l": 18.68,
+        "c": 19.07,
+        "v": 8270900
       }
     ]
   },
@@ -29250,10 +29250,10 @@
     "symbol": "CVE",
     "name": "Cenovus Energy Inc.",
     "type": "STOCK",
-    "price": 28.27,
-    "change": -0.21,
-    "changePercent": -0.7374,
-    "open": 27.97,
+    "price": 28.28,
+    "change": -0.2,
+    "changePercent": -0.7022,
+    "open": 27.98,
     "dayHigh": 28.6,
     "dayLow": 27.92,
     "previousClose": 28.48,
@@ -29271,7 +29271,7 @@
     "divGrowth10Y": 1.81,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -29288,14 +29288,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 29.52,
-        "h": 30.28,
-        "l": 29.48,
-        "c": 30.15,
-        "v": 5193200
-      },
       {
         "t": 1778803200,
         "o": 30.29,
@@ -29447,6 +29439,14 @@
         "l": 28.13,
         "c": 28.48,
         "v": 10208600
+      },
+      {
+        "t": 1781222400,
+        "o": 27.97,
+        "h": 28.6,
+        "l": 27.92,
+        "c": 28.27,
+        "v": 23551900
       }
     ]
   },
@@ -29454,10 +29454,10 @@
     "symbol": "IMO",
     "name": "Imperial Oil Limited",
     "type": "STOCK",
-    "price": 121.29,
-    "change": 0.32,
-    "changePercent": 0.2645,
-    "open": 120.15,
+    "price": 121.31,
+    "change": 0.34,
+    "changePercent": 0.2811,
+    "open": 120.16000000000001,
     "dayHigh": 122.34,
     "dayLow": 119.48,
     "previousClose": 120.97,
@@ -29475,7 +29475,7 @@
     "divGrowth10Y": 18.09,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -29492,14 +29492,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 131.44,
-        "h": 132.85001,
-        "l": 130.47,
-        "c": 132.39,
-        "v": 351900
-      },
       {
         "t": 1778803200,
         "o": 133.12,
@@ -29651,6 +29643,14 @@
         "l": 120.71,
         "c": 120.97,
         "v": 1130400
+      },
+      {
+        "t": 1781222400,
+        "o": 120.15,
+        "h": 122.34,
+        "l": 119.48,
+        "c": 121.29,
+        "v": 314300
       }
     ]
   },
@@ -29658,10 +29658,10 @@
     "symbol": "NBIS",
     "name": "Nebius Group N.V.",
     "type": "STOCK",
-    "price": 232.36,
-    "change": 10.12,
-    "changePercent": 4.5536,
-    "open": 234.65,
+    "price": 232.38,
+    "change": 10.14,
+    "changePercent": 4.5626,
+    "open": 234.66,
     "dayHigh": 243.59,
     "dayLow": 223.5,
     "previousClose": 222.24,
@@ -29669,8 +29669,8 @@
     "low52w": 43.89,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 56918297000,
-    "peRatio": 69.6504,
+    "marketCap": 58473496000,
+    "peRatio": 71.5535,
     "eps": 0,
     "divYield": 0,
     "trailingDividendRate": null,
@@ -29679,7 +29679,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Communication Services",
     "industry": null,
     "debtToEquity": null,
@@ -29696,14 +29696,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 213.375,
-        "h": 233.73,
-        "l": 207.75,
-        "c": 221.14999,
-        "v": 29737800
-      },
       {
         "t": 1778803200,
         "o": 217.61,
@@ -29855,6 +29847,14 @@
         "l": 205,
         "c": 222.24001,
         "v": 14297100
+      },
+      {
+        "t": 1781222400,
+        "o": 234.64999,
+        "h": 243.59,
+        "l": 223.5,
+        "c": 232.36,
+        "v": 17131300
       }
     ]
   },
@@ -29862,10 +29862,10 @@
     "symbol": "MPC",
     "name": "Marathon Petroleum Corporation",
     "type": "STOCK",
-    "price": 263.58,
-    "change": 2.77,
-    "changePercent": 1.0621,
-    "open": 260.91,
+    "price": 263.6,
+    "change": 2.79,
+    "changePercent": 1.0697,
+    "open": 260.92,
     "dayHigh": 267.83,
     "dayLow": 259.02,
     "previousClose": 260.81,
@@ -29883,7 +29883,7 @@
     "divGrowth10Y": 11.81,
     "growthRate": -14.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas Refining & Marketing",
     "debtToEquity": 0.45,
@@ -29921,14 +29921,6 @@
     "return5Y": 378.08,
     "return10Y": 873.3,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 248.050003,
-        "h": 251.55,
-        "l": 247.39999,
-        "c": 248.82001,
-        "v": 2009500
-      },
       {
         "t": 1778803200,
         "o": 252.23,
@@ -30080,6 +30072,14 @@
         "l": 260.059998,
         "c": 260.81,
         "v": 2072700
+      },
+      {
+        "t": 1781222400,
+        "o": 260.91,
+        "h": 267.82999,
+        "l": 259.019989,
+        "c": 263.57999,
+        "v": 1699800
       }
     ]
   },
@@ -30087,10 +30087,10 @@
     "symbol": "HWM",
     "name": "Howmet Aerospace Inc.",
     "type": "STOCK",
-    "price": 264.67,
-    "change": 0.07,
-    "changePercent": 0.0265,
-    "open": 267.94,
+    "price": 264.69,
+    "change": 0.09,
+    "changePercent": 0.034,
+    "open": 267.95,
     "dayHigh": 268.03,
     "dayLow": 261.091,
     "previousClose": 264.6,
@@ -30108,7 +30108,7 @@
     "divGrowth10Y": null,
     "growthRate": 9.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 0.88,
@@ -30146,14 +30146,6 @@
     "return5Y": 673.57,
     "return10Y": null,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 274.51999,
-        "h": 274.73001,
-        "l": 267,
-        "c": 272.37,
-        "v": 1701300
-      },
       {
         "t": 1778803200,
         "o": 266.22,
@@ -30305,6 +30297,14 @@
         "l": 250.85001,
         "c": 264.60001,
         "v": 2508400
+      },
+      {
+        "t": 1781222400,
+        "o": 267.94,
+        "h": 268.029999,
+        "l": 261.089996,
+        "c": 264.67001,
+        "v": 1796900
       }
     ]
   },
@@ -30312,10 +30312,10 @@
     "symbol": "LYG",
     "name": "Lloyds Banking Group plc",
     "type": "STOCK",
-    "price": 5.5,
-    "change": 0.08,
-    "changePercent": 1.476,
-    "open": 5.46,
+    "price": 5.51,
+    "change": 0.09,
+    "changePercent": 1.6605,
+    "open": 5.47,
     "dayHigh": 5.51,
     "dayLow": 5.42,
     "previousClose": 5.42,
@@ -30333,7 +30333,7 @@
     "divGrowth10Y": 1.94,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -30350,14 +30350,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 5.23,
-        "h": 5.26,
-        "l": 5.12,
-        "c": 5.16,
-        "v": 24554000
-      },
       {
         "t": 1778803200,
         "o": 5.07,
@@ -30509,6 +30501,14 @@
         "l": 5.19,
         "c": 5.42,
         "v": 64188400
+      },
+      {
+        "t": 1781222400,
+        "o": 5.46,
+        "h": 5.51,
+        "l": 5.42,
+        "c": 5.5,
+        "v": 36910500
       }
     ]
   },
@@ -30516,10 +30516,10 @@
     "symbol": "EPD",
     "name": "Enterprise Products Partners L.P.",
     "type": "STOCK",
-    "price": 37.25,
-    "change": -0.03,
-    "changePercent": -0.0805,
-    "open": 37.06,
+    "price": 37.26,
+    "change": -0.02,
+    "changePercent": -0.0536,
+    "open": 37.07,
     "dayHigh": 37.64,
     "dayLow": 37.02,
     "previousClose": 37.28,
@@ -30537,7 +30537,7 @@
     "divGrowth10Y": 3.52,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -30554,14 +30554,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 38.45,
-        "h": 39.3,
-        "l": 38.37,
-        "c": 39.23,
-        "v": 11107700
-      },
       {
         "t": 1778803200,
         "o": 39.16,
@@ -30713,6 +30705,14 @@
         "l": 37.26,
         "c": 37.28,
         "v": 2296800
+      },
+      {
+        "t": 1781222400,
+        "o": 37.060001,
+        "h": 37.64,
+        "l": 37.02,
+        "c": 37.25,
+        "v": 2484700
       }
     ]
   },
@@ -30720,10 +30720,10 @@
     "symbol": "VALE",
     "name": "Vale S.A.",
     "type": "STOCK",
-    "price": 15.71,
-    "change": 0.35,
-    "changePercent": 2.2786,
-    "open": 15.58,
+    "price": 15.72,
+    "change": 0.36,
+    "changePercent": 2.3438,
+    "open": 15.59,
     "dayHigh": 15.73,
     "dayLow": 15.48,
     "previousClose": 15.36,
@@ -30741,7 +30741,7 @@
     "divGrowth10Y": 13.91,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -30758,14 +30758,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 16.99,
-        "h": 17.030001,
-        "l": 16.55,
-        "c": 16.58,
-        "v": 18576100
-      },
       {
         "t": 1778803200,
         "o": 15.99,
@@ -30917,6 +30909,14 @@
         "l": 14.96,
         "c": 15.36,
         "v": 27962500
+      },
+      {
+        "t": 1781222400,
+        "o": 15.58,
+        "h": 15.73,
+        "l": 15.48,
+        "c": 15.71,
+        "v": 23020600
       }
     ]
   },
@@ -30924,10 +30924,10 @@
     "symbol": "WMB",
     "name": "Williams Companies, Inc. (The)",
     "type": "STOCK",
-    "price": 72.08,
-    "change": 0.46,
-    "changePercent": 0.6423,
-    "open": 71.12,
+    "price": 72.1,
+    "change": 0.48,
+    "changePercent": 0.6702,
+    "open": 71.13000000000001,
     "dayHigh": 72.92,
     "dayLow": 70.69,
     "previousClose": 71.62,
@@ -30945,7 +30945,7 @@
     "divGrowth10Y": -2.2,
     "growthRate": 8.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas Midstream",
     "debtToEquity": 0.88,
@@ -30983,14 +30983,6 @@
     "return5Y": 270.96,
     "return10Y": 514.28,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 75.71,
-        "h": 77.79,
-        "l": 75.71,
-        "c": 77.69,
-        "v": 6371000
-      },
       {
         "t": 1778803200,
         "o": 77.8,
@@ -31142,6 +31134,14 @@
         "l": 71.56,
         "c": 71.62,
         "v": 4392600
+      },
+      {
+        "t": 1781222400,
+        "o": 71.12,
+        "h": 72.92,
+        "l": 70.69,
+        "c": 72.080002,
+        "v": 5518500
       }
     ]
   },
@@ -31149,10 +31149,10 @@
     "symbol": "DB",
     "name": "Deutsche Bank Aktiengesellschaft",
     "type": "STOCK",
-    "price": 33.31,
-    "change": 1.1,
-    "changePercent": 3.4151,
-    "open": 33.06,
+    "price": 33.32,
+    "change": 1.11,
+    "changePercent": 3.4461,
+    "open": 33.07,
     "dayHigh": 33.33,
     "dayLow": 32.785,
     "previousClose": 32.21,
@@ -31170,7 +31170,7 @@
     "divGrowth10Y": -3.5,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -31187,14 +31187,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 32.15,
-        "h": 32.18,
-        "l": 31.7,
-        "c": 31.73,
-        "v": 1756300
-      },
       {
         "t": 1778803200,
         "o": 31.26,
@@ -31346,6 +31338,14 @@
         "l": 30.94,
         "c": 32.21,
         "v": 3436300
+      },
+      {
+        "t": 1781222400,
+        "o": 33.060001,
+        "h": 33.33,
+        "l": 32.79,
+        "c": 33.31,
+        "v": 3483500
       }
     ]
   },
@@ -31353,10 +31353,10 @@
     "symbol": "SU",
     "name": "Suncor Energy Inc.",
     "type": "STOCK",
-    "price": 61.6,
-    "change": -0.2,
-    "changePercent": -0.3236,
-    "open": 61,
+    "price": 61.62,
+    "change": -0.18,
+    "changePercent": -0.2913,
+    "open": 61.01,
     "dayHigh": 62.035,
     "dayLow": 60.85,
     "previousClose": 61.8,
@@ -31374,7 +31374,7 @@
     "divGrowth10Y": 6.85,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -31391,14 +31391,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 65.81,
-        "h": 67.17,
-        "l": 65.68,
-        "c": 66.79,
-        "v": 3779700
-      },
       {
         "t": 1778803200,
         "o": 67.32,
@@ -31550,6 +31542,14 @@
         "l": 61.17,
         "c": 61.8,
         "v": 5442000
+      },
+      {
+        "t": 1781222400,
+        "o": 61,
+        "h": 62.040001,
+        "l": 60.85,
+        "c": 61.6,
+        "v": 4178400
       }
     ]
   },
@@ -31557,10 +31557,10 @@
     "symbol": "TER",
     "name": "Teradyne, Inc.",
     "type": "STOCK",
-    "price": 403.2,
-    "change": 21.8,
-    "changePercent": 5.7158,
-    "open": 381.94,
+    "price": 403.22,
+    "change": 21.82,
+    "changePercent": 5.721,
+    "open": 381.95,
     "dayHigh": 408,
     "dayLow": 380,
     "previousClose": 381.4,
@@ -31578,7 +31578,7 @@
     "divGrowth10Y": 7.62,
     "growthRate": -4.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0,
@@ -31616,14 +31616,6 @@
     "return5Y": 173.26,
     "return10Y": 1754.92,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 362,
-        "h": 365,
-        "l": 353.59,
-        "c": 356.54999,
-        "v": 2352500
-      },
       {
         "t": 1778803200,
         "o": 339.57001,
@@ -31775,6 +31767,14 @@
         "l": 356.60001,
         "c": 381.39999,
         "v": 5027400
+      },
+      {
+        "t": 1781222400,
+        "o": 381.94,
+        "h": 408,
+        "l": 380,
+        "c": 403.20001,
+        "v": 3322900
       }
     ]
   },
@@ -31782,10 +31782,10 @@
     "symbol": "PANW",
     "name": "Palo Alto Networks, Inc.",
     "type": "STOCK",
-    "price": 279.62,
-    "change": 0.09,
-    "changePercent": 0.0322,
-    "open": 276.935,
+    "price": 279.64,
+    "change": 0.11,
+    "changePercent": 0.0394,
+    "open": 276.945,
     "dayHigh": 281.98,
     "dayLow": 271.49,
     "previousClose": 279.53,
@@ -31803,7 +31803,7 @@
     "divGrowth10Y": null,
     "growthRate": 14.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Technology",
     "industry": "Software - Infrastructure",
     "debtToEquity": 0.65,
@@ -31841,14 +31841,6 @@
     "return5Y": 342.31,
     "return10Y": 1007.85,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 227.55,
-        "h": 239.14999,
-        "l": 225.38,
-        "c": 238.21001,
-        "v": 10346700
-      },
       {
         "t": 1778803200,
         "o": 237.83,
@@ -32000,6 +31992,14 @@
         "l": 258.10001,
         "c": 279.53,
         "v": 9672400
+      },
+      {
+        "t": 1781222400,
+        "o": 276.94,
+        "h": 281.98001,
+        "l": 271.48999,
+        "c": 279.62,
+        "v": 6773000
       }
     ]
   },
@@ -32007,10 +32007,10 @@
     "symbol": "VLO",
     "name": "Valero Energy Corporation",
     "type": "STOCK",
-    "price": 258.67,
-    "change": 3.07,
-    "changePercent": 1.2011,
-    "open": 251.775,
+    "price": 258.69,
+    "change": 3.09,
+    "changePercent": 1.2089,
+    "open": 251.785,
     "dayHigh": 262.33,
     "dayLow": 251,
     "previousClose": 255.6,
@@ -32028,7 +32028,7 @@
     "divGrowth10Y": 8.3,
     "growthRate": -25.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas Refining & Marketing",
     "debtToEquity": 0.38,
@@ -32066,14 +32066,6 @@
     "return5Y": 271.87,
     "return10Y": 595.55,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 243.64999,
-        "h": 244.97,
-        "l": 240.64,
-        "c": 244.77,
-        "v": 2192600
-      },
       {
         "t": 1778803200,
         "o": 247.17999,
@@ -32225,6 +32217,14 @@
         "l": 253.42999,
         "c": 255.60001,
         "v": 3365200
+      },
+      {
+        "t": 1781222400,
+        "o": 251.78,
+        "h": 262.32999,
+        "l": 251,
+        "c": 258.67001,
+        "v": 2202700
       }
     ]
   },
@@ -32232,10 +32232,10 @@
     "symbol": "BCS",
     "name": "Barclays PLC",
     "type": "STOCK",
-    "price": 25.47,
-    "change": 0.72,
-    "changePercent": 2.9091,
-    "open": 25.24,
+    "price": 25.46,
+    "change": 0.71,
+    "changePercent": 2.8687,
+    "open": 25.25,
     "dayHigh": 25.47,
     "dayLow": 25.075,
     "previousClose": 24.75,
@@ -32253,7 +32253,7 @@
     "divGrowth10Y": 3.55,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -32270,14 +32270,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 23.24,
-        "h": 23.46,
-        "l": 22.95,
-        "c": 23.01,
-        "v": 6516300
-      },
       {
         "t": 1778803200,
         "o": 22.53,
@@ -32429,6 +32421,14 @@
         "l": 23.83,
         "c": 24.75,
         "v": 6494400
+      },
+      {
+        "t": 1781222400,
+        "o": 25.24,
+        "h": 25.47,
+        "l": 25.08,
+        "c": 25.47,
+        "v": 5597300
       }
     ]
   },
@@ -32436,10 +32436,10 @@
     "symbol": "OKE",
     "name": "ONEOK, Inc.",
     "type": "STOCK",
-    "price": 90.59,
-    "change": 1.39,
-    "changePercent": 1.5583,
-    "open": 88.9,
+    "price": 90.61,
+    "change": 1.41,
+    "changePercent": 1.5807,
+    "open": 88.91000000000001,
     "dayHigh": 91.58,
     "dayLow": 88.49,
     "previousClose": 89.2,
@@ -32457,7 +32457,7 @@
     "divGrowth10Y": 5.54,
     "growthRate": 20.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-06-13T22:32:58.091Z",
+    "updatedAt": "2026-06-14T15:16:52.116Z",
     "sector": "Energy",
     "industry": "Oil & Gas Midstream",
     "debtToEquity": 1.12,
@@ -32495,14 +32495,6 @@
     "return5Y": 124.61,
     "return10Y": 308.83,
     "dailyCandles": [
-      {
-        "t": 1778716800,
-        "o": 88.81,
-        "h": 91.12,
-        "l": 88.73,
-        "c": 91.029999,
-        "v": 3990600
-      },
       {
         "t": 1778803200,
         "o": 92.029999,
@@ -32654,6 +32646,14 @@
         "l": 89.15,
         "c": 89.2,
         "v": 3655800
+      },
+      {
+        "t": 1781222400,
+        "o": 88.9,
+        "h": 91.58,
+        "l": 88.49,
+        "c": 90.59,
+        "v": 3022900
       }
     ]
   }
