@@ -14,8 +14,8 @@
     "low52w": 164.07,
     "volume": 53394515,
     "avgVolume": 154981930,
-    "marketCap": 4787607000000,
-    "peRatio": 29.9951,
+    "marketCap": 4858150000000,
+    "peRatio": 30.4371,
     "eps": 4.89,
     "divYield": 0.5127153404429861,
     "trailingDividendRate": 0.04,
@@ -24,7 +24,7 @@
     "divGrowth10Y": 14.17,
     "growthRate": 122.4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.41,
@@ -62,14 +62,6 @@
     "return5Y": 1473.39,
     "return10Y": 21380.19,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 196.2,
-        "h": 199.85001,
-        "l": 193.45,
-        "c": 197.58,
-        "v": 146147600
-      },
       {
         "t": 1782950400,
         "o": 197.14,
@@ -221,6 +213,14 @@
         "l": 190.0099945,
         "c": 190.0099945,
         "v": 147680800
+      },
+      {
+        "t": 1785369600,
+        "o": 193.45,
+        "h": 197.25,
+        "l": 191.52,
+        "c": 195.039993,
+        "v": 129010200
       }
     ]
   },
@@ -249,7 +249,7 @@
     "divGrowth10Y": 25.65,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": null,
     "debtToEquity": null,
@@ -266,14 +266,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1935.57996,
-        "h": 1935.57996,
-        "l": 1853.01001,
-        "c": 1865.15002,
-        "v": 438200
-      },
       {
         "t": 1782950400,
         "o": 1877,
@@ -425,6 +417,14 @@
         "l": 1491.23999,
         "c": 1519.95996,
         "v": 770800
+      },
+      {
+        "t": 1785369600,
+        "o": 1689.099976,
+        "h": 1724.31995,
+        "l": 1650.82996,
+        "c": 1697.83997,
+        "v": 694400
       }
     ]
   },
@@ -453,7 +453,7 @@
     "divGrowth10Y": 17.34,
     "growthRate": 61.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.3,
@@ -491,14 +491,6 @@
     "return5Y": 769.42,
     "return10Y": 7128.13,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1082.01001,
-        "h": 1097,
-        "l": 1032.19995,
-        "c": 1032.28003,
-        "v": 51328100
-      },
       {
         "t": 1782950400,
         "o": 1041.5,
@@ -650,6 +642,14 @@
         "l": 737.88,
         "c": 739,
         "v": 69846000
+      },
+      {
+        "t": 1785369600,
+        "o": 793.14001,
+        "h": 882.5,
+        "l": 789,
+        "c": 874.65997,
+        "v": 63075300
       }
     ]
   },
@@ -678,7 +678,7 @@
     "divGrowth10Y": 30.36,
     "growthRate": 51.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 1.11,
@@ -716,14 +716,6 @@
     "return5Y": 956.85,
     "return10Y": 3740,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 371.87,
-        "h": 373.75,
-        "l": 368.029999,
-        "c": 369.34,
-        "v": 23712600
-      },
       {
         "t": 1782950400,
         "o": 365.73001,
@@ -875,6 +867,14 @@
         "l": 369.51001,
         "c": 370.32001,
         "v": 21374400
+      },
+      {
+        "t": 1785369600,
+        "o": 380.35001,
+        "h": 388.67999,
+        "l": 377.54001,
+        "c": 387.84,
+        "v": 23639800
       }
     ]
   },
@@ -903,7 +903,7 @@
     "divGrowth10Y": null,
     "growthRate": 15.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Communication Services",
     "industry": "Internet Content & Information",
     "debtToEquity": 0.06,
@@ -941,14 +941,6 @@
     "return5Y": 249.72,
     "return10Y": 1011.47,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 358.37,
-        "h": 362.97,
-        "l": 356.42999,
-        "c": 361.20999,
-        "v": 26736400
-      },
       {
         "t": 1782950400,
         "o": 359.48001,
@@ -1100,6 +1092,14 @@
         "l": 331.62,
         "c": 336.70999,
         "v": 27501600
+      },
+      {
+        "t": 1785369600,
+        "o": 334.20001,
+        "h": 336.51001,
+        "l": 330.34,
+        "c": 333.66,
+        "v": 30168000
       }
     ]
   },
@@ -1128,7 +1128,7 @@
     "divGrowth10Y": null,
     "growthRate": 15.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Communication Services",
     "industry": "Internet Content & Information",
     "debtToEquity": 0.06,
@@ -1166,14 +1166,6 @@
     "return5Y": 241.48,
     "return10Y": 1022.47,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 354.61499,
-        "h": 359.56,
-        "l": 353.23001,
-        "c": 357.89001,
-        "v": 19546800
-      },
       {
         "t": 1782950400,
         "o": 356.14999,
@@ -1325,6 +1317,14 @@
         "l": 330.40799,
         "c": 335.76001,
         "v": 20242900
+      },
+      {
+        "t": 1785369600,
+        "o": 333.079987,
+        "h": 335.45001,
+        "l": 329.82001,
+        "c": 333.67999,
+        "v": 17309500
       }
     ]
   },
@@ -1353,7 +1353,7 @@
     "divGrowth10Y": 7.03,
     "growthRate": 6.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Consumer Electronics",
     "debtToEquity": 1.52,
@@ -1391,14 +1391,6 @@
     "return5Y": 141.96,
     "return10Y": 1299.49,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 293.44,
-        "h": 296.59,
-        "l": 289.20001,
-        "c": 294.38,
-        "v": 50164200
-      },
       {
         "t": 1782950400,
         "o": 294.12,
@@ -1550,6 +1542,14 @@
         "l": 337.35001,
         "c": 338.19,
         "v": 56090800
+      },
+      {
+        "t": 1785369600,
+        "o": 333.10001,
+        "h": 334.75,
+        "l": 329.59,
+        "c": 333.42999,
+        "v": 74817800
       }
     ]
   },
@@ -1565,11 +1565,11 @@
     "dayLow": 837.7284,
     "previousClose": 851.68,
     "high52w": 1145,
-    "low52w": 138.3,
+    "low52w": 144.75,
     "volume": 724803,
     "avgVolume": 6467330,
-    "marketCap": 190971340000,
-    "peRatio": 59.9784,
+    "marketCap": 191969160000,
+    "peRatio": 60.2918,
     "eps": 10.51,
     "divYield": 0.347548374976517,
     "trailingDividendRate": 2.92,
@@ -1578,7 +1578,7 @@
     "divGrowth10Y": 1.92,
     "growthRate": 23.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Computer Hardware",
     "debtToEquity": 0.98,
@@ -1616,14 +1616,6 @@
     "return5Y": 724.48,
     "return10Y": 5611.51,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 896.73999,
-        "h": 936.65002,
-        "l": 886.20001,
-        "c": 915.19,
-        "v": 3599800
-      },
       {
         "t": 1782950400,
         "o": 900.75,
@@ -1775,6 +1767,14 @@
         "l": 747.54999,
         "c": 764.42999,
         "v": 9280100
+      },
+      {
+        "t": 1785369600,
+        "o": 878.90997,
+        "h": 901.17999,
+        "l": 831,
+        "c": 851.67999,
+        "v": 7380100
       }
     ]
   },
@@ -1803,7 +1803,7 @@
     "divGrowth10Y": null,
     "growthRate": 14.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.04,
@@ -1841,14 +1841,6 @@
     "return5Y": 463.95,
     "return10Y": 11007.92,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 557.53003,
-        "h": 564.090027,
-        "l": 538.73999,
-        "c": 540.88,
-        "v": 28326800
-      },
       {
         "t": 1782950400,
         "o": 538.15997,
@@ -2000,6 +1992,14 @@
         "l": 424.029999,
         "c": 429.56,
         "v": 32304900
+      },
+      {
+        "t": 1785369600,
+        "o": 460,
+        "h": 498.20001,
+        "l": 457.67999,
+        "c": 485.39001,
+        "v": 36936600
       }
     ]
   },
@@ -2018,8 +2018,8 @@
     "low52w": 118.7,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 87384760000,
-    "peRatio": 56.0734,
+    "marketCap": 94770620000,
+    "peRatio": 60.8128,
     "eps": 0,
     "divYield": 0.10989010989010989,
     "trailingDividendRate": null,
@@ -2028,7 +2028,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": null,
     "debtToEquity": null,
@@ -2045,14 +2045,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 325.79999,
-        "h": 327.215,
-        "l": 309.51001,
-        "c": 311.42001,
-        "v": 6259800
-      },
       {
         "t": 1782950400,
         "o": 309.81,
@@ -2204,6 +2196,14 @@
         "l": 220.92,
         "c": 223.039993,
         "v": 21265700
+      },
+      {
+        "t": 1785369600,
+        "o": 237.2,
+        "h": 241.32001,
+        "l": 224.60001,
+        "c": 227.5,
+        "v": 14508000
       }
     ]
   },
@@ -2232,7 +2232,7 @@
     "divGrowth10Y": 13.37,
     "growthRate": 38.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.32,
@@ -2270,14 +2270,6 @@
     "return5Y": 291.72,
     "return10Y": 2114.49,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 467.67001,
-        "h": 468.51001,
-        "l": 443.47,
-        "c": 444.23001,
-        "v": 18534838
-      },
       {
         "t": 1782950400,
         "o": 450.54001,
@@ -2429,6 +2421,14 @@
         "l": 372.72,
         "c": 374.67001,
         "v": 21700200
+      },
+      {
+        "t": 1785369600,
+        "o": 392.48999,
+        "h": 406.76999,
+        "l": 387.60001,
+        "c": 403.31,
+        "v": 17474200
       }
     ]
   },
@@ -2447,8 +2447,8 @@
     "low52w": 349.2,
     "volume": 6166865,
     "avgVolume": 35900340,
-    "marketCap": 3415973800000,
-    "peRatio": 25.5402,
+    "marketCap": 3450799500000,
+    "peRatio": 25.8006,
     "eps": 16.8,
     "divYield": 0.8069164265129682,
     "trailingDividendRate": 3.56,
@@ -2457,7 +2457,7 @@
     "divGrowth10Y": 9.86,
     "growthRate": 16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Software - Infrastructure",
     "debtToEquity": 0.75,
@@ -2495,14 +2495,6 @@
     "return5Y": 80.04,
     "return10Y": 846.37,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 380.82999,
-        "h": 388.82999,
-        "l": 374.89001,
-        "c": 384.28,
-        "v": 48065800
-      },
       {
         "t": 1782950400,
         "o": 384.48001,
@@ -2654,6 +2646,14 @@
         "l": 388.73999,
         "c": 390.54001,
         "v": 47209000
+      },
+      {
+        "t": 1785369600,
+        "o": 437.89999,
+        "h": 458.69,
+        "l": 432.44,
+        "c": 451.10001,
+        "v": 110160700
       }
     ]
   },
@@ -2682,7 +2682,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -2699,14 +2699,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 818.40503,
-        "h": 841.26001,
-        "l": 784,
-        "c": 801.15997,
-        "v": 4202800
-      },
       {
         "t": 1782950400,
         "o": 777.57501,
@@ -2858,6 +2850,14 @@
         "l": 594.84003,
         "c": 602.34998,
         "v": 6388600
+      },
+      {
+        "t": 1785369600,
+        "o": 661.90997,
+        "h": 698.28003,
+        "l": 650,
+        "c": 693.23999,
+        "v": 5621200
       }
     ]
   },
@@ -2873,7 +2873,7 @@
     "dayLow": 530.5501,
     "previousClose": 533.04,
     "high52w": 799.87,
-    "low52w": 69.3,
+    "low52w": 73.14,
     "volume": 1453143,
     "avgVolume": 9832660,
     "marketCap": 173498610000,
@@ -2886,7 +2886,7 @@
     "divGrowth10Y": -12.94,
     "growthRate": 27.3,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Computer Hardware",
     "debtToEquity": 0.55,
@@ -2924,14 +2924,6 @@
     "return5Y": 697.41,
     "return10Y": 1798.27,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 604.56,
-        "h": 617.39001,
-        "l": 585.79999,
-        "c": 598.37,
-        "v": 7934200
-      },
       {
         "t": 1782950400,
         "o": 595.5,
@@ -3083,6 +3075,14 @@
         "l": 456.72,
         "c": 462.040009,
         "v": 9231500
+      },
+      {
+        "t": 1785369600,
+        "o": 511.64999,
+        "h": 547.070007,
+        "l": 507,
+        "c": 533.039978,
+        "v": 8408800
       }
     ]
   },
@@ -3101,8 +3101,8 @@
     "low52w": 90.94,
     "volume": 1030231,
     "avgVolume": 10032780,
-    "marketCap": 382074470000,
-    "peRatio": 52.5883,
+    "marketCap": 366442340000,
+    "peRatio": 50.4367,
     "eps": 5.3,
     "divYield": 0.34932151014375923,
     "trailingDividendRate": 1.01,
@@ -3111,7 +3111,7 @@
     "divGrowth10Y": 23.74,
     "growthRate": 23.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0.52,
@@ -3149,14 +3149,6 @@
     "return5Y": 394.97,
     "return10Y": 4258.11,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 404.97,
-        "h": 415.48999,
-        "l": 381,
-        "c": 391.26001,
-        "v": 18699300
-      },
       {
         "t": 1782950400,
         "o": 391.059998,
@@ -3308,6 +3300,14 @@
         "l": 250.5,
         "c": 252.35001,
         "v": 16103100
+      },
+      {
+        "t": 1785369600,
+        "o": 318.29001,
+        "h": 319.5,
+        "l": 294.25,
+        "c": 297.72,
+        "v": 22085800
       }
     ]
   },
@@ -3326,8 +3326,8 @@
     "low52w": 189.2,
     "volume": 197853,
     "avgVolume": 2504530,
-    "marketCap": 124627270000,
-    "peRatio": 10.6565,
+    "marketCap": 123540410000,
+    "peRatio": 10.5635,
     "eps": 19.65,
     "divYield": 0.18754688672168043,
     "trailingDividendRate": 13.9,
@@ -3336,7 +3336,7 @@
     "divGrowth10Y": 31.66,
     "growthRate": 25.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Insurance - Property & Casualty",
     "debtToEquity": 0.35,
@@ -3374,14 +3374,6 @@
     "return5Y": 114.11,
     "return10Y": 720.07,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 220.32001,
-        "h": 226.46001,
-        "l": 219.89999,
-        "c": 225.3,
-        "v": 3622300
-      },
       {
         "t": 1782950400,
         "o": 225.99001,
@@ -3533,6 +3525,14 @@
         "l": 217.67,
         "c": 219.99001,
         "v": 2930400
+      },
+      {
+        "t": 1785369600,
+        "o": 217.94,
+        "h": 217.94,
+        "l": 211.029999,
+        "c": 213.28,
+        "v": 2499700
       }
     ]
   },
@@ -3561,7 +3561,7 @@
     "divGrowth10Y": null,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Engineering & Construction",
     "debtToEquity": 0.52,
@@ -3599,14 +3599,6 @@
     "return5Y": 653.41,
     "return10Y": 3142,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 709.070007,
-        "h": 709.070007,
-        "l": 687.62,
-        "c": 691.40002,
-        "v": 1240400
-      },
       {
         "t": 1782950400,
         "o": 693.070007,
@@ -3758,6 +3750,14 @@
         "l": 554.12,
         "c": 561.14001,
         "v": 2045400
+      },
+      {
+        "t": 1785369600,
+        "o": 647,
+        "h": 679.79999,
+        "l": 634.51001,
+        "c": 657.97998,
+        "v": 3013800
       }
     ]
   },
@@ -3776,8 +3776,8 @@
     "low52w": 83.22,
     "volume": 129994,
     "avgVolume": 1218120,
-    "marketCap": 235312440000,
-    "peRatio": 48.7112,
+    "marketCap": 238813250000,
+    "peRatio": 49.4358,
     "eps": 35.24,
     "divYield": 0.5101757888315865,
     "trailingDividendRate": 7.6,
@@ -3786,7 +3786,7 @@
     "divGrowth10Y": 14.42,
     "growthRate": 15.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 1.48,
@@ -3824,14 +3824,6 @@
     "return5Y": 519.57,
     "return10Y": 2948.55,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 285.51999,
-        "h": 290.84,
-        "l": 259.79999,
-        "c": 266.19,
-        "v": 24163600
-      },
       {
         "t": 1782950400,
         "o": 266,
@@ -3983,6 +3975,14 @@
         "l": 169.81,
         "c": 170.19,
         "v": 20427600
+      },
+      {
+        "t": 1785369600,
+        "o": 186.86,
+        "h": 186.86,
+        "l": 178.86,
+        "c": 180.33,
+        "v": 17485100
       }
     ]
   },
@@ -4011,7 +4011,7 @@
     "divGrowth10Y": 12.33,
     "growthRate": 32.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 2.01,
@@ -4049,14 +4049,6 @@
     "return5Y": 429.75,
     "return10Y": 1420.05,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1217.51001,
-        "h": 1217.51001,
-        "l": 1173.93005,
-        "c": 1191.73999,
-        "v": 2720400
-      },
       {
         "t": 1782950400,
         "o": 1193.01001,
@@ -4208,6 +4200,14 @@
         "l": 1204.80005,
         "c": 1210.02002,
         "v": 2170900
+      },
+      {
+        "t": 1785369600,
+        "o": 1174.030029,
+        "h": 1186.65002,
+        "l": 1153.14001,
+        "c": 1154.96997,
+        "v": 3027700
       }
     ]
   },
@@ -4226,8 +4226,8 @@
     "low52w": 84.41,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 55141230000,
-    "peRatio": 125.807,
+    "marketCap": 53372527000,
+    "peRatio": 121.7717,
     "eps": 0,
     "divYield": 0,
     "trailingDividendRate": null,
@@ -4236,7 +4236,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -4253,14 +4253,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 466.20001,
-        "h": 482.16,
-        "l": 459.23001,
-        "c": 462.44,
-        "v": 2042900
-      },
       {
         "t": 1782950400,
         "o": 454.16,
@@ -4412,6 +4404,14 @@
         "l": 323.29001,
         "c": 330.37,
         "v": 2633300
+      },
+      {
+        "t": 1785369600,
+        "o": 359.26999,
+        "h": 373.089996,
+        "l": 355,
+        "c": 372.070007,
+        "v": 2461500
       }
     ]
   },
@@ -4440,7 +4440,7 @@
     "divGrowth10Y": 53.01,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -4457,14 +4457,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 19.97,
-        "h": 20.26,
-        "l": 19.94,
-        "c": 20.21,
-        "v": 4725200
-      },
       {
         "t": 1782950400,
         "o": 20.64,
@@ -4616,6 +4608,14 @@
         "l": 22.93,
         "c": 23.27,
         "v": 9040600
+      },
+      {
+        "t": 1785369600,
+        "o": 23.31,
+        "h": 23.41,
+        "l": 22.73,
+        "c": 22.77,
+        "v": 7715300
       }
     ]
   },
@@ -4644,7 +4644,7 @@
     "divGrowth10Y": 10.19,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -4661,14 +4661,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 24.78,
-        "h": 25.030001,
-        "l": 24.74,
-        "c": 24.98,
-        "v": 795600
-      },
       {
         "t": 1782950400,
         "o": 25.73,
@@ -4820,6 +4812,14 @@
         "l": 25.65,
         "c": 25.66,
         "v": 1412800
+      },
+      {
+        "t": 1785369600,
+        "o": 27.28,
+        "h": 27.6,
+        "l": 27.17,
+        "c": 27.6,
+        "v": 3161700
       }
     ]
   },
@@ -4848,7 +4848,7 @@
     "divGrowth10Y": -0.11,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -4865,14 +4865,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 14.41,
-        "h": 14.61,
-        "l": 14.41,
-        "c": 14.49,
-        "v": 4533900
-      },
       {
         "t": 1782950400,
         "o": 14.66,
@@ -5024,6 +5016,14 @@
         "l": 16.32,
         "c": 16.45,
         "v": 5694300
+      },
+      {
+        "t": 1785369600,
+        "o": 16.45,
+        "h": 16.89,
+        "l": 16.44,
+        "c": 16.85,
+        "v": 5047700
       }
     ]
   },
@@ -5042,8 +5042,8 @@
     "low52w": 49.24,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 169266800000,
-    "peRatio": 10.8889,
+    "marketCap": 168686420000,
+    "peRatio": 10.8777,
     "eps": 0,
     "divYield": 4.631467513563583,
     "trailingDividendRate": null,
@@ -5052,7 +5052,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -5069,14 +5069,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 75.48,
-        "h": 75.81,
-        "l": 74.78,
-        "c": 74.8,
-        "v": 1936700
-      },
       {
         "t": 1782950400,
         "o": 76.07,
@@ -5228,6 +5220,14 @@
         "l": 86.11,
         "c": 86.75,
         "v": 1247600
+      },
+      {
+        "t": 1785369600,
+        "o": 86.44,
+        "h": 87.41,
+        "l": 86.43,
+        "c": 87.029999,
+        "v": 1093400
       }
     ]
   },
@@ -5246,8 +5246,8 @@
     "low52w": 154.47,
     "volume": 1094412,
     "avgVolume": 6984160,
-    "marketCap": 410238800000,
-    "peRatio": 48.218,
+    "marketCap": 403069380000,
+    "peRatio": 47.3753,
     "eps": 9.76,
     "divYield": 0.4225043346553202,
     "trailingDividendRate": 1.84,
@@ -5256,7 +5256,7 @@
     "divGrowth10Y": 16.92,
     "growthRate": 7.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0.34,
@@ -5294,14 +5294,6 @@
     "return5Y": 249.31,
     "return10Y": 2255.18,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 668.40997,
-        "h": 693.78003,
-        "l": 639.059998,
-        "c": 650.90997,
-        "v": 16089200
-      },
       {
         "t": 1782950400,
         "o": 656.69,
@@ -5453,6 +5445,14 @@
         "l": 436.32999,
         "c": 436.45001,
         "v": 10166900
+      },
+      {
+        "t": 1785369600,
+        "o": 482.48001,
+        "h": 508.54001,
+        "l": 476.12,
+        "c": 501.76999,
+        "v": 12166300
       }
     ]
   },
@@ -5481,7 +5481,7 @@
     "divGrowth10Y": 3.88,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -5498,14 +5498,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 94.73,
-        "h": 96.42,
-        "l": 94.66,
-        "c": 95.81,
-        "v": 1390400
-      },
       {
         "t": 1782950400,
         "o": 97.059998,
@@ -5657,6 +5649,14 @@
         "l": 102.38,
         "c": 102.6,
         "v": 1493500
+      },
+      {
+        "t": 1785369600,
+        "o": 106.38,
+        "h": 107.59,
+        "l": 106.059998,
+        "c": 107.089996,
+        "v": 1678900
       }
     ]
   },
@@ -5675,8 +5675,8 @@
     "low52w": 520.26,
     "volume": 2518631,
     "avgVolume": 19871110,
-    "marketCap": 1391921500000,
-    "peRatio": 20.44,
+    "marketCap": 1412955400000,
+    "peRatio": 20.7489,
     "eps": 27.49,
     "divYield": 0.3895887056379052,
     "trailingDividendRate": 2.1,
@@ -5685,7 +5685,7 @@
     "divGrowth10Y": null,
     "growthRate": 22.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Communication Services",
     "industry": "Internet Content & Information",
     "debtToEquity": 0.28,
@@ -5723,14 +5723,6 @@
     "return5Y": 95.26,
     "return10Y": 424.89,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 607.90997,
-        "h": 628.28003,
-        "l": 595.099976,
-        "c": 612.90997,
-        "v": 45536300
-      },
       {
         "t": 1782950400,
         "o": 607.90002,
@@ -5882,6 +5874,14 @@
         "l": 582.21997,
         "c": 585.60999,
         "v": 22371100
+      },
+      {
+        "t": 1785369600,
+        "o": 526,
+        "h": 539.88,
+        "l": 524.48999,
+        "c": 539.030029,
+        "v": 42271500
       }
     ]
   },
@@ -5910,7 +5910,7 @@
     "divGrowth10Y": 6.47,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -5927,14 +5927,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 15.93,
-        "h": 16.16,
-        "l": 15.86,
-        "c": 15.99,
-        "v": 12930700
-      },
       {
         "t": 1782950400,
         "o": 16.17,
@@ -6086,6 +6078,14 @@
         "l": 18.43,
         "c": 18.59,
         "v": 13969700
+      },
+      {
+        "t": 1785369600,
+        "o": 18.54,
+        "h": 19.15,
+        "l": 18.54,
+        "c": 19.12,
+        "v": 14564800
       }
     ]
   },
@@ -6114,7 +6114,7 @@
     "divGrowth10Y": 3.95,
     "growthRate": 5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Staples",
     "industry": "Discount Stores",
     "debtToEquity": 0.75,
@@ -6152,14 +6152,6 @@
     "return5Y": 206.97,
     "return10Y": 629.19,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 110.13,
-        "h": 110.71,
-        "l": 107.25,
-        "c": 108.82,
-        "v": 40391400
-      },
       {
         "t": 1782950400,
         "o": 109.33,
@@ -6311,6 +6303,14 @@
         "l": 112.45,
         "c": 114.22,
         "v": 23480000
+      },
+      {
+        "t": 1785369600,
+        "o": 111.61,
+        "h": 113.029999,
+        "l": 110.44,
+        "c": 111.099998,
+        "v": 28747000
       }
     ]
   },
@@ -6329,8 +6329,8 @@
     "low52w": 196,
     "volume": 6752405,
     "avgVolume": 51065530,
-    "marketCap": 2867253800000,
-    "peRatio": 21.1948,
+    "marketCap": 2921415800000,
+    "peRatio": 21.5952,
     "eps": 8.37,
     "divYield": 0,
     "trailingDividendRate": 0,
@@ -6339,7 +6339,7 @@
     "divGrowth10Y": null,
     "growthRate": 11.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Broadline Retail",
     "debtToEquity": 0.59,
@@ -6377,14 +6377,6 @@
     "return5Y": 61.97,
     "return10Y": 661.88,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 239.75,
-        "h": 244.89999,
-        "l": 234.89999,
-        "c": 241.7,
-        "v": 53829900
-      },
       {
         "t": 1782950400,
         "o": 241.61,
@@ -6536,6 +6528,14 @@
         "l": 226.16,
         "c": 226.64999,
         "v": 44957500
+      },
+      {
+        "t": 1785369600,
+        "o": 233.35001,
+        "h": 239.82001,
+        "l": 231.059998,
+        "c": 235.5,
+        "v": 101839800
       }
     ]
   },
@@ -6564,7 +6564,7 @@
     "divGrowth10Y": 6.97,
     "growthRate": -5.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Farm & Heavy Construction Machinery",
     "debtToEquity": 2.81,
@@ -6602,14 +6602,6 @@
     "return5Y": 286.02,
     "return10Y": 1425.26,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1033.92004,
-        "h": 1041.26001,
-        "l": 985.049988,
-        "c": 991.40997,
-        "v": 3914100
-      },
       {
         "t": 1782950400,
         "o": 1001.28003,
@@ -6761,6 +6753,14 @@
         "l": 776,
         "c": 782.71002,
         "v": 5966400
+      },
+      {
+        "t": 1785369600,
+        "o": 810.75,
+        "h": 822.76001,
+        "l": 801.67999,
+        "c": 809.14001,
+        "v": 3505200
       }
     ]
   },
@@ -6789,7 +6789,7 @@
     "divGrowth10Y": 21.94,
     "growthRate": 22.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0.48,
@@ -6827,14 +6827,6 @@
     "return5Y": 143.74,
     "return10Y": 1615.63,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1916.28003,
-        "h": 1943,
-        "l": 1832.63,
-        "c": 1843.040039,
-        "v": 2584700
-      },
       {
         "t": 1782950400,
         "o": 1843.97998,
@@ -6986,6 +6978,14 @@
         "l": 1530.64001,
         "c": 1550.68994,
         "v": 2538800
+      },
+      {
+        "t": 1785369600,
+        "o": 1645.069946,
+        "h": 1676.78003,
+        "l": 1626.43994,
+        "c": 1651.43994,
+        "v": 2170500
       }
     ]
   },
@@ -7014,7 +7014,7 @@
     "divGrowth10Y": 8.18,
     "growthRate": 8.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Electronic Components",
     "debtToEquity": 0.6,
@@ -7052,14 +7052,6 @@
     "return5Y": 361.37,
     "return10Y": 1112.73,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 239.5,
-        "h": 240.87,
-        "l": 218.11,
-        "c": 220.63,
-        "v": 22393500
-      },
       {
         "t": 1782950400,
         "o": 223.89,
@@ -7211,6 +7203,14 @@
         "l": 122.62,
         "c": 124.050003,
         "v": 25603400
+      },
+      {
+        "t": 1785369600,
+        "o": 130.42,
+        "h": 136.089996,
+        "l": 130,
+        "c": 135.22,
+        "v": 18987700
       }
     ]
   },
@@ -7239,7 +7239,7 @@
     "divGrowth10Y": 12.86,
     "growthRate": 13.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.28,
@@ -7277,14 +7277,6 @@
     "return5Y": 107.32,
     "return10Y": 536.49,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 328.37,
-        "h": 335.64001,
-        "l": 325.01001,
-        "c": 334.070007,
-        "v": 15210200
-      },
       {
         "t": 1782950400,
         "o": 338.019989,
@@ -7436,6 +7428,14 @@
         "l": 343.78,
         "c": 344.70999,
         "v": 8265300
+      },
+      {
+        "t": 1785369600,
+        "o": 347.54001,
+        "h": 352.28,
+        "l": 345.37,
+        "c": 350.85001,
+        "v": 7606500
       }
     ]
   },
@@ -7464,7 +7464,7 @@
     "divGrowth10Y": -14.43,
     "growthRate": 11.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 0.52,
@@ -7502,14 +7502,6 @@
     "return5Y": 346.78,
     "return10Y": 125.71,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 375.029999,
-        "h": 376.69,
-        "l": 371.38,
-        "c": 374.94,
-        "v": 3951400
-      },
       {
         "t": 1782950400,
         "o": 379.79001,
@@ -7661,6 +7653,14 @@
         "l": 348.84,
         "c": 350.63,
         "v": 3723000
+      },
+      {
+        "t": 1785369600,
+        "o": 354.75,
+        "h": 356.62,
+        "l": 347.66,
+        "c": 355.040009,
+        "v": 3187100
       }
     ]
   },
@@ -7679,8 +7679,8 @@
     "low52w": 694.05,
     "volume": 608276,
     "avgVolume": 1774390,
-    "marketCap": 301680470000,
-    "peRatio": 14.3842,
+    "marketCap": 300429660000,
+    "peRatio": 14.3246,
     "eps": 54.71,
     "divYield": 1.9514860566321255,
     "trailingDividendRate": 15.5,
@@ -7689,7 +7689,7 @@
     "divGrowth10Y": 20.66,
     "growthRate": 16.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Capital Markets",
     "debtToEquity": 2.6,
@@ -7727,14 +7727,6 @@
     "return5Y": 188.97,
     "return10Y": 651.42,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1010,
-        "h": 1033.53003,
-        "l": 1003,
-        "c": 1019.60999,
-        "v": 1735000
-      },
       {
         "t": 1782950400,
         "o": 1038.98999,
@@ -7886,6 +7878,14 @@
         "l": 977.70001,
         "c": 980.75,
         "v": 3198400
+      },
+      {
+        "t": 1785369600,
+        "o": 1007.35999,
+        "h": 1029.79004,
+        "l": 998.51001,
+        "c": 1024.85999,
+        "v": 2330800
       }
     ]
   },
@@ -7904,8 +7904,8 @@
     "low52w": 102.76,
     "volume": 2438616,
     "avgVolume": 12055300,
-    "marketCap": 200774280000,
-    "peRatio": 39.0353,
+    "marketCap": 197698690000,
+    "peRatio": 38.4374,
     "eps": 3.48,
     "divYield": 0.6257039169065198,
     "trailingDividendRate": 0.83,
@@ -7914,7 +7914,7 @@
     "divGrowth10Y": 20.65,
     "growthRate": 22.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Electronic Components",
     "debtToEquity": 0.46,
@@ -7952,14 +7952,6 @@
     "return5Y": 284.2,
     "return10Y": 869.8,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 174.14,
-        "h": 174.14,
-        "l": 167.53,
-        "c": 172.22,
-        "v": 8011500
-      },
       {
         "t": 1782950400,
         "o": 170.0099945,
@@ -8111,6 +8103,14 @@
         "l": 149.42,
         "c": 150.31,
         "v": 12185800
+      },
+      {
+        "t": 1785369600,
+        "o": 159.71001,
+        "h": 161.21001,
+        "l": 154.72,
+        "c": 159.82001,
+        "v": 10763800
       }
     ]
   },
@@ -8139,7 +8139,7 @@
     "divGrowth10Y": 20.89,
     "growthRate": 9.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Capital Markets",
     "debtToEquity": 2.51,
@@ -8177,14 +8177,6 @@
     "return5Y": 156.66,
     "return10Y": 875.5,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 208.96001,
-        "h": 213.19,
-        "l": 206.72,
-        "c": 211.86,
-        "v": 4690000
-      },
       {
         "t": 1782950400,
         "o": 214.71001,
@@ -8336,6 +8328,14 @@
         "l": 202.94,
         "c": 203.13,
         "v": 6722300
+      },
+      {
+        "t": 1785369600,
+        "o": 207.5,
+        "h": 211.14999,
+        "l": 205.3,
+        "c": 210.059998,
+        "v": 6832900
       }
     ]
   },
@@ -8354,8 +8354,8 @@
     "low52w": 105.53,
     "volume": 1983795,
     "avgVolume": 17234750,
-    "marketCap": 646246940000,
-    "peRatio": 25.5292,
+    "marketCap": 639947940000,
+    "peRatio": 25.2804,
     "eps": 5.94,
     "divYield": 2.521882842627165,
     "trailingDividendRate": 4.04,
@@ -8364,7 +8364,7 @@
     "divGrowth10Y": 3.33,
     "growthRate": 1.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas Integrated",
     "debtToEquity": 0.17,
@@ -8402,14 +8402,6 @@
     "return5Y": 210.15,
     "return10Y": 176.68,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 136.53,
-        "h": 137.49001,
-        "l": 135.63,
-        "c": 136.28,
-        "v": 12433400
-      },
       {
         "t": 1782950400,
         "o": 137.14999,
@@ -8561,6 +8553,14 @@
         "l": 155.86,
         "c": 156.75,
         "v": 14571300
+      },
+      {
+        "t": 1785369600,
+        "o": 155.089996,
+        "h": 157.78,
+        "l": 154.53,
+        "c": 156.97,
+        "v": 12578100
       }
     ]
   },
@@ -8589,7 +8589,7 @@
     "divGrowth10Y": 2.22,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -8606,14 +8606,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 13.63,
-        "h": 13.9,
-        "l": 13.6,
-        "c": 13.81,
-        "v": 11175000
-      },
       {
         "t": 1782950400,
         "o": 14.11,
@@ -8765,6 +8757,14 @@
         "l": 13.36,
         "c": 13.38,
         "v": 8997200
+      },
+      {
+        "t": 1785369600,
+        "o": 13.93,
+        "h": 14.14,
+        "l": 13.91,
+        "c": 14.11,
+        "v": 13690600
       }
     ]
   },
@@ -8780,7 +8780,7 @@
     "dayLow": 178.71,
     "previousClose": 185,
     "high52w": 223.885,
-    "low52w": 87.84,
+    "low52w": 88.97,
     "volume": null,
     "avgVolume": null,
     "marketCap": 150875800000,
@@ -8793,7 +8793,7 @@
     "divGrowth10Y": 33.45,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -8810,14 +8810,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 172.99001,
-        "h": 173.37,
-        "l": 168.53,
-        "c": 168.8,
-        "v": 1140400
-      },
       {
         "t": 1782950400,
         "o": 171,
@@ -8969,6 +8961,14 @@
         "l": 171.25,
         "c": 175.47,
         "v": 962100
+      },
+      {
+        "t": 1785369600,
+        "o": 182.37,
+        "h": 185.67999,
+        "l": 180.11,
+        "c": 185,
+        "v": 949800
       }
     ]
   },
@@ -8987,8 +8987,8 @@
     "low52w": 61.44,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 169469560000,
-    "peRatio": 67.0715,
+    "marketCap": 164258750000,
+    "peRatio": 65.0092,
     "eps": 0,
     "divYield": 0.13093289689034368,
     "trailingDividendRate": null,
@@ -8997,7 +8997,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -9014,14 +9014,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 282.47,
-        "h": 292.5,
-        "l": 271.35001,
-        "c": 272.049988,
-        "v": 33822700
-      },
       {
         "t": 1782950400,
         "o": 269.5,
@@ -9173,6 +9165,14 @@
         "l": 162.89999,
         "c": 163.39999,
         "v": 25708900
+      },
+      {
+        "t": 1785369600,
+        "o": 178.38,
+        "h": 184.35001,
+        "l": 175.14999,
+        "c": 183.3,
+        "v": 29861700
       }
     ]
   },
@@ -9201,7 +9201,7 @@
     "divGrowth10Y": 17.41,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -9218,14 +9218,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 39.29,
-        "h": 39.68,
-        "l": 38.83,
-        "c": 38.92,
-        "v": 3704500
-      },
       {
         "t": 1782950400,
         "o": 39.28,
@@ -9377,6 +9369,14 @@
         "l": 45.46,
         "c": 46.45,
         "v": 8066400
+      },
+      {
+        "t": 1785369600,
+        "o": 46,
+        "h": 47.29,
+        "l": 45.83,
+        "c": 47.28,
+        "v": 4417100
       }
     ]
   },
@@ -9395,8 +9395,8 @@
     "low52w": 297.38,
     "volume": 13861918,
     "avgVolume": 57016690,
-    "marketCap": 1219817800000,
-    "peRatio": 320.4986,
+    "marketCap": 1229138800000,
+    "peRatio": 322.9477,
     "eps": 1.07,
     "divYield": 0,
     "trailingDividendRate": 0,
@@ -9405,7 +9405,7 @@
     "divGrowth10Y": null,
     "growthRate": -1.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Auto Manufacturers",
     "debtToEquity": 0.09,
@@ -9443,14 +9443,6 @@
     "return5Y": 113.23,
     "return10Y": 2904.91,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 421.45999,
-        "h": 432.85999,
-        "l": 418.089996,
-        "c": 425.29999,
-        "v": 40127900
-      },
       {
         "t": 1782950400,
         "o": 428.01001,
@@ -9602,6 +9594,14 @@
         "l": 297.38,
         "c": 298.32001,
         "v": 39478000
+      },
+      {
+        "t": 1785369600,
+        "o": 302.70001,
+        "h": 310.87,
+        "l": 301.32999,
+        "c": 308.85001,
+        "v": 38005400
       }
     ]
   },
@@ -9630,7 +9630,7 @@
     "divGrowth10Y": 18.08,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -9647,14 +9647,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 20.07,
-        "h": 20.33,
-        "l": 20.07,
-        "c": 20.27,
-        "v": 2710600
-      },
       {
         "t": 1782950400,
         "o": 20.79,
@@ -9806,6 +9798,14 @@
         "l": 21.94,
         "c": 21.94,
         "v": 3890200
+      },
+      {
+        "t": 1785369600,
+        "o": 21.88,
+        "h": 22.5,
+        "l": 21.86,
+        "c": 22.5,
+        "v": 4518500
       }
     ]
   },
@@ -9834,7 +9834,7 @@
     "divGrowth10Y": 6.49,
     "growthRate": 1.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Staples",
     "industry": "Tobacco",
     "debtToEquity": 999,
@@ -9872,14 +9872,6 @@
     "return5Y": 116.64,
     "return10Y": 126.72,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 72.49,
-        "h": 72.5,
-        "l": 71.089996,
-        "c": 71.54,
-        "v": 6425300
-      },
       {
         "t": 1782950400,
         "o": 72.24,
@@ -10031,6 +10023,14 @@
         "l": 74.61,
         "c": 74.92,
         "v": 8962500
+      },
+      {
+        "t": 1785369600,
+        "o": 70.7,
+        "h": 70.7,
+        "l": 67.63,
+        "c": 67.94,
+        "v": 21341200
       }
     ]
   },
@@ -10049,8 +10049,8 @@
     "low52w": 187.62,
     "volume": 448834,
     "avgVolume": 6597530,
-    "marketCap": 446671750000,
-    "peRatio": 122.8808,
+    "marketCap": 443359000000,
+    "peRatio": 121.9695,
     "eps": 2.05,
     "divYield": 2.6883182471543448,
     "trailingDividendRate": 6.74,
@@ -10059,7 +10059,7 @@
     "divGrowth10Y": 12.05,
     "growthRate": 6.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 5.01,
@@ -10097,14 +10097,6 @@
     "return5Y": 116.1,
     "return10Y": 424.82,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 250.75,
-        "h": 251.8,
-        "l": 247.56,
-        "c": 251.059998,
-        "v": 6988000
-      },
       {
         "t": 1782950400,
         "o": 252.3,
@@ -10256,6 +10248,14 @@
         "l": 262.76001,
         "c": 263.29999,
         "v": 5562300
+      },
+      {
+        "t": 1785369600,
+        "o": 258.38,
+        "h": 259.89001,
+        "l": 253.50999,
+        "c": 257.41,
+        "v": 6403400
       }
     ]
   },
@@ -10284,7 +10284,7 @@
     "divGrowth10Y": 3.46,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Staples",
     "industry": null,
     "debtToEquity": null,
@@ -10301,14 +10301,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 61,
-        "h": 61.23,
-        "l": 60.07,
-        "c": 60.56,
-        "v": 4718800
-      },
       {
         "t": 1782950400,
         "o": 61.99,
@@ -10460,6 +10452,14 @@
         "l": 62.65,
         "c": 63.07,
         "v": 4465600
+      },
+      {
+        "t": 1785369600,
+        "o": 61.88,
+        "h": 62.39,
+        "l": 60.97,
+        "c": 61.69,
+        "v": 5076100
       }
     ]
   },
@@ -10478,8 +10478,8 @@
     "low52w": 114.5,
     "volume": 4918818,
     "avgVolume": 25590630,
-    "marketCap": 376041160000,
-    "peRatio": 22.0074,
+    "marketCap": 374086750000,
+    "peRatio": 21.8931,
     "eps": 5.56,
     "divYield": 1.567889620570712,
     "trailingDividendRate": 2,
@@ -10488,7 +10488,7 @@
     "divGrowth10Y": 12.79,
     "growthRate": 9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Software - Infrastructure",
     "debtToEquity": 2.88,
@@ -10526,14 +10526,6 @@
     "return5Y": 152.5,
     "return10Y": 447.03,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 144.49001,
-        "h": 147.55,
-        "l": 142.5,
-        "c": 142.5,
-        "v": 45964000
-      },
       {
         "t": 1782950400,
         "o": 143.3,
@@ -10685,6 +10677,14 @@
         "l": 116.2,
         "c": 117.74,
         "v": 28081800
+      },
+      {
+        "t": 1785369600,
+        "o": 122.87,
+        "h": 128.34,
+        "l": 121.58,
+        "c": 127.56,
+        "v": 41338400
       }
     ]
   },
@@ -10703,8 +10703,8 @@
     "low52w": 114.52,
     "volume": 2671327,
     "avgVolume": 14303450,
-    "marketCap": 228180110000,
-    "peRatio": 61.3305,
+    "marketCap": 227097200000,
+    "peRatio": 61.0394,
     "eps": 2.91,
     "divYield": 0,
     "trailingDividendRate": 0,
@@ -10713,7 +10713,7 @@
     "divGrowth10Y": null,
     "growthRate": 20.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Computer Hardware",
     "debtToEquity": 0,
@@ -10751,14 +10751,6 @@
     "return5Y": 595.95,
     "return10Y": 3289.38,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 165.55499,
-        "h": 170.5,
-        "l": 159.2,
-        "c": 166.62,
-        "v": 9098200
-      },
       {
         "t": 1782950400,
         "o": 166.36,
@@ -10910,6 +10902,14 @@
         "l": 156.84,
         "c": 157.97,
         "v": 8189500
+      },
+      {
+        "t": 1785369600,
+        "o": 164.56,
+        "h": 171.50999,
+        "l": 164.485,
+        "c": 171.020004,
+        "v": 7284700
       }
     ]
   },
@@ -10938,7 +10938,7 @@
     "divGrowth10Y": 5.01,
     "growthRate": 2.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas Integrated",
     "debtToEquity": 0.14,
@@ -10976,14 +10976,6 @@
     "return5Y": 118.12,
     "return10Y": 194.65,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 164.78,
-        "h": 167.47,
-        "l": 164.78,
-        "c": 165.69,
-        "v": 9175500
-      },
       {
         "t": 1782950400,
         "o": 168.28,
@@ -11135,6 +11127,14 @@
         "l": 190.78,
         "c": 191.86,
         "v": 8101200
+      },
+      {
+        "t": 1785369600,
+        "o": 189.91,
+        "h": 193.12,
+        "l": 189.31,
+        "c": 192.31,
+        "v": 6645000
       }
     ]
   },
@@ -11154,7 +11154,7 @@
     "volume": null,
     "avgVolume": null,
     "marketCap": 183903860000,
-    "peRatio": 9.5206,
+    "peRatio": 9.5488,
     "eps": 0,
     "divYield": 4.553178668273577,
     "trailingDividendRate": null,
@@ -11163,7 +11163,7 @@
     "divGrowth10Y": -1.61,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -11180,14 +11180,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 76.29,
-        "h": 76.845,
-        "l": 76.26,
-        "c": 76.57,
-        "v": 6165463
-      },
       {
         "t": 1782950400,
         "o": 77.65,
@@ -11339,6 +11331,14 @@
         "l": 87.77,
         "c": 88.34,
         "v": 8491942
+      },
+      {
+        "t": 1785369600,
+        "o": 90,
+        "h": 90.77,
+        "l": 89.21,
+        "c": 90.51,
+        "v": 10768731
       }
     ]
   },
@@ -11357,8 +11357,8 @@
     "low52w": 144.14,
     "volume": 71071,
     "avgVolume": 1244270,
-    "marketCap": 57597543000,
-    "peRatio": 27.0145,
+    "marketCap": 58033273000,
+    "peRatio": 27.2188,
     "eps": 9.8,
     "divYield": 1.8633077439069838,
     "trailingDividendRate": 4.25,
@@ -11367,7 +11367,7 @@
     "divGrowth10Y": 1.66,
     "growthRate": 18.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas Midstream",
     "debtToEquity": 1.28,
@@ -11405,14 +11405,6 @@
     "return5Y": 679.9,
     "return10Y": 869.24,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 267.16,
-        "h": 268.63,
-        "l": 257.75,
-        "c": 257.81,
-        "v": 1600200
-      },
       {
         "t": 1782950400,
         "o": 260.73999,
@@ -11564,6 +11556,14 @@
         "l": 264.44,
         "c": 264.67001,
         "v": 1201000
+      },
+      {
+        "t": 1785369600,
+        "o": 265.23999,
+        "h": 270.20001,
+        "l": 260.64999,
+        "c": 268.34,
+        "v": 987900
       }
     ]
   },
@@ -11582,8 +11582,8 @@
     "low52w": 65.75,
     "volume": 5811123,
     "avgVolume": 19681190,
-    "marketCap": 447589340000,
-    "peRatio": 37.4301,
+    "marketCap": 457167000000,
+    "peRatio": 38.2311,
     "eps": 2.78,
     "divYield": 1.479394152870729,
     "trailingDividendRate": 1.64,
@@ -11592,7 +11592,7 @@
     "divGrowth10Y": 5.85,
     "growthRate": 5.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Communication Equipment",
     "debtToEquity": 0.21,
@@ -11630,14 +11630,6 @@
     "return5Y": 159.17,
     "return10Y": 503.48,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 116.54,
-        "h": 117.43,
-        "l": 114.99,
-        "c": 117.010002,
-        "v": 32016000
-      },
       {
         "t": 1782950400,
         "o": 117.029999,
@@ -11789,6 +11781,14 @@
         "l": 112.35,
         "c": 112.48,
         "v": 22761500
+      },
+      {
+        "t": 1785369600,
+        "o": 112.69,
+        "h": 114.33,
+        "l": 111.66,
+        "c": 113.56,
+        "v": 25570000
       }
     ]
   },
@@ -11807,8 +11807,8 @@
     "low52w": 844.06,
     "volume": 268298,
     "avgVolume": 1827780,
-    "marketCap": 419080800000,
-    "peRatio": 47.4181,
+    "marketCap": 422143060000,
+    "peRatio": 47.7645,
     "eps": 19.19,
     "divYield": 0.616242388672878,
     "trailingDividendRate": 5.2,
@@ -11817,7 +11817,7 @@
     "divGrowth10Y": 12.53,
     "growthRate": 7.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Staples",
     "industry": "Discount Stores",
     "debtToEquity": 0.45,
@@ -11855,14 +11855,6 @@
     "return5Y": 195.82,
     "return10Y": 787.61,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 940.42999,
-        "h": 940.42999,
-        "l": 920.54999,
-        "c": 924.66998,
-        "v": 2909700
-      },
       {
         "t": 1782950400,
         "o": 927,
@@ -12014,6 +12006,14 @@
         "l": 963,
         "c": 974.030029,
         "v": 1973400
+      },
+      {
+        "t": 1785369600,
+        "o": 955.039978,
+        "h": 960.76001,
+        "l": 949.67999,
+        "c": 954.16998,
+        "v": 2334500
       }
     ]
   },
@@ -12032,8 +12032,8 @@
     "low52w": 101.73,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 159817530000,
-    "peRatio": 45.4151,
+    "marketCap": 158897120000,
+    "peRatio": 45.1536,
     "eps": 0,
     "divYield": 3.6230186616693993,
     "trailingDividendRate": null,
@@ -12042,7 +12042,7 @@
     "divGrowth10Y": 8.89,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -12059,14 +12059,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 118.080002,
-        "h": 121.010002,
-        "l": 117.95,
-        "c": 119.55,
-        "v": 5555900
-      },
       {
         "t": 1782950400,
         "o": 121.97,
@@ -12218,6 +12210,14 @@
         "l": 127.75,
         "c": 129.39999,
         "v": 6291600
+      },
+      {
+        "t": 1785369600,
+        "o": 131.2,
+        "h": 131.2,
+        "l": 125.72,
+        "c": 128.070007,
+        "v": 5740600
       }
     ]
   },
@@ -12246,7 +12246,7 @@
     "divGrowth10Y": 2.11,
     "growthRate": 0.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Communication Services",
     "industry": "Telecom Services",
     "debtToEquity": 1.6,
@@ -12284,14 +12284,6 @@
     "return5Y": 10.06,
     "return10Y": 56.23,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 42.39,
-        "h": 42.8,
-        "l": 41.49,
-        "c": 41.99,
-        "v": 57139600
-      },
       {
         "t": 1782950400,
         "o": 42.24,
@@ -12443,6 +12435,14 @@
         "l": 45.7,
         "c": 47.22,
         "v": 41396200
+      },
+      {
+        "t": 1785369600,
+        "o": 46.4,
+        "h": 47.09,
+        "l": 45.73,
+        "c": 46.11,
+        "v": 20937900
       }
     ]
   },
@@ -12461,8 +12461,8 @@
     "low52w": 142.11,
     "volume": 505993,
     "avgVolume": 4613390,
-    "marketCap": 299253800000,
-    "peRatio": 27.5201,
+    "marketCap": 297414620000,
+    "peRatio": 27.351,
     "eps": 7.1,
     "divYield": 3.0625,
     "trailingDividendRate": 5.76,
@@ -12471,7 +12471,7 @@
     "divGrowth10Y": 3.56,
     "growthRate": 7.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Staples",
     "industry": "Tobacco",
     "debtToEquity": 999,
@@ -12509,14 +12509,6 @@
     "return5Y": 148.93,
     "return10Y": 214.73,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 180.82001,
-        "h": 181.53999,
-        "l": 176.5,
-        "c": 177.69,
-        "v": 5910600
-      },
       {
         "t": 1782950400,
         "o": 181.029999,
@@ -12668,6 +12660,14 @@
         "l": 198.19,
         "c": 198.44,
         "v": 3917800
+      },
+      {
+        "t": 1785369600,
+        "o": 193.2,
+        "h": 195.92,
+        "l": 191.67,
+        "c": 192,
+        "v": 6799500
       }
     ]
   },
@@ -12696,7 +12696,7 @@
     "divGrowth10Y": 9.65,
     "growthRate": 9.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.18,
@@ -12734,14 +12734,6 @@
     "return5Y": 208.07,
     "return10Y": 816.57,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 390.89001,
-        "h": 397.57999,
-        "l": 387.84,
-        "c": 388.98001,
-        "v": 5750900
-      },
       {
         "t": 1782950400,
         "o": 390.81,
@@ -12893,6 +12885,14 @@
         "l": 352.73001,
         "c": 353.37,
         "v": 5473900
+      },
+      {
+        "t": 1785369600,
+        "o": 364.85001,
+        "h": 368.42001,
+        "l": 361.20999,
+        "c": 366.67001,
+        "v": 6365800
       }
     ]
   },
@@ -12921,7 +12921,7 @@
     "divGrowth10Y": 6.33,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -12938,14 +12938,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 53.83,
-        "h": 54.26,
-        "l": 53.2,
-        "c": 53.29,
-        "v": 2266900
-      },
       {
         "t": 1782950400,
         "o": 53.77,
@@ -13097,6 +13089,14 @@
         "l": 54.95,
         "c": 55.14,
         "v": 3100200
+      },
+      {
+        "t": 1785369600,
+        "o": 55.12,
+        "h": 55.53,
+        "l": 54.87,
+        "c": 55.43,
+        "v": 3623700
       }
     ]
   },
@@ -13115,8 +13115,8 @@
     "low52w": 84.35,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 53063254000,
-    "peRatio": 113.1777,
+    "marketCap": 51431620000,
+    "peRatio": 109.6976,
     "eps": 0,
     "divYield": 0,
     "trailingDividendRate": null,
@@ -13125,7 +13125,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -13142,14 +13142,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 370.10999,
-        "h": 386.73999,
-        "l": 360.01001,
-        "c": 368.64999,
-        "v": 4316200
-      },
       {
         "t": 1782950400,
         "o": 358.079987,
@@ -13301,6 +13293,14 @@
         "l": 220.67999,
         "c": 222.050003,
         "v": 6900600
+      },
+      {
+        "t": 1785369600,
+        "o": 243.39999,
+        "h": 250.59,
+        "l": 239.3,
+        "c": 249.059998,
+        "v": 6357000
       }
     ]
   },
@@ -13329,7 +13329,7 @@
     "divGrowth10Y": 6.56,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -13346,14 +13346,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 92.57,
-        "h": 94.5,
-        "l": 92.47,
-        "c": 93.35,
-        "v": 2582200
-      },
       {
         "t": 1782950400,
         "o": 93.79,
@@ -13505,6 +13497,14 @@
         "l": 91.98,
         "c": 93.66,
         "v": 4454500
+      },
+      {
+        "t": 1785369600,
+        "o": 97.39,
+        "h": 97.53,
+        "l": 95.81,
+        "c": 97.18,
+        "v": 3357000
       }
     ]
   },
@@ -13533,7 +13533,7 @@
     "divGrowth10Y": 17.02,
     "growthRate": 10,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 0.6,
@@ -13571,14 +13571,6 @@
     "return5Y": 52.5,
     "return10Y": 364.8,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 344.56,
-        "h": 353.35999,
-        "l": 340.98001,
-        "c": 351.079987,
-        "v": 13025900
-      },
       {
         "t": 1782950400,
         "o": 352.51001,
@@ -13730,6 +13722,14 @@
         "l": 355.48001,
         "c": 368.73001,
         "v": 11289900
+      },
+      {
+        "t": 1785369600,
+        "o": 365,
+        "h": 367,
+        "l": 360.75,
+        "c": 366.26999,
+        "v": 8391400
       }
     ]
   },
@@ -13748,8 +13748,8 @@
     "low52w": 348.06,
     "volume": 188827,
     "avgVolume": 1521830,
-    "marketCap": 97326305000,
-    "peRatio": 33.5828,
+    "marketCap": 100569190000,
+    "peRatio": 34.7018,
     "eps": 13.1,
     "divYield": 0.95393840283456,
     "trailingDividendRate": 3.87,
@@ -13758,7 +13758,7 @@
     "divGrowth10Y": 12.55,
     "growthRate": 12.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
     "debtToEquity": 0.55,
@@ -13796,14 +13796,6 @@
     "return5Y": 167.56,
     "return10Y": 961.5,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 485,
-        "h": 497.64999,
-        "l": 476.66,
-        "c": 484.57999,
-        "v": 1087000
-      },
       {
         "t": 1782950400,
         "o": 484.39999,
@@ -13955,6 +13947,14 @@
         "l": 444.32999,
         "c": 446.79999,
         "v": 2376200
+      },
+      {
+        "t": 1785369600,
+        "o": 467.91,
+        "h": 467.91,
+        "l": 439.82001,
+        "c": 440.28,
+        "v": 3212700
       }
     ]
   },
@@ -13983,7 +13983,7 @@
     "divGrowth10Y": 8.23,
     "growthRate": 9.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Financial Data & Stock Exchanges",
     "debtToEquity": 0.14,
@@ -14021,14 +14021,6 @@
     "return5Y": 73.78,
     "return10Y": 375.73,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 223.73,
-        "h": 231.13,
-        "l": 222.25,
-        "c": 231,
-        "v": 5158800
-      },
       {
         "t": 1782950400,
         "o": 230.67,
@@ -14180,6 +14172,14 @@
         "l": 259.44,
         "c": 265.44,
         "v": 2915100
+      },
+      {
+        "t": 1785369600,
+        "o": 260.81,
+        "h": 267.47,
+        "l": 260.60001,
+        "c": 267.22,
+        "v": 2590900
       }
     ]
   },
@@ -14208,7 +14208,7 @@
     "divGrowth10Y": -1.84,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -14225,14 +14225,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 36.22,
-        "h": 36.49,
-        "l": 36.040001,
-        "c": 36.15,
-        "v": 9446300
-      },
       {
         "t": 1782950400,
         "o": 37.09,
@@ -14384,6 +14376,14 @@
         "l": 43.07,
         "c": 43.32,
         "v": 8896200
+      },
+      {
+        "t": 1785369600,
+        "o": 43.33,
+        "h": 44.31,
+        "l": 43.24,
+        "c": 44.22,
+        "v": 9567500
       }
     ]
   },
@@ -14412,7 +14412,7 @@
     "divGrowth10Y": 5.55,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -14429,14 +14429,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 114.79,
-        "h": 116.81,
-        "l": 114.040001,
-        "c": 116.07,
-        "v": 1680600
-      },
       {
         "t": 1782950400,
         "o": 116.51,
@@ -14588,6 +14580,14 @@
         "l": 115.9,
         "c": 116.23,
         "v": 1334300
+      },
+      {
+        "t": 1785369600,
+        "o": 117.83,
+        "h": 119.16,
+        "l": 117.47,
+        "c": 118.27,
+        "v": 793300
       }
     ]
   },
@@ -14616,7 +14616,7 @@
     "divGrowth10Y": 11.37,
     "growthRate": 7.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
     "debtToEquity": 0.68,
@@ -14654,14 +14654,6 @@
     "return5Y": 189.06,
     "return10Y": 793.24,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 973.34998,
-        "h": 979.59998,
-        "l": 959.59003,
-        "c": 963.81,
-        "v": 579600
-      },
       {
         "t": 1782950400,
         "o": 976.51001,
@@ -14813,6 +14805,14 @@
         "l": 942.32001,
         "c": 951.070007,
         "v": 548600
+      },
+      {
+        "t": 1785369600,
+        "o": 961.92999,
+        "h": 968.039978,
+        "l": 946.070007,
+        "c": 962.78998,
+        "v": 664700
       }
     ]
   },
@@ -14841,7 +14841,7 @@
     "divGrowth10Y": 5.56,
     "growthRate": 4.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 0.5,
@@ -14879,14 +14879,6 @@
     "return5Y": 54.67,
     "return10Y": 164.68,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 253.25,
-        "h": 254.2,
-        "l": 251.080002,
-        "c": 253.98,
-        "v": 6516500
-      },
       {
         "t": 1782950400,
         "o": 255.78,
@@ -15038,6 +15030,14 @@
         "l": 264.79001,
         "c": 265.53,
         "v": 6105600
+      },
+      {
+        "t": 1785369600,
+        "o": 259.029999,
+        "h": 260.51999,
+        "l": 254.56,
+        "c": 255.82001,
+        "v": 8216500
       }
     ]
   },
@@ -15066,7 +15066,7 @@
     "divGrowth10Y": 6.83,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -15083,14 +15083,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 206.5,
-        "h": 209.37,
-        "l": 205.71001,
-        "c": 208.31,
-        "v": 752700
-      },
       {
         "t": 1782950400,
         "o": 209.35001,
@@ -15242,6 +15234,14 @@
         "l": 205.89999,
         "c": 206.45,
         "v": 1589300
+      },
+      {
+        "t": 1785369600,
+        "o": 208.58,
+        "h": 210.71001,
+        "l": 208.19,
+        "c": 210.12,
+        "v": 899200
       }
     ]
   },
@@ -15270,7 +15270,7 @@
     "divGrowth10Y": 14.27,
     "growthRate": -11.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.82,
@@ -15308,14 +15308,6 @@
     "return5Y": 91.49,
     "return10Y": 587.95,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 294.10001,
-        "h": 303.29999,
-        "l": 293.070007,
-        "c": 298.41,
-        "v": 8737100
-      },
       {
         "t": 1782950400,
         "o": 299.98001,
@@ -15467,6 +15459,14 @@
         "l": 268.76001,
         "c": 271.29999,
         "v": 10212400
+      },
+      {
+        "t": 1785369600,
+        "o": 276.82001,
+        "h": 283.57999,
+        "l": 274.35001,
+        "c": 278.76001,
+        "v": 9238400
       }
     ]
   },
@@ -15495,7 +15495,7 @@
     "divGrowth10Y": 18.8,
     "growthRate": 6.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.12,
@@ -15533,14 +15533,6 @@
     "return5Y": 33.92,
     "return10Y": 351.22,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 57.13,
-        "h": 58.48,
-        "l": 56.85,
-        "c": 58.36,
-        "v": 35288400
-      },
       {
         "t": 1782950400,
         "o": 58.94,
@@ -15692,6 +15684,14 @@
         "l": 60.91,
         "c": 61.07,
         "v": 37919000
+      },
+      {
+        "t": 1785369600,
+        "o": 61.52,
+        "h": 61.93,
+        "l": 61.029999,
+        "c": 61.73,
+        "v": 24844000
       }
     ]
   },
@@ -15720,7 +15720,7 @@
     "divGrowth10Y": 1.81,
     "growthRate": 2.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.08,
@@ -15758,14 +15758,6 @@
     "return5Y": 75.13,
     "return10Y": 106.14,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 82.83,
-        "h": 86.050003,
-        "l": 82.75,
-        "c": 85.94,
-        "v": 14670600
-      },
       {
         "t": 1782950400,
         "o": 86.61,
@@ -15917,6 +15909,14 @@
         "l": 83.71,
         "c": 83.87,
         "v": 18076900
+      },
+      {
+        "t": 1785369600,
+        "o": 84.58,
+        "h": 85.58,
+        "l": 84.019997,
+        "c": 85.43,
+        "v": 15139000
       }
     ]
   },
@@ -15935,8 +15935,8 @@
     "low52w": 87.94,
     "volume": 1297827,
     "avgVolume": 13476280,
-    "marketCap": 226916550000,
-    "peRatio": 12.7203,
+    "marketCap": 227139500000,
+    "peRatio": 12.7327,
     "eps": 8.09,
     "divYield": 2.025392986698912,
     "trailingDividendRate": 2.36,
@@ -15945,7 +15945,7 @@
     "divGrowth10Y": 28.21,
     "growthRate": 3.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Banks - Diversified",
     "debtToEquity": 1.31,
@@ -15983,14 +15983,6 @@
     "return5Y": 87.98,
     "return10Y": 277.87,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 140.24001,
-        "h": 141.28,
-        "l": 138.25999,
-        "c": 140.13,
-        "v": 13702800
-      },
       {
         "t": 1782950400,
         "o": 141.88,
@@ -16142,6 +16134,14 @@
         "l": 126.78,
         "c": 127.13,
         "v": 12942600
+      },
+      {
+        "t": 1785369600,
+        "o": 128.97,
+        "h": 132.58,
+        "l": 128.8,
+        "c": 132.32001,
+        "v": 10467700
       }
     ]
   },
@@ -16170,7 +16170,7 @@
     "divGrowth10Y": 6.69,
     "growthRate": 8.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
     "debtToEquity": 0.5,
@@ -16208,14 +16208,6 @@
     "return5Y": 180.44,
     "return10Y": 686.06,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 419.98999,
-        "h": 423.45001,
-        "l": 404.73999,
-        "c": 412.31,
-        "v": 2379600
-      },
       {
         "t": 1782950400,
         "o": 408.76999,
@@ -16367,6 +16359,14 @@
         "l": 358.13,
         "c": 361.88,
         "v": 4513900
+      },
+      {
+        "t": 1785369600,
+        "o": 381.5,
+        "h": 389.39001,
+        "l": 378.57999,
+        "c": 386.89001,
+        "v": 3897300
       }
     ]
   },
@@ -16395,7 +16395,7 @@
     "divGrowth10Y": 7.09,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -16412,14 +16412,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 31.21,
-        "h": 31.47,
-        "l": 31.13,
-        "c": 31.21,
-        "v": 2627200
-      },
       {
         "t": 1782950400,
         "o": 31.89,
@@ -16571,6 +16563,14 @@
         "l": 40.43,
         "c": 40.95,
         "v": 4888600
+      },
+      {
+        "t": 1785369600,
+        "o": 40.35,
+        "h": 40.81,
+        "l": 40.11,
+        "c": 40.73,
+        "v": 3450600
       }
     ]
   },
@@ -16599,7 +16599,7 @@
     "divGrowth10Y": -1.29,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Real Estate",
     "industry": "REIT - Healthcare Facilities",
     "debtToEquity": 0.95,
@@ -16637,14 +16637,6 @@
     "return5Y": 228.89,
     "return10Y": 326.89,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 227.60001,
-        "h": 231.85001,
-        "l": 226.97,
-        "c": 230.19,
-        "v": 2735900
-      },
       {
         "t": 1782950400,
         "o": 231.14999,
@@ -16796,6 +16788,14 @@
         "l": 238.61,
         "c": 241.080002,
         "v": 2704900
+      },
+      {
+        "t": 1785369600,
+        "o": 239.13,
+        "h": 240.81,
+        "l": 234.14,
+        "c": 235.63,
+        "v": 2994100
       }
     ]
   },
@@ -16824,7 +16824,7 @@
     "divGrowth10Y": 5.35,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Healthcare",
     "industry": null,
     "debtToEquity": null,
@@ -16841,14 +16841,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 187.070007,
-        "h": 187.64999,
-        "l": 183.49001,
-        "c": 183.86,
-        "v": 2115500
-      },
       {
         "t": 1782950400,
         "o": 189.52,
@@ -17000,6 +16992,14 @@
         "l": 172.63,
         "c": 173.3,
         "v": 2252100
+      },
+      {
+        "t": 1785369600,
+        "o": 170.32001,
+        "h": 171.89,
+        "l": 169.85001,
+        "c": 171.34,
+        "v": 2260600
       }
     ]
   },
@@ -17019,7 +17019,7 @@
     "volume": null,
     "avgVolume": null,
     "marketCap": 300522800000,
-    "peRatio": 20.6252,
+    "peRatio": 20.6049,
     "eps": 0,
     "divYield": 3.2461283369258824,
     "trailingDividendRate": null,
@@ -17028,7 +17028,7 @@
     "divGrowth10Y": 5.36,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -17045,14 +17045,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 81.19,
-        "h": 83.19,
-        "l": 81.050003,
-        "c": 82.22,
-        "v": 2440900
-      },
       {
         "t": 1782950400,
         "o": 82.78,
@@ -17204,6 +17196,14 @@
         "l": 82.27,
         "c": 83.11,
         "v": 3044000
+      },
+      {
+        "t": 1785369600,
+        "o": 85.71,
+        "h": 86.23,
+        "l": 84.93,
+        "c": 85.9,
+        "v": 2408800
       }
     ]
   },
@@ -17232,7 +17232,7 @@
     "divGrowth10Y": 11.39,
     "growthRate": 9.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 2.05,
@@ -17270,14 +17270,6 @@
     "return5Y": 111.53,
     "return10Y": 472.04,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 341.53,
-        "h": 350.5,
-        "l": 337.73001,
-        "c": 348,
-        "v": 2918000
-      },
       {
         "t": 1782950400,
         "o": 349.47,
@@ -17429,6 +17421,14 @@
         "l": 330,
         "c": 331.5,
         "v": 3437900
+      },
+      {
+        "t": 1785369600,
+        "o": 331.97,
+        "h": 337.79999,
+        "l": 329.070007,
+        "c": 337.51999,
+        "v": 2859500
       }
     ]
   },
@@ -17457,7 +17457,7 @@
     "divGrowth10Y": 14.71,
     "growthRate": 6.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Apparel Retail",
     "debtToEquity": 0.52,
@@ -17495,14 +17495,6 @@
     "return5Y": 124.41,
     "return10Y": 357.22,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 152.050003,
-        "h": 152.36,
-        "l": 149.71001,
-        "c": 151.35001,
-        "v": 5047700
-      },
       {
         "t": 1782950400,
         "o": 151.8,
@@ -17654,6 +17646,14 @@
         "l": 159.3,
         "c": 161.63,
         "v": 3961300
+      },
+      {
+        "t": 1785369600,
+        "o": 159.99001,
+        "h": 160.14999,
+        "l": 157.52,
+        "c": 159.25999,
+        "v": 6297700
       }
     ]
   },
@@ -17672,8 +17672,8 @@
     "low52w": 706,
     "volume": 55317,
     "avgVolume": 716910,
-    "marketCap": 72898360000,
-    "peRatio": 107.0589,
+    "marketCap": 70060860000,
+    "peRatio": 87.0873,
     "eps": 13.95,
     "divYield": 0.6078195991429743,
     "trailingDividendRate": 6.68,
@@ -17682,7 +17682,7 @@
     "divGrowth10Y": 23.64,
     "growthRate": 12.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0,
@@ -17720,14 +17720,6 @@
     "return5Y": 393.48,
     "return10Y": 2500.34,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1344.89001,
-        "h": 1386.59998,
-        "l": 1328.67004,
-        "c": 1331.72998,
-        "v": 1515600
-      },
       {
         "t": 1782950400,
         "o": 1332.84998,
@@ -17879,6 +17871,14 @@
         "l": 1240.02002,
         "c": 1248.76001,
         "v": 1181900
+      },
+      {
+        "t": 1785369600,
+        "o": 1290.96997,
+        "h": 1339.98999,
+        "l": 1290.63,
+        "c": 1316.18005,
+        "v": 1720100
       }
     ]
   },
@@ -17897,8 +17897,8 @@
     "low52w": 19.89,
     "volume": 3818043,
     "avgVolume": 32799930,
-    "marketCap": 160380080000,
-    "peRatio": 7.4395,
+    "marketCap": 159317970000,
+    "peRatio": 7.3902,
     "eps": 3.04,
     "divYield": 4.782421370099096,
     "trailingDividendRate": 1.11,
@@ -17907,7 +17907,7 @@
     "divGrowth10Y": -5.23,
     "growthRate": 0.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Communication Services",
     "industry": "Telecom Services",
     "debtToEquity": 0.9,
@@ -17945,14 +17945,6 @@
     "return5Y": 38.29,
     "return10Y": 48.66,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 20.63,
-        "h": 21.030001,
-        "l": 20.29,
-        "c": 20.48,
-        "v": 137694400
-      },
       {
         "t": 1782950400,
         "o": 20.7,
@@ -18104,6 +18096,14 @@
         "l": 23.6,
         "c": 23.94,
         "v": 77480900
+      },
+      {
+        "t": 1785369600,
+        "o": 23.41,
+        "h": 23.62,
+        "l": 23.14,
+        "c": 23.21,
+        "v": 49433700
       }
     ]
   },
@@ -18132,7 +18132,7 @@
     "divGrowth10Y": 6.86,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -18149,14 +18149,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 121.11,
-        "h": 122.65,
-        "l": 120.36,
-        "c": 122.25,
-        "v": 642000
-      },
       {
         "t": 1782950400,
         "o": 122.3,
@@ -18308,6 +18300,14 @@
         "l": 116.84,
         "c": 116.99,
         "v": 2649200
+      },
+      {
+        "t": 1785369600,
+        "o": 118.45,
+        "h": 120.64,
+        "l": 118.15,
+        "c": 119.76,
+        "v": 1935900
       }
     ]
   },
@@ -18336,7 +18336,7 @@
     "divGrowth10Y": 6.2,
     "growthRate": 7.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 0.61,
@@ -18374,14 +18374,6 @@
     "return5Y": 72.78,
     "return10Y": 195.34,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 128.0099945,
-        "h": 128.42,
-        "l": 124.71,
-        "c": 125.37,
-        "v": 10761500
-      },
       {
         "t": 1782950400,
         "o": 126.18,
@@ -18533,6 +18525,14 @@
         "l": 129.64999,
         "c": 130.36,
         "v": 7537700
+      },
+      {
+        "t": 1785369600,
+        "o": 128.2,
+        "h": 130.21001,
+        "l": 127.25,
+        "c": 129.78999,
+        "v": 7832900
       }
     ]
   },
@@ -18561,7 +18561,7 @@
     "divGrowth10Y": 6.78,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -18578,14 +18578,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 174.59,
-        "h": 178.7,
-        "l": 174.59,
-        "c": 177.57001,
-        "v": 194100
-      },
       {
         "t": 1782950400,
         "o": 177.75999,
@@ -18737,6 +18729,14 @@
         "l": 175.19,
         "c": 175.28999,
         "v": 3238700
+      },
+      {
+        "t": 1785369600,
+        "o": 175.5,
+        "h": 179.27,
+        "l": 175.5,
+        "c": 178.62,
+        "v": 1647200
       }
     ]
   },
@@ -18765,7 +18765,7 @@
     "divGrowth10Y": 4.34,
     "growthRate": 2.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Staples",
     "industry": "Beverages - Non-Alcoholic",
     "debtToEquity": 1.7,
@@ -18803,14 +18803,6 @@
     "return5Y": 72.49,
     "return10Y": 148.29,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 81.7,
-        "h": 81.98,
-        "l": 80.96,
-        "c": 81.29,
-        "v": 21734800
-      },
       {
         "t": 1782950400,
         "o": 81.63,
@@ -18962,6 +18954,14 @@
         "l": 88.64,
         "c": 89.080002,
         "v": 21711700
+      },
+      {
+        "t": 1785369600,
+        "o": 87.63,
+        "h": 88.64,
+        "l": 87.21,
+        "c": 88.49,
+        "v": 17616100
       }
     ]
   },
@@ -18990,7 +18990,7 @@
     "divGrowth10Y": 9.28,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -19007,14 +19007,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 9.69,
-        "h": 9.85,
-        "l": 9.69,
-        "c": 9.8,
-        "v": 3790400
-      },
       {
         "t": 1782950400,
         "o": 10.07,
@@ -19166,6 +19158,14 @@
         "l": 9.8,
         "c": 9.81,
         "v": 7619300
+      },
+      {
+        "t": 1785369600,
+        "o": 9.76,
+        "h": 10.35,
+        "l": 9.7,
+        "c": 10.35,
+        "v": 4429400
       }
     ]
   },
@@ -19194,7 +19194,7 @@
     "divGrowth10Y": 16.63,
     "growthRate": 13.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 2.06,
@@ -19232,14 +19232,6 @@
     "return5Y": 43.31,
     "return10Y": 461.26,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 517.25,
-        "h": 530.40997,
-        "l": 513.41998,
-        "c": 522.44,
-        "v": 4412800
-      },
       {
         "t": 1782950400,
         "o": 529.72998,
@@ -19391,6 +19383,14 @@
         "l": 554.91998,
         "c": 563.32001,
         "v": 3524200
+      },
+      {
+        "t": 1785369600,
+        "o": 577.35999,
+        "h": 582.62,
+        "l": 567.63,
+        "c": 577.34998,
+        "v": 5302500
       }
     ]
   },
@@ -19409,8 +19409,8 @@
     "low52w": 91.56,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 236854030000,
-    "peRatio": 22.8399,
+    "marketCap": 232077050000.00003,
+    "peRatio": 22.4844,
     "eps": 0,
     "divYield": 2.9184413945417256,
     "trailingDividendRate": null,
@@ -19419,7 +19419,7 @@
     "divGrowth10Y": 5.72,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Healthcare",
     "industry": null,
     "debtToEquity": null,
@@ -19436,14 +19436,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 154.67,
-        "h": 155.020004,
-        "l": 153.22,
-        "c": 154.14,
-        "v": 1917800
-      },
       {
         "t": 1782950400,
         "o": 157.5,
@@ -19595,6 +19587,14 @@
         "l": 157.32001,
         "c": 158.83,
         "v": 1627000
+      },
+      {
+        "t": 1785369600,
+        "o": 156.91,
+        "h": 158.55,
+        "l": 156.46001,
+        "c": 158.44,
+        "v": 2086700
       }
     ]
   },
@@ -19613,8 +19613,8 @@
     "low52w": 85.57,
     "volume": 534610,
     "avgVolume": 8927680,
-    "marketCap": 145220640000,
-    "peRatio": 19.8335,
+    "marketCap": 146780050000,
+    "peRatio": 20.0464,
     "eps": 5.9,
     "divYield": 2.822817777031,
     "trailingDividendRate": 3.24,
@@ -19623,7 +19623,7 @@
     "divGrowth10Y": 5.24,
     "growthRate": -5.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas E&P",
     "debtToEquity": 0.25,
@@ -19661,14 +19661,6 @@
     "return5Y": 155.34,
     "return10Y": 289.97,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 103.6,
-        "h": 104.78,
-        "l": 102.69,
-        "c": 103.22,
-        "v": 5744200
-      },
       {
         "t": 1782950400,
         "o": 104.12,
@@ -19820,6 +19812,14 @@
         "l": 117.26,
         "c": 118.059998,
         "v": 5998500
+      },
+      {
+        "t": 1785369600,
+        "o": 116.2,
+        "h": 119.12,
+        "l": 116.2,
+        "c": 119.029999,
+        "v": 6496700
       }
     ]
   },
@@ -19848,7 +19848,7 @@
     "divGrowth10Y": 14.14,
     "growthRate": 4.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Home Improvement Retail",
     "debtToEquity": 999,
@@ -19886,14 +19886,6 @@
     "return5Y": 5.91,
     "return10Y": 188.67,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 353.98001,
-        "h": 357.12,
-        "l": 350.84,
-        "c": 350.84,
-        "v": 4041300
-      },
       {
         "t": 1782950400,
         "o": 352.84,
@@ -20045,6 +20037,14 @@
         "l": 336.95999,
         "c": 338.26999,
         "v": 4028500
+      },
+      {
+        "t": 1785369600,
+        "o": 334.98999,
+        "h": 335.69,
+        "l": 330.25,
+        "c": 333.35001,
+        "v": 6275400
       }
     ]
   },
@@ -20059,7 +20059,7 @@
     "dayHigh": 1265.08,
     "dayLow": 1240.88,
     "previousClose": 1249.91,
-    "high52w": 1623.83,
+    "high52w": 1620.58,
     "low52w": 1123.61,
     "volume": 25444,
     "avgVolume": 389530,
@@ -20073,7 +20073,7 @@
     "divGrowth10Y": 14.13,
     "growthRate": 11.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 999,
@@ -20111,14 +20111,6 @@
     "return5Y": 138.5,
     "return10Y": 660.11,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1340.64001,
-        "h": 1345.099976,
-        "l": 1304.73999,
-        "c": 1309.18005,
-        "v": 423100
-      },
       {
         "t": 1782950400,
         "o": 1324.35999,
@@ -20270,6 +20262,14 @@
         "l": 1261.22998,
         "c": 1264.59998,
         "v": 299100
+      },
+      {
+        "t": 1785369600,
+        "o": 1264.59998,
+        "h": 1265,
+        "l": 1236.88,
+        "c": 1249.91003,
+        "v": 306700
       }
     ]
   },
@@ -20298,7 +20298,7 @@
     "divGrowth10Y": 2.42,
     "growthRate": 1.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Information Technology Services",
     "debtToEquity": 0.74,
@@ -20336,14 +20336,6 @@
     "return5Y": 95.54,
     "return10Y": 139.45,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 279.66,
-        "h": 294.48999,
-        "l": 278.95999,
-        "c": 286.25,
-        "v": 6905800
-      },
       {
         "t": 1782950400,
         "o": 283.14001,
@@ -20495,6 +20487,14 @@
         "l": 223.95,
         "c": 226.44,
         "v": 8806700
+      },
+      {
+        "t": 1785369600,
+        "o": 222,
+        "h": 224.86,
+        "l": 220.2,
+        "c": 221.74001,
+        "v": 9675200
       }
     ]
   },
@@ -20513,8 +20513,8 @@
     "low52w": 269.77,
     "volume": 142247,
     "avgVolume": 2964230,
-    "marketCap": 206481600000,
-    "peRatio": 26.472,
+    "marketCap": 207874030000,
+    "peRatio": 26.6505,
     "eps": 14.37,
     "divYield": 2.6003508409864824,
     "trailingDividendRate": 9.66,
@@ -20523,7 +20523,7 @@
     "divGrowth10Y": 10.59,
     "growthRate": -2.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 5.05,
@@ -20561,14 +20561,6 @@
     "return5Y": 50.45,
     "return10Y": 191.18,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 362.63,
-        "h": 364,
-        "l": 357.89001,
-        "c": 361.32999,
-        "v": 2244800
-      },
       {
         "t": 1782950400,
         "o": 364.73999,
@@ -20720,6 +20712,14 @@
         "l": 386.57999,
         "c": 387.64001,
         "v": 3003700
+      },
+      {
+        "t": 1785369600,
+        "o": 379.75,
+        "h": 388.41,
+        "l": 378.22,
+        "c": 387.64001,
+        "v": 3004900
       }
     ]
   },
@@ -20738,7 +20738,7 @@
     "low52w": 28.25,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 129655659999.99998,
+    "marketCap": 129050070000,
     "peRatio": 17.4965,
     "eps": 0,
     "divYield": 2.0097841389019244,
@@ -20748,7 +20748,7 @@
     "divGrowth10Y": -7.73,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -20765,14 +20765,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 49.34,
-        "h": 50.075001,
-        "l": 49.31,
-        "c": 49.72,
-        "v": 1237000
-      },
       {
         "t": 1782950400,
         "o": 51.25,
@@ -20924,6 +20916,14 @@
         "l": 51.8,
         "c": 51.8,
         "v": 3305900
+      },
+      {
+        "t": 1785369600,
+        "o": 52.54,
+        "h": 53.41,
+        "l": 52.35,
+        "c": 53.39,
+        "v": 2682800
       }
     ]
   },
@@ -20952,7 +20952,7 @@
     "divGrowth10Y": 11.32,
     "growthRate": 9.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
     "debtToEquity": 1.01,
@@ -20990,14 +20990,6 @@
     "return5Y": 40.92,
     "return10Y": 283.66,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 88.050003,
-        "h": 88.050003,
-        "l": 86.32,
-        "c": 86.37,
-        "v": 9709200
-      },
       {
         "t": 1782950400,
         "o": 86.69,
@@ -21149,6 +21141,14 @@
         "l": 88,
         "c": 88.46,
         "v": 10402300
+      },
+      {
+        "t": 1785369600,
+        "o": 88.9,
+        "h": 89.22,
+        "l": 86.86,
+        "c": 87.93,
+        "v": 11687700
       }
     ]
   },
@@ -21167,8 +21167,8 @@
     "low52w": 150.61,
     "volume": 645660,
     "avgVolume": 5616940,
-    "marketCap": 288932400000,
-    "peRatio": 37.3394,
+    "marketCap": 290064530000,
+    "peRatio": 37.4857,
     "eps": 5.32,
     "divYield": 1.3620673570295736,
     "trailingDividendRate": 2.72,
@@ -21177,7 +21177,7 @@
     "divGrowth10Y": 0.71,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 0.77,
@@ -21215,14 +21215,6 @@
     "return5Y": 127.33,
     "return10Y": 346.54,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 190.48,
-        "h": 191.82001,
-        "l": 188.97,
-        "c": 191.78,
-        "v": 3780500
-      },
       {
         "t": 1782950400,
         "o": 194.77,
@@ -21374,6 +21366,14 @@
         "l": 215.0099945,
         "c": 215.25,
         "v": 8232500
+      },
+      {
+        "t": 1785369600,
+        "o": 214.5,
+        "h": 214.64,
+        "l": 209.39,
+        "c": 214.38,
+        "v": 5239000
       }
     ]
   },
@@ -21392,8 +21392,8 @@
     "low52w": 103.41,
     "volume": 136209,
     "avgVolume": 3186220,
-    "marketCap": 137522670000,
-    "peRatio": 32.6796,
+    "marketCap": 137779920000,
+    "peRatio": 32.7407,
     "eps": 3.98,
     "divYield": 2.9276968328887065,
     "trailingDividendRate": 4.1,
@@ -21402,7 +21402,7 @@
     "divGrowth10Y": 9.76,
     "growthRate": 4.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Real Estate",
     "industry": "REIT - Industrial",
     "debtToEquity": 0.55,
@@ -21440,14 +21440,6 @@
     "return5Y": 43.62,
     "return10Y": 298.38,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 135.67999,
-        "h": 138.8,
-        "l": 135.10001,
-        "c": 136.8,
-        "v": 3140200
-      },
       {
         "t": 1782950400,
         "o": 138.36,
@@ -21599,6 +21591,14 @@
         "l": 143.34,
         "c": 145.47,
         "v": 4092400
+      },
+      {
+        "t": 1785369600,
+        "o": 146.22,
+        "h": 146.75,
+        "l": 144.17999,
+        "c": 146.19,
+        "v": 5279600
       }
     ]
   },
@@ -21627,7 +21627,7 @@
     "divGrowth10Y": 6.18,
     "growthRate": 5.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductors",
     "debtToEquity": 0.59,
@@ -21665,14 +21665,6 @@
     "return5Y": 74.98,
     "return10Y": 417,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 183.59,
-        "h": 190.99001,
-        "l": 181.60001,
-        "c": 181.92,
-        "v": 23313200
-      },
       {
         "t": 1782950400,
         "o": 182.17,
@@ -21824,6 +21816,14 @@
         "l": 155,
         "c": 155.67999,
         "v": 19240700
+      },
+      {
+        "t": 1785369600,
+        "o": 146.55,
+        "h": 154.16,
+        "l": 146,
+        "c": 151.60001,
+        "v": 24336800
       }
     ]
   },
@@ -21852,7 +21852,7 @@
     "divGrowth10Y": 6.23,
     "growthRate": 4.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Drug Manufacturers - General",
     "debtToEquity": 1.02,
@@ -21890,14 +21890,6 @@
     "return5Y": 126.19,
     "return10Y": 123.06,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 127.28,
-        "h": 127.62,
-        "l": 125.13,
-        "c": 125.97,
-        "v": 6654900
-      },
       {
         "t": 1782950400,
         "o": 126.73,
@@ -22049,6 +22041,14 @@
         "l": 132.57001,
         "c": 132.73,
         "v": 7763600
+      },
+      {
+        "t": 1785369600,
+        "o": 130.020004,
+        "h": 131.39,
+        "l": 128.28,
+        "c": 131.28,
+        "v": 6724500
       }
     ]
   },
@@ -22067,8 +22067,8 @@
     "low52w": 433,
     "volume": 119095,
     "avgVolume": 945360,
-    "marketCap": 160450810000,
-    "peRatio": 33.5461,
+    "marketCap": 159983810000,
+    "peRatio": 33.4484,
     "eps": 17.72,
     "divYield": 1.0809548434450431,
     "trailingDividendRate": 6.48,
@@ -22077,7 +22077,7 @@
     "divGrowth10Y": 10.44,
     "growthRate": -24.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Farm & Heavy Construction Machinery",
     "debtToEquity": 3.62,
@@ -22115,14 +22115,6 @@
     "return5Y": 57.17,
     "return10Y": 697.67,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 629.32001,
-        "h": 633.79999,
-        "l": 619.29999,
-        "c": 627.63,
-        "v": 1636900
-      },
       {
         "t": 1782950400,
         "o": 638.039978,
@@ -22274,6 +22266,14 @@
         "l": 608.21002,
         "c": 610.95001,
         "v": 1346500
+      },
+      {
+        "t": 1785369600,
+        "o": 600.66998,
+        "h": 604.77002,
+        "l": 590.059998,
+        "c": 599.46997,
+        "v": 1368800
       }
     ]
   },
@@ -22302,7 +22302,7 @@
     "divGrowth10Y": 3.14,
     "growthRate": 8.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
     "debtToEquity": 1.42,
@@ -22340,14 +22340,6 @@
     "return5Y": 73.47,
     "return10Y": 186.37,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 95.88,
-        "h": 96.019997,
-        "l": 95.080002,
-        "c": 95.12,
-        "v": 4678600
-      },
       {
         "t": 1782950400,
         "o": 95.74,
@@ -22499,6 +22491,14 @@
         "l": 95.7,
         "c": 96.050003,
         "v": 5287600
+      },
+      {
+        "t": 1785369600,
+        "o": 97.2,
+        "h": 97.31,
+        "l": 93.72,
+        "c": 94.34,
+        "v": 6392200
       }
     ]
   },
@@ -22527,7 +22527,7 @@
     "divGrowth10Y": 7.78,
     "growthRate": 2.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Materials",
     "industry": "Specialty Chemicals",
     "debtToEquity": 0.33,
@@ -22565,14 +22565,6 @@
     "return5Y": 81.76,
     "return10Y": 440.32,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 525.31,
-        "h": 538.95001,
-        "l": 517,
-        "c": 533.54999,
-        "v": 3087500
-      },
       {
         "t": 1782950400,
         "o": 535.45001,
@@ -22724,6 +22716,14 @@
         "l": 505.14001,
         "c": 511.17001,
         "v": 2030200
+      },
+      {
+        "t": 1785369600,
+        "o": 510.42001,
+        "h": 514.78003,
+        "l": 502.62,
+        "c": 508.64001,
+        "v": 2360800
       }
     ]
   },
@@ -22752,7 +22752,7 @@
     "divGrowth10Y": 7.63,
     "growthRate": 2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Restaurants",
     "debtToEquity": 999,
@@ -22790,14 +22790,6 @@
     "return5Y": 36.6,
     "return10Y": 181.69,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 270.25,
-        "h": 272.45001,
-        "l": 268.89999,
-        "c": 269.42999,
-        "v": 3902100
-      },
       {
         "t": 1782950400,
         "o": 271.79999,
@@ -22949,6 +22941,14 @@
         "l": 270.25,
         "c": 271.51999,
         "v": 3650700
+      },
+      {
+        "t": 1785369600,
+        "o": 270.48999,
+        "h": 271.79999,
+        "l": 266.31,
+        "c": 268.44,
+        "v": 4040200
       }
     ]
   },
@@ -22967,8 +22967,8 @@
     "low52w": 500.4,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 52887020000,
-    "peRatio": 8.8233,
+    "marketCap": 54382168000,
+    "peRatio": 9.0728,
     "eps": 0,
     "divYield": 4.752851711026616,
     "trailingDividendRate": null,
@@ -22977,7 +22977,7 @@
     "divGrowth10Y": 31.46,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -22994,14 +22994,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 17.74,
-        "h": 18.12,
-        "l": 17.73,
-        "c": 17.99,
-        "v": 2853300
-      },
       {
         "t": 1782950400,
         "o": 18.16,
@@ -23153,6 +23145,14 @@
         "l": 17.55,
         "c": 17.58,
         "v": 4919800
+      },
+      {
+        "t": 1785369600,
+        "o": 18.29,
+        "h": 18.59,
+        "l": 18.28,
+        "c": 18.53,
+        "v": 4893400
       }
     ]
   },
@@ -23171,8 +23171,8 @@
     "low52w": 917.39,
     "volume": 46395,
     "avgVolume": 505070,
-    "marketCap": 178597500000,
-    "peRatio": 27.159,
+    "marketCap": 177299940000,
+    "peRatio": 26.9617,
     "eps": 39.68,
     "divYield": 2.086728515891731,
     "trailingDividendRate": 21.36,
@@ -23181,7 +23181,7 @@
     "divGrowth10Y": 9.24,
     "growthRate": 11.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Asset Management",
     "debtToEquity": 0.41,
@@ -23219,14 +23219,6 @@
     "return5Y": 44.07,
     "return10Y": 298.75,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 960.41998,
-        "h": 986.57001,
-        "l": 957.10999,
-        "c": 980.38,
-        "v": 969300
-      },
       {
         "t": 1782950400,
         "o": 988.5,
@@ -23378,6 +23370,14 @@
         "l": 1079.18994,
         "c": 1079.18994,
         "v": 1121800
+      },
+      {
+        "t": 1785369600,
+        "o": 1079.35999,
+        "h": 1104.10999,
+        "l": 1071.37,
+        "c": 1098.37,
+        "v": 624200
       }
     ]
   },
@@ -23396,8 +23396,8 @@
     "low52w": 113.9,
     "volume": 591591,
     "avgVolume": 3231290,
-    "marketCap": 97558664000,
-    "peRatio": 18.984,
+    "marketCap": 97784750000,
+    "peRatio": 19.028,
     "eps": 6.49,
     "divYield": 3.437079274570365,
     "trailingDividendRate": 4.24,
@@ -23406,7 +23406,7 @@
     "divGrowth10Y": 2.59,
     "growthRate": 5.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Utilities",
     "industry": "Utilities - Regulated Electric",
     "debtToEquity": 1.11,
@@ -23444,14 +23444,6 @@
     "return5Y": 45.45,
     "return10Y": 134.59,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 126.58,
-        "h": 126.81,
-        "l": 125.24,
-        "c": 125.77,
-        "v": 4257900
-      },
       {
         "t": 1782950400,
         "o": 126.5,
@@ -23603,6 +23595,14 @@
         "l": 128.36,
         "c": 129.080002,
         "v": 3668300
+      },
+      {
+        "t": 1785369600,
+        "o": 129.16,
+        "h": 129.3,
+        "l": 125.24,
+        "c": 126.27,
+        "v": 4743800
       }
     ]
   },
@@ -23631,7 +23631,7 @@
     "divGrowth10Y": 12.96,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -23648,14 +23648,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 8.07,
-        "h": 8.23,
-        "l": 8.04,
-        "c": 8.13,
-        "v": 18388700
-      },
       {
         "t": 1782950400,
         "o": 8.27,
@@ -23807,6 +23799,14 @@
         "l": 8.15,
         "c": 8.15,
         "v": 21096800
+      },
+      {
+        "t": 1785369600,
+        "o": 8.2,
+        "h": 8.46,
+        "l": 8.2,
+        "c": 8.44,
+        "v": 12744400
       }
     ]
   },
@@ -23835,7 +23835,7 @@
     "divGrowth10Y": -6.69,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Healthcare",
     "industry": null,
     "debtToEquity": null,
@@ -23852,14 +23852,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 52.2,
-        "h": 52.25,
-        "l": 51.080002,
-        "c": 51.3,
-        "v": 3202600
-      },
       {
         "t": 1782950400,
         "o": 52.42,
@@ -24011,6 +24003,14 @@
         "l": 52.66,
         "c": 53.22,
         "v": 6308800
+      },
+      {
+        "t": 1785369600,
+        "o": 52.33,
+        "h": 52.7,
+        "l": 51.87,
+        "c": 52.07,
+        "v": 6110400
       }
     ]
   },
@@ -24039,7 +24039,7 @@
     "divGrowth10Y": 3.92,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Staples",
     "industry": null,
     "debtToEquity": null,
@@ -24056,14 +24056,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 60.33,
-        "h": 60.93,
-        "l": 60.17,
-        "c": 60.89,
-        "v": 2704100
-      },
       {
         "t": 1782950400,
         "o": 61.63,
@@ -24215,6 +24207,14 @@
         "l": 65.13,
         "c": 66,
         "v": 11206400
+      },
+      {
+        "t": 1785369600,
+        "o": 65.6,
+        "h": 65.79,
+        "l": 65.099998,
+        "c": 65.27,
+        "v": 7835600
       }
     ]
   },
@@ -24243,7 +24243,7 @@
     "divGrowth10Y": 7.78,
     "growthRate": 5.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 2.18,
@@ -24281,14 +24281,6 @@
     "return5Y": 54.58,
     "return10Y": 185.21,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 517,
-        "h": 524.23999,
-        "l": 514.34998,
-        "c": 521.82001,
-        "v": 1278000
-      },
       {
         "t": 1782950400,
         "o": 529,
@@ -24440,6 +24432,14 @@
         "l": 568.73999,
         "c": 569.20001,
         "v": 1600900
+      },
+      {
+        "t": 1785369600,
+        "o": 565.76001,
+        "h": 574.76001,
+        "l": 556.54999,
+        "c": 574.10999,
+        "v": 1512700
       }
     ]
   },
@@ -24468,7 +24468,7 @@
     "divGrowth10Y": 1,
     "growthRate": 5.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Real Estate",
     "industry": "REIT - Specialty",
     "debtToEquity": 1.58,
@@ -24506,14 +24506,6 @@
     "return5Y": 63.82,
     "return10Y": 276.63,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 1027.55005,
-        "h": 1045.54004,
-        "l": 1003.40002,
-        "c": 1013.62,
-        "v": 956400
-      },
       {
         "t": 1782950400,
         "o": 1028.63,
@@ -24665,6 +24657,14 @@
         "l": 1001.60999,
         "c": 1008.02002,
         "v": 751400
+      },
+      {
+        "t": 1785369600,
+        "o": 1061.63,
+        "h": 1083.85999,
+        "l": 1044.089966,
+        "c": 1047.53003,
+        "v": 892800
       }
     ]
   },
@@ -24693,7 +24693,7 @@
     "divGrowth10Y": 6.49,
     "growthRate": 6.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Credit Services",
     "debtToEquity": 1.01,
@@ -24731,14 +24731,6 @@
     "return5Y": 27.77,
     "return10Y": 223.12,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 201.82001,
-        "h": 205.83,
-        "l": 200.75,
-        "c": 204.82001,
-        "v": 3358700
-      },
       {
         "t": 1782950400,
         "o": 207.5,
@@ -24890,6 +24882,14 @@
         "l": 207.85001,
         "c": 208.71001,
         "v": 4129800
+      },
+      {
+        "t": 1785369600,
+        "o": 208.55,
+        "h": 210.53,
+        "l": 205.14,
+        "c": 210.14,
+        "v": 4110300
       }
     ]
   },
@@ -24918,7 +24918,7 @@
     "divGrowth10Y": 9.64,
     "growthRate": -0.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Railroads",
     "debtToEquity": 1.88,
@@ -24956,14 +24956,6 @@
     "return5Y": 36.84,
     "return10Y": 317.51,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 270.76001,
-        "h": 278.79999,
-        "l": 270,
-        "c": 277.73001,
-        "v": 2223300
-      },
       {
         "t": 1782950400,
         "o": 279,
@@ -25115,6 +25107,14 @@
         "l": 290.5,
         "c": 292.19,
         "v": 3054900
+      },
+      {
+        "t": 1785369600,
+        "o": 293.87,
+        "h": 293.87,
+        "l": 284.79001,
+        "c": 289.45999,
+        "v": 3453800
       }
     ]
   },
@@ -25143,7 +25143,7 @@
     "divGrowth10Y": null,
     "growthRate": 4.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Communication Services",
     "industry": "Telecom Services",
     "debtToEquity": 1.52,
@@ -25181,14 +25181,6 @@
     "return5Y": 41.43,
     "return10Y": 387.86,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 169.67,
-        "h": 173.99001,
-        "l": 169.35001,
-        "c": 173.059998,
-        "v": 5941100
-      },
       {
         "t": 1782950400,
         "o": 176,
@@ -25340,6 +25332,14 @@
         "l": 175.64999,
         "c": 181.52,
         "v": 7257800
+      },
+      {
+        "t": 1785369600,
+        "o": 176.61,
+        "h": 180.91,
+        "l": 173.17999,
+        "c": 173.34,
+        "v": 6783000
       }
     ]
   },
@@ -25368,7 +25368,7 @@
     "divGrowth10Y": 15.67,
     "growthRate": 1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Home Improvement Retail",
     "debtToEquity": 999,
@@ -25406,14 +25406,6 @@
     "return5Y": 23.47,
     "return10Y": 245.09,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 222.75999,
-        "h": 226.49001,
-        "l": 220.7,
-        "c": 221.92,
-        "v": 2864300
-      },
       {
         "t": 1782950400,
         "o": 223.52,
@@ -25565,6 +25557,14 @@
         "l": 213.74001,
         "c": 215.67999,
         "v": 2419100
+      },
+      {
+        "t": 1785369600,
+        "o": 214.35001,
+        "h": 214.88,
+        "l": 208.53,
+        "c": 210.080002,
+        "v": 2755900
       }
     ]
   },
@@ -25593,7 +25593,7 @@
     "divGrowth10Y": 16.79,
     "growthRate": -9.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Capital Markets",
     "debtToEquity": 0.98,
@@ -25631,14 +25631,6 @@
     "return5Y": 35.24,
     "return10Y": 275.92,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 92.76,
-        "h": 96.07,
-        "l": 92.31,
-        "c": 95.78,
-        "v": 10685400
-      },
       {
         "t": 1782950400,
         "o": 96.74,
@@ -25790,6 +25782,14 @@
         "l": 104.39,
         "c": 104.47,
         "v": 7149300
+      },
+      {
+        "t": 1785369600,
+        "o": 103.93,
+        "h": 104.82,
+        "l": 103.07,
+        "c": 104.33,
+        "v": 7497700
       }
     ]
   },
@@ -25805,11 +25805,11 @@
     "dayLow": 104.31,
     "previousClose": 105.22,
     "high52w": 110.68,
-    "low52w": 61,
+    "low52w": 61.19,
     "volume": 1623096,
     "avgVolume": 8963120,
-    "marketCap": 134189269999.99998,
-    "peRatio": 45.7671,
+    "marketCap": 133245079999.99998,
+    "peRatio": 45.4451,
     "eps": 2.28,
     "divYield": 2.5280364949629353,
     "trailingDividendRate": 2.66,
@@ -25818,7 +25818,7 @@
     "divGrowth10Y": 5.55,
     "growthRate": 4.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Healthcare Plans",
     "debtToEquity": 0.85,
@@ -25856,14 +25856,6 @@
     "return5Y": 33.88,
     "return10Y": 27.68,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 103.41,
-        "h": 104.87,
-        "l": 102.76,
-        "c": 104.81,
-        "v": 7508100
-      },
       {
         "t": 1782950400,
         "o": 104.58,
@@ -26015,6 +26007,14 @@
         "l": 105.84,
         "c": 105.92,
         "v": 7717700
+      },
+      {
+        "t": 1785369600,
+        "o": 105,
+        "h": 105.48,
+        "l": 103.010002,
+        "c": 105.22,
+        "v": 7738000
       }
     ]
   },
@@ -26043,7 +26043,7 @@
     "divGrowth10Y": 5.7,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": null,
     "debtToEquity": null,
@@ -26060,14 +26060,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 168.92,
-        "h": 170.55,
-        "l": 168.67,
-        "c": 169.66,
-        "v": 381700
-      },
       {
         "t": 1782950400,
         "o": 173.88,
@@ -26219,6 +26211,14 @@
         "l": 192.67999,
         "c": 192.84,
         "v": 800400
+      },
+      {
+        "t": 1785369600,
+        "o": 192.53,
+        "h": 193.49001,
+        "l": 190.42,
+        "c": 191.45,
+        "v": 544800
       }
     ]
   },
@@ -26237,8 +26237,8 @@
     "low52w": 47.8,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 58458812000,
-    "peRatio": 12.4433,
+    "marketCap": 59311188000,
+    "peRatio": 12.6248,
     "eps": 0,
     "divYield": 7.47439680611005,
     "trailingDividendRate": null,
@@ -26247,7 +26247,7 @@
     "divGrowth10Y": 8.13,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -26264,14 +26264,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 56.21,
-        "h": 56.7,
-        "l": 55.66,
-        "c": 55.92,
-        "v": 1075100
-      },
       {
         "t": 1782950400,
         "o": 56,
@@ -26423,6 +26415,14 @@
         "l": 57.64,
         "c": 57.79,
         "v": 2177300
+      },
+      {
+        "t": 1785369600,
+        "o": 57.82,
+        "h": 58.13,
+        "l": 57.53,
+        "c": 57.61,
+        "v": 2156400
       }
     ]
   },
@@ -26451,7 +26451,7 @@
     "divGrowth10Y": 3.77,
     "growthRate": 15.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Insurance - Property & Casualty",
     "debtToEquity": 0.22,
@@ -26489,14 +26489,6 @@
     "return5Y": 111.46,
     "return10Y": 219.95,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 343.70999,
-        "h": 352.95001,
-        "l": 342.42001,
-        "c": 351.73001,
-        "v": 2375300
-      },
       {
         "t": 1782950400,
         "o": 351.54001,
@@ -26648,6 +26640,14 @@
         "l": 360.59,
         "c": 361.89999,
         "v": 1858300
+      },
+      {
+        "t": 1785369600,
+        "o": 358.35999,
+        "h": 359.35001,
+        "l": 347,
+        "c": 350.14999,
+        "v": 1615500
       }
     ]
   },
@@ -26676,7 +26676,7 @@
     "divGrowth10Y": 12.51,
     "growthRate": -1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Restaurants",
     "debtToEquity": 999,
@@ -26714,14 +26714,6 @@
     "return5Y": 7.94,
     "return10Y": 140.42,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 102.44,
-        "h": 103.76,
-        "l": 101.4,
-        "c": 103.39,
-        "v": 7464100
-      },
       {
         "t": 1782950400,
         "o": 104,
@@ -26873,6 +26865,14 @@
         "l": 103.13,
         "c": 104.14,
         "v": 12546300
+      },
+      {
+        "t": 1785369600,
+        "o": 107.22,
+        "h": 108.46,
+        "l": 103.63,
+        "c": 105.85,
+        "v": 23417700
       }
     ]
   },
@@ -26891,8 +26891,8 @@
     "low52w": 218.1,
     "volume": 475813,
     "avgVolume": 3681550,
-    "marketCap": 76670950000,
-    "peRatio": 8.8914,
+    "marketCap": 77032266000,
+    "peRatio": 8.9333,
     "eps": 6.27,
     "divYield": 3.240874705468976,
     "trailingDividendRate": 4.64,
@@ -26901,7 +26901,7 @@
     "divGrowth10Y": 7.4,
     "growthRate": 7.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Conglomerates",
     "debtToEquity": 1.4,
@@ -26939,14 +26939,6 @@
     "return5Y": 12.94,
     "return10Y": 162.25,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 227.31,
-        "h": 227.31,
-        "l": 220.60001,
-        "c": 221.75,
-        "v": 6204600
-      },
       {
         "t": 1782950400,
         "o": 222.28,
@@ -27098,6 +27090,14 @@
         "l": 240.32001,
         "c": 241.12,
         "v": 2775200
+      },
+      {
+        "t": 1785369600,
+        "o": 241.88,
+        "h": 242.42,
+        "l": 237.36,
+        "c": 241.91,
+        "v": 2839500
       }
     ]
   },
@@ -27126,7 +27126,7 @@
     "divGrowth10Y": 8.66,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -27143,14 +27143,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 157.8,
-        "h": 160.71001,
-        "l": 156.75,
-        "c": 159.14999,
-        "v": 2849300
-      },
       {
         "t": 1782950400,
         "o": 159.87,
@@ -27302,6 +27294,14 @@
         "l": 181.3,
         "c": 185.99001,
         "v": 5962400
+      },
+      {
+        "t": 1785369600,
+        "o": 182.31,
+        "h": 183.059998,
+        "l": 178.53999,
+        "c": 180.88,
+        "v": 4112200
       }
     ]
   },
@@ -27320,8 +27320,8 @@
     "low52w": 61.76,
     "volume": 738126,
     "avgVolume": 6833730,
-    "marketCap": 100901570000,
-    "peRatio": 11.7368,
+    "marketCap": 98741510000,
+    "peRatio": 11.4856,
     "eps": 7.71,
     "divYield": 1.086048454469507,
     "trailingDividendRate": 1.02,
@@ -27330,7 +27330,7 @@
     "divGrowth10Y": 26.14,
     "growthRate": 19.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Materials",
     "industry": "Gold",
     "debtToEquity": 0.42,
@@ -27368,14 +27368,6 @@
     "return5Y": 72.5,
     "return10Y": 294.2,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 92.38,
-        "h": 96.22,
-        "l": 92.2,
-        "c": 93.3,
-        "v": 8407400
-      },
       {
         "t": 1782950400,
         "o": 95.83,
@@ -27527,6 +27519,14 @@
         "l": 88.98,
         "c": 91.34,
         "v": 6701200
+      },
+      {
+        "t": 1785369600,
+        "o": 92.83,
+        "h": 96.019997,
+        "l": 92.17,
+        "c": 95.76,
+        "v": 8545800
       }
     ]
   },
@@ -27545,8 +27545,8 @@
     "low52w": 232.1,
     "volume": 275273,
     "avgVolume": 3129170,
-    "marketCap": 86342690000,
-    "peRatio": 19.6323,
+    "marketCap": 85366460000,
+    "peRatio": 19.4103,
     "eps": 16.39,
     "divYield": 1.5530844256693794,
     "trailingDividendRate": 4.25,
@@ -27555,7 +27555,7 @@
     "divGrowth10Y": 12.79,
     "growthRate": 18.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Travel & Leisure",
     "debtToEquity": 3.22,
@@ -27593,14 +27593,6 @@
     "return5Y": 205.71,
     "return10Y": 273.98,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 317.62,
-        "h": 320.29001,
-        "l": 306.28,
-        "c": 306.29999,
-        "v": 2184500
-      },
       {
         "t": 1782950400,
         "o": 307,
@@ -27752,6 +27744,14 @@
         "l": 315.59,
         "c": 323.57999,
         "v": 2687100
+      },
+      {
+        "t": 1785369600,
+        "o": 319,
+        "h": 323.5,
+        "l": 311.35001,
+        "c": 321.94,
+        "v": 2139200
       }
     ]
   },
@@ -27780,7 +27780,7 @@
     "divGrowth10Y": 7.66,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -27797,14 +27797,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 31.09,
-        "h": 31.58,
-        "l": 31.040001,
-        "c": 31.48,
-        "v": 2513900
-      },
       {
         "t": 1782950400,
         "o": 32.28,
@@ -27956,6 +27948,14 @@
         "l": 32.45,
         "c": 32.51,
         "v": 3363600
+      },
+      {
+        "t": 1785369600,
+        "o": 34.5,
+        "h": 34.97,
+        "l": 34.45,
+        "c": 34.94,
+        "v": 2886100
       }
     ]
   },
@@ -27970,7 +27970,7 @@
     "dayHigh": 334.46,
     "dayLow": 317.615,
     "previousClose": 348.04,
-    "high52w": 403.22,
+    "high52w": 401.99,
     "low52w": 281,
     "volume": 204770,
     "avgVolume": 2916880,
@@ -27984,7 +27984,7 @@
     "divGrowth10Y": 8.89,
     "growthRate": 9.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Health Care",
     "industry": "Medical Devices",
     "debtToEquity": 0.75,
@@ -28022,14 +28022,6 @@
     "return5Y": 30.96,
     "return10Y": 217.82,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 317.16,
-        "h": 319.019989,
-        "l": 309.23001,
-        "c": 313.39001,
-        "v": 2917800
-      },
       {
         "t": 1782950400,
         "o": 317.040009,
@@ -28181,6 +28173,14 @@
         "l": 342.92001,
         "c": 352.25,
         "v": 1857400
+      },
+      {
+        "t": 1785369600,
+        "o": 349.73001,
+        "h": 351.48999,
+        "l": 344.39999,
+        "c": 348.040009,
+        "v": 2767300
       }
     ]
   },
@@ -28209,7 +28209,7 @@
     "divGrowth10Y": 1.65,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -28226,14 +28226,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 42.61,
-        "h": 43.3,
-        "l": 42.49,
-        "c": 42.77,
-        "v": 2125700
-      },
       {
         "t": 1782950400,
         "o": 43.48,
@@ -28385,6 +28377,14 @@
         "l": 41.23,
         "c": 41.69,
         "v": 4510900
+      },
+      {
+        "t": 1785369600,
+        "o": 42.049999,
+        "h": 42.25,
+        "l": 41.6,
+        "c": 42.029999,
+        "v": 3945400
       }
     ]
   },
@@ -28413,7 +28413,7 @@
     "divGrowth10Y": 11.05,
     "growthRate": 14.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": "Financial Data & Stock Exchanges",
     "debtToEquity": 0.82,
@@ -28451,14 +28451,6 @@
     "return5Y": 16.05,
     "return10Y": 333.44,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 399.57999,
-        "h": 419.76001,
-        "l": 397,
-        "c": 414.97,
-        "v": 3956600
-      },
       {
         "t": 1782950400,
         "o": 423.26001,
@@ -28610,6 +28602,14 @@
         "l": 414.98001,
         "c": 419.64001,
         "v": 2961700
+      },
+      {
+        "t": 1785369600,
+        "o": 415.34,
+        "h": 418.95001,
+        "l": 404.54001,
+        "c": 415,
+        "v": 3576200
       }
     ]
   },
@@ -28638,7 +28638,7 @@
     "divGrowth10Y": null,
     "growthRate": 12.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Consumer Discretionary",
     "industry": "Travel Services",
     "debtToEquity": 0.64,
@@ -28676,14 +28676,6 @@
     "return5Y": 77.63,
     "return10Y": 208.99,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 179.88,
-        "h": 185.45,
-        "l": 177.52,
-        "c": 182.64,
-        "v": 7100800
-      },
       {
         "t": 1782950400,
         "o": 184.35001,
@@ -28835,6 +28827,14 @@
         "l": 195.34,
         "c": 201.3,
         "v": 7906000
+      },
+      {
+        "t": 1785369600,
+        "o": 197,
+        "h": 199.89999,
+        "l": 190.14999,
+        "c": 193.24001,
+        "v": 7597000
       }
     ]
   },
@@ -28863,7 +28863,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": null,
     "debtToEquity": null,
@@ -28880,14 +28880,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 44.6,
-        "h": 44.71,
-        "l": 42.86,
-        "c": 42.99,
-        "v": 17854900
-      },
       {
         "t": 1782950400,
         "o": 44.74,
@@ -29039,6 +29031,14 @@
         "l": 31.12,
         "c": 31.12,
         "v": 13687500
+      },
+      {
+        "t": 1785369600,
+        "o": 32.32,
+        "h": 34.96,
+        "l": 32.32,
+        "c": 34.77,
+        "v": 13756600
       }
     ]
   },
@@ -29057,8 +29057,8 @@
     "low52w": 16.18,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 69649060000,
-    "peRatio": 15.9599,
+    "marketCap": 70062000000,
+    "peRatio": 16.0545,
     "eps": 0,
     "divYield": 6.7193675889328075,
     "trailingDividendRate": null,
@@ -29067,7 +29067,7 @@
     "divGrowth10Y": 1.77,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -29084,14 +29084,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 19.059999,
-        "h": 19.22,
-        "l": 18.95,
-        "c": 19.049999,
-        "v": 7330600
-      },
       {
         "t": 1782950400,
         "o": 18.99,
@@ -29243,6 +29235,14 @@
         "l": 20.12,
         "c": 20.2,
         "v": 9540000
+      },
+      {
+        "t": 1785369600,
+        "o": 20.26,
+        "h": 20.31,
+        "l": 20.14,
+        "c": 20.24,
+        "v": 6106100
       }
     ]
   },
@@ -29261,8 +29261,8 @@
     "low52w": 19.97,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 76283430000,
-    "peRatio": 16.4369,
+    "marketCap": 78343520000,
+    "peRatio": 16.8807,
     "eps": 0,
     "divYield": 2.0715630885122414,
     "trailingDividendRate": null,
@@ -29271,7 +29271,7 @@
     "divGrowth10Y": 1.81,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -29288,14 +29288,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 24.76,
-        "h": 24.96,
-        "l": 24.42,
-        "c": 24.5,
-        "v": 3212200
-      },
       {
         "t": 1782950400,
         "o": 24.71,
@@ -29447,6 +29439,14 @@
         "l": 28.71,
         "c": 29.07,
         "v": 10373900
+      },
+      {
+        "t": 1785369600,
+        "o": 28.87,
+        "h": 30.45,
+        "l": 28.78,
+        "c": 30.32,
+        "v": 8337500
       }
     ]
   },
@@ -29475,7 +29475,7 @@
     "divGrowth10Y": 18.09,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -29492,14 +29492,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 111.3,
-        "h": 112.87,
-        "l": 110.36,
-        "c": 110.99,
-        "v": 330400
-      },
       {
         "t": 1782950400,
         "o": 112.24,
@@ -29651,6 +29643,14 @@
         "l": 127.85,
         "c": 128.8,
         "v": 533100
+      },
+      {
+        "t": 1785369600,
+        "o": 127.19,
+        "h": 129.75,
+        "l": 127.19,
+        "c": 128.8,
+        "v": 615800
       }
     ]
   },
@@ -29669,8 +29669,8 @@
     "low52w": 50.0982,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 48057684000,
-    "peRatio": 58.8077,
+    "marketCap": 47916758000,
+    "peRatio": 58.6353,
     "eps": 0,
     "divYield": 0,
     "trailingDividendRate": null,
@@ -29679,7 +29679,7 @@
     "divGrowth10Y": null,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Communication Services",
     "industry": null,
     "debtToEquity": null,
@@ -29696,14 +29696,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 240.274,
-        "h": 246.49001,
-        "l": 228.17,
-        "c": 229.17999,
-        "v": 30684800
-      },
       {
         "t": 1782950400,
         "o": 233,
@@ -29855,6 +29847,14 @@
         "l": 145.8,
         "c": 148.22,
         "v": 39775900
+      },
+      {
+        "t": 1785369600,
+        "o": 172.17999,
+        "h": 195.888,
+        "l": 169.080002,
+        "c": 188.42999,
+        "v": 42302400
       }
     ]
   },
@@ -29873,8 +29873,8 @@
     "low52w": 158,
     "volume": 168231,
     "avgVolume": 2358260,
-    "marketCap": 91881200000,
-    "peRatio": 19.8362,
+    "marketCap": 92389180000,
+    "peRatio": 19.9459,
     "eps": 15.2,
     "divYield": 1.273560876209883,
     "trailingDividendRate": 3.91,
@@ -29883,7 +29883,7 @@
     "divGrowth10Y": 11.81,
     "growthRate": -14.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas Refining & Marketing",
     "debtToEquity": 0.45,
@@ -29921,14 +29921,6 @@
     "return5Y": 378.08,
     "return10Y": 873.3,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 257.45999,
-        "h": 264.95999,
-        "l": 255.0099945,
-        "c": 264.87,
-        "v": 1872100
-      },
       {
         "t": 1782950400,
         "o": 267,
@@ -30080,6 +30072,14 @@
         "l": 307.39001,
         "c": 308.72,
         "v": 1604700
+      },
+      {
+        "t": 1785369600,
+        "o": 304.89999,
+        "h": 316.53,
+        "l": 304.89999,
+        "c": 314.079987,
+        "v": 1963300
       }
     ]
   },
@@ -30098,8 +30098,8 @@
     "low52w": 169.45,
     "volume": 248123,
     "avgVolume": 2990500,
-    "marketCap": 110941805000,
-    "peRatio": 63.6134,
+    "marketCap": 112934336000,
+    "peRatio": 64.7559,
     "eps": 4.32,
     "divYield": 0.20196191575302946,
     "trailingDividendRate": 0.46,
@@ -30108,7 +30108,7 @@
     "divGrowth10Y": null,
     "growthRate": 9.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "debtToEquity": 0.88,
@@ -30146,14 +30146,6 @@
     "return5Y": 673.57,
     "return10Y": null,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 271.34,
-        "h": 273.48001,
-        "l": 266.44,
-        "c": 267.41,
-        "v": 2758600
-      },
       {
         "t": 1782950400,
         "o": 271.89999,
@@ -30305,6 +30297,14 @@
         "l": 272.73001,
         "c": 272.79001,
         "v": 2476100
+      },
+      {
+        "t": 1785369600,
+        "o": 275.75,
+        "h": 278.76001,
+        "l": 270.25,
+        "c": 277.28,
+        "v": 2009100
       }
     ]
   },
@@ -30333,7 +30333,7 @@
     "divGrowth10Y": 1.94,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -30350,14 +30350,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 5.82,
-        "h": 5.94,
-        "l": 5.82,
-        "c": 5.9,
-        "v": 16093600
-      },
       {
         "t": 1782950400,
         "o": 6.06,
@@ -30509,6 +30501,14 @@
         "l": 5.85,
         "c": 5.87,
         "v": 23345600
+      },
+      {
+        "t": 1785369600,
+        "o": 6.16,
+        "h": 6.25,
+        "l": 6.1,
+        "c": 6.25,
+        "v": 14644500
       }
     ]
   },
@@ -30527,8 +30527,8 @@
     "low52w": 30.01,
     "volume": null,
     "avgVolume": null,
-    "marketCap": 82473310000,
-    "peRatio": 13.9714,
+    "marketCap": 82321870000,
+    "peRatio": 13.9458,
     "eps": 0,
     "divYield": 5.876180482686255,
     "trailingDividendRate": null,
@@ -30537,7 +30537,7 @@
     "divGrowth10Y": 3.52,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -30554,14 +30554,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 36.55,
-        "h": 36.84,
-        "l": 36.43,
-        "c": 36.52,
-        "v": 1864000
-      },
       {
         "t": 1782950400,
         "o": 36.58,
@@ -30713,6 +30705,14 @@
         "l": 38.43,
         "c": 38.67,
         "v": 3584000
+      },
+      {
+        "t": 1785369600,
+        "o": 39.22,
+        "h": 39.25,
+        "l": 37.95,
+        "c": 38.12,
+        "v": 6424400
       }
     ]
   },
@@ -30741,7 +30741,7 @@
     "divGrowth10Y": 13.91,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Materials",
     "industry": null,
     "debtToEquity": null,
@@ -30758,14 +30758,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 14.88,
-        "h": 15.18,
-        "l": 14.82,
-        "c": 14.9,
-        "v": 16645000
-      },
       {
         "t": 1782950400,
         "o": 15.06,
@@ -30917,6 +30909,14 @@
         "l": 14.49,
         "c": 14.65,
         "v": 21037300
+      },
+      {
+        "t": 1785369600,
+        "o": 15,
+        "h": 15,
+        "l": 14.67,
+        "c": 14.99,
+        "v": 24231800
       }
     ]
   },
@@ -30945,7 +30945,7 @@
     "divGrowth10Y": -2.2,
     "growthRate": 8.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas Midstream",
     "debtToEquity": 0.88,
@@ -30983,14 +30983,6 @@
     "return5Y": 270.96,
     "return10Y": 514.28,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 74.16,
-        "h": 74.53,
-        "l": 72.27,
-        "c": 72.77,
-        "v": 8557200
-      },
       {
         "t": 1782950400,
         "o": 73.56,
@@ -31142,6 +31134,14 @@
         "l": 69.78,
         "c": 70.13,
         "v": 5299100
+      },
+      {
+        "t": 1785369600,
+        "o": 70.2,
+        "h": 71.22,
+        "l": 69.83,
+        "c": 70.91,
+        "v": 6248400
       }
     ]
   },
@@ -31170,7 +31170,7 @@
     "divGrowth10Y": -3.5,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -31187,14 +31187,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 33.71,
-        "h": 34,
-        "l": 33.65,
-        "c": 33.86,
-        "v": 1897600
-      },
       {
         "t": 1782950400,
         "o": 36.18,
@@ -31346,6 +31338,14 @@
         "l": 35.41,
         "c": 35.47,
         "v": 3248800
+      },
+      {
+        "t": 1785369600,
+        "o": 36.22,
+        "h": 37.060001,
+        "l": 36.029999,
+        "c": 37.029999,
+        "v": 2207000
       }
     ]
   },
@@ -31374,7 +31374,7 @@
     "divGrowth10Y": 6.85,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": null,
     "debtToEquity": null,
@@ -31391,14 +31391,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 53.68,
-        "h": 54.09,
-        "l": 53.29,
-        "c": 53.57,
-        "v": 2133000
-      },
       {
         "t": 1782950400,
         "o": 53.99,
@@ -31550,6 +31542,14 @@
         "l": 65.13,
         "c": 65.8,
         "v": 3524700
+      },
+      {
+        "t": 1785369600,
+        "o": 65.059998,
+        "h": 66.97,
+        "l": 65.059998,
+        "c": 66.73,
+        "v": 2800100
       }
     ]
   },
@@ -31568,8 +31568,8 @@
     "low52w": 102.42,
     "volume": 513151,
     "avgVolume": 5179410,
-    "marketCap": 57292867000,
-    "peRatio": 67.0831,
+    "marketCap": 57558984000,
+    "peRatio": 67.3947,
     "eps": 5.39,
     "divYield": 0.14227475443924595,
     "trailingDividendRate": 0.49,
@@ -31578,7 +31578,7 @@
     "divGrowth10Y": 7.62,
     "growthRate": -4.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "debtToEquity": 0,
@@ -31616,14 +31616,6 @@
     "return5Y": 173.26,
     "return10Y": 1754.92,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 461,
-        "h": 463.66,
-        "l": 425.10999,
-        "c": 427.34,
-        "v": 5465800
-      },
       {
         "t": 1782950400,
         "o": 427.41,
@@ -31775,6 +31767,14 @@
         "l": 319.19,
         "c": 319.41,
         "v": 9221700
+      },
+      {
+        "t": 1785369600,
+        "o": 347.89999,
+        "h": 369,
+        "l": 344.5,
+        "c": 365.48999,
+        "v": 7309100
       }
     ]
   },
@@ -31793,8 +31793,8 @@
     "low52w": 139.57,
     "volume": 957402,
     "avgVolume": 6858020,
-    "marketCap": 268762530000.00003,
-    "peRatio": 318.8924,
+    "marketCap": 270441440000,
+    "peRatio": 320.8845,
     "eps": 1.79,
     "divYield": 0,
     "trailingDividendRate": 0,
@@ -31803,7 +31803,7 @@
     "divGrowth10Y": null,
     "growthRate": 14.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Technology",
     "industry": "Software - Infrastructure",
     "debtToEquity": 0.65,
@@ -31841,14 +31841,6 @@
     "return5Y": 342.31,
     "return10Y": 1007.85,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 345.54999,
-        "h": 358.10001,
-        "l": 341,
-        "c": 352.040009,
-        "v": 7265500
-      },
       {
         "t": 1782950400,
         "o": 351.48999,
@@ -32000,6 +31992,14 @@
         "l": 310.45999,
         "c": 314.14999,
         "v": 6336700
+      },
+      {
+        "t": 1785369600,
+        "o": 316.029999,
+        "h": 326.29999,
+        "l": 313.049988,
+        "c": 325.67999,
+        "v": 6859300
       }
     ]
   },
@@ -32028,7 +32028,7 @@
     "divGrowth10Y": 8.3,
     "growthRate": -25.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas Refining & Marketing",
     "debtToEquity": 0.38,
@@ -32066,14 +32066,6 @@
     "return5Y": 271.87,
     "return10Y": 595.55,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 263.040009,
-        "h": 269.89999,
-        "l": 260.75,
-        "c": 269.44,
-        "v": 2390500
-      },
       {
         "t": 1782950400,
         "o": 269.89999,
@@ -32225,6 +32217,14 @@
         "l": 301.32001,
         "c": 301.32001,
         "v": 2319800
+      },
+      {
+        "t": 1785369600,
+        "o": 296.41,
+        "h": 313.75,
+        "l": 294.20999,
+        "c": 311.70999,
+        "v": 2254700
       }
     ]
   },
@@ -32253,7 +32253,7 @@
     "divGrowth10Y": 3.55,
     "growthRate": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Financials",
     "industry": null,
     "debtToEquity": null,
@@ -32270,14 +32270,6 @@
     "inPortfolio": false,
     "inWatchlist": false,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 27.01,
-        "h": 27.46,
-        "l": 26.93,
-        "c": 27.27,
-        "v": 3479400
-      },
       {
         "t": 1782950400,
         "o": 27.89,
@@ -32429,6 +32421,14 @@
         "l": 26.02,
         "c": 26.049999,
         "v": 7323700
+      },
+      {
+        "t": 1785369600,
+        "o": 27.27,
+        "h": 27.76,
+        "l": 27.21,
+        "c": 27.7,
+        "v": 4814200
       }
     ]
   },
@@ -32457,7 +32457,7 @@
     "divGrowth10Y": 5.54,
     "growthRate": 20.8,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-07-31T22:17:58.343Z",
+    "updatedAt": "2026-08-01T15:16:31.253Z",
     "sector": "Energy",
     "industry": "Oil & Gas Midstream",
     "debtToEquity": 1.12,
@@ -32495,14 +32495,6 @@
     "return5Y": 124.61,
     "return10Y": 308.83,
     "dailyCandles": [
-      {
-        "t": 1782864000,
-        "o": 86.53,
-        "h": 87.11,
-        "l": 85.45,
-        "c": 85.73,
-        "v": 3177400
-      },
       {
         "t": 1782950400,
         "o": 86.65,
@@ -32654,6 +32646,14 @@
         "l": 89.19,
         "c": 90,
         "v": 3002500
+      },
+      {
+        "t": 1785369600,
+        "o": 89.029999,
+        "h": 89.74,
+        "l": 88.19,
+        "c": 89.07,
+        "v": 3107800
       }
     ]
   }
