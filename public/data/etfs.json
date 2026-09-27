@@ -11,7 +11,7 @@
     "dayLow": 84.15,
     "previousClose": 84.52,
     "high52w": 109.74,
-    "low52w": 73.6,
+    "low52w": 73.675,
     "volume": null,
     "avgVolume": 3820000,
     "totalAssets": 32799999999,
@@ -23,7 +23,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1,
     "beta": null,
     "yieldTTM": 0,
@@ -251,7 +251,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 86,
     "beta": 0,
     "yieldTTM": 0,
@@ -269,80 +269,80 @@
     "marketCap": 0,
     "inPortfolio": true,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
-        "symbol": "ESTC",
-        "name": "ELASTIC NV",
-        "weight": 0.0184
-      },
-      {
         "symbol": "n/a",
         "name": "GLOBAL UNICHIP CORP",
-        "weight": 0.018
-      },
-      {
-        "symbol": "HQ",
-        "name": "HORIZON QUANTUM HOLDINGS LTD CLASS A",
-        "weight": 0.0176
-      },
-      {
-        "symbol": "ARQQ",
-        "name": "ARQIT QUANTUM INC",
-        "weight": 0.0175
-      },
-      {
-        "symbol": "PLTR",
-        "name": "n/a",
-        "weight": 0.0167
-      },
-      {
-        "symbol": "NTNX",
-        "name": "NUTANIX INC CLASS A",
-        "weight": 0.0163
-      },
-      {
-        "symbol": "SNOW",
-        "name": "SNOWFLAKE INC ORDINARY SHARES",
-        "weight": 0.0161
-      },
-      {
-        "symbol": "RDNT",
-        "name": "RADNET INC",
-        "weight": 0.0157
+        "weight": 0.0188
       },
       {
         "symbol": "NET",
         "name": "CLOUDFLARE INC",
-        "weight": 0.0157
+        "weight": 0.0181
+      },
+      {
+        "symbol": "ARQQ",
+        "name": "ARQIT QUANTUM INC",
+        "weight": 0.0178
+      },
+      {
+        "symbol": "ESTC",
+        "name": "ELASTIC NV",
+        "weight": 0.0171
+      },
+      {
+        "symbol": "NTNX",
+        "name": "NUTANIX INC CLASS A",
+        "weight": 0.0169
+      },
+      {
+        "symbol": "SNOW",
+        "name": "SNOWFLAKE INC ORDINARY SHARES",
+        "weight": 0.0169
+      },
+      {
+        "symbol": "HQ",
+        "name": "HORIZON QUANTUM HOLDINGS LTD CLASS A",
+        "weight": 0.0166
+      },
+      {
+        "symbol": "PLTR",
+        "name": "n/a",
+        "weight": 0.0164
+      },
+      {
+        "symbol": "RDNT",
+        "name": "RADNET INC",
+        "weight": 0.016
       },
       {
         "symbol": "n/a",
-        "name": "ASUSTEK COMPUTER INC",
-        "weight": 0.0154
+        "name": "NEC CORP",
+        "weight": 0.0153
       }
     ],
     "sectorBreakdown": [
       {
         "sector": "INFORMATION TECHNOLOGY",
-        "weight": 0.261
+        "weight": 0.528
       },
       {
         "sector": "INDUSTRIALS",
-        "weight": 0.025
+        "weight": 0.049
       },
       {
         "sector": "COMMUNICATION SERVICES",
         "weight": 0.023
       },
       {
-        "sector": "CONSUMER DISCRETIONARY",
-        "weight": 0
+        "sector": "HEALTHCARE",
+        "weight": 0.016
       },
       {
-        "sector": "HEALTHCARE",
-        "weight": 0
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.013
       },
       {
         "sector": "CONSUMER STAPLES",
@@ -373,14 +373,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 150.7,
-        "h": 151.22,
-        "l": 149.83,
-        "c": 150.96001,
-        "v": 299600
-      },
       {
         "t": 1787875200,
         "o": 151.38,
@@ -532,6 +524,14 @@
         "l": 150.53,
         "c": 152.47,
         "v": 178900
+      },
+      {
+        "t": 1790294400,
+        "o": 153.41,
+        "h": 154.73,
+        "l": 152.72,
+        "c": 153.72,
+        "v": 218000
       }
     ]
   },
@@ -559,7 +559,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 471,
     "beta": 0,
     "yieldTTM": 0,
@@ -681,14 +681,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 53.69,
-        "h": 53.83,
-        "l": 53.59,
-        "c": 53.78,
-        "v": 2091000
-      },
       {
         "t": 1787875200,
         "o": 53.78,
@@ -840,6 +832,14 @@
         "l": 53.171,
         "c": 53.42,
         "v": 1959900
+      },
+      {
+        "t": 1790294400,
+        "o": 53.53,
+        "h": 53.695,
+        "l": 53.37,
+        "c": 53.65,
+        "v": 2399100
       }
     ]
   },
@@ -867,7 +867,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 108,
     "beta": 0,
     "yieldTTM": 0,
@@ -989,14 +989,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 54.515,
-        "h": 54.77,
-        "l": 54.38,
-        "c": 54.76,
-        "v": 3368300
-      },
       {
         "t": 1787875200,
         "o": 54.69,
@@ -1148,6 +1140,14 @@
         "l": 55.225,
         "c": 55.56,
         "v": 3041100
+      },
+      {
+        "t": 1790294400,
+        "o": 55.7,
+        "h": 55.83,
+        "l": 55.505,
+        "c": 55.76,
+        "v": 3033300
       }
     ]
   },
@@ -1175,7 +1175,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 756,
     "beta": 0,
     "yieldTTM": 0,
@@ -1292,14 +1292,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 125.41,
-        "h": 126.224,
-        "l": 124.93,
-        "c": 126.019997,
-        "v": 1344900
-      },
       {
         "t": 1787875200,
         "o": 126.32,
@@ -1451,6 +1443,14 @@
         "l": 119.7,
         "c": 120.21,
         "v": 1610300
+      },
+      {
+        "t": 1790294400,
+        "o": 120.27,
+        "h": 120.81,
+        "l": 119.83,
+        "c": 120.41,
+        "v": 1080700
       }
     ]
   },
@@ -1478,7 +1478,7 @@
     "divGrowth5Y": 71.15,
     "divGrowth10Y": 118.15,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 38,
     "beta": null,
     "yieldTTM": null,
@@ -1781,7 +1781,7 @@
     "divGrowth5Y": 5.76,
     "divGrowth10Y": 6.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 516,
     "beta": 1,
     "yieldTTM": 1.26,
@@ -2105,7 +2105,7 @@
     "divGrowth5Y": 7.22,
     "divGrowth10Y": 5.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 496,
     "beta": 1,
     "yieldTTM": 1.27,
@@ -2429,7 +2429,7 @@
     "divGrowth5Y": 5.82,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 496,
     "beta": 1,
     "yieldTTM": 1.28,
@@ -2753,7 +2753,7 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 6.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2352,
     "beta": 1,
     "yieldTTM": 1.3,
@@ -2891,14 +2891,6 @@
     "return5Y": 79.89,
     "return10Y": 306.13,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 379.5,
-        "h": 381.20001,
-        "l": 378.85999,
-        "c": 380.63,
-        "v": 2911400
-      },
       {
         "t": 1787875200,
         "o": 381.029999,
@@ -3050,6 +3042,14 @@
         "l": 376.029999,
         "c": 378.079987,
         "v": 2598300
+      },
+      {
+        "t": 1790294400,
+        "o": 378.63,
+        "h": 380.32999,
+        "l": 377.45999,
+        "c": 379.76999,
+        "v": 2808400
       }
     ]
   },
@@ -3077,7 +3077,7 @@
     "divGrowth5Y": 501.61,
     "divGrowth10Y": 81.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 107,
     "beta": null,
     "yieldTTM": null,
@@ -3380,7 +3380,7 @@
     "divGrowth5Y": 9.72,
     "divGrowth10Y": 9.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 104,
     "beta": 1.15,
     "yieldTTM": 0.5,
@@ -3704,7 +3704,7 @@
     "divGrowth5Y": 8.02,
     "divGrowth10Y": 6.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 26,
     "beta": 1.35,
     "yieldTTM": 0.55,
@@ -3842,14 +3842,6 @@
     "return5Y": 381,
     "return10Y": 2174.97,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 569.37,
-        "h": 573.21002,
-        "l": 562.53998,
-        "c": 573,
-        "v": 6562500
-      },
       {
         "t": 1787875200,
         "o": 568.71997,
@@ -4001,6 +3993,14 @@
         "l": 588.91998,
         "c": 600.52002,
         "v": 5645400
+      },
+      {
+        "t": 1790294400,
+        "o": 605.57001,
+        "h": 609.65997,
+        "l": 602.21997,
+        "c": 606.56,
+        "v": 4656600
       }
     ]
   },
@@ -4028,7 +4028,7 @@
     "divGrowth5Y": 2.54,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 323,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -4352,7 +4352,7 @@
     "divGrowth5Y": 6.84,
     "divGrowth10Y": 6.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 76,
     "beta": 1.2,
     "yieldTTM": 0.85,
@@ -4676,7 +4676,7 @@
     "divGrowth5Y": 3.59,
     "divGrowth10Y": 3.75,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 151,
     "beta": 1.13,
     "yieldTTM": 0.52,
@@ -5000,7 +5000,7 @@
     "divGrowth5Y": 12,
     "divGrowth10Y": 6.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2839,
     "beta": 0.86,
     "yieldTTM": 3.05,
@@ -5312,7 +5312,7 @@
     "dayLow": 70.335,
     "previousClose": 70.45,
     "high52w": 75.23,
-    "low52w": 70.44,
+    "low52w": 70.335,
     "volume": 665962,
     "avgVolume": 7977020,
     "totalAssets": 398800000000,
@@ -5324,7 +5324,7 @@
     "divGrowth5Y": 7.99,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 10600,
     "beta": 0.06,
     "yieldTTM": 2.9,
@@ -5552,7 +5552,7 @@
     "divGrowth5Y": 11.35,
     "divGrowth10Y": 6.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 37,
     "beta": 0.85,
     "yieldTTM": 2.8,
@@ -5686,14 +5686,6 @@
     "return5Y": 50.75,
     "return10Y": 152.54,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 87.95,
-        "h": 87.98,
-        "l": 87.58,
-        "c": 87.93,
-        "v": 4519200
-      },
       {
         "t": 1787875200,
         "o": 88.19,
@@ -5845,6 +5837,14 @@
         "l": 85.15,
         "c": 85.59,
         "v": 5628700
+      },
+      {
+        "t": 1790294400,
+        "o": 86.059998,
+        "h": 86.46,
+        "l": 85.78,
+        "c": 86.35,
+        "v": 4235200
       }
     ]
   },
@@ -5872,7 +5872,7 @@
     "divGrowth5Y": 9.81,
     "divGrowth10Y": 15.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 33,
     "beta": 1.33,
     "yieldTTM": 0.6,
@@ -6196,7 +6196,7 @@
     "divGrowth5Y": 3.88,
     "divGrowth10Y": 7.99,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 295,
     "beta": null,
     "yieldTTM": null,
@@ -6487,7 +6487,7 @@
     "dayLow": 94.735,
     "previousClose": 94.95,
     "high52w": 101.4557,
-    "low52w": 95.25,
+    "low52w": 94.735,
     "volume": 616607,
     "avgVolume": 9096960,
     "totalAssets": 138300000000,
@@ -6499,7 +6499,7 @@
     "divGrowth5Y": 11.34,
     "divGrowth10Y": 3.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 9800,
     "beta": 0.06,
     "yieldTTM": 2.85,
@@ -6727,7 +6727,7 @@
     "divGrowth5Y": 9.91,
     "divGrowth10Y": 6.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 314,
     "beta": 0.93,
     "yieldTTM": 1.75,
@@ -7047,7 +7047,7 @@
     "divGrowth5Y": 12.03,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 101,
     "beta": 1.1,
     "yieldTTM": 0.75,
@@ -7185,14 +7185,6 @@
     "return5Y": 176.31,
     "return10Y": 508.25,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 149.19,
-        "h": 149.31,
-        "l": 147.13,
-        "c": 148.60001,
-        "v": 1543800
-      },
       {
         "t": 1787875200,
         "o": 148.22,
@@ -7344,6 +7336,14 @@
         "l": 150.42,
         "c": 152.17999,
         "v": 2152300
+      },
+      {
+        "t": 1790294400,
+        "o": 152.84,
+        "h": 153.19,
+        "l": 151.75,
+        "c": 152.92,
+        "v": 1794200
       }
     ]
   },
@@ -7371,7 +7371,7 @@
     "divGrowth5Y": 19.35,
     "divGrowth10Y": 8.31,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2324,
     "beta": 0.87,
     "yieldTTM": 3.1,
@@ -7683,7 +7683,7 @@
     "dayLow": 44.22,
     "previousClose": 44.32,
     "high52w": 47.23,
-    "low52w": 44.31,
+    "low52w": 44.22,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 43800000000,
@@ -7695,7 +7695,7 @@
     "divGrowth5Y": 8.75,
     "divGrowth10Y": 6.3,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1,
     "beta": null,
     "yieldTTM": null,
@@ -7908,7 +7908,7 @@
     "divGrowth5Y": 5.88,
     "divGrowth10Y": 6.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 279,
     "beta": 0.87,
     "yieldTTM": 1.8,
@@ -8232,7 +8232,7 @@
     "divGrowth5Y": 5.29,
     "divGrowth10Y": 6.11,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1900,
     "beta": null,
     "yieldTTM": null,
@@ -8535,7 +8535,7 @@
     "divGrowth5Y": 9.57,
     "divGrowth10Y": 4.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 196,
     "beta": 1.12,
     "yieldTTM": 0.55,
@@ -8673,14 +8673,6 @@
     "return5Y": 109.03,
     "return10Y": 466.22,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 35.56,
-        "h": 35.94,
-        "l": 35.53,
-        "c": 35.86,
-        "v": 7283200
-      },
       {
         "t": 1787875200,
         "o": 35.9,
@@ -8832,6 +8824,14 @@
         "l": 35.7,
         "c": 36.060001,
         "v": 9329900
+      },
+      {
+        "t": 1790294400,
+        "o": 36.15,
+        "h": 36.3,
+        "l": 35.98,
+        "c": 36.26,
+        "v": 9941000
       }
     ]
   },
@@ -8859,7 +8859,7 @@
     "divGrowth5Y": 9.77,
     "divGrowth10Y": 6.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2350,
     "beta": 0.9,
     "yieldTTM": 2.2,
@@ -9179,7 +9179,7 @@
     "divGrowth5Y": 2.12,
     "divGrowth10Y": 1.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 329,
     "beta": 1.14,
     "yieldTTM": 0.55,
@@ -9503,7 +9503,7 @@
     "divGrowth5Y": 3.49,
     "divGrowth10Y": 3.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 217,
     "beta": 1.1,
     "yieldTTM": 0.47,
@@ -9823,7 +9823,7 @@
     "divGrowth5Y": 9.42,
     "divGrowth10Y": 3.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 12,
     "beta": 0.88,
     "yieldTTM": 2.5,
@@ -10143,7 +10143,7 @@
     "divGrowth5Y": 2.22,
     "divGrowth10Y": 1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 60,
     "beta": 1.15,
     "yieldTTM": 0.48,
@@ -10454,7 +10454,7 @@
     "dayHigh": 266.77,
     "dayLow": 264.465,
     "previousClose": 264.31,
-    "high52w": 266.68,
+    "high52w": 266.77,
     "low52w": 172.542,
     "volume": 145607,
     "avgVolume": 1173660,
@@ -10467,7 +10467,7 @@
     "divGrowth5Y": -6.89,
     "divGrowth10Y": -1.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 153,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -10791,7 +10791,7 @@
     "divGrowth5Y": 4.49,
     "divGrowth10Y": 5.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 732,
     "beta": 1,
     "yieldTTM": 1.1,
@@ -11115,7 +11115,7 @@
     "divGrowth5Y": 4.13,
     "divGrowth10Y": 4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 332,
     "beta": 1.14,
     "yieldTTM": 0.52,
@@ -11439,7 +11439,7 @@
     "divGrowth5Y": 12.6,
     "divGrowth10Y": 5.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2524,
     "beta": 0.85,
     "yieldTTM": 2.7,
@@ -11763,7 +11763,7 @@
     "divGrowth5Y": 2.43,
     "divGrowth10Y": 5.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 359,
     "beta": null,
     "yieldTTM": null,
@@ -12066,7 +12066,7 @@
     "divGrowth5Y": 17.04,
     "divGrowth10Y": 10.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1465,
     "beta": null,
     "yieldTTM": null,
@@ -12369,7 +12369,7 @@
     "divGrowth5Y": 4.45,
     "divGrowth10Y": 5.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2100,
     "beta": 1,
     "yieldTTM": 1.2,
@@ -12689,7 +12689,7 @@
     "divGrowth5Y": 17.16,
     "divGrowth10Y": 7.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 42,
     "beta": 0.85,
     "yieldTTM": 2.6,
@@ -13009,7 +13009,7 @@
     "divGrowth5Y": 6.01,
     "divGrowth10Y": 6.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 444,
     "beta": 1,
     "yieldTTM": 1.1,
@@ -13321,7 +13321,7 @@
     "dayLow": 89.695,
     "previousClose": 89.86,
     "high52w": 96.965,
-    "low52w": 89.86,
+    "low52w": 89.695,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 39600000000,
@@ -13333,7 +13333,7 @@
     "divGrowth5Y": 13.75,
     "divGrowth10Y": 2.65,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 11106,
     "beta": null,
     "yieldTTM": null,
@@ -13528,7 +13528,7 @@
     "dayLow": 48.905,
     "previousClose": 49.02,
     "high52w": 52.7199,
-    "low52w": 49.02,
+    "low52w": 48.905,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 17800000000,
@@ -13540,7 +13540,7 @@
     "divGrowth5Y": 8.57,
     "divGrowth10Y": 3.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 11388,
     "beta": null,
     "yieldTTM": null,
@@ -13747,7 +13747,7 @@
     "divGrowth5Y": 8.14,
     "divGrowth10Y": 6.91,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 343,
     "beta": 0.8,
     "yieldTTM": 1.7,
@@ -13885,14 +13885,6 @@
     "return5Y": 62.8,
     "return10Y": 243.36,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 243.23,
-        "h": 243.82001,
-        "l": 242.57001,
-        "c": 243.23,
-        "v": 1161900
-      },
       {
         "t": 1787875200,
         "o": 243.83,
@@ -14044,6 +14036,14 @@
         "l": 235.57001,
         "c": 235.97,
         "v": 1164900
+      },
+      {
+        "t": 1790294400,
+        "o": 236.28999,
+        "h": 237.92999,
+        "l": 235.95,
+        "c": 237.58,
+        "v": 990100
       }
     ]
   },
@@ -14071,7 +14071,7 @@
     "divGrowth5Y": -0.22,
     "divGrowth10Y": 0.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 220,
     "beta": 1.1,
     "yieldTTM": 0.55,
@@ -14391,7 +14391,7 @@
     "divGrowth5Y": 2.77,
     "divGrowth10Y": 3.55,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 220,
     "beta": 1.1,
     "yieldTTM": 0.5,
@@ -14711,7 +14711,7 @@
     "divGrowth5Y": 3.15,
     "divGrowth10Y": 4.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 611,
     "beta": 0.8,
     "yieldTTM": 3,
@@ -15035,7 +15035,7 @@
     "divGrowth5Y": 18.4,
     "divGrowth10Y": 7.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2250,
     "beta": null,
     "yieldTTM": null,
@@ -15338,7 +15338,7 @@
     "divGrowth5Y": 10.88,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1582,
     "beta": null,
     "yieldTTM": null,
@@ -15629,7 +15629,7 @@
     "dayLow": 46.8,
     "previousClose": 46.895,
     "high52w": 49.93,
-    "low52w": 46.85,
+    "low52w": 46.8,
     "volume": 259677,
     "avgVolume": 5324740,
     "totalAssets": 123000000000,
@@ -15641,7 +15641,7 @@
     "divGrowth5Y": 27.71,
     "divGrowth10Y": 9.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 6800,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -15857,7 +15857,7 @@
     "dayLow": 47.39,
     "previousClose": 47.69,
     "high52w": 51.18,
-    "low52w": 47.6,
+    "low52w": 47.39,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 49100000000,
@@ -15869,7 +15869,7 @@
     "divGrowth5Y": 10.32,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 10189,
     "beta": null,
     "yieldTTM": null,
@@ -16076,7 +16076,7 @@
     "divGrowth5Y": 8.68,
     "divGrowth10Y": 10.43,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 102,
     "beta": 0.78,
     "yieldTTM": 3.9,
@@ -16214,14 +16214,6 @@
     "return5Y": 47.69,
     "return10Y": 234.7,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 34.77,
-        "h": 34.97,
-        "l": 34.7,
-        "c": 34.83,
-        "v": 25773500
-      },
       {
         "t": 1787875200,
         "o": 34.87,
@@ -16373,6 +16365,14 @@
         "l": 33.080002,
         "c": 33.099998,
         "v": 21475800
+      },
+      {
+        "t": 1790294400,
+        "o": 33.040001,
+        "h": 33.27,
+        "l": 33.0099983,
+        "c": 33.21,
+        "v": 23748400
       }
     ]
   },
@@ -16400,7 +16400,7 @@
     "divGrowth5Y": 7.01,
     "divGrowth10Y": 6.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1472,
     "beta": null,
     "yieldTTM": null,
@@ -16703,7 +16703,7 @@
     "divGrowth5Y": 8.41,
     "divGrowth10Y": 7.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 248,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -17027,7 +17027,7 @@
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 403,
     "beta": 1.07,
     "yieldTTM": 1.5,
@@ -17351,7 +17351,7 @@
     "divGrowth5Y": 1.22,
     "divGrowth10Y": 1.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 104,
     "beta": null,
     "yieldTTM": null,
@@ -17654,7 +17654,7 @@
     "divGrowth5Y": 5.56,
     "divGrowth10Y": 5.06,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1003,
     "beta": 1,
     "yieldTTM": 0.94,
@@ -17978,7 +17978,7 @@
     "divGrowth5Y": 8.57,
     "divGrowth10Y": 6.36,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1297,
     "beta": 1.18,
     "yieldTTM": 1.12,
@@ -18302,7 +18302,7 @@
     "divGrowth5Y": 8.63,
     "divGrowth10Y": 5.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 150,
     "beta": 0.88,
     "yieldTTM": 2.2,
@@ -18626,7 +18626,7 @@
     "divGrowth5Y": 14.77,
     "divGrowth10Y": 9.45,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 128,
     "beta": null,
     "yieldTTM": null,
@@ -18929,7 +18929,7 @@
     "divGrowth5Y": 5.21,
     "divGrowth10Y": 5.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 104,
     "beta": null,
     "yieldTTM": null,
@@ -19232,7 +19232,7 @@
     "divGrowth5Y": 9.96,
     "divGrowth10Y": 5.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 86,
     "beta": 1.02,
     "yieldTTM": 1.1,
@@ -19556,7 +19556,7 @@
     "divGrowth5Y": 4.21,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 397,
     "beta": 0.89,
     "yieldTTM": 1.72,
@@ -19880,7 +19880,7 @@
     "divGrowth5Y": 7.09,
     "divGrowth10Y": 8.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 396,
     "beta": 0.82,
     "yieldTTM": 2.5,
@@ -20018,14 +20018,6 @@
     "return5Y": 62.34,
     "return10Y": 250.48,
     "dailyCandles": [
-      {
-        "t": 1787788800,
-        "o": 79.31,
-        "h": 79.52,
-        "l": 79.099998,
-        "c": 79.28,
-        "v": 1222300
-      },
       {
         "t": 1787875200,
         "o": 79.5,
@@ -20177,6 +20169,14 @@
         "l": 76.11,
         "c": 76.14,
         "v": 1577000
+      },
+      {
+        "t": 1790294400,
+        "o": 76.155,
+        "h": 76.64,
+        "l": 76.025002,
+        "c": 76.57,
+        "v": 1248300
       }
     ]
   },
@@ -20192,7 +20192,7 @@
     "dayLow": 51.24,
     "previousClose": 51.25,
     "high52w": 53.25,
-    "low52w": 51.25,
+    "low52w": 51.24,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 23500000000,
@@ -20204,7 +20204,7 @@
     "divGrowth5Y": 16,
     "divGrowth10Y": 13.37,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 4604,
     "beta": null,
     "yieldTTM": null,
@@ -20399,7 +20399,7 @@
     "dayLow": 78.5342,
     "previousClose": 78.7,
     "high52w": 84.84,
-    "low52w": 78.7,
+    "low52w": 78.5342,
     "volume": 767121,
     "avgVolume": 7951070,
     "totalAssets": 72000000000,
@@ -20411,7 +20411,7 @@
     "divGrowth5Y": 9.75,
     "divGrowth10Y": 3.4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1900,
     "beta": 0.15,
     "yieldTTM": 3.8,
@@ -20639,7 +20639,7 @@
     "divGrowth5Y": 13.77,
     "divGrowth10Y": 4.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1226,
     "beta": 0.88,
     "yieldTTM": 3.5,
@@ -20963,7 +20963,7 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 688,
     "beta": 0.88,
     "yieldTTM": 2,
@@ -21287,7 +21287,7 @@
     "divGrowth5Y": 16.65,
     "divGrowth10Y": 7.73,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2400,
     "beta": 0.07,
     "yieldTTM": 3.2,
@@ -21503,7 +21503,7 @@
     "dayLow": 49.22,
     "previousClose": 49.32,
     "high52w": 51.83,
-    "low52w": 49.23,
+    "low52w": 49.22,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 11400000000,
@@ -21515,7 +21515,7 @@
     "divGrowth5Y": 10.93,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 7999,
     "beta": null,
     "yieldTTM": null,
@@ -21722,7 +21722,7 @@
     "divGrowth5Y": 7.06,
     "divGrowth10Y": 6.7,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 128,
     "beta": null,
     "yieldTTM": null,
@@ -22025,7 +22025,7 @@
     "divGrowth5Y": 9.03,
     "divGrowth10Y": 6.94,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 595,
     "beta": 1.1,
     "yieldTTM": 1.2,
@@ -22349,7 +22349,7 @@
     "divGrowth5Y": 19.57,
     "divGrowth10Y": 12.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 904,
     "beta": null,
     "yieldTTM": null,
@@ -22652,7 +22652,7 @@
     "divGrowth5Y": 7.17,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 388,
     "beta": null,
     "yieldTTM": null,
@@ -22955,7 +22955,7 @@
     "divGrowth5Y": 19.63,
     "divGrowth10Y": 10.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2800,
     "beta": 0.05,
     "yieldTTM": 2.8,
@@ -23171,7 +23171,7 @@
     "dayLow": 100.99,
     "previousClose": 101.59,
     "high52w": 109,
-    "low52w": 101.33,
+    "low52w": 100.99,
     "volume": 493150,
     "avgVolume": 2657920,
     "totalAssets": 45400000000,
@@ -23183,7 +23183,7 @@
     "divGrowth5Y": 7.85,
     "divGrowth10Y": 2.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 5000,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -23411,7 +23411,7 @@
     "divGrowth5Y": 7.58,
     "divGrowth10Y": 7.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 102,
     "beta": null,
     "yieldTTM": null,
@@ -23714,7 +23714,7 @@
     "divGrowth5Y": 1.87,
     "divGrowth10Y": 5.66,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2609,
     "beta": 1.12,
     "yieldTTM": 1.1,
@@ -24034,7 +24034,7 @@
     "divGrowth5Y": 1.59,
     "divGrowth10Y": 5.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 126,
     "beta": null,
     "yieldTTM": null,
@@ -24337,7 +24337,7 @@
     "divGrowth5Y": 9.87,
     "divGrowth10Y": 7.59,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2547,
     "beta": null,
     "yieldTTM": null,
@@ -24640,7 +24640,7 @@
     "divGrowth5Y": 4.85,
     "divGrowth10Y": 4.04,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2126,
     "beta": null,
     "yieldTTM": null,
@@ -24939,7 +24939,7 @@
     "divGrowth5Y": 6.51,
     "divGrowth10Y": 4.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 834,
     "beta": null,
     "yieldTTM": null,
@@ -25242,7 +25242,7 @@
     "divGrowth5Y": 1.42,
     "divGrowth10Y": 4.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 532,
     "beta": 0.87,
     "yieldTTM": 1.9,
@@ -25566,7 +25566,7 @@
     "divGrowth5Y": 6.07,
     "divGrowth10Y": 4.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 80,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -25890,7 +25890,7 @@
     "divGrowth5Y": 6.39,
     "divGrowth10Y": 3.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 821,
     "beta": 0.86,
     "yieldTTM": 1.9,
@@ -26214,7 +26214,7 @@
     "divGrowth5Y": 9.54,
     "divGrowth10Y": 6.26,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 798,
     "beta": 1.07,
     "yieldTTM": 1.95,
@@ -26526,7 +26526,7 @@
     "dayLow": 44.535,
     "previousClose": 44.63,
     "high52w": 47.9,
-    "low52w": 44.625,
+    "low52w": 44.535,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 17600000000,
@@ -26538,7 +26538,7 @@
     "divGrowth5Y": 18.77,
     "divGrowth10Y": 5.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 5107,
     "beta": null,
     "yieldTTM": null,
@@ -26745,7 +26745,7 @@
     "divGrowth5Y": 2.29,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 80,
     "beta": 0.72,
     "yieldTTM": 3.8,
@@ -27057,7 +27057,7 @@
     "dayLow": 50.535,
     "previousClose": 50.64,
     "high52w": 54.5796,
-    "low52w": 50.64,
+    "low52w": 50.535,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 18700000000,
@@ -27069,7 +27069,7 @@
     "divGrowth5Y": 10.82,
     "divGrowth10Y": 6.45,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2965,
     "beta": null,
     "yieldTTM": null,
@@ -27276,7 +27276,7 @@
     "divGrowth5Y": 7.25,
     "divGrowth10Y": 6.04,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 176,
     "beta": null,
     "yieldTTM": null,
@@ -27579,7 +27579,7 @@
     "divGrowth5Y": 8.01,
     "divGrowth10Y": 6.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2060,
     "beta": null,
     "yieldTTM": null,
@@ -27878,7 +27878,7 @@
     "divGrowth5Y": 8.16,
     "divGrowth10Y": 5.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1709,
     "beta": 1.15,
     "yieldTTM": 1.3,
@@ -28198,7 +28198,7 @@
     "divGrowth5Y": 21.06,
     "divGrowth10Y": 5.93,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 381,
     "beta": null,
     "yieldTTM": null,
@@ -28501,7 +28501,7 @@
     "divGrowth5Y": 9.17,
     "divGrowth10Y": 8.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 508,
     "beta": null,
     "yieldTTM": null,
@@ -28804,7 +28804,7 @@
     "divGrowth5Y": 3.6,
     "divGrowth10Y": 4.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 399,
     "beta": 0.89,
     "yieldTTM": 2,
@@ -29128,7 +29128,7 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 8.37,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 733,
     "beta": 0.9,
     "yieldTTM": 1.8,
@@ -29452,7 +29452,7 @@
     "divGrowth5Y": 9.48,
     "divGrowth10Y": -5.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 363,
     "beta": null,
     "yieldTTM": null,
@@ -29755,7 +29755,7 @@
     "divGrowth5Y": 11.14,
     "divGrowth10Y": 6.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 503,
     "beta": 1.03,
     "yieldTTM": 1.2,
@@ -30079,7 +30079,7 @@
     "divGrowth5Y": 8.94,
     "divGrowth10Y": 7.19,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1951,
     "beta": 1.25,
     "yieldTTM": 1.32,
@@ -30393,13 +30393,13 @@
     "totalAssets": 14800000000,
     "expenseRatio": 0.09,
     "trackingIndex": "MSCI US IMI Financials 25/50 Index",
-    "divYield": 1.53,
+    "divYield": 1.52,
     "distributionRate": 0,
     "divGrowth3Y": 0.14,
     "divGrowth5Y": 3.64,
     "divGrowth10Y": 6.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 437,
     "beta": 1.02,
     "yieldTTM": 1.8,
@@ -30433,7 +30433,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-19T23:12:30.268Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "return3Y": 72.37,
     "return5Y": 49.73,
@@ -30723,7 +30723,7 @@
     "divGrowth5Y": 15.91,
     "divGrowth10Y": 7.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 661,
     "beta": 0.88,
     "yieldTTM": 3.2,
@@ -31035,7 +31035,7 @@
     "dayLow": 73.03,
     "previousClose": 73.14,
     "high52w": 79.085,
-    "low52w": 73.35,
+    "low52w": 73.03,
     "volume": 206122,
     "avgVolume": 1675200,
     "totalAssets": 52100000000,
@@ -31047,7 +31047,7 @@
     "divGrowth5Y": 2.24,
     "divGrowth10Y": 2.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2100,
     "beta": 0.12,
     "yieldTTM": 3.4,
@@ -31081,7 +31081,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-19T23:12:30.268Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [],
     "sectorBreakdown": [],
@@ -31275,7 +31275,7 @@
     "divGrowth5Y": 4.63,
     "divGrowth10Y": 4.23,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1795,
     "beta": 1.25,
     "yieldTTM": 1.36,
@@ -31595,12 +31595,12 @@
     "divGrowth5Y": 12.58,
     "divGrowth10Y": 4.74,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
-    "numHoldings": 569,
+    "updatedAt": "2026-09-27T15:16:44.967Z",
+    "numHoldings": 570,
     "beta": null,
     "yieldTTM": null,
     "inceptionDate": "2013-07-08",
-    "category": "FINANCIALS",
+    "category": "INDUSTRIALS",
     "dividendFrequency": null,
     "dividendHistory": [],
     "peRatio": 0,
@@ -31611,28 +31611,23 @@
     "return10Y": 186.19,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-19T23:12:30.268Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
-        "symbol": "CORT",
-        "name": "CORCEPT THERAPEUTICS INC",
-        "weight": 0.006
-      },
-      {
-        "symbol": "GKOS",
-        "name": "GLAUKOS CORP",
+        "symbol": "FORM",
+        "name": "FORMFACTOR INC",
         "weight": 0.0059
       },
       {
-        "symbol": "EAT",
-        "name": "BRINKER INTERNATIONAL INC",
-        "weight": 0.0055
+        "symbol": "VSAT",
+        "name": "VIASAT INC",
+        "weight": 0.0058
       },
       {
-        "symbol": "PAYC",
-        "name": "PAYCOM SOFTWARE INC",
-        "weight": 0.0055
+        "symbol": "QRVO",
+        "name": "QORVO INC",
+        "weight": 0.0056
       },
       {
         "symbol": "MTCH",
@@ -31640,71 +31635,76 @@
         "weight": 0.0053
       },
       {
-        "symbol": "JXN",
-        "name": "JACKSON FINANCIAL INC",
+        "symbol": "GKOS",
+        "name": "GLAUKOS CORP",
         "weight": 0.0052
-      },
-      {
-        "symbol": "VSAT",
-        "name": "VIASAT INC",
-        "weight": 0.0051
       },
       {
         "symbol": "PTGX",
         "name": "PROTAGONIST THERAPEUTICS INC",
-        "weight": 0.005
+        "weight": 0.0051
+      },
+      {
+        "symbol": "PAYC",
+        "name": "PAYCOM SOFTWARE INC",
+        "weight": 0.0049
       },
       {
         "symbol": "KMX",
         "name": "CARMAX INC",
-        "weight": 0.0049
+        "weight": 0.0047
+      },
+      {
+        "symbol": "SM",
+        "name": "SM ENERGY CO",
+        "weight": 0.0047
       },
       {
         "symbol": "RHP",
         "name": "RYMAN HOSPITALITY PROPERTIES INC",
-        "weight": 0.0048
+        "weight": 0.0047
       }
     ],
     "sectorBreakdown": [
       {
-        "sector": "FINANCIALS",
-        "weight": 0.186
-      },
-      {
         "sector": "INDUSTRIALS",
-        "weight": 0.174
+        "weight": 0.178
       },
       {
-        "sector": "CONSUMER DISCRETIONARY",
-        "weight": 0.139
+        "sector": "FINANCIALS",
+        "weight": 0.178
       },
       {
         "sector": "INFORMATION TECHNOLOGY",
-        "weight": 0.123
+        "weight": 0.135
+      },
+      {
+        "sector": "CONSUMER DISCRETIONARY",
+        "weight": 0.128
       },
       {
         "sector": "HEALTHCARE",
-        "weight": 0.109
+        "weight": 0.107
       },
       {
         "sector": "ENERGY",
-        "weight": 0.061
+        "weight": 0.065
       },
       {
         "sector": "MATERIALS",
-        "weight": 0.043
+        "weight": 0.042
       },
       {
         "sector": "CONSUMER STAPLES",
-        "weight": 0.036
+        "weight": 0.038
       },
       {
         "sector": "COMMUNICATION SERVICES",
-        "weight": 0.035
+        "weight": 0.036
       },
       {
         "sector": "UTILITIES",
-        "weight": 0.02
+        "weight": 0.019
       },
       {
         "sector": "REAL ESTATE",
@@ -31898,7 +31898,7 @@
     "divGrowth5Y": 11.06,
     "divGrowth10Y": 4.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2111,
     "beta": 0.95,
     "yieldTTM": 1.8,
@@ -31932,7 +31932,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
@@ -32222,7 +32222,7 @@
     "divGrowth5Y": 22.88,
     "divGrowth10Y": 17.42,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 93,
     "beta": null,
     "yieldTTM": null,
@@ -32238,7 +32238,7 @@
     "return10Y": 18.69,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [],
     "sectorBreakdown": [],
@@ -32429,12 +32429,12 @@
     "divGrowth5Y": 9.12,
     "divGrowth10Y": 5.99,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
-    "numHoldings": 783,
+    "updatedAt": "2026-09-27T15:16:44.967Z",
+    "numHoldings": 787,
     "beta": null,
     "yieldTTM": null,
     "inceptionDate": "2001-07-17",
-    "category": "INDUSTRIALS",
+    "category": "INFORMATION TECHNOLOGY",
     "dividendFrequency": null,
     "dividendHistory": [],
     "peRatio": 0,
@@ -32445,96 +32445,96 @@
     "return10Y": 196.37,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
         "symbol": "MPC",
         "name": "MARATHON PETROLEUM CORP",
-        "weight": 0.0089
+        "weight": 0.0084
       },
       {
         "symbol": "SNOW",
         "name": "SNOWFLAKE INC ORDINARY SHARES",
-        "weight": 0.008
-      },
-      {
-        "symbol": "PSX",
-        "name": "PHILLIPS 66",
-        "weight": 0.0078
+        "weight": 0.0083
       },
       {
         "symbol": "NET",
         "name": "CLOUDFLARE INC",
+        "weight": 0.0083
+      },
+      {
+        "symbol": "PSX",
+        "name": "PHILLIPS 66",
         "weight": 0.0076
       },
       {
         "symbol": "HOOD",
         "name": "ROBINHOOD MARKETS INC CLASS A",
-        "weight": 0.0063
+        "weight": 0.007
       },
       {
         "symbol": "DDOG",
         "name": "DATADOG INC CLASS A",
-        "weight": 0.0056
+        "weight": 0.006
       },
       {
         "symbol": "HPE",
         "name": "HEWLETT PACKARD ENTERPRISE CO",
-        "weight": 0.0055
+        "weight": 0.0059
       },
       {
         "symbol": "WBD",
         "name": "n/a",
-        "weight": 0.005
+        "weight": 0.0054
       },
       {
-        "symbol": "ALL",
-        "name": "ALLSTATE CORP",
-        "weight": 0.0049
+        "symbol": "LITE",
+        "name": "LUMENTUM HOLDINGS INC",
+        "weight": 0.0054
       },
       {
         "symbol": "DLR",
         "name": "DIGITAL REALTY TRUST INC",
-        "weight": 0.0048
+        "weight": 0.0051
       }
     ],
     "sectorBreakdown": [
       {
-        "sector": "INDUSTRIALS",
-        "weight": 0.164
+        "sector": "INFORMATION TECHNOLOGY",
+        "weight": 0.165
       },
       {
-        "sector": "INFORMATION TECHNOLOGY",
-        "weight": 0.155
+        "sector": "INDUSTRIALS",
+        "weight": 0.165
       },
       {
         "sector": "FINANCIALS",
-        "weight": 0.146
+        "weight": 0.141
       },
       {
         "sector": "HEALTHCARE",
-        "weight": 0.119
+        "weight": 0.12
       },
       {
         "sector": "CONSUMER DISCRETIONARY",
-        "weight": 0.08
+        "weight": 0.079
       },
       {
         "sector": "ENERGY",
-        "weight": 0.07
+        "weight": 0.066
       },
       {
         "sector": "UTILITIES",
-        "weight": 0.055
+        "weight": 0.054
       },
       {
         "sector": "MATERIALS",
-        "weight": 0.049
+        "weight": 0.048
       },
       {
         "sector": "CONSUMER STAPLES",
-        "weight": 0.047
+        "weight": 0.046
       },
       {
         "sector": "COMMUNICATION SERVICES",
@@ -32732,7 +32732,7 @@
     "divGrowth5Y": 8.97,
     "divGrowth10Y": 4.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 50,
     "beta": 1.18,
     "yieldTTM": 0.9,
@@ -33050,13 +33050,13 @@
     "totalAssets": 15000000000,
     "expenseRatio": 0.03,
     "trackingIndex": "Bloomberg US Treasury 1-3 Year Index",
-    "divYield": 4.21,
+    "divYield": 4.2299999999999995,
     "distributionRate": 0,
     "divGrowth3Y": 20.37,
     "divGrowth5Y": 33.34,
     "divGrowth10Y": 17.68,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 80,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -33090,7 +33090,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "return3Y": 12.24,
     "return5Y": 9.22,
@@ -33284,7 +33284,7 @@
     "divGrowth5Y": 11.21,
     "divGrowth10Y": 6.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 126,
     "beta": null,
     "yieldTTM": null,
@@ -33300,7 +33300,7 @@
     "return10Y": 205.16,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
@@ -33587,7 +33587,7 @@
     "divGrowth5Y": 10.48,
     "divGrowth10Y": 7.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 85,
     "beta": 0.1,
     "yieldTTM": 1.8,
@@ -33621,7 +33621,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [],
     "sectorBreakdown": [],
@@ -33809,13 +33809,13 @@
     "totalAssets": 44700000000,
     "expenseRatio": 0.05,
     "trackingIndex": "CRSP US Small Cap Growth Index",
-    "divYield": 0.38999999999999996,
+    "divYield": 0.37,
     "distributionRate": 1.178,
     "divGrowth3Y": 3.58,
     "divGrowth5Y": 7.15,
     "divGrowth10Y": 1.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 508,
     "beta": 1.32,
     "yieldTTM": 0.52,
@@ -33849,7 +33849,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "return3Y": 58.05,
     "return5Y": 28.61,
@@ -34139,7 +34139,7 @@
     "divGrowth5Y": 8.01,
     "divGrowth10Y": 8.97,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 63,
     "beta": 0.72,
     "yieldTTM": 1.6,
@@ -34463,7 +34463,7 @@
     "divGrowth5Y": 3.72,
     "divGrowth10Y": 6.28,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 261,
     "beta": 0.88,
     "yieldTTM": 1.8,
@@ -34497,7 +34497,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "return3Y": 59.26,
     "return5Y": 75.76,
@@ -34783,7 +34783,7 @@
     "divGrowth5Y": 34.06,
     "divGrowth10Y": 46.36,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 37,
     "beta": 0.01,
     "yieldTTM": 0.85,
@@ -34817,7 +34817,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [],
     "sectorBreakdown": [],
@@ -35011,7 +35011,7 @@
     "divGrowth5Y": 7.43,
     "divGrowth10Y": 4.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 24,
     "beta": 0.8,
     "yieldTTM": 2.8,
@@ -35335,7 +35335,7 @@
     "divGrowth5Y": 1.64,
     "divGrowth10Y": -0.13,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 151,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -35369,7 +35369,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
@@ -35659,7 +35659,7 @@
     "divGrowth5Y": 4.29,
     "divGrowth10Y": 5.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 177,
     "beta": 0.68,
     "yieldTTM": 1.8,
@@ -35693,43 +35693,38 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
         "symbol": "APH",
         "name": "AMPHENOL CORP CLASS A",
-        "weight": 0.0159
+        "weight": 0.0162
       },
       {
         "symbol": "NVDA",
         "name": "NVIDIA CORP",
-        "weight": 0.0157
+        "weight": 0.0161
       },
       {
         "symbol": "MSFT",
         "name": "MICROSOFT CORP",
-        "weight": 0.0155
-      },
-      {
-        "symbol": "WELL",
-        "name": "WELLTOWER INC",
-        "weight": 0.0153
-      },
-      {
-        "symbol": "JNJ",
-        "name": "JOHNSON & JOHNSON",
-        "weight": 0.0149
-      },
-      {
-        "symbol": "VZ",
-        "name": "VERIZON COMMUNICATIONS INC",
-        "weight": 0.0149
+        "weight": 0.0157
       },
       {
         "symbol": "MRK",
         "name": "MERCK & CO INC",
-        "weight": 0.0148
+        "weight": 0.0152
+      },
+      {
+        "symbol": "JNJ",
+        "name": "JOHNSON & JOHNSON",
+        "weight": 0.0151
+      },
+      {
+        "symbol": "WELL",
+        "name": "WELLTOWER INC",
+        "weight": 0.015
       },
       {
         "symbol": "CB",
@@ -35739,34 +35734,39 @@
       {
         "symbol": "MSI",
         "name": "MOTOROLA SOLUTIONS INC",
-        "weight": 0.0146
+        "weight": 0.0145
       },
       {
         "symbol": "BRK-B",
         "name": "BERKSHIRE HATHAWAY INC CLASS B",
-        "weight": 0.0144
+        "weight": 0.0145
+      },
+      {
+        "symbol": "XOM",
+        "name": "EXXONMOBIL HOLDINGS CORP",
+        "weight": 0.0142
       }
     ],
     "sectorBreakdown": [
       {
         "sector": "INFORMATION TECHNOLOGY",
-        "weight": 0.316
+        "weight": 0.328
       },
       {
         "sector": "HEALTHCARE",
-        "weight": 0.142
+        "weight": 0.143
       },
       {
         "sector": "FINANCIALS",
-        "weight": 0.102
+        "weight": 0.098
       },
       {
         "sector": "CONSUMER STAPLES",
-        "weight": 0.093
+        "weight": 0.094
       },
       {
         "sector": "UTILITIES",
-        "weight": 0.066
+        "weight": 0.064
       },
       {
         "sector": "CONSUMER DISCRETIONARY",
@@ -35774,19 +35774,19 @@
       },
       {
         "sector": "INDUSTRIALS",
-        "weight": 0.051
+        "weight": 0.049
       },
       {
         "sector": "COMMUNICATION SERVICES",
-        "weight": 0.05
+        "weight": 0.048
       },
       {
         "sector": "ENERGY",
-        "weight": 0.04
+        "weight": 0.039
       },
       {
         "sector": "MATERIALS",
-        "weight": 0.014
+        "weight": 0.013
       },
       {
         "sector": "REAL ESTATE",
@@ -35971,19 +35971,19 @@
     "dayLow": 23.7201,
     "previousClose": 23.74,
     "high52w": 25.42,
-    "low52w": 23.73,
+    "low52w": 23.7201,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 13500000000,
     "expenseRatio": 0.03,
     "trackingIndex": "",
-    "divYield": 4.42,
+    "divYield": 4.46,
     "distributionRate": 0,
     "divGrowth3Y": 13.88,
     "divGrowth5Y": 20.33,
     "divGrowth10Y": 8.68,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 101,
     "beta": null,
     "yieldTTM": null,
@@ -35999,7 +35999,7 @@
     "return10Y": 12.61,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
       {
@@ -36190,7 +36190,7 @@
     "divGrowth5Y": 46.14,
     "divGrowth10Y": 19.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 92,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -36224,7 +36224,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [],
     "sectorBreakdown": [],
@@ -36412,13 +36412,13 @@
     "totalAssets": 22000000000,
     "expenseRatio": 0.09,
     "trackingIndex": "MSCI US IMI Health Care 25/50 Index",
-    "divYield": 1.3,
+    "divYield": 1.24,
     "distributionRate": 2.846,
     "divGrowth3Y": 12.13,
     "divGrowth5Y": 10.1,
     "divGrowth10Y": 8.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 423,
     "beta": 0.72,
     "yieldTTM": 1.5,
@@ -36452,7 +36452,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "return3Y": 17.29,
     "return5Y": 22.7,
@@ -36623,52 +36623,52 @@
       {
         "symbol": "LLY",
         "name": "ELI LILLY AND CO",
-        "weight": 0.1337
+        "weight": 0.1279
       },
       {
         "symbol": "JNJ",
         "name": "JOHNSON & JOHNSON",
-        "weight": 0.0883
+        "weight": 0.0872
       },
       {
         "symbol": "ABBV",
         "name": "ABBVIE INC",
-        "weight": 0.0643
-      },
-      {
-        "symbol": "UNH",
-        "name": "UNITEDHEALTH GROUP INC",
-        "weight": 0.0545
+        "weight": 0.0626
       },
       {
         "symbol": "MRK",
         "name": "MERCK & CO INC",
-        "weight": 0.0467
+        "weight": 0.0504
       },
       {
-        "symbol": "TMO",
-        "name": "THERMO FISHER SCIENTIFIC INC",
-        "weight": 0.0309
+        "symbol": "UNH",
+        "name": "UNITEDHEALTH GROUP INC",
+        "weight": 0.0489
       },
       {
         "symbol": "AMGN",
         "name": "AMGEN INC",
-        "weight": 0.0301
+        "weight": 0.0321
+      },
+      {
+        "symbol": "TMO",
+        "name": "THERMO FISHER SCIENTIFIC INC",
+        "weight": 0.0317
       },
       {
         "symbol": "ABT",
         "name": "ABBOTT LABORATORIES",
-        "weight": 0.0267
+        "weight": 0.0266
       },
       {
         "symbol": "GILD",
         "name": "GILEAD SCIENCES INC",
-        "weight": 0.0234
+        "weight": 0.0251
       },
       {
         "symbol": "PFE",
         "name": "PFIZER INC",
-        "weight": 0.0206
+        "weight": 0.0224
       }
     ],
     "sectorBreakdown": [
@@ -36742,7 +36742,7 @@
     "divGrowth5Y": 56.6,
     "divGrowth10Y": 30.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 109,
     "beta": null,
     "yieldTTM": null,
@@ -36758,7 +36758,7 @@
     "return10Y": 2018.72,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
       {
@@ -37045,7 +37045,7 @@
     "divGrowth5Y": 39.16,
     "divGrowth10Y": 19.53,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 250,
     "beta": 0.6,
     "yieldTTM": 1.5,
@@ -37079,7 +37079,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [],
     "sectorBreakdown": [
@@ -37314,8 +37314,8 @@
     "divGrowth5Y": 6.17,
     "divGrowth10Y": 3.22,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
-    "numHoldings": 675,
+    "updatedAt": "2026-09-27T15:16:44.967Z",
+    "numHoldings": 680,
     "beta": null,
     "yieldTTM": null,
     "inceptionDate": "2001-07-17",
@@ -37330,7 +37330,7 @@
     "return10Y": 162.75,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
       {
@@ -37498,74 +37498,74 @@
       {
         "symbol": "PSX",
         "name": "PHILLIPS 66",
-        "weight": 0.0098
+        "weight": 0.0095
       },
       {
         "symbol": "HPE",
         "name": "HEWLETT PACKARD ENTERPRISE CO",
-        "weight": 0.0073
+        "weight": 0.008
       },
       {
         "symbol": "WBD",
         "name": "n/a",
-        "weight": 0.0066
-      },
-      {
-        "symbol": "ALL",
-        "name": "ALLSTATE CORP",
-        "weight": 0.0065
+        "weight": 0.0073
       },
       {
         "symbol": "DLR",
         "name": "DIGITAL REALTY TRUST INC",
-        "weight": 0.0064
+        "weight": 0.0068
       },
       {
-        "symbol": "OKE",
-        "name": "ONEOK INC",
-        "weight": 0.0059
+        "symbol": "MRNA",
+        "name": "MODERNA INC",
+        "weight": 0.0066
       },
       {
         "symbol": "KMI",
         "name": "KINDER MORGAN INC CLASS P",
-        "weight": 0.0059
+        "weight": 0.006
       },
       {
-        "symbol": "MPC",
-        "name": "MARATHON PETROLEUM CORP",
+        "symbol": "ALL",
+        "name": "ALLSTATE CORP",
         "weight": 0.0058
       },
       {
-        "symbol": "DVN",
-        "name": "DEVON ENERGY CORP",
-        "weight": 0.0057
+        "symbol": "OKE",
+        "name": "ONEOK INC",
+        "weight": 0.0056
       },
       {
-        "symbol": "NUE",
-        "name": "NUCOR CORP",
+        "symbol": "BKR",
+        "name": "BAKER HUGHES CO CLASS A",
         "weight": 0.0056
+      },
+      {
+        "symbol": "AME",
+        "name": "AMETEK INC",
+        "weight": 0.0055
       }
     ],
     "sectorBreakdown": [
       {
         "sector": "FINANCIALS",
-        "weight": 0.178
+        "weight": 0.172
       },
       {
         "sector": "INDUSTRIALS",
-        "weight": 0.16
+        "weight": 0.162
       },
       {
         "sector": "HEALTHCARE",
-        "weight": 0.11
+        "weight": 0.113
       },
       {
         "sector": "INFORMATION TECHNOLOGY",
-        "weight": 0.102
+        "weight": 0.106
       },
       {
         "sector": "ENERGY",
-        "weight": 0.077
+        "weight": 0.073
       },
       {
         "sector": "CONSUMER DISCRETIONARY",
@@ -37577,7 +37577,7 @@
       },
       {
         "sector": "MATERIALS",
-        "weight": 0.059
+        "weight": 0.058
       },
       {
         "sector": "CONSUMER STAPLES",
@@ -37617,7 +37617,7 @@
     "divGrowth5Y": 8.52,
     "divGrowth10Y": 4.71,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1404,
     "beta": 1.14,
     "yieldTTM": 1.9,
@@ -37651,7 +37651,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
@@ -37935,13 +37935,13 @@
     "totalAssets": 13300000000,
     "expenseRatio": 0.09,
     "trackingIndex": "MSCI US IMI Energy 25/50 Index",
-    "divYield": 1.79,
+    "divYield": 1.7500000000000002,
     "distributionRate": 2.469,
     "divGrowth3Y": -5.22,
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 1.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 117,
     "beta": 0.8,
     "yieldTTM": 3.2,
@@ -37975,7 +37975,7 @@
     "marketCap": 0,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "top10Holdings": [
       {
@@ -38265,7 +38265,7 @@
     "divGrowth5Y": 9.77,
     "divGrowth10Y": 6.93,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 360,
     "beta": null,
     "yieldTTM": null,
@@ -38281,7 +38281,7 @@
     "return10Y": 185.95,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
       {
@@ -38568,7 +38568,7 @@
     "divGrowth5Y": 30.03,
     "divGrowth10Y": 9.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 85,
     "beta": null,
     "yieldTTM": null,
@@ -38584,7 +38584,7 @@
     "return10Y": 13.41,
     "inPortfolio": false,
     "inWatchlist": false,
-    "profileUpdatedAt": "2026-09-20T15:16:47.276Z",
+    "profileUpdatedAt": "2026-09-27T15:16:44.967Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
       {
@@ -38775,7 +38775,7 @@
     "divGrowth5Y": 8.2,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 103,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -39099,7 +39099,7 @@
     "divGrowth5Y": 28.34,
     "divGrowth10Y": 19.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 146,
     "beta": null,
     "yieldTTM": null,
@@ -39402,7 +39402,7 @@
     "divGrowth5Y": 20.22,
     "divGrowth10Y": 9.54,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2029,
     "beta": 0.92,
     "yieldTTM": 2.4,
@@ -39714,7 +39714,7 @@
     "dayLow": 43.6336,
     "previousClose": 43.72,
     "high52w": 46.86,
-    "low52w": 43.72,
+    "low52w": 43.6336,
     "volume": null,
     "avgVolume": null,
     "totalAssets": 28200000000,
@@ -39726,7 +39726,7 @@
     "divGrowth5Y": -3.84,
     "divGrowth10Y": 3.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1,
     "beta": null,
     "yieldTTM": null,
@@ -39939,7 +39939,7 @@
     "divGrowth5Y": 13.07,
     "divGrowth10Y": 4.19,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 336,
     "beta": null,
     "yieldTTM": null,
@@ -40242,7 +40242,7 @@
     "divGrowth5Y": 6.83,
     "divGrowth10Y": -0.77,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 269,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -40566,7 +40566,7 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 2.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1067,
     "beta": 1.38,
     "yieldTTM": 0.5,
@@ -40890,7 +40890,7 @@
     "divGrowth5Y": 46.18,
     "divGrowth10Y": 15.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1063,
     "beta": null,
     "yieldTTM": null,
@@ -41085,7 +41085,7 @@
     "dayLow": 390.05,
     "previousClose": 391.69,
     "high52w": 509.7,
-    "low52w": 342.14,
+    "low52w": 342.47,
     "volume": 1118454,
     "avgVolume": 6312580,
     "totalAssets": 152900000000,
@@ -41097,7 +41097,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -41325,7 +41325,7 @@
     "divGrowth5Y": 2.44,
     "divGrowth10Y": 0.57,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 73,
     "beta": null,
     "yieldTTM": null,
@@ -41616,7 +41616,7 @@
     "dayLow": 22.15,
     "previousClose": 22.19,
     "high52w": 23.73,
-    "low52w": 22.18,
+    "low52w": 22.15,
     "volume": 214181,
     "avgVolume": 2680850,
     "totalAssets": 10700000000,
@@ -41628,7 +41628,7 @@
     "divGrowth5Y": 8.18,
     "divGrowth10Y": 5.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 4200,
     "beta": 0.06,
     "yieldTTM": 2.8,
@@ -41856,7 +41856,7 @@
     "divGrowth5Y": 27.37,
     "divGrowth10Y": 9.35,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 328,
     "beta": null,
     "yieldTTM": null,
@@ -42147,7 +42147,7 @@
     "dayLow": 79.96,
     "previousClose": 80.3,
     "high52w": 104.4,
-    "low52w": 70.04,
+    "low52w": 70.1135,
     "volume": 883853,
     "avgVolume": 5834850,
     "totalAssets": 67500000000,
@@ -42159,7 +42159,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -42387,7 +42387,7 @@
     "divGrowth5Y": 3.14,
     "divGrowth10Y": -2.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 158,
     "beta": 0.83,
     "yieldTTM": 3.7,
@@ -42711,7 +42711,7 @@
     "divGrowth5Y": 6.28,
     "divGrowth10Y": 2.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 259,
     "beta": null,
     "yieldTTM": null,
@@ -43014,7 +43014,7 @@
     "divGrowth5Y": 25.37,
     "divGrowth10Y": 34.28,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 115,
     "beta": null,
     "yieldTTM": null,
@@ -43305,7 +43305,7 @@
     "dayLow": 77.67,
     "previousClose": 77.89,
     "high52w": 81.33,
-    "low52w": 77.8544,
+    "low52w": 77.67,
     "volume": 6310194,
     "avgVolume": 39716330,
     "totalAssets": 16200000000,
@@ -43317,7 +43317,7 @@
     "divGrowth5Y": 3.34,
     "divGrowth10Y": -0.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1000,
     "beta": 0.35,
     "yieldTTM": 5.8,
@@ -43533,7 +43533,7 @@
     "dayLow": 91.76,
     "previousClose": 92.18,
     "high52w": 97.8,
-    "low52w": 92.18,
+    "low52w": 91.76,
     "volume": 950312,
     "avgVolume": 6301740,
     "totalAssets": 14900000000,
@@ -43545,7 +43545,7 @@
     "divGrowth5Y": 2.48,
     "divGrowth10Y": -0.89,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 600,
     "beta": 0.38,
     "yieldTTM": 5.6,
@@ -43773,7 +43773,7 @@
     "divGrowth5Y": 4.86,
     "divGrowth10Y": 4.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 179,
     "beta": 1,
     "yieldTTM": 0.95,
@@ -44085,7 +44085,7 @@
     "dayLow": 40.5,
     "previousClose": 40.67,
     "high52w": 52.84,
-    "low52w": 35.44,
+    "low52w": 35.48,
     "volume": 461385,
     "avgVolume": 2323740,
     "totalAssets": 7700000000,
@@ -44097,7 +44097,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -44325,7 +44325,7 @@
     "divGrowth5Y": 20.32,
     "divGrowth10Y": 10.17,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 2400,
     "beta": 0.68,
     "yieldTTM": 2.1,
@@ -44594,7 +44594,7 @@
     "divGrowth5Y": 16.04,
     "divGrowth10Y": 7.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 28,
     "beta": 0.88,
     "yieldTTM": 2.8,
@@ -44914,7 +44914,7 @@
     "divGrowth5Y": -20.3,
     "divGrowth10Y": -17.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 110,
     "beta": 1.3,
     "yieldTTM": 0.2,
@@ -45238,7 +45238,7 @@
     "divGrowth5Y": 9.22,
     "divGrowth10Y": 9.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 1002,
     "beta": null,
     "yieldTTM": null,
@@ -45541,7 +45541,7 @@
     "divGrowth5Y": 6.65,
     "divGrowth10Y": 6.25,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-09-26T23:40:38.736Z",
+    "updatedAt": "2026-09-27T15:16:44.967Z",
     "numHoldings": 967,
     "beta": null,
     "yieldTTM": null,
