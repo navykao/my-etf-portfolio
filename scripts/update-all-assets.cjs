@@ -42,11 +42,11 @@ function getEtfPriorityLists(etfsData) {
 // API KEYS
 // ============================================
 const API_KEYS = {
-  FINNHUB: process.env.FINNHUB_API_KEY      || process.env.VITE_FINNHUB_API_KEY      || '',
-  FMP:     process.env.FMP0N8_API_KEY       || process.env.VITE_FMP0N8_API_KEY       || '',
-  EODHD:   process.env.EODHD_API_KEY        || process.env.VITE_EODHD_API_KEY        || '',
-  TWELVE:  process.env.TWELVE_DATA_API_KEY  || process.env.VITE_TWELVE_DATA_API_KEY  || '',
-  ALPHAV:  process.env.ALPHAVANTAGE_API_KEY || process.env.VITE_ALPHAVANTAGE_API_KEY || '',
+  FINNHUB: process.env.FINNHUB_API_KEY || '',
+  FMP:     process.env.FMP0N8_API_KEY || '',
+  EODHD:   process.env.EODHD_API_KEY || '',
+  TWELVE:  process.env.TWELVE_DATA_API_KEY || '',
+  ALPHAV:  process.env.ALPHAVANTAGE_API_KEY || '',
 };
 
 // ============================================

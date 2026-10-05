@@ -4,7 +4,7 @@
 //
 // เมื่อ user เพิ่ม/ลบ ETF หรือหุ้นใน Portfolio หรือ Watchlist
 // → อัปเดต field inPortfolio / inWatchlist ใน public/data/etfs.json และ stocks.json
-//   ผ่าน GitHub API (Personal Access Token)
+//   ผ่าน /api/sync-flags (serverless function ที่ถือ GitHub token ฝั่ง server)
 // → GitHub Actions script จะอ่าน field เหล่านี้เพื่อจัด priority Alpha Vantage
    
 import { useState, useEffect, useCallback } from "react";
@@ -16,128 +16,45 @@ import {
   deleteDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 // ============================================
-// CONFIG — GitHub API
-// ใช้ GitHub API อัปเดต etfs.json / stocks.json
-// เมื่อ portfolio/watchlist เปลี่ยน
+// Sync flags → etfs.json + stocks.json
+// เรียก /api/sync-flags (Vercel Serverless Function) ซึ่งถือ GitHub token ฝั่ง server
+// ไม่มี token ในโค้ดฝั่ง client — ต้องล็อกอิน และ email ต้องอยู่ใน ALLOWED_EMAILS
 // ============================================
-const GITHUB_CONFIG = {
-  owner:  import.meta.env.VITE_GITHUB_OWNER || '',   // เช่น 'navykao'
-  repo:   import.meta.env.VITE_GITHUB_REPO  || '',   // เช่น 'my-etf-portfolio'
-  token:  import.meta.env.VITE_GITHUB_TOKEN || '',   // Personal Access Token (repo scope)
-  branch: 'main',
-};
-
-// ============================================
-// GitHub API Helper
-// อัปเดตไฟล์ใน repo ผ่าน GitHub Contents API
-// ============================================
-async function updateJsonFile(filePath, updaterFn) {
-  if (!GITHUB_CONFIG.token || !GITHUB_CONFIG.owner || !GITHUB_CONFIG.repo) {
-    console.warn('[useFirestore] GitHub config ไม่ครบ — ข้าม sync JSON');
-    return;
-  }
+async function syncFlags(flags) {
+  const user = auth.currentUser;
+  if (!user) return;
 
   try {
-    const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${filePath}?ref=${GITHUB_CONFIG.branch}`;
-    const headers = {
-      Authorization: `Bearer ${GITHUB_CONFIG.token}`,
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-    };
-
-    // ดึงไฟล์ปัจจุบัน
-    const res = await fetch(apiUrl, { headers });
-    if (!res.ok) throw new Error(`GitHub GET failed: ${res.status}`);
-    const fileInfo = await res.json();
-
-    // decode base64 → JSON
-    const currentData = JSON.parse(atob(fileInfo.content.replace(/\n/g, '')));
-
-    // ให้ updaterFn แก้ไขข้อมูล
-    const updatedData = updaterFn(currentData);
-
-    // encode JSON → base64
-    const newContent = btoa(unescape(encodeURIComponent(
-      JSON.stringify(updatedData, null, 2)
-    )));
-
-    // commit กลับ
-    const putRes = await fetch(apiUrl, {
-      method: 'PUT',
-      headers: { ...headers, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: `🔄 sync: update ${filePath} portfolio/watchlist flags`,
-        content: newContent,
-        sha: fileInfo.sha,
-        branch: GITHUB_CONFIG.branch,
-      }),
+    const token = await user.getIdToken();
+    const res = await fetch('/api/sync-flags', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(flags),
     });
-
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(`GitHub PUT failed: ${err.message}`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `HTTP ${res.status}`);
     }
-
-    console.log(`[useFirestore] ✅ synced ${filePath}`);
+    const { updated } = await res.json();
+    console.log('[useFirestore] ✅ synced', updated.length ? updated.join(', ') : '(no changes)');
   } catch (error) {
-    console.error(`[useFirestore] ❌ sync ${filePath} failed:`, error.message);
+    console.error('[useFirestore] ❌ sync flags failed:', error.message);
   }
 }
 
-// ============================================
-// Sync Portfolio → etfs.json + stocks.json
+const symbolsOf = (items) =>
+  items.map((i) => i.symbol?.toUpperCase()).filter(Boolean);
+
 // เรียกเมื่อ portfolio เปลี่ยน
-// ============================================
-async function syncPortfolioToJson(portfolioItems) {
-  const portfolioSymbols = new Set(
-    portfolioItems.map(p => p.symbol?.toUpperCase()).filter(Boolean)
-  );
+const syncPortfolioToJson = (portfolioItems) =>
+  syncFlags({ portfolio: symbolsOf(portfolioItems) });
 
-  // อัปเดต etfs.json
-  await updateJsonFile('public/data/etfs.json', (etfs) =>
-    etfs.map(etf => ({
-      ...etf,
-      inPortfolio: portfolioSymbols.has(etf.symbol),
-    }))
-  );
-
-  // อัปเดต stocks.json
-  await updateJsonFile('public/data/stocks.json', (stocks) =>
-    stocks.map(stock => ({
-      ...stock,
-      inPortfolio: portfolioSymbols.has(stock.symbol),
-    }))
-  );
-}
-
-// ============================================
-// Sync Watchlist → etfs.json + stocks.json
 // เรียกเมื่อ watchlist เปลี่ยน
-// ============================================
-async function syncWatchlistToJson(watchlistItems) {
-  const watchlistSymbols = new Set(
-    watchlistItems.map(w => w.symbol?.toUpperCase()).filter(Boolean)
-  );
-
-  // อัปเดต etfs.json
-  await updateJsonFile('public/data/etfs.json', (etfs) =>
-    etfs.map(etf => ({
-      ...etf,
-      inWatchlist: watchlistSymbols.has(etf.symbol),
-    }))
-  );
-
-  // อัปเดต stocks.json
-  await updateJsonFile('public/data/stocks.json', (stocks) =>
-    stocks.map(stock => ({
-      ...stock,
-      inWatchlist: watchlistSymbols.has(stock.symbol),
-    }))
-  );
-}
+const syncWatchlistToJson = (watchlistItems) =>
+  syncFlags({ watchlist: symbolsOf(watchlistItems) });
 
 // ============================================
 // useFirestore(uid)
