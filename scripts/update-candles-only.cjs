@@ -17,9 +17,7 @@ const CONFIG = {
   BATCH_SIZE:    50,
 };
 
-const TWELVE_KEY = process.env.TWELVE_DATA_API_KEY
-  || process.env.VITE_TWELVE_DATA_API_KEY
-  || '';
+const TWELVE_KEY = process.env.TWELVE_DATA_API_KEY || '';
 
 const stats = { success: 0, failed: 0 };
 

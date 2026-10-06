@@ -57,6 +57,18 @@ my-etf-portfolio/
 3. Import project จาก GitHub
 4. Vercel จะ auto-detect Vite และ deploy ให้อัตโนมัติ
 
+#### 🔐 ตั้งค่า Environment Variables บน Vercel
+
+API key และ GitHub token ต้องอยู่ฝั่ง server เท่านั้น (ตัวแปรขึ้นต้น `VITE_` จะถูกฝังใน JS ที่ส่งให้ทุกคน) โค้ดใน `api/` เป็น Vercel Serverless Functions:
+
+| Endpoint | หน้าที่ | ตัวแปรที่ใช้ |
+|---|---|---|
+| `GET /api/quote?symbol=` | ราคา Live Mode (ต้องล็อกอิน) | `FINNHUB_API_KEY`, `FMP0N8_API_KEY`, `TWELVE_DATA_API_KEY`, `EODHD_API_KEY` |
+| `GET /api/status` | แสดงว่า provider ไหนตั้งค่าแล้ว | (เหมือนข้างบน) |
+| `POST /api/sync-flags` | เขียน `inPortfolio`/`inWatchlist` กลับ JSON (เฉพาะเจ้าของ) | `GITHUB_SYNC_TOKEN`, `ALLOWED_EMAILS` |
+
+ตัวแปรทั้งหมดและวิธีสร้าง token ดูใน `.env.example` ส่วน `VITE_FIREBASE_*` ยังเป็นค่า public ตามปกติ
+
 ### 2. ใช้ข้อมูลจากไฟล์ (ฟรี ไม่เสียค่า API)
 
 แอปจะโหลดข้อมูลจาก `/public/data/combined-746-assets.json` โดยอัตโนมัติ

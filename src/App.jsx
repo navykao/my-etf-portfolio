@@ -37,13 +37,6 @@ const CONFIG = {
   GITHUB_ETFS_URL:   'https://raw.githubusercontent.com/navykao/my-etf-portfolio/main/public/data/etfs.json',
 }
 
-const API_KEYS = {
-  FINNHUB: import.meta.env.VITE_FINNHUB_API_KEY     || '',
-  FMP:     import.meta.env.VITE_FMP0N8_API_KEY      || '',  // ✅ ชื่อถูกต้องตาม .env.example
-  TWELVE:  import.meta.env.VITE_TWELVE_DATA_API_KEY || '',
-  EODHD:   import.meta.env.VITE_EODHD_API_KEY       || ''
-}
-
 // ==================== UTILITY FUNCTIONS ====================
 const formatPrice = (price) => {
   if (price == null || isNaN(price)) return '$0.00'
@@ -104,57 +97,33 @@ const getTypeBadgeClass = (type) => {
 }
 
 // ==================== API SERVICE ====================
+// Price lookups go through our own serverless functions (/api/*), which hold the
+// provider API keys server-side. Requests carry the signed-in user's Firebase ID token.
 class APIService {
-  static async fetchFromFinnhub(symbol) {
-    if (!API_KEYS.FINNHUB) return null
+  static async authFetch(path) {
+    const user = auth.currentUser
+    if (!user) return { status: 401, data: null }
     try {
-      const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${API_KEYS.FINNHUB}`)
-      const data = await res.json()
-      if (data.c) return { price: data.c, change: data.d, changePercent: data.dp, source: 'Finnhub' }
-    } catch (e) { console.error('Finnhub error:', e) }
-    return null
+      const token = await user.getIdToken()
+      const res = await fetch(path, { headers: { Authorization: `Bearer ${token}` } })
+      const data = await res.json().catch(() => null)
+      return { status: res.status, data }
+    } catch (e) {
+      console.error('API error:', e)
+      return { status: 0, data: null }
+    }
   }
 
-  static async fetchFromFMP(symbol) {
-    if (!API_KEYS.FMP) return null
-    try {
-      const res = await fetch(`https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${API_KEYS.FMP}`)
-      const data = await res.json()
-      if (data[0]) return { price: data[0].price, change: data[0].change, changePercent: data[0].changesPercentage, source: 'FMP' }
-    } catch (e) { console.error('FMP error:', e) }
-    return null
-  }
-
-  static async fetchFromTwelve(symbol) {
-    if (!API_KEYS.TWELVE) return null
-    try {
-      const res = await fetch(`https://api.twelvedata.com/quote?symbol=${symbol}&apikey=${API_KEYS.TWELVE}`)
-      const data = await res.json()
-      if (data.close) return { price: parseFloat(data.close), change: parseFloat(data.change), changePercent: parseFloat(data.percent_change), source: 'Twelve Data' }
-    } catch (e) { console.error('Twelve Data error:', e) }
-    return null
-  }
-
-  static async fetchFromEODHD(symbol) {
-    if (!API_KEYS.EODHD) return null
-    try {
-      const res = await fetch(`https://eodhistoricaldata.com/api/real-time/${symbol}.US?api_token=${API_KEYS.EODHD}&fmt=json`)
-      const data = await res.json()
-      if (data.close) return { price: data.close, change: data.change, changePercent: data.change_p, source: 'EODHD' }
-    } catch (e) { console.error('EODHD error:', e) }
-    return null
-  }
-
+  // Returns { status, quote }: quote is null when no provider has a price (404) or the call failed.
   static async fetchQuote(symbol) {
-    let data = await this.fetchFromFinnhub(symbol)
-    if (data) return data
-    data = await this.fetchFromFMP(symbol)
-    if (data) return data
-    data = await this.fetchFromTwelve(symbol)
-    if (data) return data
-    data = await this.fetchFromEODHD(symbol)
-    if (data) return data
-    return null
+    const { status, data } = await this.authFetch(`/api/quote?symbol=${encodeURIComponent(symbol)}`)
+    return { status, quote: status === 200 ? data : null }
+  }
+
+  // Which providers have a key configured on the server: { Finnhub: true, ... } or null.
+  static async fetchProviderStatus() {
+    const { status, data } = await this.authFetch('/api/status')
+    return status === 200 ? data.providers : null
   }
 }
 
@@ -2087,8 +2056,17 @@ function MarketPage({ allAssets }) {
 
 // --- SETTINGS PAGE ---
 
-function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotification, allAssets, watchlist, portfolio, onClearWatchlist, onClearPortfolio, onImport, onToggleLive }) {
-  const hasApiKey = Object.values(API_KEYS).some(k => k && k.length > 0)
+function SettingsPage({ user, liveMode, setLiveMode, dataSource, lastUpdate, addNotification, allAssets, watchlist, portfolio, onClearWatchlist, onClearPortfolio, onImport, onToggleLive }) {
+  const [providers, setProviders] = useState(null)  // { Finnhub: true, ... } from /api/status
+
+  useEffect(() => {
+    let cancelled = false
+    setProviders(null)
+    if (user) APIService.fetchProviderStatus().then(p => { if (!cancelled) setProviders(p) })
+    return () => { cancelled = true }
+  }, [user])
+
+  const hasApiKey = providers ? Object.values(providers).some(Boolean) : false
 
   const clearWatchlist = () => {
     if (confirm('ยืนยันการล้าง Watchlist ทั้งหมด?')) {
@@ -2160,25 +2138,26 @@ function SettingsPage({ liveMode, setLiveMode, dataSource, lastUpdate, addNotifi
           <div style={{ fontSize: '13px', color: 'var(--ink-3)', marginBottom: '8px' }}>
             <strong>สถานะ API Keys:</strong>
           </div>
-          {[
-            { name: 'Finnhub', key: API_KEYS.FINNHUB },
-            { name: 'FMP', key: API_KEYS.FMP },
-            { name: 'Twelve Data', key: API_KEYS.TWELVE },
-            { name: 'EODHD', key: API_KEYS.EODHD }
-          ].map(api => (
-            <div key={api.name} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', marginBottom: '4px' }}>
-              <span style={{ color: api.key ? 'var(--success)' : '#94a3b8' }}>
-                {api.key ? '✅' : '❌'}
+          {!user && (
+            <div style={{ fontSize: '12px', color: 'var(--ink-3)' }}>เข้าสู่ระบบเพื่อดูสถานะ API Keys</div>
+          )}
+          {user && !providers && (
+            <div style={{ fontSize: '12px', color: 'var(--ink-3)' }}>กำลังตรวจสอบ...</div>
+          )}
+          {providers && Object.entries(providers).map(([name, configured]) => (
+            <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', marginBottom: '4px' }}>
+              <span style={{ color: configured ? 'var(--success)' : '#94a3b8' }}>
+                {configured ? '✅' : '❌'}
               </span>
-              <span>{api.name}</span>
-              <span style={{ color: api.key ? 'var(--success)' : '#94a3b8' }}>
-                {api.key ? 'ตั้งค่าแล้ว' : 'ยังไม่ได้ตั้งค่า (.env)'}
+              <span>{name}</span>
+              <span style={{ color: configured ? 'var(--success)' : '#94a3b8' }}>
+                {configured ? 'ตั้งค่าแล้ว' : 'ยังไม่ได้ตั้งค่า (Vercel Environment Variables)'}
               </span>
             </div>
           ))}
-          {!hasApiKey && (
+          {providers && !hasApiKey && (
             <div style={{ marginTop: '8px', padding: '8px', background: 'var(--amber-soft)', borderRadius: 'var(--r-md)', fontSize: '12px', color: 'var(--amber)' }}>
-              ⚠️ ยังไม่มี API Key — Live Mode จะไม่ดึงข้อมูลจริง กรุณาตั้งค่าใน <code>.env</code>
+              ⚠️ ยังไม่มี API Key — Live Mode จะไม่ดึงข้อมูลจริง กรุณาตั้งค่าใน Vercel Environment Variables
             </div>
           )}
         </div>
@@ -2433,9 +2412,11 @@ function App() {
   // loadUserData ถูกแทนที่ด้วย Firestore onSnapshot แล้ว — ไม่ต้องใช้ localStorage อีกต่อไป
 
   const updateLiveData = async () => {
+    if (!auth.currentUser) return  // /api/quote requires sign-in
     const symbols = [...new Set([...watchlist.filter(s => typeof s === 'string'), ...portfolio.map(p => p.symbol)])]
     for (const symbol of symbols) {
-      const data = await APIService.fetchQuote(symbol)
+      const { status, quote: data } = await APIService.fetchQuote(symbol)
+      if (status === 401 || status === 429) break  // session expired / rate limited — stop this round
       if (data) {
         setAllAssets(prev => prev.map(asset =>
           asset.symbol === symbol ? { ...asset, price: data.price, change: data.change, changePercent: data.changePercent } : asset
@@ -2657,6 +2638,7 @@ function App() {
                 setCountdown(900)
               }
               addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
+              if (newMode && !user) addNotification('Live Mode ต้องเข้าสู่ระบบก่อนจึงจะดึงราคาล่าสุดได้', 'error')
             }}>
               <LiveDot active={liveMode} />
               <span className="live-status-text">{liveMode ? 'Live' : 'Paused'}</span>
@@ -2751,6 +2733,7 @@ function App() {
 
       {currentPage === 'settings' && (
         <SettingsPage
+          user={user}
           liveMode={liveMode}
           setLiveMode={setLiveMode}
           dataSource={dataSource}
@@ -2793,6 +2776,7 @@ function App() {
             setLiveMode(newMode)
             if (newMode) { updateLiveData(); setCountdown(900) }
             addNotification(newMode ? 'เปิด Live Mode แล้ว' : 'ปิด Live Mode แล้ว', 'info')
+            if (newMode && !user) addNotification('Live Mode ต้องเข้าสู่ระบบก่อนจึงจะดึงราคาล่าสุดได้', 'error')
           }}
         />
       )}
