@@ -3,10 +3,10 @@
     "symbol": "GLDM",
     "name": "SPDR Gold MiniShares Trust",
     "type": "ETF",
-    "price": 79.05,
-    "change": -0.61,
-    "changePercent": -0.7658,
-    "open": 79.49,
+    "price": 79.13,
+    "change": -0.53,
+    "changePercent": -0.6653,
+    "open": 79.62,
     "dayHigh": 79.66,
     "dayLow": 78.63,
     "previousClose": 79.66,
@@ -23,7 +23,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1,
     "beta": null,
     "yieldTTM": 0,
@@ -63,14 +63,6 @@
     "return5Y": null,
     "return10Y": null,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 84.57,
-        "h": 84.8,
-        "l": 83.94,
-        "c": 84.52,
-        "v": 4764900
-      },
       {
         "t": 1790294400,
         "o": 84.63,
@@ -222,6 +214,14 @@
         "l": 81.19,
         "c": 81.79,
         "v": 3606600
+      },
+      {
+        "t": 1792627200,
+        "o": 80.61,
+        "h": 80.665,
+        "l": 79.51,
+        "c": 79.66,
+        "v": 5201300
       }
     ],
     "top10Holdings": [],
@@ -231,10 +231,10 @@
     "symbol": "QTUM",
     "name": "",
     "type": "ETF",
-    "price": 136.03,
-    "change": 0.49,
-    "changePercent": 0.3615,
-    "open": 135.36,
+    "price": 136.2,
+    "change": 0.66,
+    "changePercent": 0.4869,
+    "open": 134.72,
     "dayHigh": 136.84,
     "dayLow": 134.1285,
     "previousClose": 135.54,
@@ -251,7 +251,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 86,
     "beta": 0,
     "yieldTTM": 0,
@@ -373,14 +373,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 151.059998,
-        "h": 153,
-        "l": 150.53,
-        "c": 152.47,
-        "v": 178900
-      },
       {
         "t": 1790294400,
         "o": 153.41,
@@ -532,6 +524,14 @@
         "l": 140.089996,
         "c": 141.78999,
         "v": 179900
+      },
+      {
+        "t": 1792627200,
+        "o": 138.17999,
+        "h": 138.7,
+        "l": 134.85001,
+        "c": 135.53999,
+        "v": 403600
       }
     ]
   },
@@ -539,11 +539,11 @@
     "symbol": "SPYI",
     "name": "NEOS S&P 500 High Income ETF",
     "type": "ETF",
-    "price": 52.84,
-    "change": -0.03,
-    "changePercent": -0.0567,
-    "open": 52.629999999999995,
-    "dayHigh": 52.8472,
+    "price": 52.64,
+    "change": -0.23,
+    "changePercent": -0.435,
+    "open": 52.62,
+    "dayHigh": 52.865,
     "dayLow": 52.575,
     "previousClose": 52.87,
     "high52w": 54.47,
@@ -559,7 +559,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 472,
     "beta": 0,
     "yieldTTM": 0,
@@ -681,14 +681,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 53.2,
-        "h": 53.49,
-        "l": 53.171,
-        "c": 53.42,
-        "v": 1959900
-      },
       {
         "t": 1790294400,
         "o": 53.53,
@@ -840,6 +832,14 @@
         "l": 53.15,
         "c": 53.41,
         "v": 2542900
+      },
+      {
+        "t": 1792627200,
+        "o": 53.040001,
+        "h": 53.099998,
+        "l": 52.71,
+        "c": 52.87,
+        "v": 4163200
       }
     ]
   },
@@ -847,11 +847,11 @@
     "symbol": "QQQI",
     "name": "NEOS Nasdaq-100 High Income ETF",
     "type": "ETF",
-    "price": 52.82,
-    "change": 0.23,
-    "changePercent": 0.4373,
-    "open": 52.5875,
-    "dayHigh": 52.945,
+    "price": 52.59,
+    "change": 0,
+    "changePercent": 0,
+    "open": 52.44,
+    "dayHigh": 52.935,
     "dayLow": 52.355,
     "previousClose": 52.59,
     "high52w": 57.84,
@@ -867,7 +867,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 107,
     "beta": 0,
     "yieldTTM": 0,
@@ -989,14 +989,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 55.26,
-        "h": 55.635,
-        "l": 55.225,
-        "c": 55.56,
-        "v": 3041100
-      },
       {
         "t": 1790294400,
         "o": 55.7,
@@ -1148,6 +1140,14 @@
         "l": 53.604,
         "c": 54,
         "v": 3867400
+      },
+      {
+        "t": 1792627200,
+        "o": 53.185,
+        "h": 53.335,
+        "l": 52.415,
+        "c": 52.59,
+        "v": 6879700
       }
     ]
   },
@@ -1155,11 +1155,11 @@
     "symbol": "AVUV",
     "name": "Avantis U.S. Small Cap Value ETF",
     "type": "ETF",
-    "price": 121.94,
-    "change": -0.13,
-    "changePercent": -0.1065,
-    "open": 121.435,
-    "dayHigh": 121.96,
+    "price": 122.06,
+    "change": -0.01,
+    "changePercent": -0.0082,
+    "open": 121.37,
+    "dayHigh": 122.25,
     "dayLow": 120.9001,
     "previousClose": 122.07,
     "high52w": 129.05,
@@ -1175,7 +1175,7 @@
     "divGrowth5Y": 0,
     "divGrowth10Y": 0,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 794,
     "beta": 0,
     "yieldTTM": 0,
@@ -1292,14 +1292,6 @@
     "return5Y": 0,
     "return10Y": 0,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 120.45,
-        "h": 120.555,
-        "l": 119.7,
-        "c": 120.21,
-        "v": 1610300
-      },
       {
         "t": 1790294400,
         "o": 120.27,
@@ -1451,6 +1443,14 @@
         "l": 120.42,
         "c": 120.92,
         "v": 926100
+      },
+      {
+        "t": 1792627200,
+        "o": 120.44,
+        "h": 122.13,
+        "l": 120.44,
+        "c": 122.07,
+        "v": 1486700
       }
     ]
   },
@@ -1458,10 +1458,10 @@
     "symbol": "SOXL",
     "name": "Direxion Daily Semiconductor Bull 3X ETF",
     "type": "ETF",
-    "price": 84.88,
-    "change": 2.77,
-    "changePercent": 3.3735,
-    "open": 83.63,
+    "price": 83.56,
+    "change": 1.45,
+    "changePercent": 1.7659,
+    "open": 81.64,
     "dayHigh": 87.61,
     "dayLow": 80.83,
     "previousClose": 82.11,
@@ -1478,7 +1478,7 @@
     "divGrowth5Y": 71.15,
     "divGrowth10Y": 118.15,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 37,
     "beta": null,
     "yieldTTM": null,
@@ -1595,14 +1595,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 138.47,
-        "h": 147.2,
-        "l": 136.89999,
-        "c": 146.33,
-        "v": 65335900
-      },
       {
         "t": 1790294400,
         "o": 149.24001,
@@ -1754,6 +1746,14 @@
         "l": 99.31,
         "c": 103.24,
         "v": 79757000
+      },
+      {
+        "t": 1792627200,
+        "o": 90.59,
+        "h": 93.4,
+        "l": 80.22,
+        "c": 82.11,
+        "v": 180752900
       }
     ]
   },
@@ -1761,11 +1761,11 @@
     "symbol": "VOO",
     "name": "Vanguard S&P 500 ETF",
     "type": "ETF",
-    "price": 701.04,
-    "change": -1.26,
-    "changePercent": -0.1794,
-    "open": 700.36,
-    "dayHigh": 701.43,
+    "price": 698.58,
+    "change": -3.72,
+    "changePercent": -0.5297,
+    "open": 698.47,
+    "dayHigh": 701.77,
     "dayLow": 697.38,
     "previousClose": 702.3,
     "high52w": 718.47,
@@ -1781,7 +1781,7 @@
     "divGrowth5Y": 5.76,
     "divGrowth10Y": 6.07,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 511,
     "beta": 1,
     "yieldTTM": 1.26,
@@ -1821,14 +1821,6 @@
     "return5Y": 89.94,
     "return10Y": 324.78,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 704.070007,
-        "h": 708.59003,
-        "l": 703.34998,
-        "c": 706.98999,
-        "v": 9419700
-      },
       {
         "t": 1790294400,
         "o": 708.44,
@@ -1980,6 +1972,14 @@
         "l": 706.33002,
         "c": 710.71997,
         "v": 6210300
+      },
+      {
+        "t": 1792627200,
+        "o": 704.40997,
+        "h": 705.65997,
+        "l": 699.67999,
+        "c": 702.29999,
+        "v": 6041400
       }
     ],
     "top10Holdings": [
@@ -2085,11 +2085,11 @@
     "symbol": "IVV",
     "name": "iShares Core S&P 500 ETF",
     "type": "ETF",
-    "price": 765.98,
-    "change": -1.43,
-    "changePercent": -0.1863,
-    "open": 765.385,
-    "dayHigh": 766.42524,
+    "price": 763.25,
+    "change": -4.16,
+    "changePercent": -0.5421,
+    "open": 763.26,
+    "dayHigh": 766.86,
     "dayLow": 762.04,
     "previousClose": 767.41,
     "high52w": 785.03,
@@ -2105,7 +2105,7 @@
     "divGrowth5Y": 7.22,
     "divGrowth10Y": 5.41,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 467,
     "beta": 1,
     "yieldTTM": 1.27,
@@ -2145,14 +2145,6 @@
     "return5Y": 90.22,
     "return10Y": 324.75,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 767.41998,
-        "h": 772.29999,
-        "l": 766.58002,
-        "c": 770.62,
-        "v": 7955400
-      },
       {
         "t": 1790294400,
         "o": 772.15997,
@@ -2304,6 +2296,14 @@
         "l": 771.77002,
         "c": 776.65002,
         "v": 4750800
+      },
+      {
+        "t": 1792627200,
+        "o": 769.71002,
+        "h": 771.090027,
+        "l": 764.57001,
+        "c": 767.40997,
+        "v": 4262000
       }
     ],
     "top10Holdings": [
@@ -2409,11 +2409,11 @@
     "symbol": "SPY",
     "name": "State Street SPDR S&P 500 ETF T",
     "type": "ETF",
-    "price": 762.66,
-    "change": -1.3,
-    "changePercent": -0.1702,
-    "open": 761.623,
-    "dayHigh": 763.14,
+    "price": 759.97,
+    "change": -3.99,
+    "changePercent": -0.5223,
+    "open": 759.896,
+    "dayHigh": 763.47,
     "dayLow": 758.68,
     "previousClose": 763.96,
     "high52w": 781.62,
@@ -2429,7 +2429,7 @@
     "divGrowth5Y": 5.82,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 506,
     "beta": 1,
     "yieldTTM": 1.28,
@@ -2469,14 +2469,6 @@
     "return5Y": 89.53,
     "return10Y": 322.83,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 764.070007,
-        "h": 768.95001,
-        "l": 763.25,
-        "c": 767.17999,
-        "v": 43983700
-      },
       {
         "t": 1790294400,
         "o": 768.78003,
@@ -2628,6 +2620,14 @@
         "l": 768.40002,
         "c": 773.090027,
         "v": 31943800
+      },
+      {
+        "t": 1792627200,
+        "o": 766.37,
+        "h": 767.71002,
+        "l": 761.16998,
+        "c": 763.96002,
+        "v": 54117100
       }
     ],
     "top10Holdings": [
@@ -2733,11 +2733,11 @@
     "symbol": "VTI",
     "name": "Vanguard Total Stock Market ETF",
     "type": "ETF",
-    "price": 374.32,
-    "change": -0.58,
-    "changePercent": -0.1547,
-    "open": 373.9,
-    "dayHigh": 374.49,
+    "price": 373.01,
+    "change": -1.89,
+    "changePercent": -0.5041,
+    "open": 373,
+    "dayHigh": 374.695,
     "dayLow": 372.18,
     "previousClose": 374.9,
     "high52w": 385.1199,
@@ -2753,7 +2753,7 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 6.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2531,
     "beta": 1,
     "yieldTTM": 1.3,
@@ -2891,14 +2891,6 @@
     "return5Y": 79.89,
     "return10Y": 306.13,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 376.35999,
-        "h": 378.81,
-        "l": 376.029999,
-        "c": 378.079987,
-        "v": 2598300
-      },
       {
         "t": 1790294400,
         "o": 378.63,
@@ -3050,6 +3042,14 @@
         "l": 377.059998,
         "c": 379.14999,
         "v": 2639700
+      },
+      {
+        "t": 1792627200,
+        "o": 375.95001,
+        "h": 376.63,
+        "l": 373.54999,
+        "c": 374.89999,
+        "v": 3147400
       }
     ]
   },
@@ -3057,11 +3057,11 @@
     "symbol": "TQQQ",
     "name": "ProShares UltraPro QQQ",
     "type": "ETF",
-    "price": 67.19,
-    "change": 0.77,
-    "changePercent": 1.1593,
-    "open": 66.1275,
-    "dayHigh": 67.68,
+    "price": 66.29,
+    "change": -0.13,
+    "changePercent": -0.1957,
+    "open": 65.655,
+    "dayHigh": 67.67,
     "dayLow": 65.37,
     "previousClose": 66.42,
     "high52w": 88.09,
@@ -3077,7 +3077,7 @@
     "divGrowth5Y": 501.61,
     "divGrowth10Y": 81.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 107,
     "beta": null,
     "yieldTTM": null,
@@ -3194,14 +3194,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 76.75,
-        "h": 79.099998,
-        "l": 76.55,
-        "c": 78.58,
-        "v": 58181700
-      },
       {
         "t": 1790294400,
         "o": 79.089996,
@@ -3353,6 +3345,14 @@
         "l": 71.019997,
         "c": 72.61,
         "v": 56440100
+      },
+      {
+        "t": 1792627200,
+        "o": 69.14,
+        "h": 69.65,
+        "l": 65.61,
+        "c": 66.42,
+        "v": 88314400
       }
     ]
   },
@@ -3360,10 +3360,10 @@
     "symbol": "QQQ",
     "name": "Invesco QQQ Trust, Series 1",
     "type": "ETF",
-    "price": 707.56,
-    "change": 3.09,
-    "changePercent": 0.4386,
-    "open": 703.7895,
+    "price": 704.4,
+    "change": -0.07,
+    "changePercent": -0.0099,
+    "open": 702.199,
     "dayHigh": 709.3,
     "dayLow": 701.16,
     "previousClose": 704.47,
@@ -3380,7 +3380,7 @@
     "divGrowth5Y": 9.72,
     "divGrowth10Y": 9.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 103,
     "beta": 1.15,
     "yieldTTM": 0.5,
@@ -3420,14 +3420,6 @@
     "return5Y": 123.5,
     "return10Y": 617.03,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 735.28998,
-        "h": 742.65997,
-        "l": 734.62,
-        "c": 741.099976,
-        "v": 29000900
-      },
       {
         "t": 1790294400,
         "o": 742.83002,
@@ -3579,6 +3571,14 @@
         "l": 719.71002,
         "c": 725.20001,
         "v": 32476200
+      },
+      {
+        "t": 1792627200,
+        "o": 713.60999,
+        "h": 715.42999,
+        "l": 701.90002,
+        "c": 704.46997,
+        "v": 64553400
       }
     ],
     "top10Holdings": [
@@ -3684,10 +3684,10 @@
     "symbol": "SMH",
     "name": "VanEck Semiconductor ETF",
     "type": "ETF",
-    "price": 529.55,
-    "change": 6.2,
-    "changePercent": 1.1847,
-    "open": 525.8775,
+    "price": 527.2,
+    "change": 3.85,
+    "changePercent": 0.7356,
+    "open": 522.605,
     "dayHigh": 533.3411,
     "dayLow": 521.33,
     "previousClose": 523.35,
@@ -3704,7 +3704,7 @@
     "divGrowth5Y": 8.02,
     "divGrowth10Y": 6.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 26,
     "beta": 1.35,
     "yieldTTM": 0.55,
@@ -3842,14 +3842,6 @@
     "return5Y": 381,
     "return10Y": 2174.97,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 591.62,
-        "h": 602.030029,
-        "l": 588.91998,
-        "c": 600.52002,
-        "v": 5645400
-      },
       {
         "t": 1790294400,
         "o": 605.57001,
@@ -4001,6 +3993,14 @@
         "l": 549.52002,
         "c": 556.70001,
         "v": 7735400
+      },
+      {
+        "t": 1792627200,
+        "o": 536.84998,
+        "h": 540.85999,
+        "l": 520.53003,
+        "c": 523.34998,
+        "v": 15252000
       }
     ]
   },
@@ -4008,10 +4008,10 @@
     "symbol": "VGT",
     "name": "Vanguard Information Tech ETF",
     "type": "ETF",
-    "price": 119.49,
-    "change": 0.89,
-    "changePercent": 0.7504,
-    "open": 118.67,
+    "price": 119.17,
+    "change": 0.57,
+    "changePercent": 0.4806,
+    "open": 118.35,
     "dayHigh": 119.84,
     "dayLow": 118.1232,
     "previousClose": 118.6,
@@ -4028,7 +4028,7 @@
     "divGrowth5Y": 2.54,
     "divGrowth10Y": 5.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 323,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -4166,14 +4166,6 @@
     "return5Y": 155.44,
     "return10Y": 835.06,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 124.24,
-        "h": 125.48,
-        "l": 123.94,
-        "c": 125.19,
-        "v": 6769600
-      },
       {
         "t": 1790294400,
         "o": 125.63,
@@ -4325,6 +4317,14 @@
         "l": 120.91,
         "c": 122.25,
         "v": 3304600
+      },
+      {
+        "t": 1792627200,
+        "o": 120.28,
+        "h": 120.53,
+        "l": 118.11,
+        "c": 118.6,
+        "v": 5396100
       }
     ]
   },
@@ -4332,10 +4332,10 @@
     "symbol": "XLK",
     "name": "State Street Technology Select ",
     "type": "ETF",
-    "price": 183.78,
-    "change": 1.44,
-    "changePercent": 0.7897,
-    "open": 182.68,
+    "price": 183.23,
+    "change": 0.89,
+    "changePercent": 0.4881,
+    "open": 181.82,
     "dayHigh": 184.42,
     "dayLow": 181.55,
     "previousClose": 182.34,
@@ -4352,7 +4352,7 @@
     "divGrowth5Y": 6.84,
     "divGrowth10Y": 6.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 78,
     "beta": 1.2,
     "yieldTTM": 0.85,
@@ -4490,14 +4490,6 @@
     "return5Y": 166.99,
     "return10Y": 812.95,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 193,
-        "h": 195.2,
-        "l": 192.61,
-        "c": 194.71001,
-        "v": 6356900
-      },
       {
         "t": 1790294400,
         "o": 195.53,
@@ -4649,6 +4641,14 @@
         "l": 186.47,
         "c": 188.53999,
         "v": 9596400
+      },
+      {
+        "t": 1792627200,
+        "o": 184.92999,
+        "h": 185.49001,
+        "l": 181.5,
+        "c": 182.34,
+        "v": 12113300
       }
     ]
   },
@@ -4656,10 +4656,10 @@
     "symbol": "VUG",
     "name": "Vanguard Growth ETF",
     "type": "ETF",
-    "price": 87.2,
-    "change": 0.03,
-    "changePercent": 0.0344,
-    "open": 86.885,
+    "price": 86.76,
+    "change": -0.41,
+    "changePercent": -0.4703,
+    "open": 86.64,
     "dayHigh": 87.325,
     "dayLow": 86.42,
     "previousClose": 87.17,
@@ -4676,7 +4676,7 @@
     "divGrowth5Y": 3.59,
     "divGrowth10Y": 3.75,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 151,
     "beta": 1.13,
     "yieldTTM": 0.52,
@@ -4814,14 +4814,6 @@
     "return5Y": 103.01,
     "return10Y": 436.81,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 89.59,
-        "h": 90.64,
-        "l": 89.5,
-        "c": 90.45,
-        "v": 4363300
-      },
       {
         "t": 1790294400,
         "o": 90.67,
@@ -4973,6 +4965,14 @@
         "l": 88.67,
         "c": 89.42,
         "v": 5259600
+      },
+      {
+        "t": 1792627200,
+        "o": 88.13,
+        "h": 88.24,
+        "l": 86.75,
+        "c": 87.17,
+        "v": 7928600
       }
     ]
   },
@@ -4980,11 +4980,11 @@
     "symbol": "VEA",
     "name": "Vanguard FTSE Developed Markets",
     "type": "ETF",
-    "price": 68.99,
-    "change": -0.27,
-    "changePercent": -0.3898,
-    "open": 68.84,
-    "dayHigh": 69.035,
+    "price": 69.05,
+    "change": -0.21,
+    "changePercent": -0.3032,
+    "open": 68.85,
+    "dayHigh": 69.17,
     "dayLow": 68.605,
     "previousClose": 69.26,
     "high52w": 74.0351,
@@ -5000,7 +5000,7 @@
     "divGrowth5Y": 12,
     "divGrowth10Y": 6.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2839,
     "beta": 0.86,
     "yieldTTM": 3.05,
@@ -5138,14 +5138,6 @@
     "return5Y": 58.01,
     "return10Y": 161.65,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 71.14,
-        "h": 71.39,
-        "l": 70.71,
-        "c": 71.050003,
-        "v": 10042700
-      },
       {
         "t": 1790294400,
         "o": 71.62,
@@ -5297,6 +5289,14 @@
         "l": 69.79,
         "c": 70.12,
         "v": 8116300
+      },
+      {
+        "t": 1792627200,
+        "o": 69.41,
+        "h": 69.62,
+        "l": 69.07,
+        "c": 69.26,
+        "v": 7035800
       }
     ]
   },
@@ -5304,12 +5304,12 @@
     "symbol": "BND",
     "name": "Vanguard Total Bond Market ETF",
     "type": "ETF",
-    "price": 71.26,
-    "change": -0.1,
-    "changePercent": -0.1401,
-    "open": 71.335,
-    "dayHigh": 71.39,
-    "dayLow": 71.1901,
+    "price": 71.2,
+    "change": -0.16,
+    "changePercent": -0.2242,
+    "open": 71.29,
+    "dayHigh": 71.38,
+    "dayLow": 71.18,
     "previousClose": 71.36,
     "high52w": 75.23,
     "low52w": 69.652,
@@ -5324,7 +5324,7 @@
     "divGrowth5Y": 7.99,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 10600,
     "beta": 0.06,
     "yieldTTM": 2.9,
@@ -5366,14 +5366,6 @@
     "return5Y": 0.24,
     "return10Y": 16.75,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 70.86,
-        "h": 70.89,
-        "l": 70.44,
-        "c": 70.45,
-        "v": 12878000
-      },
       {
         "t": 1790294400,
         "o": 70.54,
@@ -5525,6 +5517,14 @@
         "l": 70.6,
         "c": 70.75,
         "v": 10217400
+      },
+      {
+        "t": 1792627200,
+        "o": 71.040001,
+        "h": 71.43,
+        "l": 70.98,
+        "c": 71.36,
+        "v": 11745800
       }
     ]
   },
@@ -5532,11 +5532,11 @@
     "symbol": "VXUS",
     "name": "Vanguard Total International St",
     "type": "ETF",
-    "price": 82.47,
-    "change": -0.26,
-    "changePercent": -0.3143,
-    "open": 82.385,
-    "dayHigh": 82.52000000000001,
+    "price": 82.53,
+    "change": -0.2,
+    "changePercent": -0.2418,
+    "open": 82.22,
+    "dayHigh": 82.665,
     "dayLow": 82.07,
     "previousClose": 82.73,
     "high52w": 88.62,
@@ -5552,7 +5552,7 @@
     "divGrowth5Y": 11.35,
     "divGrowth10Y": 6.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 37,
     "beta": 0.85,
     "yieldTTM": 2.8,
@@ -5686,14 +5686,6 @@
     "return5Y": 50.75,
     "return10Y": 152.54,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 85.7,
-        "h": 85.94,
-        "l": 85.15,
-        "c": 85.59,
-        "v": 5628700
-      },
       {
         "t": 1790294400,
         "o": 86.059998,
@@ -5845,6 +5837,14 @@
         "l": 83.62,
         "c": 84,
         "v": 4744800
+      },
+      {
+        "t": 1792627200,
+        "o": 83,
+        "h": 83.16,
+        "l": 82.5,
+        "c": 82.73,
+        "v": 5157700
       }
     ]
   },
@@ -5852,10 +5852,10 @@
     "symbol": "SOXX",
     "name": "iShares PHLX SOX Semiconductor ",
     "type": "ETF",
-    "price": 480.95,
-    "change": 5.26,
-    "changePercent": 1.1058,
-    "open": 479,
+    "price": 478.2,
+    "change": 2.51,
+    "changePercent": 0.5277,
+    "open": 474.74,
     "dayHigh": 485.04,
     "dayLow": 473.1,
     "previousClose": 475.69,
@@ -5872,7 +5872,7 @@
     "divGrowth5Y": 9.81,
     "divGrowth10Y": 15.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 33,
     "beta": 1.33,
     "yieldTTM": 0.6,
@@ -5912,14 +5912,6 @@
     "return5Y": 280.39,
     "return10Y": 1770.31,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 554.90002,
-        "h": 566.81,
-        "l": 553.23999,
-        "c": 566.070007,
-        "v": 4925900
-      },
       {
         "t": 1790294400,
         "o": 569.47998,
@@ -6071,6 +6063,14 @@
         "l": 503.37,
         "c": 510.35999,
         "v": 8368000
+      },
+      {
+        "t": 1792627200,
+        "o": 489.73001,
+        "h": 494,
+        "l": 472.20999,
+        "c": 475.69,
+        "v": 14821400
       }
     ],
     "top10Holdings": [
@@ -6176,10 +6176,10 @@
     "symbol": "FTEC",
     "name": "Fidelity MSCI Information Technology Index ETF",
     "type": "ETF",
-    "price": 284.92,
-    "change": 1.9,
-    "changePercent": 0.6713,
-    "open": 282.69,
+    "price": 284.35,
+    "change": 1.33,
+    "changePercent": 0.4699,
+    "open": 282.28,
     "dayHigh": 285.945,
     "dayLow": 282,
     "previousClose": 283.02,
@@ -6196,7 +6196,7 @@
     "divGrowth5Y": 3.88,
     "divGrowth10Y": 7.99,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 255,
     "beta": null,
     "yieldTTM": null,
@@ -6313,14 +6313,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 296.34,
-        "h": 299.44,
-        "l": 295.84,
-        "c": 298.85001,
-        "v": 251100
-      },
       {
         "t": 1790294400,
         "o": 300.040009,
@@ -6472,6 +6464,14 @@
         "l": 288.70999,
         "c": 291.85001,
         "v": 272800
+      },
+      {
+        "t": 1792627200,
+        "o": 286.63,
+        "h": 287.63,
+        "l": 281.85999,
+        "c": 283.019989,
+        "v": 503700
       }
     ]
   },
@@ -6479,12 +6479,12 @@
     "symbol": "AGG",
     "name": "iShares Core U.S. Aggregate Bon",
     "type": "ETF",
-    "price": 96.01,
-    "change": -0.11,
-    "changePercent": -0.1144,
+    "price": 95.96,
+    "change": -0.16,
+    "changePercent": -0.1665,
     "open": 96.1,
     "dayHigh": 96.13,
-    "dayLow": 95.925,
+    "dayLow": 95.91,
     "previousClose": 96.12,
     "high52w": 101.4557,
     "low52w": 93.835,
@@ -6499,7 +6499,7 @@
     "divGrowth5Y": 11.34,
     "divGrowth10Y": 3.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 9800,
     "beta": 0.06,
     "yieldTTM": 2.85,
@@ -6541,14 +6541,6 @@
     "return5Y": 0.16,
     "return10Y": 16.48,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 95.47,
-        "h": 95.53,
-        "l": 94.93,
-        "c": 94.95,
-        "v": 10688500
-      },
       {
         "t": 1790294400,
         "o": 95,
@@ -6700,6 +6692,14 @@
         "l": 95.11,
         "c": 95.3,
         "v": 9833700
+      },
+      {
+        "t": 1792627200,
+        "o": 95.69,
+        "h": 96.23,
+        "l": 95.62,
+        "c": 96.12,
+        "v": 10825400
       }
     ]
   },
@@ -6707,11 +6707,11 @@
     "symbol": "VT",
     "name": "Vanguard Total World Stock Inde",
     "type": "ETF",
-    "price": 156.14,
-    "change": -0.38,
-    "changePercent": -0.2428,
-    "open": 155.915,
-    "dayHigh": 156.2074,
+    "price": 155.9,
+    "change": -0.62,
+    "changePercent": -0.3961,
+    "open": 155.6,
+    "dayHigh": 156.35,
     "dayLow": 155.305,
     "previousClose": 156.52,
     "high52w": 162.71,
@@ -6727,7 +6727,7 @@
     "divGrowth5Y": 9.91,
     "divGrowth10Y": 6.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 314,
     "beta": 0.93,
     "yieldTTM": 1.75,
@@ -6861,14 +6861,6 @@
     "return5Y": 68.1,
     "return10Y": 232.27,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 158.67,
-        "h": 159.5,
-        "l": 158.25,
-        "c": 159.050003,
-        "v": 2058500
-      },
       {
         "t": 1790294400,
         "o": 159.55,
@@ -7020,6 +7012,14 @@
         "l": 157.91,
         "c": 158.59,
         "v": 2273400
+      },
+      {
+        "t": 1792627200,
+        "o": 157.12,
+        "h": 157.27,
+        "l": 156.050003,
+        "c": 156.52,
+        "v": 3247000
       }
     ]
   },
@@ -7027,11 +7027,11 @@
     "symbol": "SPMO",
     "name": "Invesco S&P 500 Momentum ETF",
     "type": "ETF",
-    "price": 139.37,
-    "change": 0.55,
-    "changePercent": 0.3962,
-    "open": 139.005,
-    "dayHigh": 139.78,
+    "price": 138.66,
+    "change": -0.16,
+    "changePercent": -0.1153,
+    "open": 138.36,
+    "dayHigh": 139.84,
     "dayLow": 138,
     "previousClose": 138.82,
     "high52w": 162.3,
@@ -7047,7 +7047,7 @@
     "divGrowth5Y": 12.03,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 102,
     "beta": 1.1,
     "yieldTTM": 0.75,
@@ -7185,14 +7185,6 @@
     "return5Y": 176.31,
     "return10Y": 508.25,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 150.73,
-        "h": 152.5,
-        "l": 150.42,
-        "c": 152.17999,
-        "v": 2152300
-      },
       {
         "t": 1790294400,
         "o": 152.84,
@@ -7344,6 +7336,14 @@
         "l": 141.856,
         "c": 143.14999,
         "v": 1651900
+      },
+      {
+        "t": 1792627200,
+        "o": 140.72,
+        "h": 141.21001,
+        "l": 138.22301,
+        "c": 138.82001,
+        "v": 2571100
       }
     ]
   },
@@ -7351,11 +7351,11 @@
     "symbol": "IEFA",
     "name": "iShares Core MSCI EAFE ETF",
     "type": "ETF",
-    "price": 95.56,
-    "change": -0.59,
-    "changePercent": -0.6136,
-    "open": 95.36,
-    "dayHigh": 95.615,
+    "price": 95.68,
+    "change": -0.47,
+    "changePercent": -0.4888,
+    "open": 95.35,
+    "dayHigh": 95.82,
     "dayLow": 95.15,
     "previousClose": 96.15,
     "high52w": 101.44,
@@ -7371,7 +7371,7 @@
     "divGrowth5Y": 19.35,
     "divGrowth10Y": 8.31,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2324,
     "beta": 0.87,
     "yieldTTM": 3.1,
@@ -7509,14 +7509,6 @@
     "return5Y": 49.52,
     "return10Y": 144.24,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 97.5,
-        "h": 97.89,
-        "l": 96.94,
-        "c": 97.48,
-        "v": 9051700
-      },
       {
         "t": 1790294400,
         "o": 98.080002,
@@ -7668,6 +7660,14 @@
         "l": 96.55,
         "c": 97.019997,
         "v": 13009900
+      },
+      {
+        "t": 1792627200,
+        "o": 96.31,
+        "h": 96.43,
+        "l": 95.83,
+        "c": 96.15,
+        "v": 10532200
       }
     ]
   },
@@ -7675,12 +7675,12 @@
     "symbol": "IUSB",
     "name": "iShares Core Total USD Bond Market ETF",
     "type": "ETF",
-    "price": 44.74,
-    "change": -0.03,
-    "changePercent": -0.067,
-    "open": 44.75,
-    "dayHigh": 44.86,
-    "dayLow": 44.68,
+    "price": 44.7,
+    "change": -0.07,
+    "changePercent": -0.1564,
+    "open": 44.76,
+    "dayHigh": 44.85,
+    "dayLow": 44.67,
     "previousClose": 44.77,
     "high52w": 47.23,
     "low52w": 43.75,
@@ -7695,7 +7695,7 @@
     "divGrowth5Y": 8.75,
     "divGrowth10Y": 6.3,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1,
     "beta": null,
     "yieldTTM": null,
@@ -7722,14 +7722,6 @@
     ],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 44.55,
-        "h": 44.58,
-        "l": 44.31,
-        "c": 44.32,
-        "v": 7888700
-      },
       {
         "t": 1790294400,
         "o": 44.32,
@@ -7881,6 +7873,14 @@
         "l": 44.34,
         "c": 44.43,
         "v": 4672200
+      },
+      {
+        "t": 1792627200,
+        "o": 44.73,
+        "h": 44.82,
+        "l": 44.55,
+        "c": 44.77,
+        "v": 8228400
       }
     ]
   },
@@ -7888,11 +7888,11 @@
     "symbol": "VTV",
     "name": "Vanguard Value ETF",
     "type": "ETF",
-    "price": 225.55,
-    "change": -1,
-    "changePercent": -0.4414,
-    "open": 225.48,
-    "dayHigh": 225.59,
+    "price": 225.05,
+    "change": -1.5,
+    "changePercent": -0.6621,
+    "open": 225.34,
+    "dayHigh": 225.79,
     "dayLow": 224.34,
     "previousClose": 226.55,
     "high52w": 228.5695,
@@ -7908,7 +7908,7 @@
     "divGrowth5Y": 5.88,
     "divGrowth10Y": 6.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 319,
     "beta": 0.87,
     "yieldTTM": 1.8,
@@ -8046,14 +8046,6 @@
     "return5Y": 65.95,
     "return10Y": 221.43,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 220.47,
-        "h": 220.92999,
-        "l": 219.57001,
-        "c": 219.88,
-        "v": 2215300
-      },
       {
         "t": 1790294400,
         "o": 220.0099945,
@@ -8205,6 +8197,14 @@
         "l": 224.070007,
         "c": 224.94,
         "v": 2403100
+      },
+      {
+        "t": 1792627200,
+        "o": 224.44,
+        "h": 226.67999,
+        "l": 224.38,
+        "c": 226.55,
+        "v": 3288600
       }
     ]
   },
@@ -8212,11 +8212,11 @@
     "symbol": "ITOT",
     "name": "iShares Core S&P Total U.S. Stock Market ETF",
     "type": "ETF",
-    "price": 166.14,
-    "change": -0.26,
-    "changePercent": -0.1563,
+    "price": 165.57,
+    "change": -0.83,
+    "changePercent": -0.4988,
     "open": 165.53,
-    "dayHigh": 166.235,
+    "dayHigh": 166.3251,
     "dayLow": 165.21,
     "previousClose": 166.4,
     "high52w": 171.03,
@@ -8232,7 +8232,7 @@
     "divGrowth5Y": 5.29,
     "divGrowth10Y": 6.11,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1900,
     "beta": null,
     "yieldTTM": null,
@@ -8349,14 +8349,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 166.75,
-        "h": 167.78,
-        "l": 166.57001,
-        "c": 167.42,
-        "v": 1509200
-      },
       {
         "t": 1790294400,
         "o": 167.78,
@@ -8508,6 +8500,14 @@
         "l": 167.48,
         "c": 168.39,
         "v": 813400
+      },
+      {
+        "t": 1792627200,
+        "o": 166.94,
+        "h": 167.19,
+        "l": 165.82001,
+        "c": 166.39999,
+        "v": 1598300
       }
     ]
   },
@@ -8515,10 +8515,10 @@
     "symbol": "SCHG",
     "name": "Schwab U.S. Large-Cap Growth ET",
     "type": "ETF",
-    "price": 34.99,
-    "change": 0.05,
-    "changePercent": 0.1431,
-    "open": 34.875,
+    "price": 34.82,
+    "change": -0.12,
+    "changePercent": -0.3434,
+    "open": 34.77,
     "dayHigh": 35.035,
     "dayLow": 34.66,
     "previousClose": 34.94,
@@ -8535,7 +8535,7 @@
     "divGrowth5Y": 9.57,
     "divGrowth10Y": 4.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 189,
     "beta": 1.12,
     "yieldTTM": 0.55,
@@ -8673,14 +8673,6 @@
     "return5Y": 109.03,
     "return10Y": 466.22,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 35.71,
-        "h": 36.12,
-        "l": 35.7,
-        "c": 36.060001,
-        "v": 9329900
-      },
       {
         "t": 1790294400,
         "o": 36.15,
@@ -8832,6 +8824,14 @@
         "l": 35.56,
         "c": 35.86,
         "v": 11510800
+      },
+      {
+        "t": 1792627200,
+        "o": 35.38,
+        "h": 35.43,
+        "l": 34.81,
+        "c": 34.94,
+        "v": 9295000
       }
     ]
   },
@@ -8839,11 +8839,11 @@
     "symbol": "IEMG",
     "name": "iShares Core MSCI Emerging Mark",
     "type": "ETF",
-    "price": 75.56,
-    "change": 0.12,
-    "changePercent": 0.1591,
-    "open": 75.35,
-    "dayHigh": 75.71,
+    "price": 75.74,
+    "change": 0.3,
+    "changePercent": 0.3977,
+    "open": 75.28,
+    "dayHigh": 75.785,
     "dayLow": 75.225,
     "previousClose": 75.44,
     "high52w": 86.49,
@@ -8859,7 +8859,7 @@
     "divGrowth5Y": 9.77,
     "divGrowth10Y": 6.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2350,
     "beta": 0.9,
     "yieldTTM": 2.2,
@@ -8993,14 +8993,6 @@
     "return5Y": 42.89,
     "return10Y": 161.63,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 82.15,
-        "h": 82.22,
-        "l": 81.41,
-        "c": 81.7,
-        "v": 17221600
-      },
       {
         "t": 1790294400,
         "o": 82.39,
@@ -9152,6 +9144,14 @@
         "l": 77.27,
         "c": 77.68,
         "v": 13318600
+      },
+      {
+        "t": 1792627200,
+        "o": 75.84,
+        "h": 76.18,
+        "l": 75.18,
+        "c": 75.44,
+        "v": 11325100
       }
     ]
   },
@@ -9159,10 +9159,10 @@
     "symbol": "IWF",
     "name": "iShares Russell 1000 Growth Fun",
     "type": "ETF",
-    "price": 120.29,
-    "change": 0.2,
-    "changePercent": 0.1665,
-    "open": 119.425,
+    "price": 119.61,
+    "change": -0.48,
+    "changePercent": -0.3997,
+    "open": 119.49,
     "dayHigh": 120.48,
     "dayLow": 119.08,
     "previousClose": 120.09,
@@ -9179,7 +9179,7 @@
     "divGrowth5Y": 2.12,
     "divGrowth10Y": 1.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 375,
     "beta": 1.14,
     "yieldTTM": 0.55,
@@ -9317,14 +9317,6 @@
     "return5Y": 103.84,
     "return10Y": 448.43,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 124.28,
-        "h": 125.84,
-        "l": 124.14,
-        "c": 125.62,
-        "v": 3479900
-      },
       {
         "t": 1790294400,
         "o": 125.97,
@@ -9476,6 +9468,14 @@
         "l": 122.56,
         "c": 123.54,
         "v": 3216700
+      },
+      {
+        "t": 1792627200,
+        "o": 121.57,
+        "h": 121.81,
+        "l": 119.61,
+        "c": 120.089996,
+        "v": 7250600
       }
     ]
   },
@@ -9483,10 +9483,10 @@
     "symbol": "SPYG",
     "name": "State Street SPDR Portfolio S&P",
     "type": "ETF",
-    "price": 118.8,
-    "change": 0.04,
-    "changePercent": 0.0337,
-    "open": 118.415,
+    "price": 118.16,
+    "change": -0.6,
+    "changePercent": -0.5052,
+    "open": 118.07,
     "dayHigh": 119.02,
     "dayLow": 117.7801,
     "previousClose": 118.76,
@@ -9503,7 +9503,7 @@
     "divGrowth5Y": 3.49,
     "divGrowth10Y": 3.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 217,
     "beta": 1.1,
     "yieldTTM": 0.47,
@@ -9637,14 +9637,6 @@
     "return5Y": 108.8,
     "return10Y": 429.42,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 122.050003,
-        "h": 123.43,
-        "l": 122.040001,
-        "c": 123.27,
-        "v": 2391700
-      },
       {
         "t": 1790294400,
         "o": 123.64,
@@ -9796,6 +9788,14 @@
         "l": 121.07,
         "c": 122.040001,
         "v": 1775800
+      },
+      {
+        "t": 1792627200,
+        "o": 120.27,
+        "h": 120.39,
+        "l": 118.31,
+        "c": 118.76,
+        "v": 2621100
       }
     ]
   },
@@ -9803,11 +9803,11 @@
     "symbol": "VWO",
     "name": "Vanguard FTSE Emerging Markets ",
     "type": "ETF",
-    "price": 56.77,
-    "change": -0.08,
-    "changePercent": -0.1407,
-    "open": 56.6025,
-    "dayHigh": 56.84,
+    "price": 56.84,
+    "change": -0.01,
+    "changePercent": -0.0176,
+    "open": 56.585,
+    "dayHigh": 56.85,
     "dayLow": 56.55,
     "previousClose": 56.85,
     "high52w": 61.535,
@@ -9823,7 +9823,7 @@
     "divGrowth5Y": 9.42,
     "divGrowth10Y": 3.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 12,
     "beta": 0.88,
     "yieldTTM": 2.5,
@@ -9957,14 +9957,6 @@
     "return5Y": 32.18,
     "return10Y": 136.12,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 60.040001,
-        "h": 60.19,
-        "l": 59.68,
-        "c": 59.87,
-        "v": 9748900
-      },
       {
         "t": 1790294400,
         "o": 60.12,
@@ -10116,6 +10108,14 @@
         "l": 57.95,
         "c": 58.18,
         "v": 6268500
+      },
+      {
+        "t": 1792627200,
+        "o": 56.92,
+        "h": 57.18,
+        "l": 56.71,
+        "c": 56.85,
+        "v": 11696800
       }
     ]
   },
@@ -10123,10 +10123,10 @@
     "symbol": "MGK",
     "name": "Vanguard Mega Cap Growth ETF",
     "type": "ETF",
-    "price": 89.2,
-    "change": 0.14,
-    "changePercent": 0.1572,
-    "open": 88.695,
+    "price": 88.78,
+    "change": -0.28,
+    "changePercent": -0.3144,
+    "open": 88.61,
     "dayHigh": 89.37,
     "dayLow": 88.415,
     "previousClose": 89.06,
@@ -10143,7 +10143,7 @@
     "divGrowth5Y": 2.22,
     "divGrowth10Y": 1.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 56,
     "beta": 1.15,
     "yieldTTM": 0.48,
@@ -10281,14 +10281,6 @@
     "return5Y": 111.51,
     "return10Y": 479.76,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 91.97,
-        "h": 93.16,
-        "l": 91.87,
-        "c": 92.99,
-        "v": 1164500
-      },
       {
         "t": 1790294400,
         "o": 93.23,
@@ -10440,6 +10432,14 @@
         "l": 90.83,
         "c": 91.61,
         "v": 1314600
+      },
+      {
+        "t": 1792627200,
+        "o": 90.21,
+        "h": 90.31,
+        "l": 88.67,
+        "c": 89.059998,
+        "v": 1862400
       }
     ]
   },
@@ -10447,10 +10447,10 @@
     "symbol": "IYW",
     "name": "iShares U.S. Technology ETF",
     "type": "ETF",
-    "price": 250.51,
-    "change": 1.55,
-    "changePercent": 0.6226,
-    "open": 248.13,
+    "price": 249.92,
+    "change": 0.96,
+    "changePercent": 0.3856,
+    "open": 248,
     "dayHigh": 251.33,
     "dayLow": 247.92,
     "previousClose": 248.96,
@@ -10467,7 +10467,7 @@
     "divGrowth5Y": -6.89,
     "divGrowth10Y": -1.9,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 152,
     "beta": 1.22,
     "yieldTTM": 0.45,
@@ -10605,14 +10605,6 @@
     "return5Y": 168.56,
     "return10Y": 876.56,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 261.72,
-        "h": 264.76999,
-        "l": 261.26999,
-        "c": 264.31,
-        "v": 634200
-      },
       {
         "t": 1790294400,
         "o": 265.059998,
@@ -10764,6 +10756,14 @@
         "l": 254.56,
         "c": 257.059998,
         "v": 320000
+      },
+      {
+        "t": 1792627200,
+        "o": 252.75,
+        "h": 253.039993,
+        "l": 247.94,
+        "c": 248.96001,
+        "v": 986300
       }
     ]
   },
@@ -10771,11 +10771,11 @@
     "symbol": "SCHX",
     "name": "Schwab U.S. Large-Cap ETF",
     "type": "ETF",
-    "price": 30,
-    "change": -0.03,
-    "changePercent": -0.0999,
-    "open": 29.9,
-    "dayHigh": 30.01,
+    "price": 29.88,
+    "change": -0.15,
+    "changePercent": -0.4995,
+    "open": 29.88,
+    "dayHigh": 30.025,
     "dayLow": 29.83,
     "previousClose": 30.03,
     "high52w": 30.7923,
@@ -10791,7 +10791,7 @@
     "divGrowth5Y": 4.49,
     "divGrowth10Y": 5.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 676,
     "beta": 1,
     "yieldTTM": 1.1,
@@ -10929,14 +10929,6 @@
     "return5Y": 85.34,
     "return10Y": 320.82,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 30.08,
-        "h": 30.28,
-        "l": 30.059999,
-        "c": 30.22,
-        "v": 14902600
-      },
       {
         "t": 1790294400,
         "o": 30.29,
@@ -11088,6 +11080,14 @@
         "l": 30.24,
         "c": 30.42,
         "v": 13173600
+      },
+      {
+        "t": 1792627200,
+        "o": 30.14,
+        "h": 30.19,
+        "l": 29.93,
+        "c": 30.030001,
+        "v": 15539100
       }
     ]
   },
@@ -11095,10 +11095,10 @@
     "symbol": "VONG",
     "name": "Vanguard Russell 1000 Growth ET",
     "type": "ETF",
-    "price": 123.78,
-    "change": 0.18,
-    "changePercent": 0.1456,
-    "open": 123.03,
+    "price": 123.16,
+    "change": -0.44,
+    "changePercent": -0.356,
+    "open": 123.06,
     "dayHigh": 124.01,
     "dayLow": 122.595,
     "previousClose": 123.6,
@@ -11115,7 +11115,7 @@
     "divGrowth5Y": 4.13,
     "divGrowth10Y": 4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 332,
     "beta": 1.14,
     "yieldTTM": 0.52,
@@ -11253,14 +11253,6 @@
     "return5Y": 105.02,
     "return10Y": 454.43,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 127.99,
-        "h": 129.58,
-        "l": 127.95,
-        "c": 129.31,
-        "v": 924000
-      },
       {
         "t": 1790294400,
         "o": 129.81,
@@ -11412,6 +11404,14 @@
         "l": 126.2,
         "c": 127.15,
         "v": 1085500
+      },
+      {
+        "t": 1792627200,
+        "o": 125.089996,
+        "h": 125.4,
+        "l": 123.14,
+        "c": 123.6,
+        "v": 893900
       }
     ]
   },
@@ -11419,11 +11419,11 @@
     "symbol": "VEU",
     "name": "Vanguard FTSE All World Ex US E",
     "type": "ETF",
-    "price": 80.62,
-    "change": -0.29,
-    "changePercent": -0.3584,
-    "open": 80.41,
-    "dayHigh": 80.6899,
+    "price": 80.7,
+    "change": -0.21,
+    "changePercent": -0.2595,
+    "open": 80.4,
+    "dayHigh": 80.84,
     "dayLow": 80.27,
     "previousClose": 80.91,
     "high52w": 86.52,
@@ -11439,7 +11439,7 @@
     "divGrowth5Y": 12.6,
     "divGrowth10Y": 5.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2524,
     "beta": 0.85,
     "yieldTTM": 2.7,
@@ -11577,14 +11577,6 @@
     "return5Y": 51.92,
     "return10Y": 155.98,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 83.69,
-        "h": 83.95,
-        "l": 83.19,
-        "c": 83.57,
-        "v": 2479100
-      },
       {
         "t": 1790294400,
         "o": 84.12,
@@ -11736,6 +11728,14 @@
         "l": 81.77,
         "c": 82.14,
         "v": 3267000
+      },
+      {
+        "t": 1792627200,
+        "o": 81.12,
+        "h": 81.34,
+        "l": 80.7,
+        "c": 80.91,
+        "v": 2076900
       }
     ]
   },
@@ -11743,10 +11743,10 @@
     "symbol": "IUSG",
     "name": "iShares Core S&P U.S. Growth ETF",
     "type": "ETF",
-    "price": 187.03,
-    "change": -0.01,
-    "changePercent": -0.0053,
-    "open": 186.94,
+    "price": 186.05,
+    "change": -0.99,
+    "changePercent": -0.5293,
+    "open": 185.93,
     "dayHigh": 187.31,
     "dayLow": 185.52,
     "previousClose": 187.04,
@@ -11763,7 +11763,7 @@
     "divGrowth5Y": 2.43,
     "divGrowth10Y": 5.1,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 403,
     "beta": null,
     "yieldTTM": null,
@@ -11880,14 +11880,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 192.14,
-        "h": 194.27,
-        "l": 192.14,
-        "c": 193.97,
-        "v": 387400
-      },
       {
         "t": 1790294400,
         "o": 194.24001,
@@ -12039,6 +12031,14 @@
         "l": 190.64,
         "c": 192.16,
         "v": 430600
+      },
+      {
+        "t": 1792627200,
+        "o": 189.22,
+        "h": 189.48,
+        "l": 186.3,
+        "c": 187.039993,
+        "v": 910000
       }
     ]
   },
@@ -12046,11 +12046,11 @@
     "symbol": "SCHF",
     "name": "Schwab International Equity ETF",
     "type": "ETF",
-    "price": 26.77,
-    "change": -0.11,
-    "changePercent": -0.4092,
-    "open": 26.715,
-    "dayHigh": 26.79,
+    "price": 26.79,
+    "change": -0.09,
+    "changePercent": -0.3348,
+    "open": 26.72,
+    "dayHigh": 26.84,
     "dayLow": 26.635,
     "previousClose": 26.88,
     "high52w": 28.685,
@@ -12066,7 +12066,7 @@
     "divGrowth5Y": 17.04,
     "divGrowth10Y": 10.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1465,
     "beta": null,
     "yieldTTM": null,
@@ -12183,14 +12183,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 27.64,
-        "h": 27.74,
-        "l": 27.47,
-        "c": 27.62,
-        "v": 10257500
-      },
       {
         "t": 1790294400,
         "o": 27.78,
@@ -12342,6 +12334,14 @@
         "l": 27.08,
         "c": 27.21,
         "v": 9133800
+      },
+      {
+        "t": 1792627200,
+        "o": 26.98,
+        "h": 27.02,
+        "l": 26.8,
+        "c": 26.88,
+        "v": 10055100
       }
     ]
   },
@@ -12349,11 +12349,11 @@
     "symbol": "SCHB",
     "name": "Schwab U.S. Broad Market ETF",
     "type": "ETF",
-    "price": 29.3,
-    "change": -0.03,
-    "changePercent": -0.1023,
-    "open": 29.26,
-    "dayHigh": 29.3099,
+    "price": 29.19,
+    "change": -0.14,
+    "changePercent": -0.4773,
+    "open": 29.18,
+    "dayHigh": 29.325,
     "dayLow": 29.1201,
     "previousClose": 29.33,
     "high52w": 30.15,
@@ -12369,7 +12369,7 @@
     "divGrowth5Y": 4.45,
     "divGrowth10Y": 5.85,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2100,
     "beta": 1,
     "yieldTTM": 1.2,
@@ -12503,14 +12503,6 @@
     "return5Y": 80.95,
     "return10Y": 307.51,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 29.41,
-        "h": 29.58,
-        "l": 29.37,
-        "c": 29.52,
-        "v": 11296000
-      },
       {
         "t": 1790294400,
         "o": 29.59,
@@ -12662,6 +12654,14 @@
         "l": 29.52,
         "c": 29.69,
         "v": 14622600
+      },
+      {
+        "t": 1792627200,
+        "o": 29.43,
+        "h": 29.48,
+        "l": 29.23,
+        "c": 29.33,
+        "v": 19247800
       }
     ]
   },
@@ -12669,11 +12669,11 @@
     "symbol": "IXUS",
     "name": "iShares Core MSCI Total Interna",
     "type": "ETF",
-    "price": 92.33,
-    "change": -0.27,
-    "changePercent": -0.2916,
-    "open": 92.44,
-    "dayHigh": 92.45,
+    "price": 92.43,
+    "change": -0.17,
+    "changePercent": -0.1836,
+    "open": 92.07,
+    "dayHigh": 92.575,
     "dayLow": 91.88,
     "previousClose": 92.6,
     "high52w": 98.825,
@@ -12689,7 +12689,7 @@
     "divGrowth5Y": 17.16,
     "divGrowth10Y": 7.03,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 42,
     "beta": 0.85,
     "yieldTTM": 2.6,
@@ -12823,14 +12823,6 @@
     "return5Y": 50.17,
     "return10Y": 152.56,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 95.91,
-        "h": 96.19,
-        "l": 95.31,
-        "c": 95.77,
-        "v": 1376200
-      },
       {
         "t": 1790294400,
         "o": 96.42,
@@ -12982,6 +12974,14 @@
         "l": 93.63,
         "c": 94.080002,
         "v": 1071600
+      },
+      {
+        "t": 1792627200,
+        "o": 92.91,
+        "h": 93.11,
+        "l": 92.37,
+        "c": 92.6,
+        "v": 1264100
       }
     ]
   },
@@ -12989,11 +12989,11 @@
     "symbol": "VV",
     "name": "Vanguard Large-Cap ETF",
     "type": "ETF",
-    "price": 351.45,
-    "change": -0.54,
-    "changePercent": -0.1534,
-    "open": 350.26,
-    "dayHigh": 351.655,
+    "price": 350.15,
+    "change": -1.84,
+    "changePercent": -0.5227,
+    "open": 350.04,
+    "dayHigh": 351.82,
     "dayLow": 349.7,
     "previousClose": 351.99,
     "high52w": 360.675,
@@ -13009,7 +13009,7 @@
     "divGrowth5Y": 6.01,
     "divGrowth10Y": 6.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 404,
     "beta": 1,
     "yieldTTM": 1.1,
@@ -13147,14 +13147,6 @@
     "return5Y": 87.04,
     "return10Y": 324.8,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 353.37,
-        "h": 355.72,
-        "l": 353.14001,
-        "c": 355.059998,
-        "v": 227400
-      },
       {
         "t": 1790294400,
         "o": 355.70001,
@@ -13306,6 +13298,14 @@
         "l": 354.19,
         "c": 356.41,
         "v": 183900
+      },
+      {
+        "t": 1792627200,
+        "o": 353.079987,
+        "h": 353.82999,
+        "l": 350.79999,
+        "c": 351.98999,
+        "v": 237700
       }
     ]
   },
@@ -13313,11 +13313,11 @@
     "symbol": "MBB",
     "name": "iShares MBS ETF",
     "type": "ETF",
-    "price": 91.34,
-    "change": -0.04,
-    "changePercent": -0.0438,
-    "open": 91.415,
-    "dayHigh": 91.46990000000001,
+    "price": 91.29,
+    "change": -0.09,
+    "changePercent": -0.0985,
+    "open": 91.41,
+    "dayHigh": 91.4599,
     "dayLow": 91.22,
     "previousClose": 91.38,
     "high52w": 96.965,
@@ -13333,7 +13333,7 @@
     "divGrowth5Y": 13.75,
     "divGrowth10Y": 2.65,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 11106,
     "beta": null,
     "yieldTTM": null,
@@ -13354,14 +13354,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 90.69,
-        "h": 90.73,
-        "l": 89.86,
-        "c": 89.86,
-        "v": 5741500
-      },
       {
         "t": 1790294400,
         "o": 90.040001,
@@ -13513,6 +13505,14 @@
         "l": 90.3,
         "c": 90.54,
         "v": 6198500
+      },
+      {
+        "t": 1792627200,
+        "o": 91,
+        "h": 91.55,
+        "l": 90.92,
+        "c": 91.38,
+        "v": 9632200
       }
     ]
   },
@@ -13520,12 +13520,12 @@
     "symbol": "USIG",
     "name": "iShares Broad USD Investment Grade Corporate Bond ETF",
     "type": "ETF",
-    "price": 49.39,
-    "change": -0.11,
-    "changePercent": -0.2222,
-    "open": 49.375,
-    "dayHigh": 49.449999999999996,
-    "dayLow": 49.33,
+    "price": 49.35,
+    "change": -0.15,
+    "changePercent": -0.303,
+    "open": 49.37,
+    "dayHigh": 49.44,
+    "dayLow": 49.312279,
     "previousClose": 49.5,
     "high52w": 52.7199,
     "low52w": 48.3,
@@ -13540,7 +13540,7 @@
     "divGrowth5Y": 8.57,
     "divGrowth10Y": 3.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 11388,
     "beta": null,
     "yieldTTM": null,
@@ -13561,14 +13561,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 49.29,
-        "h": 49.35,
-        "l": 49.02,
-        "c": 49.02,
-        "v": 2347600
-      },
       {
         "t": 1790294400,
         "o": 49.049999,
@@ -13720,6 +13712,14 @@
         "l": 48.95,
         "c": 49.09,
         "v": 2089800
+      },
+      {
+        "t": 1792627200,
+        "o": 49.25,
+        "h": 49.56,
+        "l": 49.21,
+        "c": 49.5,
+        "v": 2685200
       }
     ]
   },
@@ -13727,10 +13727,10 @@
     "symbol": "VIG",
     "name": "Vanguard Div Appreciation ETF",
     "type": "ETF",
-    "price": 243.71,
-    "change": -1.41,
-    "changePercent": -0.5752,
-    "open": 243.805,
+    "price": 243.12,
+    "change": -2,
+    "changePercent": -0.8159,
+    "open": 243.68,
     "dayHigh": 244.065,
     "dayLow": 242.425,
     "previousClose": 245.12,
@@ -13747,7 +13747,7 @@
     "divGrowth5Y": 8.14,
     "divGrowth10Y": 6.91,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 343,
     "beta": 0.8,
     "yieldTTM": 1.7,
@@ -13885,14 +13885,6 @@
     "return5Y": 62.8,
     "return10Y": 243.36,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 236.25,
-        "h": 236.95,
-        "l": 235.57001,
-        "c": 235.97,
-        "v": 1164900
-      },
       {
         "t": 1790294400,
         "o": 236.28999,
@@ -14044,6 +14036,14 @@
         "l": 242.49001,
         "c": 243.66,
         "v": 827200
+      },
+      {
+        "t": 1792627200,
+        "o": 242.92999,
+        "h": 245.22,
+        "l": 242.92999,
+        "c": 245.12,
+        "v": 1225100
       }
     ]
   },
@@ -14051,10 +14051,10 @@
     "symbol": "IVW",
     "name": "iShares S&P 500 Growth ETF",
     "type": "ETF",
-    "price": 137.25,
-    "change": 0.05,
-    "changePercent": 0.0364,
-    "open": 136.325,
+    "price": 136.48,
+    "change": -0.72,
+    "changePercent": -0.5248,
+    "open": 136.32,
     "dayHigh": 137.465,
     "dayLow": 136.0401,
     "previousClose": 137.2,
@@ -14071,7 +14071,7 @@
     "divGrowth5Y": -0.22,
     "divGrowth10Y": 0.87,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 220,
     "beta": 1.1,
     "yieldTTM": 0.55,
@@ -14205,14 +14205,6 @@
     "return5Y": 108.23,
     "return10Y": 427.43,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 140.98,
-        "h": 142.58,
-        "l": 140.97,
-        "c": 142.36,
-        "v": 1249000
-      },
       {
         "t": 1790294400,
         "o": 142.8,
@@ -14364,6 +14356,14 @@
         "l": 139.82001,
         "c": 140.99001,
         "v": 1376000
+      },
+      {
+        "t": 1792627200,
+        "o": 138.92999,
+        "h": 139.050003,
+        "l": 136.64,
+        "c": 137.2,
+        "v": 1799500
       }
     ]
   },
@@ -14371,10 +14371,10 @@
     "symbol": "VOOG",
     "name": "Vanguard S&P 500 Growth ETF",
     "type": "ETF",
-    "price": 82.49,
-    "change": 0.02,
-    "changePercent": 0.0243,
-    "open": 82.175,
+    "price": 82.04,
+    "change": -0.43,
+    "changePercent": -0.5214,
+    "open": 82,
     "dayHigh": 82.63,
     "dayLow": 81.76,
     "previousClose": 82.47,
@@ -14391,7 +14391,7 @@
     "divGrowth5Y": 2.77,
     "divGrowth10Y": 3.55,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 220,
     "beta": 1.1,
     "yieldTTM": 0.5,
@@ -14525,14 +14525,6 @@
     "return5Y": 107.56,
     "return10Y": 425.3,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 84.73,
-        "h": 85.7,
-        "l": 84.73,
-        "c": 85.56,
-        "v": 1002800
-      },
       {
         "t": 1790294400,
         "o": 85.85,
@@ -14684,6 +14676,14 @@
         "l": 84.050003,
         "c": 84.75,
         "v": 845200
+      },
+      {
+        "t": 1792627200,
+        "o": 83.53,
+        "h": 83.58,
+        "l": 82.14,
+        "c": 82.47,
+        "v": 1358300
       }
     ]
   },
@@ -14691,11 +14691,11 @@
     "symbol": "VYM",
     "name": "Vanguard High Dividend Yield ET",
     "type": "ETF",
-    "price": 161.93,
-    "change": -0.67,
-    "changePercent": -0.4121,
-    "open": 161.915,
-    "dayHigh": 161.965,
+    "price": 161.5,
+    "change": -1.1,
+    "changePercent": -0.6765,
+    "open": 161.57,
+    "dayHigh": 162.11,
     "dayLow": 160.92,
     "previousClose": 162.6,
     "high52w": 167.61,
@@ -14711,7 +14711,7 @@
     "divGrowth5Y": 3.15,
     "divGrowth10Y": 4.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 603,
     "beta": 0.8,
     "yieldTTM": 3,
@@ -14849,14 +14849,6 @@
     "return5Y": 68.34,
     "return10Y": 207.43,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 157.48,
-        "h": 157.71001,
-        "l": 156.75,
-        "c": 156.92,
-        "v": 1071300
-      },
       {
         "t": 1790294400,
         "o": 157.039993,
@@ -15008,6 +15000,14 @@
         "l": 160.81,
         "c": 161.45,
         "v": 717000
+      },
+      {
+        "t": 1792627200,
+        "o": 160.96001,
+        "h": 162.71001,
+        "l": 160.82001,
+        "c": 162.60001,
+        "v": 1052600
       }
     ]
   },
@@ -15015,11 +15015,11 @@
     "symbol": "SPDW",
     "name": "State Street SPDR Portfolio Developed World ex-US ETF",
     "type": "ETF",
-    "price": 49.01,
-    "change": -0.2,
-    "changePercent": -0.4064,
-    "open": 48.9125,
-    "dayHigh": 49.04,
+    "price": 49.06,
+    "change": -0.15,
+    "changePercent": -0.3048,
+    "open": 48.91,
+    "dayHigh": 49.1351,
     "dayLow": 48.755,
     "previousClose": 49.21,
     "high52w": 52.43,
@@ -15035,7 +15035,7 @@
     "divGrowth5Y": 18.4,
     "divGrowth10Y": 7.44,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2250,
     "beta": null,
     "yieldTTM": null,
@@ -15152,14 +15152,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 50.6,
-        "h": 50.75,
-        "l": 50.27,
-        "c": 50.55,
-        "v": 2469500
-      },
       {
         "t": 1790294400,
         "o": 50.88,
@@ -15311,6 +15303,14 @@
         "l": 49.56,
         "c": 49.82,
         "v": 2266200
+      },
+      {
+        "t": 1792627200,
+        "o": 49.37,
+        "h": 49.45,
+        "l": 49.049999,
+        "c": 49.21,
+        "v": 3088400
       }
     ]
   },
@@ -15318,11 +15318,11 @@
     "symbol": "VYMI",
     "name": "Vanguard International High Dividend Yield ETF",
     "type": "ETF",
-    "price": 101.27,
-    "change": -0.48,
-    "changePercent": -0.4717,
-    "open": 101.105,
-    "dayHigh": 101.29,
+    "price": 101.41,
+    "change": -0.34,
+    "changePercent": -0.3342,
+    "open": 101.15,
+    "dayHigh": 101.48,
     "dayLow": 100.845,
     "previousClose": 101.75,
     "high52w": 107.2857,
@@ -15338,7 +15338,7 @@
     "divGrowth5Y": 10.88,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1582,
     "beta": null,
     "yieldTTM": null,
@@ -15455,14 +15455,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 102.29,
-        "h": 102.52,
-        "l": 101.77,
-        "c": 102.18,
-        "v": 713000
-      },
       {
         "t": 1790294400,
         "o": 102.68,
@@ -15614,6 +15606,14 @@
         "l": 102.014999,
         "c": 102.45,
         "v": 773100
+      },
+      {
+        "t": 1792627200,
+        "o": 101.76,
+        "h": 101.855,
+        "l": 101.27,
+        "c": 101.75,
+        "v": 1205200
       }
     ]
   },
@@ -15621,11 +15621,11 @@
     "symbol": "BNDX",
     "name": "Vanguard Total International Bo",
     "type": "ETF",
-    "price": 47.24,
-    "change": 0.02,
-    "changePercent": 0.0424,
-    "open": 47.235,
-    "dayHigh": 47.265,
+    "price": 47.23,
+    "change": 0.01,
+    "changePercent": 0.0212,
+    "open": 47.22,
+    "dayHigh": 47.255,
     "dayLow": 47.19,
     "previousClose": 47.22,
     "high52w": 49.93,
@@ -15641,7 +15641,7 @@
     "divGrowth5Y": 27.71,
     "divGrowth10Y": 9.96,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 6800,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -15683,14 +15683,6 @@
     "return5Y": 1.4,
     "return10Y": 17.88,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 46.95,
-        "h": 46.99,
-        "l": 46.85,
-        "c": 46.9,
-        "v": 6010200
-      },
       {
         "t": 1790294400,
         "o": 46.86,
@@ -15842,6 +15834,14 @@
         "l": 47,
         "c": 47.09,
         "v": 5692600
+      },
+      {
+        "t": 1792627200,
+        "o": 47.14,
+        "h": 47.28,
+        "l": 47.11,
+        "c": 47.22,
+        "v": 4361900
       }
     ]
   },
@@ -15849,11 +15849,11 @@
     "symbol": "VTEB",
     "name": "Vanguard Tax-Exempt Bond ETF",
     "type": "ETF",
-    "price": 48.49,
-    "change": 0.08,
-    "changePercent": 0.1653,
-    "open": 48.465,
-    "dayHigh": 48.5,
+    "price": 48.51,
+    "change": 0.1,
+    "changePercent": 0.2066,
+    "open": 48.47,
+    "dayHigh": 48.54,
     "dayLow": 48.4,
     "previousClose": 48.41,
     "high52w": 51.18,
@@ -15869,7 +15869,7 @@
     "divGrowth5Y": 10.32,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 10189,
     "beta": null,
     "yieldTTM": null,
@@ -15890,14 +15890,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 47.89,
-        "h": 47.89,
-        "l": 47.6,
-        "c": 47.69,
-        "v": 38360900
-      },
       {
         "t": 1790294400,
         "o": 47.63,
@@ -16049,6 +16041,14 @@
         "l": 47.88,
         "c": 48.0099983,
         "v": 21088700
+      },
+      {
+        "t": 1792627200,
+        "o": 48.25,
+        "h": 48.43,
+        "l": 48.21,
+        "c": 48.41,
+        "v": 29422000
       }
     ]
   },
@@ -16059,7 +16059,7 @@
     "price": 35.27,
     "change": -0.13,
     "changePercent": -0.3672,
-    "open": 35.2225,
+    "open": 35.185,
     "dayHigh": 35.37,
     "dayLow": 35.04,
     "previousClose": 35.4,
@@ -16076,7 +16076,7 @@
     "divGrowth5Y": 8.68,
     "divGrowth10Y": 10.43,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 102,
     "beta": 0.78,
     "yieldTTM": 3.9,
@@ -16214,14 +16214,6 @@
     "return5Y": 47.69,
     "return10Y": 234.7,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 33.37,
-        "h": 33.43,
-        "l": 33.080002,
-        "c": 33.099998,
-        "v": 21475800
-      },
       {
         "t": 1790294400,
         "o": 33.040001,
@@ -16373,6 +16365,14 @@
         "l": 34.54,
         "c": 34.66,
         "v": 19345000
+      },
+      {
+        "t": 1792627200,
+        "o": 34.84,
+        "h": 35.45,
+        "l": 34.79,
+        "c": 35.4,
+        "v": 28852000
       }
     ]
   },
@@ -16380,11 +16380,11 @@
     "symbol": "SPTM",
     "name": "State Street SPDR Portfolio S&P 1500 Composite Stock Market ETF",
     "type": "ETF",
-    "price": 92.21,
-    "change": -0.15,
-    "changePercent": -0.1624,
-    "open": 91.945,
-    "dayHigh": 92.25,
+    "price": 91.89,
+    "change": -0.47,
+    "changePercent": -0.5089,
+    "open": 91.89,
+    "dayHigh": 92.3,
     "dayLow": 91.71,
     "previousClose": 92.36,
     "high52w": 94.615,
@@ -16400,7 +16400,7 @@
     "divGrowth5Y": 7.01,
     "divGrowth10Y": 6.34,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1472,
     "beta": null,
     "yieldTTM": null,
@@ -16517,14 +16517,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 92.3,
-        "h": 92.9,
-        "l": 92.23,
-        "c": 92.71,
-        "v": 481600
-      },
       {
         "t": 1790294400,
         "o": 92.85,
@@ -16676,6 +16668,14 @@
         "l": 92.92,
         "c": 93.45,
         "v": 381500
+      },
+      {
+        "t": 1792627200,
+        "o": 92.64,
+        "h": 92.78,
+        "l": 92.059998,
+        "c": 92.36,
+        "v": 1073400
       }
     ]
   },
@@ -16683,11 +16683,11 @@
     "symbol": "VO",
     "name": "Vanguard Mid-Cap ETF",
     "type": "ETF",
-    "price": 80.95,
-    "change": -0.32,
-    "changePercent": -0.3937,
-    "open": 80.8875,
-    "dayHigh": 80.995,
+    "price": 80.77,
+    "change": -0.5,
+    "changePercent": -0.6152,
+    "open": 80.9,
+    "dayHigh": 81.06,
     "dayLow": 80.37,
     "previousClose": 81.27,
     "high52w": 84.5901,
@@ -16703,7 +16703,7 @@
     "divGrowth5Y": 8.41,
     "divGrowth10Y": 7.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 288,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -16841,14 +16841,6 @@
     "return5Y": 43.76,
     "return10Y": 196.25,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 79.77,
-        "h": 80.040001,
-        "l": 79.53,
-        "c": 79.7,
-        "v": 2509300
-      },
       {
         "t": 1790294400,
         "o": 79.79,
@@ -17000,6 +16992,14 @@
         "l": 81.14,
         "c": 81.4,
         "v": 2230600
+      },
+      {
+        "t": 1792627200,
+        "o": 80.94,
+        "h": 81.31,
+        "l": 80.52,
+        "c": 81.27,
+        "v": 3551300
       }
     ]
   },
@@ -17007,11 +17007,11 @@
     "symbol": "IJH",
     "name": "iShares Core S&P Mid-Cap ETF",
     "type": "ETF",
-    "price": 72.52,
-    "change": -0.28,
-    "changePercent": -0.3846,
-    "open": 72.325,
-    "dayHigh": 72.545,
+    "price": 72.37,
+    "change": -0.43,
+    "changePercent": -0.5907,
+    "open": 72.33,
+    "dayHigh": 72.625,
     "dayLow": 71.87,
     "previousClose": 72.8,
     "high52w": 78.71,
@@ -17027,7 +17027,7 @@
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 363,
     "beta": 1.07,
     "yieldTTM": 1.5,
@@ -17165,14 +17165,6 @@
     "return5Y": 41.76,
     "return10Y": 189.38,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 72.76,
-        "h": 73.019997,
-        "l": 72.38,
-        "c": 72.73,
-        "v": 6748100
-      },
       {
         "t": 1790294400,
         "o": 72.86,
@@ -17324,6 +17316,14 @@
         "l": 73.07,
         "c": 73.39,
         "v": 6771900
+      },
+      {
+        "t": 1792627200,
+        "o": 72.63,
+        "h": 72.86,
+        "l": 72.14,
+        "c": 72.8,
+        "v": 8796300
       }
     ]
   },
@@ -17331,10 +17331,10 @@
     "symbol": "IWY",
     "name": "iShares Russell Top 200 Growth ETF",
     "type": "ETF",
-    "price": 282.8,
-    "change": 0.43,
-    "changePercent": 0.1523,
-    "open": 281.015,
+    "price": 281.26,
+    "change": -1.11,
+    "changePercent": -0.3931,
+    "open": 281.23,
     "dayHigh": 283.33,
     "dayLow": 280.2503,
     "previousClose": 282.37,
@@ -17351,7 +17351,7 @@
     "divGrowth5Y": 1.22,
     "divGrowth10Y": 1.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 104,
     "beta": null,
     "yieldTTM": null,
@@ -17468,14 +17468,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 292.32001,
-        "h": 296.29001,
-        "l": 292.32001,
-        "c": 295.85999,
-        "v": 163400
-      },
       {
         "t": 1790294400,
         "o": 296.67999,
@@ -17627,6 +17619,14 @@
         "l": 288.13,
         "c": 290.60001,
         "v": 269500
+      },
+      {
+        "t": 1792627200,
+        "o": 285.81,
+        "h": 286.60001,
+        "l": 281.29999,
+        "c": 282.37,
+        "v": 284100
       }
     ]
   },
@@ -17634,11 +17634,11 @@
     "symbol": "IWB",
     "name": "iShares Russell 1000 ETF",
     "type": "ETF",
-    "price": 416.65,
-    "change": -0.6,
-    "changePercent": -0.1438,
-    "open": 415.23,
-    "dayHigh": 416.78,
+    "price": 415.35,
+    "change": -1.9,
+    "changePercent": -0.4554,
+    "open": 415.15,
+    "dayHigh": 417.05,
     "dayLow": 414.35,
     "previousClose": 417.25,
     "high52w": 427.04,
@@ -17654,7 +17654,7 @@
     "divGrowth5Y": 5.56,
     "divGrowth10Y": 5.06,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 944,
     "beta": 1,
     "yieldTTM": 0.94,
@@ -17792,14 +17792,6 @@
     "return5Y": 83.92,
     "return10Y": 313.93,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 417.26999,
-        "h": 419.91,
-        "l": 416.92001,
-        "c": 419.029999,
-        "v": 422800
-      },
       {
         "t": 1790294400,
         "o": 419.95999,
@@ -17951,6 +17943,14 @@
         "l": 419.82001,
         "c": 422.29999,
         "v": 302400
+      },
+      {
+        "t": 1792627200,
+        "o": 418.66,
+        "h": 419.22,
+        "l": 415.88,
+        "c": 417.25,
+        "v": 588400
       }
     ]
   },
@@ -17958,11 +17958,11 @@
     "symbol": "VB",
     "name": "Vanguard Small-Cap ETF",
     "type": "ETF",
-    "price": 287.58,
-    "change": -1.09,
-    "changePercent": -0.3776,
-    "open": 286.795,
-    "dayHigh": 287.63,
+    "price": 287.22,
+    "change": -1.45,
+    "changePercent": -0.5023,
+    "open": 286.72,
+    "dayHigh": 288.035,
     "dayLow": 285,
     "previousClose": 288.67,
     "high52w": 309.51,
@@ -17978,7 +17978,7 @@
     "divGrowth5Y": 8.57,
     "divGrowth10Y": 6.36,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1300,
     "beta": 1.18,
     "yieldTTM": 1.12,
@@ -18116,14 +18116,6 @@
     "return5Y": 38.32,
     "return10Y": 193.94,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 289.079987,
-        "h": 289.81,
-        "l": 287.14999,
-        "c": 288.87,
-        "v": 501000
-      },
       {
         "t": 1790294400,
         "o": 289.56,
@@ -18275,6 +18267,14 @@
         "l": 288.22,
         "c": 289.29999,
         "v": 418100
+      },
+      {
+        "t": 1792627200,
+        "o": 287.57001,
+        "h": 288.67001,
+        "l": 285.84,
+        "c": 288.67001,
+        "v": 553200
       }
     ]
   },
@@ -18282,11 +18282,11 @@
     "symbol": "VLUE",
     "name": "iShares MSCI USA Value Factor E",
     "type": "ETF",
-    "price": 193.58,
-    "change": -0.22,
-    "changePercent": -0.1135,
-    "open": 192.98999999999998,
-    "dayHigh": 193.84,
+    "price": 193.2,
+    "change": -0.6,
+    "changePercent": -0.3096,
+    "open": 192.98,
+    "dayHigh": 194.245,
     "dayLow": 192.39,
     "previousClose": 193.8,
     "high52w": 206.55,
@@ -18302,7 +18302,7 @@
     "divGrowth5Y": 8.63,
     "divGrowth10Y": 5.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 150,
     "beta": 0.88,
     "yieldTTM": 2.2,
@@ -18440,14 +18440,6 @@
     "return5Y": 91.87,
     "return10Y": 283.79,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 200,
-        "h": 200.91,
-        "l": 199.19,
-        "c": 200.45,
-        "v": 700300
-      },
       {
         "t": 1790294400,
         "o": 201.55,
@@ -18599,6 +18591,14 @@
         "l": 193.48,
         "c": 194.48,
         "v": 1612300
+      },
+      {
+        "t": 1792627200,
+        "o": 192.21001,
+        "h": 195.17,
+        "l": 192.089996,
+        "c": 193.8,
+        "v": 462300
       }
     ]
   },
@@ -18606,11 +18606,11 @@
     "symbol": "MTUM",
     "name": "iShares MSCI USA Momentum Factor ETF",
     "type": "ETF",
-    "price": 290.82,
-    "change": 2.25,
-    "changePercent": 0.7797,
-    "open": 287.78999999999996,
-    "dayHigh": 291.72,
+    "price": 289.45,
+    "change": 0.88,
+    "changePercent": 0.305,
+    "open": 287.78,
+    "dayHigh": 292.07,
     "dayLow": 286.47,
     "previousClose": 288.57,
     "high52w": 345.59,
@@ -18626,7 +18626,7 @@
     "divGrowth5Y": 14.77,
     "divGrowth10Y": 9.45,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 128,
     "beta": null,
     "yieldTTM": null,
@@ -18743,14 +18743,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 314.45999,
-        "h": 318.28,
-        "l": 313.48999,
-        "c": 317.45001,
-        "v": 1092500
-      },
       {
         "t": 1790294400,
         "o": 318.88,
@@ -18902,6 +18894,14 @@
         "l": 296.70999,
         "c": 299.56,
         "v": 1565200
+      },
+      {
+        "t": 1792627200,
+        "o": 293.26001,
+        "h": 294.31,
+        "l": 287.29999,
+        "c": 288.57001,
+        "v": 1087200
       }
     ]
   },
@@ -18909,11 +18909,11 @@
     "symbol": "OEF",
     "name": "iShares S&P 100 ETF",
     "type": "ETF",
-    "price": 378.73,
-    "change": -0.81,
-    "changePercent": -0.2134,
-    "open": 378.175,
-    "dayHigh": 379.005,
+    "price": 377.29,
+    "change": -2.25,
+    "changePercent": -0.5928,
+    "open": 377.3,
+    "dayHigh": 379.13,
     "dayLow": 376.84,
     "previousClose": 379.54,
     "high52w": 390.69,
@@ -18929,7 +18929,7 @@
     "divGrowth5Y": 5.21,
     "divGrowth10Y": 5.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 104,
     "beta": null,
     "yieldTTM": null,
@@ -19046,14 +19046,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 381.42999,
-        "h": 384.39999,
-        "l": 381.17999,
-        "c": 383.89999,
-        "v": 223100
-      },
       {
         "t": 1790294400,
         "o": 384.56,
@@ -19205,6 +19197,14 @@
         "l": 382.079987,
         "c": 384.92999,
         "v": 189400
+      },
+      {
+        "t": 1792627200,
+        "o": 381.14999,
+        "h": 381.85001,
+        "l": 378.049988,
+        "c": 379.54001,
+        "v": 145500
       }
     ]
   },
@@ -19212,11 +19212,11 @@
     "symbol": "XLI",
     "name": "State Street Industrial Select ",
     "type": "ETF",
-    "price": 165,
-    "change": -1.73,
-    "changePercent": -1.0376,
-    "open": 165.45,
-    "dayHigh": 165.45,
+    "price": 164.62,
+    "change": -2.11,
+    "changePercent": -1.2655,
+    "open": 165.01,
+    "dayHigh": 165.31,
     "dayLow": 162.97,
     "previousClose": 166.73,
     "high52w": 188.19,
@@ -19232,7 +19232,7 @@
     "divGrowth5Y": 9.96,
     "divGrowth10Y": 5.84,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 86,
     "beta": 1.02,
     "yieldTTM": 1.1,
@@ -19370,14 +19370,6 @@
     "return5Y": 75.85,
     "return10Y": 265.45,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 168.75,
-        "h": 170.050003,
-        "l": 168.25,
-        "c": 168.83,
-        "v": 8598900
-      },
       {
         "t": 1790294400,
         "o": 169.53,
@@ -19529,6 +19521,14 @@
         "l": 167.39,
         "c": 168.31,
         "v": 7356200
+      },
+      {
+        "t": 1792627200,
+        "o": 166.89999,
+        "h": 167.36,
+        "l": 164.77,
+        "c": 166.73,
+        "v": 10754800
       }
     ]
   },
@@ -19536,11 +19536,11 @@
     "symbol": "SPYV",
     "name": "State Street SPDR Portfolio S&P",
     "type": "ETF",
-    "price": 63.91,
-    "change": -0.22,
-    "changePercent": -0.3431,
-    "open": 63.845,
-    "dayHigh": 63.91,
+    "price": 63.77,
+    "change": -0.36,
+    "changePercent": -0.5614,
+    "open": 63.84,
+    "dayHigh": 63.94,
     "dayLow": 63.5416,
     "previousClose": 64.13,
     "high52w": 64.26,
@@ -19556,7 +19556,7 @@
     "divGrowth5Y": 4.21,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 437,
     "beta": 0.89,
     "yieldTTM": 1.72,
@@ -19694,14 +19694,6 @@
     "return5Y": 65.69,
     "return10Y": 212.24,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 62.060001,
-        "h": 62.2,
-        "l": 61.83,
-        "c": 61.93,
-        "v": 1618400
-      },
       {
         "t": 1790294400,
         "o": 61.92,
@@ -19853,6 +19845,14 @@
         "l": 63.47,
         "c": 63.74,
         "v": 3208600
+      },
+      {
+        "t": 1792627200,
+        "o": 63.64,
+        "h": 64.17,
+        "l": 63.58,
+        "c": 64.13,
+        "v": 2088900
       }
     ]
   },
@@ -19860,10 +19860,10 @@
     "symbol": "DGRO",
     "name": "iShares Core Dividend Growth ET",
     "type": "ETF",
-    "price": 79.82,
-    "change": -0.47,
-    "changePercent": -0.5854,
-    "open": 79.925,
+    "price": 79.65,
+    "change": -0.64,
+    "changePercent": -0.7971,
+    "open": 79.85,
     "dayHigh": 79.995,
     "dayLow": 79.405,
     "previousClose": 80.29,
@@ -19880,7 +19880,7 @@
     "divGrowth5Y": 7.09,
     "divGrowth10Y": 8.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 395,
     "beta": 0.82,
     "yieldTTM": 2.5,
@@ -20018,14 +20018,6 @@
     "return5Y": 62.34,
     "return10Y": 250.48,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 76.49,
-        "h": 76.62,
-        "l": 76.11,
-        "c": 76.14,
-        "v": 1577000
-      },
       {
         "t": 1790294400,
         "o": 76.155,
@@ -20177,6 +20169,14 @@
         "l": 79.0049973,
         "c": 79.37,
         "v": 1554600
+      },
+      {
+        "t": 1792627200,
+        "o": 79.35,
+        "h": 80.34,
+        "l": 79.35,
+        "c": 80.29,
+        "v": 1672700
       }
     ]
   },
@@ -20184,11 +20184,11 @@
     "symbol": "IGSB",
     "name": "iShares 1-5 Year Investment Grade Corporate Bond ETF",
     "type": "ETF",
-    "price": 51.49,
-    "change": -0.03,
-    "changePercent": -0.0582,
-    "open": 51.47,
-    "dayHigh": 51.5124,
+    "price": 51.47,
+    "change": -0.05,
+    "changePercent": -0.097,
+    "open": 51.46,
+    "dayHigh": 51.5024,
     "dayLow": 51.45,
     "previousClose": 51.52,
     "high52w": 53.25,
@@ -20204,7 +20204,7 @@
     "divGrowth5Y": 16,
     "divGrowth10Y": 13.37,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 4604,
     "beta": null,
     "yieldTTM": null,
@@ -20225,14 +20225,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 51.38,
-        "h": 51.39,
-        "l": 51.25,
-        "c": 51.25,
-        "v": 9138800
-      },
       {
         "t": 1790294400,
         "o": 51.31,
@@ -20384,6 +20376,14 @@
         "l": 51.25,
         "c": 51.31,
         "v": 6892700
+      },
+      {
+        "t": 1792627200,
+        "o": 51.39,
+        "h": 51.56,
+        "l": 51.37,
+        "c": 51.52,
+        "v": 6286300
       }
     ]
   },
@@ -20391,11 +20391,11 @@
     "symbol": "VCIT",
     "name": "Vanguard Intermediate-Term Corp",
     "type": "ETF",
-    "price": 79.32,
-    "change": -0.15,
-    "changePercent": -0.1888,
-    "open": 79.31,
-    "dayHigh": 79.43,
+    "price": 79.25,
+    "change": -0.22,
+    "changePercent": -0.2768,
+    "open": 79.3,
+    "dayHigh": 79.42,
     "dayLow": 79.22,
     "previousClose": 79.47,
     "high52w": 84.84,
@@ -20411,7 +20411,7 @@
     "divGrowth5Y": 9.75,
     "divGrowth10Y": 3.4,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1900,
     "beta": 0.15,
     "yieldTTM": 3.8,
@@ -20453,14 +20453,6 @@
     "return5Y": 6.12,
     "return10Y": 33.52,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 79.15,
-        "h": 79.24,
-        "l": 78.7,
-        "c": 78.7,
-        "v": 17619500
-      },
       {
         "t": 1790294400,
         "o": 78.79,
@@ -20612,6 +20604,14 @@
         "l": 78.58,
         "c": 78.79,
         "v": 8435100
+      },
+      {
+        "t": 1792627200,
+        "o": 79.080002,
+        "h": 79.59,
+        "l": 79.029999,
+        "c": 79.47,
+        "v": 13424800
       }
     ]
   },
@@ -20619,11 +20619,11 @@
     "symbol": "VGK",
     "name": "Vanguard FTSEEuropean ETF",
     "type": "ETF",
-    "price": 86.18,
-    "change": -0.62,
-    "changePercent": -0.7143,
-    "open": 86.2025,
-    "dayHigh": 86.2025,
+    "price": 86.25,
+    "change": -0.55,
+    "changePercent": -0.6336,
+    "open": 86.035,
+    "dayHigh": 86.41,
     "dayLow": 85.81,
     "previousClose": 86.8,
     "high52w": 93.29,
@@ -20639,7 +20639,7 @@
     "divGrowth5Y": 13.77,
     "divGrowth10Y": 4.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1140,
     "beta": 0.88,
     "yieldTTM": 3.5,
@@ -20777,14 +20777,6 @@
     "return5Y": 50.71,
     "return10Y": 148.22,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 87.9,
-        "h": 88.37,
-        "l": 87.5,
-        "c": 88.07,
-        "v": 5719600
-      },
       {
         "t": 1790294400,
         "o": 88.33,
@@ -20936,6 +20928,14 @@
         "l": 87.19,
         "c": 87.58,
         "v": 1534800
+      },
+      {
+        "t": 1792627200,
+        "o": 87.010002,
+        "h": 87.07,
+        "l": 86.53,
+        "c": 86.8,
+        "v": 3019900
       }
     ]
   },
@@ -20943,11 +20943,11 @@
     "symbol": "IUSV",
     "name": "iShares Core S&P U.S. Value ETF",
     "type": "ETF",
-    "price": 115.29,
-    "change": -0.38,
-    "changePercent": -0.3285,
-    "open": 115.67,
-    "dayHigh": 115.67,
+    "price": 115.07,
+    "change": -0.6,
+    "changePercent": -0.5187,
+    "open": 115.34,
+    "dayHigh": 115.3801,
     "dayLow": 114.62,
     "previousClose": 115.67,
     "high52w": 116.19,
@@ -20963,7 +20963,7 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 5.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 686,
     "beta": 0.88,
     "yieldTTM": 2,
@@ -21101,14 +21101,6 @@
     "return5Y": 64,
     "return10Y": 212.29,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 111.92,
-        "h": 112.23,
-        "l": 111.55,
-        "c": 111.72,
-        "v": 544900
-      },
       {
         "t": 1790294400,
         "o": 111.71,
@@ -21260,6 +21252,14 @@
         "l": 114.51,
         "c": 115.019997,
         "v": 623100
+      },
+      {
+        "t": 1792627200,
+        "o": 114.66,
+        "h": 115.75,
+        "l": 114.64,
+        "c": 115.67,
+        "v": 787100
       }
     ]
   },
@@ -21267,11 +21267,11 @@
     "symbol": "VCSH",
     "name": "Vanguard Short-Term Corporate B",
     "type": "ETF",
-    "price": 77.66,
-    "change": -0.05,
-    "changePercent": -0.0643,
-    "open": 77.68,
-    "dayHigh": 77.71990000000001,
+    "price": 77.63,
+    "change": -0.08,
+    "changePercent": -0.1029,
+    "open": 77.67,
+    "dayHigh": 77.7099,
     "dayLow": 77.6139,
     "previousClose": 77.71,
     "high52w": 80.26,
@@ -21287,7 +21287,7 @@
     "divGrowth5Y": 16.65,
     "divGrowth10Y": 7.73,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2400,
     "beta": 0.07,
     "yieldTTM": 3.2,
@@ -21329,14 +21329,6 @@
     "return5Y": 12,
     "return10Y": 30.4,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 77.48,
-        "h": 77.5,
-        "l": 77.29,
-        "c": 77.29,
-        "v": 9879700
-      },
       {
         "t": 1790294400,
         "o": 77.4,
@@ -21488,6 +21480,14 @@
         "l": 77.31,
         "c": 77.39,
         "v": 5767300
+      },
+      {
+        "t": 1792627200,
+        "o": 77.54,
+        "h": 77.78,
+        "l": 77.48,
+        "c": 77.71,
+        "v": 6840100
       }
     ]
   },
@@ -21495,10 +21495,10 @@
     "symbol": "IAGG",
     "name": "iShares Core International Aggregate Bond ETF",
     "type": "ETF",
-    "price": 49.39,
-    "change": -0.01,
-    "changePercent": -0.0202,
-    "open": 49.39,
+    "price": 49.37,
+    "change": -0.03,
+    "changePercent": -0.0607,
+    "open": 49.38,
     "dayHigh": 49.4,
     "dayLow": 49.35,
     "previousClose": 49.4,
@@ -21515,7 +21515,7 @@
     "divGrowth5Y": 10.93,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 7999,
     "beta": null,
     "yieldTTM": null,
@@ -21536,14 +21536,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 49.32,
-        "h": 49.39,
-        "l": 49.275,
-        "c": 49.32,
-        "v": 12137600
-      },
       {
         "t": 1790294400,
         "o": 49.28,
@@ -21695,6 +21687,14 @@
         "l": 49.18,
         "c": 49.27,
         "v": 1636500
+      },
+      {
+        "t": 1792627200,
+        "o": 49.3,
+        "h": 49.405,
+        "l": 49.28,
+        "c": 49.4,
+        "v": 1551300
       }
     ]
   },
@@ -21702,11 +21702,11 @@
     "symbol": "MGV",
     "name": "Vanguard Mega Cap Value ETF",
     "type": "ETF",
-    "price": 167.12,
-    "change": -0.79,
-    "changePercent": -0.4705,
-    "open": 166.95999999999998,
-    "dayHigh": 167.155,
+    "price": 166.73,
+    "change": -1.18,
+    "changePercent": -0.7028,
+    "open": 166.95,
+    "dayHigh": 167.28,
     "dayLow": 166.35,
     "previousClose": 167.91,
     "high52w": 169.84,
@@ -21722,7 +21722,7 @@
     "divGrowth5Y": 7.06,
     "divGrowth10Y": 6.7,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 128,
     "beta": null,
     "yieldTTM": null,
@@ -21839,14 +21839,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 164.22,
-        "h": 164.57001,
-        "l": 163.53999,
-        "c": 163.83,
-        "v": 218500
-      },
       {
         "t": 1790294400,
         "o": 164.039993,
@@ -21998,6 +21990,14 @@
         "l": 166.039993,
         "c": 166.64,
         "v": 209400
+      },
+      {
+        "t": 1792627200,
+        "o": 166.46001,
+        "h": 168.039993,
+        "l": 166.46001,
+        "c": 167.91,
+        "v": 462400
       }
     ]
   },
@@ -22005,11 +22005,11 @@
     "symbol": "IJR",
     "name": "iShares Core S&P Small-Cap ETF",
     "type": "ETF",
-    "price": 138.3,
-    "change": -0.35,
-    "changePercent": -0.2524,
-    "open": 137.85,
-    "dayHigh": 138.35,
+    "price": 138.22,
+    "change": -0.43,
+    "changePercent": -0.3101,
+    "open": 137.75,
+    "dayHigh": 138.565,
     "dayLow": 137.06,
     "previousClose": 138.65,
     "high52w": 150.69,
@@ -22025,7 +22025,7 @@
     "divGrowth5Y": 9.03,
     "divGrowth10Y": 6.94,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 568,
     "beta": 1.1,
     "yieldTTM": 1.2,
@@ -22163,14 +22163,6 @@
     "return5Y": 30.32,
     "return10Y": 181.99,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 137.89999,
-        "h": 138.25999,
-        "l": 136.85001,
-        "c": 137.78,
-        "v": 2304800
-      },
       {
         "t": 1790294400,
         "o": 138.2,
@@ -22322,6 +22314,14 @@
         "l": 137.11,
         "c": 137.78,
         "v": 2170800
+      },
+      {
+        "t": 1792627200,
+        "o": 136.95,
+        "h": 138.72,
+        "l": 136.95,
+        "c": 138.64999,
+        "v": 3618000
       }
     ]
   },
@@ -22329,11 +22329,11 @@
     "symbol": "FNDF",
     "name": "Schwab Fundamental International Equity ETF",
     "type": "ETF",
-    "price": 53.61,
-    "change": -0.18,
-    "changePercent": -0.3346,
-    "open": 53.425,
-    "dayHigh": 53.645,
+    "price": 53.68,
+    "change": -0.11,
+    "changePercent": -0.2045,
+    "open": 53.41,
+    "dayHigh": 53.765,
     "dayLow": 53.3625,
     "previousClose": 53.79,
     "high52w": 56.475,
@@ -22349,7 +22349,7 @@
     "divGrowth5Y": 19.57,
     "divGrowth10Y": 12.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 899,
     "beta": null,
     "yieldTTM": null,
@@ -22466,14 +22466,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 54.49,
-        "h": 54.6,
-        "l": 54.18,
-        "c": 54.38,
-        "v": 1531400
-      },
       {
         "t": 1790294400,
         "o": 54.62,
@@ -22625,6 +22617,14 @@
         "l": 53.9,
         "c": 54.13,
         "v": 1040600
+      },
+      {
+        "t": 1792627200,
+        "o": 53.83,
+        "h": 53.88,
+        "l": 53.54,
+        "c": 53.79,
+        "v": 1090000
       }
     ]
   },
@@ -22632,11 +22632,11 @@
     "symbol": "GSLC",
     "name": "TR Activebeta US Large Cap Equity ETF",
     "type": "ETF",
-    "price": 145.84,
-    "change": -0.43,
-    "changePercent": -0.294,
-    "open": 145.39,
-    "dayHigh": 145.895,
+    "price": 145.35,
+    "change": -0.92,
+    "changePercent": -0.629,
+    "open": 145.38,
+    "dayHigh": 146.03,
     "dayLow": 145.16,
     "previousClose": 146.27,
     "high52w": 148.935,
@@ -22652,7 +22652,7 @@
     "divGrowth5Y": 7.17,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 388,
     "beta": null,
     "yieldTTM": null,
@@ -22769,14 +22769,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 145.35001,
-        "h": 146.22301,
-        "l": 145.24001,
-        "c": 145.83,
-        "v": 340200
-      },
       {
         "t": 1790294400,
         "o": 146.050003,
@@ -22928,6 +22920,14 @@
         "l": 146.96001,
         "c": 147.78,
         "v": 242700
+      },
+      {
+        "t": 1792627200,
+        "o": 146.47,
+        "h": 146.71001,
+        "l": 145.705,
+        "c": 146.27,
+        "v": 238600
       }
     ]
   },
@@ -22935,12 +22935,12 @@
     "symbol": "BSV",
     "name": "Vanguard Short-Term Bond ETF",
     "type": "ETF",
-    "price": 76.83,
-    "change": -0.01,
-    "changePercent": -0.013,
-    "open": 76.845,
+    "price": 76.79,
+    "change": -0.05,
+    "changePercent": -0.0651,
+    "open": 76.84,
     "dayHigh": 76.87,
-    "dayLow": 76.7801,
+    "dayLow": 76.775,
     "previousClose": 76.84,
     "high52w": 79.32,
     "low52w": 76.02,
@@ -22955,7 +22955,7 @@
     "divGrowth5Y": 19.63,
     "divGrowth10Y": 10.61,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2800,
     "beta": 0.05,
     "yieldTTM": 2.8,
@@ -22997,14 +22997,6 @@
     "return5Y": 8.21,
     "return10Y": 21.29,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 76.49,
-        "h": 76.56,
-        "l": 76.34,
-        "c": 76.35,
-        "v": 2988400
-      },
       {
         "t": 1790294400,
         "o": 76.43,
@@ -23156,6 +23148,14 @@
         "l": 76.45,
         "c": 76.53,
         "v": 2520200
+      },
+      {
+        "t": 1792627200,
+        "o": 76.66,
+        "h": 76.91,
+        "l": 76.59,
+        "c": 76.84,
+        "v": 2391100
       }
     ]
   },
@@ -23163,11 +23163,11 @@
     "symbol": "MUB",
     "name": "iShares National Muni Bond ETF",
     "type": "ETF",
-    "price": 103.4,
-    "change": 0.16,
-    "changePercent": 0.155,
+    "price": 103.43,
+    "change": 0.19,
+    "changePercent": 0.184,
     "open": 103.36,
-    "dayHigh": 103.43,
+    "dayHigh": 103.45,
     "dayLow": 103.19,
     "previousClose": 103.24,
     "high52w": 109,
@@ -23183,7 +23183,7 @@
     "divGrowth5Y": 7.85,
     "divGrowth10Y": 2.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 5000,
     "beta": 0.05,
     "yieldTTM": 2.4,
@@ -23225,14 +23225,6 @@
     "return5Y": 3.76,
     "return10Y": 20.25,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 102.029999,
-        "h": 102.16,
-        "l": 101.33,
-        "c": 101.59,
-        "v": 17245000
-      },
       {
         "t": 1790294400,
         "o": 101.5,
@@ -23384,6 +23376,14 @@
         "l": 102.19,
         "c": 102.45,
         "v": 10303900
+      },
+      {
+        "t": 1792627200,
+        "o": 103,
+        "h": 103.33,
+        "l": 102.94,
+        "c": 103.24,
+        "v": 15036300
       }
     ]
   },
@@ -23391,11 +23391,11 @@
     "symbol": "SPHQ",
     "name": "Invesco S&P 500 Quality ETF",
     "type": "ETF",
-    "price": 83.38,
-    "change": -0.46,
-    "changePercent": -0.5487,
-    "open": 83.275,
-    "dayHigh": 83.455,
+    "price": 83,
+    "change": -0.84,
+    "changePercent": -1.0019,
+    "open": 83.25,
+    "dayHigh": 83.5,
     "dayLow": 82.9,
     "previousClose": 83.84,
     "high52w": 90.36,
@@ -23411,7 +23411,7 @@
     "divGrowth5Y": 7.58,
     "divGrowth10Y": 7.14,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 102,
     "beta": null,
     "yieldTTM": null,
@@ -23528,14 +23528,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 84.29,
-        "h": 84.58,
-        "l": 83.95,
-        "c": 84.24,
-        "v": 750200
-      },
       {
         "t": 1790294400,
         "o": 84.39,
@@ -23687,6 +23679,14 @@
         "l": 84.29,
         "c": 84.59,
         "v": 1764900
+      },
+      {
+        "t": 1792627200,
+        "o": 83.73,
+        "h": 84.050003,
+        "l": 83.33,
+        "c": 83.84,
+        "v": 1314300
       }
     ]
   },
@@ -23694,11 +23694,11 @@
     "symbol": "VXF",
     "name": "Vanguard Extended Market ETF",
     "type": "ETF",
-    "price": 229.5,
-    "change": -0.34,
-    "changePercent": -0.1479,
-    "open": 228.5075,
-    "dayHigh": 229.61,
+    "price": 229.36,
+    "change": -0.48,
+    "changePercent": -0.2088,
+    "open": 228.64,
+    "dayHigh": 229.86,
     "dayLow": 227.35,
     "previousClose": 229.84,
     "high52w": 250.75,
@@ -23714,7 +23714,7 @@
     "divGrowth5Y": 1.87,
     "divGrowth10Y": 5.66,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2609,
     "beta": 1.12,
     "yieldTTM": 1.1,
@@ -23848,14 +23848,6 @@
     "return5Y": 34.05,
     "return10Y": 209.82,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 234.53999,
-        "h": 235.52,
-        "l": 233.2,
-        "c": 234.92,
-        "v": 303200
-      },
       {
         "t": 1790294400,
         "o": 235.25999,
@@ -24007,6 +23999,14 @@
         "l": 231.0099945,
         "c": 231.87,
         "v": 457100
+      },
+      {
+        "t": 1792627200,
+        "o": 229.60001,
+        "h": 230.82001,
+        "l": 228.49001,
+        "c": 229.84,
+        "v": 384600
       }
     ]
   },
@@ -24014,11 +24014,11 @@
     "symbol": "QUAL",
     "name": "iShares MSCI USA Quality Factor ETF",
     "type": "ETF",
-    "price": 223.51,
-    "change": -1.07,
-    "changePercent": -0.4764,
-    "open": 223.245,
-    "dayHigh": 223.68,
+    "price": 222.82,
+    "change": -1.76,
+    "changePercent": -0.7837,
+    "open": 223.235,
+    "dayHigh": 223.75,
     "dayLow": 222.5,
     "previousClose": 224.58,
     "high52w": 228.12,
@@ -24034,7 +24034,7 @@
     "divGrowth5Y": 1.59,
     "divGrowth10Y": 5.12,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 121,
     "beta": null,
     "yieldTTM": null,
@@ -24151,14 +24151,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 221.63,
-        "h": 223.029999,
-        "l": 221.44,
-        "c": 222.55,
-        "v": 968200
-      },
       {
         "t": 1790294400,
         "o": 222.7,
@@ -24310,6 +24302,14 @@
         "l": 225.25,
         "c": 226.059998,
         "v": 1734600
+      },
+      {
+        "t": 1792627200,
+        "o": 224.39999,
+        "h": 225.059998,
+        "l": 223.53999,
+        "c": 224.58,
+        "v": 2329300
       }
     ]
   },
@@ -24317,11 +24317,11 @@
     "symbol": "SPEM",
     "name": "State Street SPDR Portfolio Emerging Markets ETF",
     "type": "ETF",
-    "price": 49.58,
-    "change": -0.08,
-    "changePercent": -0.1611,
-    "open": 49.405,
-    "dayHigh": 49.63,
+    "price": 49.67,
+    "change": 0.01,
+    "changePercent": 0.0201,
+    "open": 49.41,
+    "dayHigh": 49.67,
     "dayLow": 49.38,
     "previousClose": 49.66,
     "high52w": 53.5401,
@@ -24337,7 +24337,7 @@
     "divGrowth5Y": 9.87,
     "divGrowth10Y": 7.59,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2547,
     "beta": null,
     "yieldTTM": null,
@@ -24454,14 +24454,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 52.42,
-        "h": 52.52,
-        "l": 52.099998,
-        "c": 52.28,
-        "v": 1191200
-      },
       {
         "t": 1790294400,
         "o": 52.46,
@@ -24613,6 +24605,14 @@
         "l": 50.64,
         "c": 50.85,
         "v": 1474200
+      },
+      {
+        "t": 1792627200,
+        "o": 49.77,
+        "h": 49.92,
+        "l": 49.52,
+        "c": 49.66,
+        "v": 2512000
       }
     ]
   },
@@ -24620,11 +24620,11 @@
     "symbol": "IWV",
     "name": "iShares Russell 3000 ETF",
     "type": "ETF",
-    "price": 432.21,
-    "change": -0.81,
-    "changePercent": -0.1871,
-    "open": 430.765,
-    "dayHigh": 432.28,
+    "price": 430.72,
+    "change": -2.3,
+    "changePercent": -0.5312,
+    "open": 430.66,
+    "dayHigh": 432.47,
     "dayLow": 429.657,
     "previousClose": 433.02,
     "high52w": 443.905,
@@ -24640,7 +24640,7 @@
     "divGrowth5Y": 4.85,
     "divGrowth10Y": 4.04,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2126,
     "beta": null,
     "yieldTTM": null,
@@ -24753,14 +24753,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 432.72,
-        "h": 435.64001,
-        "l": 432.48999,
-        "c": 434.91,
-        "v": 95700
-      },
       {
         "t": 1790294400,
         "o": 435.38,
@@ -24912,6 +24904,14 @@
         "l": 435.32999,
         "c": 437.78,
         "v": 172000
+      },
+      {
+        "t": 1792627200,
+        "o": 434.040009,
+        "h": 434.79999,
+        "l": 431.31,
+        "c": 433.019989,
+        "v": 119000
       }
     ]
   },
@@ -24919,11 +24919,11 @@
     "symbol": "VONV",
     "name": "Vanguard Russell 1000 Value ETF",
     "type": "ETF",
-    "price": 113.04,
-    "change": -0.55,
-    "changePercent": -0.4842,
-    "open": 113.08,
-    "dayHigh": 113.08,
+    "price": 112.91,
+    "change": -0.68,
+    "changePercent": -0.5986,
+    "open": 113.07,
+    "dayHigh": 113.22,
     "dayLow": 112.507629,
     "previousClose": 113.59,
     "high52w": 114.08,
@@ -24939,7 +24939,7 @@
     "divGrowth5Y": 6.51,
     "divGrowth10Y": 4.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 811,
     "beta": null,
     "yieldTTM": null,
@@ -25056,14 +25056,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 110.37,
-        "h": 110.37,
-        "l": 109.74,
-        "c": 109.97,
-        "v": 1087700
-      },
       {
         "t": 1790294400,
         "o": 109.94,
@@ -25215,6 +25207,14 @@
         "l": 112.75,
         "c": 113.26,
         "v": 663100
+      },
+      {
+        "t": 1792627200,
+        "o": 113.14,
+        "h": 113.59,
+        "l": 112.67,
+        "c": 113.59,
+        "v": 662200
       }
     ]
   },
@@ -25222,11 +25222,11 @@
     "symbol": "SCHV",
     "name": "Schwab U.S. Large-Cap Value ETF",
     "type": "ETF",
-    "price": 34.42,
-    "change": -0.15,
-    "changePercent": -0.4339,
-    "open": 34.7,
-    "dayHigh": 34.7,
+    "price": 34.34,
+    "change": -0.23,
+    "changePercent": -0.6653,
+    "open": 34.4,
+    "dayHigh": 34.45,
     "dayLow": 34.2317,
     "previousClose": 34.57,
     "high52w": 35.485,
@@ -25242,7 +25242,7 @@
     "divGrowth5Y": 1.42,
     "divGrowth10Y": 4.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 570,
     "beta": 0.87,
     "yieldTTM": 1.9,
@@ -25380,14 +25380,6 @@
     "return5Y": 58.57,
     "return10Y": 191.32,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 33.76,
-        "h": 33.85,
-        "l": 33.64,
-        "c": 33.68,
-        "v": 2712900
-      },
       {
         "t": 1790294400,
         "o": 33.71,
@@ -25539,6 +25531,14 @@
         "l": 34.29,
         "c": 34.4,
         "v": 2745300
+      },
+      {
+        "t": 1792627200,
+        "o": 34.27,
+        "h": 34.59,
+        "l": 34.26,
+        "c": 34.57,
+        "v": 3543300
       }
     ]
   },
@@ -25546,11 +25546,11 @@
     "symbol": "XLF",
     "name": "State Street Financial Select S",
     "type": "ETF",
-    "price": 56.16,
-    "change": -0.49,
-    "changePercent": -0.865,
-    "open": 56.36,
-    "dayHigh": 56.36,
+    "price": 55.9,
+    "change": -0.75,
+    "changePercent": -1.3239,
+    "open": 56.19,
+    "dayHigh": 56.35,
     "dayLow": 55.805,
     "previousClose": 56.65,
     "high52w": 58.6,
@@ -25566,7 +25566,7 @@
     "divGrowth5Y": 6.07,
     "divGrowth10Y": 4.79,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 80,
     "beta": 1.05,
     "yieldTTM": 1.3,
@@ -25704,14 +25704,6 @@
     "return5Y": 48.34,
     "return10Y": 234.97,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 54.61,
-        "h": 54.82,
-        "l": 54.25,
-        "c": 54.53,
-        "v": 28808000
-      },
       {
         "t": 1790294400,
         "o": 54.63,
@@ -25863,6 +25855,14 @@
         "l": 55.64,
         "c": 56.040001,
         "v": 28271900
+      },
+      {
+        "t": 1792627200,
+        "o": 55.83,
+        "h": 56.67,
+        "l": 55.82,
+        "c": 56.65,
+        "v": 32580900
       }
     ]
   },
@@ -25870,11 +25870,11 @@
     "symbol": "IWD",
     "name": "iShares Russell 1000 Value ETF",
     "type": "ETF",
-    "price": 257.96,
-    "change": -1.09,
-    "changePercent": -0.4208,
-    "open": 257.895,
-    "dayHigh": 258.01,
+    "price": 257.42,
+    "change": -1.63,
+    "changePercent": -0.6292,
+    "open": 257.94,
+    "dayHigh": 258.18,
     "dayLow": 256.575,
     "previousClose": 259.05,
     "high52w": 260.19,
@@ -25890,7 +25890,7 @@
     "divGrowth5Y": 6.39,
     "divGrowth10Y": 3.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 831,
     "beta": 0.86,
     "yieldTTM": 1.9,
@@ -26028,14 +26028,6 @@
     "return5Y": 59.16,
     "return10Y": 188.71,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 251.3,
-        "h": 251.61,
-        "l": 250.24001,
-        "c": 250.75999,
-        "v": 1513800
-      },
       {
         "t": 1790294400,
         "o": 250.83,
@@ -26187,6 +26179,14 @@
         "l": 257.10001,
         "c": 258.29001,
         "v": 1028300
+      },
+      {
+        "t": 1792627200,
+        "o": 257.67999,
+        "h": 259.049988,
+        "l": 256.91,
+        "c": 259.049988,
+        "v": 3547200
       }
     ]
   },
@@ -26194,11 +26194,11 @@
     "symbol": "VBR",
     "name": "Vanguard Small-Cap Value ETF",
     "type": "ETF",
-    "price": 240.61,
-    "change": -0.93,
-    "changePercent": -0.385,
-    "open": 240.375,
-    "dayHigh": 240.88,
+    "price": 240.33,
+    "change": -1.21,
+    "changePercent": -0.501,
+    "open": 240.12,
+    "dayHigh": 240.95,
     "dayLow": 238.67,
     "previousClose": 241.54,
     "high52w": 251.845,
@@ -26214,7 +26214,7 @@
     "divGrowth5Y": 9.54,
     "divGrowth10Y": 6.26,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 827,
     "beta": 1.07,
     "yieldTTM": 1.95,
@@ -26352,14 +26352,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 236.50999,
-        "h": 236.96001,
-        "l": 234.62,
-        "c": 235.44,
-        "v": 227900
-      },
       {
         "t": 1790294400,
         "o": 236.070007,
@@ -26511,6 +26503,14 @@
         "l": 238.42,
         "c": 239.31,
         "v": 244900
+      },
+      {
+        "t": 1792627200,
+        "o": 238.11,
+        "h": 241.7,
+        "l": 238.11,
+        "c": 241.53999,
+        "v": 236900
       }
     ]
   },
@@ -26518,11 +26518,11 @@
     "symbol": "VMBS",
     "name": "Vanguard Mortgage-Backed Securities ETF",
     "type": "ETF",
-    "price": 45.27,
-    "change": -0.03,
-    "changePercent": -0.0662,
-    "open": 45.245,
-    "dayHigh": 45.294999999999995,
+    "price": 45.23,
+    "change": -0.07,
+    "changePercent": -0.1545,
+    "open": 45.24,
+    "dayHigh": 45.295,
     "dayLow": 45.195,
     "previousClose": 45.3,
     "high52w": 47.9,
@@ -26538,7 +26538,7 @@
     "divGrowth5Y": 18.77,
     "divGrowth10Y": 5.52,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 5107,
     "beta": null,
     "yieldTTM": null,
@@ -26559,14 +26559,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 45.049999,
-        "h": 45.049999,
-        "l": 44.63,
-        "c": 44.63,
-        "v": 2809400
-      },
       {
         "t": 1790294400,
         "o": 44.71,
@@ -26718,6 +26710,14 @@
         "l": 44.77,
         "c": 44.86,
         "v": 2014500
+      },
+      {
+        "t": 1792627200,
+        "o": 45.099998,
+        "h": 45.39,
+        "l": 45.07,
+        "c": 45.3,
+        "v": 2364600
       }
     ]
   },
@@ -26725,10 +26725,10 @@
     "symbol": "HDV",
     "name": "iShares Core High Dividend ETF",
     "type": "ETF",
-    "price": 30.45,
-    "change": -0.06,
-    "changePercent": -0.1967,
-    "open": 30.375,
+    "price": 30.42,
+    "change": -0.09,
+    "changePercent": -0.295,
+    "open": 30.36,
     "dayHigh": 30.49,
     "dayLow": 30.29,
     "previousClose": 30.51,
@@ -26745,7 +26745,7 @@
     "divGrowth5Y": 2.29,
     "divGrowth10Y": 3.38,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 80,
     "beta": 0.72,
     "yieldTTM": 3.8,
@@ -26883,14 +26883,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 28.54,
-        "h": 28.64,
-        "l": 28.32,
-        "c": 28.33,
-        "v": 6004300
-      },
       {
         "t": 1790294400,
         "o": 28.24,
@@ -27042,6 +27034,14 @@
         "l": 29.78,
         "c": 29.85,
         "v": 3102900
+      },
+      {
+        "t": 1792627200,
+        "o": 30.030001,
+        "h": 30.51,
+        "l": 30.01,
+        "c": 30.51,
+        "v": 11719500
       }
     ]
   },
@@ -27049,12 +27049,12 @@
     "symbol": "IGIB",
     "name": "iShares 5-10 Year Investment Grade Corporate Bond ETF",
     "type": "ETF",
-    "price": 51,
-    "change": -0.1,
-    "changePercent": -0.1957,
-    "open": 50.9825,
-    "dayHigh": 51.07,
-    "dayLow": 50.9303,
+    "price": 50.96,
+    "change": -0.14,
+    "changePercent": -0.274,
+    "open": 50.97,
+    "dayHigh": 51.06,
+    "dayLow": 50.925,
     "previousClose": 51.1,
     "high52w": 54.5796,
     "low52w": 49.935,
@@ -27069,7 +27069,7 @@
     "divGrowth5Y": 10.82,
     "divGrowth10Y": 6.45,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2965,
     "beta": null,
     "yieldTTM": null,
@@ -27090,14 +27090,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 50.94,
-        "h": 50.97,
-        "l": 50.64,
-        "c": 50.64,
-        "v": 4144800
-      },
       {
         "t": 1790294400,
         "o": 50.68,
@@ -27249,6 +27241,14 @@
         "l": 50.54,
         "c": 50.67,
         "v": 3624600
+      },
+      {
+        "t": 1792627200,
+        "o": 50.83,
+        "h": 51.17,
+        "l": 50.81,
+        "c": 51.099998,
+        "v": 4287000
       }
     ]
   },
@@ -27256,11 +27256,11 @@
     "symbol": "VOE",
     "name": "Vanguard Mid-Cap Value ETF",
     "type": "ETF",
-    "price": 208.55,
-    "change": -0.75,
-    "changePercent": -0.3583,
-    "open": 208.43,
-    "dayHigh": 208.5865,
+    "price": 208.04,
+    "change": -1.26,
+    "changePercent": -0.602,
+    "open": 208.44,
+    "dayHigh": 208.82,
     "dayLow": 207.205,
     "previousClose": 209.3,
     "high52w": 211.07,
@@ -27276,7 +27276,7 @@
     "divGrowth5Y": 7.25,
     "divGrowth10Y": 6.04,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 176,
     "beta": null,
     "yieldTTM": null,
@@ -27393,14 +27393,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 200.22,
-        "h": 200.35001,
-        "l": 199.080002,
-        "c": 199.12,
-        "v": 349100
-      },
       {
         "t": 1790294400,
         "o": 199.22,
@@ -27552,6 +27544,14 @@
         "l": 206.91,
         "c": 207.52,
         "v": 238400
+      },
+      {
+        "t": 1792627200,
+        "o": 206.99001,
+        "h": 209.33,
+        "l": 206.66,
+        "c": 209.3,
+        "v": 553000
       }
     ]
   },
@@ -27559,11 +27559,11 @@
     "symbol": "SCHE",
     "name": "Schwab Emerging Markets Equity ETF",
     "type": "ETF",
-    "price": 34.92,
-    "change": -0.03,
-    "changePercent": -0.0858,
-    "open": 35.02,
-    "dayHigh": 35.02,
+    "price": 34.96,
+    "change": 0.01,
+    "changePercent": 0.0286,
+    "open": 34.74,
+    "dayHigh": 34.97,
     "dayLow": 34.74,
     "previousClose": 34.95,
     "high52w": 37.64,
@@ -27579,7 +27579,7 @@
     "divGrowth5Y": 8.01,
     "divGrowth10Y": 6.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2060,
     "beta": null,
     "yieldTTM": null,
@@ -27692,14 +27692,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 36.88,
-        "h": 36.96,
-        "l": 36.65,
-        "c": 36.8,
-        "v": 2461700
-      },
       {
         "t": 1790294400,
         "o": 36.9,
@@ -27851,6 +27843,14 @@
         "l": 35.64,
         "c": 35.78,
         "v": 2769400
+      },
+      {
+        "t": 1792627200,
+        "o": 35.040001,
+        "h": 35.14,
+        "l": 34.86,
+        "c": 34.95,
+        "v": 4759800
       }
     ]
   },
@@ -27858,11 +27858,11 @@
     "symbol": "SCHA",
     "name": "Schwab U.S. Small-Cap ETF",
     "type": "ETF",
-    "price": 32.55,
-    "change": -0.12,
-    "changePercent": -0.3673,
-    "open": 32.48,
-    "dayHigh": 32.5601,
+    "price": 32.53,
+    "change": -0.14,
+    "changePercent": -0.4285,
+    "open": 32.46,
+    "dayHigh": 32.615,
     "dayLow": 32.2501,
     "previousClose": 32.67,
     "high52w": 36.2,
@@ -27878,7 +27878,7 @@
     "divGrowth5Y": 8.16,
     "divGrowth10Y": 5.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1709,
     "beta": 1.15,
     "yieldTTM": 1.3,
@@ -28012,14 +28012,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 33.049999,
-        "h": 33.16,
-        "l": 32.81,
-        "c": 33.09,
-        "v": 4218900
-      },
       {
         "t": 1790294400,
         "o": 33.18,
@@ -28171,6 +28163,14 @@
         "l": 32.54,
         "c": 32.67,
         "v": 3590400
+      },
+      {
+        "t": 1792627200,
+        "o": 32.42,
+        "h": 32.72,
+        "l": 32.39,
+        "c": 32.67,
+        "v": 3987300
       }
     ]
   },
@@ -28178,11 +28178,11 @@
     "symbol": "EFV",
     "name": "iShares MSCI EAFE Value ETF",
     "type": "ETF",
-    "price": 78.74,
-    "change": -0.32,
-    "changePercent": -0.4048,
-    "open": 78.33,
-    "dayHigh": 78.745,
+    "price": 78.84,
+    "change": -0.22,
+    "changePercent": -0.2783,
+    "open": 78.32,
+    "dayHigh": 78.91,
     "dayLow": 78.32,
     "previousClose": 79.06,
     "high52w": 83.21,
@@ -28198,7 +28198,7 @@
     "divGrowth5Y": 21.06,
     "divGrowth10Y": 5.93,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 379,
     "beta": null,
     "yieldTTM": null,
@@ -28315,14 +28315,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 80.13,
-        "h": 80.37,
-        "l": 79.66,
-        "c": 80.07,
-        "v": 2845300
-      },
       {
         "t": 1790294400,
         "o": 80.74,
@@ -28474,6 +28466,14 @@
         "l": 79.12,
         "c": 79.42,
         "v": 2892000
+      },
+      {
+        "t": 1792627200,
+        "o": 79.19,
+        "h": 79.19,
+        "l": 78.66,
+        "c": 79.059998,
+        "v": 1396900
       }
     ]
   },
@@ -28481,11 +28481,11 @@
     "symbol": "RSP",
     "name": "Invesco S&P 500 Equal Weight ETF",
     "type": "ETF",
-    "price": 217.15,
-    "change": -1.07,
-    "changePercent": -0.4903,
-    "open": 217.39,
-    "dayHigh": 217.39,
+    "price": 216.54,
+    "change": -1.68,
+    "changePercent": -0.7699,
+    "open": 217.1,
+    "dayHigh": 217.29,
     "dayLow": 215.63,
     "previousClose": 218.22,
     "high52w": 223.435,
@@ -28501,7 +28501,7 @@
     "divGrowth5Y": 9.17,
     "divGrowth10Y": 8.5,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 509,
     "beta": null,
     "yieldTTM": null,
@@ -28618,14 +28618,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 211.070007,
-        "h": 211.47,
-        "l": 209.81,
-        "c": 210.25999,
-        "v": 7709200
-      },
       {
         "t": 1790294400,
         "o": 210.66,
@@ -28777,6 +28769,14 @@
         "l": 215.75,
         "c": 216.64,
         "v": 7888100
+      },
+      {
+        "t": 1792627200,
+        "o": 215.73,
+        "h": 218.28999,
+        "l": 215.7,
+        "c": 218.22,
+        "v": 13400900
       }
     ]
   },
@@ -28784,11 +28784,11 @@
     "symbol": "IVE",
     "name": "iShares S&P 500 Value ETF",
     "type": "ETF",
-    "price": 238.51,
-    "change": -0.96,
-    "changePercent": -0.4009,
-    "open": 238.475,
-    "dayHigh": 238.68,
+    "price": 238.12,
+    "change": -1.35,
+    "changePercent": -0.5637,
+    "open": 238.36,
+    "dayHigh": 238.76,
     "dayLow": 237.28,
     "previousClose": 239.47,
     "high52w": 239.93,
@@ -28804,7 +28804,7 @@
     "divGrowth5Y": 3.6,
     "divGrowth10Y": 4.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 399,
     "beta": 0.89,
     "yieldTTM": 2,
@@ -28942,14 +28942,6 @@
     "return5Y": 64.49,
     "return10Y": 207.59,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 231.74001,
-        "h": 232.25,
-        "l": 230.89999,
-        "c": 231.22,
-        "v": 545300
-      },
       {
         "t": 1790294400,
         "o": 231.17999,
@@ -29101,6 +29093,14 @@
         "l": 236.98,
         "c": 238.050003,
         "v": 650800
+      },
+      {
+        "t": 1792627200,
+        "o": 237.64999,
+        "h": 239.59,
+        "l": 237.37,
+        "c": 239.47,
+        "v": 645800
       }
     ]
   },
@@ -29108,11 +29108,11 @@
     "symbol": "FNDX",
     "name": "Schwab Fundamental U.S. Large C",
     "type": "ETF",
-    "price": 32.68,
-    "change": -0.13,
-    "changePercent": -0.3962,
-    "open": 32.645,
-    "dayHigh": 32.6899,
+    "price": 32.6,
+    "change": -0.21,
+    "changePercent": -0.64,
+    "open": 32.64,
+    "dayHigh": 32.7151,
     "dayLow": 32.5001,
     "previousClose": 32.81,
     "high52w": 32.845,
@@ -29128,7 +29128,7 @@
     "divGrowth5Y": 5.92,
     "divGrowth10Y": 8.37,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 687,
     "beta": 0.9,
     "yieldTTM": 1.8,
@@ -29266,14 +29266,6 @@
     "return5Y": 80.98,
     "return10Y": 280.12,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 31.88,
-        "h": 31.94,
-        "l": 31.79,
-        "c": 31.85,
-        "v": 3554400
-      },
       {
         "t": 1790294400,
         "o": 31.85,
@@ -29425,6 +29417,14 @@
         "l": 32.59,
         "c": 32.71,
         "v": 3956200
+      },
+      {
+        "t": 1792627200,
+        "o": 32.62,
+        "h": 32.81,
+        "l": 32.54,
+        "c": 32.81,
+        "v": 4553100
       }
     ]
   },
@@ -29432,11 +29432,11 @@
     "symbol": "SPMD",
     "name": "State Street SPDR Portfolio S&P 400 Mid Cap ETF",
     "type": "ETF",
-    "price": 63.51,
-    "change": -0.24,
-    "changePercent": -0.3765,
-    "open": 63.52,
-    "dayHigh": 63.53,
+    "price": 63.4,
+    "change": -0.35,
+    "changePercent": -0.549,
+    "open": 63.38,
+    "dayHigh": 63.61,
     "dayLow": 62.95,
     "previousClose": 63.75,
     "high52w": 68.97,
@@ -29452,7 +29452,7 @@
     "divGrowth5Y": 9.48,
     "divGrowth10Y": -5.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 365,
     "beta": null,
     "yieldTTM": null,
@@ -29569,14 +29569,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 63.75,
-        "h": 63.95,
-        "l": 63.41,
-        "c": 63.7,
-        "v": 1959300
-      },
       {
         "t": 1790294400,
         "o": 63.85,
@@ -29728,6 +29720,14 @@
         "l": 64.019997,
         "c": 64.29,
         "v": 2430000
+      },
+      {
+        "t": 1792627200,
+        "o": 63.62,
+        "h": 63.81,
+        "l": 63.18,
+        "c": 63.75,
+        "v": 5867900
       }
     ]
   },
@@ -29735,11 +29735,11 @@
     "symbol": "SCHM",
     "name": "Schwab U.S. Mid Cap ETF",
     "type": "ETF",
-    "price": 34.59,
-    "change": -0.14,
-    "changePercent": -0.4031,
-    "open": 34.47,
-    "dayHigh": 34.6001,
+    "price": 34.54,
+    "change": -0.19,
+    "changePercent": -0.5471,
+    "open": 34.51,
+    "dayHigh": 34.6499,
     "dayLow": 34.29,
     "previousClose": 34.73,
     "high52w": 36.92,
@@ -29755,7 +29755,7 @@
     "divGrowth5Y": 11.14,
     "divGrowth10Y": 6.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 505,
     "beta": 1.03,
     "yieldTTM": 1.2,
@@ -29893,14 +29893,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 34.54,
-        "h": 34.6,
-        "l": 34.29,
-        "c": 34.45,
-        "v": 2647000
-      },
       {
         "t": 1790294400,
         "o": 34.51,
@@ -30052,6 +30044,14 @@
         "l": 34.6,
         "c": 34.73,
         "v": 2971300
+      },
+      {
+        "t": 1792627200,
+        "o": 34.42,
+        "h": 34.73,
+        "l": 34.37,
+        "c": 34.73,
+        "v": 2868000
       }
     ]
   },
@@ -30059,11 +30059,11 @@
     "symbol": "VTWO",
     "name": "Vanguard Russell 2000 ETF",
     "type": "ETF",
-    "price": 111.42,
-    "change": -0.37,
-    "changePercent": -0.331,
-    "open": 111.015,
-    "dayHigh": 111.425,
+    "price": 111.37,
+    "change": -0.42,
+    "changePercent": -0.3757,
+    "open": 111.02,
+    "dayHigh": 111.57,
     "dayLow": 110.4,
     "previousClose": 111.79,
     "high52w": 123.37,
@@ -30079,7 +30079,7 @@
     "divGrowth5Y": 8.94,
     "divGrowth10Y": 7.19,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1951,
     "beta": 1.25,
     "yieldTTM": 1.32,
@@ -30213,14 +30213,6 @@
     "return5Y": 33.41,
     "return10Y": 190.33,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 113.66,
-        "h": 114,
-        "l": 112.73,
-        "c": 113.78,
-        "v": 1221400
-      },
       {
         "t": 1790294400,
         "o": 114.050003,
@@ -30372,6 +30364,14 @@
         "l": 111.22,
         "c": 111.67,
         "v": 1635100
+      },
+      {
+        "t": 1792627200,
+        "o": 111.010002,
+        "h": 111.99,
+        "l": 110.9,
+        "c": 111.79,
+        "v": 1655700
       }
     ]
   },
@@ -30379,10 +30379,10 @@
     "symbol": "VFH",
     "name": "Vanguard Financials ETF",
     "type": "ETF",
-    "price": 136.49,
-    "change": -1.17,
-    "changePercent": -0.8499,
-    "open": 136.52,
+    "price": 135.89,
+    "change": -1.77,
+    "changePercent": -1.2858,
+    "open": 136.53,
     "dayHigh": 136.9,
     "dayLow": 135.625,
     "previousClose": 137.66,
@@ -30399,7 +30399,7 @@
     "divGrowth5Y": 3.64,
     "divGrowth10Y": 6.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 433,
     "beta": 1.02,
     "yieldTTM": 1.8,
@@ -30537,14 +30537,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 133.050003,
-        "h": 133.52,
-        "l": 132.14999,
-        "c": 132.85001,
-        "v": 1263300
-      },
       {
         "t": 1790294400,
         "o": 133.32001,
@@ -30696,6 +30688,14 @@
         "l": 135.25,
         "c": 136.039993,
         "v": 732200
+      },
+      {
+        "t": 1792627200,
+        "o": 135.55,
+        "h": 137.67999,
+        "l": 135.32001,
+        "c": 137.66,
+        "v": 320400
       }
     ]
   },
@@ -30703,11 +30703,11 @@
     "symbol": "EFA",
     "name": "iShares MSCI EAFE ETF",
     "type": "ETF",
-    "price": 102.56,
-    "change": -0.59,
-    "changePercent": -0.572,
-    "open": 102.26,
-    "dayHigh": 102.595,
+    "price": 102.63,
+    "change": -0.52,
+    "changePercent": -0.5041,
+    "open": 102.25,
+    "dayHigh": 102.815,
     "dayLow": 102.09,
     "previousClose": 103.15,
     "high52w": 108.89,
@@ -30723,7 +30723,7 @@
     "divGrowth5Y": 15.91,
     "divGrowth10Y": 7.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 677,
     "beta": 0.88,
     "yieldTTM": 3.2,
@@ -30861,14 +30861,6 @@
     "return5Y": 50.57,
     "return10Y": 141.26,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 104.41,
-        "h": 104.91,
-        "l": 103.91,
-        "c": 104.5,
-        "v": 17123100
-      },
       {
         "t": 1790294400,
         "o": 105.18,
@@ -31020,6 +31012,14 @@
         "l": 103.58,
         "c": 104.059998,
         "v": 9379700
+      },
+      {
+        "t": 1792627200,
+        "o": 103.26,
+        "h": 103.47,
+        "l": 102.79,
+        "c": 103.15,
+        "v": 11508000
       }
     ]
   },
@@ -31027,12 +31027,12 @@
     "symbol": "BIV",
     "name": "Vanguard Intermediate-Term Bond",
     "type": "ETF",
-    "price": 73.97,
-    "change": -0.1,
-    "changePercent": -0.135,
-    "open": 74.05,
+    "price": 73.93,
+    "change": -0.14,
+    "changePercent": -0.189,
+    "open": 74.02,
     "dayHigh": 74.08,
-    "dayLow": 73.9,
+    "dayLow": 73.8925,
     "previousClose": 74.07,
     "high52w": 79.085,
     "low52w": 72.31,
@@ -31047,7 +31047,7 @@
     "divGrowth5Y": 2.24,
     "divGrowth10Y": 2.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2100,
     "beta": 0.12,
     "yieldTTM": 3.4,
@@ -31089,14 +31089,6 @@
     "return5Y": 1.12,
     "return10Y": 20.68,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 73.53,
-        "h": 73.62,
-        "l": 73.14,
-        "c": 73.14,
-        "v": 2760700
-      },
       {
         "t": 1790294400,
         "o": 73.22,
@@ -31248,6 +31240,14 @@
         "l": 73.22,
         "c": 73.38,
         "v": 2703900
+      },
+      {
+        "t": 1792627200,
+        "o": 73.72,
+        "h": 74.19,
+        "l": 73.66,
+        "c": 74.07,
+        "v": 2320100
       }
     ]
   },
@@ -31255,11 +31255,11 @@
     "symbol": "IWM",
     "name": "iShares Russell 2000 Index Fund",
     "type": "ETF",
-    "price": 275.79,
-    "change": -0.88,
-    "changePercent": -0.3181,
-    "open": 275.35,
-    "dayHigh": 275.86,
+    "price": 275.75,
+    "change": -0.92,
+    "changePercent": -0.3325,
+    "open": 274.85,
+    "dayHigh": 276.24,
     "dayLow": 273.345,
     "previousClose": 276.67,
     "high52w": 305.18,
@@ -31275,7 +31275,7 @@
     "divGrowth5Y": 4.63,
     "divGrowth10Y": 4.23,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1795,
     "beta": 1.25,
     "yieldTTM": 1.36,
@@ -31315,14 +31315,6 @@
     "return5Y": 32.35,
     "return10Y": 186.66,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 281.32999,
-        "h": 282.23999,
-        "l": 279.049988,
-        "c": 281.66,
-        "v": 27307900
-      },
       {
         "t": 1790294400,
         "o": 282.34,
@@ -31474,6 +31466,14 @@
         "l": 275.29999,
         "c": 276.48001,
         "v": 15941400
+      },
+      {
+        "t": 1792627200,
+        "o": 274.81,
+        "h": 277.28,
+        "l": 274.48999,
+        "c": 276.67001,
+        "v": 25750400
       }
     ],
     "top10Holdings": [
@@ -31575,11 +31575,11 @@
     "symbol": "SPSM",
     "name": "State Street SPDR Portfolio S&P 600 Small Cap ETF",
     "type": "ETF",
-    "price": 53.75,
-    "change": -0.14,
-    "changePercent": -0.2598,
-    "open": 53.65,
-    "dayHigh": 53.77,
+    "price": 53.73,
+    "change": -0.16,
+    "changePercent": -0.2969,
+    "open": 53.57,
+    "dayHigh": 53.855,
     "dayLow": 53.28,
     "previousClose": 53.89,
     "high52w": 58.595,
@@ -31595,7 +31595,7 @@
     "divGrowth5Y": 12.58,
     "divGrowth10Y": 4.74,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 570,
     "beta": null,
     "yieldTTM": null,
@@ -31712,14 +31712,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 53.59,
-        "h": 53.75,
-        "l": 53.2,
-        "c": 53.56,
-        "v": 1115300
-      },
       {
         "t": 1790294400,
         "o": 53.7,
@@ -31871,6 +31863,14 @@
         "l": 53.31,
         "c": 53.56,
         "v": 1221400
+      },
+      {
+        "t": 1792627200,
+        "o": 53.26,
+        "h": 53.92,
+        "l": 53.26,
+        "c": 53.89,
+        "v": 1550300
       }
     ]
   },
@@ -31878,11 +31878,11 @@
     "symbol": "ACWI",
     "name": "iShares MSCI ACWI ETF",
     "type": "ETF",
-    "price": 157.1,
-    "change": -0.31,
-    "changePercent": -0.1969,
-    "open": 156.745,
-    "dayHigh": 157.125,
+    "price": 156.8,
+    "change": -0.61,
+    "changePercent": -0.3875,
+    "open": 156.56,
+    "dayHigh": 157.27,
     "dayLow": 156.26,
     "previousClose": 157.41,
     "high52w": 162.7975,
@@ -31898,7 +31898,7 @@
     "divGrowth5Y": 11.06,
     "divGrowth10Y": 4.64,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2111,
     "beta": 0.95,
     "yieldTTM": 1.8,
@@ -32036,14 +32036,6 @@
     "return5Y": 70.01,
     "return10Y": 234.28,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 159.42999,
-        "h": 160.45,
-        "l": 159.17,
-        "c": 160.080002,
-        "v": 1568400
-      },
       {
         "t": 1790294400,
         "o": 160.52,
@@ -32195,6 +32187,14 @@
         "l": 158.8,
         "c": 159.56,
         "v": 2110800
+      },
+      {
+        "t": 1792627200,
+        "o": 157.89999,
+        "h": 158.16,
+        "l": 156.92,
+        "c": 157.41,
+        "v": 1859800
       }
     ]
   },
@@ -32202,12 +32202,12 @@
     "symbol": "VGSH",
     "name": "Vanguard Short-Term Treasury ETF",
     "type": "ETF",
-    "price": 57.8,
-    "change": 0,
-    "changePercent": 0,
+    "price": 57.78,
+    "change": -0.02,
+    "changePercent": -0.0346,
     "open": 57.8,
-    "dayHigh": 57.82,
-    "dayLow": 57.77,
+    "dayHigh": 57.81,
+    "dayLow": 57.76,
     "previousClose": 57.8,
     "high52w": 59.01,
     "low52w": 57.38,
@@ -32222,7 +32222,7 @@
     "divGrowth5Y": 22.88,
     "divGrowth10Y": 17.42,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 93,
     "beta": null,
     "yieldTTM": null,
@@ -32243,14 +32243,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 57.57,
-        "h": 57.57,
-        "l": 57.49,
-        "c": 57.49,
-        "v": 8229900
-      },
       {
         "t": 1790294400,
         "o": 57.54,
@@ -32402,6 +32394,14 @@
         "l": 57.6,
         "c": 57.63,
         "v": 4485200
+      },
+      {
+        "t": 1792627200,
+        "o": 57.71,
+        "h": 57.83,
+        "l": 57.7,
+        "c": 57.8,
+        "v": 4587600
       }
     ]
   },
@@ -32409,11 +32409,11 @@
     "symbol": "IWR",
     "name": "iShares Russell Midcap ETF",
     "type": "ETF",
-    "price": 109.74,
-    "change": -0.23,
-    "changePercent": -0.2091,
-    "open": 109.08,
-    "dayHigh": 109.75,
+    "price": 109.47,
+    "change": -0.5,
+    "changePercent": -0.4547,
+    "open": 109.46,
+    "dayHigh": 109.8451,
     "dayLow": 108.81,
     "previousClose": 109.97,
     "high52w": 114.97,
@@ -32429,7 +32429,7 @@
     "divGrowth5Y": 9.12,
     "divGrowth10Y": 5.99,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 787,
     "beta": null,
     "yieldTTM": null,
@@ -32546,14 +32546,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 108.059998,
-        "h": 108.42,
-        "l": 107.64,
-        "c": 108.019997,
-        "v": 1372400
-      },
       {
         "t": 1790294400,
         "o": 108.21,
@@ -32705,6 +32697,14 @@
         "l": 109.85,
         "c": 110.17,
         "v": 1188900
+      },
+      {
+        "t": 1792627200,
+        "o": 109.4,
+        "h": 110,
+        "l": 108.95,
+        "c": 109.97,
+        "v": 1820800
       }
     ]
   },
@@ -32712,11 +32712,11 @@
     "symbol": "XLY",
     "name": "State Street Consumer Discretio",
     "type": "ETF",
-    "price": 113.87,
-    "change": -1.14,
-    "changePercent": -0.9912,
-    "open": 114.18,
-    "dayHigh": 114.18,
+    "price": 113.1,
+    "change": -1.91,
+    "changePercent": -1.6607,
+    "open": 114.06,
+    "dayHigh": 114.1,
     "dayLow": 112.83,
     "previousClose": 115.01,
     "high52w": 125.01,
@@ -32732,7 +32732,7 @@
     "divGrowth5Y": 8.97,
     "divGrowth10Y": 4.21,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 50,
     "beta": 1.18,
     "yieldTTM": 0.9,
@@ -32870,14 +32870,6 @@
     "return5Y": 42.29,
     "return10Y": 232.97,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 110.16,
-        "h": 110.9,
-        "l": 109.62,
-        "c": 110.32,
-        "v": 5000300
-      },
       {
         "t": 1790294400,
         "o": 110.67,
@@ -33029,6 +33021,14 @@
         "l": 114.96,
         "c": 115.53,
         "v": 6441400
+      },
+      {
+        "t": 1792627200,
+        "o": 114.29,
+        "h": 115.69,
+        "l": 114.17,
+        "c": 115.010002,
+        "v": 8039300
       }
     ]
   },
@@ -33036,12 +33036,12 @@
     "symbol": "SCHO",
     "name": "Schwab Short-Term U.S. Treasury",
     "type": "ETF",
-    "price": 23.97,
-    "change": 0.01,
-    "changePercent": 0.0417,
-    "open": 23.9675,
+    "price": 23.96,
+    "change": 0,
+    "changePercent": 0,
+    "open": 23.97,
     "dayHigh": 23.97,
-    "dayLow": 23.95,
+    "dayLow": 23.94,
     "previousClose": 23.96,
     "high52w": 24.46,
     "low52w": 23.79,
@@ -33056,7 +33056,7 @@
     "divGrowth5Y": 33.34,
     "divGrowth10Y": 17.68,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 80,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -33098,14 +33098,6 @@
     "top10Holdings": [],
     "sectorBreakdown": [],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 23.86,
-        "h": 23.87,
-        "l": 23.84,
-        "c": 23.84,
-        "v": 4932600
-      },
       {
         "t": 1790294400,
         "o": 23.85,
@@ -33257,6 +33249,14 @@
         "l": 23.88,
         "c": 23.88,
         "v": 9582300
+      },
+      {
+        "t": 1792627200,
+        "o": 23.93,
+        "h": 23.97,
+        "l": 23.92,
+        "c": 23.96,
+        "v": 4483100
       }
     ]
   },
@@ -33264,11 +33264,11 @@
     "symbol": "VOT",
     "name": "Vanguard Mid-Cap Growth ETF",
     "type": "ETF",
-    "price": 288.15,
-    "change": -1.09,
-    "changePercent": -0.3768,
-    "open": 289.475,
-    "dayHigh": 289.475,
+    "price": 287.14,
+    "change": -2.1,
+    "changePercent": -0.726,
+    "open": 287.45,
+    "dayHigh": 288.5,
     "dayLow": 285.215,
     "previousClose": 289.24,
     "high52w": 315.145,
@@ -33284,7 +33284,7 @@
     "divGrowth5Y": 11.21,
     "divGrowth10Y": 6.82,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 125,
     "beta": null,
     "yieldTTM": null,
@@ -33401,14 +33401,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 294.22,
-        "h": 297.25,
-        "l": 294.22,
-        "c": 295.98999,
-        "v": 200700
-      },
       {
         "t": 1790294400,
         "o": 296.51999,
@@ -33560,6 +33552,14 @@
         "l": 292.92001,
         "c": 293.82999,
         "v": 216500
+      },
+      {
+        "t": 1792627200,
+        "o": 290.67001,
+        "h": 291.66,
+        "l": 287.67001,
+        "c": 289.23999,
+        "v": 465000
       }
     ]
   },
@@ -33567,12 +33567,12 @@
     "symbol": "VGIT",
     "name": "Vanguard Intermediate-Term Trea",
     "type": "ETF",
-    "price": 57.43,
-    "change": -0.02,
-    "changePercent": -0.0348,
-    "open": 57.455,
-    "dayHigh": 57.48,
-    "dayLow": 57.37,
+    "price": 57.4,
+    "change": -0.05,
+    "changePercent": -0.087,
+    "open": 57.465,
+    "dayHigh": 57.47,
+    "dayLow": 57.36,
     "previousClose": 57.45,
     "high52w": 60.76,
     "low52w": 56.35,
@@ -33587,7 +33587,7 @@
     "divGrowth5Y": 10.48,
     "divGrowth10Y": 7.76,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 85,
     "beta": 0.1,
     "yieldTTM": 1.8,
@@ -33629,14 +33629,6 @@
     "return5Y": 0.09,
     "return10Y": 12.77,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 56.96,
-        "h": 56.98,
-        "l": 56.71,
-        "c": 56.71,
-        "v": 6691400
-      },
       {
         "t": 1790294400,
         "o": 56.8,
@@ -33788,6 +33780,14 @@
         "l": 56.91,
         "c": 57,
         "v": 4923300
+      },
+      {
+        "t": 1792627200,
+        "o": 57.23,
+        "h": 57.55,
+        "l": 57.2,
+        "c": 57.45,
+        "v": 5833300
       }
     ]
   },
@@ -33795,11 +33795,11 @@
     "symbol": "VBK",
     "name": "Vanguard Small-Cap Growth ETF",
     "type": "ETF",
-    "price": 327.92,
-    "change": -0.87,
-    "changePercent": -0.2646,
-    "open": 325.185,
-    "dayHigh": 328.29,
+    "price": 327.49,
+    "change": -1.3,
+    "changePercent": -0.3954,
+    "open": 326.38,
+    "dayHigh": 328.57,
     "dayLow": 323.75,
     "previousClose": 328.79,
     "high52w": 367.0379,
@@ -33815,7 +33815,7 @@
     "divGrowth5Y": 7.15,
     "divGrowth10Y": 1.92,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 520,
     "beta": 1.32,
     "yieldTTM": 0.52,
@@ -33953,14 +33953,6 @@
       }
     ],
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 338.73999,
-        "h": 341.82001,
-        "l": 337.88,
-        "c": 341.14001,
-        "v": 176900
-      },
       {
         "t": 1790294400,
         "o": 341.79999,
@@ -34112,6 +34104,14 @@
         "l": 333.92999,
         "c": 335.17001,
         "v": 115500
+      },
+      {
+        "t": 1792627200,
+        "o": 330.75,
+        "h": 331.56,
+        "l": 326.66,
+        "c": 328.79001,
+        "v": 167500
       }
     ]
   },
@@ -34119,10 +34119,10 @@
     "symbol": "XLV",
     "name": "State Street Health Care Select",
     "type": "ETF",
-    "price": 179.65,
-    "change": -1.65,
-    "changePercent": -0.9101,
-    "open": 180.215,
+    "price": 179.28,
+    "change": -2.02,
+    "changePercent": -1.1142,
+    "open": 180.4,
     "dayHigh": 180.74,
     "dayLow": 178.71,
     "previousClose": 181.3,
@@ -34139,7 +34139,7 @@
     "divGrowth5Y": 8.01,
     "divGrowth10Y": 8.97,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 64,
     "beta": 0.72,
     "yieldTTM": 1.6,
@@ -34277,14 +34277,6 @@
     "return5Y": 27.97,
     "return10Y": 147.9,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 168.85001,
-        "h": 171.53999,
-        "l": 168.72,
-        "c": 169.87,
-        "v": 8870900
-      },
       {
         "t": 1790294400,
         "o": 169.94,
@@ -34436,6 +34428,14 @@
         "l": 177.64,
         "c": 178.94,
         "v": 8489900
+      },
+      {
+        "t": 1792627200,
+        "o": 179.66,
+        "h": 182.25,
+        "l": 178.95,
+        "c": 181.3,
+        "v": 10120300
       }
     ]
   },
@@ -34443,11 +34443,11 @@
     "symbol": "DGRW",
     "name": "WisdomTree U.S. Quality Dividen",
     "type": "ETF",
-    "price": 98.56,
-    "change": -0.56,
-    "changePercent": -0.565,
-    "open": 98.32,
-    "dayHigh": 98.61,
+    "price": 98.21,
+    "change": -0.91,
+    "changePercent": -0.9181,
+    "open": 98.26,
+    "dayHigh": 98.65,
     "dayLow": 98.06,
     "previousClose": 99.12,
     "high52w": 100.59,
@@ -34463,7 +34463,7 @@
     "divGrowth5Y": 3.72,
     "divGrowth10Y": 6.28,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 261,
     "beta": 0.88,
     "yieldTTM": 1.8,
@@ -34503,14 +34503,6 @@
     "return5Y": 75.76,
     "return10Y": 279.29,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 97.84,
-        "h": 98.25,
-        "l": 97.74,
-        "c": 98.12,
-        "v": 383900
-      },
       {
         "t": 1790294400,
         "o": 98.029999,
@@ -34662,6 +34654,14 @@
         "l": 99.040001,
         "c": 99.51,
         "v": 461400
+      },
+      {
+        "t": 1792627200,
+        "o": 98.84,
+        "h": 99.13,
+        "l": 98.6,
+        "c": 99.12,
+        "v": 342600
       }
     ],
     "top10Holdings": [
@@ -34763,9 +34763,9 @@
     "symbol": "SHV",
     "name": "iShares 0-1 Year Treasury Bond ",
     "type": "ETF",
-    "price": 110.335,
-    "change": 0.025,
-    "changePercent": 0.0227,
+    "price": 110.33,
+    "change": 0.02,
+    "changePercent": 0.0181,
     "open": 110.33,
     "dayHigh": 110.34,
     "dayLow": 110.33,
@@ -34783,7 +34783,7 @@
     "divGrowth5Y": 34.06,
     "divGrowth10Y": 46.36,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 37,
     "beta": 0.01,
     "yieldTTM": 0.85,
@@ -34825,14 +34825,6 @@
     "return5Y": 17.53,
     "return10Y": 24.42,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 110.23,
-        "h": 110.24,
-        "l": 110.23,
-        "c": 110.23,
-        "v": 2736900
-      },
       {
         "t": 1790294400,
         "o": 110.26,
@@ -34984,6 +34976,14 @@
         "l": 110.26,
         "c": 110.27,
         "v": 3172700
+      },
+      {
+        "t": 1792627200,
+        "o": 110.28,
+        "h": 110.31,
+        "l": 110.28,
+        "c": 110.31,
+        "v": 3681600
       }
     ]
   },
@@ -34991,11 +34991,11 @@
     "symbol": "XLE",
     "name": "State Street Energy Select Sect",
     "type": "ETF",
-    "price": 69.44,
-    "change": 1.87,
-    "changePercent": 2.7675,
-    "open": 67.94,
-    "dayHigh": 69.47,
+    "price": 69.33,
+    "change": 1.76,
+    "changePercent": 2.6047,
+    "open": 68.08,
+    "dayHigh": 69.72,
     "dayLow": 67.76,
     "previousClose": 67.57,
     "high52w": 68.78,
@@ -35011,7 +35011,7 @@
     "divGrowth5Y": 7.43,
     "divGrowth10Y": 4.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 24,
     "beta": 0.8,
     "yieldTTM": 2.8,
@@ -35051,14 +35051,6 @@
     "return5Y": 165.34,
     "return10Y": 173.33,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 63.07,
-        "h": 63.41,
-        "l": 62.46,
-        "c": 62.6,
-        "v": 38168900
-      },
       {
         "t": 1790294400,
         "o": 61.92,
@@ -35210,6 +35202,14 @@
         "l": 67.51,
         "c": 68.16,
         "v": 26469900
+      },
+      {
+        "t": 1792627200,
+        "o": 68.74,
+        "h": 68.78,
+        "l": 66.29,
+        "c": 67.57,
+        "v": 41617500
       }
     ],
     "top10Holdings": [
@@ -35315,12 +35315,12 @@
     "symbol": "VNQ",
     "name": "Vanguard Real Estate ETF",
     "type": "ETF",
-    "price": 92.85,
-    "change": 0.2,
-    "changePercent": 0.2159,
-    "open": 93.29,
+    "price": 92.69,
+    "change": 0.04,
+    "changePercent": 0.0432,
+    "open": 93.57,
     "dayHigh": 93.81,
-    "dayLow": 92.54,
+    "dayLow": 92.19,
     "previousClose": 92.65,
     "high52w": 101.8,
     "low52w": 86.84,
@@ -35335,7 +35335,7 @@
     "divGrowth5Y": 1.64,
     "divGrowth10Y": -0.13,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 151,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -35473,14 +35473,6 @@
     "return5Y": 17.88,
     "return10Y": 68.36,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 91.79,
-        "h": 91.94,
-        "l": 91.12,
-        "c": 91.17,
-        "v": 5787500
-      },
       {
         "t": 1790294400,
         "o": 91.55,
@@ -35632,6 +35624,14 @@
         "l": 91.33,
         "c": 91.49,
         "v": 4725000
+      },
+      {
+        "t": 1792627200,
+        "o": 91.54,
+        "h": 92.74,
+        "l": 91.33,
+        "c": 92.65,
+        "v": 4153300
       }
     ]
   },
@@ -35639,11 +35639,11 @@
     "symbol": "USMV",
     "name": "iShares MSCI USA Min Vol Factor",
     "type": "ETF",
-    "price": 103.16,
-    "change": -0.35,
-    "changePercent": -0.3381,
-    "open": 103.02000000000001,
-    "dayHigh": 103.235,
+    "price": 102.95,
+    "change": -0.56,
+    "changePercent": -0.541,
+    "open": 103.01,
+    "dayHigh": 103.24,
     "dayLow": 102.67,
     "previousClose": 103.51,
     "high52w": 103.58,
@@ -35659,7 +35659,7 @@
     "divGrowth5Y": 4.29,
     "divGrowth10Y": 5.33,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 178,
     "beta": 0.68,
     "yieldTTM": 1.8,
@@ -35797,14 +35797,6 @@
     "return5Y": 43.04,
     "return10Y": 160.08,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 98.62,
-        "h": 98.9,
-        "l": 98.24,
-        "c": 98.24,
-        "v": 1529500
-      },
       {
         "t": 1790294400,
         "o": 98.3,
@@ -35956,6 +35948,14 @@
         "l": 102.099998,
         "c": 102.41,
         "v": 821100
+      },
+      {
+        "t": 1792627200,
+        "o": 102.49,
+        "h": 103.58,
+        "l": 102.47,
+        "c": 103.51,
+        "v": 2301200
       }
     ]
   },
@@ -35963,12 +35963,12 @@
     "symbol": "SCHR",
     "name": "Schwab Intermediate-Term US Treasury ETF",
     "type": "ETF",
-    "price": 24.03,
-    "change": -0.01,
-    "changePercent": -0.0416,
-    "open": 24.035,
+    "price": 24,
+    "change": -0.04,
+    "changePercent": -0.1664,
+    "open": 24.03,
     "dayHigh": 24.04,
-    "dayLow": 24,
+    "dayLow": 23.9928,
     "previousClose": 24.04,
     "high52w": 25.42,
     "low52w": 23.5719,
@@ -35983,7 +35983,7 @@
     "divGrowth5Y": 20.33,
     "divGrowth10Y": 8.68,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 101,
     "beta": null,
     "yieldTTM": null,
@@ -36002,14 +36002,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 23.83,
-        "h": 23.84,
-        "l": 23.73,
-        "c": 23.74,
-        "v": 3174400
-      },
       {
         "t": 1790294400,
         "o": 23.76,
@@ -36161,6 +36153,14 @@
         "l": 23.8,
         "c": 23.84,
         "v": 7678100
+      },
+      {
+        "t": 1792627200,
+        "o": 23.94,
+        "h": 24.07,
+        "l": 23.93,
+        "c": 24.040001,
+        "v": 3228300
       }
     ],
     "top10Holdings": [],
@@ -36170,12 +36170,12 @@
     "symbol": "SHY",
     "name": "iShares 1-3 Year Treasury Bond ",
     "type": "ETF",
-    "price": 81.52,
-    "change": 0,
-    "changePercent": 0,
-    "open": 81.5325,
-    "dayHigh": 81.55000000000001,
-    "dayLow": 81.49,
+    "price": 81.5,
+    "change": -0.02,
+    "changePercent": -0.0245,
+    "open": 81.54,
+    "dayHigh": 81.54,
+    "dayLow": 81.47,
     "previousClose": 81.52,
     "high52w": 83.2,
     "low52w": 80.95,
@@ -36190,7 +36190,7 @@
     "divGrowth5Y": 46.14,
     "divGrowth10Y": 19.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 92,
     "beta": 0.04,
     "yieldTTM": 1.3,
@@ -36232,14 +36232,6 @@
     "return5Y": 8.72,
     "return10Y": 17.68,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 81.19,
-        "h": 81.2,
-        "l": 81.089996,
-        "c": 81.089996,
-        "v": 5182000
-      },
       {
         "t": 1790294400,
         "o": 81.16,
@@ -36391,6 +36383,14 @@
         "l": 81.24,
         "c": 81.29,
         "v": 2292500
+      },
+      {
+        "t": 1792627200,
+        "o": 81.41,
+        "h": 81.57,
+        "l": 81.38,
+        "c": 81.52,
+        "v": 4310400
       }
     ]
   },
@@ -36398,10 +36398,10 @@
     "symbol": "VHT",
     "name": "Vanguard Health Care ETF",
     "type": "ETF",
-    "price": 333.11,
-    "change": -3.15,
-    "changePercent": -0.9368,
-    "open": 334.12,
+    "price": 332.53,
+    "change": -3.73,
+    "changePercent": -1.1093,
+    "open": 334.36,
     "dayHigh": 335.35,
     "dayLow": 331.43,
     "previousClose": 336.26,
@@ -36418,7 +36418,7 @@
     "divGrowth5Y": 10.1,
     "divGrowth10Y": 8.83,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 423,
     "beta": 0.72,
     "yieldTTM": 1.5,
@@ -36458,14 +36458,6 @@
     "return5Y": 22.7,
     "return10Y": 149.21,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 316.089996,
-        "h": 320.72,
-        "l": 316.089996,
-        "c": 318.42001,
-        "v": 191600
-      },
       {
         "t": 1790294400,
         "o": 318.62,
@@ -36617,6 +36609,14 @@
         "l": 330.45001,
         "c": 332.23999,
         "v": 192700
+      },
+      {
+        "t": 1792627200,
+        "o": 333.32001,
+        "h": 337.62,
+        "l": 332.51999,
+        "c": 336.26001,
+        "v": 164800
       }
     ],
     "top10Holdings": [
@@ -36722,10 +36722,10 @@
     "symbol": "QLD",
     "name": "ProShares Ultra QQQ",
     "type": "ETF",
-    "price": 86.95,
-    "change": 0.69,
-    "changePercent": 0.7999,
-    "open": 86.025,
+    "price": 86.15,
+    "change": -0.11,
+    "changePercent": -0.1275,
+    "open": 85.61,
     "dayHigh": 87.35,
     "dayLow": 85.3914,
     "previousClose": 86.26,
@@ -36742,7 +36742,7 @@
     "divGrowth5Y": 56.6,
     "divGrowth10Y": 30.63,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 108,
     "beta": null,
     "yieldTTM": null,
@@ -36761,14 +36761,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 94.6,
-        "h": 96.5,
-        "l": 94.45,
-        "c": 96.099998,
-        "v": 3633900
-      },
       {
         "t": 1790294400,
         "o": 96.52,
@@ -36920,6 +36912,14 @@
         "l": 90.14,
         "c": 91.46,
         "v": 4922100
+      },
+      {
+        "t": 1792627200,
+        "o": 88.53,
+        "h": 88.99,
+        "l": 85.59,
+        "c": 86.26,
+        "v": 6212800
       }
     ],
     "top10Holdings": [
@@ -37028,8 +37028,8 @@
     "price": 94.1,
     "change": -0.5,
     "changePercent": -0.5285,
-    "open": 93.595,
-    "dayHigh": 94.115,
+    "open": 93.61,
+    "dayHigh": 94.295,
     "dayLow": 93.495,
     "previousClose": 94.6,
     "high52w": 99.98,
@@ -37045,7 +37045,7 @@
     "divGrowth5Y": 39.16,
     "divGrowth10Y": 19.53,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 250,
     "beta": 0.6,
     "yieldTTM": 1.5,
@@ -37128,14 +37128,6 @@
     "return5Y": 53.91,
     "return10Y": 138.74,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 95.7,
-        "h": 96.089996,
-        "l": 95.11,
-        "c": 95.81,
-        "v": 4076200
-      },
       {
         "t": 1790294400,
         "o": 97.48,
@@ -37287,6 +37279,14 @@
         "l": 95.23,
         "c": 95.72,
         "v": 7433800
+      },
+      {
+        "t": 1792627200,
+        "o": 94.88,
+        "h": 95.089996,
+        "l": 94.23,
+        "c": 94.6,
+        "v": 2550300
       }
     ]
   },
@@ -37294,11 +37294,11 @@
     "symbol": "IWS",
     "name": "iShares Russell Mid-Cap Value ETF",
     "type": "ETF",
-    "price": 168.78,
-    "change": -0.43,
-    "changePercent": -0.2541,
-    "open": 169.48,
-    "dayHigh": 169.48,
+    "price": 168.43,
+    "change": -0.78,
+    "changePercent": -0.461,
+    "open": 168.46,
+    "dayHigh": 168.85,
     "dayLow": 167.47,
     "previousClose": 169.21,
     "high52w": 173.519,
@@ -37314,7 +37314,7 @@
     "divGrowth5Y": 6.17,
     "divGrowth10Y": 3.22,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 682,
     "beta": null,
     "yieldTTM": null,
@@ -37333,14 +37333,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 163.37,
-        "h": 163.56,
-        "l": 162.44,
-        "c": 162.75999,
-        "v": 537200
-      },
       {
         "t": 1790294400,
         "o": 163.0099945,
@@ -37492,6 +37484,14 @@
         "l": 167.67,
         "c": 168.11,
         "v": 301200
+      },
+      {
+        "t": 1792627200,
+        "o": 167.42999,
+        "h": 169.27,
+        "l": 167.24001,
+        "c": 169.21001,
+        "v": 336600
       }
     ],
     "top10Holdings": [
@@ -37597,11 +37597,11 @@
     "symbol": "IWN",
     "name": "iShares Russell 2000 Value ETF",
     "type": "ETF",
-    "price": 212.95,
-    "change": -0.35,
-    "changePercent": -0.1641,
-    "open": 212.245,
-    "dayHigh": 212.99,
+    "price": 213,
+    "change": -0.3,
+    "changePercent": -0.1406,
+    "open": 212.06,
+    "dayHigh": 213.25,
     "dayLow": 211.23,
     "previousClose": 213.3,
     "high52w": 227.86,
@@ -37617,7 +37617,7 @@
     "divGrowth5Y": 8.52,
     "divGrowth10Y": 4.71,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1404,
     "beta": 1.14,
     "yieldTTM": 1.9,
@@ -37755,14 +37755,6 @@
     "return5Y": 36.42,
     "return10Y": 168.08,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 213.11,
-        "h": 213.69,
-        "l": 211.73,
-        "c": 213.12,
-        "v": 378500
-      },
       {
         "t": 1790294400,
         "o": 213.41,
@@ -37914,6 +37906,14 @@
         "l": 210.039993,
         "c": 211.020004,
         "v": 543000
+      },
+      {
+        "t": 1792627200,
+        "o": 210.089996,
+        "h": 213.46001,
+        "l": 210.089996,
+        "c": 213.3,
+        "v": 820100
       }
     ]
   },
@@ -37921,11 +37921,11 @@
     "symbol": "VDE",
     "name": "Vanguard Energy ETF",
     "type": "ETF",
-    "price": 193.23,
-    "change": 5.27,
-    "changePercent": 2.8038,
-    "open": 188.985,
-    "dayHigh": 193.31,
+    "price": 192.98,
+    "change": 5.02,
+    "changePercent": 2.6708,
+    "open": 189.31,
+    "dayHigh": 194.03,
     "dayLow": 188.51,
     "previousClose": 187.96,
     "high52w": 191.37,
@@ -37941,7 +37941,7 @@
     "divGrowth5Y": 9.6,
     "divGrowth10Y": 1.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 117,
     "beta": 0.8,
     "yieldTTM": 3.2,
@@ -38079,14 +38079,6 @@
     "return5Y": 168.07,
     "return10Y": 160.92,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 176.39999,
-        "h": 177.64,
-        "l": 175,
-        "c": 175.42,
-        "v": 667100
-      },
       {
         "t": 1790294400,
         "o": 173.78,
@@ -38238,6 +38230,14 @@
         "l": 188.2,
         "c": 189.89999,
         "v": 365500
+      },
+      {
+        "t": 1792627200,
+        "o": 191.37,
+        "h": 191.37,
+        "l": 184.39,
+        "c": 187.96001,
+        "v": 674300
       }
     ]
   },
@@ -38245,11 +38245,11 @@
     "symbol": "MDY",
     "name": "State Street SPDR S&P MIDCAP 400 ETF Trust",
     "type": "ETF",
-    "price": 661.65,
-    "change": -2.35,
-    "changePercent": -0.3539,
-    "open": 659.8875,
-    "dayHigh": 661.66,
+    "price": 660.16,
+    "change": -3.84,
+    "changePercent": -0.5783,
+    "open": 660.07,
+    "dayHigh": 662.35,
     "dayLow": 655.5375,
     "previousClose": 664,
     "high52w": 717.35,
@@ -38265,7 +38265,7 @@
     "divGrowth5Y": 9.77,
     "divGrowth10Y": 6.93,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 340,
     "beta": null,
     "yieldTTM": null,
@@ -38284,14 +38284,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 664.01001,
-        "h": 666.20001,
-        "l": 660.46997,
-        "c": 663.73999,
-        "v": 600600
-      },
       {
         "t": 1790294400,
         "o": 665.27002,
@@ -38443,6 +38435,14 @@
         "l": 666.58002,
         "c": 669.41998,
         "v": 552800
+      },
+      {
+        "t": 1792627200,
+        "o": 662.53003,
+        "h": 664.56,
+        "l": 658.099976,
+        "c": 664,
+        "v": 587200
       }
     ],
     "top10Holdings": [
@@ -38548,12 +38548,12 @@
     "symbol": "IEI",
     "name": "iShares 3-7 Year Treasury Bond ETF",
     "type": "ETF",
-    "price": 114.72,
-    "change": -0.07,
-    "changePercent": -0.061,
-    "open": 114.72,
+    "price": 114.67,
+    "change": -0.12,
+    "changePercent": -0.1045,
+    "open": 114.8,
     "dayHigh": 114.82,
-    "dayLow": 114.64,
+    "dayLow": 114.615,
     "previousClose": 114.79,
     "high52w": 120.7799,
     "low52w": 112.88,
@@ -38568,7 +38568,7 @@
     "divGrowth5Y": 30.03,
     "divGrowth10Y": 9.49,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 85,
     "beta": null,
     "yieldTTM": null,
@@ -38587,14 +38587,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 113.85,
-        "h": 113.87,
-        "l": 113.45,
-        "c": 113.45,
-        "v": 3118800
-      },
       {
         "t": 1790294400,
         "o": 113.61,
@@ -38746,6 +38738,14 @@
         "l": 113.82,
         "c": 113.97,
         "v": 1173700
+      },
+      {
+        "t": 1792627200,
+        "o": 114.41,
+        "h": 114.95,
+        "l": 114.33,
+        "c": 114.79,
+        "v": 2078200
       }
     ],
     "top10Holdings": [],
@@ -38755,9 +38755,9 @@
     "symbol": "DVY",
     "name": "iShares Select Dividend ETF",
     "type": "ETF",
-    "price": 161.69,
-    "change": -1.05,
-    "changePercent": -0.6452,
+    "price": 161.26,
+    "change": -1.48,
+    "changePercent": -0.9094,
     "open": 161.98,
     "dayHigh": 162.125,
     "dayLow": 160.58,
@@ -38775,7 +38775,7 @@
     "divGrowth5Y": 8.2,
     "divGrowth10Y": 7.18,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 103,
     "beta": 0.82,
     "yieldTTM": 3.6,
@@ -38815,14 +38815,6 @@
     "return5Y": 48.27,
     "return10Y": 167.41,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 155.67,
-        "h": 155.86,
-        "l": 154.35001,
-        "c": 154.35001,
-        "v": 372500
-      },
       {
         "t": 1790294400,
         "o": 154.13,
@@ -38974,6 +38966,14 @@
         "l": 159,
         "c": 159.39,
         "v": 177900
+      },
+      {
+        "t": 1792627200,
+        "o": 159.63,
+        "h": 162.75999,
+        "l": 159.63,
+        "c": 162.74001,
+        "v": 482600
       }
     ],
     "top10Holdings": [
@@ -39079,10 +39079,10 @@
     "symbol": "IXN",
     "name": "iShares Global Tech ETF",
     "type": "ETF",
-    "price": 137.35,
-    "change": 1.23,
-    "changePercent": 0.9036,
-    "open": 135.945,
+    "price": 136.97,
+    "change": 0.85,
+    "changePercent": 0.6244,
+    "open": 136,
     "dayHigh": 137.86,
     "dayLow": 135.89,
     "previousClose": 136.12,
@@ -39099,7 +39099,7 @@
     "divGrowth5Y": 28.34,
     "divGrowth10Y": 19.6,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 143,
     "beta": null,
     "yieldTTM": null,
@@ -39118,14 +39118,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 146.25999,
-        "h": 147.62,
-        "l": 145.83,
-        "c": 147.27,
-        "v": 97700
-      },
       {
         "t": 1790294400,
         "o": 148.2,
@@ -39277,6 +39269,14 @@
         "l": 139.74001,
         "c": 141.24001,
         "v": 207500
+      },
+      {
+        "t": 1792627200,
+        "o": 138.19,
+        "h": 138.7,
+        "l": 135.48,
+        "c": 136.12,
+        "v": 295600
       }
     ],
     "top10Holdings": [
@@ -39382,11 +39382,11 @@
     "symbol": "SCZ",
     "name": "iShares MSCI EAFE Small-Cap ETF",
     "type": "ETF",
-    "price": 82.39,
-    "change": -0.5,
-    "changePercent": -0.6032,
-    "open": 82.16,
-    "dayHigh": 82.44000000000001,
+    "price": 82.45,
+    "change": -0.44,
+    "changePercent": -0.5308,
+    "open": 82.06,
+    "dayHigh": 82.55,
     "dayLow": 81.99,
     "previousClose": 82.89,
     "high52w": 87.85,
@@ -39402,7 +39402,7 @@
     "divGrowth5Y": 20.22,
     "divGrowth10Y": 9.54,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2029,
     "beta": 0.92,
     "yieldTTM": 2.4,
@@ -39540,14 +39540,6 @@
     "return5Y": 31.61,
     "return10Y": 122.63,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 84.61,
-        "h": 84.98,
-        "l": 84.2,
-        "c": 84.71,
-        "v": 563400
-      },
       {
         "t": 1790294400,
         "o": 84.97,
@@ -39699,6 +39691,14 @@
         "l": 83.26,
         "c": 83.6,
         "v": 1756100
+      },
+      {
+        "t": 1792627200,
+        "o": 82.97,
+        "h": 83.099998,
+        "l": 82.6,
+        "c": 82.89,
+        "v": 781300
       }
     ]
   },
@@ -39706,9 +39706,9 @@
     "symbol": "FBND",
     "name": "Fidelity Total Bond ETF",
     "type": "ETF",
-    "price": 44.09,
-    "change": -0.05,
-    "changePercent": -0.1133,
+    "price": 44.05,
+    "change": -0.09,
+    "changePercent": -0.2039,
     "open": 44.12,
     "dayHigh": 44.1461,
     "dayLow": 44.04,
@@ -39726,7 +39726,7 @@
     "divGrowth5Y": -3.84,
     "divGrowth10Y": 3.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1,
     "beta": null,
     "yieldTTM": null,
@@ -39745,14 +39745,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 43.97,
-        "h": 44.015999,
-        "l": 43.72,
-        "c": 43.72,
-        "v": 5144800
-      },
       {
         "t": 1790294400,
         "o": 43.75,
@@ -39904,6 +39896,14 @@
         "l": 43.67,
         "c": 43.76,
         "v": 3517900
+      },
+      {
+        "t": 1792627200,
+        "o": 43.95,
+        "h": 44.2,
+        "l": 43.89,
+        "c": 44.14,
+        "v": 4112400
       }
     ],
     "top10Holdings": [
@@ -39919,11 +39919,11 @@
     "symbol": "IQLT",
     "name": "iShares MSCI Intl Quality Factor ETF",
     "type": "ETF",
-    "price": 49.88,
-    "change": -0.28,
-    "changePercent": -0.5582,
-    "open": 49.79,
-    "dayHigh": 49.89,
+    "price": 49.87,
+    "change": -0.29,
+    "changePercent": -0.5781,
+    "open": 49.76,
+    "dayHigh": 49.9799,
     "dayLow": 49.665,
     "previousClose": 50.16,
     "high52w": 52.36,
@@ -39939,7 +39939,7 @@
     "divGrowth5Y": 13.07,
     "divGrowth10Y": 4.19,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 322,
     "beta": null,
     "yieldTTM": null,
@@ -39958,14 +39958,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 49.78,
-        "h": 49.98,
-        "l": 49.545,
-        "c": 49.78,
-        "v": 2203600
-      },
       {
         "t": 1790294400,
         "o": 49.95,
@@ -40117,6 +40109,14 @@
         "l": 50.335,
         "c": 50.54,
         "v": 1260100
+      },
+      {
+        "t": 1792627200,
+        "o": 50.18,
+        "h": 50.265,
+        "l": 49.99,
+        "c": 50.16,
+        "v": 1233100
       }
     ],
     "top10Holdings": [
@@ -40222,11 +40222,11 @@
     "symbol": "IWP",
     "name": "iShares Russell Midcap Growth E",
     "type": "ETF",
-    "price": 133.18,
-    "change": 0.02,
-    "changePercent": 0.015,
-    "open": 133.05,
-    "dayHigh": 133.28,
+    "price": 132.81,
+    "change": -0.35,
+    "changePercent": -0.2628,
+    "open": 132.5,
+    "dayHigh": 133.47,
     "dayLow": 131.175,
     "previousClose": 133.16,
     "high52w": 148.29,
@@ -40242,7 +40242,7 @@
     "divGrowth5Y": 6.83,
     "divGrowth10Y": -0.77,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 235,
     "beta": 1.2,
     "yieldTTM": 0.4,
@@ -40380,14 +40380,6 @@
     "return5Y": 36.72,
     "return10Y": 217.77,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 138.0099945,
-        "h": 139.62,
-        "l": 137.75999,
-        "c": 139.11,
-        "v": 2372800
-      },
       {
         "t": 1790294400,
         "o": 139.63,
@@ -40539,6 +40531,14 @@
         "l": 136.53,
         "c": 136.88,
         "v": 423400
+      },
+      {
+        "t": 1792627200,
+        "o": 135,
+        "h": 135.13,
+        "l": 132.47,
+        "c": 133.16,
+        "v": 969700
       }
     ]
   },
@@ -40546,11 +40546,11 @@
     "symbol": "IWO",
     "name": "iShares Russell 2000 Growth Fun",
     "type": "ETF",
-    "price": 345.46,
-    "change": -1.63,
-    "changePercent": -0.4696,
-    "open": 344.37,
-    "dayHigh": 345.7,
+    "price": 345.42,
+    "change": -1.67,
+    "changePercent": -0.4811,
+    "open": 344.45,
+    "dayHigh": 346.24,
     "dayLow": 342.22,
     "previousClose": 347.09,
     "high52w": 396.69,
@@ -40566,7 +40566,7 @@
     "divGrowth5Y": 5.14,
     "divGrowth10Y": 2.29,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1112,
     "beta": 1.38,
     "yieldTTM": 0.5,
@@ -40704,14 +40704,6 @@
     "return5Y": 28.23,
     "return10Y": 195.83,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 358.95001,
-        "h": 360.70999,
-        "l": 355.75,
-        "c": 360.23999,
-        "v": 1021400
-      },
       {
         "t": 1790294400,
         "o": 361.23001,
@@ -40863,6 +40855,14 @@
         "l": 349.10001,
         "c": 350.51001,
         "v": 463300
+      },
+      {
+        "t": 1792627200,
+        "o": 347.01001,
+        "h": 349.51001,
+        "l": 344.88,
+        "c": 347.089996,
+        "v": 392200
       }
     ]
   },
@@ -40870,12 +40870,12 @@
     "symbol": "MINT",
     "name": "PIMCO Enhanced Short Maturity Active Exchange-Traded Fund",
     "type": "ETF",
-    "price": 100.635,
-    "change": 0.035,
-    "changePercent": 0.0348,
-    "open": 100.63000000000001,
+    "price": 100.62,
+    "change": 0.02,
+    "changePercent": 0.0199,
+    "open": 100.62,
     "dayHigh": 100.64,
-    "dayLow": 100.62,
+    "dayLow": 100.61,
     "previousClose": 100.6,
     "high52w": 100.82,
     "low52w": 100.2348,
@@ -40890,7 +40890,7 @@
     "divGrowth5Y": 46.18,
     "divGrowth10Y": 15.2,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1063,
     "beta": null,
     "yieldTTM": null,
@@ -40909,14 +40909,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 100.68,
-        "h": 100.7,
-        "l": 100.65,
-        "c": 100.65,
-        "v": 4541200
-      },
       {
         "t": 1790294400,
         "o": 100.66,
@@ -41068,6 +41060,14 @@
         "l": 100.55,
         "c": 100.58,
         "v": 1594300
+      },
+      {
+        "t": 1792627200,
+        "o": 100.59,
+        "h": 100.61,
+        "l": 100.57,
+        "c": 100.6,
+        "v": 1398800
       }
     ],
     "top10Holdings": [],
@@ -41077,10 +41077,10 @@
     "symbol": "GLD",
     "name": "SPDR Gold Shares",
     "type": "ETF",
-    "price": 366.95,
-    "change": -2.05,
-    "changePercent": -0.5556,
-    "open": 368.2275,
+    "price": 366.61,
+    "change": -2.39,
+    "changePercent": -0.6477,
+    "open": 368.945,
     "dayHigh": 369.25,
     "dayLow": 364.33,
     "previousClose": 369,
@@ -41097,7 +41097,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -41137,14 +41137,6 @@
     "return5Y": 138.95,
     "return10Y": 241.56,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 391.95999,
-        "h": 393.070007,
-        "l": 389.049988,
-        "c": 391.69,
-        "v": 6710200
-      },
       {
         "t": 1790294400,
         "o": 392.20999,
@@ -41296,6 +41288,14 @@
         "l": 376.20001,
         "c": 378.95001,
         "v": 6880800
+      },
+      {
+        "t": 1792627200,
+        "o": 373.54001,
+        "h": 373.87,
+        "l": 368.35001,
+        "c": 369,
+        "v": 17543700
       }
     ],
     "top10Holdings": [],
@@ -41305,11 +41305,11 @@
     "symbol": "RDVY",
     "name": "First Trust Rising Dividend Achievers ETF",
     "type": "ETF",
-    "price": 78.97,
-    "change": -0.7,
-    "changePercent": -0.8786,
-    "open": 79.18,
-    "dayHigh": 79.29,
+    "price": 78.7,
+    "change": -0.97,
+    "changePercent": -1.2175,
+    "open": 79.26,
+    "dayHigh": 79.28,
     "dayLow": 78.48,
     "previousClose": 79.67,
     "high52w": 84.0199,
@@ -41325,7 +41325,7 @@
     "divGrowth5Y": 2.44,
     "divGrowth10Y": 0.57,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 73,
     "beta": null,
     "yieldTTM": null,
@@ -41344,14 +41344,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 78.63,
-        "h": 78.89,
-        "l": 78.38,
-        "c": 78.76,
-        "v": 952700
-      },
       {
         "t": 1790294400,
         "o": 79.13,
@@ -41503,6 +41495,14 @@
         "l": 79.61,
         "c": 79.88,
         "v": 993500
+      },
+      {
+        "t": 1792627200,
+        "o": 79.23,
+        "h": 79.67,
+        "l": 78.98,
+        "c": 79.67,
+        "v": 1374200
       }
     ],
     "top10Holdings": [
@@ -41608,12 +41608,12 @@
     "symbol": "SCHZ",
     "name": "Schwab US Aggregate Bond ETF",
     "type": "ETF",
-    "price": 22.44,
-    "change": -0.02,
-    "changePercent": -0.089,
-    "open": 22.465,
+    "price": 22.42,
+    "change": -0.04,
+    "changePercent": -0.1781,
+    "open": 22.44,
     "dayHigh": 22.48,
-    "dayLow": 22.415,
+    "dayLow": 22.4101,
     "previousClose": 22.46,
     "high52w": 23.73,
     "low52w": 21.92,
@@ -41628,7 +41628,7 @@
     "divGrowth5Y": 8.18,
     "divGrowth10Y": 5.58,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 4200,
     "beta": 0.06,
     "yieldTTM": 2.8,
@@ -41668,14 +41668,6 @@
     "return5Y": 0.09,
     "return10Y": 16.02,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 22.31,
-        "h": 22.33,
-        "l": 22.18,
-        "c": 22.19,
-        "v": 3555200
-      },
       {
         "t": 1790294400,
         "o": 22.21,
@@ -41827,6 +41819,14 @@
         "l": 22.22,
         "c": 22.27,
         "v": 2291100
+      },
+      {
+        "t": 1792627200,
+        "o": 22.36,
+        "h": 22.55,
+        "l": 22.32,
+        "c": 22.46,
+        "v": 1676700
       }
     ],
     "top10Holdings": [],
@@ -41836,11 +41836,11 @@
     "symbol": "EFG",
     "name": "iShares MSCI EAFE Growth ETF",
     "type": "ETF",
-    "price": 117.6,
-    "change": -0.86,
-    "changePercent": -0.726,
-    "open": 117.47,
-    "dayHigh": 117.6899,
+    "price": 117.75,
+    "change": -0.71,
+    "changePercent": -0.5994,
+    "open": 117.46,
+    "dayHigh": 117.9493,
     "dayLow": 117.1,
     "previousClose": 118.46,
     "high52w": 127.42,
@@ -41856,7 +41856,7 @@
     "divGrowth5Y": 27.37,
     "divGrowth10Y": 9.35,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 368,
     "beta": null,
     "yieldTTM": null,
@@ -41875,14 +41875,6 @@
     "profileUpdatedAt": "2026-10-19T15:16:55.229Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 119.8,
-        "h": 120.32,
-        "l": 119.080002,
-        "c": 119.84,
-        "v": 1867900
-      },
       {
         "t": 1790294400,
         "o": 120.52,
@@ -42034,6 +42026,14 @@
         "l": 119.39,
         "c": 119.98,
         "v": 484000
+      },
+      {
+        "t": 1792627200,
+        "o": 118.83,
+        "h": 119.17,
+        "l": 118.24,
+        "c": 118.46,
+        "v": 643200
       }
     ],
     "top10Holdings": [
@@ -42139,10 +42139,10 @@
     "symbol": "IAU",
     "name": "iShares Gold Trust Shares",
     "type": "ETF",
-    "price": 75.26,
-    "change": -0.4,
-    "changePercent": -0.5287,
-    "open": 75.515,
+    "price": 75.15,
+    "change": -0.51,
+    "changePercent": -0.6741,
+    "open": 75.64,
     "dayHigh": 75.705,
     "dayLow": 74.7,
     "previousClose": 75.66,
@@ -42159,7 +42159,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -42201,14 +42201,6 @@
     "return5Y": 140.64,
     "return10Y": 246.72,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 80.37,
-        "h": 80.58,
-        "l": 79.76,
-        "c": 80.3,
-        "v": 5896400
-      },
       {
         "t": 1790294400,
         "o": 80.4,
@@ -42360,6 +42352,14 @@
         "l": 77.14,
         "c": 77.71,
         "v": 5094200
+      },
+      {
+        "t": 1792627200,
+        "o": 76.59,
+        "h": 76.67,
+        "l": 75.54,
+        "c": 75.66,
+        "v": 6251200
       }
     ]
   },
@@ -42367,10 +42367,10 @@
     "symbol": "SDY",
     "name": "State Street SPDR S&P Dividend ",
     "type": "ETF",
-    "price": 158.56,
-    "change": -1.38,
-    "changePercent": -0.8628,
-    "open": 158.82999999999998,
+    "price": 158.4,
+    "change": -1.54,
+    "changePercent": -0.9629,
+    "open": 158.82,
     "dayHigh": 159.48,
     "dayLow": 157.52,
     "previousClose": 159.94,
@@ -42387,7 +42387,7 @@
     "divGrowth5Y": 3.14,
     "divGrowth10Y": -2.24,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 158,
     "beta": 0.83,
     "yieldTTM": 3.7,
@@ -42427,14 +42427,6 @@
     "return5Y": 33.28,
     "return10Y": 147.25,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 149.17,
-        "h": 149.58,
-        "l": 147.88,
-        "c": 147.94,
-        "v": 219100
-      },
       {
         "t": 1790294400,
         "o": 147.95,
@@ -42586,6 +42578,14 @@
         "l": 155.52,
         "c": 155.99001,
         "v": 207200
+      },
+      {
+        "t": 1792627200,
+        "o": 156.38,
+        "h": 159.98,
+        "l": 156.089996,
+        "c": 159.94,
+        "v": 300200
       }
     ],
     "top10Holdings": [
@@ -42691,10 +42691,10 @@
     "symbol": "IGM",
     "name": "iShares Expanded Tech Sector ETF",
     "type": "ETF",
-    "price": 157.96,
-    "change": 1.12,
-    "changePercent": 0.7141,
-    "open": 156.34,
+    "price": 157.37,
+    "change": 0.53,
+    "changePercent": 0.3379,
+    "open": 156.24,
     "dayHigh": 158.42,
     "dayLow": 156,
     "previousClose": 156.84,
@@ -42711,7 +42711,7 @@
     "divGrowth5Y": 6.28,
     "divGrowth10Y": 2.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 297,
     "beta": null,
     "yieldTTM": null,
@@ -42730,14 +42730,6 @@
     "profileUpdatedAt": "2026-10-20T00:25:46.966Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 167.11,
-        "h": 169.50999,
-        "l": 167.089996,
-        "c": 169.25999,
-        "v": 353600
-      },
       {
         "t": 1790294400,
         "o": 169.92,
@@ -42889,6 +42881,14 @@
         "l": 161.17,
         "c": 162.67,
         "v": 351500
+      },
+      {
+        "t": 1792627200,
+        "o": 159.48,
+        "h": 159.72,
+        "l": 156.080002,
+        "c": 156.84,
+        "v": 934900
       }
     ],
     "top10Holdings": [
@@ -42994,10 +42994,10 @@
     "symbol": "GDXJ",
     "name": "VanEck Junior Gold Miners ETF",
     "type": "ETF",
-    "price": 99.93,
-    "change": -1.27,
-    "changePercent": -1.2549,
-    "open": 100.325,
+    "price": 99.35,
+    "change": -1.85,
+    "changePercent": -1.8281,
+    "open": 100.21,
     "dayHigh": 100.65,
     "dayLow": 97.34,
     "previousClose": 101.2,
@@ -43014,7 +43014,7 @@
     "divGrowth5Y": 25.37,
     "divGrowth10Y": 34.28,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 160,
     "beta": null,
     "yieldTTM": null,
@@ -43033,14 +43033,6 @@
     "profileUpdatedAt": "2026-10-20T00:25:46.966Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 120.21,
-        "h": 120.41,
-        "l": 117.88,
-        "c": 119.83,
-        "v": 3790500
-      },
       {
         "t": 1790294400,
         "o": 120.029999,
@@ -43192,6 +43184,14 @@
         "l": 106.59,
         "c": 108.52,
         "v": 2164400
+      },
+      {
+        "t": 1792627200,
+        "o": 104.64,
+        "h": 104.76,
+        "l": 100.64,
+        "c": 101.2,
+        "v": 6707600
       }
     ],
     "top10Holdings": [
@@ -43297,11 +43297,11 @@
     "symbol": "HYG",
     "name": "iShares iBoxx $ High Yield Corp",
     "type": "ETF",
-    "price": 76.95,
-    "change": -0.15,
-    "changePercent": -0.1946,
-    "open": 76.95,
-    "dayHigh": 76.97,
+    "price": 77.05,
+    "change": -0.05,
+    "changePercent": -0.0649,
+    "open": 76.89,
+    "dayHigh": 77.07,
     "dayLow": 76.86,
     "previousClose": 77.1,
     "high52w": 81.33,
@@ -43317,7 +43317,7 @@
     "divGrowth5Y": 3.34,
     "divGrowth10Y": -0.16,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1000,
     "beta": 0.35,
     "yieldTTM": 5.8,
@@ -43357,14 +43357,6 @@
     "return5Y": 20.19,
     "return10Y": 62.43,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 78,
-        "h": 78.15,
-        "l": 77.85,
-        "c": 77.89,
-        "v": 74979500
-      },
       {
         "t": 1790294400,
         "o": 77.91,
@@ -43516,6 +43508,14 @@
         "l": 76.85,
         "c": 76.98,
         "v": 37080000
+      },
+      {
+        "t": 1792627200,
+        "o": 76.77,
+        "h": 77.14,
+        "l": 76.77,
+        "c": 77.099998,
+        "v": 47065200
       }
     ],
     "top10Holdings": [],
@@ -43525,11 +43525,11 @@
     "symbol": "EMB",
     "name": "iShares J.P. Morgan USD Emergin",
     "type": "ETF",
-    "price": 91.69,
-    "change": -0.16,
-    "changePercent": -0.1742,
-    "open": 91.775,
-    "dayHigh": 91.86,
+    "price": 91.65,
+    "change": -0.2,
+    "changePercent": -0.2177,
+    "open": 91.85,
+    "dayHigh": 91.85,
     "dayLow": 91.575,
     "previousClose": 91.85,
     "high52w": 97.8,
@@ -43545,7 +43545,7 @@
     "divGrowth5Y": 2.48,
     "divGrowth10Y": -0.89,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 600,
     "beta": 0.38,
     "yieldTTM": 5.6,
@@ -43587,14 +43587,6 @@
     "return5Y": 9.16,
     "return10Y": 36.93,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 92.71,
-        "h": 92.84,
-        "l": 92.18,
-        "c": 92.18,
-        "v": 13969100
-      },
       {
         "t": 1790294400,
         "o": 92.2,
@@ -43746,6 +43738,14 @@
         "l": 91.15,
         "c": 91.44,
         "v": 9875700
+      },
+      {
+        "t": 1792627200,
+        "o": 91.38,
+        "h": 91.91,
+        "l": 91.36,
+        "c": 91.85,
+        "v": 9215900
       }
     ]
   },
@@ -43753,11 +43753,11 @@
     "symbol": "MGC",
     "name": "Vanguard Mega Cap ETF",
     "type": "ETF",
-    "price": 280.49,
-    "change": -0.19,
-    "changePercent": -0.0677,
-    "open": 279.45,
-    "dayHigh": 280.56,
+    "price": 279.34,
+    "change": -1.34,
+    "changePercent": -0.4774,
+    "open": 279.34,
+    "dayHigh": 280.73,
     "dayLow": 279.117,
     "previousClose": 280.68,
     "high52w": 289.095,
@@ -43773,7 +43773,7 @@
     "divGrowth5Y": 4.86,
     "divGrowth10Y": 4.72,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 179,
     "beta": 1,
     "yieldTTM": 0.95,
@@ -43813,14 +43813,6 @@
     "return5Y": 97.31,
     "return10Y": 356.04,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 282.95001,
-        "h": 285.070007,
-        "l": 282.92001,
-        "c": 284.67999,
-        "v": 85200
-      },
       {
         "t": 1790294400,
         "o": 285.26001,
@@ -43972,6 +43964,14 @@
         "l": 282.95001,
         "c": 284.89001,
         "v": 57300
+      },
+      {
+        "t": 1792627200,
+        "o": 281.95999,
+        "h": 282.47,
+        "l": 279.91,
+        "c": 280.67999,
+        "v": 166100
       }
     ],
     "top10Holdings": [
@@ -44077,10 +44077,10 @@
     "symbol": "SGOL",
     "name": "abrdn Physical Gold Shares ETF",
     "type": "ETF",
-    "price": 38.1,
-    "change": -0.23,
-    "changePercent": -0.6001,
-    "open": 38.32,
+    "price": 38.07,
+    "change": -0.26,
+    "changePercent": -0.6783,
+    "open": 38.3,
     "dayHigh": 38.34,
     "dayLow": 37.835,
     "previousClose": 38.33,
@@ -44097,7 +44097,7 @@
     "divGrowth5Y": null,
     "divGrowth10Y": null,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1,
     "beta": 0.04,
     "yieldTTM": 0,
@@ -44139,14 +44139,6 @@
     "return5Y": 141.77,
     "return10Y": 247.66,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 40.69,
-        "h": 40.8,
-        "l": 40.39,
-        "c": 40.67,
-        "v": 2516400
-      },
       {
         "t": 1790294400,
         "o": 40.71,
@@ -44298,6 +44290,14 @@
         "l": 39.11,
         "c": 39.34,
         "v": 2896400
+      },
+      {
+        "t": 1792627200,
+        "o": 38.79,
+        "h": 38.81,
+        "l": 38.25,
+        "c": 38.33,
+        "v": 3705200
       }
     ]
   },
@@ -44305,11 +44305,11 @@
     "symbol": "VPL",
     "name": "Vanguard FTSE Pacific ETF",
     "type": "ETF",
-    "price": 108.83,
-    "change": 0.16,
-    "changePercent": 0.1472,
-    "open": 108.325,
-    "dayHigh": 108.86,
+    "price": 108.81,
+    "change": 0.14,
+    "changePercent": 0.1288,
+    "open": 108.27,
+    "dayHigh": 109.0651,
     "dayLow": 108.195,
     "previousClose": 108.67,
     "high52w": 121.23,
@@ -44325,7 +44325,7 @@
     "divGrowth5Y": 20.32,
     "divGrowth10Y": 10.17,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 2400,
     "beta": 0.68,
     "yieldTTM": 2.1,
@@ -44408,14 +44408,6 @@
     "return5Y": 59.58,
     "return10Y": 166.14,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 115.82,
-        "h": 116.059998,
-        "l": 114.81,
-        "c": 115.34,
-        "v": 328600
-      },
       {
         "t": 1790294400,
         "o": 116.92,
@@ -44567,6 +44559,14 @@
         "l": 110.19,
         "c": 110.72,
         "v": 468200
+      },
+      {
+        "t": 1792627200,
+        "o": 109.36,
+        "h": 109.7,
+        "l": 108.32,
+        "c": 108.67,
+        "v": 269400
       }
     ]
   },
@@ -44574,11 +44574,11 @@
     "symbol": "VSS",
     "name": "Vanguard FTSE All-Wld ex-US SmC",
     "type": "ETF",
-    "price": 149.25,
-    "change": -0.66,
-    "changePercent": -0.4403,
-    "open": 149.02,
-    "dayHigh": 149.42,
+    "price": 149.35,
+    "change": -0.56,
+    "changePercent": -0.3736,
+    "open": 148.9,
+    "dayHigh": 149.55,
     "dayLow": 148.52,
     "previousClose": 149.91,
     "high52w": 162.91,
@@ -44594,7 +44594,7 @@
     "divGrowth5Y": 16.04,
     "divGrowth10Y": 7.01,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 28,
     "beta": 0.88,
     "yieldTTM": 2.8,
@@ -44634,14 +44634,6 @@
     "return5Y": 38.05,
     "return10Y": 122.89,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 156.7,
-        "h": 156.84,
-        "l": 155.42999,
-        "c": 156.059998,
-        "v": 190200
-      },
       {
         "t": 1790294400,
         "o": 156.97,
@@ -44793,6 +44785,14 @@
         "l": 151.88,
         "c": 152.55,
         "v": 1058300
+      },
+      {
+        "t": 1792627200,
+        "o": 150.64,
+        "h": 150.64,
+        "l": 149.41,
+        "c": 149.91,
+        "v": 129500
       }
     ],
     "top10Holdings": [
@@ -44894,11 +44894,11 @@
     "symbol": "IGV",
     "name": "iShares Expanded Tech-Software ",
     "type": "ETF",
-    "price": 110.03,
-    "change": 1.31,
-    "changePercent": 1.2049,
-    "open": 108.39,
-    "dayHigh": 110.335,
+    "price": 110.59,
+    "change": 1.87,
+    "changePercent": 1.72,
+    "open": 108.38,
+    "dayHigh": 110.7604,
     "dayLow": 107.64,
     "previousClose": 108.72,
     "high52w": 117.76,
@@ -44914,7 +44914,7 @@
     "divGrowth5Y": -20.3,
     "divGrowth10Y": -17.46,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 110,
     "beta": 1.3,
     "yieldTTM": 0.2,
@@ -45052,14 +45052,6 @@
     "return5Y": 36.45,
     "return10Y": 362.46,
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 107.48,
-        "h": 108.029999,
-        "l": 106.46,
-        "c": 107.15,
-        "v": 6430600
-      },
       {
         "t": 1790294400,
         "o": 107.5,
@@ -45211,6 +45203,14 @@
         "l": 106.74,
         "c": 108.82,
         "v": 9188200
+      },
+      {
+        "t": 1792627200,
+        "o": 109.07,
+        "h": 109.98,
+        "l": 108.2,
+        "c": 108.72,
+        "v": 8958200
       }
     ]
   },
@@ -45218,10 +45218,10 @@
     "symbol": "ONEQ",
     "name": "Fidelity Nasdaq Composite Index ETF",
     "type": "ETF",
-    "price": 102.76,
-    "change": 0.25,
-    "changePercent": 0.2439,
-    "open": 102.13,
+    "price": 102.26,
+    "change": -0.25,
+    "changePercent": -0.2439,
+    "open": 102.03,
     "dayHigh": 102.905,
     "dayLow": 101.93,
     "previousClose": 102.51,
@@ -45238,7 +45238,7 @@
     "divGrowth5Y": 9.22,
     "divGrowth10Y": 9.39,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1012,
     "beta": null,
     "yieldTTM": null,
@@ -45257,14 +45257,6 @@
     "profileUpdatedAt": "2026-10-20T00:25:46.966Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 105.3,
-        "h": 106.2,
-        "l": 105.21,
-        "c": 106.089996,
-        "v": 212700
-      },
       {
         "t": 1790294400,
         "o": 106.42,
@@ -45416,6 +45408,14 @@
         "l": 104.49,
         "c": 105.23,
         "v": 365200
+      },
+      {
+        "t": 1792627200,
+        "o": 103.75,
+        "h": 103.85,
+        "l": 102.14,
+        "c": 102.51,
+        "v": 444000
       }
     ],
     "top10Holdings": [
@@ -45521,11 +45521,11 @@
     "symbol": "VONE",
     "name": "Vanguard Russell 1000 ETF",
     "type": "ETF",
-    "price": 344.65,
-    "change": -0.61,
-    "changePercent": -0.1767,
-    "open": 343.265,
-    "dayHigh": 344.72,
+    "price": 343.44,
+    "change": -1.82,
+    "changePercent": -0.5271,
+    "open": 343.3,
+    "dayHigh": 344.82,
     "dayLow": 342.8645,
     "previousClose": 345.26,
     "high52w": 353.24,
@@ -45541,7 +45541,7 @@
     "divGrowth5Y": 6.65,
     "divGrowth10Y": 6.25,
     "priceSource": "Finnhub",
-    "updatedAt": "2026-10-23T15:16:18.444Z",
+    "updatedAt": "2026-10-23T23:53:08.784Z",
     "numHoldings": 1027,
     "beta": null,
     "yieldTTM": null,
@@ -45560,14 +45560,6 @@
     "profileUpdatedAt": "2026-10-20T00:25:46.966Z",
     "profileSource": "AlphaVantage",
     "dailyCandles": [
-      {
-        "t": 1790208000,
-        "o": 345.54001,
-        "h": 347.23001,
-        "l": 344.89001,
-        "c": 346.62,
-        "v": 186700
-      },
       {
         "t": 1790294400,
         "o": 347.48001,
@@ -45719,6 +45711,14 @@
         "l": 347.32001,
         "c": 349.28,
         "v": 111600
+      },
+      {
+        "t": 1792627200,
+        "o": 346,
+        "h": 346.84,
+        "l": 344,
+        "c": 345.26001,
+        "v": 585300
       }
     ],
     "top10Holdings": [
